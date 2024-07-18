@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,6 +24,7 @@
 #include <QWidget>
 
 enum class Controls : u16;
+class QSpinBox;
 
 namespace Ui
 {
@@ -173,8 +174,33 @@ public:
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
 
+protected:
+    /**
+     * @brief Shows the combo box model when clicked
+     *
+     * @param object Object that is part of triggered event
+     * @param event Contains information about the triggered event
+     *
+     * @return true Model should be shown
+     * @return false Model should not be shown
+     */
+    bool eventFilter(QObject *object, QEvent *event) override;
+
 private:
     Ui::Filter *ui;
+
+private slots:
+    /**
+     * @brief Opens IV calculator to determine IV minimum/maximum
+     */
+    void openIVCalculator() const;
+
+    /**
+     * @brief Updates min/max IV values based upon calculation from IV Calculator
+     *
+     * @param ivs Possible IV ranges
+     */
+    void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 };
 
 #endif // FILTER_HPP

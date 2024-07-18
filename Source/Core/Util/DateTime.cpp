@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -123,7 +123,7 @@ std::string Date::toString() const
     std::memcpy(buf + 5, numbers[parts.month], 2);
     std::memcpy(buf + 8, numbers[parts.day], 2);
 
-    return std::string(buf, sizeof(buf));
+    return std::string(buf, sizeof(buf) - 1);
 }
 
 u16 Date::year() const
@@ -167,7 +167,7 @@ std::string Time::toString() const
     std::memcpy(buf + 3, numbers[minute()], 2);
     std::memcpy(buf + 6, numbers[second()], 2);
 
-    return std::string(buf, sizeof(buf));
+    return std::string(buf, sizeof(buf) - 1);
 }
 
 DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : date(year, month, day), time(hour, minute, second)
@@ -206,5 +206,5 @@ std::string DateTime::toString() const
     std::memcpy(buf + 14, numbers[time.minute()], 2);
     std::memcpy(buf + 17, numbers[time.second()], 2);
 
-    return std::string(buf, sizeof(buf));
+    return std::string(buf, sizeof(buf) - 1);
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,11 +30,8 @@
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
-    auto *outputTXT = new QAction(tr("Output Results to TXT"), this);
-    addAction(outputTXT); // TODO: use convenience function when moving to Qt 6.3
-
-    auto *outputCSV = new QAction(tr("Output Results to CSV"), this);
-    addAction(outputCSV); // TODO: use convenience function when moving to Qt 6.3
+    auto *outputTXT = addAction(tr("Output Results to TXT"));
+    auto *outputCSV = addAction(tr("Output Results to CSV"));
 
     connect(outputTXT, &QAction::triggered, this, [=] { outputModel(); });
     connect(outputCSV, &QAction::triggered, this, [=] { outputModel(true); });

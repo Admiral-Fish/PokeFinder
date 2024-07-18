@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -191,7 +191,7 @@ void Event8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     WB8 wb8 = getParameters();
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

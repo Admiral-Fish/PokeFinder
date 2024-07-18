@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,13 +20,13 @@
 #ifndef RAIDMODEL_HPP
 #define RAIDMODEL_HPP
 
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show raid encounter information for Gen 8
  */
-class RaidModel : public TableModel<GeneratorState>
+class RaidModel : public TableModel<State8>
 {
     Q_OBJECT
 public:
@@ -76,8 +76,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("EC"),  tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"), tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender"),  tr("Characteristic") };
+    QStringList header
+        = { tr("Advances"), tr("EC"),  tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),
+            tr("Def"),      tr("SpA"), tr("SpD"), tr("Spe"),   tr("Gender"), tr("Height"),  tr("Weight"), tr("Characteristic") };
     bool showStats;
 };
 

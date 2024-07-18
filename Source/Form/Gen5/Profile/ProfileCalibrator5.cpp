@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -155,19 +155,12 @@ void ProfileCalibrator5::updateParameters()
 
 void ProfileCalibrator5::addNeedle(QAbstractButton *button)
 {
-    QString text = ui->lineEditNeedles->text();
-    if (!text.isEmpty())
-    {
-        text += " ";
-    }
-    text += button->text();
-
-    ui->lineEditNeedles->setText(text);
+    ui->listWidgetNeedles->addItem(button->text());
 }
 
 void ProfileCalibrator5::clearNeedles()
 {
-    ui->lineEditNeedles->setText("");
+    ui->listWidgetNeedles->clear();
 }
 
 void ProfileCalibrator5::createProfile()
@@ -212,14 +205,8 @@ void ProfileCalibrator5::openIVCalculator() const
 
 void ProfileCalibrator5::removeNeedle()
 {
-    QString text = ui->lineEditNeedles->text();
-    if (!text.isEmpty())
-    {
-        QStringList split = text.split(" ");
-        split.removeLast();
-
-        ui->lineEditNeedles->setText(split.join(" "));
-    }
+    auto *item = ui->listWidgetNeedles->takeItem(ui->listWidgetNeedles->count() - 1);
+    delete item;
 }
 
 void ProfileCalibrator5::search()
@@ -274,10 +261,10 @@ void ProfileCalibrator5::search()
         bool memoryLink = ui->checkBoxMemoryLink->isChecked();
 
         std::vector<u8> needles;
-        QStringList input = ui->lineEditNeedles->text().split(" ");
-        for (const QString &needle : input)
+        for (int i = 0; i < ui->listWidgetNeedles->count(); i++)
         {
-            needles.emplace_back(needleMap[needle]);
+            auto *item = ui->listWidgetNeedles->item(i);
+            needles.emplace_back(needleMap[item->text()]);
         }
 
         searcher = new ProfileNeedleSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0,

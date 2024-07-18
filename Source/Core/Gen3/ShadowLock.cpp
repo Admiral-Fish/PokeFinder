@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,15 +20,11 @@
 #include "ShadowLock.hpp"
 #include <Core/Gen3/ShadowTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 /* Each non-shadow before a shadow has to match
  * a specific gender/nature and these preset
  * values directly impact what spreads are available */
-
-static inline bool isShiny(u32 pid, u16 tsv)
-{
-    return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
-}
 
 static inline u32 getPIDBackward(XDRNGR &rng)
 {
@@ -171,7 +167,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 1;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::isShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -186,8 +182,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
@@ -202,7 +203,7 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDForward(forward);
-                } while (!lock.compare(pid) || isShiny(pid, tsv));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
         }
 
@@ -213,7 +214,7 @@ namespace ShadowLock
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;
@@ -231,7 +232,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 2;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::isShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -246,8 +247,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
@@ -262,7 +268,7 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDForward(forward);
-                } while (!lock.compare(pid) || isShiny(pid, tsv));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
         }
 
@@ -273,7 +279,7 @@ namespace ShadowLock
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;
@@ -302,7 +308,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 2;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::getShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -317,8 +323,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
@@ -333,7 +344,7 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDForward(forward);
-                } while (!lock.compare(pid) || isShiny(pid, tsv));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
         }
 
@@ -344,7 +355,7 @@ namespace ShadowLock
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;
@@ -362,13 +373,13 @@ namespace ShadowLock
         u32 pid = getPIDBackward(backward);
 
         // Backwards nature lock check
-        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        if (shadowTemplate->getLock(0).compare(pid) && !Utilities::isShiny<true>(pid, tsv))
         {
             // Compute origin seed that would give the first occurence of the spread
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;
@@ -397,13 +408,13 @@ namespace ShadowLock
         u32 pid = getPIDBackward(backward);
 
         // Backwards nature lock check
-        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        if (shadowTemplate->getLock(0).compare(pid) && !Utilities::isShiny<true>(pid, tsv))
         {
             // Compute origin seed that would give the first occurence of the spread
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;
@@ -421,13 +432,13 @@ namespace ShadowLock
         u32 pid = getPIDBackward(backward);
 
         // Backwards nature lock check
-        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        if (shadowTemplate->getLock(0).compare(pid) && !Utilities::isShiny<true>(pid, tsv))
         {
             // Compute origin seed that would give the first occurence of the spread
             do
             {
                 pid = getPIDBackward(backward);
-            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+            } while (!shadowTemplate->getLock(0).compare(pid) || Utilities::isShiny<true>(pid, tsv));
 
             seed = backward.advance(6);
             return true;

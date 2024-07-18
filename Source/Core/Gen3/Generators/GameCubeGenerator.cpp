@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,6 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -48,7 +49,7 @@ std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const ShadowTe
     return generateGalesShadow(seed, shadowTemplate);
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     if (method == Method::Channel)
     {
@@ -57,7 +58,7 @@ std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTe
     return generateNonLock(seed, staticTemplate);
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -70,7 +71,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
         XDRNG go(rng);
 
         // Advance through menu pattern
-        for (u8 mask = 0; (mask & 14) != 14;)
+        for (u8 mask = 0; mask < 14;)
         {
             mask |= 1 << (go.nextUShort() >> 14);
         }
@@ -112,7 +113,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
         ivs[4] = go.nextUShort() >> 11;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25,
-                             Utilities::getShiny(pid, tid ^ sid), info);
+                             Utilities::getShiny<true>(pid, tid ^ sid), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -201,7 +202,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, tsv), info);
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -286,7 +287,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, tsv), info);
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -296,7 +297,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
     return states;
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -384,7 +385,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, actualTSV), info);
+                             pid % 25, Utilities::getShiny<true>(pid, actualTSV), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

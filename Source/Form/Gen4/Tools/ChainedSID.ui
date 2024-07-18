@@ -74,7 +74,7 @@
    <item row="5" column="0">
     <widget class="QLabel" name="labelPossibleResults">
      <property name="text">
-      <string>Possible Results: 8192</string>
+      <string>Possible Results:</string>
      </property>
     </widget>
    </item>
@@ -164,14 +164,14 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,7 +25,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class GeneratorState;
+class State8;
 
 /**
  * @brief Event generator for Gen 8
@@ -53,7 +53,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<State8> generate(u64 seed0, u64 seed1) const;
 
 private:
     WB8 wb8;

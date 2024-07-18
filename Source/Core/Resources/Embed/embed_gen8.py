@@ -26,10 +26,10 @@ def embed_encounters8():
     with open("EncounterTables/Gen8/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
-            string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type.upper()} = {{ "
+            string = f"constexpr std::array<StaticTemplate8, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
-                string += f"StaticTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']})"
+                string += f"StaticTemplate8({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']}, {int(encounter.get('roamer', False))})"
                 
                 if i != len(encounters) - 1:
                     string += ", "
@@ -152,4 +152,4 @@ def embed_encounters8():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData8.hpp", ("Core/Gen8/Den.hpp", "Core/Parents/StaticTemplate.hpp", "array"))
+    write_data(arrays, "EncounterData8.hpp", ("Core/Gen8/Den.hpp", "Core/Gen8/StaticTemplate8.hpp", "array"))

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,10 @@
 #include "RaidGenerator.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/Raid.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
+#include <Core/Util/Utilities.hpp>
 
 constexpr u8 toxtricityAmpedNatures[] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
 constexpr u8 toxtricityLowKeyNatures[] = { 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 };
@@ -32,12 +33,12 @@ RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, co
 {
 }
 
-std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
+std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
 {
     const PersonalInfo *info = raid.getInfo();
     seed += 0x82A2B175229D6A5B * (initialAdvances + delay);
 
-    std::vector<GeneratorState> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, seed += 0x82A2B175229D6A5B)
     {
         Xoroshiro rng(seed);
@@ -45,22 +46,15 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         u32 ec = rng.nextUInt<0xffffffff>();
         u32 sidtid = rng.nextUInt<0xffffffff>();
         u32 pid = rng.nextUInt<0xffffffff>();
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u8 shiny;
         if (raid.getShiny() == Shiny::Random) // Random shiny chance
         {
             // Game uses a fake TID/SID to determine shiny or not
             // PID is later modified using the actual TID/SID of trainer if necessary
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-            if (fakeXor < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                shiny = fakeXor == 0 ? 2 : 1;
-
-                u16 realXor = psv ^ tsv;
-                u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                if (realShiny != shiny)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
@@ -68,8 +62,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
             }
             else // Force non shiny
             {
-                shiny = 0;
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }
@@ -78,7 +71,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         else if (raid.getShiny() == Shiny::Never) // Force non-shiny
         {
             shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
@@ -86,8 +79,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         else // Force shiny
         {
             shiny = 2;
-            u16 realXor = psv ^ tsv;
-            if (realXor != 0) // Check if PID is not normally square shiny
+            if (Utilities::getShiny<false>(pid, tsv) != shiny) // Check if PID is not normally square shiny
             {
                 // Force shiny (makes it square)
                 u16 high = (pid & 0xffff) ^ tsv;
@@ -133,8 +125,9 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         // Altform, doesn't seem to have a rand call for raids
 
         u8 gender;
-        if (raid.getGender() == 0) // Random
+        switch (raid.getGender())
         {
+        case 0: // Random
             switch (info->getGender())
             {
             case 255:
@@ -150,18 +143,9 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
                 gender = (rng.nextUInt<253>() + 1) < info->getGender();
                 break;
             }
-        }
-        else if (raid.getGender() == 1) // Male
-        {
-            gender = 0;
-        }
-        else if (raid.getGender() == 2) // Female
-        {
-            gender = 1;
-        }
-        else if (raid.getGender() == 3) // Genderless
-        {
-            gender = 2;
+            break;
+        default: // Male/Female/Genderless
+            gender = raid.getGender() - 1;
         }
 
         u8 nature;
@@ -181,10 +165,13 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
             }
         }
 
-        // Height (2 calls)
-        // Weight (2 calls)
+        u8 height = rng.nextUInt<129>();
+        height += rng.nextUInt<128>();
 
-        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, info);
+        u8 weight = rng.nextUInt<129>();
+        weight += rng.nextUInt<128>();
+
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

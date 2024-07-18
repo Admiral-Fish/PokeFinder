@@ -8,6 +8,7 @@
 8,Route 32
 9,Ruins of Alph (Outside)
 10,Ruins of Alph (Inside)
+11,Ruins of Alph (Underground)
 14,Union Cave 1F
 15,Union Cave B1F
 16,Union Cave B2F
@@ -69,7 +70,7 @@
 85,Mt. Silver
 86,Mt. Silver 1F
 87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Export Belt)
+88,Mt. Silver Cave (Expert Belt)
 89,Mt. Silver Cave (Upper mountainside)
 91,Safari Zone
 92,Route 12

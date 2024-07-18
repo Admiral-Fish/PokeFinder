@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,16 +21,16 @@
 #define STATICGENERATOR8_HPP
 
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 
-class GeneratorState;
+class State8;
 
 /**
  * @brief Static encounter generator for Gen8
  */
-class StaticGenerator8 : public StaticGenerator<StaticTemplate, Profile8, StateFilter>
+class StaticGenerator8 : public StaticGenerator<StaticTemplate8, Profile8, StateFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate &staticTemplate,
+    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate8 &staticTemplate,
                      const Profile8 &profile, const StateFilter &filter);
 
     /**
@@ -55,17 +55,28 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<State8> generate(u64 seed0, u64 seed1) const;
 
+private:
     /**
-     * @brief Generates states
+     * @brief Generates states for non roamers
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1) const;
+    std::vector<State8> generateNonRoamer(u64 seed0, u64 seed1) const;
+
+    /**
+     * @brief Generates states for roamers
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State8> generateRoamer(u64 seed0, u64 seed1) const;
 };
 
 #endif // STATICGENERATOR8_HPP

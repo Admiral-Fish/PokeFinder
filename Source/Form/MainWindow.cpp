@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,6 +26,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Form/Gen3/Tools/JirachiAdvancer.hpp>
 #include <Form/Gen3/Tools/PIDToIV.hpp>
 #include <Form/Gen3/Tools/PokeSpot.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
@@ -85,6 +86,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
     connect(ui->actionIVstoPID3, &QAction::triggered, this, &MainWindow::openIVToPID);
+    connect(ui->actionJirachiAdvancer, &QAction::triggered, this, &MainWindow::openJirachiAdvancer);
     connect(ui->actionPIDtoIVs, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
@@ -257,6 +259,12 @@ void MainWindow::openGameCubeSeedFinder()
     window->show();
 }
 
+void MainWindow::openJirachiAdvancer() const
+{
+    auto *window = new JirachiAdvancer();
+    window->show();
+}
+
 void MainWindow::openPIDtoIV() const
 {
     auto *window = new PIDToIV();
@@ -388,15 +396,19 @@ void MainWindow::openDreamRadar()
         dreamRadar = new DreamRadar();
         connect(dreamRadar, &DreamRadar::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!dreamRadar->hasProfiles())
+
+    if (!dreamRadar->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         dreamRadar->close();
     }
-    dreamRadar->show();
-    dreamRadar->raise();
+    else
+    {
+        dreamRadar->show();
+        dreamRadar->raise();
+    }
 }
 
 void MainWindow::openEgg5()
@@ -406,15 +418,19 @@ void MainWindow::openEgg5()
         egg5 = new Eggs5();
         connect(egg5, &Eggs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!egg5->hasProfiles())
+
+    if (!egg5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         egg5->close();
     }
-    egg5->show();
-    egg5->raise();
+    else
+    {
+        egg5->show();
+        egg5->raise();
+    }
 }
 
 void MainWindow::openEvent5()
@@ -424,15 +440,19 @@ void MainWindow::openEvent5()
         event5 = new Event5();
         connect(event5, &Event5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!event5->hasProfiles())
+
+    if (!event5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         event5->close();
     }
-    event5->show();
-    event5->raise();
+    else
+    {
+        event5->show();
+        event5->raise();
+    }
 }
 
 void MainWindow::openHiddenGrotto()
@@ -442,15 +462,19 @@ void MainWindow::openHiddenGrotto()
         hiddenGrotto = new HiddenGrotto();
         connect(hiddenGrotto, &HiddenGrotto::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!hiddenGrotto->hasProfiles())
+
+    if (!hiddenGrotto->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         hiddenGrotto->close();
     }
-    hiddenGrotto->show();
-    hiddenGrotto->raise();
+    else
+    {
+        hiddenGrotto->show();
+        hiddenGrotto->raise();
+    }
 }
 
 void MainWindow::openIDs5()
@@ -460,15 +484,19 @@ void MainWindow::openIDs5()
         ids5 = new IDs5();
         connect(ids5, &IDs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!ids5->hasProfiles())
+
+    if (!ids5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         ids5->close();
     }
-    ids5->show();
-    ids5->raise();
+    else
+    {
+        ids5->show();
+        ids5->raise();
+    }
 }
 
 void MainWindow::openProfileCalibrator() const
@@ -603,7 +631,6 @@ void MainWindow::openAbout() const
     {
         QApplication::clipboard()->setText(info.join('\n'));
     }
-    delete copy;
 }
 
 void MainWindow::openEncounterLookup() const

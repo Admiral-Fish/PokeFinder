@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -55,6 +55,7 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->textBoxGeneratorEventTID->setValues(InputType::TIDSID);
     ui->textBoxGeneratorEventSID->setValues(InputType::TIDSID);
 
+    ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
@@ -178,7 +179,7 @@ void Event5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     PGF pgf = getGeneratorParameters();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator5 generator(initialAdvances, maxAdvances, delay, pgf, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -295,11 +296,12 @@ void Event5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
+    u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     PGF pgf = getSearcherParameters();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
-    EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
+    EventGenerator5 generator(initialAdvances, maxAdvances, 0, pgf, *currentProfile, filter);
     auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();

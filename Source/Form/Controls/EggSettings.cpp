@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -62,11 +62,11 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
     ui->comboBoxParentAGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
     ui->comboBoxParentBGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
 
+    ui->comboBoxParentAAbility->addItem("0");
     ui->comboBoxParentAAbility->addItem("1");
-    ui->comboBoxParentAAbility->addItem("2");
 
+    ui->comboBoxParentBAbility->addItem("0");
     ui->comboBoxParentBAbility->addItem("1");
-    ui->comboBoxParentBAbility->addItem("2");
 
     ui->comboBoxParentAItem->addItem(tr("None"), 0);
     ui->comboBoxParentAItem->addItem(tr("Everstone"), 1);

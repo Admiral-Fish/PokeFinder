@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -47,6 +47,30 @@ void LCRNG64Test::advance()
 
     BWRNGR bwrngr(seed);
     QCOMPARE(bwrngr.advance(advances), results[1]);
+}
+
+void LCRNG64Test::distance_data()
+{
+    QTest::addColumn<u64>("start");
+    QTest::addColumn<u64>("end");
+    QTest::addColumn<std::vector<u64>>("results");
+
+    json data = readData("lcrng64", "distance");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["start"].get<u64>() << d["end"].get<u64>() << d["results"].get<std::vector<u64>>();
+    }
+}
+
+void LCRNG64Test::distance()
+{
+    QFETCH(u64, start);
+    QFETCH(u64, end);
+    QFETCH(std::vector<u64>, results);
+
+    QCOMPARE(BWRNG::distance(start, end), results[0]);
+    QCOMPARE(BWRNGR::distance(start, end), results[1]);
 }
 
 void LCRNG64Test::jump_data()

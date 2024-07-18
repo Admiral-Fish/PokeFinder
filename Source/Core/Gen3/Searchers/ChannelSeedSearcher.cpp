@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,27 +34,28 @@ void ChannelSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    std::vector<std::thread> threadContainer;
+    auto *threadContainer = new std::thread[threads];
 
     u32 split = 0xBFFFFFFE / threads;
     u32 start = 0x40000001;
-    for (int i = 0; i < threads; i++)
+    for (int i = 0; i < threads; i++, start += split)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back([=] { search(start, 0xffffffff); });
+            threadContainer[i] = std::thread([=] { search(start, 0xffffffff); });
         }
         else
         {
-            threadContainer.emplace_back([=] { search(start, start + split); });
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
         }
-        start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
         threadContainer[i].join();
     }
+
+    delete[] threadContainer;
 
     std::sort(results.begin(), results.end());
     results.erase(std::unique(results.begin(), results.end()), results.end());

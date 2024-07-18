@@ -73,9 +73,12 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowLock.cpp
     Gen3/ShadowLock.hpp
     Gen3/ShadowTemplate.hpp
+    Gen3/StaticTemplate3.hpp
     Gen3/States/EggState3.hpp
     Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp
+    Gen3/Tools/JirachiPattern.cpp
+    Gen3/Tools/JirachiPattern.hpp
     Gen3/Tools/PIDToIVCalculator.cpp
     Gen3/Tools/PIDToIVCalculator.hpp
     Gen3/Tools/SeedToTimeCalculator3.cpp
@@ -179,8 +182,12 @@ add_library(PokeFinderCore STATIC
     Gen8/Profile8.cpp
     Gen8/Profile8.hpp
     Gen8/Raid.hpp
+    Gen8/States/EggState8.hpp
     Gen8/States/IDState8.hpp
+    Gen8/States/State8.hpp
+    Gen8/States/WildState8.hpp
     Gen8/States/UndergroundState.hpp
+    Gen8/StaticTemplate8.hpp
     Gen8/UndergroundArea.cpp
     Gen8/UndergroundArea.hpp
     Gen8/WB8.hpp

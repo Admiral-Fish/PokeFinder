@@ -100,5 +100,107 @@
             "dsType": "DS",
             "seed": 16328266460923798414
         }
+    ],
+    "hashTime": [
+        {
+            "name": "Black 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1544,
+            "vCount": 46,
+            "dsType": "DS",
+            "seed": 12618516553663214562
+        },
+        {
+            "name": "White 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1569,
+            "vCount": 47,
+            "dsType": "DS",
+            "seed": 8449681635637948927
+        },
+        {
+            "name": "Black 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2418,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": 4152701230797758160
+        },
+        {
+            "name": "White 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2415,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": 17309290041713254307
+        }
     ]
 }

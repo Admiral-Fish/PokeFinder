@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -74,9 +74,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : Profi
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(profile.getLanguage())));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(profile.getDSType())));
 
-    std::array<bool, 9> keypresses = profile.getKeypresses();
-    std::vector<bool> checked(keypresses.begin(), keypresses.end());
-    ui->comboBoxKeypresses->setChecks(checked);
+    ui->comboBoxKeypresses->setChecks(profile.getKeypresses());
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,6 +24,7 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/ShadowLock.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -52,16 +53,21 @@ static bool validateMenu(XDRNGR &rng)
         return false;
     }
 
-    u8 mask = 1 << target;
-    while ((mask & 14) != 14)
+    for (u8 mask = 1 << target; mask < 14;)
     {
-        u8 num = rng.next() >> 30;
+        u8 num = rng.nextUShort() >> 14;
         if (num == target)
         {
             return false;
         }
 
         mask |= 1 << num;
+    }
+
+    // Keep advancing until we hit the target again
+    // This will get the seed with the most possibilities for the target
+    while ((rng.nextUShort() >> 14) != target)
+    {
     }
 
     return true;
@@ -89,7 +95,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(5);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }
@@ -100,7 +106,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(4);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }
@@ -111,7 +117,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(3);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }
@@ -166,7 +172,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
     }
 }
 
-void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate)
+void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate)
 {
     searching = true;
 
@@ -217,7 +223,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
     }
 }
 
-void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate *staticTemplate)
+void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate)
 {
     const PersonalInfo *info = staticTemplate->getInfo();
 
@@ -274,7 +280,7 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny(pid, tid ^ sid),
+            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny<true>(pid, tid ^ sid),
                                 info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
@@ -335,13 +341,13 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
         if (valid)
         {
             // If this spread passes and is the 'normal' spread we can skip the XORed spread
-            if ((i & 2) == 0)
+            if ((i & 1) == 0)
             {
                 i++;
             }
 
             SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature,
-                                Utilities::getShiny(pid, tsv), info);
+                                Utilities::getShiny<true>(pid, tsv), info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
@@ -418,7 +424,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
         if (valid)
         {
             // If this spread passes and is the 'normal' spread we can skip the XORed spread
-            if ((i & 2) == 0)
+            if ((i & 1) == 0)
             {
                 i++;
             }
@@ -434,7 +440,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                           const StaticTemplate *staticTemplate)
+                                                           const StaticTemplate3 *staticTemplate)
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -561,7 +567,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         ability &= info->getAbility(0) != info->getAbility(1);
 
         SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
-                            Utilities::getShiny(pid, tsv), info);
+                            Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,12 +24,6 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
-
-static bool isShiny(u32 pid, u16 tsv)
-{
-    u16 psv = ((pid >> 16) & (pid & 0xffff));
-    return (psv ^ tsv) < 8;
-}
 
 StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead,
                                    const StaticTemplate4 &staticTemplate, const Profile4 &profile, const StateFilter &filter) :
@@ -57,10 +51,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u32 pid;
         if (staticTemplate.getShiny() == Shiny::Always)
@@ -82,7 +78,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
 
             if (staticTemplate.getShiny() == Shiny::Never)
             {
-                while (isShiny(pid, tsv))
+                while (Utilities::isShiny<true>(pid, tsv))
                 {
                     pid = ARNG(pid).next();
                 }
@@ -100,7 +96,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -122,10 +118,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
@@ -178,7 +176,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -200,10 +198,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u8 nature;
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
@@ -256,7 +256,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

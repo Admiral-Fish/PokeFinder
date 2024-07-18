@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     Q_INIT_RESOURCE(darkstyle);
+    Q_INIT_RESOURCE(i18n);
     Q_INIT_RESOURCE(lightstyle);
     Q_INIT_RESOURCE(resources);
 
@@ -91,7 +92,7 @@ int main(int argc, char *argv[])
     validateSettings(setting);
 
     QString profilePath = setting.value("settings/profiles").toString();
-    bool profile = ProfileLoader::init(profilePath.toStdString());
+    bool profile = ProfileLoader::init(profilePath.toStdWString());
 
     QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("settings/style").toString()));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))

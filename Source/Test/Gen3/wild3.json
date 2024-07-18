@@ -3254,6 +3254,328 @@
                 ]
             },
             {
+                "name": "Emerald Route 119 Feebas",
+                "seed": 3817748704,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "None",
+                "feebasTile": true,
+                "location": 33,
+                "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 0,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 14,
+                        "hiddenPowerStrength": 63,
+                        "ivs": [
+                            2,
+                            1,
+                            15,
+                            3,
+                            11,
+                            5
+                        ],
+                        "level": 8,
+                        "nature": 6,
+                        "pid": 394086131,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            21,
+                            6,
+                            15,
+                            7,
+                            9,
+                            18
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 1,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 14,
+                        "hiddenPowerStrength": 63,
+                        "ivs": [
+                            2,
+                            1,
+                            15,
+                            3,
+                            11,
+                            5
+                        ],
+                        "level": 23,
+                        "nature": 6,
+                        "pid": 394086131,
+                        "shiny": 0,
+                        "specie": 349,
+                        "stats": [
+                            42,
+                            12,
+                            17,
+                            10,
+                            32,
+                            42
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 2,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 1,
+                        "hiddenPowerStrength": 45,
+                        "ivs": [
+                            4,
+                            4,
+                            4,
+                            22,
+                            28,
+                            27
+                        ],
+                        "level": 25,
+                        "nature": 18,
+                        "pid": 3512313418,
+                        "shiny": 0,
+                        "specie": 349,
+                        "stats": [
+                            46,
+                            13,
+                            16,
+                            15,
+                            39,
+                            51
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 3,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 12,
+                        "hiddenPowerStrength": 47,
+                        "ivs": [
+                            5,
+                            4,
+                            15,
+                            19,
+                            21,
+                            30
+                        ],
+                        "level": 9,
+                        "nature": 2,
+                        "pid": 2791355602,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            23,
+                            7,
+                            16,
+                            9,
+                            10,
+                            19
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 64,
+                        "advances": 4,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 45,
+                        "ivs": [
+                            11,
+                            21,
+                            20,
+                            14,
+                            5,
+                            19
+                        ],
+                        "level": 10,
+                        "nature": 11,
+                        "pid": 1981046061,
+                        "shiny": 0,
+                        "specie": 72,
+                        "stats": [
+                            29,
+                            15,
+                            12,
+                            16,
+                            25,
+                            22
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 29,
+                        "advances": 5,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 12,
+                        "hiddenPowerStrength": 38,
+                        "ivs": [
+                            11,
+                            24,
+                            31,
+                            29,
+                            21,
+                            14
+                        ],
+                        "level": 5,
+                        "nature": 7,
+                        "pid": 1170757932,
+                        "shiny": 0,
+                        "specie": 72,
+                        "stats": [
+                            19,
+                            10,
+                            11,
+                            11,
+                            16,
+                            10
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 6,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 9,
+                        "hiddenPowerStrength": 45,
+                        "ivs": [
+                            9,
+                            20,
+                            20,
+                            30,
+                            29,
+                            19
+                        ],
+                        "level": 8,
+                        "nature": 22,
+                        "pid": 3031466747,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            21,
+                            8,
+                            15,
+                            9,
+                            11,
+                            17
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 7,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 9,
+                        "hiddenPowerStrength": 45,
+                        "ivs": [
+                            9,
+                            20,
+                            20,
+                            30,
+                            29,
+                            19
+                        ],
+                        "level": 23,
+                        "nature": 22,
+                        "pid": 3031466747,
+                        "shiny": 0,
+                        "specie": 349,
+                        "stats": [
+                            44,
+                            16,
+                            18,
+                            16,
+                            39,
+                            41
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 8,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 2,
+                        "hiddenPowerStrength": 35,
+                        "ivs": [
+                            30,
+                            12,
+                            21,
+                            8,
+                            0,
+                            11
+                        ],
+                        "level": 10,
+                        "nature": 0,
+                        "pid": 641589750,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            27,
+                            8,
+                            18,
+                            8,
+                            9,
+                            22
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 9,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 2,
+                        "hiddenPowerStrength": 35,
+                        "ivs": [
+                            30,
+                            12,
+                            21,
+                            8,
+                            0,
+                            11
+                        ],
+                        "level": 25,
+                        "nature": 0,
+                        "pid": 641589750,
+                        "shiny": 0,
+                        "specie": 349,
+                        "stats": [
+                            52,
+                            15,
+                            20,
+                            12,
+                            32,
+                            47
+                        ]
+                    }
+                ]
+            },
+            {
                 "name": "Fire Red Cerulean Cave 1F Rock Smash",
                 "seed": 4294967292,
                 "version": "FireRed",
@@ -4171,6 +4493,110 @@
                 "method": "Method1",
                 "encounter": "SuperRod",
                 "lead": "None",
+                "location": 6,
+                "results": 20
+            },
+            {
+                "name": "Emerald Route 119 Feebas",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "None",
+                "feebasTile": true,
+                "location": 6,
+                "results": 20
+            },
+            {
+                "name": "Emerald Route 119 Feebas Cute Charm",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "CuteCharmF",
+                "feebasTile": true,
+                "location": 6,
+                "results": 5
+            },
+            {
+                "name": "Emerald Route 119 Feebas Synchronize",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "Synchronize",
+                "feebasTile": true,
+                "location": 6,
+                "results": 147
+            },
+            {
+                "name": "Emerald Route 119 Feebas Pressure",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "Pressure",
+                "feebasTile": true,
                 "location": 6,
                 "results": 20
             },

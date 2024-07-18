@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,7 +30,6 @@
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <cstddef>
-#include <iterator>
 
 struct DynamicSlot
 {
@@ -492,17 +491,13 @@ static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u
  * @brief Gets the encounter area for DPPt
  *
  * @param encounter Encounter type
- * @param time Time modifier
- * @param radar Whether pokeradar is active
- * @param swarm Whether swarm is active
  * @param version Game version
- * @param replacement Replacement slots used by Great Marsh and Trophy Garden
+ * @param settings Settings that impact wild encounter slots
  * @param info Personal info array pointer
  *
  * @return Vector of encounter areas
  */
-static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version,
-                                           const std::array<u16, 2> &replacement, const PersonalInfo *info)
+static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, const EncounterSettings8 &settings, const PersonalInfo *info)
 {
     u32 length;
     u8 *data;
@@ -532,11 +527,11 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
                     const auto &slot = entry->grass[i];
                     slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
                 }
-                modifySwarm(slots, entry, info, swarm);
-                modifyTime(slots, entry, info, time);
-                modifyRadar(slots, entry, info, radar);
-                modifyGreatMarsh(slots, replacement, info, entry->location);
-                modifyTrophyGarden(slots, replacement, info, entry->location);
+                modifySwarm(slots, entry, info, settings.swarm);
+                modifyTime(slots, entry, info, settings.time);
+                modifyRadar(slots, entry, info, settings.radar);
+                modifyGreatMarsh(slots, settings.replacement, info, entry->location);
+                modifyTrophyGarden(slots, settings.replacement, info, entry->location);
                 encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
             }
             break;
@@ -616,11 +611,10 @@ namespace Encounters8
         return denInfo[index].location;
     }
 
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
-                                              const Profile8 *profile)
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, const EncounterSettings8 &settings, const Profile8 *profile)
     {
         const auto *info = PersonalLoader::getPersonal(profile->getVersion());
-        return getBDSP(encounter, time, radar, swarm, profile->getVersion(), replacement, info);
+        return getBDSP(encounter, profile->getVersion(), settings, info);
     }
 
     std::array<u16, 14> getGreatMarshPokemon(const Profile8 *profile)
@@ -635,7 +629,7 @@ namespace Encounters8
         }
     }
 
-    const StaticTemplate *getStaticEncounters(int index, int *size)
+    const StaticTemplate8 *getStaticEncounters(int index, int *size)
     {
         if (index == 0)
         {
@@ -711,9 +705,9 @@ namespace Encounters8
         }
     }
 
-    const StaticTemplate *getStaticEncounter(int type, int index)
+    const StaticTemplate8 *getStaticEncounter(int type, int index)
     {
-        const StaticTemplate *templates = getStaticEncounters(type);
+        const StaticTemplate8 *templates = getStaticEncounters(type);
         return &templates[index];
     }
 

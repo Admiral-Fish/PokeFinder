@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -50,13 +50,13 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuLead->addMenu(
-        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
-        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
                                { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
     ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuLead->addMenu(
+        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
+        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
@@ -139,16 +139,18 @@ void Wild8::updateProfiles()
 void Wild8::updateEncounters()
 {
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
-    int time = ui->comboBoxTime->currentIndex();
-    bool radar = ui->checkBoxRadar->isChecked();
-    bool swarm = ui->checkBoxSwarm->isChecked();
-    std::array<u16, 2> replacement = { 0, 0 };
+
+    EncounterSettings8 settings = {};
+    settings.time = ui->comboBoxTime->currentIndex();
     if (ui->checkBoxReplacement->isChecked())
     {
-        replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
-        replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
+        settings.replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
+        settings.replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
     }
-    encounters = Encounters8::getEncounters(encounter, time, radar, swarm, replacement, currentProfile);
+    settings.radar = ui->checkBoxRadar->isChecked();
+    settings.swarm = ui->checkBoxSwarm->isChecked();
+
+    encounters = Encounters8::getEncounters(encounter, settings, currentProfile);
 }
 
 void Wild8::encounterIndexChanged(int index)
@@ -208,7 +210,7 @@ void Wild8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
-    WildStateFilter filter = ui->filter->getFilter<WildStateFilter, true>();
+    auto filter = ui->filter->getFilter<WildStateFilter, true>();
     WildGenerator8 generator(initialAdvances, maxAdvances, delay, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
                              filter);
 

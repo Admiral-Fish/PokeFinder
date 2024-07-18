@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -156,7 +156,7 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateFood(u32 seed, const Encou
             const Slot &slot = encounterArea.getPokemon(encounterSlot);
             const PersonalInfo *info = slot.getInfo();
 
-            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), encounterSlot,
+            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv), encounterSlot,
                                 slot.getSpecie(), info);
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {

@@ -37,7 +37,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Network Widgets)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -59,7 +59,6 @@ set(PROJECT_UI
     Controls/EggSettings.ui
     Controls/Filter.ui
     Controls/IDsFilter.ui
-    Controls/IVFilter.ui
     Gen3/Eggs3.ui
     Gen3/IDs3.ui
     Gen3/GameCube.ui
@@ -67,6 +66,7 @@ set(PROJECT_UI
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
     Gen3/Tools/GameCubeSeedFinder.ui
+    Gen3/Tools/JirachiAdvancer.ui
     Gen3/Tools/PIDToIV.ui
     Gen3/Tools/PokeSpot.ui
     Gen3/Tools/SeedToTime3.ui
@@ -130,8 +130,6 @@ set(PROJECT_SOURCES
     Controls/GraphicsPixmapItem.hpp
     Controls/IDsFilter.cpp
     Controls/IDsFilter.hpp
-    Controls/IVFilter.cpp
-    Controls/IVFilter.hpp
     Controls/TableView.cpp
     Controls/TableView.hpp
     Controls/TextBox.cpp
@@ -150,6 +148,8 @@ set(PROJECT_SOURCES
     Gen3/Static3.hpp
     Gen3/Tools/GameCubeSeedFinder.cpp
     Gen3/Tools/GameCubeSeedFinder.hpp
+    Gen3/Tools/JirachiAdvancer.cpp
+    Gen3/Tools/JirachiAdvancer.hpp
     Gen3/Tools/PIDToIV.cpp
     Gen3/Tools/PIDToIV.hpp
     Gen3/Tools/PokeSpot.cpp
@@ -233,6 +233,10 @@ set(PROJECT_SOURCES
     Util/Settings.cpp
     Util/Settings.hpp
 )
+
+qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+include(EmbedTranslations)
+embed_translations(PROJECT_I18N ${PROJECT_QM})
 
 add_library(PokeFinderForm STATIC
     ${PROJECT_I18N}

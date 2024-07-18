@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,6 +25,7 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 struct EggMoveList
@@ -269,17 +270,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             pid = rngList.next(rand);
 
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-            if (fakeXor < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                shiny = fakeXor == 0 ? 2 : 1;
-
-                u16 realXor = psv ^ tsv;
-                u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                if (realShiny != shiny)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
@@ -288,8 +282,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
             else // Force non
             {
-                shiny = 0;
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }
@@ -336,7 +329,11 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             nature = rngList.next(rand) % 25;
         }
 
-        rngList.advance(4); // 2 calls height, 2 calls weight
+        u8 height = rngList.next(rand) % 129;
+        height += rngList.next(rand) % 128;
+
+        u8 weight = rngList.next(rand) % 129;
+        weight += rngList.next(rand) % 128;
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
@@ -348,8 +345,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
         }
 
-        return UndergroundState(initialAdvances + advances, ec, pid, ivs, ability, gender, level, nature, shiny, eggMove, item, specie,
-                                info);
+        return UndergroundState(initialAdvances + advances, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, eggMove,
+                                item, specie, info);
     };
 
     std::vector<UndergroundState> states;

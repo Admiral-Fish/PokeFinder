@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -54,7 +54,7 @@ public:
      * @return Level of the encounter
      */
     template <bool diff, bool mod>
-    u8 calculateLevel(u8 encounterSlot, PokeRNG &rng, u32 *occidentary, bool force) const
+    u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *occidentary, bool force) const
     {
         if constexpr (diff)
         {
@@ -74,19 +74,18 @@ public:
         }
         else
         {
-            const Slot &slot = pokemon[encounterSlot];
-            u8 level = slot.getMaxLevel();
             if (force && rng.nextUShort<mod>(2, occidentary) != 0)
             {
-                for (const Slot &s : pokemon)
+                for (u8 i = 0; i < pokemon.size(); i++)
                 {
-                    if (s.getSpecie() == slot.getSpecie())
+                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
+                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
                     {
-                        level = std::max(level, s.getMaxLevel());
+                        encounterSlot = i;
                     }
                 }
             }
-            return level;
+            return pokemon[encounterSlot].getMaxLevel();
         }
     }
 
@@ -101,7 +100,7 @@ public:
      * @return Level of the encounter
      */
     template <bool diff>
-    u8 calculateLevel(u8 encounterSlot, u16 levelRand, bool force) const
+    u8 calculateLevel(u8 &encounterSlot, u16 levelRand, bool force) const
     {
         if constexpr (diff)
         {
@@ -121,21 +120,30 @@ public:
         }
         else
         {
-            const Slot &slot = pokemon[encounterSlot];
-            u8 level = slot.getMaxLevel();
             if (force)
             {
-                for (const Slot &s : pokemon)
+                for (u8 i = 0; i < pokemon.size(); i++)
                 {
-                    if (s.getSpecie() == slot.getSpecie())
+                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
+                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
                     {
-                        level = std::max(level, s.getMaxLevel());
+                        encounterSlot = i;
                     }
                 }
             }
-            return level;
+            return pokemon[encounterSlot].getMaxLevel();
         }
     }
+
+    /**
+     * @brief Checks if the location can have Feebas
+     *
+     * @param version Game version
+     *
+     * @return true Location can have Feebas
+     * @return false Location can't have Feebas
+     */
+    bool feebasLocation(Game version) const;
 
     /**
      * @brief Checks if the location is in the Great Marsh

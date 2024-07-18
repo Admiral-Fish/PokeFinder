@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -101,6 +101,13 @@ private slots:
     void generatorEncounterUpdate();
 
     /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void generatorFeebasTileStateChanged(int state);
+
+    /**
      * @brief Updates the pokemon listed
      *
      * @param index Location index
@@ -150,6 +157,13 @@ private slots:
      * @brief Updates encounter tables and listed pokemon
      */
     void searcherEncounterUpdate();
+
+    /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void searcherFeebasTileStateChanged(int state);
 
     /**
      * @brief Updates the pokemon listed

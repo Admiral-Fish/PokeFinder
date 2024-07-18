@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,12 @@
 #ifndef UNDERGROUNDSTATE_HPP
 #define UNDERGROUNDSTATE_HPP
 
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen8/States/State8.hpp>
 
 /**
- * @brief State class for Gen8 wild generator encounters
+ * @brief State class for Gen8 underground generator encounters
  */
-class UndergroundState : public GeneratorState
+class UndergroundState : public State8
 {
 public:
     /**
@@ -40,14 +40,19 @@ public:
      * @param level Pokemon level
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
+     * @param height Pokemon height
+     * @param weight Pokemon weight
      * @param eggMove Pokemon egg move
      * @param item Pokemon item
      * @param specie Pokemon specie
      * @param info Pokemon personal information
      */
     UndergroundState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                     u16 eggMove, u16 item, u16 specie, const PersonalInfo *info) :
-        GeneratorState(advances, ec, pid, ivs, ability, gender, level, nature, shiny, info), eggMove(eggMove), item(item), specie(specie)
+                     u8 height, u8 weight, u16 eggMove, u16 item, u16 specie, const PersonalInfo *info) :
+        State8(advances, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info),
+        eggMove(eggMove),
+        item(item),
+        specie(specie)
     {
     }
 

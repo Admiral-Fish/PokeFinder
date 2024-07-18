@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -67,6 +67,8 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
     const PersonalInfo *info = radarTemplate.getInfo();
 
     BWRNG rng(seed, (initialAdvances * 2) + Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
+    auto jump = rng.getJump(pidAdvances);
+
     if (!profile.getMemoryLink())
     {
         rng.next();
@@ -77,7 +79,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
     std::vector<DreamRadarState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
-        BWRNG go(rng, pidAdvances);
+        BWRNG go(rng, jump);
 
         std::array<u8, 6> ivs;
         std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(); });

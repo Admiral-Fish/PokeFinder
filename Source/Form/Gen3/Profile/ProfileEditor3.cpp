@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,6 +38,8 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor3::reject);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor3::versionIndexChanged);
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 
     QSettings setting;
     if (setting.contains("profileEditor3/geometry"))

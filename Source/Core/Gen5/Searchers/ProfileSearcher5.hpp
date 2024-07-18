@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -88,7 +88,7 @@ private:
     u8 maxVCount;
     u8 minVCount;
 
-    void search(u8 vframeStart, u8 vframeEnd);
+    void search(u8 minVFrame, u8 maxVFrame);
 
     /**
      * @brief Checks if seed matches the provided calibration data

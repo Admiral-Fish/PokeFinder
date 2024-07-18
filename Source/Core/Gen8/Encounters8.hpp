@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,9 +28,17 @@ class Den;
 class DenEvent;
 class EncounterArea8;
 class Profile8;
-class StaticTemplate;
+class StaticTemplate8;
 class UndergroundArea;
 enum class Encounter : u8;
+
+struct EncounterSettings8
+{
+    int time;
+    std::array<u16, 2> replacement;
+    bool radar;
+    bool swarm;
+};
 
 namespace Encounters8
 {
@@ -75,16 +83,12 @@ namespace Encounters8
      * @brief Gets wild encounters for the \p encounter and \p profile
      *
      * @param encounter Encounter type
-     * @param time Time modifier
-     * @param radar Whether pokeradar is active
-     * @param swarm Whether swarm is active
-     * @param replacement Replacement slots used by Great Marsh and Trophy Garden
+     * @param settings Settings that impact wild encounter slots
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
-                                              const Profile8 *profile);
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, const EncounterSettings8 &settings, const Profile8 *profile);
 
     /**
      * @brief Returns the changing pokemon of the Great
@@ -112,7 +116,7 @@ namespace Encounters8
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate *getStaticEncounters(int index, int *size = nullptr);
+    const StaticTemplate8 *getStaticEncounters(int index, int *size = nullptr);
 
     /**
      * @brief Gets static encounters from the \p type and \p index
@@ -131,7 +135,7 @@ namespace Encounters8
      *
      * @return Pointer to static encounter
      */
-    const StaticTemplate *getStaticEncounter(int type, int index);
+    const StaticTemplate8 *getStaticEncounter(int type, int index);
 
     /**
      * @brief Returns the changing pokemon of the Trophy Garden

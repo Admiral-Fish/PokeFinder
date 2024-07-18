@@ -243,6 +243,7 @@
     </property>
     <addaction name="actionGameCubeSeedFinder"/>
     <addaction name="actionIVstoPID3"/>
+    <addaction name="actionJirachiAdvancer"/>
     <addaction name="actionPIDtoIVs"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionProfileManager3"/>
@@ -376,6 +377,11 @@
   <action name="actionSeedToTime3">
    <property name="text">
     <string>Seed to Time</string>
+   </property>
+  </action>
+  <action name="actionJirachiAdvancer">
+   <property name="text">
+    <string>Jirachi Advancer</string>
    </property>
   </action>
  </widget>

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -56,6 +56,9 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     ui->textBoxHGSSDelayPlus->setValues(InputType::Advance32Bit);
     ui->textBoxHGSSSecondMinus->setValues(0, 59, 2, 10);
     ui->textBoxHGSSSecondPlus->setValues(0, 59, 2, 10);
+    ui->textBoxHGSSRaikou->setValues(0, 46, 2, 10);
+    ui->textBoxHGSSEntei->setValues(0, 46, 2, 10);
+    ui->textBoxHGSSLati->setValues(0, 28, 2, 10);
 
     ui->tableViewDPPtSearch->setModel(dpptModel);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrateModel);
@@ -127,7 +130,15 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
 
 SeedToTime4::SeedToTime4(u32 seed, Game version, QWidget *parent) : SeedToTime4(parent)
 {
-    if ((version & Game::HGSS) != Game::None)
+    if ((version & Game::Gen4) != Game::None)
+    {
+        ui->textBoxHGSSSeed->setText(QString::number(seed, 16));
+        hgssGenerate();
+
+        ui->textBoxDPPtSeed->setText(QString::number(seed, 16));
+        dpptGenerate();
+    }
+    else if ((version & Game::HGSS) != Game::None)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxHGSSSeed->setText(QString::number(seed, 16));
@@ -200,7 +211,7 @@ void SeedToTime4::dpptGenerate()
     dpptModel->clearModel();
 
     auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
-    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + QString::fromStdString(Utilities4::coinFlips(seed)));
+    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: %1").arg(QString::fromStdString(Utilities4::coinFlips(seed))));
 
     dpptModel->addItems(results);
 }
@@ -253,9 +264,9 @@ void SeedToTime4::hgssGenerate()
 
     HGSSRoamer roamer(seed, roamers, routes);
 
-    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + QString::fromStdString(Utilities4::getCalls(seed, roamer.getSkips())));
+    ui->labelHGSSElmCalls->setText(tr("Elm Calls: %1").arg(QString::fromStdString(Utilities4::getCalls(seed, roamer.getSkips()))));
     std::string str = roamer.getRouteString();
-    ui->labelHGSSRoamers->setText(tr("Roamers: ") + (str.empty() ? tr("No roamers") : QString::fromStdString(str)));
+    ui->labelHGSSRoamers->setText(tr("Roamers: %1").arg(str.empty() ? tr("No roamers") : QString::fromStdString(str)));
 
     auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
     hgssModel->addItems(results);

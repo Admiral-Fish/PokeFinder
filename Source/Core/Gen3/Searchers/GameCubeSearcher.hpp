@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 
-class StaticTemplate;
+class StaticTemplate3;
 class ShadowTemplate;
 
 /**
@@ -59,7 +59,7 @@ public:
      * @param max Maximum IVs
      * @param staticTemplate Pokemon template
      */
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate);
 
 private:
     bool unset;
@@ -70,7 +70,7 @@ private:
      * @param maxSpd
      * @param staticTemplate Pokemon template
      */
-    void searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate *staticTemplate);
+    void searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -115,7 +115,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate);
+    std::vector<SearcherState> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate);
 };
 
 #endif // GAMECUBESEARCHER_HPP

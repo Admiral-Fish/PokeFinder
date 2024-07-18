@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,65 +34,16 @@ constexpr u8 genderRatios[8][6]
         { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f }, { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
-ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
-{
-}
-
-void ColoSeedSearcher::startSearch(int threads)
-{
-    searching = true;
-
-    std::vector<std::thread> threadContainer;
-
-    u32 split = 0x10000 / threads;
-    u32 start = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer.emplace_back([=] { search(start, 0x10000); });
-        }
-        else
-        {
-            threadContainer.emplace_back([=] { search(start, start + split); });
-        }
-        start += split;
-    }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
-{
-    searching = true;
-
-    for (u32 seed : seeds)
-    {
-        if (!searching)
-        {
-            return;
-        }
-
-        XDRNG rng(seed);
-        if (searchSeed(rng))
-        {
-            results.emplace_back(rng.getSeed());
-        }
-
-        progress++;
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio) const
+/**
+ * @brief Generates a pokemon that has the matching \p nature and \p gender
+ *
+ * @param rng Starting PRNG state
+ * @param tsv Trainer shiny value
+ * @param nature Pokemon nature
+ * @param gender Pokemon gender
+ * @param genderRatio Pokemon gender ratio
+ */
+static void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio)
 {
     // Fake PID / IVs / Ability
     rng.advance(5);
@@ -124,6 +75,65 @@ void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender
     }
 }
 
+ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
+{
+}
+
+void ColoSeedSearcher::startSearch(int threads)
+{
+    searching = true;
+
+    auto *threadContainer = new std::thread[threads];
+
+    u32 split = 0x10000 / threads;
+    u32 start = 0;
+    for (int i = 0; i < threads; i++, start += split)
+    {
+        if (i == threads - 1)
+        {
+            threadContainer[i] = std::thread([=] { search(start, 0x10000); });
+        }
+        else
+        {
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
+        }
+    }
+
+    for (int i = 0; i < threads; i++)
+    {
+        threadContainer[i].join();
+    }
+
+    delete[] threadContainer;
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
+void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
+{
+    searching = true;
+
+    for (u32 seed : seeds)
+    {
+        if (!searching)
+        {
+            return;
+        }
+
+        XDRNG rng(seed);
+        if (searchSeed(rng))
+        {
+            results.emplace_back(rng.getSeed());
+        }
+
+        progress++;
+    }
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
 void ColoSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
@@ -147,7 +157,6 @@ void ColoSeedSearcher::search(u32 start, u32 end)
     std::lock_guard<std::mutex> lock(mutex);
     results.insert(results.end(), seeds.begin(), seeds.end());
 }
-
 
 bool ColoSeedSearcher::searchSeed(XDRNG &rng) const
 {

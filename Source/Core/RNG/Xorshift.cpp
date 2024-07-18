@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -41,11 +41,6 @@ Xorshift::Xorshift(u64 seed0, u64 seed1)
 Xorshift::Xorshift(u64 seed0, u64 seed1, u32 advances) : Xorshift(seed0, seed1)
 {
     jump(advances);
-}
-
-Xorshift::Xorshift(const Xorshift &other)
-{
-    state.uint128 = other.state.uint128;
 }
 
 void Xorshift::advance(u32 advances)

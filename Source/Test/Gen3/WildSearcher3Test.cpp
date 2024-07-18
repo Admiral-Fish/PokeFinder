@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -53,6 +53,7 @@ void WildSearcher3Test::search_data()
     QTest::addColumn<Method>("method");
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
+    QTest::addColumn<bool>("feebasTile");
     QTest::addColumn<int>("location");
     QTest::addColumn<int>("results");
 
@@ -61,7 +62,8 @@ void WildSearcher3Test::search_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
+            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d.value("feebasTile", false) << d["location"].get<int>()
+            << d["results"].get<int>();
     }
 }
 
@@ -73,6 +75,7 @@ void WildSearcher3Test::search()
     QFETCH(Method, method);
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
+    QFETCH(bool, feebasTile);
     QFETCH(int, location);
     QFETCH(int, results);
 
@@ -87,12 +90,15 @@ void WildSearcher3Test::search()
 
     Profile3 profile("-", version, 12345, 54321, false);
 
-    std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, version);
+    EncounterSettings3 settings;
+    settings.feebasTile = feebasTile;
+
+    std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, settings, version);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher3 searcher(method, lead, *encounterArea, profile, filter);
+    WildSearcher3 searcher(method, lead, settings.feebasTile, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();
@@ -101,8 +107,8 @@ void WildSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator3 generator(0, 0, 0, method, lead != Lead::Synchronize ? lead : lead + state.getNature(), *encounterArea, profile,
-                                 filter);
+        WildGenerator3 generator(0, 0, 0, method, lead != Lead::Synchronize ? lead : lead + state.getNature(), settings.feebasTile,
+                                 *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);

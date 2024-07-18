@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -55,17 +55,6 @@ private:
     Ui::Researcher *ui;
 
     ResearcherModel *model;
-
-    /**
-     * @brief Gets the \p custom value from the current \p state or \p states
-     *
-     * @param custom Custom value to grab
-     * @param state Current researcher state
-     * @param states Vector of researcher states
-     *
-     * @return Calculated custom value
-     */
-    u64 getCustom(Custom custom, const ResearcherState &state, const std::vector<ResearcherState> &states);
 
     /**
      * @brief Returns which hex checkboxes are checked

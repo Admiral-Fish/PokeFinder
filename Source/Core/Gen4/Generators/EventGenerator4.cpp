@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,14 +32,15 @@ EventGenerator4::EventGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay
 
 std::vector<GeneratorState4> EventGenerator4::generate(u32 seed) const
 {
+    std::vector<GeneratorState4> states;
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), species);
 
     PokeRNG rng(seed, initialAdvances + delay);
+    auto jump = rng.getJump(delay);
 
-    std::vector<GeneratorState4> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
@@ -52,9 +53,10 @@ std::vector<GeneratorState4> EventGenerator4::generate(u32 seed) const
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
+        u16 prng = rng.nextUShort();
         if (filter.compareIV(ivs))
         {
-            GeneratorState4 state(rng.next(), initialAdvances + cnt, 0, ivs, 0, 0, level, nature, 0, info);
+            GeneratorState4 state(prng, initialAdvances + cnt, 0, ivs, 0, 0, level, nature, 0, info);
             states.emplace_back(state);
         }
     }

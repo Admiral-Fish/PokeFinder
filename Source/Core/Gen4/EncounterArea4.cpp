@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,15 @@ constexpr std::array<u8, 1> unown4 = { 13 };
 constexpr std::array<u8, 1> unown5 = { 4 };
 constexpr std::array<u8, 1> unown6 = { 3 };
 constexpr std::array<u8, 2> unown7 = { 26, 27 };
+
+bool EncounterArea4::feebasLocation(Game version) const
+{
+    if ((version & Game::DPPt) != Game::None)
+    {
+        return location == 22;
+    }
+    return false;
+}
 
 bool EncounterArea4::greatMarsh(Game version) const
 {

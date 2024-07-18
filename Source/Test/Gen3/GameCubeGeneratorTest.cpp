@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -71,7 +71,7 @@ void GameCubeGeneratorTest::generateChannel()
 
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
+    const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(9, 0);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::Channel, false, profile, filter);
 
@@ -225,7 +225,7 @@ void GameCubeGeneratorTest::generateNonLock()
 
     Profile3 profile("-", version, 12345, 54321, false);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
+    const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(8, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 

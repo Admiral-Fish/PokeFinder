@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,6 +30,22 @@ class PersonalInfo;
 enum class Encounter : u8;
 enum class Lead : u8;
 enum class Game : u32;
+
+struct ModifiedSlots
+{
+    u8 count;
+    u8 index[12];
+
+    bool empty() const
+    {
+        return count == 0;
+    }
+
+    u8 operator[](u32 rand) const
+    {
+        return index[rand % count];
+    }
+};
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -150,7 +166,7 @@ public:
      *
      * @return Vector of matching indexes
      */
-    std::vector<u8> getSlots(Lead lead) const;
+    ModifiedSlots getSlots(Lead lead) const;
 
     /**
      * @brief Return vector of names of all pokemon slots

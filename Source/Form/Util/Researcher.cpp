@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,6 +31,66 @@
 #include <QSettings>
 
 /**
+ * @brief Gets the \p custom value from the current \p state or \p states
+ *
+ * @param custom Custom value to grab
+ * @param state Current researcher state
+ * @param states Vector of researcher states
+ *
+ * @return Calculated custom value
+ */
+static u64 getCustom(Custom custom, const ResearcherState &state, const std::vector<ResearcherState> &states)
+{
+    switch (custom)
+    {
+    case Custom::Full64Bit:
+    case Custom::Full32Bit:
+        return state.getPRNG();
+    case Custom::High32Bit:
+        return state.getHigh32();
+    case Custom::Low32Bit:
+        return state.getLow32();
+    case Custom::High16Bit:
+        return state.getHigh16();
+    case Custom::Low16Bit:
+        return state.getLow16();
+    case Custom::PreviousFull64Bit:
+    case Custom::PreviousFull32Bit:
+        return states.empty() ? 0 : states.back().getPRNG();
+    case Custom::PreviousHigh32Bit:
+        return states.empty() ? 0 : states.back().getHigh32();
+    case Custom::PreviousLow32Bit:
+        return states.empty() ? 0 : states.back().getLow32();
+    case Custom::PreviousHigh16Bit:
+        return states.empty() ? 0 : states.back().getHigh16();
+    case Custom::PreviousLow16Bit:
+        return states.empty() ? 0 : states.back().getLow16();
+    case Custom::Custom1:
+    case Custom::Custom2:
+    case Custom::Custom3:
+    case Custom::Custom4:
+    case Custom::Custom5:
+    case Custom::Custom6:
+    case Custom::Custom7:
+    case Custom::Custom8:
+    case Custom::Custom9:
+        return state.getCustom(toInt(custom) - toInt(Custom::Custom1));
+    case Custom::Previous1:
+    case Custom::Previous2:
+    case Custom::Previous3:
+    case Custom::Previous4:
+    case Custom::Previous5:
+    case Custom::Previous6:
+    case Custom::Previous7:
+    case Custom::Previous8:
+    case Custom::Previous9:
+        return states.empty() ? 0 : states.back().getCustom(toInt(custom) - toInt(Custom::Previous1));
+    default:
+        return 0;
+    }
+}
+
+/**
  * @brief Computes the PRNG states for \p rng
  *
  * @tparam RNGType Type of RNG
@@ -46,7 +106,7 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
-    if constexpr (std::is_same<RNGType, MT>::value || std::is_same<RNGType, SFMT>::value)
+    if constexpr (std::is_same_v<RNGType, MT> || std::is_same_v<RNGType, SFMT>)
     {
         rng.advance(initial);
     }
@@ -100,7 +160,7 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
     QStringList operands = { "*", "/", "%", "+", "-", "<<", ">>", "<", "<=", ">", ">=", "&", "^", "|" };
     for (int i = 1; i <= 10; i++)
     {
-        auto *box = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxOperator%1").arg(i));
+        auto *box = ui->groupBoxCustoms->findChild<QComboBox *>(QString("comboBoxOperator%1").arg(i));
         box->addItems(operands);
 
         auto *text = ui->groupBoxCustoms->findChild<TextBox *>(QString("textBoxRValue%1").arg(i));
@@ -150,57 +210,6 @@ Researcher::~Researcher()
     setting.setValue("researcher/geometry", this->saveGeometry());
 
     delete ui;
-}
-
-u64 Researcher::getCustom(Custom custom, const ResearcherState &state, const std::vector<ResearcherState> &states)
-{
-    switch (custom)
-    {
-    case Custom::Full64Bit:
-    case Custom::Full32Bit:
-        return state.getPRNG();
-    case Custom::High32Bit:
-        return state.getHigh32();
-    case Custom::Low32Bit:
-        return state.getLow32();
-    case Custom::High16Bit:
-        return state.getHigh16();
-    case Custom::Low16Bit:
-        return state.getLow16();
-    case Custom::PreviousFull64Bit:
-    case Custom::PreviousFull32Bit:
-        return states.empty() ? 0 : states.back().getPRNG();
-    case Custom::PreviousHigh32Bit:
-        return states.empty() ? 0 : states.back().getHigh32();
-    case Custom::PreviousLow32Bit:
-        return states.empty() ? 0 : states.back().getLow32();
-    case Custom::PreviousHigh16Bit:
-        return states.empty() ? 0 : states.back().getHigh16();
-    case Custom::PreviousLow16Bit:
-        return states.empty() ? 0 : states.back().getLow16();
-    case Custom::Custom1:
-    case Custom::Custom2:
-    case Custom::Custom3:
-    case Custom::Custom4:
-    case Custom::Custom5:
-    case Custom::Custom6:
-    case Custom::Custom7:
-    case Custom::Custom8:
-    case Custom::Custom9:
-        return state.getCustom(toInt(custom) - toInt(Custom::Custom1));
-    case Custom::Previous1:
-    case Custom::Previous2:
-    case Custom::Previous3:
-    case Custom::Previous4:
-    case Custom::Previous5:
-    case Custom::Previous6:
-    case Custom::Previous7:
-    case Custom::Previous8:
-    case Custom::Previous9:
-        return states.empty() ? 0 : states.back().getCustom(toInt(custom) - toInt(Custom::Previous1));
-    default:
-        return 0;
-    }
 }
 
 std::array<bool, 10> Researcher::getHexCheck()

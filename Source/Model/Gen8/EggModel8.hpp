@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,13 +20,13 @@
 #ifndef EGGMODEL8_HPP
 #define EGGMODEL8_HPP
 
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Gen8/States/EggState8.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 8
  */
-class EggModel8 : public TableModel<EggGeneratorState>
+class EggModel8 : public TableModel<EggState8>
 {
     Q_OBJECT
 public:
@@ -83,8 +83,8 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("EC"),  tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"), tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender"),  tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Egg Seed"), tr("EC"),  tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"),       tr("HP"),
+                           tr("Atk"),      tr("Def"),      tr("SpA"), tr("SpD"), tr("Spe"),   tr("Gender"), tr("Characteristic") };
     bool showInheritance;
     bool showStats;
 };

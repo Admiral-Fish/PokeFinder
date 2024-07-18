@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,35 +39,49 @@ public:
      * @param tid Trainer ID
      * @param sid Secret ID
      */
-    Profile(const std::string &name, Game version, u16 tid, u16 sid);
+    Profile(const std::string &name, Game version, u16 tid, u16 sid) : name(name), version(version), sid(sid), tid(tid)
+    {
+    }
 
     /**
      * @brief Returns the profile name
      *
      * @return Profile name
      */
-    std::string getName() const;
+    std::string getName() const
+    {
+        return name;
+    }
 
     /**
      * @brief Returns the profile secret ID
      *
      * @return Profile SID
      */
-    u16 getSID() const;
+    u16 getSID() const
+    {
+        return sid;
+    }
 
     /**
      * @brief Returns the profile trainer ID
      *
      * @return Profile TID
      */
-    u16 getTID() const;
+    u16 getTID() const
+    {
+        return tid;
+    }
 
     /**
      * @brief Returns the profile game version
      *
      * @return Profile game version
      */
-    Game getVersion() const;
+    Game getVersion() const
+    {
+        return version;
+    }
 
     /**
      * @brief Checks if two profiles are equal

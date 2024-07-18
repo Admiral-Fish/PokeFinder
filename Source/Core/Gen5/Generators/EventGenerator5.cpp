@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,8 +33,6 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay
     {
         tsv = pgf.getTID() ^ pgf.getSID();
     }
-
-    wondercardAdvances = pgf.getAdvances();
 }
 
 std::vector<State5> EventGenerator5::generate(u64 seed) const
@@ -42,12 +40,13 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances + delay);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(pgf.getAdvances() + delay);
 
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, wondercardAdvances);
+        BWRNG go(rng, jump);
 
         std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)
@@ -118,7 +117,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
         }
 
         State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
-                     pgf.getLevel(), nature, Utilities::getShiny(pid, tsv), info);
+                     pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

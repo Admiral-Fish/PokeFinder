@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
+    <width>578</width>
     <height>102</height>
    </rect>
   </property>
@@ -14,48 +14,20 @@
    <string>Profile Editor Gen 4</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="4">
-    <widget class="QPushButton" name="pushButtonOkay">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
      <property name="text">
-      <string>Okay</string>
+      <string>Profile Name</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
-    <widget class="QCheckBox" name="checkBoxNationalDex">
-     <property name="text">
-      <string>National Dex</string>
-     </property>
-    </widget>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="labelVersion">
      <property name="text">
       <string>Version</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelTID">
-     <property name="text">
-      <string>TID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="labelSID">
-     <property name="text">
-      <string>SID</string>
      </property>
     </widget>
    </item>
@@ -88,18 +60,87 @@
      </item>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile"/>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelProfile">
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
      <property name="text">
-      <string>Profile Name</string>
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
      </property>
     </widget>
    </item>
    <item row="1" column="3">
     <widget class="TextBox" name="textBoxSID"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QCheckBox" name="checkBoxNationalDex">
+     <property name="text">
+      <string>National Dex</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="labelUnownPuzzles">
+     <property name="text">
+      <string>Unown Puzzles</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="CheckList" name="checkListUnownPuzzles">
+     <item>
+      <property name="text">
+       <string>A-J</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>R-V</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>K-Q</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>W-Z</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelUnownDiscovered">
+     <property name="text">
+      <string>Unown Discovered</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="CheckList" name="checkListUnownDiscovered"/>
+   </item>
+   <item row="0" column="6">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -113,6 +154,11 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

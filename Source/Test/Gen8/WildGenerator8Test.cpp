@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,12 +24,12 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const WildGeneratorState &left, const json &right)
+static bool operator==(const WildState8 &left, const json &right)
 {
     return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
         && left.getStats() == right["stats"].get<std::array<u16, 6>>() && left.getAbilityIndex() == right["abilityIndex"].get<u16>()
@@ -39,7 +39,8 @@ static bool operator==(const WildGeneratorState &left, const json &right)
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.getHeight() == right["height"].get<u8>()
+        && left.getWeight() == right["weight"].get<u8>();
 }
 
 void WildGenerator8Test::generate_data()
@@ -86,10 +87,10 @@ void WildGenerator8Test::generate()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
-    std::array<u16, 2> replacement = { 0, 0 };
     Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
+    EncounterSettings8 settings = {};
 
-    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, 0, false, false, replacement, &profile);
+    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 

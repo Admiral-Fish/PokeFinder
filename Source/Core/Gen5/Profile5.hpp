@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -55,14 +55,33 @@ public:
      */
     Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 9> &keypresses, u8 vcount, u8 gxstat,
              u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
-             Language language);
+             Language language) :
+        Profile(name, version, tid, sid),
+        mac(mac),
+        timer0Max(timer0Max),
+        timer0Min(timer0Min),
+        memoryLink(memoryLink),
+        shinyCharm(shinyCharm),
+        skipLR(skipLR),
+        softReset(softReset),
+        dsType(dsType),
+        language(language),
+        keypresses(keypresses),
+        gxstat(gxstat),
+        vcount(vcount),
+        vframe(vframe)
+    {
+    }
 
     /**
      * @brief Returns the DS type of the profile
      *
      * @return DS type
      */
-    DSType getDSType() const;
+    DSType getDSType() const
+    {
+        return dsType;
+    }
 
     /**
      * @brief Returns the string representation of the DS type
@@ -76,14 +95,20 @@ public:
      *
      * @return GxStat value
      */
-    u8 getGxStat() const;
+    u8 getGxStat() const
+    {
+        return gxstat;
+    }
 
     /**
      * @brief Returns the keypresses selected of the profile
      *
      * @return Vector of keypress where true indicates that value is used and false means that value is not used
      */
-    std::array<bool, 9> getKeypresses() const;
+    std::array<bool, 9> getKeypresses() const
+    {
+        return keypresses;
+    }
 
     /**
      * @brief Returns the string representation of the keypresses
@@ -97,7 +122,10 @@ public:
      *
      * @return Language value
      */
-    Language getLanguage() const;
+    Language getLanguage() const
+    {
+        return language;
+    }
 
     /**
      * @brief Returns the string representation of the language
@@ -111,7 +139,10 @@ public:
      *
      * @return MAC address
      */
-    u64 getMac() const;
+    u64 getMac() const
+    {
+        return mac;
+    }
 
     /**
      * @brief Returns if memory link is activated or not
@@ -119,7 +150,10 @@ public:
      * @return true Memory link is activated
      * @return false Memory link is not activated
      */
-    bool getMemoryLink() const;
+    bool getMemoryLink() const
+    {
+        return memoryLink;
+    }
 
     /**
      * @brief Returns if shiny charm is obtained
@@ -127,7 +161,10 @@ public:
      * @return true Shiny charm is obtained
      * @return false Shiny charm is not obtained
      */
-    bool getShinyCharm() const;
+    bool getShinyCharm() const
+    {
+        return shinyCharm;
+    }
 
     /**
      * @brief Returns if the LR buttons should be skipped
@@ -135,7 +172,10 @@ public:
      * @return true LR buttons should be skipped
      * @return false LR buttons should not be skipped
      */
-    bool getSkipLR() const;
+    bool getSkipLR() const
+    {
+        return skipLR;
+    }
 
     /**
      * @brief Returns if soft resetting is used
@@ -143,35 +183,50 @@ public:
      * @return true Soft resetting is used
      * @return false Soft resetting is not used
      */
-    bool getSoftReset() const;
+    bool getSoftReset() const
+    {
+        return softReset;
+    }
 
     /**
      * @brief Returns the maximum Timer0 value
      *
      * @return Maximum Timer0 value
      */
-    u16 getTimer0Max() const;
+    u16 getTimer0Max() const
+    {
+        return timer0Max;
+    }
 
     /**
      * @brief Returns the minimum Timer0 value
      *
      * @return Minimum Timer0 value
      */
-    u16 getTimer0Min() const;
+    u16 getTimer0Min() const
+    {
+        return timer0Min;
+    }
 
     /**
      * @brief Returns the VCount value
      *
      * @return VCount value
      */
-    u8 getVCount() const;
+    u8 getVCount() const
+    {
+        return vcount;
+    }
 
     /**
      * @brief Returns the VFrame value
      *
      * @return VFrame value
      */
-    u8 getVFrame() const;
+    u8 getVFrame() const
+    {
+        return vframe;
+    }
 
     /**
      * @brief Checks if two profiles are equal
@@ -195,7 +250,6 @@ public:
 
 private:
     u64 mac;
-    std::array<bool, 9> keypresses;
     u16 timer0Max;
     u16 timer0Min;
     bool memoryLink;
@@ -204,6 +258,7 @@ private:
     bool softReset;
     DSType dsType;
     Language language;
+    std::array<bool, 9> keypresses;
     u8 gxstat;
     u8 vcount;
     u8 vframe;

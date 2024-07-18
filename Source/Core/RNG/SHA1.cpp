@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,19 +25,93 @@
 #include <Core/Util/DateTime.hpp>
 #include <bit>
 
-consteval std::array<u8, 100> computeBCDTable()
+static u32 calcW(u32 *data, int i)
 {
-    std::array<u8, 100> data;
-
-    for (int i = 0; i < data.size(); i++)
-    {
-        data[i] = ((i / 10) << 4) + (i % 10);
-    }
-
-    return data;
+    u32 val = std::rotl(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
+    data[i] = val;
+    return val;
 }
 
-constexpr std::array<u8, 100> bcd = computeBCDTable();
+static void calcWSIMD(u32 *data, int i)
+{
+    for (int index = i; index < i + 4; index++)
+    {
+        u32 val = std::rotl(data[index - 6] ^ data[index - 16] ^ data[index - 28] ^ data[index - 32], 2);
+        data[index] = val;
+    }
+};
+
+static consteval u32 computeBCD(u8 val)
+{
+    return ((val / 10) << 4) + (val % 10);
+}
+
+static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
+{
+    u32 a = month < 3 ? 1 : 0;
+    u32 y = year + 4800 - a;
+    u32 m = month + 12 * a - 3;
+    u32 jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
+    return (jd + 1) % 7;
+}
+
+static consteval std::array<u32, 36525> computeDateValues()
+{
+    std::array<u32, 36525> dates;
+
+    constexpr u8 days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    int index = 0;
+    for (u16 year = 0; year < 100; year++)
+    {
+        u32 y = computeBCD(year) << 24;
+        for (u8 month = 1; month <= 12; month++)
+        {
+            u32 m = computeBCD(month) << 16;
+
+            u8 maxDays = days[month - 1];
+            if (month == 2 && (year % 4) == 0)
+            {
+                maxDays++;
+            }
+
+            for (u8 day = 1; day <= maxDays; day++)
+            {
+                u32 d = computeBCD(day) << 8;
+                dates[index++] = y | m | d | computeWeekday(year + 2000, month, day);
+            }
+        }
+    }
+
+    return dates;
+}
+
+static consteval std::array<u32, 86400> computeTimeValues()
+{
+    std::array<u32, 86400> times;
+
+    int index = 0;
+    for (u8 hour = 0; hour < 24; hour++)
+    {
+        u32 h = computeBCD(hour) << 24;
+        if (hour >= 12)
+        {
+            hour |= 0x40000000;
+        }
+
+        for (u8 minute = 0; minute < 60; minute++)
+        {
+            u32 m = computeBCD(minute) << 16;
+            for (u8 second = 0; second < 60; second++)
+            {
+                u32 s = computeBCD(second) << 8;
+                times[index++] = h | m | s;
+            }
+        }
+    }
+
+    return times;
+}
 
 static inline u32 changeEndian(u32 val)
 {
@@ -69,6 +143,9 @@ static inline void section4Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 
     b = std::rotr(b, 2);
 };
 
+constexpr std::array<u32, 36525> dateValues = computeDateValues();
+constexpr std::array<u32, 86400> timeValues = computeTimeValues();
+
 SHA1::SHA1(const Profile5 &profile) :
     SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),
          profile.getGxStat())
@@ -88,14 +165,14 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);
 
     // Set values
-    data[10] = 0;
-    data[11] = 0;
+    data[10] = 0x00000000;
+    data[11] = 0x00000000;
     data[13] = 0x80000000;
-    data[14] = 0;
+    data[14] = 0x00000000;
     data[15] = 0x000001a0;
 
     // Precompute data[18]
-    data[18] = std::rotl(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
+    calcW(data, 18);
 }
 
 u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
@@ -107,96 +184,97 @@ u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
     u32 e = alpha[4];
     u32 t;
 
-    auto calcW = [this](int i) {
-        u32 val = std::rotl(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
-        data[i] = val;
-        return val;
-    };
-    auto calcWSIMD = [this](int i) {
-        u32 val = std::rotl(data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32], 2);
-        data[i] = val;
-        return val;
-    };
-
     // Section 1: 0-19
     // 0-8 already computed
     section1Calc(a, b, c, d, e, t, data[9]);
-    section1Calc(t, a, b, c, d, e, data[10]);
-    section1Calc(e, t, a, b, c, d, data[11]);
+    section1Calc(t, a, b, c, d, e, 0x00000000); // data[10] is constant 0
+    section1Calc(e, t, a, b, c, d, 0x00000000); // data[11] is constant 0
     section1Calc(d, e, t, a, b, c, data[12]);
-    section1Calc(c, d, e, t, a, b, data[13]);
-    section1Calc(b, c, d, e, t, a, data[14]);
-    section1Calc(a, b, c, d, e, t, data[15]);
+    section1Calc(c, d, e, t, a, b, 0x80000000); // data[13] is constant 0x80000000
+    section1Calc(b, c, d, e, t, a, 0x00000000); // data[14] is constant 0
+    section1Calc(a, b, c, d, e, t, 0x000001a0); // data[15] is constant 0x000001a0
     section1Calc(t, a, b, c, d, e, data[16]);
-    section1Calc(e, t, a, b, c, d, calcW(17));
+    section1Calc(e, t, a, b, c, d, calcW(data, 17));
     section1Calc(d, e, t, a, b, c, data[18]);
     section1Calc(c, d, e, t, a, b, data[19]);
 
     // Section 2: 20 - 39
-    section2Calc(b, c, d, e, t, a, calcW(20));
+    section2Calc(b, c, d, e, t, a, calcW(data, 20));
     section2Calc(a, b, c, d, e, t, data[21]);
     section2Calc(t, a, b, c, d, e, data[22]);
-    section2Calc(e, t, a, b, c, d, calcW(23));
+    section2Calc(e, t, a, b, c, d, calcW(data, 23));
     section2Calc(d, e, t, a, b, c, data[24]);
-    section2Calc(c, d, e, t, a, b, calcW(25));
-    section2Calc(b, c, d, e, t, a, calcW(26));
+    section2Calc(c, d, e, t, a, b, calcW(data, 25));
+    section2Calc(b, c, d, e, t, a, calcW(data, 26));
     section2Calc(a, b, c, d, e, t, data[27]);
-    section2Calc(t, a, b, c, d, e, calcW(28));
-    section2Calc(e, t, a, b, c, d, calcW(29));
+    section2Calc(t, a, b, c, d, e, calcW(data, 28));
+    section2Calc(e, t, a, b, c, d, calcW(data, 29));
     section2Calc(d, e, t, a, b, c, data[30]);
-    section2Calc(c, d, e, t, a, b, calcW(31));
-    section2Calc(b, c, d, e, t, a, calcWSIMD(32));
-    section2Calc(a, b, c, d, e, t, calcWSIMD(33));
-    section2Calc(t, a, b, c, d, e, calcWSIMD(34));
-    section2Calc(e, t, a, b, c, d, calcWSIMD(35));
-    section2Calc(d, e, t, a, b, c, calcWSIMD(36));
-    section2Calc(c, d, e, t, a, b, calcWSIMD(37));
-    section2Calc(b, c, d, e, t, a, calcWSIMD(38));
-    section2Calc(a, b, c, d, e, t, calcWSIMD(39));
+    section2Calc(c, d, e, t, a, b, calcW(data, 31));
+    calcWSIMD(data, 32);
+    section2Calc(b, c, d, e, t, a, data[32]);
+    section2Calc(a, b, c, d, e, t, data[33]);
+    section2Calc(t, a, b, c, d, e, data[34]);
+    section2Calc(e, t, a, b, c, d, data[35]);
+    calcWSIMD(data, 36);
+    section2Calc(d, e, t, a, b, c, data[36]);
+    section2Calc(c, d, e, t, a, b, data[37]);
+    section2Calc(b, c, d, e, t, a, data[38]);
+    section2Calc(a, b, c, d, e, t, data[39]);
 
     // Section 3: 40 - 59
-    section3Calc(t, a, b, c, d, e, calcWSIMD(40));
-    section3Calc(e, t, a, b, c, d, calcWSIMD(41));
-    section3Calc(d, e, t, a, b, c, calcWSIMD(42));
-    section3Calc(c, d, e, t, a, b, calcWSIMD(43));
-    section3Calc(b, c, d, e, t, a, calcWSIMD(44));
-    section3Calc(a, b, c, d, e, t, calcWSIMD(45));
-    section3Calc(t, a, b, c, d, e, calcWSIMD(46));
-    section3Calc(e, t, a, b, c, d, calcWSIMD(47));
-    section3Calc(d, e, t, a, b, c, calcWSIMD(48));
-    section3Calc(c, d, e, t, a, b, calcWSIMD(49));
-    section3Calc(b, c, d, e, t, a, calcWSIMD(50));
-    section3Calc(a, b, c, d, e, t, calcWSIMD(51));
-    section3Calc(t, a, b, c, d, e, calcWSIMD(52));
-    section3Calc(e, t, a, b, c, d, calcWSIMD(53));
-    section3Calc(d, e, t, a, b, c, calcWSIMD(54));
-    section3Calc(c, d, e, t, a, b, calcWSIMD(55));
-    section3Calc(b, c, d, e, t, a, calcWSIMD(56));
-    section3Calc(a, b, c, d, e, t, calcWSIMD(57));
-    section3Calc(t, a, b, c, d, e, calcWSIMD(58));
-    section3Calc(e, t, a, b, c, d, calcWSIMD(59));
+    calcWSIMD(data, 40);
+    section3Calc(t, a, b, c, d, e, data[40]);
+    section3Calc(e, t, a, b, c, d, data[41]);
+    section3Calc(d, e, t, a, b, c, data[42]);
+    section3Calc(c, d, e, t, a, b, data[43]);
+    calcWSIMD(data, 44);
+    section3Calc(b, c, d, e, t, a, data[44]);
+    section3Calc(a, b, c, d, e, t, data[45]);
+    section3Calc(t, a, b, c, d, e, data[46]);
+    section3Calc(e, t, a, b, c, d, data[47]);
+    calcWSIMD(data, 48);
+    section3Calc(d, e, t, a, b, c, data[48]);
+    section3Calc(c, d, e, t, a, b, data[49]);
+    section3Calc(b, c, d, e, t, a, data[50]);
+    section3Calc(a, b, c, d, e, t, data[51]);
+    calcWSIMD(data, 52);
+    section3Calc(t, a, b, c, d, e, data[52]);
+    section3Calc(e, t, a, b, c, d, data[53]);
+    section3Calc(d, e, t, a, b, c, data[54]);
+    section3Calc(c, d, e, t, a, b, data[55]);
+    calcWSIMD(data, 56);
+    section3Calc(b, c, d, e, t, a, data[56]);
+    section3Calc(a, b, c, d, e, t, data[57]);
+    section3Calc(t, a, b, c, d, e, data[58]);
+    section3Calc(e, t, a, b, c, d, data[59]);
 
     // Section 3: 60 - 79
-    section4Calc(d, e, t, a, b, c, calcWSIMD(60));
-    section4Calc(c, d, e, t, a, b, calcWSIMD(61));
-    section4Calc(b, c, d, e, t, a, calcWSIMD(62));
-    section4Calc(a, b, c, d, e, t, calcWSIMD(63));
-    section4Calc(t, a, b, c, d, e, calcWSIMD(64));
-    section4Calc(e, t, a, b, c, d, calcWSIMD(65));
-    section4Calc(d, e, t, a, b, c, calcWSIMD(66));
-    section4Calc(c, d, e, t, a, b, calcWSIMD(67));
-    section4Calc(b, c, d, e, t, a, calcWSIMD(68));
-    section4Calc(a, b, c, d, e, t, calcWSIMD(69));
-    section4Calc(t, a, b, c, d, e, calcWSIMD(70));
-    section4Calc(e, t, a, b, c, d, calcWSIMD(71));
-    section4Calc(d, e, t, a, b, c, calcWSIMD(72));
-    section4Calc(c, d, e, t, a, b, calcWSIMD(73));
-    section4Calc(b, c, d, e, t, a, calcWSIMD(74));
-    section4Calc(a, b, c, d, e, t, calcWSIMD(75));
-    section4Calc(t, a, b, c, d, e, calcWSIMD(76));
-    section4Calc(e, t, a, b, c, d, calcWSIMD(77));
-    section4Calc(d, e, t, a, b, c, calcWSIMD(78));
-    section4Calc(c, d, e, t, a, b, calcWSIMD(79));
+    calcWSIMD(data, 60);
+    section4Calc(d, e, t, a, b, c, data[60]);
+    section4Calc(c, d, e, t, a, b, data[61]);
+    section4Calc(b, c, d, e, t, a, data[62]);
+    section4Calc(a, b, c, d, e, t, data[63]);
+    calcWSIMD(data, 64);
+    section4Calc(t, a, b, c, d, e, data[64]);
+    section4Calc(e, t, a, b, c, d, data[65]);
+    section4Calc(d, e, t, a, b, c, data[66]);
+    section4Calc(c, d, e, t, a, b, data[67]);
+    calcWSIMD(data, 68);
+    section4Calc(b, c, d, e, t, a, data[68]);
+    section4Calc(a, b, c, d, e, t, data[69]);
+    section4Calc(t, a, b, c, d, e, data[70]);
+    section4Calc(e, t, a, b, c, d, data[71]);
+    calcWSIMD(data, 72);
+    section4Calc(d, e, t, a, b, c, data[72]);
+    section4Calc(c, d, e, t, a, b, data[73]);
+    section4Calc(b, c, d, e, t, a, data[74]);
+    section4Calc(a, b, c, d, e, t, data[75]);
+    calcWSIMD(data, 76);
+    section4Calc(t, a, b, c, d, e, data[76]);
+    section4Calc(e, t, a, b, c, d, data[77]);
+    section4Calc(d, e, t, a, b, c, data[78]);
+    section4Calc(c, d, e, t, a, b, data[79]);
 
     u64 part1 = changeEndian(b + 0x67452301);
     u64 part2 = changeEndian(c + 0xefcdab89);
@@ -214,8 +292,6 @@ std::array<u32, 5> SHA1::precompute()
     u32 e = 0xc3d2e1f0;
     u32 t;
 
-    auto calcW = [this](int i) { data[i] = std::rotl(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
-
     section1Calc(a, b, c, d, e, t, data[0]);
     section1Calc(t, a, b, c, d, e, data[1]);
     section1Calc(e, t, a, b, c, d, data[2]);
@@ -227,14 +303,13 @@ std::array<u32, 5> SHA1::precompute()
     section1Calc(e, t, a, b, c, d, data[8]);
 
     // Select values will be the same for same date
-    calcW(16);
-    // calcW(18); Enough information is known to calculate this in the constructor
-    calcW(19);
-    calcW(21);
-    calcW(22);
-    calcW(24);
-    calcW(27);
-    calcW(30);
+    data[16] = std::rotl(0x80000000 ^ data[8] ^ data[2] ^ data[0], 1); // data[13] is constant 0x80000000
+    data[19] = std::rotl(data[16] ^ 0 ^ data[5] ^ data[3], 1); // data[11] is constant 0
+    data[21] = std::rotl(data[18] ^ 0x80000000 ^ data[7] ^ data[5], 1); // data[13] is constant 0x80000000
+    data[22] = std::rotl(data[19] ^ 0 ^ data[8] ^ data[6], 1); // data[14] is constant 0
+    data[24] = std::rotl(data[21] ^ data[16] ^ 0 ^ data[8], 1); // data[10] is constant 0
+    data[27] = std::rotl(data[24] ^ data[19] ^ 0x80000000 ^ 0, 1); // data[13] is constant 0x80000000 and data[11] is constant 0
+    data[30] = std::rotl(data[27] ^ data[22] ^ data[16] ^ 0, 1); // data[14] is constant 0
 
     return { d, e, t, a, b };
 }
@@ -246,9 +321,7 @@ void SHA1::setButton(u32 button)
 
 void SHA1::setDate(const Date &date)
 {
-    auto parts = date.getParts();
-    u32 val = static_cast<u32>((bcd[parts.year - 2000] << 24) | (bcd[parts.month] << 16) | (bcd[parts.day] << 8) | date.dayOfWeek());
-    data[8] = val;
+    data[8] = dateValues[date.getJD() - Date().getJD()];
 }
 
 void SHA1::setTimer0(u32 timer0, u8 vcount)
@@ -256,11 +329,17 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
     data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
 }
 
+void SHA1::setTime(u32 time, DSType dsType)
+{
+    u32 val = timeValues[time];
+    if (time >= 43200 && dsType != DSType::DS3)
+    {
+        val |= 0x40000000;
+    }
+    data[9] = val;
+}
+
 void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 {
-    u32 h = static_cast<u32>((bcd[hour] + (hour >= 12 && dsType != DSType::DS3 ? 0x40 : 0)) << 24);
-    u32 m = static_cast<u32>(bcd[minute] << 16);
-    u32 s = static_cast<u32>(bcd[second] << 8);
-    u32 val = h | m | s;
-    data[9] = val;
+    setTime(hour * 3600 + minute * 60 + second, dsType);
 }

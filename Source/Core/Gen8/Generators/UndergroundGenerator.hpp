@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,7 +48,7 @@ public:
                          const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state

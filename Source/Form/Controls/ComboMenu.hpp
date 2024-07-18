@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -80,10 +80,10 @@ public:
     template <typename Enum>
     constexpr Enum getEnum() const
     {
-        static_assert(std::is_same<u8, typename std::underlying_type<Enum>::type>::value, "Unsupported enum base type");
+        static_assert(std::is_same<u8, std::underlying_type_t<Enum>>::value, "Unsupported enum base type");
 
         QAction *action = actionGroup->checkedAction();
-        if constexpr (std::is_same<u8, typename std::underlying_type<Enum>::type>::value)
+        if constexpr (std::is_same<u8, std::underlying_type_t<Enum>>::value)
         {
             return static_cast<Enum>(action->data().toUInt());
         }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -102,11 +102,11 @@ void ChainedSID::calculate()
     auto sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {
-        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids[0]));
+        ui->labelPossibleResults->setText(tr("SID Found: %1").arg(sids[0]));
     }
     else
     {
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(sids.size()));
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(sids.size()));
     }
 
     ui->spinBoxHP->setValue(0);

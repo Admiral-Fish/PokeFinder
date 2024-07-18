@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,12 +22,12 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const GeneratorState &left, const json &right)
+static bool operator==(const State8 &left, const json &right)
 {
     // Intentionally ignoring hidden power
     return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
@@ -35,7 +35,8 @@ static bool operator==(const GeneratorState &left, const json &right)
         && left.getIVs() == right["ivs"].get<std::array<u8, 6>>() && left.getAbility() == right["ability"].get<u8>()
         && left.getCharacteristic() == right["characteristic"].get<u8>() && left.getGender() == right["gender"].get<u8>()
         && left.getLevel() == right["level"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>();
+        && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>()
+        && left.getHeight() == right["height"].get<u8>() && left.getWeight() == right["weight"].get<u8>();
 }
 
 void StaticGenerator8Test::generate_data()
@@ -81,7 +82,7 @@ void StaticGenerator8Test::generate()
 
     Profile8 profile("-", Game::BDSP, 12345, 54321, false, false, false);
 
-    const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
+    const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, lead, *staticTemplate, profile, filter);
 
@@ -135,11 +136,11 @@ void StaticGenerator8Test::generateRoamer()
 
     Profile8 profile("-", Game::BD, 12345, 54321, false, false, false);
 
-    const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
+    const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, Lead::None, *staticTemplate, profile, filter);
 
-    auto states = generator.generateRoamer(seed0, seed1);
+    auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

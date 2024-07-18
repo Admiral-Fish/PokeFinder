@@ -17,6 +17,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 72,
                     "hiddenPower": 3,
                     "item": 0,
                     "ivs": [
@@ -39,7 +40,8 @@
                         62,
                         30,
                         81
-                    ]
+                    ],
+                    "weight": 97
                 },
                 {
                     "ability": 0,
@@ -50,6 +52,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -72,7 +75,8 @@
                         95,
                         98,
                         81
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -83,6 +87,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -105,7 +110,8 @@
                         78,
                         75,
                         48
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -116,6 +122,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -138,7 +145,8 @@
                         67,
                         56,
                         106
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -149,6 +157,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -171,7 +180,8 @@
                         98,
                         124,
                         79
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -182,6 +192,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -204,7 +215,8 @@
                         96,
                         71,
                         36
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -215,6 +227,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -237,7 +250,8 @@
                         73,
                         45,
                         119
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -248,6 +262,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -270,7 +285,8 @@
                         60,
                         41,
                         84
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -281,6 +297,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -303,7 +320,8 @@
                         81,
                         79,
                         47
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -314,6 +332,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -336,7 +355,8 @@
                         95,
                         82,
                         41
-                    ]
+                    ],
+                    "weight": 148
                 }
             ]
         },
@@ -357,6 +377,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 72,
                     "hiddenPower": 3,
                     "item": 0,
                     "ivs": [
@@ -379,7 +400,8 @@
                         62,
                         30,
                         81
-                    ]
+                    ],
+                    "weight": 97
                 },
                 {
                     "ability": 0,
@@ -390,6 +412,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -412,7 +435,8 @@
                         95,
                         98,
                         81
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -423,6 +447,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -445,7 +470,8 @@
                         78,
                         75,
                         48
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -456,6 +482,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -478,7 +505,8 @@
                         67,
                         56,
                         106
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -489,6 +517,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -511,7 +540,8 @@
                         98,
                         124,
                         79
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -522,6 +552,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -544,7 +575,8 @@
                         96,
                         71,
                         36
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -555,6 +587,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -577,7 +610,8 @@
                         73,
                         45,
                         119
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -588,6 +622,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -610,7 +645,8 @@
                         60,
                         41,
                         84
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -621,6 +657,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -643,7 +680,8 @@
                         81,
                         79,
                         47
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -654,6 +692,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -676,7 +715,8 @@
                         95,
                         82,
                         41
-                    ]
+                    ],
+                    "weight": 148
                 }
             ]
         },
@@ -697,6 +737,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 3,
                     "item": 0,
                     "ivs": [
@@ -719,7 +760,8 @@
                         62,
                         27,
                         81
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -730,6 +772,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -752,7 +795,8 @@
                         95,
                         98,
                         81
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -763,6 +807,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 0,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -785,7 +830,8 @@
                         78,
                         75,
                         48
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -796,6 +842,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -818,7 +865,8 @@
                         75,
                         61,
                         106
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 1,
@@ -829,6 +877,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -851,7 +900,8 @@
                         107,
                         113,
                         71
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 0,
@@ -862,6 +912,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -884,7 +935,8 @@
                         96,
                         71,
                         36
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -895,6 +947,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -917,7 +970,8 @@
                         73,
                         45,
                         119
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -928,6 +982,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -950,7 +1005,8 @@
                         60,
                         41,
                         84
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -961,6 +1017,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -983,7 +1040,8 @@
                         81,
                         79,
                         47
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -994,6 +1052,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -1016,7 +1075,8 @@
                         95,
                         82,
                         41
-                    ]
+                    ],
+                    "weight": 148
                 }
             ]
         },
@@ -1037,6 +1097,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1059,7 +1120,8 @@
                         38,
                         34,
                         48
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -1070,6 +1132,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -1092,7 +1155,8 @@
                         34,
                         36,
                         52
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -1103,6 +1167,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -1125,7 +1190,8 @@
                         32,
                         41,
                         51
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -1136,6 +1202,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -1158,7 +1225,8 @@
                         41,
                         44,
                         46
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -1169,6 +1237,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1191,7 +1260,8 @@
                         25,
                         18,
                         14
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -1202,6 +1272,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -1224,7 +1295,8 @@
                         35,
                         33,
                         58
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -1235,6 +1307,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -1257,7 +1330,8 @@
                         42,
                         43,
                         53
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -1268,6 +1342,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -1290,7 +1365,8 @@
                         21,
                         23,
                         20
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -1301,6 +1377,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -1323,7 +1400,8 @@
                         44,
                         41,
                         49
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -1334,6 +1412,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -1356,7 +1435,8 @@
                         41,
                         40,
                         53
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -1377,6 +1457,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1399,7 +1480,8 @@
                         69,
                         50,
                         44
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -1410,6 +1492,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -1432,7 +1515,8 @@
                         60,
                         53,
                         50
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -1443,6 +1527,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -1465,7 +1550,8 @@
                         58,
                         59,
                         49
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -1476,6 +1562,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -1498,7 +1585,8 @@
                         71,
                         63,
                         43
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -1509,6 +1597,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1531,7 +1620,8 @@
                         37,
                         28,
                         45
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -1542,6 +1632,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -1564,7 +1655,8 @@
                         53,
                         32,
                         84
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -1575,6 +1667,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -1597,7 +1690,8 @@
                         72,
                         60,
                         49
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -1608,6 +1702,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -1630,7 +1725,8 @@
                         32,
                         34,
                         54
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -1641,6 +1737,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -1663,7 +1760,8 @@
                         75,
                         59,
                         46
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -1674,6 +1772,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -1696,7 +1795,8 @@
                         71,
                         60,
                         51
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -1717,6 +1817,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 2,
+                    "height": 72,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1739,7 +1840,8 @@
                         13,
                         33,
                         12
-                    ]
+                    ],
+                    "weight": 97
                 },
                 {
                     "ability": 0,
@@ -1750,6 +1852,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 2,
+                    "height": 100,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -1772,7 +1875,8 @@
                         15,
                         27,
                         16
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -1783,6 +1887,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 2,
+                    "height": 97,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -1805,7 +1910,8 @@
                         11,
                         35,
                         15
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 1,
@@ -1816,6 +1922,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 2,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -1838,7 +1945,8 @@
                         14,
                         34,
                         12
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 0,
@@ -1849,6 +1957,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -1871,7 +1980,8 @@
                         20,
                         16,
                         24
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -1882,6 +1992,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -1904,7 +2015,8 @@
                         23,
                         22,
                         37
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -1915,6 +2027,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 2,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -1937,7 +2050,8 @@
                         14,
                         31,
                         16
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -1948,6 +2062,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -1970,7 +2085,8 @@
                         18,
                         19,
                         29
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -1981,6 +2097,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 2,
+                    "height": 74,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -2003,7 +2120,8 @@
                         13,
                         35,
                         13
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 0,
@@ -2014,6 +2132,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 2,
+                    "height": 59,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -2036,7 +2155,8 @@
                         17,
                         32,
                         16
-                    ]
+                    ],
+                    "weight": 148
                 }
             ]
         },
@@ -2057,6 +2177,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2079,7 +2200,8 @@
                         55,
                         32,
                         77
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -2090,6 +2212,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -2112,7 +2235,8 @@
                         83,
                         106,
                         90
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -2123,6 +2247,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -2145,7 +2270,8 @@
                         76,
                         85,
                         47
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -2156,6 +2282,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -2178,7 +2305,8 @@
                         84,
                         59,
                         97
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -2189,6 +2317,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2211,7 +2340,8 @@
                         105,
                         104,
                         75
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -2222,6 +2352,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -2244,7 +2375,8 @@
                         79,
                         67,
                         52
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -2255,6 +2387,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -2277,7 +2410,8 @@
                         89,
                         59,
                         111
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -2288,6 +2422,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -2310,7 +2445,8 @@
                         55,
                         39,
                         86
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -2321,6 +2457,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -2343,7 +2480,8 @@
                         95,
                         82,
                         41
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -2354,6 +2492,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -2376,7 +2515,8 @@
                         94,
                         86,
                         49
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -2397,6 +2537,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2419,7 +2560,8 @@
                         34,
                         54,
                         62
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -2430,6 +2572,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -2452,7 +2595,8 @@
                         31,
                         59,
                         68
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -2463,6 +2607,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -2485,7 +2630,8 @@
                         26,
                         31,
                         36
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -2496,6 +2642,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -2518,7 +2665,8 @@
                         39,
                         70,
                         60
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -2529,6 +2677,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2551,7 +2700,8 @@
                         47,
                         40,
                         24
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -2562,6 +2712,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -2584,7 +2735,8 @@
                         54,
                         33,
                         88
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -2595,6 +2747,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -2617,7 +2770,8 @@
                         37,
                         65,
                         66
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -2628,6 +2782,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -2650,7 +2805,8 @@
                         40,
                         46,
                         32
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -2661,6 +2817,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -2683,7 +2840,8 @@
                         40,
                         65,
                         63
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -2694,6 +2852,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -2716,7 +2875,8 @@
                         48,
                         40,
                         48
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -2737,6 +2897,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2759,7 +2920,8 @@
                         86,
                         69,
                         39
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -2770,6 +2932,7 @@
                     "encounterSlot": 11,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -2792,7 +2955,8 @@
                         80,
                         76,
                         49
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -2803,6 +2967,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -2825,7 +2990,8 @@
                         67,
                         56,
                         106
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -2836,6 +3002,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -2858,7 +3025,8 @@
                         84,
                         59,
                         97
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -2869,6 +3037,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -2891,7 +3060,8 @@
                         96,
                         71,
                         36
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -2902,6 +3072,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -2924,7 +3095,8 @@
                         73,
                         45,
                         119
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -2935,6 +3107,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -2957,7 +3130,8 @@
                         91,
                         82,
                         45
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -2968,6 +3142,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -2990,7 +3165,8 @@
                         81,
                         79,
                         47
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -3001,6 +3177,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -3023,7 +3200,8 @@
                         64,
                         41,
                         80
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -3034,6 +3212,7 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -3056,7 +3235,8 @@
                         88,
                         57,
                         113
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -3077,6 +3257,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 101,
                     "hiddenPower": 3,
                     "item": 0,
                     "ivs": [
@@ -3099,7 +3280,8 @@
                         57,
                         30,
                         81
-                    ]
+                    ],
+                    "weight": 100
                 },
                 {
                     "ability": 0,
@@ -3110,6 +3292,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
+                    "height": 72,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3132,7 +3315,8 @@
                         87,
                         109,
                         81
-                    ]
+                    ],
+                    "weight": 97
                 },
                 {
                     "ability": 0,
@@ -3143,6 +3327,7 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
+                    "height": 100,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -3165,7 +3350,8 @@
                         87,
                         75,
                         48
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -3176,6 +3362,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -3198,7 +3385,8 @@
                         75,
                         56,
                         106
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 1,
@@ -3209,6 +3397,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -3231,7 +3420,8 @@
                         98,
                         113,
                         79
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 0,
@@ -3242,6 +3432,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 114,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3264,7 +3455,8 @@
                         88,
                         71,
                         41
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 1,
@@ -3275,6 +3467,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 91,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -3297,7 +3490,8 @@
                         73,
                         50,
                         109
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -3308,6 +3502,7 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -3330,7 +3525,8 @@
                         55,
                         41,
                         84
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -3341,6 +3537,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 218,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -3363,7 +3560,8 @@
                         90,
                         79,
                         47
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -3374,6 +3572,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -3396,7 +3595,8 @@
                         87,
                         82,
                         41
-                    ]
+                    ],
+                    "weight": 144
                 }
             ]
         },
@@ -3417,6 +3617,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3439,7 +3640,8 @@
                         29,
                         18,
                         40
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -3450,6 +3652,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -3472,7 +3675,8 @@
                         29,
                         20,
                         50
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -3483,6 +3687,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -3505,7 +3710,8 @@
                         29,
                         26,
                         51
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -3516,6 +3722,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -3538,7 +3745,8 @@
                         31,
                         57,
                         34
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -3549,6 +3757,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3571,7 +3780,8 @@
                         49,
                         23,
                         53
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -3582,6 +3792,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -3604,7 +3815,8 @@
                         33,
                         57,
                         57
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -3615,6 +3827,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -3637,7 +3850,8 @@
                         39,
                         69,
                         50
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -3648,6 +3862,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -3670,7 +3885,8 @@
                         34,
                         24,
                         52
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -3681,6 +3897,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -3703,7 +3920,8 @@
                         42,
                         69,
                         47
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -3714,6 +3932,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -3736,7 +3955,8 @@
                         38,
                         66,
                         48
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -3757,6 +3977,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3779,7 +4000,8 @@
                         7,
                         7,
                         16
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -3790,6 +4012,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -3812,7 +4035,8 @@
                         7,
                         8,
                         18
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -3823,6 +4047,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -3845,7 +4070,8 @@
                         5,
                         7,
                         12
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -3856,6 +4082,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -3878,7 +4105,8 @@
                         8,
                         8,
                         14
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -3889,6 +4117,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -3911,7 +4140,8 @@
                         8,
                         7,
                         13
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -3922,6 +4152,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -3944,7 +4175,8 @@
                         6,
                         6,
                         15
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -3955,6 +4187,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -3977,7 +4210,8 @@
                         7,
                         9,
                         15
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -3988,6 +4222,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -4010,7 +4245,8 @@
                         5,
                         6,
                         10
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -4021,6 +4257,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -4043,7 +4280,8 @@
                         7,
                         7,
                         11
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -4054,6 +4292,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -4076,7 +4315,8 @@
                         7,
                         7,
                         14
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -4097,6 +4337,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4119,7 +4360,8 @@
                         29,
                         17,
                         28
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -4130,6 +4372,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -4152,7 +4395,8 @@
                         26,
                         18,
                         31
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -4163,6 +4407,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -4185,7 +4430,8 @@
                         9,
                         16,
                         36
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -4196,6 +4442,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -4218,7 +4465,8 @@
                         14,
                         16,
                         32
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -4229,6 +4477,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4251,7 +4500,8 @@
                         30,
                         15,
                         23
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -4262,6 +4512,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -4284,7 +4535,8 @@
                         11,
                         13,
                         45
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -4295,6 +4547,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -4317,7 +4570,8 @@
                         14,
                         19,
                         41
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -4328,6 +4582,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -4350,7 +4605,8 @@
                         31,
                         22,
                         35
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -4361,6 +4617,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -4383,7 +4640,8 @@
                         13,
                         15,
                         30
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -4394,6 +4652,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -4416,7 +4675,8 @@
                         14,
                         14,
                         35
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -4437,6 +4697,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 100,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4459,7 +4720,8 @@
                         74,
                         48,
                         34
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -4470,6 +4732,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -4492,7 +4755,8 @@
                         71,
                         56,
                         43
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 0,
@@ -4503,6 +4767,7 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -4525,7 +4790,8 @@
                         87,
                         55,
                         105
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -4536,6 +4802,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 114,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -4558,7 +4825,8 @@
                         50,
                         81,
                         55
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 0,
@@ -4569,6 +4837,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4591,7 +4860,8 @@
                         107,
                         65,
                         41
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -4602,6 +4872,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -4624,7 +4895,8 @@
                         51,
                         76,
                         84
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -4635,6 +4907,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
+                    "height": 218,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -4657,7 +4930,8 @@
                         60,
                         92,
                         75
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -4668,6 +4942,7 @@
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 1,
+                    "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -4690,7 +4965,8 @@
                         77,
                         63,
                         45
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 1,
@@ -4701,6 +4977,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -4723,7 +5000,8 @@
                         64,
                         92,
                         71
-                    ]
+                    ],
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -4734,6 +5012,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
+                    "height": 144,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -4756,7 +5035,8 @@
                         58,
                         89,
                         73
-                    ]
+                    ],
+                    "weight": 48
                 }
             ]
         },
@@ -4777,6 +5057,7 @@
                     "encounterSlot": 5,
                     "form": 2,
                     "gender": 2,
+                    "height": 72,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4799,7 +5080,8 @@
                         40,
                         29,
                         27
-                    ]
+                    ],
+                    "weight": 97
                 },
                 {
                     "ability": 0,
@@ -4810,6 +5092,7 @@
                     "encounterSlot": 4,
                     "form": 10,
                     "gender": 2,
+                    "height": 100,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -4832,7 +5115,8 @@
                         35,
                         19,
                         26
-                    ]
+                    ],
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -4843,6 +5127,7 @@
                     "encounterSlot": 7,
                     "form": 22,
                     "gender": 2,
+                    "height": 97,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -4865,7 +5150,8 @@
                         35,
                         33,
                         32
-                    ]
+                    ],
+                    "weight": 114
                 },
                 {
                     "ability": 1,
@@ -4876,6 +5162,7 @@
                     "encounterSlot": 0,
                     "form": 6,
                     "gender": 2,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -4898,7 +5185,8 @@
                         33,
                         27,
                         23
-                    ]
+                    ],
+                    "weight": 91
                 },
                 {
                     "ability": 0,
@@ -4909,6 +5197,7 @@
                     "encounterSlot": 4,
                     "form": 11,
                     "gender": 2,
+                    "height": 114,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -4931,7 +5220,8 @@
                         33,
                         23,
                         23
-                    ]
+                    ],
+                    "weight": 49
                 },
                 {
                     "ability": 1,
@@ -4942,6 +5232,7 @@
                     "encounterSlot": 1,
                     "form": 15,
                     "gender": 2,
+                    "height": 91,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -4964,7 +5255,8 @@
                         37,
                         26,
                         27
-                    ]
+                    ],
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -4975,6 +5267,7 @@
                     "encounterSlot": 0,
                     "form": 16,
                     "gender": 2,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -4997,7 +5290,8 @@
                         34,
                         25,
                         29
-                    ]
+                    ],
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -5008,6 +5302,7 @@
                     "encounterSlot": 5,
                     "form": 2,
                     "gender": 2,
+                    "height": 218,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -5030,7 +5325,8 @@
                         47,
                         31,
                         32
-                    ]
+                    ],
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -5041,6 +5337,7 @@
                     "encounterSlot": 1,
                     "form": 2,
                     "gender": 2,
+                    "height": 74,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -5063,7 +5360,8 @@
                         34,
                         30,
                         26
-                    ]
+                    ],
+                    "weight": 144
                 },
                 {
                     "ability": 0,
@@ -5074,6 +5372,7 @@
                     "encounterSlot": 1,
                     "form": 9,
                     "gender": 2,
+                    "height": 59,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -5096,7 +5395,8 @@
                         42,
                         26,
                         30
-                    ]
+                    ],
+                    "weight": 148
                 }
             ]
         }

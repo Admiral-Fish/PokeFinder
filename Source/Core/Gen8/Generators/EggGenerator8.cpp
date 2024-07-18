@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,12 +19,13 @@
 
 #include "EggGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen8/States/EggState8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static u32 gen(Xorshift &rng)
 {
@@ -38,7 +39,7 @@ EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8
 {
 }
 
-std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
     const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
     const PersonalInfo *male;
@@ -73,17 +74,14 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
         inheritanceCount = 5;
     }
 
-    std::vector<EggGeneratorState> states;
+    std::vector<EggState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         if ((rngList.next() % 100) < compatability)
         {
             // Sign extend seed to signed 64bit
-            u64 seed = rngList.next();
-            if (seed & 0x80000000)
-            {
-                seed |= 0xffffffff00000000;
-            }
+            constexpr u32 SIGN_EXTEND_MASK = 0x80000000;
+            u64 seed = (static_cast<u64>(rngList.next()) ^ SIGN_EXTEND_MASK) - SIGN_EXTEND_MASK;
 
             XoroshiroBDSP rng(seed);
 
@@ -178,22 +176,20 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
 
             // Assign PID if we have masuda or shiny charm
             u32 pid = 0;
-            u16 psv = 0;
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
                 pid = rng.nextUInt(0xffffffff);
-                psv = (pid >> 16) ^ (pid & 0xffff);
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     break;
                 }
             }
-            u8 shiny = (psv ^ tsv) < 16;
 
             // Ball handling check
             // Uses a rand call, maybe add later
 
-            EggGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
+            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv),
+                            inheritance, seed, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);

@@ -90,13 +90,53 @@
          <attribute name="title">
           <string>Needle Search</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_10">
-          <item row="0" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="0" rowspan="2">
+           <widget class="QListWidget" name="listWidgetNeedles"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="radioButtonUnovaLink">
+            <property name="text">
+             <string>Unova Link</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupNeedleType</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButtonSaving">
+            <property name="text">
+             <string>Saving</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupNeedleType</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushButtonDelete">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="pushButtonClear">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="0" column="0">
              <widget class="QPushButton" name="pushButtonUpLeft">
               <property name="text">
-               <string>↖</string>
+               <string notr="true">↖</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -106,7 +146,7 @@
             <item row="0" column="1">
              <widget class="QPushButton" name="pushButtonUp">
               <property name="text">
-               <string>↑</string>
+               <string notr="true">↑</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -116,7 +156,7 @@
             <item row="0" column="2">
              <widget class="QPushButton" name="pushButtonUpRight">
               <property name="text">
-               <string>↗</string>
+               <string notr="true">↗</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -126,7 +166,7 @@
             <item row="1" column="0">
              <widget class="QPushButton" name="pushButtonLeft">
               <property name="text">
-               <string>←</string>
+               <string notr="true">←</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -136,7 +176,7 @@
             <item row="1" column="2">
              <widget class="QPushButton" name="pushButtonRight">
               <property name="text">
-               <string>→</string>
+               <string notr="true">→</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -146,7 +186,7 @@
             <item row="2" column="0">
              <widget class="QPushButton" name="pushButtonDownLeft">
               <property name="text">
-               <string>↙</string>
+               <string notr="true">↙</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -156,7 +196,7 @@
             <item row="2" column="1">
              <widget class="QPushButton" name="pushButtonDown">
               <property name="text">
-               <string>↓</string>
+               <string notr="true">↓</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -166,59 +206,11 @@
             <item row="2" column="2">
              <widget class="QPushButton" name="pushButtonDownRight">
               <property name="text">
-               <string>↘</string>
+               <string notr="true">↘</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
               </attribute>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEditNeedles">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <layout class="QGridLayout" name="gridLayout_9">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButtonUnovaLink">
-              <property name="text">
-               <string>Unova Link</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupNeedleType</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QRadioButton" name="radioButtonSaving">
-              <property name="text">
-               <string>Saving</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupNeedleType</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QPushButton" name="pushButtonDelete">
-              <property name="text">
-               <string>Delete</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="pushButtonClear">
-              <property name="text">
-               <string>Clear</string>
-              </property>
              </widget>
             </item>
            </layout>
@@ -548,14 +540,14 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Form/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
    <class>DateTimeEdit</class>
@@ -586,7 +578,7 @@
   <tabstop>pushButtonDownLeft</tabstop>
   <tabstop>pushButtonDown</tabstop>
   <tabstop>pushButtonDownRight</tabstop>
-  <tabstop>lineEditNeedles</tabstop>
+  <tabstop>listWidgetNeedles</tabstop>
   <tabstop>radioButtonUnovaLink</tabstop>
   <tabstop>radioButtonSaving</tabstop>
   <tabstop>pushButtonDelete</tabstop>
@@ -619,11 +611,11 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

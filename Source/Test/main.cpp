@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,6 +23,7 @@
 #include <Test/Gen3/GameCubeGeneratorTest.hpp>
 #include <Test/Gen3/GameCubeSearcherTest.hpp>
 #include <Test/Gen3/IDGenerator3Test.hpp>
+#include <Test/Gen3/JirachiPatternTest.hpp>
 #include <Test/Gen3/PIDToIVCalculatorTest.hpp>
 #include <Test/Gen3/PokeSpotGeneratorTest.hpp>
 #include <Test/Gen3/SeedToTimeCalculator3Test.hpp>
@@ -90,6 +91,7 @@ int main()
     status += runTest<GameCubeGeneratorTest>(fails);
     status += runTest<GameCubeSearcherTest>(fails);
     status += runTest<IDGenerator3Test>(fails);
+    status += runTest<JirachiPatternTest>(fails);
     status += runTest<PIDToIVCalculatorTest>(fails);
     status += runTest<PokeSpotGeneratorTest>(fails);
     status += runTest<SeedToTimeCalculator3Test>(fails);

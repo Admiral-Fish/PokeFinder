@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,11 +27,6 @@
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
 
-inline bool isShiny(u32 pid, u16 tsv)
-{
-    return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
-}
-
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
                              const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
@@ -39,7 +34,7 @@ EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, co
     everstone(daycare.getEverstoneCount()),
     parentAbility(daycare.getParentAbility(1)),
     poweritem(daycare.getPowerItemCount()),
-    rolls((profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
+    rolls(((profile.getVersion() & Game::BW2) != Game::None && profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
 {
 }
 
@@ -79,12 +74,13 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     std::generate(mtIVs.begin(), mtIVs.end(), [&mt] { return mt.next(); });
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances + delay);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(delay);
 
     std::vector<EggState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng);
+        BWRNG go(rng, jump);
 
         // Nidoran
         // Volbeat / Illumise
@@ -102,7 +98,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         // Everstone, first check for presence of item and proc
         if (everstone != 0)
         {
-            if ((go.nextUInt(2)) == 1)
+            if (go.nextUInt(2) == 1)
             {
                 if (everstone == 2)
                 {
@@ -117,14 +113,15 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
             }
         }
 
-        bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
-
         // Reroll ability to remove HA
+        bool hiddenAbility = false;
         if (ditto)
         {
-            // ability = go.nextUInt(2);
-            go.advance(1);
-            hiddenAbility = false;
+            go.advance(2);
+        }
+        else
+        {
+            hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
         }
 
         // Power Items
@@ -168,7 +165,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         }
 
         u32 pid = go.nextUInt(0xffffffff);
-        for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+        for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
         {
             pid = go.nextUInt(0xffffffff);
         }
@@ -176,7 +173,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
         EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
-                        Utilities::getShiny(pid, tsv), inheritance, info);
+                        Utilities::getShiny<true>(pid, tsv), inheritance, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -197,13 +194,16 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 
     const PersonalInfo *info = nullptr;
     EggState5 state = generateBW2Egg(eggSeed, &info);
-    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs()))
+    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs())
+        && filter.compareHiddenPower(state.getHiddenPower()))
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);
-        BWRNG rng(seed, advances + initialAdvances + delay);
+        BWRNG rng(seed, advances + initialAdvances);
+        auto jump = rng.getJump(delay);
+
         for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
         {
-            BWRNG go(rng);
+            BWRNG go(rng, jump);
 
             u32 pid = go.nextUInt();
             if (((pid >> 16) & 1) != state.getAbility())
@@ -211,7 +211,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 pid ^= 0x10000;
             }
 
-            for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+            for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
             {
                 pid = go.nextUInt();
                 if (((pid >> 16) & 1) != state.getAbility())
@@ -221,7 +221,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
             }
 
             state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
-                         Utilities::getShiny(pid, tsv));
+                         Utilities::getShiny<true>(pid, tsv));
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

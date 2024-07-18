@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -92,14 +92,6 @@ private:
      * @return Dream radar templates
      */
     std::vector<DreamRadarTemplate> getSearcherSettings() const;
-
-    /**
-     * @brief Updates available genders for the select Pokemon
-     *
-     * @param comboBoxSpecie Pokemon specie combo box
-     * @param comboBoxGender Pokemon gender combo box
-     */
-    void updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender);
 
 private slots:
     /**

@@ -255,6 +255,13 @@
           <item row="2" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxGeneratorFeebasTile">
+            <property name="text">
+             <string>Feebas Tile</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -419,6 +426,13 @@
           <item row="2" column="1">
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxSearcherFeebasTile">
+            <property name="text">
+             <string>Feebas Tile</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -498,6 +512,7 @@
   <tabstop>comboBoxGeneratorEncounter</tabstop>
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
+  <tabstop>checkBoxGeneratorFeebasTile</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
@@ -506,6 +521,7 @@
   <tabstop>comboBoxSearcherEncounter</tabstop>
   <tabstop>comboBoxSearcherLocation</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
+  <tabstop>checkBoxSearcherFeebasTile</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

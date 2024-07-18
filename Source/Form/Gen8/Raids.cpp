@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -175,7 +175,7 @@ void Raids::generate()
     u64 seed = ui->textBoxSeed->getULong();
     u8 level = ui->spinBoxLevel->value();
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
 
     if (ui->comboBoxLocation->currentIndex() == 3)

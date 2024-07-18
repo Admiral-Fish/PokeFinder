@@ -1,29 +1,29 @@
-Ruby
-Sapphire
-Emerald
-Fire Red
-Leaf Green
-Gales
+Rubin
+Saphir
+Smaragd
+Feuerrot
+Blattgrün
+XD: Der Dunkle Sturm
 Colosseum
-Diamond
-Pearl
-Platinum
+Diamant
+Perl
+Platin
 Heart Gold
 Soul Silver
-Black
-White
-Black 2
-White 2
+Schwarz
+Weiß
+Schwarz 2
+Weiß 2
 X
 Y
-Omega Ruby
-Alpha Sapphire
-Sun
-Moon
-Ultra Sun
-Ultra Moon
-Sword
-Shield
-Brilliant Diamond
-Shining Pearl
-None
+Omega Rubin
+Alpha Saphir
+Sonne
+Mond
+Ultra Sonne
+Ultra Mond
+Schwert
+Schild
+Strahlender Diamant
+Leuchtende Perle
+Keines

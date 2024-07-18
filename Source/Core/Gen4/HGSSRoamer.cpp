@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,44 @@
 
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
+
+/**
+ * @brief Calculates roamer location for Entei/Raikou
+ *
+ * @param prng PRNG state
+ *
+ * @return Roamer location
+ */
+static u8 getRouteJ(u16 prng)
+{
+    u8 val = prng & 15;
+    return val < 11 ? val + 29 : val + 31;
+}
+
+/**
+ * @brief Calculates roamer location for Latios/Latias
+ *
+ * @param prng PRNG state
+ *
+ * @return Roamer location
+ */
+static u8 getRouteK(u16 prng)
+{
+    u8 val = prng % 25;
+    if (val > 21)
+    {
+        switch (val)
+        {
+        case 22:
+            return 24;
+        case 23:
+            return 26;
+        case 24:
+            return 28;
+        }
+    }
+    return val + 1;
+}
 
 HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
     enteiRoute(0), latiRoute(0), raikouRoute(0), skips(0)
@@ -81,28 +119,4 @@ std::string HGSSRoamer::getRouteString() const
 u8 HGSSRoamer::getSkips() const
 {
     return skips;
-}
-
-u8 HGSSRoamer::getRouteJ(u16 prng) const
-{
-    u8 val = prng & 15;
-    return val < 11 ? val + 29 : val + 31;
-}
-
-u8 HGSSRoamer::getRouteK(u16 prng) const
-{
-    u8 val = prng % 25;
-    if (val > 21)
-    {
-        switch (val)
-        {
-        case 22:
-            return 24;
-        case 23:
-            return 26;
-        case 24:
-            return 28;
-        }
-    }
-    return val + 1;
 }

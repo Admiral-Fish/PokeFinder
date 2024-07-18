@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,8 +32,8 @@ void State::updateStats(const PersonalInfo *info)
     u8 maxIV = 0;
     for (int i = 0; i < 6; i++)
     {
-        h += (ivs[order[i]] & 1) << i;
-        p += ((ivs[order[i]] >> 1) & 1) << i;
+        h |= (ivs[order[i]] & 1) << i;
+        p |= ((ivs[order[i]] >> 1) & 1) << i;
 
         stats[i] = Nature::computeStat(info->getStat(i), ivs[i], nature, level, i);
 

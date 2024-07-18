@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -79,7 +79,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
         ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
     }
 
-    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);
@@ -153,13 +153,14 @@ void Event4::updateProfiles()
 void Event4::generate()
 {
     generatorModel->clearModel();
+    generatorModel->setGame(currentProfile->getVersion());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator4 generator(initialAdvances, maxAdvances, delay, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
                               ui->comboBoxGeneratorNature->currentIndex(), ui->spinBoxGeneratorLevel->value(), *currentProfile, filter);
 
@@ -197,7 +198,7 @@ void Event4::search()
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new EventSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, *currentProfile, filter);
 
     int maxProgress = 1;

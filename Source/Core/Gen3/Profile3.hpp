@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,7 +37,10 @@ public:
      * @param sid Secret ID
      * @param deadBattery Whether profile has a dead battery or not
      */
-    Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery);
+    Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery) :
+        Profile(name, version, tid, sid), deadBattery(deadBattery)
+    {
+    }
 
     /**
      * @brief Returns the profiles dead battery status
@@ -45,7 +48,10 @@ public:
      * @return true Dead battery is enabled
      * @return false Dead battery is not enabled
      */
-    bool getDeadBattery() const;
+    bool getDeadBattery() const
+    {
+        return deadBattery;
+    }
 
     /**
      * @brief Checks if two profiles are equal

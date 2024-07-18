@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -71,6 +71,13 @@ private slots:
      * @brief Validates that a profile name exists before allowing the dialog to be closed
      */
     void okay();
+
+    /**
+     * @brief Toggles whether dead battery is enabled based on selected Game
+     *
+     * @param index Current index of combo box
+     */
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR4_HPP

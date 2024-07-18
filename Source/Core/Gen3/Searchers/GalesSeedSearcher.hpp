@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -60,24 +60,6 @@ public:
     void startSearch(const std::vector<u32> &seeds);
 
 private:
-    /**
-     * @brief Generates EVs for a pokemon
-     *
-     * @param rng Starting PRNG state
-     *
-     * @return EV for the HP stat
-     */
-    u8 generateEVs(XDRNG &rng) const;
-
-    /**
-     * @brief Generates a pokemon
-     *
-     * @param rng Starting PRNG state
-     *
-     * @return Pokemon HP IV
-     */
-    u8 generatePokemon(XDRNG &rng, u16 tsv) const;
-
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *

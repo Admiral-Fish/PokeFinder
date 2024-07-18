@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,15 +18,23 @@
  */
 
 #include "EventModel4.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
 
-EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), showStats(false)
+EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), version(Game::DPPt), showStats(false)
 {
 }
 
 int EventGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    return 9;
+    if ((version & Game::DPPt) != Game::None)
+    {
+        return 10;
+    }
+    else
+    {
+        return 11;
+    }
 }
 
 QVariant EventGeneratorModel4::data(const QModelIndex &index, int role) const
@@ -34,21 +42,25 @@ QVariant EventGeneratorModel4::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         const auto &state = model[index.row()];
-        int column = index.column();
+        int column = getColumn(index.column());
         switch (column)
         {
         case 0:
             return state.getAdvances();
         case 1:
+            return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
         case 2:
+            return state.getChatot();
         case 3:
         case 4:
         case 5:
         case 6:
-            return showStats ? state.getStat(column - 1) : state.getIV(column - 1);
         case 7:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 8:
+            return showStats ? state.getStat(column - 3) : state.getIV(column - 3);
+        case 9:
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+        case 10:
             return state.getHiddenPowerStrength();
         }
     }
@@ -60,15 +72,35 @@ QVariant EventGeneratorModel4::headerData(int section, Qt::Orientation orientati
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        section = getColumn(section);
+
         return header[section];
     }
     return QVariant();
+}
+
+void EventGeneratorModel4::setGame(Game version)
+{
+    this->version = version;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
 void EventGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 1), index(rowCount(), 6), { Qt::DisplayRole });
+}
+
+int EventGeneratorModel4::getColumn(int column) const
+{
+    if ((version & Game::DPPt) != Game::None)
+    {
+        return column > 0 ? column + 1 : column;
+    }
+    else
+    {
+        return column;
+    }
 }
 
 EventSearcherModel4::EventSearcherModel4(QObject *parent) : TableModel(parent), showStats(false)
@@ -89,7 +121,7 @@ QVariant EventSearcherModel4::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
             return state.getAdvances();
         case 2:

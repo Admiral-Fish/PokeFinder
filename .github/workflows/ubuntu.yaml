@@ -1,0 +1,49 @@
+name: CI - Ubuntu
+
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Build
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.7.1"
+          archives: icu qtbase qtsvg qttools
+          cache: true
+
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON
+
+      - name: Build PokeFinder
+        run: cmake --build ${{github.workspace}}/build --config RELEASE
+
+      - name: Test PokeFinder
+        run: ctest --test-dir ${{github.workspace}}/build -V
+
+      - name: Package PokeFinder
+        run: |
+          mkdir upload
+          mv build/Source/PokeFinder .
+          tar czf PokeFinder-linux.tar.gz PokeFinder
+          mv PokeFinder upload
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-linux
+          path: upload
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: PokeFinder-linux.tar.gz

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,26 +30,42 @@ class StaticTemplate4;
 enum class Encounter : u8;
 enum class Game : u32;
 
+struct DPPtSettings
+{
+    Game dual;
+    std::array<u16, 2> replacement;
+    bool feebasTile;
+    bool radar;
+};
+
+struct HGSSSettings
+{
+    int radio;
+    std::array<u8, 5> blocks;
+};
+
+struct EncounterSettings4
+{
+    union {
+        DPPtSettings dppt;
+        HGSSSettings hgss;
+    };
+    int time;
+    bool swarm;
+};
+
 namespace Encounters4
 {
     /**
-     * @brief Gets wild encounters for the \p encouner and \p profile
+     * @brief Gets wild encounters for the \p encounter and \p profile
      *
      * @param encounter Encounter type
-     * @param time Time modifier
-     * @param dual Dual slot version
-     * @param radar Whether pokeradar is active
-     * @param radio Radio station
-     * @param swarm Whether swarm is active
-     * @param replacement Replacement slots used by Great Marsh and Trophy Garden
-     * @param blocks Active pokeblocks in the safari
+     * @param settings Settings that impact wild encounter slots
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const std::array<u16, 2> &replacement, const std::array<u8, 5> &blocks,
-                                              const Profile4 *profile);
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, const EncounterSettings4 &settings, const Profile4 *profile);
 
     /**
      * @brief Returns the changing pokemon of the Great Marsh

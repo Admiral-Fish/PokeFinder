@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -50,6 +50,16 @@ public:
     ~IDsFilter() override;
 
     /**
+     * @brief Enables showing of the Display TID filter settings
+     */
+    void enableDisplayTID();
+
+    /**
+     * @brief Enables showing of the TID/PID filter settings
+     */
+    void enableTIDPID();
+
+    /**
      * @brief Gets settings to filter by
      *
      * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
@@ -57,11 +67,6 @@ public:
      * @return Filter information
      */
     IDFilter getFilter(bool pastGen) const;
-
-    /**
-     * @brief Enables showing of the Display TID filter settings
-     */
-    void enableDisplayTID();
 
 private:
     Ui::IDsFilter *ui;

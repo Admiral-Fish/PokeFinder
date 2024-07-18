@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -136,7 +136,7 @@ void Eggs8::generate()
     }
     Daycare daycare = ui->eggSettings->getDaycare();
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     EggGenerator8 generator(initialAdvances, maxAdvances, delay, compatability, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

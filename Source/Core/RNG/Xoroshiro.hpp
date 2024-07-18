@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,6 +22,7 @@
 
 #include <Core/Global.hpp>
 #include <Core/RNG/SIMD.hpp>
+#include <bit>
 
 /**
  * @brief Provides random numbers via the Xoroshiro algorithm.
@@ -73,27 +74,17 @@ public:
      *
      * @return PRNG value
      */
-    template <u32 max>
+    template <u64 max>
     u32 nextUInt()
     {
-        auto bitMask = [](u32 x) constexpr {
-            x--;
-            x |= x >> 1;
-            x |= x >> 2;
-            x |= x >> 4;
-            x |= x >> 8;
-            x |= x >> 16;
-            return x;
-        };
-
-        constexpr u32 mask = bitMask(max);
+        constexpr u64 mask = std::bit_ceil(max) - 1;
         if constexpr ((max - 1) == mask)
         {
             return next() & mask;
         }
         else
         {
-            u32 result;
+            u64 result;
             do
             {
                 result = next() & mask;

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,8 +19,10 @@
 
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
+#include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
@@ -44,6 +46,11 @@ IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
+
+    ui->idFilter->enableTIDPID();
+
+    auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
+    connect(seedToTime, &QAction::triggered, this, &IDs4::seedToTime);
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs4::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs4::find);
@@ -122,4 +129,13 @@ void IDs4::search()
 
     thread->start();
     timer->start(1000);
+}
+
+void IDs4::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    const auto &state = searcherModel->getItem(index.row());
+
+    auto *time = new SeedToTime4(state.getSeed(), Game::Gen4);
+    time->show();
 }

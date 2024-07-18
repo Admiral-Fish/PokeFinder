@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -42,13 +42,16 @@ public:
      * @param maxDelay Maximum delay
      * @param method Encounter method
      * @param lead Encounter lead
-     * @param area Wild pokemon info
+     * @param feebasTile Whether Feebas tiles are active
      * @param shiny Whether Poke Radar is forced shiny
+     * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
+     * @param happiness Encounter rate modifier for fishing in HGSS
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
-                  const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
+                  bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -60,14 +63,19 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
 private:
-    std::vector<u8> modifiedSlots;
+    std::vector<u8> unlockedUnown;
+    std::vector<u8> undiscoveredUnown;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
+    bool feebas;
+    bool feebasTile;
     bool safari;
     bool shiny;
+    bool unownRadio;
+    ModifiedSlots modifiedSlots;
 
     /**
      * @brief Searches for matching states from provided IVs

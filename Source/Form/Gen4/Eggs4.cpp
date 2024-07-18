@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -194,7 +194,7 @@ void Eggs4::generate()
     u32 maxAdvancesPickup = ui->textBoxGeneratorMaxAdvancesPickup->getUInt();
     u32 delayPickup = ui->textBoxGeneratorDelayPickup->getUInt();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup,
                             ui->eggSettingsGenerator->getDaycare(), *currentProfile, filter);
 
@@ -223,7 +223,7 @@ void Eggs4::search()
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, 0, initialAdvancesPickup, maxAdvancesPickup, 0,
                             ui->eggSettingsSearcher->getDaycare(), *currentProfile, filter);
 

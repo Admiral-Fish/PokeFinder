@@ -8,6 +8,7 @@
 8,Ruta 32
 9,Ruinas Alfa (Exterior)
 10,Ruinas Alfa (Interior)
+11,Ruinas Alfa (Underground)
 14,Cueva Unión Planta baja
 15,Cueva Unión Sótano 1
 16,Cueva Unión Sótano 2
@@ -69,7 +70,7 @@
 85,Monte Plateado Exterior
 86,Cueva M Plateado Cueva con cascadas
 87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Export Belt)
+88,Mt. Silver Cave (Expert Belt)
 89,Mt. Silver Cave (Upper mountainside)
 91,Safari Zone
 92,Ruta 12

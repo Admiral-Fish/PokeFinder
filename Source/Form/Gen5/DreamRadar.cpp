@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,6 +35,43 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+/**
+ * @brief Updates available genders for the select Pokemon
+ *
+ * @param comboBoxSpecie Pokemon specie combo box
+ * @param comboBoxGender Pokemon gender combo box
+ */
+static void updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender)
+{
+    int index = comboBoxSpecie->getCurrentInt();
+    if (index == -1)
+    {
+        comboBoxGender->clear();
+        return;
+    }
+
+    const DreamRadarTemplate *dreamRadarTemplate = Encounters5::getDreamRadarEncounters(index);
+    const PersonalInfo *info = dreamRadarTemplate->getInfo();
+
+    comboBoxGender->clear();
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(2)), 2);
+        break;
+    case 254: // Female
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
+        break;
+    case 0: // Male
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
+        break;
+    default: // Random gender
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
+        break;
+    }
+}
 
 DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar)
 {
@@ -248,37 +285,6 @@ std::vector<DreamRadarTemplate> DreamRadar::getSearcherSettings() const
     return radarTemplates;
 }
 
-void DreamRadar::updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender)
-{
-    int index = comboBoxSpecie->getCurrentInt();
-    if (index == -1)
-    {
-        comboBoxGender->clear();
-        return;
-    }
-
-    const DreamRadarTemplate *dreamRadarTemplate = Encounters5::getDreamRadarEncounters(index);
-    const PersonalInfo *info = dreamRadarTemplate->getInfo();
-
-    comboBoxGender->clear();
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(2)), 2);
-        break;
-    case 254: // Female
-        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
-        break;
-    case 0: // Male
-        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
-        break;
-    default: // Random gender
-        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
-        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
-        break;
-    }
-}
-
 void DreamRadar::generate()
 {
     auto radarTemplates = getGeneratorSettings();
@@ -295,7 +301,7 @@ void DreamRadar::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxGeneratorBadges->value(), radarTemplates, *currentProfile,
                                   filter);
 
@@ -330,7 +336,7 @@ void DreamRadar::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
     auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);

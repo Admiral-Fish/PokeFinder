@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -163,7 +163,7 @@ void Static4::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
                                filter);
 
@@ -258,7 +258,7 @@ void Static4::search()
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher
         = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, *currentProfile, filter);
 

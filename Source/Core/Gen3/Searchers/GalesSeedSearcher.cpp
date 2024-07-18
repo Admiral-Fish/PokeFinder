@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,65 +26,14 @@ constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 
 
 constexpr u16 playerHPStat[5][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 } };
 
-GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : SeedSearcher(criteria)
-{
-}
-
-void GalesSeedSearcher::startSearch(int threads)
-{
-    searching = true;
-
-    std::vector<std::thread> threadContainer;
-
-    u32 split = 0x10000 / threads;
-    u32 start = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer.emplace_back([=] { search(start, 0x10000); });
-        }
-        else
-        {
-            threadContainer.emplace_back([=] { search(start, start + split); });
-        }
-        start += split;
-    }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
-{
-    searching = true;
-
-    for (u32 seed : seeds)
-    {
-        if (!searching)
-        {
-            return;
-        }
-
-        XDRNG rng(seed);
-        if (searchSeed(rng))
-        {
-            results.emplace_back(rng.getSeed());
-        }
-
-        progress++;
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-u8 GalesSeedSearcher::generateEVs(XDRNG &rng) const
+/**
+ * @brief Generates EVs for a pokemon
+ *
+ * @param rng Starting PRNG state
+ *
+ * @return EV for the HP stat
+ */
+static u8 generateEVs(XDRNG &rng)
 {
     u8 evs[6] = { 0, 0, 0, 0, 0, 0 };
     u16 sum = 0;
@@ -132,7 +81,14 @@ u8 GalesSeedSearcher::generateEVs(XDRNG &rng) const
     return evs[0];
 }
 
-u8 GalesSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv) const
+/**
+ *  @brief Generates a pokemon
+ *
+ *  @param rng Starting PRNG state
+ *
+ *  @return Pokemon HP IV
+ */
+static u8 generatePokemon(XDRNG &rng, u16 tsv)
 {
     // Temp PID
     rng.advance(2);
@@ -149,6 +105,65 @@ u8 GalesSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv) const
     } while ((psv ^ tsv) < 8);
 
     return hp;
+}
+
+GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : SeedSearcher(criteria)
+{
+}
+
+void GalesSeedSearcher::startSearch(int threads)
+{
+    searching = true;
+
+    auto *threadContainer = new std::thread[threads];
+
+    u32 split = 0x10000 / threads;
+    u32 start = 0;
+    for (int i = 0; i < threads; i++, start += split)
+    {
+        if (i == threads - 1)
+        {
+            threadContainer[i] = std::thread([=] { search(start, 0x10000); });
+        }
+        else
+        {
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
+        }
+    }
+
+    for (int i = 0; i < threads; i++)
+    {
+        threadContainer[i].join();
+    }
+
+    delete[] threadContainer;
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
+void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
+{
+    searching = true;
+
+    for (u32 seed : seeds)
+    {
+        if (!searching)
+        {
+            return;
+        }
+
+        XDRNG rng(seed);
+        if (searchSeed(rng))
+        {
+            results.emplace_back(rng.getSeed());
+        }
+
+        progress++;
+    }
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void GalesSeedSearcher::search(u32 start, u32 end)

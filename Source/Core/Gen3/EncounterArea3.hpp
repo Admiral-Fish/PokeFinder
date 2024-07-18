@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -101,6 +101,16 @@ public:
 
         return min + rand;
     }
+
+    /**
+     * @brief Checks if the location can have Feebas
+     *
+     * @param version Game version
+     *
+     * @return true Location can have Feebas
+     * @return false Location can't have Feebas
+     */
+    bool feebasLocation(Game version) const;
 
     /**
      * @brief Checks if the location is in the Safari Zone

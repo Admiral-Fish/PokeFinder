@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,11 +21,12 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
@@ -63,21 +64,20 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, 
 {
 }
 
-std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + delay);
 
-    bool encounterForce
-        = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
-    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    bool encounterForce = lead >= Lead::MagnetPull && lead <= Lead::StormDrain;
+    auto modifiedSlots = area.getSlots(lead);
 
-    std::vector<WildGeneratorState> states;
+    std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
         if (encounterForce && (rngList.next() % 2) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[rngList.next() % modifiedSlots.size()];
+            encounterSlot = modifiedSlots[rngList.next()];
         }
         else
         {
@@ -112,26 +112,18 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         u32 sidtid = rngList.next(rand);
         u32 pid = rngList.next(rand);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-        u8 shiny;
-        if (fakeXor < 16) // Force shiny
+        u8 shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+        if (shiny) // Force shiny
         {
-            shiny = fakeXor == 0 ? 2 : 1;
-
-            u16 realXor = psv ^ tsv;
-            u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-            if (realShiny != shiny)
+            if (Utilities::getShiny<false>(pid, tsv) != shiny)
             {
                 u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                 pid = (high << 16) | (pid & 0xFFFF);
             }
         }
-        else // Force non shiny
+        else
         {
-            shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv)) // Force non shiny
             {
                 pid ^= 0x10000000;
             }
@@ -178,12 +170,16 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
             nature = rngList.next(rand) % 25;
         }
 
-        rngList.advance(4); // 2 calls height, 2 calls weight
+        u8 height = rngList.next(rand) % 129;
+        height += rngList.next(rand) % 128;
+
+        u8 weight = rngList.next(rand) % 129;
+        weight += rngList.next(rand) % 128;
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
-        WildGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
-                                 slot.getSpecie(), form, info);
+        WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
+                         form, height, weight, info);
         if (filter.compareState(static_cast<const WildState &>(state)))
         {
             states.emplace_back(state);

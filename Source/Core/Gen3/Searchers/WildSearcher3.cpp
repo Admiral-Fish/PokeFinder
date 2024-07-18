@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,6 +31,8 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 
+constexpr u8 feebasSlots[] = { 2, 3, 5 };
+
 static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
 {
     switch (info->getGender())
@@ -56,8 +58,13 @@ static u8 unownLetter(u32 pid)
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
-WildSearcher3::WildSearcher3(Method method, Lead lead, const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
-    WildSearcher(method, lead, area, profile, filter), modifiedSlots(area.getSlots(lead)), ivAdvance(method == Method::Method2), rate(0)
+WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
+                             const WildStateFilter &filter) :
+    WildSearcher(method, lead, area, profile, filter),
+    ivAdvance(method == Method::Method2),
+    feebasTile(feebasTile),
+    rate(0),
+    modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
     {
@@ -69,6 +76,9 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 {
     searching = true;
 
+    bool feebas = area.feebasLocation(profile.getVersion())
+        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+            || area.getEncounter() == Encounter::SuperRod);
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 
@@ -89,7 +99,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, safari, tanoby);
+                            auto states = search(hp, atk, def, spa, spd, spe, feebas, safari, tanoby);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -102,7 +112,8 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const
+std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari,
+                                                     bool tanoby) const
 {
     std::vector<WildSearcherState> states;
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
@@ -143,108 +154,260 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
 
         do
         {
-            PokeRNGR test(rng);
-
-            u8 encounterSlot;
-            u8 level;
             bool cuteCharmFlag = false;
-            bool valid = false;
+            u8 encounterSlot[4];
+            bool force = false;
+            u16 levelRand[2];
+            PokeRNGR test[4] = { rng, rng, rng, rng };
+            bool valid[4] = { false, false, false, false };
+
             switch (lead)
             {
             case Lead::None:
                 if (tanoby)
                 {
-                    encounterSlot = EncounterSlot::hSlot(nextRNG2 % 100, area.getEncounter());
-                    level = area.EncounterArea::calculateLevel(encounterSlot, nextRNG);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    levelRand[0] = nextRNG;
+                    encounterSlot[0] = EncounterSlot::hSlot(nextRNG2 % 100, area.getEncounter());
+                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                 }
                 else if ((nextRNG % 25) == nature)
                 {
-                    u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
-                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
                 }
                 break;
             case Lead::CuteCharmF:
             case Lead::CuteCharmM:
-                // Check gender
                 if ((nextRNG % 25) == nature)
                 {
+                    cuteCharmFlag = (nextRNG2 % 3) > 0;
                     if (safari)
                     {
-                        test.next();
+                        test[0].next();
                     }
-                    u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
-                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
-                    cuteCharmFlag = (nextRNG2 % 3) > 0;
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    levelRand[0] = test[0].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
                 }
                 break;
             case Lead::Synchronize:
                 if ((nextRNG & 1) == 0)
                 {
-                    u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
-                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
                 }
-                else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
+
+                if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
                 {
                     if (safari)
                     {
-                        test.next();
+                        test[1].next();
                     }
-                    u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
-                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    levelRand[1] = test[2].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[2].nextUShort(100) < 50)
+                            {
+                                encounterSlot[2] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                            }
+
+                            test[3].advance(1);
+                            u8 rand = test[3].nextUShort(100);
+                            if (test[3].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[3] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[3] = filter.compareEncounterSlot(encounterSlot[3]);
+                            }
+                        }
+                        else
+                        {
+                            test[2].advance(1);
+                            encounterSlot[2] = EncounterSlot::hSlot(test[2].nextUShort(100), area.getEncounter());
+                            valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[2] = EncounterSlot::hSlot(test[2].nextUShort(100), area.getEncounter());
+                        valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                    }
                 }
                 break;
             case Lead::MagnetPull:
             case Lead::Static:
+                // Not possible to use this lead for fishing so skip the Feebas logic
                 if ((nextRNG % 25) == nature)
                 {
-                    u16 levelRand = safari ? test.nextUShort() : nextRNG2;
-                    u16 encounterRand = test.nextUShort();
-                    if (test.nextUShort(2) == 0 && !modifiedSlots.empty())
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+                    u16 encounterRand = test[0].nextUShort();
+                    if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                     {
-                        encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
+                        encounterSlot[0] = modifiedSlots[encounterRand];
                     }
                     else
                     {
-                        encounterSlot = EncounterSlot::hSlot(encounterRand % 100, area.getEncounter());
+                        encounterSlot[0] = EncounterSlot::hSlot(encounterRand % 100, area.getEncounter());
                     }
-                    level = area.EncounterArea::calculateLevel(encounterSlot, levelRand);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                 }
                 break;
             case Lead::Pressure:
                 if ((nextRNG % 25) == nature)
                 {
-                    u16 rand = safari ? test.nextUShort() : nextRNG2;
-                    u16 levelRand = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
-                    level = area.calculateLevel(encounterSlot, levelRand, (rand & 1) == 0);
-                    valid = filter.compareEncounterSlot(encounterSlot);
+                    force = ((safari ? test[0].nextUShort() : nextRNG2) & 1) == 0;
+                    levelRand[0] = test[0].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
                 }
                 break;
             default:
                 break;
             }
 
-            if (valid && (rate == 0 || (test.nextUShort(2880) < rate)))
+            for (int i = 0; i < 4; i++)
             {
-                const Slot &slot = area.getPokemon(encounterSlot);
-                const PersonalInfo *info = slot.getInfo();
-                if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
+                if (valid[i] && (rate == 0 || (test[i].nextUShort(2880) < rate)))
                 {
-                    WildSearcherState state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                            Utilities::getShiny(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
-                    if (filter.compareState(state))
+                    const Slot &slot = area.getPokemon(encounterSlot[i]);
+                    const PersonalInfo *info = slot.getInfo();
+                    if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead))
+                        && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
                     {
-                        states.emplace_back(state);
+                        u8 level;
+                        if (lead == Lead::Pressure)
+                        {
+                            level = area.calculateLevel(encounterSlot[i], levelRand[i >> 1], force);
+                        }
+                        else
+                        {
+                            level = area.EncounterArea::calculateLevel(encounterSlot[i], levelRand[i >> 1]);
+                        }
+
+                        WildSearcherState state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                                Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
+                                                info);
+                        if (filter.compareState(state))
+                        {
+                            states.emplace_back(state);
+                        }
                     }
                 }
             }

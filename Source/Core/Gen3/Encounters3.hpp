@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,9 +26,14 @@
 class EncounterArea;
 class EncounterArea3;
 class ShadowTemplate;
-class StaticTemplate;
+class StaticTemplate3;
 enum class Encounter : u8;
 enum class Game : u32;
+
+struct EncounterSettings3
+{
+    bool feebasTile;
+};
 
 namespace Encounters3
 {
@@ -36,11 +41,12 @@ namespace Encounters3
      * @brief Gets wild encounters for the \p encouner and \p version
      *
      * @param encounter Encounter type
+     * @param settings Settings that impact wild encounter slots
      * @param version Game version
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version);
 
     /**
      * @brief Gets wild encounters for Poke Spots
@@ -78,13 +84,14 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gales/colo
-     * 8: channel
+     * 7: roamers
+     * 8: gales/colo
+     * 9: channel
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate *getStaticEncounters(int type, int *size = nullptr);
+    const StaticTemplate3 *getStaticEncounters(int type, int *size = nullptr);
 
     /**
      * @brief Gets the static encounter from the \p type and \p index
@@ -97,13 +104,14 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gales/colo
-     * 8: channel
+     * 7: roamers
+     * 8: gales/colo
+     * 9: channel
      * @param index Pokemon index
      *
      * @return Pointer to static encounter
      */
-    const StaticTemplate *getStaticEncounter(int type, int index);
+    const StaticTemplate3 *getStaticEncounter(int type, int index);
 };
 
 #endif // ENCOUNTERS3_HPP

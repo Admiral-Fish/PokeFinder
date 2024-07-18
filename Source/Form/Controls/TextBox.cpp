@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,46 +29,23 @@ void TextBox::setValues(InputType type)
 {
     switch (type)
     {
+    case InputType::Advance32Bit:
+    case InputType::Delay:
+        setValues(0, 0xffffffff, 10, 10);
+        break;
     case InputType::Seed64Bit:
-        minValue = 0;
-        maxValue = 0xffffffffffffffff;
-        length = 16;
-        base = 16;
+        setValues(0, 0xffffffffffffffff, 16, 16);
         break;
     case InputType::Seed32Bit:
-        minValue = 0;
-        maxValue = 0xffffffff;
-        length = 8;
-        base = 16;
-        break;
-    case InputType::Advance32Bit:
-        minValue = 0;
-        maxValue = 0xffffffff;
-        length = 10;
-        base = 10;
+        setValues(0, 0xffffffff, 8, 16);
         break;
     case InputType::Seed16Bit:
-        minValue = 0;
-        maxValue = 0xffff;
-        length = 4;
-        base = 16;
-        break;
-    case InputType::Delay:
-        minValue = 0;
-        maxValue = 0xffffffff;
-        length = 10;
-        base = 10;
+        setValues(0, 0xffff, 4, 16);
         break;
     case InputType::TIDSID:
-        minValue = 0;
-        maxValue = 0xffff;
-        length = 5;
-        base = 10;
+        setValues(0, 0xffff, 5, 10);
         break;
     }
-
-    filter = QRegularExpression(base == 10 ? "[^0-9]" : "[^0-9A-F]");
-    blockSignals(false);
 }
 
 void TextBox::setValues(u64 minValue, u64 maxValue, int length, int base)

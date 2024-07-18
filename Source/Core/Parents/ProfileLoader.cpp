@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@
 
 using json = nlohmann::json;
 
-static std::string path;
+static std::filesystem::path path;
 
 /**
  * @brief Reads provided profiles file
@@ -64,9 +64,9 @@ static void writeJson(const json &j)
 
 namespace ProfileLoader
 {
-    bool init(const std::string &location)
+    bool init(const std::wstring &location)
     {
-        path = location;
+        path = std::filesystem::path(location);
 
         bool exists = std::filesystem::exists(path);
         if (!exists)
@@ -192,6 +192,8 @@ namespace ProfileLoader4
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
             j["dex"] = profile.getNationalDex();
+            j["unownDiscovered"] = profile.getUnownDiscovered();
+            j["unownPuzzle"] = profile.getUnownPuzzle();
             return j;
         }
 
@@ -209,7 +211,12 @@ namespace ProfileLoader4
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
             bool dex = j.value("dex", false);
-            return Profile4(name, version, tid, sid, dex);
+            std::array<bool, 26> unownDiscovered
+                = j.value("unownDiscovered", std::array<bool, 26> { false, false, false, false, false, false, false, false, false,
+                                                                    false, false, false, false, false, false, false, false, false,
+                                                                    false, false, false, false, false, false, false, false });
+            std::array<bool, 4> unownPuzzle = j.value("unownPuzzle", std::array<bool, 4> { false, false, false, false });
+            return Profile4(name, version, tid, sid, dex, unownDiscovered, unownPuzzle);
         }
     }
 

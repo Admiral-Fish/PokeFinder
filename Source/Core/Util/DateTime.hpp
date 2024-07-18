@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -95,6 +95,16 @@ public:
      * @return Day difference
      */
     u32 daysTo(const Date &other) const;
+
+    /**
+     * @brief Returns the interal date representation
+     *
+     * @return Julian date
+     */
+    u32 getJD() const
+    {
+        return jd;
+    }
 
     /**
      * @brief Converts the Julian date to a Gregorian date

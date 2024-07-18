@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,8 +28,6 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData3.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <algorithm>
-#include <iterator>
 
 struct DynamicSlot
 {
@@ -71,7 +69,7 @@ static_assert(sizeof(WildEncounterPokeSpot) == 14);
 
 namespace Encounters3
 {
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version)
     {
         u32 length;
         u8 *data;
@@ -148,6 +146,15 @@ namespace Encounters3
                         const auto &slot = entry->old[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[2] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
@@ -159,6 +166,15 @@ namespace Encounters3
                         const auto &slot = entry->good[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[3] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
@@ -170,6 +186,15 @@ namespace Encounters3
                         const auto &slot = entry->super[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[5] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
@@ -220,7 +245,7 @@ namespace Encounters3
         return &templates[index];
     }
 
-    const StaticTemplate *getStaticEncounters(int type, int *size)
+    const StaticTemplate3 *getStaticEncounters(int type, int *size)
     {
         if (type == 0)
         {
@@ -282,6 +307,14 @@ namespace Encounters3
         {
             if (size)
             {
+                *size = ROAMERS.size();
+            }
+            return ROAMERS.data();
+        }
+        else if (type == 8)
+        {
+            if (size)
+            {
                 *size = GALESCOLO.size();
             }
             return GALESCOLO.data();
@@ -296,9 +329,9 @@ namespace Encounters3
         }
     }
 
-    const StaticTemplate *getStaticEncounter(int type, int index)
+    const StaticTemplate3 *getStaticEncounter(int type, int index)
     {
-        const StaticTemplate *templates = getStaticEncounters(type);
+        const StaticTemplate3 *templates = getStaticEncounters(type);
         return &templates[index];
     }
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -100,7 +100,7 @@ public:
      */
     void advanceState()
     {
-        if constexpr (generate != nullptr)
+        if constexpr (generate)
         {
             list[head++] = generate(rng);
         }
@@ -179,7 +179,7 @@ public:
     }
 
 private:
-    using SizeType = typename std::conditional<size <= 256, u8, u16>::type;
+    using SizeType = std::conditional_t<size <= 256, u8, u16>;
 
     RNG rng;
     Integer list[size];

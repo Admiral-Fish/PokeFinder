@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,19 @@
 
 #include "EncounterArea3.hpp"
 #include <Core/Enum/Game.hpp>
+
+bool EncounterArea3::feebasLocation(Game version) const
+{
+    if ((version & Game::Emerald) != Game::None)
+    {
+        return location == 33;
+    }
+    else if ((version & Game::RS) != Game::None)
+    {
+        return location == 73;
+    }
+    return false;
+}
 
 bool EncounterArea3::safariZone(Game version) const
 {

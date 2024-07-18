@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -41,13 +41,16 @@ public:
      * @param delay Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param feebasTile Whether Feebas tiles are active
      * @param shiny Whether Poke Radar is forced shiny
+     * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
+     * @param happiness Encounter rate modifier for fishing in HGSS
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, const EncounterArea4 &area,
-                   const Profile4 &profile, const WildStateFilter &filter);
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
+                   u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -60,7 +63,10 @@ public:
     std::vector<WildGeneratorState4> generate(u32 seed, u8 index) const;
 
 private:
+    bool feebasTile;
     bool shiny;
+    bool unownRadio;
+    u8 happiness;
 
     /**
      * @brief Generates states via Method J

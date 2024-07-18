@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,8 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
@@ -114,7 +114,7 @@ void Static8::categoryIndexChanged(int index)
     if (index >= 0)
     {
         int size;
-        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, &size);
+        const StaticTemplate8 *templates = Encounters8::getStaticEncounters(index, &size);
 
         ui->comboBoxPokemon->clear();
         for (int i = 0; i < size; i++)
@@ -145,27 +145,21 @@ void Static8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
-    const StaticTemplate *staticTemplate
+    const StaticTemplate8 *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
 
-    if (ui->comboBoxCategory->currentIndex() == 4)
-    {
-        model->addItems(generator.generateRoamer(seed0, seed1));
-    }
-    else
-    {
-        model->addItems(generator.generate(seed0, seed1));
-    }
+    auto states = generator.generate(seed0, seed1);
+    model->addItems(states);
 }
 
 void Static8::pokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const StaticTemplate *staticTemplate
+        const StaticTemplate8 *staticTemplate
             = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
         ui->spinBoxLevel->setValue(staticTemplate->getLevel());
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(staticTemplate->getAbility()));

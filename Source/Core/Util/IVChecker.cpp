@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,8 +40,8 @@ namespace
     std::array<std::vector<u8>, 6> calculateIVs(const std::array<u8, 6> &baseStats, const std::array<u16, 6> &stats, u8 level, u8 nature,
                                                 u8 characteristic)
     {
-        std::vector<u8> minIVs(6, 31);
-        std::vector<u8> maxIVs(6, 0);
+        std::array<u8, 6> minIVs = { 31, 31, 31, 31, 31, 31 };
+        std::array<u8, 6> maxIVs = { 0, 0, 0, 0, 0, 0 };
 
         for (u8 i = 0; i < 6; i++)
         {
@@ -57,40 +57,37 @@ namespace
         }
 
         std::array<std::vector<u8>, 6> possible;
-        std::vector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
 
         // Determine the max IV based on characteristic if provided
         u8 characteristicHigh = 31;
+        u8 charIndex = -1;
         if (characteristic != 255)
         {
             // Determine which stat is controlled by this charateristic and the % value
-            u8 stat = ivOrder[characteristic / 5];
+            charIndex = ivOrder[characteristic / 5];
             u8 result = characteristic % 5;
 
-            // Remove from indexes to handle below
-            indexes.erase(std::find(indexes.begin(), indexes.end(), stat));
-
-            for (u8 i = minIVs[stat]; i <= maxIVs[stat]; i++)
+            for (u8 i = minIVs[charIndex]; i <= maxIVs[charIndex]; i++)
             {
                 // IV is only possible if (iv % 5) matches the characteristic
                 // Keep the highest value to filter with below
                 if ((i % 5) == result)
                 {
-                    possible[stat].emplace_back(i);
+                    possible[charIndex].emplace_back(i);
                     characteristicHigh = i;
                 }
             }
         }
 
-        for (u8 i : indexes)
+        for (u8 i = 0; i < 6; i++)
         {
-            for (u8 iv = minIVs[i]; iv <= maxIVs[i]; iv++)
+            if (i == charIndex)
             {
-                // No IV can be higher then the highest stat determined by the characteristic
-                if (iv > characteristicHigh)
-                {
-                    break;
-                }
+                continue;
+            }
+
+            for (u8 iv = minIVs[i]; iv <= maxIVs[i] && iv <= characteristicHigh; iv++)
+            {
                 possible[i].emplace_back(iv);
             }
         }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -51,6 +51,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
+    ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
@@ -138,7 +139,7 @@ void Eggs5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, delay, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -173,11 +174,12 @@ void Eggs5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
+    u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
-    EggGenerator5 generator(0, maxAdvances, 0, daycare, *currentProfile, filter);
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
+    EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
     auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();

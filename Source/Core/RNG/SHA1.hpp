@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -101,6 +101,14 @@ public:
      * @param dsType DS type parameter
      */
     void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
+
+    /**
+     * @brief Sets the SHA1 parameter based on time and \p dsType
+     *
+     * @param time Time parameter
+     * @param dsType DS type parameter
+     */
+    void setTime(u32 time, DSType dsType);
 
 private:
     u32 data[80];

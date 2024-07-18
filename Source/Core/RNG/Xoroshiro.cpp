@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,9 +31,8 @@ constexpr u64 jumpTable[25][2]
         { 0xf1ccb8898cbc07cd, 0x521b29d0a57326c1 }, { 0x61179e44214caafa, 0xfbe65017abec72dd }, { 0xd9aa6b1e93fbb6e4, 0x6c446b9bc95c267b },
         { 0x86e3772194563f6d, 0x64f80248d23655c6 } };
 
-static inline u64 splitmix(u64 seed, u64 state)
+static inline u64 splitmix(u64 seed)
 {
-    seed += state;
     seed = 0xBF58476D1CE4E5B9 * (seed ^ (seed >> 30));
     seed = 0x94D049BB133111EB * (seed ^ (seed >> 27));
     return seed ^ (seed >> 31);
@@ -101,7 +100,7 @@ u64 Xoroshiro::next()
     return result;
 }
 
-XoroshiroBDSP::XoroshiroBDSP(u64 seed) : Xoroshiro(splitmix(seed, 0x9E3779B97F4A7C15), splitmix(seed, 0x3C6EF372FE94F82A))
+XoroshiroBDSP::XoroshiroBDSP(u64 seed) : Xoroshiro(splitmix(seed + 0x9E3779B97F4A7C15), splitmix(seed + 0x3C6EF372FE94F82A))
 {
     // Non-zero state check, doesn't seem possible with 32bit input seed
     // state[0] = (state[0] | state[1]) == 0 ? 1 : state[0];
