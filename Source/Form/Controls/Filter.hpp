@@ -174,6 +174,13 @@ public:
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
 
+    /**
+     * @brief Handles when the context menu is requested.
+     *
+     * @param event Contains context menu event information
+     */
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
 protected:
     /**
      * @brief Shows the combo box model when clicked
@@ -201,6 +208,16 @@ private slots:
      * @param ivs Possible IV ranges
      */
     void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
+
+    /**
+     * @brief Sets the current IVs from the clipboard
+     */
+    void setIVsFromClipBoard();
 };
 
 #endif // FILTER_HPP
