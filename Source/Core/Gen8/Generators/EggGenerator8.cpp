@@ -191,9 +191,10 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
                 }
             }
 
+            // These calls don't result in the actual height and weight. Please fix!
             u8 height = rng.nextUInt(129);
-            u8 weight = rng.nextUInt(129);
             height += rng.nextUInt(128);
+            u8 weight = rng.nextUInt(129);
             weight += rng.nextUInt(128);
 
             //u8 height = rngList.next() % 129;
