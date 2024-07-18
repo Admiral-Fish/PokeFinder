@@ -324,3 +324,13 @@ void Filter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
         maxIVs[i]->setValue(max);
     }
 }
+
+bool Filter::getSpecialEvo() const
+{
+    return ui->checkBoxSpecialEvo->isChecked();
+}
+
+bool Filter::getSizeMark() const
+{
+    return ui->checkBoxSizeMark->isChecked();
+}

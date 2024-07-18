@@ -51,7 +51,8 @@ public:
         gender(gender),
         level(level),
         nature(nature),
-        shiny(shiny)
+        shiny(shiny),
+        species(info->getHatchSpecie())
     {
         updateStats(info);
     }
@@ -78,10 +79,13 @@ public:
         gender(gender),
         level(level),
         nature(nature),
-        shiny(shiny)
+        shiny(shiny),
+        species(info->getHatchSpecie())
+
     {
         updateStats(info);
     }
+
 
     /**
      * @brief Returns the ability of the pokemon
@@ -216,6 +220,17 @@ public:
     }
 
     /**
+     @brief Return species
+
+    */
+
+    u16 getSpecie() const
+    {
+        return species;
+    }
+
+
+    /**
      * @brief Returns the specified stat of the pokemon
      *
      * @param index Stat index to get
@@ -251,6 +266,7 @@ protected:
     u8 level;
     u8 nature;
     u8 shiny;
+    u16 species;
 
     /**
      * @brief Updates characterstic, hidden power, and stats

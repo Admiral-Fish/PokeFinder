@@ -6,44 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
-    <height>258</height>
+    <width>800</width>
+    <height>418</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelHP">
-       <property name="text">
-        <string>HP</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QSpinBox" name="spinBoxHPMin">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QSpinBox" name="spinBoxHPMax">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-       <property name="value">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelAtk">
-       <property name="text">
-        <string>Atk</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="1">
       <widget class="QSpinBox" name="spinBoxAtkMin">
        <property name="maximum">
@@ -61,37 +30,6 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelDef">
-       <property name="text">
-        <string>Def</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QSpinBox" name="spinBoxDefMin">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QSpinBox" name="spinBoxDefMax">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-       <property name="value">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelSpA">
-       <property name="text">
-        <string>SpA</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="1">
       <widget class="QSpinBox" name="spinBoxSpAMin">
        <property name="maximum">
@@ -99,8 +37,8 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="2">
-      <widget class="QSpinBox" name="spinBoxSpAMax">
+     <item row="0" column="2">
+      <widget class="QSpinBox" name="spinBoxHPMax">
        <property name="maximum">
         <number>31</number>
        </property>
@@ -116,10 +54,79 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="2">
+      <widget class="QSpinBox" name="spinBoxDefMax">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+       <property name="value">
+        <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="spinBoxSpeMin">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelSpA">
+       <property name="text">
+        <string>SpA</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0" colspan="3">
+      <widget class="QPushButton" name="pushButtonIVCalculator">
+       <property name="text">
+        <string>IV Calculator</string>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="1">
       <widget class="QSpinBox" name="spinBoxSpDMin">
        <property name="maximum">
         <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0" colspan="3">
+      <widget class="QCheckBox" name="checkBoxShowStats">
+       <property name="text">
+        <string>Show Stats</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QSpinBox" name="spinBoxSpAMax">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+       <property name="value">
+        <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="spinBoxHPMin">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="spinBoxDefMin">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelHP">
+       <property name="text">
+        <string>HP</string>
        </property>
       </widget>
      </item>
@@ -129,20 +136,6 @@
         <number>31</number>
        </property>
        <property name="value">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelSpe">
-       <property name="text">
-        <string>Spe</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QSpinBox" name="spinBoxSpeMin">
-       <property name="maximum">
         <number>31</number>
        </property>
       </widget>
@@ -157,17 +150,24 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0" colspan="3">
-      <widget class="QCheckBox" name="checkBoxShowStats">
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelAtk">
        <property name="text">
-        <string>Show Stats</string>
+        <string>Atk</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0" colspan="3">
-      <widget class="QPushButton" name="pushButtonIVCalculator">
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelDef">
        <property name="text">
-        <string>IV Calculator</string>
+        <string>Def</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelSpe">
+       <property name="text">
+        <string>Spe</string>
        </property>
       </widget>
      </item>
@@ -175,56 +175,17 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelAbility">
+     <item row="1" column="3">
+      <widget class="CheckList" name="checkListHiddenPower"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="CheckList" name="checkListNature"/>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="labelHiddenPower">
        <property name="text">
-        <string>Ability</string>
+        <string>Hidden Power</string>
        </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="ComboBox" name="comboBoxAbility">
-       <item>
-        <property name="text">
-         <string>Any</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelGender">
-       <property name="text">
-        <string>Gender</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="ComboBox" name="comboBoxGender">
-       <item>
-        <property name="text">
-         <string>Any</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">♂</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">♀</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="2" column="0">
@@ -233,6 +194,16 @@
         <string>Shiny</string>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelAbility">
+       <property name="text">
+        <string>Ability</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="CheckList" name="checkListEncounterSlot"/>
      </item>
      <item row="2" column="1">
       <widget class="ComboBox" name="comboBoxShiny">
@@ -258,25 +229,50 @@
        </item>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="ComboBox" name="comboBoxGender">
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">♂</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">♀</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="ComboBox" name="comboBoxAbility">
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </item>
+      </widget>
+     </item>
      <item row="0" column="2">
       <widget class="QLabel" name="labelEncounterSlot">
        <property name="text">
         <string>Encounter Slot</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="CheckList" name="checkListEncounterSlot"/>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="labelHiddenPower">
-       <property name="text">
-        <string>Hidden Power</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="CheckList" name="checkListHiddenPower"/>
      </item>
      <item row="2" column="2">
       <widget class="QLabel" name="labelNature">
@@ -285,13 +281,34 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
-      <widget class="CheckList" name="checkListNature"/>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelGender">
+       <property name="text">
+        <string>Gender</string>
+       </property>
+      </widget>
      </item>
-     <item row="3" column="0" colspan="4">
+     <item row="3" column="0" colspan="2">
       <widget class="QCheckBox" name="checkBoxDisableFilters">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
         <string>Disable Filters</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QCheckBox" name="checkBoxSpecialEvo">
+       <property name="text">
+        <string>Special Evo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QCheckBox" name="checkBoxSizeMark">
+       <property name="text">
+        <string>Mark-only Sizes</string>
        </property>
       </widget>
      </item>

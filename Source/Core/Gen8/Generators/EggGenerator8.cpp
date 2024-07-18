@@ -33,7 +33,7 @@ static u32 gen(Xorshift &rng)
 }
 
 EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare,
-                             const Profile8 &profile, const StateFilter &filter) :
+                             const Profile8 &profile, const Gen8StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, compatability, daycare, profile, filter),
     shinyCharm(profile.getShinyCharm())
 {
@@ -87,6 +87,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 
             // Nidoran
             // Volbeat / Illumise
+
             u8 gender;
             const PersonalInfo *info = base;
             if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32 || daycare.getEggSpecie() == 313
@@ -128,6 +129,8 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
                 nature = daycare.getParentNature(1);
             }
 
+         
+
             // If we have a ditto acting as the female, get the ability from the other parent (this will be slot 0)
             u8 parentAbility = daycare.getParentAbility(daycare.getParentGender(1) == 3 ? 0 : 1);
             u8 ability = rng.nextUInt(100);
@@ -143,6 +146,8 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 ability = ability < 80 ? 0 : 1;
             }
+
+           
 
             // Determine inheritance
             std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
@@ -172,6 +177,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
                 ivs[i] = iv;
             }
 
+
             u32 ec = rng.nextUInt(0xffffffff);
 
             // Assign PID if we have masuda or shiny charm
@@ -185,11 +191,22 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
                 }
             }
 
+            u8 height = rng.nextUInt(129);
+            u8 weight = rng.nextUInt(129);
+            height += rng.nextUInt(128);
+            weight += rng.nextUInt(128);
+
+            //u8 height = rngList.next() % 129;
+            //height += rngList.next() % 128;
+
+            //u8 weight = (rngList.next() % 129);
+            //weight += rngList.next() % 128;
+            
+
             // Ball handling check
             // Uses a rand call, maybe add later
-
-            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv),
-                            inheritance, seed, info);
+            
+            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv), height, weight, inheritance, seed, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);

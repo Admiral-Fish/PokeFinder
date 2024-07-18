@@ -219,3 +219,153 @@ bool WildStateFilter::compareState(const WildState &state) const
 {
     return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
 }
+
+
+
+
+
+
+
+
+Gen8StateFilter::Gen8StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), specialEvo(specialEvo)
+{
+}
+/**
+bool Gen8StateFilter::compareAbility(u8 ability) const
+{
+    return skip || this->ability == 255 || this->ability == ability;
+}
+
+bool Gen8StateFilter::compareGender(u8 gender) const
+{
+    return skip || this->gender == 255 || this->gender == gender;
+}
+
+bool Gen8StateFilter::compareHiddenPower(u8 hiddenPower) const
+{
+    return skip || powers[hiddenPower];
+}
+
+bool Gen8StateFilter::compareIV(const std::array<u8, 6> &ivs) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = ivs[i];
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Gen8StateFilter::compareNature(u8 nature) const
+{
+    return skip || natures[nature];
+}
+
+bool Gen8StateFilter::compareShiny(u8 shiny) const
+{
+    return skip || this->shiny == 255 || (this->shiny & shiny);
+}*/
+
+bool Gen8StateFilter::compareEC(u32 ec) const
+{
+    if (skip) {return true;}
+
+    if (this->specialEvo) {
+        if ((ec % 100) != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Gen8StateFilter::compareState(const SearcherState &state) const
+{
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    if (specialEvo) {
+        if ((state.getEC() % 100) != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Gen8StateFilter::compareState(const State &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    if (specialEvo) {
+        if ((state.getEC() % 100) != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}

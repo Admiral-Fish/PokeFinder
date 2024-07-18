@@ -212,4 +212,22 @@ protected:
     std::array<bool, 12> encounterSlots;
 };
 
+class Gen8StateFilter : public StateFilter
+{
+public:
+    Gen8StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo);
+
+    bool compareEC(u32 ec) const;
+
+    bool compareState(const SearcherState &state) const;
+
+    bool compareState(const State &state) const;
+    
+
+protected:
+    bool specialEvo;
+        
+};
+
 #endif // STATEFILTER_HPP
