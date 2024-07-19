@@ -92,10 +92,22 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
         case 16:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         case 17:
-               if (((int)floor(state.getEC() / 65536) % 10) <= 4) {
-                   return "Silcoon";
-               }
-                return "Cascoon";
+            switch (state.getSpecie())
+            {
+                case 206:
+                    if ((state.getEC() % 100) == 0) {
+                        return "Three-Segment";
+                    } else {return "None";}
+                case 265:
+                    if (((int)floor(state.getEC() / 65536) % 10) <= 4) {
+                        return "Silcoon";
+                    }
+                    return "Cascoon";
+
+                default:
+                    return "None";
+            }
+
         }
     }
 
