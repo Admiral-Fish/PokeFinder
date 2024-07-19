@@ -191,23 +191,10 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
                 }
             }
 
-            // These calls don't result in the actual height and weight. Please fix!
-            u8 height = rng.nextUInt(129);
-            height += rng.nextUInt(128);
-            u8 weight = rng.nextUInt(129);
-            weight += rng.nextUInt(128);
-
-            //u8 height = rngList.next() % 129;
-            //height += rngList.next() % 128;
-
-            //u8 weight = (rngList.next() % 129);
-            //weight += rngList.next() % 128;
-            
-
             // Ball handling check
             // Uses a rand call, maybe add later
             
-            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv), height, weight, inheritance, seed, info);
+            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv), inheritance, seed, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
