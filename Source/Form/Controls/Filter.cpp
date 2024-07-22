@@ -155,6 +155,16 @@ void Filter::disableControls(Controls control)
         ui->checkListEncounterSlot->setVisible(false);
     }
 
+    if ((control & Controls::SizeMark) != Controls::None)
+    {
+        ui->checkBoxSizeMark->setVisible(false);
+    }
+
+    if ((control & Controls::SpecialEvo) != Controls::None)
+    {
+        ui->checkBoxSpecialEvo->setVisible(false);
+    }
+
     if ((control & Controls::HiddenPowers) != Controls::None)
     {
         ui->labelHiddenPower->setVisible(false);

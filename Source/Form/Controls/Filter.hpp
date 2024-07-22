@@ -126,7 +126,7 @@ public:
         else if constexpr (gen8)
         {
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
-                              getHiddenPowers(), getSpecialEvo());
+                              getHiddenPowers(), getSpecialEvo(), getSizeMark());
         }
 
         else

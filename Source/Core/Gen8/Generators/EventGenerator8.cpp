@@ -30,7 +30,7 @@ static u32 gen(Xorshift &rng)
 }
 
 EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile,
-                                 const StateFilter &filter) :
+                                 const Gen8StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), wb8(wb8)
 {
     if (!wb8.getEgg())
@@ -138,9 +138,11 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
         weight += rngList.next() % 128;
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, height, weight, info);
-        if (filter.compareState(static_cast<const State &>(state)))
-        {
-            states.emplace_back(state);
+        if (filter.compareHeight(height)) {
+            if (filter.compareState(static_cast<const State &>(state)))
+            {
+                states.emplace_back(state);
+            }
         }
     }
 

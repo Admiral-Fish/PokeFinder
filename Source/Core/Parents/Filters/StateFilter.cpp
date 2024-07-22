@@ -228,8 +228,8 @@ bool WildStateFilter::compareState(const WildState &state) const
 
 
 Gen8StateFilter::Gen8StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo) :
-    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), specialEvo(specialEvo)
+                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo, bool sizeMark) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), specialEvo(specialEvo), sizeMark(sizeMark)
 {
 }
 
@@ -240,6 +240,17 @@ bool Gen8StateFilter::compareEC(u32 ec) const
 
     if (this->specialEvo) {
         if ((ec % 100) != 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+bool Gen8StateFilter::compareHeight(u8 height) const
+{
+     if (this->sizeMark) {
+        if ((height % 255) != 0) {
             return false;
         }
     }
@@ -273,6 +284,12 @@ bool Gen8StateFilter::compareState(const SearcherState &state) const
             return false;
         }
     }
+
+    /*if (sizeMark) {
+        if ((height % 255) != 0) {
+            return false;
+        }
+    }*/
 
     return true;
 }
@@ -323,6 +340,12 @@ bool Gen8StateFilter::compareState(const State &state) const
             return false;
         }
     }
+
+    /*if (sizeMark) {
+        if ((height % 255) != 0) {
+            return false;
+        }
+    }*/
 
     return true;
 }

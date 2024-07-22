@@ -216,9 +216,11 @@ class Gen8StateFilter : public StateFilter
 {
 public:
     Gen8StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo);
+                const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo, bool sizeMark);
 
     bool compareEC(u32 ec) const;
+
+    bool compareHeight(u8 height) const;
 
     bool compareState(const SearcherState &state) const;
 
@@ -227,6 +229,7 @@ public:
 
 protected:
     bool specialEvo;
+    bool sizeMark;
         
 };
 
