@@ -131,16 +131,28 @@ u16 Date::year() const
     return getParts().year;
 }
 
-u32 Time::addSeconds(u32 seconds)
+int Time::addSeconds(int seconds)
 {
     md += seconds;
 
-    u32 days = 0;
-    while (md >= 86400)
+    int days = 0;
+    if (md >= 0)
     {
-        md -= 86400;
-        days++;
+        while (md >= 86400)
+        {
+            md -= 86400;
+            days++;
+        }
     }
+    else if (md <= 0)
+    {
+        while (md < 0)
+        {
+            md += 86400;
+            days--;
+        }
+    }
+
     return days;
 }
 
@@ -174,11 +186,11 @@ DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : 
 {
 }
 
-DateTime DateTime::addSeconds(u32 seconds) const
+DateTime DateTime::addSeconds(int seconds) const
 {
     DateTime dt(*this);
 
-    u32 days = dt.time.addSeconds(seconds);
+    int days = dt.time.addSeconds(seconds);
     dt.date += days;
 
     return dt;

@@ -99,39 +99,19 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="1">
-           <widget class="QLabel" name="labelDPPtDelayMinus">
+           <widget class="QLabel" name="labelDPPtDelayCalibration">
             <property name="text">
-             <string notr="true">-</string>
+             <string notr="true">-/+</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="labelDPPtDelayPlus">
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelDPPtSecondCalibration">
             <property name="text">
-             <string notr="true">+</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="QLabel" name="labelDPPtSecondMinus">
-            <property name="text">
-             <string notr="true">-</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="labelDPPtSecondPlus">
-            <property name="text">
-             <string notr="true">+</string>
+             <string notr="true">-/+</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -146,55 +126,41 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxDPPtDelayMinus">
+           <widget class="TextBox" name="textBoxDPPtDelayCalibration">
             <property name="text">
              <string notr="true">10</string>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxDPPtDelayPlus">
-            <property name="text">
-             <string notr="true">10</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
            <widget class="QLabel" name="labelDPPtSecondOffset">
             <property name="text">
              <string>Second</string>
             </property>
            </widget>
           </item>
+          <item row="1" column="3">
+           <widget class="TextBox" name="textBoxDPPtSecondCalibration">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="4">
-           <widget class="TextBox" name="textBoxDPPtSecondMinus">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="5">
-           <widget class="TextBox" name="textBoxDPPtSecondPlus">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="6">
            <widget class="QPushButton" name="pushButtonDPPtSearchFlips">
             <property name="text">
              <string>Search Flips</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="7">
+          <item row="1" column="5">
            <widget class="QPushButton" name="pushButtonDPPtCalibrate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="8">
+          <item row="2" column="0" colspan="6">
            <widget class="TableView" name="tableViewDPPtCalibrate"/>
           </item>
          </layout>
@@ -350,39 +316,19 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="1">
-           <widget class="QLabel" name="labelHGSSDelayMinus">
+           <widget class="QLabel" name="labelHGSSDelayCalibration">
             <property name="text">
-             <string notr="true">-</string>
+             <string notr="true">-/+</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="labelHGSSDelayPlus">
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelHGSSSecondCalibration">
             <property name="text">
-             <string notr="true">+</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="QLabel" name="labelHGSSSecondMinus">
-            <property name="text">
-             <string notr="true">-</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="labelHGSSSecondPlus">
-            <property name="text">
-             <string notr="true">+</string>
+             <string notr="true">-/+</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -397,55 +343,41 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxHGSSDelayMinus">
+           <widget class="TextBox" name="textBoxHGSSDelayCalibration">
             <property name="text">
              <string notr="true">10</string>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxHGSSDelayPlus">
-            <property name="text">
-             <string notr="true">10</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
            <widget class="QLabel" name="labelHGSSSecondOffset">
             <property name="text">
              <string>Second</string>
             </property>
            </widget>
           </item>
+          <item row="1" column="3">
+           <widget class="TextBox" name="textBoxHGSSSecondCalibration">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="4">
-           <widget class="TextBox" name="textBoxHGSSSecondMinus">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="5">
-           <widget class="TextBox" name="textBoxHGSSSecondPlus">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="6">
            <widget class="QPushButton" name="pushButtonHGSSSearchCalls">
             <property name="text">
              <string>Search Calls</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="7">
+          <item row="1" column="5">
            <widget class="QPushButton" name="pushButtonHGSSCalibrate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="8">
+          <item row="2" column="0" colspan="6">
            <widget class="TableView" name="tableViewHGSSCalibrate"/>
           </item>
          </layout>

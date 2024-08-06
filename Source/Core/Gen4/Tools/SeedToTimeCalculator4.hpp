@@ -38,35 +38,29 @@ namespace SeedToTimeCalculator4
     std::vector<SeedTime4> calculateTimes(u32 seed, u16 year, bool forceSecond, u8 forcedSecond);
 
     /**
-     * @brief Generates calibration results within \p minusDelay, \p plusDelay, \p minusSecond, and \p plusSecond from the selected \p
-     * target.
+     * @brief Generates calibration results within -/+ \p delayCalibration and -/+ \p secondCalibration from the selected \p target.
      *
-     * @param minusDelay Minimum delay range
-     * @param plusDelay Maximum delay range
-     * @param minusSecond Minimum second range
-     * @param plusSecond Maximum second range
+     * @param delayCalibration -/+ delay range
+     * @param secondCalibration -/+ second range
      * @param target Date/time target
      *
      * @return Vector of calibration date/times
      */
-    std::vector<SeedTimeCalibrate4> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const SeedTime4 &target);
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const SeedTime4 &target);
 
     /**
-     * @brief Generates calibration results within \p minusDelay, \p plusDelay, \p minusSecond, and \p plusSecond from the selected \p
-     * target.
+     * @brief Generates calibration results within -/+ \p delayCalibration and -/+ \p secondCalibration from the selected \p target.
      *
-     * @param minusDelay Minimum delay range
-     * @param plusDelay Maximum delay range
-     * @param minusSecond Minimum second range
-     * @param plusSecond Maximum second range
+     * @param delayCalibration -/+ delay range
+     * @param secondCalibration -/+ second range
      * @param roamers Which roamers are active
      * @param routes Which route active roamers are on
      * @param target Date/time target
      *
      * @return Vector of calibration date/times
      */
-    std::vector<SeedTimeCalibrate4> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond,
-                                              const std::array<bool, 3> &roamers, std::array<u8, 3> &routes, const SeedTime4 &target);
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const std::array<bool, 3> &roamers,
+                                              std::array<u8, 3> &routes, const SeedTime4 &target);
 };
 
 #endif // SEEDTOTIMECALCULATOR4_HPP

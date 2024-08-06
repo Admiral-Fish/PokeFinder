@@ -261,7 +261,7 @@ public:
      *
      * @return How many days passed
      */
-    u32 addSeconds(u32 seconds);
+    int addSeconds(int seconds);
 
     /**
      * @brief Computes hour field
@@ -344,7 +344,7 @@ public:
     }
 
 private:
-    u32 md;
+    int md;
 
     friend class DateTime;
 };
@@ -399,7 +399,7 @@ public:
      *
      * @return Computed DateTime
      */
-    DateTime addSeconds(u32 seconds) const;
+    DateTime addSeconds(int seconds) const;
 
     /**
      * @brief Returns the \ref Date component

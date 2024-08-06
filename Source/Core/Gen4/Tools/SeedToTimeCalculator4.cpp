@@ -55,17 +55,17 @@ namespace SeedToTimeCalculator4
         return results;
     }
 
-    std::vector<SeedTimeCalibrate4> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const SeedTime4 &target)
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const SeedTime4 &target)
     {
         DateTime time = target.getDateTime();
         u32 delay = target.getDelay();
 
         std::vector<SeedTimeCalibrate4> results;
-        results.reserve((plusDelay - minusDelay + 1) * (plusSecond - minusSecond + 1));
-        for (int secondOffset = minusSecond; secondOffset <= plusSecond; secondOffset++)
+        results.reserve((2 * delayCalibration + 1) * (2 * secondCalibration + 1));
+        for (int secondOffset = -secondCalibration; secondOffset <= secondCalibration; secondOffset++)
         {
             DateTime offset = time.addSeconds(secondOffset);
-            for (int delayOffset = minusDelay; delayOffset <= plusDelay; delayOffset++)
+            for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset);
             }
@@ -74,18 +74,18 @@ namespace SeedToTimeCalculator4
         return results;
     }
 
-    std::vector<SeedTimeCalibrate4> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond,
-                                              const std::array<bool, 3> &roamers, std::array<u8, 3> &routes, const SeedTime4 &target)
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const std::array<bool, 3> &roamers,
+                                              std::array<u8, 3> &routes, const SeedTime4 &target)
     {
         DateTime time = target.getDateTime();
         u32 delay = target.getDelay();
 
         std::vector<SeedTimeCalibrate4> results;
-        results.reserve((plusDelay - minusDelay + 1) * (plusSecond - minusSecond + 1));
-        for (int secondOffset = minusSecond; secondOffset <= plusSecond; secondOffset++)
+        results.reserve((2 * delayCalibration + 1) * (2 * secondCalibration + 1));
+        for (int secondOffset = -secondCalibration; secondOffset <= secondCalibration; secondOffset++)
         {
             DateTime offset = time.addSeconds(secondOffset);
-            for (int delayOffset = minusDelay; delayOffset <= plusDelay; delayOffset++)
+            for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset, roamers, routes);
             }

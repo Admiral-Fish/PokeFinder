@@ -44,18 +44,14 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxDPPtYear->setValues(2000, 2099, 4, 10);
     ui->textBoxDPPtSecond->setValues(0, 59, 2, 10);
-    ui->textBoxDPPtDelayMinus->setValues(InputType::Advance32Bit);
-    ui->textBoxDPPtDelayPlus->setValues(InputType::Advance32Bit);
-    ui->textBoxDPPtSecondMinus->setValues(0, 59, 2, 10);
-    ui->textBoxDPPtSecondPlus->setValues(0, 59, 2, 10);
+    ui->textBoxDPPtDelayCalibration->setValues(InputType::Advance32Bit);
+    ui->textBoxDPPtSecondCalibration->setValues(0, 500, 3, 10);
 
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
     ui->textBoxHGSSYear->setValues(2000, 2099, 4, 10);
     ui->textBoxHGSSSecond->setValues(0, 59, 2, 10);
-    ui->textBoxHGSSDelayMinus->setValues(InputType::Advance32Bit);
-    ui->textBoxHGSSDelayPlus->setValues(InputType::Advance32Bit);
-    ui->textBoxHGSSSecondMinus->setValues(0, 59, 2, 10);
-    ui->textBoxHGSSSecondPlus->setValues(0, 59, 2, 10);
+    ui->textBoxHGSSDelayCalibration->setValues(InputType::Advance32Bit);
+    ui->textBoxHGSSSecondCalibration->setValues(0, 500, 3, 10);
     ui->textBoxHGSSRaikou->setValues(0, 46, 2, 10);
     ui->textBoxHGSSEntei->setValues(0, 46, 2, 10);
     ui->textBoxHGSSLati->setValues(0, 28, 2, 10);
@@ -85,41 +81,25 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     {
         ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
     }
-    if (setting.contains("minusDelayDPPt"))
+    if (setting.contains("delayCalibrationDPPt"))
     {
-        ui->textBoxDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
+        ui->textBoxDPPtDelayCalibration->setText(setting.value("delayCalibrationDPPt").toString());
     }
-    if (setting.contains("plusDelayDPPt"))
+    if (setting.contains("secondCalibrationDPPt"))
     {
-        ui->textBoxDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
-    }
-    if (setting.contains("minusSecondsDPPt"))
-    {
-        ui->textBoxDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
-    }
-    if (setting.contains("plusSecondsDPPt"))
-    {
-        ui->textBoxDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
+        ui->textBoxDPPtSecondCalibration->setText(setting.value("secondCalibrationDPPt").toString());
     }
     if (setting.contains("hgssYear"))
     {
         ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
     }
-    if (setting.contains("minusDelayHGSS"))
+    if (setting.contains("delayCalibrationHGSS"))
     {
-        ui->textBoxHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
+        ui->textBoxHGSSDelayCalibration->setText(setting.value("delayCalibrationHGSS").toString());
     }
-    if (setting.contains("plusDelayHGSS"))
+    if (setting.contains("secondCalibrationHGSS"))
     {
-        ui->textBoxHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
-    }
-    if (setting.contains("minusSecondsHGSS"))
-    {
-        ui->textBoxHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
-    }
-    if (setting.contains("plusSecondsHGSS"))
-    {
-        ui->textBoxHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
+        ui->textBoxHGSSSecondCalibration->setText(setting.value("secondCalibrationHGSS").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -156,15 +136,11 @@ SeedToTime4::~SeedToTime4()
     QSettings setting;
     setting.beginGroup("SeedToTime4");
     setting.setValue("dpptYear", ui->textBoxDPPtYear->text());
-    setting.setValue("minusDelayDPPt", ui->textBoxDPPtDelayMinus->text());
-    setting.setValue("plusDelayDPPt", ui->textBoxDPPtDelayPlus->text());
-    setting.setValue("minusSecondsDPPt", ui->textBoxDPPtSecondMinus->text());
-    setting.setValue("plusSecondsDPPt", ui->textBoxDPPtSecondPlus->text());
+    setting.setValue("delayCalibrationDPPt", ui->textBoxDPPtDelayCalibration->text());
+    setting.setValue("secondCalibrationDPPt", ui->textBoxDPPtSecondCalibration->text());
     setting.setValue("hgssYear", ui->textBoxHGSSYear->text());
-    setting.setValue("minusDelayHGSS", ui->textBoxHGSSDelayMinus->text());
-    setting.setValue("plusDelayHGSS", ui->textBoxHGSSDelayPlus->text());
-    setting.setValue("minusSecondsHGSS", ui->textBoxHGSSSecondMinus->text());
-    setting.setValue("plusSecondsHGSS", ui->textBoxHGSSSecondPlus->text());
+    setting.setValue("delayCalibrationHGSS", ui->textBoxHGSSDelayCalibration->text());
+    setting.setValue("secondCalibrationHGSS", ui->textBoxHGSSSecondCalibration->text());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -173,11 +149,8 @@ SeedToTime4::~SeedToTime4()
 
 void SeedToTime4::dpptCalibrate()
 {
-    int minusDelay = -ui->textBoxDPPtDelayMinus->getInt();
-    int plusDelay = ui->textBoxDPPtDelayPlus->getInt();
-
-    int minusSecond = -ui->textBoxDPPtSecondMinus->getInt();
-    int plusSecond = ui->textBoxDPPtSecondPlus->getInt();
+    int delayCalibration = ui->textBoxDPPtDelayCalibration->getInt();
+    int secondCalibration = ui->textBoxDPPtSecondCalibration->getInt();
 
     QModelIndex index = ui->tableViewDPPtSearch->currentIndex();
     if (!index.isValid())
@@ -190,7 +163,7 @@ void SeedToTime4::dpptCalibrate()
     const SeedTime4 &target = dpptModel->getItem(index.row());
 
     dpptCalibrateModel->clearModel();
-    auto results = SeedToTimeCalculator4::calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, target);
     dpptCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -218,11 +191,8 @@ void SeedToTime4::dpptGenerate()
 
 void SeedToTime4::hgssCalibrate()
 {
-    int minusDelay = -ui->textBoxHGSSDelayMinus->getInt();
-    int plusDelay = ui->textBoxHGSSDelayPlus->getInt();
-
-    int minusSecond = -ui->textBoxHGSSSecondMinus->getInt();
-    int plusSecond = ui->textBoxHGSSSecondPlus->getInt();
+    int delayCalibration = ui->textBoxHGSSDelayCalibration->getInt();
+    int secondCalibration = ui->textBoxHGSSSecondCalibration->getInt();
 
     QModelIndex index = ui->tableViewHGSSSearch->currentIndex();
     if (!index.isValid())
@@ -238,7 +208,7 @@ void SeedToTime4::hgssCalibrate()
     const SeedTime4 &target = hgssModel->getItem(index.row());
 
     hgssCalibrateModel->clearModel();
-    auto results = SeedToTimeCalculator4::calibrate(minusDelay, plusDelay, minusSecond, plusSecond, roamers, routes, target);
+    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, roamers, routes, target);
     hgssCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
