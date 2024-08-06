@@ -73,6 +73,8 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
         ui->comboBoxKeypress3->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
     }
 
+    ui->listWidgetNeedles->setFlow(QListView::LeftToRight);
+
     auto *createProfile = new QAction(tr("Create profile"), ui->tableView);
     connect(createProfile, &QAction::triggered, this, &ProfileCalibrator5::createProfile);
     ui->tableView->addAction(createProfile);
