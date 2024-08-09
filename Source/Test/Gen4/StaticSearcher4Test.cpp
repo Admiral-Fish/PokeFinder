@@ -92,7 +92,7 @@ void StaticSearcher4Test::searchMethod1()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::Method1, Lead::None, profile, filter);
+    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::Method1, Lead::None, true, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
@@ -101,7 +101,7 @@ void StaticSearcher4Test::searchMethod1()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::Method1, Lead::None, *staticTemplate, profile, filter);
+        StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::Method1, Lead::None, true, *staticTemplate, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
@@ -157,7 +157,7 @@ void StaticSearcher4Test::searchMethodJ()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, profile, filter);
+    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, true, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
@@ -167,7 +167,7 @@ void StaticSearcher4Test::searchMethodJ()
     {
         // Ensure generator agrees
         StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodJ, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                   *staticTemplate, profile, filter);
+                                   true, *staticTemplate, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
@@ -223,7 +223,7 @@ void StaticSearcher4Test::searchMethodK()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, profile, filter);
+    StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, true, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
@@ -233,7 +233,7 @@ void StaticSearcher4Test::searchMethodK()
     {
         // Ensure generator agrees
         StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodK, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                   *staticTemplate, profile, filter);
+                                   true, *staticTemplate, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);

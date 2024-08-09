@@ -45,7 +45,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const StaticTemplate4 &staticTemplate,
+    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool lock, const StaticTemplate4 &staticTemplate,
                      const Profile4 &profile, const StateFilter &filter);
 
     /**
@@ -58,6 +58,7 @@ public:
     std::vector<GeneratorState4> generate(u32 seed) const;
 
 private:
+    bool lock;
     /**
      * @brief Generates states via Method 1
      *

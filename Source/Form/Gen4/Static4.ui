@@ -164,10 +164,20 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorCategory">
+          <item row="1" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorLevel">
             <property name="text">
-             <string>Category</string>
+             <string>Level</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorPokemon">
+            <property name="text">
+             <string>Pokemon</string>
             </property>
            </widget>
           </item>
@@ -215,16 +225,6 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorPokemon">
-            <property name="text">
-             <string>Pokemon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
-          </item>
           <item row="2" column="0" colspan="2">
            <widget class="Line" name="line_2">
             <property name="orientation">
@@ -232,17 +232,24 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorLevel">
-            <property name="text">
-             <string>Level</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="1">
            <widget class="QSpinBox" name="spinBoxGeneratorLevel">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorCategory">
+            <property name="text">
+             <string>Category</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxGeneratorShinyLock">
+            <property name="text">
+             <string>Shiny Lock</string>
             </property>
            </widget>
           </item>
@@ -379,13 +386,6 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherCategory">
-            <property name="text">
-             <string>Category</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxSearcherCategory">
             <item>
@@ -430,20 +430,13 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPokemon">
-            <property name="text">
-             <string>Pokemon</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="spinBoxSearcherLevel">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -454,10 +447,31 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QSpinBox" name="spinBoxSearcherLevel">
-            <property name="enabled">
-             <bool>false</bool>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherCategory">
+            <property name="text">
+             <string>Category</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherPokemon">
+            <property name="text">
+             <string>Pokemon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxSearcherShinyLock">
+            <property name="text">
+             <string>Shiny Lock</string>
             </property>
            </widget>
           </item>
@@ -539,6 +553,7 @@
   <tabstop>comboBoxGeneratorCategory</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>spinBoxGeneratorLevel</tabstop>
+  <tabstop>checkBoxGeneratorShinyLock</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
@@ -550,6 +565,7 @@
   <tabstop>comboBoxSearcherCategory</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>spinBoxSearcherLevel</tabstop>
+  <tabstop>checkBoxSearcherShinyLock</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>
