@@ -75,6 +75,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    ui->checkBoxGeneratorShinyLock->setVisible(false);
+    ui->checkBoxSearcherShinyLock->setVisible(false);
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
@@ -162,9 +165,10 @@ void Static4::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
+    bool lock = ui->checkBoxGeneratorShinyLock->isChecked();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
+    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, lock, *staticTemplate, *currentProfile,
                                filter);
 
     auto states = generator.generate(seed);
@@ -208,6 +212,13 @@ void Static4::generatorPokemonIndexChanged(int index)
         {
             ui->labelGeneratorLead->setVisible(true);
             ui->comboMenuGeneratorLead->setVisible(true);
+        }
+
+        if (ui->comboBoxGeneratorPokemon->currentText() == "Manaphy") {
+            ui->checkBoxGeneratorShinyLock->setVisible(true);
+        }
+        else {
+            ui->checkBoxGeneratorShinyLock->setVisible(false);
         }
     }
 }
@@ -255,12 +266,13 @@ void Static4::search()
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    bool lock = ui->checkBoxSearcherShinyLock->isChecked();
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher
-        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, *currentProfile, filter);
+        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, lock, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -329,6 +341,13 @@ void Static4::searcherPokemonIndexChanged(int index)
         {
             ui->labelSearcherLead->setVisible(true);
             ui->comboMenuSearcherLead->setVisible(true);
+        }
+
+        if (ui->comboBoxSearcherPokemon->currentText() == "Manaphy") {
+            ui->checkBoxSearcherShinyLock->setVisible(true);
+        }
+        else {
+            ui->checkBoxSearcherShinyLock->setVisible(false);
         }
     }
 }

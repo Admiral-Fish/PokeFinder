@@ -25,9 +25,10 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead,
+StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool lock,
                                    const StaticTemplate4 &staticTemplate, const Profile4 &profile, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, staticTemplate, profile, filter)
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, staticTemplate, profile, filter),
+    lock(lock)
 {
 }
 
@@ -76,7 +77,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
             pid = go.nextUShort();
             pid |= go.nextUShort() << 16;
 
-            if (staticTemplate.getShiny() == Shiny::Never)
+            if (staticTemplate.getShiny() == Shiny::Never && lock)
             {
                 while (Utilities::isShiny<true>(pid, tsv))
                 {
