@@ -58,8 +58,8 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::SizeMark | Controls::SpecialEvo);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::SizeMark | Controls::SpecialEvo);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },

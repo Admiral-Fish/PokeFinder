@@ -26,7 +26,7 @@ EggModel8::EggModel8(QObject *parent) : TableModel(parent), showInheritance(fals
 
 int EggModel8::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;  
 }
 
 QVariant EggModel8::data(const QModelIndex &index, int role) const
@@ -35,6 +35,7 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
     {
         const auto &state = model[index.row()];
         int column = index.column();
+
         switch (column)
         {
         case 0:
@@ -82,6 +83,23 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 14:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+        case 15:
+            switch (state.getSpecie())
+            {
+                case 206:
+                    if ((state.getEC() % 100) == 0) {
+                        return "Three-Segment";
+                    } else {return "None";}
+                case 265:
+                    if (((int)floor(state.getEC() / 65536) % 10) <= 4) {
+                        return "Silcoon";
+                    }
+                    return "Cascoon";
+
+                default:
+                    return "None";
+            }
+
         }
     }
 

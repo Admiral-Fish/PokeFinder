@@ -30,7 +30,7 @@ class State8;
 /**
  * @brief Event generator for Gen 8
  */
-class EventGenerator8 : public Generator<Profile8, StateFilter>
+class EventGenerator8 : public Generator<Profile8, Gen8StateFilter>
 {
 public:
     /**
@@ -43,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile, const StateFilter &filter);
+    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile, const Gen8StateFilter &filter);
 
     /**
      * @brief Generates states

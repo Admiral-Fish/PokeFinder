@@ -62,8 +62,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->textBoxSearcherMinDelay->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::SizeMark | Controls::SpecialEvo);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::SizeMark | Controls::SpecialEvo);
 
     ui->eggSettingsGenerator->setup(Game::Gen4);
     ui->eggSettingsSearcher->setup(Game::Gen4);

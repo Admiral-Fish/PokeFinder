@@ -59,6 +59,12 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
+    ui->filterGenerator->disableControls(Controls::SizeMark);
+    ui->filterGenerator->disableControls(Controls::SpecialEvo);
+
+    ui->filterSearcher->disableControls(Controls::SizeMark);
+    ui->filterSearcher->disableControls(Controls::SpecialEvo);
+
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);

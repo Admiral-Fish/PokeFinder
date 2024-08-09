@@ -91,6 +91,22 @@ public:
     std::array<bool, 12> getEncounterSlots() const;
 
     /**
+     * @brief Filters if the Pokemon can have a special evolution based on EC
+     *
+     * @return true Filtering for EC
+     * @return false not Filtering
+     */
+    bool getSpecialEvo() const;
+
+    /**
+     * @brief Filters to sizes that are capable of getting a mark
+     *
+     * @return true Filtering for Size
+     * @return false not Filtering
+     */
+    bool getSizeMark() const;
+
+    /**
      * @brief Constructs filter from the UI settings
      *
      * @tparam FilterType Filter class type
@@ -98,7 +114,7 @@ public:
      *
      * @return Filter object
      */
-    template <class FilterType, bool wild = false>
+    template <class FilterType, bool wild = false, bool gen8 = false>
     FilterType getFilter() const
     {
         if constexpr (wild)
@@ -106,6 +122,13 @@ public:
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getEncounterSlots());
         }
+        
+        else if constexpr (gen8)
+        {
+            return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers(), getSpecialEvo(), getSizeMark());
+        }
+
         else
         {
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
@@ -173,6 +196,7 @@ public:
      * @param encounterSlots Vector of encounter slots
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
+
 
 protected:
     /**

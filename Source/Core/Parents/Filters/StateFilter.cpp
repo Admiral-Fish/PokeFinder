@@ -219,3 +219,133 @@ bool WildStateFilter::compareState(const WildState &state) const
 {
     return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
 }
+
+
+
+
+
+
+
+
+Gen8StateFilter::Gen8StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool specialEvo, bool sizeMark) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), specialEvo(specialEvo), sizeMark(sizeMark)
+{
+}
+
+
+bool Gen8StateFilter::compareEC(u32 ec) const
+{
+    if (skip) {return true;}
+
+    if (this->specialEvo) {
+        if ((ec % 100) != 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+bool Gen8StateFilter::compareHeight(u8 height) const
+{
+     if (this->sizeMark) {
+        if ((height % 255) != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Gen8StateFilter::compareState(const SearcherState &state) const
+{
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    if (specialEvo) {
+        if ((state.getEC() % 100) != 0) {
+            return false;
+        }
+    }
+
+    /*if (sizeMark) {
+        if ((height % 255) != 0) {
+            return false;
+        }
+    }*/
+
+    return true;
+}
+
+bool Gen8StateFilter::compareState(const State &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    if (specialEvo) {
+        if ((state.getEC() % 100) != 0) {
+            return false;
+        }
+    }
+
+    /*if (sizeMark) {
+        if ((height % 255) != 0) {
+            return false;
+        }
+    }*/
+
+    return true;
+}
