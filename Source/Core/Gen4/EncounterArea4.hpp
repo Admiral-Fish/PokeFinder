@@ -54,7 +54,7 @@ public:
      * @return Level of the encounter
      */
     template <bool diff, bool mod>
-    u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *occidentary, bool force) const
+    u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *battleAdvances, bool force) const
     {
         if constexpr (diff)
         {
@@ -64,8 +64,8 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = rng.nextUShort(range, occidentary);
-            if (force && rng.nextUShort<mod>(2, occidentary) != 0)
+            u8 rand = rng.nextUShort(range, battleAdvances);
+            if (force && rng.nextUShort<mod>(2, battleAdvances) != 0)
             {
                 return max;
             }
@@ -74,7 +74,7 @@ public:
         }
         else
         {
-            if (force && rng.nextUShort<mod>(2, occidentary) != 0)
+            if (force && rng.nextUShort<mod>(2, battleAdvances) != 0)
             {
                 for (u8 i = 0; i < pokemon.size(); i++)
                 {
