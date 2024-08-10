@@ -5541,27 +5541,27 @@
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="76"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="78"/>
         <source>Create profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="171"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="173"/>
         <source>No row selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="171"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="173"/>
         <source>Please select a row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="235"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
         <source>Some min values are greater then max values</source>
         <translation>Alcuni valori minimi sono più grandi dei valori massimi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="235"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
         <source>Invalid Input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7438,34 +7438,34 @@
         <translation>Erranti:</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="185"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="230"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
         <source>Invalid selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="185"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="230"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
         <source>Select a valid row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="214"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="187"/>
         <source>Coin Flips: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="267"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="237"/>
         <source>Elm Calls: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="269"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>Roamers: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="269"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>No roamers</source>
         <translation>Nessun Errante</translation>
     </message>
