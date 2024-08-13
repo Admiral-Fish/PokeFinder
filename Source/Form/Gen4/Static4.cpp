@@ -216,6 +216,7 @@ void Static4::generatorPokemonIndexChanged(int index)
 
         if (ui->comboBoxGeneratorPokemon->currentText() == "Manaphy") {
             ui->checkBoxGeneratorShinyLock->setVisible(true);
+            ui->checkBoxGeneratorShinyLock->setChecked(true);
         }
         else {
             ui->checkBoxGeneratorShinyLock->setVisible(false);
@@ -345,6 +346,7 @@ void Static4::searcherPokemonIndexChanged(int index)
 
         if (ui->comboBoxSearcherPokemon->currentText() == "Manaphy") {
             ui->checkBoxSearcherShinyLock->setVisible(true);
+            ui->checkBoxSearcherShinyLock->setChecked(true);
         }
         else {
             ui->checkBoxSearcherShinyLock->setVisible(false);
