@@ -8038,6 +8038,11 @@
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
+        <source>Shiny Lock</source>
+        <translation>"unfinished"</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Static4.ui"/>
         <source>Delay</source>
         <translation>Delay</translation>
     </message>
