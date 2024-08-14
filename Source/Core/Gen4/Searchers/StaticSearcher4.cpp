@@ -27,14 +27,13 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool lock,
+StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
                                  const Profile4 &profile, const StateFilter &filter) :
     StaticSearcher(method, lead, profile, filter),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
-    lock(lock),
     buffer(0)
 {
 }
@@ -159,7 +158,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethod1(u8 hp, u8 atk, u8 def
             pid = rng.nextUShort() << 16;
             pid |= rng.nextUShort();
 
-            if (staticTemplate->getShiny() == Shiny::Never && lock)
+            if (staticTemplate->getShiny() == Shiny::Never)
             {
                 while (Utilities::isShiny<true>(pid, tsv))
                 {

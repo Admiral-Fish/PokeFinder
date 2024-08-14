@@ -75,8 +75,8 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    ui->checkBoxGeneratorShinyLock->setVisible(false);
-    ui->checkBoxSearcherShinyLock->setVisible(false);
+    ui->checkBoxGeneratorShinyLock->setVisible(true);
+    ui->checkBoxSearcherShinyLock->setVisible(true);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
@@ -165,10 +165,9 @@ void Static4::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    bool lock = ui->checkBoxGeneratorShinyLock->isChecked();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, lock, *staticTemplate, *currentProfile,
+    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
                                filter);
 
     auto states = generator.generate(seed);
@@ -187,9 +186,20 @@ void Static4::generatorCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxGeneratorPokemon->addItem(
-                    QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm())),
-                    QVariant::fromValue(i));
+
+                if (templates[i].getShiny() == Shiny::Never)
+                {
+                    ui->comboBoxGeneratorPokemon->addItem(
+                        QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm()))
+                            + " (" + tr("Shiny Locked") + ")",
+                        QVariant::fromValue(i));
+                }
+                else
+                {
+                    ui->comboBoxGeneratorPokemon->addItem(
+                        QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm())),
+                        QVariant::fromValue(i));
+                }
             }
         }
     }
@@ -214,12 +224,11 @@ void Static4::generatorPokemonIndexChanged(int index)
             ui->comboMenuGeneratorLead->setVisible(true);
         }
 
-        if (ui->comboBoxGeneratorPokemon->currentText() == "Manaphy") {
-            ui->checkBoxGeneratorShinyLock->setVisible(true);
+        if (staticTemplate->getShiny() == Shiny::Never) {
             ui->checkBoxGeneratorShinyLock->setChecked(true);
         }
         else {
-            ui->checkBoxGeneratorShinyLock->setVisible(false);
+            ui->checkBoxGeneratorShinyLock->setChecked(false);
         }
     }
 }
@@ -267,13 +276,12 @@ void Static4::search()
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    bool lock = ui->checkBoxSearcherShinyLock->isChecked();
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher
-        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, lock, *currentProfile, filter);
+        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -317,9 +325,20 @@ void Static4::searcherCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxSearcherPokemon->addItem(
-                    QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm())),
-                    QVariant::fromValue(i));
+
+                if (templates[i].getShiny() == Shiny::Never)
+                {
+                    ui->comboBoxSearcherPokemon->addItem(
+                        QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm()))
+                            + " (" + tr("Shiny Locked") + ")",
+                        QVariant::fromValue(i));
+                }
+                else
+                {
+                    ui->comboBoxSearcherPokemon->addItem(
+                        QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm())),
+                        QVariant::fromValue(i));
+                }
             }
         }
     }
@@ -344,12 +363,13 @@ void Static4::searcherPokemonIndexChanged(int index)
             ui->comboMenuSearcherLead->setVisible(true);
         }
 
-        if (ui->comboBoxSearcherPokemon->currentText() == "Manaphy") {
-            ui->checkBoxSearcherShinyLock->setVisible(true);
+        if (staticTemplate->getShiny() == Shiny::Never)
+        {
             ui->checkBoxSearcherShinyLock->setChecked(true);
         }
-        else {
-            ui->checkBoxSearcherShinyLock->setVisible(false);
+        else
+        {
+            ui->checkBoxSearcherShinyLock->setChecked(false);
         }
     }
 }

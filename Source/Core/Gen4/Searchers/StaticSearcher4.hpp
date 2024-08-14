@@ -45,7 +45,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool lock, const Profile4 &profile,
+    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
                     const StateFilter &filter);
 
     /**
@@ -62,7 +62,6 @@ private:
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
-    bool lock;
     u8 buffer;
 
     /**

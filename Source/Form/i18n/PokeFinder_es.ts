@@ -8039,6 +8039,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Gen4/Static4.cpp" line="193"/>
+        <location filename="../Gen4/Static4.cpp" line="330"/>
+        <source>Shiny Locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Level</source>
         <translation>Nivel</translation>

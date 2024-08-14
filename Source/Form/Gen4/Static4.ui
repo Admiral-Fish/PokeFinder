@@ -248,6 +248,9 @@
           </item>
           <item row="4" column="0">
            <widget class="QCheckBox" name="checkBoxGeneratorShinyLock">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Shiny Lock</string>
             </property>
@@ -470,6 +473,9 @@
           </item>
           <item row="4" column="0">
            <widget class="QCheckBox" name="checkBoxSearcherShinyLock">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Shiny Lock</string>
             </property>
