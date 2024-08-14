@@ -8032,8 +8032,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="193"/>
-        <location filename="../Gen4/Static4.cpp" line="330"/>
+        <location filename="../Gen4/Static4.cpp" line="194"/>
+        <location filename="../Gen4/Static4.cpp" line="333"/>
         <source>Shiny Locked</source>
         <translation type="unfinished"></translation>
     </message>
