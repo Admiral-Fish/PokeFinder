@@ -310,6 +310,31 @@
    <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>spinBoxParentAHP</tabstop>
+  <tabstop>spinBoxParentAAtk</tabstop>
+  <tabstop>spinBoxParentADef</tabstop>
+  <tabstop>spinBoxParentASpA</tabstop>
+  <tabstop>spinBoxParentASpD</tabstop>
+  <tabstop>spinBoxParentASpe</tabstop>
+  <tabstop>spinBoxParentBHP</tabstop>
+  <tabstop>spinBoxParentBAtk</tabstop>
+  <tabstop>spinBoxParentBDef</tabstop>
+  <tabstop>spinBoxParentBSpA</tabstop>
+  <tabstop>spinBoxParentBSpD</tabstop>
+  <tabstop>spinBoxParentBSpe</tabstop>
+  <tabstop>comboBoxParentAAbility</tabstop>
+  <tabstop>comboBoxParentAGender</tabstop>
+  <tabstop>comboBoxParentAItem</tabstop>
+  <tabstop>comboBoxParentANature</tabstop>
+  <tabstop>comboBoxEggSpecie</tabstop>
+  <tabstop>comboBoxParentBAbility</tabstop>
+  <tabstop>comboBoxParentBGender</tabstop>
+  <tabstop>comboBoxParentBItem</tabstop>
+  <tabstop>comboBoxParentBNature</tabstop>
+  <tabstop>checkBoxMasuda</tabstop>
+  <tabstop>checkBoxShowInheritance</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

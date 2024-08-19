@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>177</width>
-    <height>208</height>
+    <width>179</width>
+    <height>210</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -93,6 +93,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>radioButtonTID</tabstop>
+  <tabstop>radioButtonSID</tabstop>
+  <tabstop>radioButtonTIDSID</tabstop>
+  <tabstop>radioButtonPID</tabstop>
+  <tabstop>radioButtonTIDPID</tabstop>
+  <tabstop>radioButtonTSV</tabstop>
+  <tabstop>radioButtonDisplayTID</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
