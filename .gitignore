@@ -20,3 +20,6 @@ Personal.hpp
 # Test resource files
 Enum.cpp
 Enum.hpp
+
+# Mac OSX file
+.DS_Store

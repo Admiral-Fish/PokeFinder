@@ -64,9 +64,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     }
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Gender | Controls::Natures
-                                         | Controls::Shiny);
+                                         | Controls::Shiny | Controls::SizeMark | Controls::SpecialEvo);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Gender | Controls::Natures
-                                        | Controls::Shiny | Controls::DisableFilter);
+                                        | Controls::Shiny | Controls::DisableFilter | Controls::SizeMark | Controls::SpecialEvo);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();

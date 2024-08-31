@@ -63,7 +63,9 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                            toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
-    ui->filterSearcher->disableControls(Controls::DisableFilter);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::SizeMark | Controls::SpecialEvo);
+    ui->filterGenerator->disableControls(Controls::SizeMark | Controls::SpecialEvo);
+
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },

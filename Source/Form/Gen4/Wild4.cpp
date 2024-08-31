@@ -61,7 +61,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    ui->filterSearcher->disableControls(Controls::DisableFilter);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::SizeMark | Controls::SpecialEvo);
+    ui->filterGenerator->disableControls(Controls::SizeMark | Controls::SpecialEvo);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
