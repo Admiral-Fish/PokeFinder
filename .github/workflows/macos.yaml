@@ -11,7 +11,7 @@ on:
 jobs:
   ci:
     name: Build 
-    runs-on: macos-12
+    runs-on: macos-14
 
     steps:
       - name: Checkout repository
@@ -27,7 +27,7 @@ jobs:
           cache: true
 
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DTEST=ON
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_OSX_DEPLOYMENT_TARGET=12.7 -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DTEST=ON
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
