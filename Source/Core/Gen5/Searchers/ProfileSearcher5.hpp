@@ -70,6 +70,8 @@ public:
      */
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
 
+    virtual ~ProfileSearcher5() = default;
+
 private:
     u64 mac;
     Date date;
@@ -90,6 +92,7 @@ private:
 
     void search(u8 minVFrame, u8 maxVFrame);
 
+protected:
     /**
      * @brief Checks if seed matches the provided calibration data
      *
@@ -138,6 +141,7 @@ private:
     std::array<u8, 6> minIVs;
     u8 offset;
 
+protected:
     /**
      * @brief Checks if seed matches the provided calibration IVs
      *
@@ -188,6 +192,7 @@ private:
     bool memoryLink;
     bool unovaLink;
 
+protected:
     /**
      * @brief Checks if seed matches the provided calibration needles
      *
@@ -233,6 +238,7 @@ public:
 private:
     u64 seed;
 
+protected:
     /**
      * @brief Checks if seed matches the provided calibration seed
      *
