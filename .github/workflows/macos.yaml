@@ -41,7 +41,7 @@ jobs:
           mv build/Source/PokeFinder.app .
           macdeployqt PokeFinder.app -verbose=3
           tar czf PokeFinder-macOS.tar.gz PokeFinder.app
-          mv PokeFinder.app upload
+          mv PokeFinder-macOS.tar.gz upload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
