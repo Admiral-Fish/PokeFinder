@@ -11,7 +11,7 @@ on:
 jobs:
   ci:
     name: Build 
-    runs-on: macos-14
+    runs-on: macos-12
 
     steps:
       - name: Checkout repository
@@ -27,7 +27,7 @@ jobs:
           cache: true
 
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_OSX_DEPLOYMENT_TARGET=12.7 -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DTEST=ON
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DTEST=ON
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
@@ -41,7 +41,7 @@ jobs:
           mv build/Source/PokeFinder.app .
           macdeployqt PokeFinder.app -verbose=3
           tar czf PokeFinder-macOS.tar.gz PokeFinder.app
-          mv PokeFinder.app upload
+          mv PokeFinder-macOS.tar.gz upload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
