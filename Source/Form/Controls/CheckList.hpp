@@ -23,8 +23,6 @@
 #include <Core/Global.hpp>
 #include <QComboBox>
 
-class QStandardItemModel;
-
 /**
  * @brief Provides a combo box of check boxes
  */
@@ -110,27 +108,20 @@ public:
      */
     void setup(const std::vector<std::string> &items, const std::vector<u16> &data);
 
-protected:
-    /**
-     * @brief Shows the combo box model when clicked
-     *
-     * @param object Object that is part of triggered event
-     * @param event Contains information about the triggered event
-     *
-     * @return true Model should be shown
-     * @return false Model should not be shown
-     */
-    bool eventFilter(QObject *object, QEvent *event) override;
-
 private:
-    QStandardItemModel *model;
-
     /**
      * @brief Determines the check state of the check boxes
      *
      * @return Checked if all check boxes are checked, PartiallyChecked if some of the check boxes are checked, and Unchecked otherwise
      */
     Qt::CheckState checkState() const;
+
+    /**
+     * @brief Handles resetting the check information on ctrl click
+     *
+     * @param event Contains mouse event information
+     */
+    void mousePressEvent(QMouseEvent *event) override;
 
     /**
      * @brief Setups the model of check boxes to be checkable by the user and sets the minimum width for the popup

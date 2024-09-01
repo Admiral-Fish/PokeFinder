@@ -19,9 +19,9 @@
 
 #include "Filter.hpp"
 #include "ui_Filter.h"
-#include <Form/Util/IVCalculator.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Util/IVCalculator.hpp>
 #include <QMouseEvent>
 
 /**
@@ -72,10 +72,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->setup(Translator::getHiddenPowers());
     ui->checkListNature->setup(Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
-
-    ui->checkListEncounterSlot->setToolTip(tr("Click holding ctrl to reset"));
-    ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
-    ui->checkListNature->setToolTip(tr("Click holding ctrl to reset"));
 
     QStringList tips = { tr("Click to clear"), tr("Click holding ctrl to set 31"), tr("Click holding alt to set 30-31"),
                          tr("Click holding ctrl+alt to set 0") };
