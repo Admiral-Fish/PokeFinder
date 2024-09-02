@@ -8032,20 +8032,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="194"/>
-        <location filename="../Gen4/Static4.cpp" line="333"/>
-        <source>Shiny Locked</source>
-        <translation>Cromaticità Bloccata</translation>
-    </message>
-    <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Level</source>
         <translation>Livello</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Static4.ui"/>
-        <source>Shiny Lock</source>
-        <translation>Blocco Cromaticità</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
