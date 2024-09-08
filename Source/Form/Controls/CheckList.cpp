@@ -25,38 +25,32 @@
 #include <QStandardItemModel>
 #include <algorithm>
 
-CheckList::CheckList(QWidget *parent) : QComboBox(parent)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardItemModel(this))
 {
-    addItem(tr("Any"));
-    qobject_cast<QListView *>(view())->setRowHidden(0, true);
+    setModel(model);
 
-    setToolTip(tr("Click holding ctrl to reset"));
+    setEditable(true);
+    lineEdit()->setReadOnly(true);
+    lineEdit()->installEventFilter(this);
 
+    connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
     connect(qobject_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
-    connect(model(), &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
-    connect(this, &CheckList::currentIndexChanged, this, [this] {
-        if (currentIndex() != 0)
-        {
-            setCurrentIndex(0);
-        }
-    });
+    connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
 std::vector<bool> CheckList::getChecked() const
 {
     std::vector<bool> result;
-
-    auto *m = qobject_cast<QStandardItemModel *>(model());
     if (checkState() == Qt::PartiallyChecked)
     {
-        for (int i = 1; i < m->rowCount(); i++)
+        for (int i = 0; i < model->rowCount(); i++)
         {
-            result.emplace_back(m->item(i)->checkState() == Qt::Checked);
+            result.emplace_back(model->item(i)->checkState() == Qt::Checked);
         }
     }
     else
     {
-        result = std::vector<bool>(m->rowCount() - 1, true);
+        result = std::vector<bool>(model->rowCount(), true);
     }
     return result;
 }
@@ -65,7 +59,7 @@ std::vector<u16> CheckList::getCheckedData() const
 {
     auto checked = getChecked();
     std::vector<u16> data;
-    for (int i = 1; i < checked.size(); i++)
+    for (int i = 0; i < checked.size(); i++)
     {
         if (checked[i])
         {
@@ -77,19 +71,17 @@ std::vector<u16> CheckList::getCheckedData() const
 
 void CheckList::resetChecks()
 {
-    auto *m = qobject_cast<QStandardItemModel *>(model());
-    for (auto i = 1; i < m->rowCount(); i++)
+    for (auto i = 0; i < model->rowCount(); i++)
     {
-        m->item(i)->setCheckState(Qt::Unchecked);
+        model->item(i)->setCheckState(Qt::Unchecked);
     }
 }
 
 void CheckList::setChecks(const std::vector<bool> &flags)
 {
-    auto *m = qobject_cast<QStandardItemModel *>(model());
-    for (size_t i = 1; i < flags.size() && i < m->rowCount(); i++)
+    for (size_t i = 0; i < flags.size() && i < model->rowCount(); i++)
     {
-        m->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
+        model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
     }
 }
 
@@ -97,9 +89,7 @@ void CheckList::setup(const std::vector<std::string> &items)
 {
     if (!items.empty())
     {
-        auto *m = qobject_cast<QStandardItemModel *>(model());
-        m->removeRows(1, m->rowCount() - 1);
-
+        clear();
         for (const auto &item : items)
         {
             addItem(QString::fromStdString(item));
@@ -114,9 +104,7 @@ void CheckList::setup(const std::vector<std::string> &items, const std::vector<u
     assert(items.size() == data.size());
     if (!items.empty())
     {
-        auto *m = qobject_cast<QStandardItemModel *>(model());
-        m->removeRows(1, m->rowCount() - 1);
-
+        clear();
         for (int i = 0; i < items.size(); i++)
         {
             addItem(QString::fromStdString(items[i]), data[i]);
@@ -126,21 +114,38 @@ void CheckList::setup(const std::vector<std::string> &items, const std::vector<u
     setupChecks();
 }
 
+bool CheckList::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == lineEdit() && event->type() == QEvent::MouseButtonPress)
+    {
+        auto *mouse = reinterpret_cast<QMouseEvent *>(event);
+        if (mouse->modifiers() == Qt::ControlModifier)
+        {
+            resetChecks();
+        }
+        else
+        {
+            showPopup();
+        }
+        return true;
+    }
+
+    return false;
+}
+
 Qt::CheckState CheckList::checkState() const
 {
-    auto *m = qobject_cast<QStandardItemModel *>(model());
-
-    int total = m->rowCount() - 1;
+    int total = model->rowCount();
     int checked = 0;
     int unchecked = 0;
 
-    for (int i = 1; i < total + 1; i++)
+    for (int i = 0; i < total; i++)
     {
-        if (m->item(i)->checkState() == Qt::Checked)
+        if (model->item(i)->checkState() == Qt::Checked)
         {
             checked++;
         }
-        else if (m->item(i)->checkState() == Qt::Unchecked)
+        else if (model->item(i)->checkState() == Qt::Unchecked)
         {
             unchecked++;
         }
@@ -149,27 +154,13 @@ Qt::CheckState CheckList::checkState() const
     return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
 }
 
-void CheckList::mousePressEvent(QMouseEvent *event)
-{
-    if (event->modifiers() == Qt::ControlModifier)
-    {
-        resetChecks();
-    }
-    else
-    {
-        QComboBox::mousePressEvent(event);
-    }
-}
-
 void CheckList::setupChecks()
 {
-    auto *m = qobject_cast<QStandardItemModel *>(model());
-
     auto font = fontMetrics();
     int width = 0;
-    for (int i = 1; i < m->rowCount(); i++)
+    for (int i = 0; i < model->rowCount(); i++)
     {
-        QStandardItem *item = m->item(i);
+        QStandardItem *item = model->item(i);
         item->setCheckState(Qt::Unchecked);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 
@@ -186,7 +177,6 @@ void CheckList::modelDataChanged()
 {
     QString text;
 
-    auto *m = qobject_cast<QStandardItemModel *>(model());
     switch (checkState())
     {
     case Qt::Checked:
@@ -194,27 +184,26 @@ void CheckList::modelDataChanged()
         text = tr("Any");
         break;
     case Qt::PartiallyChecked:
-        for (int i = 1; i < m->rowCount(); i++)
+        for (int i = 0; i < model->rowCount(); i++)
         {
-            if (m->item(i)->checkState() == Qt::Checked)
+            if (model->item(i)->checkState() == Qt::Checked)
             {
                 if (!text.isEmpty())
                 {
                     text += ", ";
                 }
 
-                text += m->item(i)->text();
+                text += model->item(i)->text();
             }
         }
         break;
     }
 
-    setItemText(0, text);
+    lineEdit()->setText(text);
 }
 
 void CheckList::itemPressed(const QModelIndex &index)
 {
-    auto *m = qobject_cast<QStandardItemModel *>(model());
-    QStandardItem *item = m->itemFromIndex(index);
+    QStandardItem *item = model->itemFromIndex(index);
     item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
 }
