@@ -25,9 +25,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate3 &staticTemplate,
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const StaticTemplate3 &staticTemplate,
                                    const Profile3 &profile, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, staticTemplate, profile, filter)
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, Lead::None, staticTemplate, profile, filter)
 {
 }
 
@@ -36,7 +36,7 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng);

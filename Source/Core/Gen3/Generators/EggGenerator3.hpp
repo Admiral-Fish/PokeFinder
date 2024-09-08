@@ -37,10 +37,10 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param initialAdvancesPickup Initial number of pickup advances
      * @param maxAdvancesPickup Maximum number of pickup advances
-     * @param delayPickup Number of pickup advances to offset
+     * @param offsetPickup Number of pickup advances to offset
      * @param calibration Emerald PID calibration value
      * @param minRedraw Minimum number of redraws
      * @param maxRedraw Maximum number of redraws
@@ -50,7 +50,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
+    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 offsetPickup,
                   u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability, const Daycare &daycare,
                   const Profile3 &profile, const StateFilter &filter);
 
@@ -65,9 +65,9 @@ public:
     std::vector<EggState3> generate(u32 seedHeld = 0, u32 seedPickup = 0) const;
 
 private:
-    u32 delayPickup;
     u32 initialAdvancesPickup;
     u32 maxAdvancesPickup;
+    u32 offsetPickup;
     u8 calibration;
     u8 inh;
     u8 iv1;

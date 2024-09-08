@@ -21,9 +21,9 @@
 #define STATICGENERATOR3_HPP
 
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Gen3/StaticTemplate3.hpp>
 
 class GeneratorState;
 
@@ -38,13 +38,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param method Encounter method
      * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate3 &staticTemplate,
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const StaticTemplate3 &staticTemplate,
                      const Profile3 &profile, const StateFilter &filter);
 
     /**

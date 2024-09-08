@@ -34,9 +34,9 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
     return (high ^ low ^ tsv) < 8;
 }
 
-GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
+GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, bool unset, const Profile3 &profile,
                                      const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, method, profile, filter), unset(unset)
+    Generator(initialAdvances, maxAdvances, offset, method, profile, filter), unset(unset)
 {
 }
 
@@ -65,7 +65,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
 
     constexpr u16 threshHolds[2] = { 0x4000, 0x547a };
 
-    XDRNG rng(seed, initialAdvances + delay);
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng);
@@ -128,7 +128,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
     std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
-    XDRNG rng(seed, initialAdvances + delay);
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng);
@@ -217,7 +217,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
     std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
-    XDRNG rng(seed, initialAdvances + delay);
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng);
@@ -315,7 +315,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
         actualTSV = 10048; // TID: 10048 SID: 0
     }
 
-    XDRNG rng(seed, initialAdvances + delay);
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng);

@@ -49,11 +49,11 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->textBoxGeneratorSeedHeld->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvancesHeld->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvancesHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelayHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffsetHeld->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorSeedPickup->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvancesPickup->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvancesPickup->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelayPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffsetPickup->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherInitialAdvancesHeld->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvancesHeld->setValues(InputType::Advance32Bit);
@@ -188,14 +188,14 @@ void Eggs4::generate()
     u32 seedHeld = ui->textBoxGeneratorSeedHeld->getUInt();
     u32 initialAdvancesHeld = ui->textBoxGeneratorInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxGeneratorMaxAdvancesHeld->getUInt();
-    u32 delayHeld = ui->textBoxGeneratorDelayHeld->getUInt();
+    u32 offsetHeld = ui->textBoxGeneratorOffsetHeld->getUInt();
     u32 seedPickup = ui->textBoxGeneratorSeedPickup->getUInt();
     u32 initialAdvancesPickup = ui->textBoxGeneratorInitialAdvancesPickup->getUInt();
     u32 maxAdvancesPickup = ui->textBoxGeneratorMaxAdvancesPickup->getUInt();
-    u32 delayPickup = ui->textBoxGeneratorDelayPickup->getUInt();
+    u32 offsetPickup = ui->textBoxGeneratorOffsetPickup->getUInt();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup,
+    EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup,
                             ui->eggSettingsGenerator->getDaycare(), *currentProfile, filter);
 
     auto states = generator.generate(seedHeld, seedPickup);

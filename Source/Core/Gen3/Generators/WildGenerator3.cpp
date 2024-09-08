@@ -34,9 +34,9 @@ static u8 unownLetter(u32 pid)
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile,
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile,
                                const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), feebasTile(feebasTile)
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter), feebasTile(feebasTile)
 {
 }
 
@@ -60,7 +60,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         return (pid & 0xff) < info->getGender();
     };
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng);

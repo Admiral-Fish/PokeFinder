@@ -39,13 +39,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param method Encounter method
      * @param unset Whether first shadow pokemon is unset or not
      * @param profile Profile Information
      * @param filter State filter
      */
-    GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
+    GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, bool unset, const Profile3 &profile,
                       const StateFilter &filter);
 
     /**

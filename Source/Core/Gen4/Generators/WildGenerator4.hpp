@@ -38,7 +38,7 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
      * @param feebasTile Whether Feebas tiles are active
@@ -49,7 +49,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
                    u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**

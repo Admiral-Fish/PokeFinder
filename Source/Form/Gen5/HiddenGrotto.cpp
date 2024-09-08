@@ -50,7 +50,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
@@ -149,12 +149,12 @@ void HiddenGrotto::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     u8 powerLevel = ui->comboBoxGeneratorGrottoPower->currentData().toUInt();
 
     HiddenGrottoFilter filter(ui->checkListGeneratorSlot->getCheckedArray<11>(), ui->checkListGeneratorGender->getCheckedArray<2>(),
                               ui->checkListGeneratorGroup->getCheckedArray<4>());
-    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, delay, powerLevel,
+    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, offset, powerLevel,
                                     encounter[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed);

@@ -36,7 +36,7 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param lead Encounter lead
      * @param diglett Whether diglett bonus is activiated
      * @param levelFlag Determines which level range to pull from
@@ -44,7 +44,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag,
+    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, bool diglett, u8 levelFlag,
                          const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter);
 
     /**

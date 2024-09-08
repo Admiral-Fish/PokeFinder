@@ -51,7 +51,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
@@ -160,11 +160,11 @@ void Static4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
+    StaticGenerator4 generator(initialAdvances, maxAdvances, offset, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
                                filter);
 
     auto states = generator.generate(seed);

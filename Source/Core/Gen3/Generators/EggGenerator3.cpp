@@ -115,13 +115,13 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
     }
 }
 
-EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
-                             u32 delayPickup, u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability,
+EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
+                             u32 offsetPickup, u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability,
                              const Daycare &daycare, const Profile3 &profile, const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, delay, method, compatability, daycare, profile, filter),
-    delayPickup(delayPickup),
+    EggGenerator(initialAdvances, maxAdvances, offset, method, compatability, daycare, profile, filter),
     initialAdvancesPickup(initialAdvancesPickup),
     maxAdvancesPickup(maxAdvancesPickup),
+    offsetPickup(offsetPickup),
     calibration(calibration),
     maxRedraw(maxRedraw),
     minRedraw(minRedraw)
@@ -232,8 +232,8 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
 
     bool everstone = daycare.getParentItem(parent) == 1;
 
-    PokeRNG rng(0, initialAdvances + delay);
-    u32 val = initialAdvances + delay + 1;
+    PokeRNG rng(0, initialAdvances + offset);
+    u32 val = initialAdvances + offset + 1;
 
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, val++)
@@ -309,7 +309,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<Eg
         male = PersonalLoader::getPersonal(profile.getVersion(), 313);
     }
 
-    PokeRNG rng(0, initialAdvancesPickup + delayPickup);
+    PokeRNG rng(0, initialAdvancesPickup + offsetPickup);
 
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++, rng.next())
@@ -417,7 +417,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
         male = PersonalLoader::getPersonal(profile.getVersion(), 313);
     }
 
-    PokeRNG rng(seed, initialAdvancesPickup + delayPickup);
+    PokeRNG rng(seed, initialAdvancesPickup + offsetPickup);
 
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++, rng.next())

@@ -129,14 +129,14 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorDelay">
+           <widget class="QLabel" name="labelGeneratorOffset">
             <property name="text">
-             <string>Delay</string>
+             <string>Offset</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorDelay"/>
+           <widget class="TextBox" name="textBoxGeneratorOffset"/>
           </item>
           <item row="4" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxGeneratorFirstShadowUnset">
@@ -393,6 +393,11 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
@@ -403,11 +408,6 @@
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -416,7 +416,7 @@
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
-  <tabstop>textBoxGeneratorDelay</tabstop>
+  <tabstop>textBoxGeneratorOffset</tabstop>
   <tabstop>checkBoxGeneratorFirstShadowUnset</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGeneratorCategory</tabstop>

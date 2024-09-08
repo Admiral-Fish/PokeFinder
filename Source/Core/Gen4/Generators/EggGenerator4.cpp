@@ -114,12 +114,13 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
     }
 }
 
-EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
-                             u32 delayPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
-    delayPickup(delayPickup),
+EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
+                             u32 offsetPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, 0, daycare, profile, filter),
+
     initialAdvancesPickup(initialAdvancesPickup),
-    maxAdvancesPickup(maxAdvancesPickup)
+    maxAdvancesPickup(maxAdvancesPickup),
+    offsetPickup(offsetPickup)
 {
 }
 
@@ -146,7 +147,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
         male = PersonalLoader::getPersonal(profile.getVersion(), 313);
     }
 
-    MT mt(seed, initialAdvances + delay);
+    MT mt(seed, initialAdvances + offset);
 
     std::vector<EggGeneratorState4> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -196,7 +197,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const st
     }
 
     PokeRNG rng(seed, initialAdvancesPickup);
-    auto jump = rng.getJump(delayPickup);
+    auto jump = rng.getJump(offsetPickup);
 
     std::vector<EggGeneratorState4> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++)

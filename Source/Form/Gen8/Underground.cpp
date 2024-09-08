@@ -46,7 +46,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
@@ -158,7 +158,7 @@ void Underground::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
     bool bonus = ui->checkBoxDiglett->isChecked();
     u8 levelFlag = ui->comboBoxLevelFlag->currentIndex();
@@ -168,7 +168,7 @@ void Underground::generate()
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
-    UndergroundGenerator generator(initialAdvances, maxAdvances, delay, lead, bonus, levelFlag,
+    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, lead, bonus, levelFlag,
                                    encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

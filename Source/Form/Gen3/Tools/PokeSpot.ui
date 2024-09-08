@@ -149,17 +149,17 @@
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QLabel" name="labelDelay">
+       <widget class="QLabel" name="labelOffset">
         <property name="text">
-         <string>Delay (Food / Encounter)</string>
+         <string>Offset (Food / Encounter)</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="TextBox" name="textBoxFoodDelay"/>
+       <widget class="TextBox" name="textBoxFoodOffset"/>
       </item>
       <item row="3" column="2">
-       <widget class="TextBox" name="textBoxEncounterDelay"/>
+       <widget class="TextBox" name="textBoxEncounterOffset"/>
       </item>
       <item row="4" column="0" colspan="3">
        <widget class="QPushButton" name="pushButtonGenerate">
@@ -255,8 +255,8 @@
   <tabstop>textBoxFoodMaxAdvances</tabstop>
   <tabstop>textBoxEncounterInitialAdvances</tabstop>
   <tabstop>textBoxEncounterMaxAdvances</tabstop>
-  <tabstop>textBoxFoodDelay</tabstop>
-  <tabstop>textBoxEncounterDelay</tabstop>
+  <tabstop>textBoxFoodOffset</tabstop>
+  <tabstop>textBoxEncounterOffset</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxLocation</tabstop>
   <tabstop>comboBoxPokemon</tabstop>

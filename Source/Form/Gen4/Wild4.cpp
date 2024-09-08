@@ -54,7 +54,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
@@ -355,7 +355,7 @@ void Wild4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
@@ -363,7 +363,7 @@ void Wild4::generate()
     u8 happiness = ui->comboBoxGeneratorHappiness->getCurrentUChar();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, feebasTile, chained, unownRadio, happiness,
+    WildGenerator4 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, chained, unownRadio, happiness,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed, radarSlot);

@@ -32,9 +32,9 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate8 &staticTemplate,
+StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, const StaticTemplate8 &staticTemplate,
                                    const Profile8 &profile, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, staticTemplate, profile, filter)
+    StaticGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, staticTemplate, profile, filter)
 {
 }
 
@@ -53,7 +53,7 @@ std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1) const
 std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) const
 {
     const PersonalInfo *info = staticTemplate.getInfo();
-    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + delay);
+    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
     std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
@@ -184,7 +184,7 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
     // Only roamers are Cresselia/Mesprit which have identical parameters
     u8 gender = staticTemplate.getSpecie() == 488 ? 1 : 2;
 
-    Xorshift roamer(seed0, seed1, initialAdvances + delay);
+    Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
     std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)

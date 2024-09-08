@@ -38,12 +38,12 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param pgf Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile, const StateFilter &filter);
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const PGF &pgf, const Profile5 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

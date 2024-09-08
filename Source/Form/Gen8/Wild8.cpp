@@ -46,7 +46,7 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
@@ -207,11 +207,11 @@ void Wild8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, delay, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
                              filter);
 
     auto states = generator.generate(seed0, seed1);

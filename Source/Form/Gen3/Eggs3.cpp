@@ -47,8 +47,8 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->textBoxEmeraldMaxAdvancesHeld->setValues(InputType::Advance32Bit);
     ui->textBoxEmeraldInitialAdvancesPickup->setValues(InputType::Advance32Bit);
     ui->textBoxEmeraldMaxAdvancesPickup->setValues(InputType::Advance32Bit);
-    ui->textBoxEmeraldDelayHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxEmeraldDelayPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxEmeraldOffsetHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxEmeraldOffsetPickup->setValues(InputType::Advance32Bit);
     ui->textBoxEmeraldMinRedraws->setValues(0, 255, 3, 10);
     ui->textBoxEmeraldMaxRedraws->setValues(0, 255, 3, 10);
     ui->textBoxEmeraldCalibration->setValues(0, 255, 3, 10);
@@ -60,8 +60,8 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->textBoxRSFRLGMaxAdvancesHeld->setValues(InputType::Advance32Bit);
     ui->textBoxRSFRLGInitialAdvancesPickup->setValues(InputType::Advance32Bit);
     ui->textBoxRSFRLGMaxAdvancesPickup->setValues(InputType::Advance32Bit);
-    ui->textBoxRSFRLGDelayHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxRSFRLGDelayPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxRSFRLGOffsetHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxRSFRLGOffsetPickup->setValues(InputType::Advance32Bit);
     ui->comboBoxRSFRLGCompatibility->setup({ 20, 50, 70 });
 
     ui->comboBoxEmeraldMethod->setup({ toInt(Method::EBred), toInt(Method::EBredSplit), toInt(Method::EBredAlternate) });
@@ -135,10 +135,10 @@ void Eggs3::emeraldGenerate()
 
     u32 initialAdvancesHeld = ui->textBoxEmeraldInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxEmeraldMaxAdvancesHeld->getUInt();
-    u32 delayHeld = ui->textBoxEmeraldDelayHeld->getUInt();
+    u32 offsetHeld = ui->textBoxEmeraldOffsetHeld->getUInt();
     u32 initialAdvancesPickup = ui->textBoxEmeraldInitialAdvancesPickup->getUInt();
     u32 maxAdvancesPickup = ui->textBoxEmeraldMaxAdvancesPickup->getUInt();
-    u32 delayPickup = ui->textBoxEmeraldDelayPickup->getUInt();
+    u32 offsetPickup = ui->textBoxEmeraldOffsetPickup->getUInt();
     u8 calibration = ui->textBoxEmeraldCalibration->getUChar();
     u8 minRedraw = ui->textBoxEmeraldMinRedraws->getUChar();
     u8 maxRedraw = ui->textBoxEmeraldMaxRedraws->getUChar();
@@ -146,7 +146,7 @@ void Eggs3::emeraldGenerate()
     auto method = ui->comboBoxEmeraldMethod->getEnum<Method>();
 
     auto filter = ui->filterEmerald->getFilter<StateFilter>();
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup,
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup,
                             calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(), *currentProfile,
                             filter);
 
@@ -167,15 +167,15 @@ void Eggs3::rsfrlgGenerate()
 
     u32 initialAdvancesHeld = ui->textBoxRSFRLGInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxRSFRLGMaxAdvancesHeld->getUInt();
-    u32 delayHeld = ui->textBoxRSFRLGDelayHeld->getUInt();
+    u32 offsetHeld = ui->textBoxRSFRLGOffsetHeld->getUInt();
     u32 initialAdvancesPickup = ui->textBoxRSFRLGInitialAdvancesPickup->getUInt();
     u32 maxAdvancesPickup = ui->textBoxRSFRLGMaxAdvancesPickup->getUInt();
-    u32 delayPickup = ui->textBoxRSFRLGDelayPickup->getUInt();
+    u32 offsetPickup = ui->textBoxRSFRLGOffsetPickup->getUInt();
     u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentUChar();
     auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
 
     auto filter = ui->filterRSFRLG->getFilter<StateFilter>();
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup, 0, 0, 0,
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup, 0, 0, 0,
                             method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 
     auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());

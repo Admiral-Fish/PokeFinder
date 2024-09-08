@@ -25,9 +25,9 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile,
+EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const PGF &pgf, const Profile5 &profile,
                                  const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), pgf(pgf)
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), pgf(pgf)
 {
     if (!pgf.getEgg())
     {
@@ -41,7 +41,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
-    auto jump = rng.getJump(pgf.getAdvances() + delay);
+    auto jump = rng.getJump(pgf.getAdvances() + offset);
 
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)

@@ -44,7 +44,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
@@ -143,13 +143,13 @@ void Static8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
     const StaticTemplate8 *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
 
     auto filter = ui->filter->getFilter<StateFilter>();
-    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
+    StaticGenerator8 generator(initialAdvances, maxAdvances, offset, lead, *staticTemplate, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

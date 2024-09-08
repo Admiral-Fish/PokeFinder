@@ -42,7 +42,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
     ui->textBoxEC->setValues(InputType::Seed32Bit);
@@ -188,11 +188,11 @@ void Event8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     WB8 wb8 = getParameters();
 
     auto filter = ui->filter->getFilter<StateFilter>();
-    EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
+    EventGenerator8 generator(initialAdvances, maxAdvances, offset, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

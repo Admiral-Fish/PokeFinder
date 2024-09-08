@@ -76,10 +76,10 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile, bool shiny,
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
                                bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                                const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter),
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
@@ -118,13 +118,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     bool feebas = area.feebasLocation(profile.getVersion());
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        u32 battleAdvances = battleAdvancesConst + initialAdvances + delay + cnt;
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
         // Fishing nibble check
@@ -280,13 +280,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     auto undiscoveredUnown = profile.getUndiscoveredUnownForms(unlockedUnown);
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        u32 battleAdvances = battleAdvancesConst + initialAdvances + delay + cnt;
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
         // Rock smash/fishing nibble check
@@ -520,13 +520,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
     }
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        u32 battleAdvances = battleAdvancesConst + initialAdvances + delay + cnt;
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
         u8 nature;
@@ -619,13 +619,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
     };
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        u32 battleAdvances = battleAdvancesConst + initialAdvances + delay + cnt;
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
         u8 nature;

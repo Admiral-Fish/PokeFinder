@@ -1421,13 +1421,13 @@
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>Delay (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
+        <source>RS/FRLG</source>
+        <translation>RS/FRBG</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>RS/FRLG</source>
-        <translation>RS/FRBG</translation>
+        <source>Offset (Held / Pickup)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1576,7 @@
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
-        <source>Delay (Held / Pickup)</source>
+        <source>Offset (Held / Pickup)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1748,8 +1748,8 @@
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1898,8 +1898,8 @@
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2104,11 +2104,6 @@
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Event4.ui"/>
         <source>Generate</source>
         <translation>Generieren</translation>
     </message>
@@ -2176,6 +2171,11 @@
         <location filename="../Gen4/Event4.cpp" line="82"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Event4.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2412,11 +2412,6 @@
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Event5.ui"/>
         <source>Level</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2453,6 +2448,11 @@
         <location filename="../Gen5/Event5.cpp" line="289"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Event5.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2604,11 +2604,6 @@
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Event8.ui"/>
         <source>Level</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2641,6 +2636,11 @@
         <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Event8.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3174,11 +3174,6 @@
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen3/GameCube.ui"/>
         <source>First Shadow Unset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3210,6 +3205,11 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen3/GameCube.ui"/>
+        <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3843,11 +3843,6 @@
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Location</source>
         <translation>Fundort</translation>
     </message>
@@ -3875,6 +3870,11 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="241"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/HiddenGrotto.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5189,11 +5189,6 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
-        <source>Delay (Food / Encounter)</source>
-        <translation>Delay (Pokesnack / Encounter)</translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -5205,6 +5200,11 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen3/Tools/PokeSpot.ui"/>
+        <source>Offset (Food / Encounter)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6791,12 +6791,12 @@
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
-        <source>Level</source>
+        <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7770,11 +7770,6 @@
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Static3.ui"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -7832,6 +7827,11 @@
         <location filename="../Gen3/Static3.ui"/>
         <source>Roamers</source>
         <translation type="unfinished">Wander-Pokémon</translation>
+    </message>
+    <message>
+        <location filename="../Gen3/Static3.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8038,8 +8038,8 @@
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8231,11 +8231,6 @@
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Static8.ui"/>
         <source>Starters</source>
         <translation>Starter</translation>
     </message>
@@ -8243,6 +8238,11 @@
         <location filename="../Gen8/Static8.ui"/>
         <source>Mythics</source>
         <translation>Mysteriöse</translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Static8.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8906,11 +8906,6 @@
         <translation>Maximale Advances</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
         <location filename="../Gen8/Underground.cpp" line="51"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
@@ -8979,6 +8974,11 @@
         <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Underground.ui"/>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9320,17 +9320,17 @@
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Wild3.ui"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Feebas Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen3/Wild3.ui"/>
+        <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9689,11 +9689,6 @@
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Wild4.ui"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -9815,6 +9810,11 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Feebas Tile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10052,11 +10052,6 @@
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
-        <source>Delay</source>
-        <translation>Delay</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Wild8.ui"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -10078,6 +10073,11 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Radar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Wild8.ui"/>
+        <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

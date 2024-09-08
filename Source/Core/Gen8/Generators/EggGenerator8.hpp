@@ -37,13 +37,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare, const Profile8 &profile,
+    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatability, const Daycare &daycare, const Profile8 &profile,
                   const StateFilter &filter);
 
     /**

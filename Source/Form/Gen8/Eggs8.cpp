@@ -41,7 +41,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
@@ -128,7 +128,7 @@ void Eggs8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     u8 compatability = ui->comboBoxCompatibility->getCurrentUChar();
     if (currentProfile->getOvalCharm())
     {
@@ -137,7 +137,7 @@ void Eggs8::generate()
     Daycare daycare = ui->eggSettings->getDaycare();
 
     auto filter = ui->filter->getFilter<StateFilter>();
-    EggGenerator8 generator(initialAdvances, maxAdvances, delay, compatability, daycare, *currentProfile, filter);
+    EggGenerator8 generator(initialAdvances, maxAdvances, offset, compatability, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

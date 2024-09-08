@@ -40,16 +40,16 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param method Encounter method
      * @param profile Profile Information
      * @param filter State filter
      */
-    Generator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile &profile, const Filter &filter) :
+    Generator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const Profile &profile, const Filter &filter) :
         profile(profile),
         initialAdvances(initialAdvances),
         maxAdvances(maxAdvances),
-        delay(delay),
+        offset(offset),
         tsv(profile.getTID() ^ profile.getSID()),
         method(method),
         filter(filter)
@@ -60,7 +60,7 @@ protected:
     Profile profile;
     u32 initialAdvances;
     u32 maxAdvances;
-    u32 delay;
+    u32 offset;
     u16 tsv;
     Filter filter;
     Method method;

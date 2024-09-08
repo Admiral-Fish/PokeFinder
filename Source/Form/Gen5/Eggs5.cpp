@@ -49,7 +49,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
@@ -136,11 +136,11 @@ void Eggs5::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    EggGenerator5 generator(initialAdvances, maxAdvances, delay, daycare, *currentProfile, filter);
+    EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);

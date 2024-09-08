@@ -132,14 +132,14 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QLabel" name="labelDelay">
+       <widget class="QLabel" name="labelOffset">
         <property name="text">
-         <string>Delay</string>
+         <string>Offset</string>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="TextBox" name="textBoxDelay"/>
+       <widget class="TextBox" name="textBoxOffset"/>
       </item>
       <item row="5" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonGenerate">
@@ -388,14 +388,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
@@ -416,7 +416,7 @@
   <tabstop>textBoxSeed1</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
-  <tabstop>textBoxDelay</tabstop>
+  <tabstop>textBoxOffset</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>pushButtonImport</tabstop>
   <tabstop>comboBoxSpecies</tabstop>

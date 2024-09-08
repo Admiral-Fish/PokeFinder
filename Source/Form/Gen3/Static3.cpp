@@ -25,8 +25,8 @@
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/StaticTemplate3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
@@ -51,7 +51,7 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
     ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
@@ -124,13 +124,13 @@ void Static3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     const StaticTemplate3 *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *staticTemplate, *currentProfile, filter);
+    StaticGenerator3 generator(initialAdvances, maxAdvances, offset, method, *staticTemplate, *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);

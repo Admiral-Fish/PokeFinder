@@ -35,12 +35,13 @@ constexpr u8 encounterTable[100] = {
 };
 // clang-format on
 
-PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesEncounter,
-                                     u32 maxAdvancesEncounter, u32 delayEncounter, const Profile3 &profile, const WildStateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter),
-    delayEncounter(delayEncounter),
+PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesEncounter,
+                                     u32 maxAdvancesEncounter, u32 offsetEncounter, const Profile3 &profile,
+                                     const WildStateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter),
     initialAdvancesEncounter(initialAdvancesEncounter),
-    maxAdvancesEncounter(maxAdvancesEncounter)
+    maxAdvancesEncounter(maxAdvancesEncounter),
+    offsetEncounter(offsetEncounter)
 {
 }
 
@@ -53,7 +54,7 @@ std::vector<PokeSpotState> PokeSpotGenerator::generate(u32 seedFood, u32 seedEnc
 std::vector<PokeSpotState> PokeSpotGenerator::generateEncounter(u32 seed, const std::vector<PokeSpotState> &food,
                                                                 const EncounterArea &encounterArea) const
 {
-    XDRNG rng(seed, initialAdvancesEncounter);
+    XDRNG rng(seed, initialAdvancesEncounter + offsetEncounter);
 
     std::vector<PokeSpotState> states;
     for (u32 cnt = 0; cnt <= maxAdvancesEncounter; cnt++, rng.next())
@@ -123,7 +124,7 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateEncounter(u32 seed, const 
 
 std::vector<PokeSpotState> PokeSpotGenerator::generateFood(u32 seed, const EncounterArea &encounterArea) const
 {
-    XDRNG rng(seed, initialAdvances);
+    XDRNG rng(seed, initialAdvances + offset);
 
     std::vector<PokeSpotState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
@@ -156,8 +157,8 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateFood(u32 seed, const Encou
             const Slot &slot = encounterArea.getPokemon(encounterSlot);
             const PersonalInfo *info = slot.getInfo();
 
-            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv), encounterSlot,
-                                slot.getSpecie(), info);
+            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv),
+                                encounterSlot, slot.getSpecie(), info);
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

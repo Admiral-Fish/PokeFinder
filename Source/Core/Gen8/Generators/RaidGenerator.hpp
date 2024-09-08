@@ -38,11 +38,11 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param profile Profile Information
      * @param filter State filter
      */
-    RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, const Profile8 &profile, const StateFilter &filter);
+    RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, const Profile8 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states for the \p raid

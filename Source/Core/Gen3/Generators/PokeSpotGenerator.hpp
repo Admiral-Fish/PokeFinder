@@ -38,15 +38,15 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param initialAdvancesEncounter Initial number of pickup advances
      * @param maxAdvancesEncounter Maximum number of pickup advances
-     * @param delayEncounter Number of pickup advances to offset
+     * @param offsetEncounter Number of pickup advances to offset
      * @param profile Profile Information
      * @param filter State filter
      */
-    PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesEncounter, u32 maxAdvancesEncounter,
-                      u32 delayEncounter, const Profile3 &profile, const WildStateFilter &filter);
+    PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesEncounter, u32 maxAdvancesEncounter,
+                      u32 offsetEncounter, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -60,9 +60,9 @@ public:
     std::vector<PokeSpotState> generate(u32 seedFood, u32 seedEncounter, const EncounterArea &encounterArea) const;
 
 private:
-    u32 delayEncounter;
     u32 initialAdvancesEncounter;
     u32 maxAdvancesEncounter;
+    u32 offsetEncounter;
 
     /**
      * @brief Generates states for encountering the pokemon

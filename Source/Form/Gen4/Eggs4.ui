@@ -172,17 +172,17 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorDelay">
+           <widget class="QLabel" name="labelGeneratorOffset">
             <property name="text">
-             <string>Delay (Held / Pickup)</string>
+             <string>Offset (Held / Pickup)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorDelayHeld"/>
+           <widget class="TextBox" name="textBoxGeneratorOffsetHeld"/>
           </item>
           <item row="3" column="2">
-           <widget class="TextBox" name="textBoxGeneratorDelayPickup"/>
+           <widget class="TextBox" name="textBoxGeneratorOffsetPickup"/>
           </item>
           <item row="4" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonGenerate">
@@ -431,8 +431,8 @@
   <tabstop>textBoxGeneratorMaxAdvancesHeld</tabstop>
   <tabstop>textBoxGeneratorInitialAdvancesPickup</tabstop>
   <tabstop>textBoxGeneratorMaxAdvancesPickup</tabstop>
-  <tabstop>textBoxGeneratorDelayHeld</tabstop>
-  <tabstop>textBoxGeneratorDelayPickup</tabstop>
+  <tabstop>textBoxGeneratorOffsetHeld</tabstop>
+  <tabstop>textBoxGeneratorOffsetPickup</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>textBoxSearcherInitialAdvancesHeld</tabstop>

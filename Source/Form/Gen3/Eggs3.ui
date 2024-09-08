@@ -145,17 +145,17 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelEmeraldDelay">
+           <widget class="QLabel" name="labelEmeraldOffset">
             <property name="text">
-             <string>Delay (Held / Pickup)</string>
+             <string>Offset (Held / Pickup)</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxEmeraldDelayHeld"/>
+           <widget class="TextBox" name="textBoxEmeraldOffsetHeld"/>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxEmeraldDelayPickup"/>
+           <widget class="TextBox" name="textBoxEmeraldOffsetPickup"/>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelEmeraldCalibration">
@@ -358,17 +358,17 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelRSFRLGDelay">
+           <widget class="QLabel" name="labelRSFRLGOffset">
             <property name="text">
-             <string>Delay (Held / Pickup)</string>
+             <string>Offset (Held / Pickup)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxRSFRLGDelayHeld"/>
+           <widget class="TextBox" name="textBoxRSFRLGOffsetHeld"/>
           </item>
           <item row="3" column="2">
-           <widget class="TextBox" name="textBoxRSFRLGDelayPickup"/>
+           <widget class="TextBox" name="textBoxRSFRLGOffsetPickup"/>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelRSFRLGMethod">
@@ -507,8 +507,8 @@
   <tabstop>textBoxEmeraldMaxAdvancesHeld</tabstop>
   <tabstop>textBoxEmeraldInitialAdvancesPickup</tabstop>
   <tabstop>textBoxEmeraldMaxAdvancesPickup</tabstop>
-  <tabstop>textBoxEmeraldDelayHeld</tabstop>
-  <tabstop>textBoxEmeraldDelayPickup</tabstop>
+  <tabstop>textBoxEmeraldOffsetHeld</tabstop>
+  <tabstop>textBoxEmeraldOffsetPickup</tabstop>
   <tabstop>textBoxEmeraldCalibration</tabstop>
   <tabstop>textBoxEmeraldMinRedraws</tabstop>
   <tabstop>textBoxEmeraldMaxRedraws</tabstop>
@@ -522,8 +522,8 @@
   <tabstop>textBoxRSFRLGMaxAdvancesHeld</tabstop>
   <tabstop>textBoxRSFRLGInitialAdvancesPickup</tabstop>
   <tabstop>textBoxRSFRLGMaxAdvancesPickup</tabstop>
-  <tabstop>textBoxRSFRLGDelayHeld</tabstop>
-  <tabstop>textBoxRSFRLGDelayPickup</tabstop>
+  <tabstop>textBoxRSFRLGOffsetHeld</tabstop>
+  <tabstop>textBoxRSFRLGOffsetPickup</tabstop>
   <tabstop>comboBoxRSFRLGMethod</tabstop>
   <tabstop>comboBoxRSFRLGCompatibility</tabstop>
   <tabstop>pushButtonRSFRLGGenerate</tabstop>

@@ -237,15 +237,15 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag,
+UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, bool diglett, u8 levelFlag,
                                            const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter), diglett(diglett), levelFlag(levelFlag)
+    WildGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, area, profile, filter), diglett(diglett), levelFlag(levelFlag)
 {
 }
 
 std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1) const
 {
-    RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + delay);
+    RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + offset);
     const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion());
     const auto &levelInfo = levelInfoList[levelFlag];
     u8 pidRolls = diglett ? 2 : 1;

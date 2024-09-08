@@ -32,9 +32,9 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare,
+EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatability, const Daycare &daycare,
                              const Profile8 &profile, const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, delay, Method::None, compatability, daycare, profile, filter),
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, compatability, daycare, profile, filter),
     shinyCharm(profile.getShinyCharm())
 {
 }
@@ -55,7 +55,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
         female = PersonalLoader::getPersonal(profile.getVersion(), 314);
     }
 
-    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances + delay);
+    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances + offset);
 
     u8 pidRolls = 0;
     if (daycare.getMasuda())

@@ -50,7 +50,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
@@ -158,10 +158,10 @@ void Event4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    EventGenerator4 generator(initialAdvances, maxAdvances, delay, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
+    EventGenerator4 generator(initialAdvances, maxAdvances, offset, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
                               ui->comboBoxGeneratorNature->currentIndex(), ui->spinBoxGeneratorLevel->value(), *currentProfile, filter);
 
     auto states = generator.generate(seed);

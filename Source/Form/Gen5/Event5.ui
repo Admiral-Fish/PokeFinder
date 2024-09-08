@@ -226,14 +226,14 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorDelay">
+           <widget class="QLabel" name="labelGeneratorOffset">
             <property name="text">
-             <string>Delay</string>
+             <string>Offset</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorDelay"/>
+           <widget class="TextBox" name="textBoxGeneratorOffset"/>
           </item>
           <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
@@ -932,7 +932,7 @@
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
-  <tabstop>textBoxGeneratorDelay</tabstop>
+  <tabstop>textBoxGeneratorOffset</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGeneratorSpecies</tabstop>
   <tabstop>pushButtonGeneratorImport</tabstop>

@@ -41,10 +41,10 @@ constexpr u8 encounterTable[100] = {
 };
 // clang-format on
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 powerLevel,
+HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel,
                                              const HiddenGrottoArea &encounterArea, const Profile5 &profile,
                                              const HiddenGrottoFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), encounterArea(encounterArea), powerLevel(powerLevel)
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), encounterArea(encounterArea), powerLevel(powerLevel)
 {
 }
 
@@ -52,7 +52,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 {
     u32 advances = Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
     BWRNG rng(seed, advances + initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     std::vector<HiddenGrottoState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)

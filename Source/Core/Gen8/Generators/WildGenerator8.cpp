@@ -58,15 +58,15 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const EncounterArea8 &area,
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, const EncounterArea8 &area,
                                const Profile8 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter)
+    WildGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, area, profile, filter)
 {
 }
 
 std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 {
-    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + delay);
+    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
 
     bool encounterForce = lead >= Lead::MagnetPull && lead <= Lead::StormDrain;
     auto modifiedSlots = area.getSlots(lead);

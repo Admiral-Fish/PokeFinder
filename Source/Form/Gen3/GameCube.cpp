@@ -51,7 +51,7 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
@@ -123,10 +123,10 @@ void GameCube::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    GameCubeGenerator generator(initialAdvances, maxAdvances, delay, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
+    GameCubeGenerator generator(initialAdvances, maxAdvances, offset, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
                                 *currentProfile, filter);
 
     std::vector<GeneratorState> states;
@@ -138,7 +138,7 @@ void GameCube::generate()
     else
     {
         const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 8,
-                                                                               ui->comboBoxGeneratorPokemon->getCurrentInt());
+                                                                                ui->comboBoxGeneratorPokemon->getCurrentInt());
         states = generator.generate(seed, staticTemplate);
     }
 
@@ -193,7 +193,7 @@ void GameCube::generatorPokemonIndexChanged(int index)
         else
         {
             const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 8,
-                                                                                   ui->comboBoxGeneratorPokemon->getCurrentInt());
+                                                                                    ui->comboBoxGeneratorPokemon->getCurrentInt());
             ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
 
             ui->checkBoxGeneratorFirstShadowUnset->setVisible(false);
@@ -263,7 +263,7 @@ void GameCube::search()
     else
     {
         const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 8,
-                                                                               ui->comboBoxSearcherPokemon->getCurrentInt());
+                                                                                ui->comboBoxSearcherPokemon->getCurrentInt());
         thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
     }
 
@@ -337,7 +337,7 @@ void GameCube::searcherPokemonIndexChanged(int index)
         else
         {
             const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 8,
-                                                                                   ui->comboBoxSearcherPokemon->getCurrentInt());
+                                                                                    ui->comboBoxSearcherPokemon->getCurrentInt());
             ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
 
             ui->checkBoxSearcherFirstShadowUnset->setVisible(false);

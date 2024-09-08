@@ -27,9 +27,9 @@
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
                              const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
     parentAbility(daycare.getParentAbility(1)),
@@ -75,7 +75,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     std::vector<EggState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -199,7 +199,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);
         BWRNG rng(seed, advances + initialAdvances);
-        auto jump = rng.getJump(delay);
+        auto jump = rng.getJump(offset);
 
         for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
         {

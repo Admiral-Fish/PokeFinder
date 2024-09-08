@@ -29,9 +29,9 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile,
+EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, const WB8 &wb8, const Profile8 &profile,
                                  const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), wb8(wb8)
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), wb8(wb8)
 {
     if (!wb8.getEgg())
     {
@@ -42,7 +42,7 @@ EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay
 std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
 {
     const PersonalInfo *info = wb8.getInfo(profile.getVersion());
-    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + delay);
+    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
     std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())

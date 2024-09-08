@@ -38,13 +38,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param powerLevel Hidden grotto encounter rate
      * @param encounterArea Hidden grotto information
      * @param profile Profile Information
      * @param filter State filter
      */
-    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 powerLevel, const HiddenGrottoArea &encounterArea,
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel, const HiddenGrottoArea &encounterArea,
                           const Profile5 &profile, const HiddenGrottoFilter &filter);
 
     /**

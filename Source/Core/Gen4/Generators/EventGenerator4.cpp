@@ -24,9 +24,9 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-EventGenerator4::EventGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u16 species, u8 nature, u8 level, const Profile4 &profile,
-                                 const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), species(species), nature(nature), level(level)
+EventGenerator4::EventGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 species, u8 nature, u8 level,
+                                 const Profile4 &profile, const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), species(species), nature(nature), level(level)
 {
 }
 
@@ -35,8 +35,8 @@ std::vector<GeneratorState4> EventGenerator4::generate(u32 seed) const
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), species);
 
-    PokeRNG rng(seed, initialAdvances + delay);
-    auto jump = rng.getJump(delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {

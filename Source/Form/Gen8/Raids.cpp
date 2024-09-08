@@ -53,7 +53,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGenderRatio->setItemData(0, 255);
     ui->comboBoxGenderRatio->setItemData(1, 0);
@@ -171,12 +171,12 @@ void Raids::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 delay = ui->textBoxDelay->getUInt();
+    u32 offset = ui->textBoxOffset->getUInt();
     u64 seed = ui->textBoxSeed->getULong();
     u8 level = ui->spinBoxLevel->value();
 
     auto filter = ui->filter->getFilter<StateFilter>();
-    RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
+    RaidGenerator generator(initialAdvances, maxAdvances, offset, *currentProfile, filter);
 
     if (ui->comboBoxLocation->currentIndex() == 3)
     {

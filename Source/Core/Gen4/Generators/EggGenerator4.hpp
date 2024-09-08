@@ -37,15 +37,15 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param initialAdvancesPickup Initial number of pickup advances
      * @param maxAdvancesPickup Maximum number of pickup advances
-     * @param delayPickup Number of pickup advances to offset
+     * @param offsetPickup Number of pickup advances to offset
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
+    EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 offsetPickup,
                   const Daycare &daycare, const Profile4 &profile, const StateFilter &filter);
 
     /**
@@ -59,9 +59,9 @@ public:
     std::vector<EggGeneratorState4> generate(u32 seedHeld, u32 seedPickup) const;
 
 private:
-    u32 delayPickup;
     u32 initialAdvancesPickup;
     u32 maxAdvancesPickup;
+    u32 offsetPickup;
 
     /**
      * @brief Generates states for when the daycare man has the egg

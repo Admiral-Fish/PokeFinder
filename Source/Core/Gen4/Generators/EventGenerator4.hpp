@@ -37,14 +37,14 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param species Pokemon specie
      * @param nature Pokemon nature
      * @param level Pokemon level
      * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u16 species, u8 nature, u8 level, const Profile4 &profile,
+    EventGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 species, u8 nature, u8 level, const Profile4 &profile,
                     const StateFilter &filter);
 
     /**

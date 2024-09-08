@@ -47,8 +47,8 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
     ui->textBoxFoodMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxEncounterInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxEncounterMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxFoodDelay->setValues(InputType::Advance32Bit);
-    ui->textBoxEncounterDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxFoodOffset->setValues(InputType::Advance32Bit);
+    ui->textBoxEncounterOffset->setValues(InputType::Advance32Bit);
 
     encounters = Encounters3::getPokeSpotEncounters();
 
@@ -130,12 +130,12 @@ void PokeSpot::generate()
     u32 maxAdvancesFood = ui->textBoxFoodMaxAdvances->getUInt();
     u32 initialAdvancesEncounter = ui->textBoxEncounterInitialAdvances->getUInt();
     u32 maxAdvancesEncounter = ui->textBoxEncounterMaxAdvances->getUInt();
-    u32 delayFood = ui->textBoxFoodDelay->getUInt();
-    u32 delayEncounter = ui->textBoxEncounterDelay->getUInt();
+    u32 offsetFood = ui->textBoxFoodOffset->getUInt();
+    u32 offsetEncounter = ui->textBoxEncounterOffset->getUInt();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    PokeSpotGenerator generator(initialAdvancesFood, maxAdvancesFood, delayFood, initialAdvancesEncounter, maxAdvancesEncounter,
-                                delayEncounter, *currentProfile, filter);
+    PokeSpotGenerator generator(initialAdvancesFood, maxAdvancesFood, offsetFood, initialAdvancesEncounter, maxAdvancesEncounter,
+                                offsetEncounter, *currentProfile, filter);
 
     auto states = generator.generate(seedFood, seedEncounter, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);

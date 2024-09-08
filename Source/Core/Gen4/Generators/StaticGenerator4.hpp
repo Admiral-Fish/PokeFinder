@@ -38,14 +38,14 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param delay Number of advances to offset
+     * @param offset Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
      * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const StaticTemplate4 &staticTemplate,
+    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const StaticTemplate4 &staticTemplate,
                      const Profile4 &profile, const StateFilter &filter);
 
     /**

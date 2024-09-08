@@ -53,7 +53,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
     ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
@@ -175,13 +175,13 @@ void Wild3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, lead, feebasTile,
+    WildGenerator3 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -214,7 +214,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
         }
 
         bool magnetPullOption = encounter == Encounter::Grass;
-        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), !staticOption);
 
@@ -421,7 +421,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
         }
 
         bool magnetPullOption = encounter == Encounter::Grass;
-        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), !staticOption);
 

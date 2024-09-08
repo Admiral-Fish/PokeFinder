@@ -25,9 +25,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead,
+StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead,
                                    const StaticTemplate4 &staticTemplate, const Profile4 &profile, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, staticTemplate, profile, filter)
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter)
 {
 }
 
@@ -52,7 +52,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
     const PersonalInfo *info = staticTemplate.getInfo();
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
@@ -119,7 +119,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
     }
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
@@ -199,7 +199,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
     }
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(delay);
+    auto jump = rng.getJump(offset);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {

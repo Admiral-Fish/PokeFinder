@@ -226,14 +226,14 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorDelay">
+           <widget class="QLabel" name="labelGeneratorOffset">
             <property name="text">
-             <string>Delay</string>
+             <string>Offset</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorDelay"/>
+           <widget class="TextBox" name="textBoxGeneratorOffset"/>
           </item>
           <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
@@ -441,15 +441,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Form/Controls/DateEdit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>EggSettings</class>
    <extends>QWidget</extends>
    <header>Form/Controls/EggSettings.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -459,7 +459,7 @@
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
-  <tabstop>textBoxGeneratorDelay</tabstop>
+  <tabstop>textBoxGeneratorOffset</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>textBoxSearcherMaxAdvances</tabstop>
