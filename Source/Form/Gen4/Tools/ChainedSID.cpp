@@ -49,6 +49,13 @@ ChainedSID::ChainedSID(QWidget *parent) : QWidget(parent), ui(new Ui::ChainedSID
         ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecie(i)), i);
     }
 
+    ui->spinBoxHP->setMaximum(651); // Blissey
+    ui->spinBoxAtk->setMaximum(435); // Deoxys
+    ui->spinBoxDef->setMaximum(545); // Shuckle
+    ui->spinBoxSpA->setMaximum(435); // Deoxys
+    ui->spinBoxSpD->setMaximum(545); // Shuckle
+    ui->spinBoxSpe->setMaximum(435); // Deoxys
+
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &ChainedSID::pokemonIndexChanged);
     connect(ui->pushButtonCalculate, &QPushButton::clicked, this, &ChainedSID::calculate);
     connect(ui->pushButtonClear, &QPushButton::clicked, this, &ChainedSID::clear);
