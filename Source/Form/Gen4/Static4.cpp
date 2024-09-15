@@ -75,6 +75,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+    ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
@@ -209,6 +212,8 @@ void Static4::generatorPokemonIndexChanged(int index)
             ui->labelGeneratorLead->setVisible(true);
             ui->comboMenuGeneratorLead->setVisible(true);
         }
+
+        ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxGeneratorShiny->findData(toInt(staticTemplate->getShiny())));
     }
 }
 
@@ -330,6 +335,8 @@ void Static4::searcherPokemonIndexChanged(int index)
             ui->labelSearcherLead->setVisible(true);
             ui->comboMenuSearcherLead->setVisible(true);
         }
+
+        ui->comboBoxSearcherShiny->setCurrentIndex(ui->comboBoxSearcherShiny->findData(toInt(staticTemplate->getShiny())));
     }
 }
 

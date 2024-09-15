@@ -246,6 +246,30 @@
             </property>
            </widget>
           </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorShiny">
+            <property name="text">
+             <string>Shiny</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorShiny">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Random</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -461,6 +485,30 @@
             </property>
            </widget>
           </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelSearcherShiny">
+            <property name="text">
+             <string>Shiny</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherShiny">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Random</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -539,6 +587,7 @@
   <tabstop>comboBoxGeneratorCategory</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>spinBoxGeneratorLevel</tabstop>
+  <tabstop>comboBoxGeneratorShiny</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
@@ -550,6 +599,7 @@
   <tabstop>comboBoxSearcherCategory</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>spinBoxSearcherLevel</tabstop>
+  <tabstop>comboBoxSearcherShiny</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>
