@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@
 #include <Core/RNG/MTFast.hpp>
 
 IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute, const IDFilter &filter) :
-    IDGenerator(0, 0, filter), minDelay(minDelay), maxDelay(maxDelay), year(year), month(month), day(day), hour(hour), minute(minute)
+    IDGenerator(0, 0, filter), maxDelay(maxDelay), minDelay(minDelay), year(year), day(day), hour(hour), minute(minute), month(month)
 {
 }
 
@@ -43,12 +43,9 @@ std::vector<IDState4> IDGenerator4::generate() const
             u16 tid = sidtid & 0xFFFF;
             u16 sid = sidtid >> 16;
 
-            IDState4 state(seed, tid, sid);
-
-            if (filter.compare(state))
+            IDState4 state(seed, efgh + 2000 - year, tid, sid, second);
+            if (filter.compareState(static_cast<const IDState &>(state)))
             {
-                state.setDelay(efgh + 2000 - year);
-                state.setSeconds(second);
                 states.emplace_back(state);
             }
         }

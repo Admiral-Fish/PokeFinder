@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileEditor8</class>
+ <widget class="QDialog" name="ProfileEditor8">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>523</width>
+    <height>100</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor Gen 8</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="ComboBox" name="comboBoxVersion">
+     <item>
+      <property name="text">
+       <string>Sword</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Shield</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Brilliant Diamond</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Shining Pearl</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxSID"/>
+   </item>
+   <item row="0" column="4">
+    <widget class="QCheckBox" name="checkBoxNationalDex">
+     <property name="text">
+      <string>National Dex</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
+     <property name="text">
+      <string>Shiny Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QCheckBox" name="checkBoxOvalCharm">
+     <property name="text">
+      <string>Oval Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

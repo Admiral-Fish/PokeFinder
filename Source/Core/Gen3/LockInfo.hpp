@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,32 +20,64 @@
 #ifndef LOCKINFO_HPP
 #define LOCKINFO_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
 class LockInfo
 {
 public:
-    constexpr LockInfo(u8 nature, u8 genderLower, u8 genderUpper) :
-        nature(nature), genderLower(genderLower), genderUpper(genderUpper), free(nature == 255 && genderLower == 255 && genderUpper == 255)
+    /**
+     * @brief Construct a new LockInfo object
+     */
+    constexpr LockInfo() : ignore(true), gender(0), genderRatio(0), nature(0)
     {
     }
 
+    /**
+     * @brief Construct a new LockInfo object
+     *
+     * @param nature Forced nature of the lock
+     * @param gender Forced gender of the lock
+     * @param genderRatio Gender ratio of the lock
+     */
+    constexpr LockInfo(u8 nature, u8 gender, u8 genderRatio) :
+        ignore(nature == 0 && gender == 0 && genderRatio == 0), gender(gender), genderRatio(genderRatio), nature(nature)
+    {
+    }
+
+    /**
+     * @brief Determines whether the \p pid matches the lock criteria
+     *
+     * @param pid PID value
+     *
+     * @return true PID matches lock criteria
+     * @return false PID does not match lock criteria
+     */
     bool compare(u32 pid) const
     {
-        u8 gender = pid & 255;
-        return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
+        if (gender != 2 && gender != ((pid & 255) < genderRatio))
+        {
+            return false;
+        }
+
+        return nature == (pid % 25);
     }
 
-    bool getFree() const
+    /**
+     * @brief Lock should be ignored. This means the lock is a shadow pokemon itself
+     *
+     * @return true Lock should be ignored
+     * @return false Lock should not be ignored
+     */
+    bool getIgnore() const
     {
-        return free;
+        return ignore;
     }
 
-public:
+private:
+    bool ignore;
+    u8 gender;
+    u8 genderRatio;
     u8 nature;
-    u8 genderLower;
-    u8 genderUpper;
-    bool free;
 };
 
 #endif // LOCKINFO_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,64 +20,218 @@
 #ifndef WILDSTATE_HPP
 #define WILDSTATE_HPP
 
-#include <Core/Enum/Encounter.hpp>
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/States/State.hpp>
 
+/**
+ * @brief Parent state class that provides additional wild information
+ */
 class WildState : public State
 {
 public:
-    WildState() = default;
-
-    explicit WildState(u32 advance) : State(advance), lead(Lead::None)
+    /**
+     * @brief Construct a new WildState object
+     *
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param form Pokemon form
+     * @param info Pokemon information
+     */
+    WildState(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item,
+              u16 specie, u8 form, const PersonalInfo *info) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), item(item), specie(specie), encounterSlot(encounterSlot), form(form)
     {
     }
 
-    Lead getLead() const
+    /**
+     * @brief Construct a new WildState object
+     *
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param form Pokemon form
+     * @param info Pokemon information
+     */
+    WildState(u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot,
+              u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info),
+        item(item),
+        specie(specie),
+        encounterSlot(encounterSlot),
+        form(form)
     {
-        return lead;
     }
 
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
-    }
-
+    /**
+     * @brief Returns the encounter slot of the state
+     *
+     * @return State encounter slot
+     */
     u8 getEncounterSlot() const
     {
         return encounterSlot;
     }
 
-    void setEncounterSlot(u8 encounterSlot)
+    /**
+     * @brief Returns the form
+     *
+     * @return State form
+     */
+    u8 getForm() const
     {
-        this->encounterSlot = encounterSlot;
+        return form;
     }
 
-    Encounter getEncounter() const
-    {
-        return encounter;
-    }
-
-    void setEncounter(Encounter encounter)
-    {
-        this->encounter = encounter;
-    }
-
-    u8 getItem() const
+    /**
+     * @brief Returns the item of the pokemon
+     *
+     * @return State item
+     */
+    u16 getItem() const
     {
         return item;
     }
 
-    void setItem(u8 item)
+    /**
+     * @brief Returns the specie
+     *
+     * @return State specie
+     */
+    u16 getSpecie() const
     {
-        this->item = item;
+        return specie;
     }
 
 protected:
-    Lead lead;
+    u16 item;
+    u16 specie;
     u8 encounterSlot;
-    Encounter encounter;
-    u8 item;
+    u8 form;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the generator
+ */
+class WildGeneratorState : public WildState
+{
+public:
+    /**
+     * @brief Construct a new WildGeneratorState object
+     *
+     * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param form Pokemon form
+     * @param info Pokemon information
+     */
+    WildGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+    {
+    }
+
+    /**
+     * @brief Construct a new WildGeneratorState object
+     *
+     * @param advances Advances of the state
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param form Pokemon form
+     * @param info Pokemon information
+     */
+    WildGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+    {
+    }
+
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getAdvances() const
+    {
+        return advances;
+    }
+
+protected:
+    u32 advances;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the searcher
+ */
+class WildSearcherState : public WildState
+{
+public:
+    /**
+     * @brief Construct a new WildSearcherState object
+     *
+     * @param seed Seed of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param form Pokemon form
+     * @param info Pokemon information
+     */
+    WildSearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                      u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), seed(seed)
+    {
+    }
+
+    /**
+     * @brief Returns the seed of the state
+     *
+     * @return State seed
+     */
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+protected:
+    u32 seed;
 };
 
 #endif // WILDSTATE_HPP

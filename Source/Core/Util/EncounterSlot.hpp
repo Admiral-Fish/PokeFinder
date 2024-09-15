@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,16 +20,51 @@
 #ifndef ENCOUNTERSLOT_HPP
 #define ENCOUNTERSLOT_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
 enum class Encounter : u8;
 
 namespace EncounterSlot
 {
-    u8 hSlot(u16 result, Encounter encounter);
-    u8 jSlot(u16 result, Encounter encounter);
-    u8 kSlot(u16 result, Encounter encounter);
-    u8 bdspSlot(u8 result, Encounter encounter);
+    /**
+     * @brief Calculates the encounter slot for Gen 3
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 hSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for DPPt
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 jSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for HGSS
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 kSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for BDSP
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 bdspSlot(u8 rand, Encounter encounter);
 };
 
 #endif // ENCOUNTERSLOT_HPP

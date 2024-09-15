@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,59 +18,50 @@
  */
 
 #include "IDGenerator5.hpp"
-#include <Core/Gen5/States/IDState5.hpp>
+#include <Core/Parents/States/IDState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
+#include <Core/Util/Utilities.hpp>
 
-IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
+IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, u32 pid, bool checkPID, bool checkXOR, const Profile5 &profile,
+                           const IDFilter &filter) :
+    IDGenerator(initialAdvances, maxAdvances, filter), profile(profile), pid(pid), checkPID(checkPID), checkXOR(checkXOR)
 {
 }
 
-std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR)
+std::vector<IDState> IDGenerator5::generate(u64 seed) const
 {
-    std::vector<IDState5> states;
-
-    BWRNG rng(seed);
-    rng.advance(initialAdvances);
-
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
 
-    // cnt starts from 1 because the game forces
-    // you to enter in the name insertion screen
-    // at least once, so prng advances +1 at the
-    // Yes/No screen after you click A on OK
-    for (u32 cnt = 1; cnt <= maxAdvances; cnt++)
+    u32 advances = Utilities5::initialAdvancesID(seed, profile.getVersion());
+    BWRNG rng(seed, advances + initialAdvances);
+
+    std::vector<IDState> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
         u16 sid = rand >> 16;
+        u16 tsv = (tid ^ sid) >> 3;
 
-        IDState5 state(initialAdvances + cnt, tid, sid);
-        state.setInitialAdvances(initialAdvances);
-
-        if (filter.compare(state))
+        IDState state(advances + initialAdvances + cnt, tid, sid, tsv);
+        if (filter.compareState(state))
         {
             bool shiny = (psv >> 3) == state.getTSV();
 
             // Check if PID is possible with TID/SID combo if Static/Wild box is checked
             if (shiny && checkXOR) // We need to do the check only if it was shiny first
             {
-                bool idbit = ((tid & 1) ^ (sid & 1));
+                bool idbit = (tid & 1) ^ (sid & 1);
                 shiny = idbit == pidBit;
             }
 
             if (!checkPID || shiny)
             {
-                state.setSeed(seed);
                 states.emplace_back(state);
             }
         }
     }
 
     return states;
-}
-
-void IDGenerator5::setInitialAdvances(u32 initialAdvances)
-{
-    this->initialAdvances = initialAdvances;
 }

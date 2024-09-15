@@ -1,0 +1,551 @@
+{
+    "generate": [
+        {
+            "name": "Floccesy Ranch",
+            "seed": 0,
+            "location": 45,
+            "results": [
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 49,
+                    "chatot": 2,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 1,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 50,
+                    "chatot": 43,
+                    "data": 95,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 51,
+                    "chatot": 6,
+                    "data": 17,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 54,
+                    "chatot": 5,
+                    "data": 507,
+                    "gender": 0,
+                    "group": 0,
+                    "item": false,
+                    "slot": 1
+                },
+                {
+                    "advances": 55,
+                    "chatot": 17,
+                    "data": 72,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 8
+                },
+                {
+                    "advances": 56,
+                    "chatot": 3,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 58,
+                    "chatot": 43,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 59,
+                    "chatot": 34,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 1,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 60,
+                    "chatot": 29,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 61,
+                    "chatot": 8,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 62,
+                    "chatot": 33,
+                    "data": 97,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 66,
+                    "chatot": 20,
+                    "data": 95,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 67,
+                    "chatot": 14,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 3,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 69,
+                    "chatot": 9,
+                    "data": 74,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 8
+                },
+                {
+                    "advances": 73,
+                    "chatot": 53,
+                    "data": 72,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 8
+                },
+                {
+                    "advances": 74,
+                    "chatot": 21,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 79,
+                    "chatot": 29,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 80,
+                    "chatot": 38,
+                    "data": 26,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 82,
+                    "chatot": 27,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 83,
+                    "chatot": 37,
+                    "data": 17,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 85,
+                    "chatot": 52,
+                    "data": 183,
+                    "gender": 1,
+                    "group": 3,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 87,
+                    "chatot": 10,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 88,
+                    "chatot": 16,
+                    "data": 507,
+                    "gender": 0,
+                    "group": 2,
+                    "item": false,
+                    "slot": 1
+                },
+                {
+                    "advances": 89,
+                    "chatot": 52,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 90,
+                    "chatot": 2,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 91,
+                    "chatot": 33,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 92,
+                    "chatot": 29,
+                    "data": 183,
+                    "gender": 1,
+                    "group": 3,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 94,
+                    "chatot": 5,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 95,
+                    "chatot": 18,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 96,
+                    "chatot": 36,
+                    "data": 75,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 8
+                },
+                {
+                    "advances": 100,
+                    "chatot": 21,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 0,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 101,
+                    "chatot": 16,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 102,
+                    "chatot": 6,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 103,
+                    "chatot": 46,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 107,
+                    "chatot": 41,
+                    "data": 95,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 108,
+                    "chatot": 15,
+                    "data": 98,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 111,
+                    "chatot": 38,
+                    "data": 96,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 10
+                },
+                {
+                    "advances": 112,
+                    "chatot": 36,
+                    "data": 26,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 114,
+                    "chatot": 29,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 115,
+                    "chatot": 40,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 2,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 117,
+                    "chatot": 9,
+                    "data": 507,
+                    "gender": 0,
+                    "group": 3,
+                    "item": false,
+                    "slot": 1
+                },
+                {
+                    "advances": 119,
+                    "chatot": 1,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 1,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 120,
+                    "chatot": 49,
+                    "data": 87,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 121,
+                    "chatot": 10,
+                    "data": 507,
+                    "gender": 1,
+                    "group": 2,
+                    "item": false,
+                    "slot": 1
+                },
+                {
+                    "advances": 123,
+                    "chatot": 4,
+                    "data": 183,
+                    "gender": 0,
+                    "group": 0,
+                    "item": false,
+                    "slot": 2
+                },
+                {
+                    "advances": 124,
+                    "chatot": 17,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 0,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 125,
+                    "chatot": 14,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 127,
+                    "chatot": 39,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 128,
+                    "chatot": 27,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 129,
+                    "chatot": 29,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 132,
+                    "chatot": 38,
+                    "data": 4,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 133,
+                    "chatot": 31,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 134,
+                    "chatot": 54,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 135,
+                    "chatot": 50,
+                    "data": 3,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 5
+                },
+                {
+                    "advances": 136,
+                    "chatot": 38,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 1,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 137,
+                    "chatot": 25,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 9
+                },
+                {
+                    "advances": 140,
+                    "chatot": 33,
+                    "data": 79,
+                    "gender": 0,
+                    "group": 2,
+                    "item": true,
+                    "slot": 6
+                },
+                {
+                    "advances": 142,
+                    "chatot": 36,
+                    "data": 86,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 9
+                }
+            ]
+        }
+    ]
+}

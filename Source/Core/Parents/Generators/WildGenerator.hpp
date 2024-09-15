@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,36 +20,42 @@
 #ifndef WILDGENERATOR_HPP
 #define WILDGENERATOR_HPP
 
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class WildGenerator : public Generator
+enum class Lead : u8;
+
+/**
+ * @brief Parent generator class for wild encounters
+ *
+ * @tparam EncounterArea EncounterArea class that is used by the generator
+ * @tparam Profile Profile class that is used by the generator
+ * @tparam Filter Filter class that is used by the generator
+ */
+template <class EncounterArea, class Profile, class Filter>
+class WildGenerator : public Generator<Profile, Filter>
 {
 public:
-    WildGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    /**
+     * @brief Construct a new WildGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param area Wild pokemon info
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const EncounterArea &area,
+                  const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, offset, method, profile, filter), area(area), lead(lead)
     {
-    }
-
-    void setEncounter(Encounter encounter)
-    {
-        this->encounter = encounter;
-    }
-
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
-    }
-
-    void setSynchNature(u8 synchNature)
-    {
-        this->synchNature = synchNature;
     }
 
 protected:
-    Encounter encounter;
+    EncounterArea area;
     Lead lead;
-    u8 synchNature;
 };
 
 #endif // WILDGENERATOR_HPP

@@ -1,0 +1,24 @@
+{
+    "calculateActions": [
+        {
+            "name": "Jirachi Actions",
+            "seed": 4116922500,
+            "target": 3637864987,
+            "bruteForce": 53,
+            "results": [
+                1,
+                0,
+                1,
+                2,
+                3
+            ]
+        }
+    ],
+    "computeJirachiSeed": [
+        {
+            "name": "Jirachi Seed",
+            "seed": 4116922500,
+            "result": 1670004433
+        }
+    ]
+}

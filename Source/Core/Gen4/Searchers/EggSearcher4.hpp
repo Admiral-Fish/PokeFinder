@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,26 +20,37 @@
 #ifndef EGGSEARCHER4_HPP
 #define EGGSEARCHER4_HPP
 
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
-#include <mutex>
 
 class EggGenerator4;
-class EggState4;
+class EggSearcherState4;
 
-class EggSearcher4 : public Searcher
+/**
+ * @brief Egg encounter searcher for Gen4
+ */
+class EggSearcher4 : public Searcher<Profile4, EggSearcherState4>
 {
 public:
-    EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(u32 minDelay, u32 maxDelay, int type, const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID);
-    void cancelSearch();
-    std::vector<EggState4> getResults();
-    int getProgress() const;
+    /**
+     * @brief Construct a new EggSearcher4 object
+     *
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     * @param profile Profile Information
+     */
+    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param generator Egg generator
+     */
+    void startSearch(const EggGenerator4 &generator);
 
 private:
-    bool searching;
-    int progress;
-    std::vector<EggState4> results;
-    std::mutex mutex;
+    u32 maxDelay;
+    u32 minDelay;
 };
 
 #endif // EGGSEARCHER4_HPP

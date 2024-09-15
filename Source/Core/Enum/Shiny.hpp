@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,21 +20,31 @@
 #ifndef SHINY_HPP
 #define SHINY_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses different PID locking mechanisms
+ */
 enum class Shiny : u8
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+    Random, /// PID is random, not locked
+    Never, /// PID is random, forced to not be shiny
+    Always, /// PID is random, forced to shiny
+    Star, /// PID is random, forced to be star shiny
+    Square, /// PID is random, forced to be square shiny
+    Static /// PID is set to a fixed value
 };
 
-constexpr u8 toInt(Shiny val)
+/**
+ * @brief Converts enum to number
+ *
+ * @param shiny Input shiny type
+ *
+ * @return Converted number
+ */
+constexpr u8 toInt(Shiny shiny)
 {
-    return static_cast<u8>(val);
+    return static_cast<u8>(shiny);
 };
 
 #endif // SHINY_HPP

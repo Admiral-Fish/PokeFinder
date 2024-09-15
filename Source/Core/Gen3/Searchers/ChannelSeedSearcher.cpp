@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,40 +19,10 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <algorithm>
-#include <future>
+#include <thread>
 
-ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
+ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : SeedSearcher(criteria)
 {
-}
-
-void ChannelSeedSearcher::startSearch(int threads)
-{
-    searching = true;
-
-    std::vector<std::future<void>> threadContainer;
-
-    u32 split = 0xBFFFFFFE / threads;
-    u32 start = 0x40000001;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0xffffffff); }));
-        }
-        else
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
-        }
-        start += split;
-    }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].wait();
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 int ChannelSeedSearcher::getProgress() const
@@ -60,9 +30,41 @@ int ChannelSeedSearcher::getProgress() const
     return progress >> 1;
 }
 
+void ChannelSeedSearcher::startSearch(int threads)
+{
+    searching = true;
+
+    auto *threadContainer = new std::thread[threads];
+
+    u32 split = 0xBFFFFFFE / threads;
+    u32 start = 0x40000001;
+    for (int i = 0; i < threads; i++, start += split)
+    {
+        if (i == threads - 1)
+        {
+            threadContainer[i] = std::thread([=] { search(start, 0xffffffff); });
+        }
+        else
+        {
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
+        }
+    }
+
+    for (int i = 0; i < threads; i++)
+    {
+        threadContainer[i].join();
+    }
+
+    delete[] threadContainer;
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
 void ChannelSeedSearcher::search(u32 start, u32 end)
 {
-    for (u32 seed = start; seed < end; seed++)
+    std::vector<u32> seeds;
+    for (u32 seed = start; seed < end; seed++, progress++)
     {
         if (!searching)
         {
@@ -72,17 +74,17 @@ void ChannelSeedSearcher::search(u32 start, u32 end)
         XDRNG rng(seed);
         if (searchSeed(rng))
         {
-            std::lock_guard<std::mutex> lock(mutex);
-            results.emplace_back(rng.getSeed());
+            seeds.emplace_back(rng.getSeed());
         }
-
-        progress++;
     }
+
+    std::lock_guard<std::mutex> lock(mutex);
+    results.insert(results.end(), seeds.begin(), seeds.end());
 }
 
-bool ChannelSeedSearcher::searchSeed(XDRNG &rng)
+bool ChannelSeedSearcher::searchSeed(XDRNG &rng) const
 {
-    for (u32 compare : criteria)
+    for (u8 compare : criteria)
     {
         u8 mask = 0;
         u8 shift = 0;
@@ -109,12 +111,12 @@ bool ChannelSeedSearcher::searchSeed(XDRNG &rng)
                 pattern += (num << shift++);
                 mask |= 1;
             }
-            else if (((mask >> 1) & 1) == 0 && num == 2)
+            else if ((mask & 2) == 0 && num == 2)
             {
                 pattern += (num << shift++);
                 mask |= 2;
             }
-            else if (((mask >> 2) & 1) == 0 && num == 3)
+            else if ((mask & 4) == 0 && num == 3)
             {
                 pattern += (num << shift++);
                 mask |= 4;

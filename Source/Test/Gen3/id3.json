@@ -1,0 +1,800 @@
+{
+    "xdcolo": [
+        {
+            "name": "XDColo 1",
+            "seed": 0,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 38,
+                    "sid": 7719,
+                    "tsv": 960
+                },
+                {
+                    "advances": 1,
+                    "tid": 7719,
+                    "sid": 54006,
+                    "tsv": 6554
+                },
+                {
+                    "advances": 2,
+                    "tid": 54006,
+                    "sid": 2437,
+                    "tsv": 7022
+                },
+                {
+                    "advances": 3,
+                    "tid": 2437,
+                    "sid": 41623,
+                    "tsv": 5474
+                },
+                {
+                    "advances": 4,
+                    "tid": 41623,
+                    "sid": 11797,
+                    "tsv": 4496
+                },
+                {
+                    "advances": 5,
+                    "tid": 11797,
+                    "sid": 8365,
+                    "tsv": 471
+                },
+                {
+                    "advances": 6,
+                    "tid": 8365,
+                    "sid": 32285,
+                    "tsv": 3030
+                },
+                {
+                    "advances": 7,
+                    "tid": 32285,
+                    "sid": 43218,
+                    "tsv": 6873
+                },
+                {
+                    "advances": 8,
+                    "tid": 43218,
+                    "sid": 30612,
+                    "tsv": 7144
+                },
+                {
+                    "advances": 9,
+                    "tid": 30612,
+                    "sid": 38621,
+                    "tsv": 7209
+                }
+            ]
+        },
+        {
+            "name": "XDColo 2",
+            "seed": 1073741824,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 16422,
+                    "sid": 24103,
+                    "tsv": 960
+                },
+                {
+                    "advances": 1,
+                    "tid": 24103,
+                    "sid": 4854,
+                    "tsv": 2458
+                },
+                {
+                    "advances": 2,
+                    "tid": 4854,
+                    "sid": 18821,
+                    "tsv": 2926
+                },
+                {
+                    "advances": 3,
+                    "tid": 18821,
+                    "sid": 58007,
+                    "tsv": 5474
+                },
+                {
+                    "advances": 4,
+                    "tid": 58007,
+                    "sid": 28181,
+                    "tsv": 4496
+                },
+                {
+                    "advances": 5,
+                    "tid": 28181,
+                    "sid": 24749,
+                    "tsv": 471
+                },
+                {
+                    "advances": 6,
+                    "tid": 24749,
+                    "sid": 48669,
+                    "tsv": 7126
+                },
+                {
+                    "advances": 7,
+                    "tid": 48669,
+                    "sid": 59602,
+                    "tsv": 2777
+                },
+                {
+                    "advances": 8,
+                    "tid": 59602,
+                    "sid": 46996,
+                    "tsv": 3048
+                },
+                {
+                    "advances": 9,
+                    "tid": 46996,
+                    "sid": 55005,
+                    "tsv": 3113
+                }
+            ]
+        },
+        {
+            "name": "XDColo 3",
+            "seed": 2147483648,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 32806,
+                    "sid": 40487,
+                    "tsv": 960
+                },
+                {
+                    "advances": 1,
+                    "tid": 40487,
+                    "sid": 21238,
+                    "tsv": 6554
+                },
+                {
+                    "advances": 2,
+                    "tid": 21238,
+                    "sid": 35205,
+                    "tsv": 7022
+                },
+                {
+                    "advances": 3,
+                    "tid": 35205,
+                    "sid": 8855,
+                    "tsv": 5474
+                },
+                {
+                    "advances": 4,
+                    "tid": 8855,
+                    "sid": 44565,
+                    "tsv": 4496
+                },
+                {
+                    "advances": 5,
+                    "tid": 44565,
+                    "sid": 41133,
+                    "tsv": 471
+                },
+                {
+                    "advances": 6,
+                    "tid": 41133,
+                    "sid": 65053,
+                    "tsv": 3030
+                },
+                {
+                    "advances": 7,
+                    "tid": 65053,
+                    "sid": 10450,
+                    "tsv": 6873
+                },
+                {
+                    "advances": 8,
+                    "tid": 10450,
+                    "sid": 63380,
+                    "tsv": 7144
+                },
+                {
+                    "advances": 9,
+                    "tid": 63380,
+                    "sid": 5853,
+                    "tsv": 7209
+                }
+            ]
+        },
+        {
+            "name": "XDColo 4",
+            "seed": 3221225472,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 49190,
+                    "sid": 56871,
+                    "tsv": 960
+                },
+                {
+                    "advances": 1,
+                    "tid": 56871,
+                    "sid": 37622,
+                    "tsv": 2458
+                },
+                {
+                    "advances": 2,
+                    "tid": 37622,
+                    "sid": 51589,
+                    "tsv": 2926
+                },
+                {
+                    "advances": 3,
+                    "tid": 51589,
+                    "sid": 25239,
+                    "tsv": 5474
+                },
+                {
+                    "advances": 4,
+                    "tid": 25239,
+                    "sid": 60949,
+                    "tsv": 4496
+                },
+                {
+                    "advances": 5,
+                    "tid": 60949,
+                    "sid": 57517,
+                    "tsv": 471
+                },
+                {
+                    "advances": 6,
+                    "tid": 57517,
+                    "sid": 15901,
+                    "tsv": 7126
+                },
+                {
+                    "advances": 7,
+                    "tid": 15901,
+                    "sid": 26834,
+                    "tsv": 2777
+                },
+                {
+                    "advances": 8,
+                    "tid": 26834,
+                    "sid": 14228,
+                    "tsv": 3048
+                },
+                {
+                    "advances": 9,
+                    "tid": 14228,
+                    "sid": 22237,
+                    "tsv": 3113
+                }
+            ]
+        }
+    ],
+    "frlge": [
+        {
+            "name": "FRLGE 1",
+            "tid": 0,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 0,
+                    "sid": 0,
+                    "tsv": 0
+                },
+                {
+                    "advances": 1,
+                    "tid": 0,
+                    "sid": 59774,
+                    "tsv": 7471
+                },
+                {
+                    "advances": 2,
+                    "tid": 0,
+                    "sid": 21105,
+                    "tsv": 2638
+                },
+                {
+                    "advances": 3,
+                    "tid": 0,
+                    "sid": 12720,
+                    "tsv": 1590
+                },
+                {
+                    "advances": 4,
+                    "tid": 0,
+                    "sid": 36418,
+                    "tsv": 4552
+                },
+                {
+                    "advances": 5,
+                    "tid": 0,
+                    "sid": 58060,
+                    "tsv": 7257
+                },
+                {
+                    "advances": 6,
+                    "tid": 0,
+                    "sid": 44997,
+                    "tsv": 5624
+                },
+                {
+                    "advances": 7,
+                    "tid": 0,
+                    "sid": 26587,
+                    "tsv": 3323
+                },
+                {
+                    "advances": 8,
+                    "tid": 0,
+                    "sid": 64563,
+                    "tsv": 8070
+                },
+                {
+                    "advances": 9,
+                    "tid": 0,
+                    "sid": 61228,
+                    "tsv": 7653
+                }
+            ]
+        },
+        {
+            "name": "FRLGE 2",
+            "tid": 16384,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 16384,
+                    "sid": 37787,
+                    "tsv": 6771
+                },
+                {
+                    "advances": 1,
+                    "tid": 16384,
+                    "sid": 36888,
+                    "tsv": 6659
+                },
+                {
+                    "advances": 2,
+                    "tid": 16384,
+                    "sid": 49566,
+                    "tsv": 4147
+                },
+                {
+                    "advances": 3,
+                    "tid": 16384,
+                    "sid": 53621,
+                    "tsv": 4654
+                },
+                {
+                    "advances": 4,
+                    "tid": 16384,
+                    "sid": 57425,
+                    "tsv": 5130
+                },
+                {
+                    "advances": 5,
+                    "tid": 16384,
+                    "sid": 63690,
+                    "tsv": 5913
+                },
+                {
+                    "advances": 6,
+                    "tid": 16384,
+                    "sid": 1158,
+                    "tsv": 2192
+                },
+                {
+                    "advances": 7,
+                    "tid": 16384,
+                    "sid": 57251,
+                    "tsv": 5108
+                },
+                {
+                    "advances": 8,
+                    "tid": 16384,
+                    "sid": 32758,
+                    "tsv": 2046
+                },
+                {
+                    "advances": 9,
+                    "tid": 16384,
+                    "sid": 1743,
+                    "tsv": 2265
+                }
+            ]
+        },
+        {
+            "name": "FRLGE 3",
+            "tid": 32768,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 32768,
+                    "sid": 10038,
+                    "tsv": 5350
+                },
+                {
+                    "advances": 1,
+                    "tid": 32768,
+                    "sid": 14002,
+                    "tsv": 5846
+                },
+                {
+                    "advances": 2,
+                    "tid": 32768,
+                    "sid": 12491,
+                    "tsv": 5657
+                },
+                {
+                    "advances": 3,
+                    "tid": 32768,
+                    "sid": 28985,
+                    "tsv": 7719
+                },
+                {
+                    "advances": 4,
+                    "tid": 32768,
+                    "sid": 12896,
+                    "tsv": 5708
+                },
+                {
+                    "advances": 5,
+                    "tid": 32768,
+                    "sid": 3785,
+                    "tsv": 4569
+                },
+                {
+                    "advances": 6,
+                    "tid": 32768,
+                    "sid": 22856,
+                    "tsv": 6953
+                },
+                {
+                    "advances": 7,
+                    "tid": 32768,
+                    "sid": 22380,
+                    "tsv": 6893
+                },
+                {
+                    "advances": 8,
+                    "tid": 32768,
+                    "sid": 953,
+                    "tsv": 4215
+                },
+                {
+                    "advances": 9,
+                    "tid": 32768,
+                    "sid": 7793,
+                    "tsv": 5070
+                }
+            ]
+        },
+        {
+            "name": "FRLGE 4",
+            "tid": 49152,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 49152,
+                    "sid": 47826,
+                    "tsv": 3930
+                },
+                {
+                    "advances": 1,
+                    "tid": 49152,
+                    "sid": 56653,
+                    "tsv": 937
+                },
+                {
+                    "advances": 2,
+                    "tid": 49152,
+                    "sid": 40952,
+                    "tsv": 3071
+                },
+                {
+                    "advances": 3,
+                    "tid": 49152,
+                    "sid": 4349,
+                    "tsv": 6687
+                },
+                {
+                    "advances": 4,
+                    "tid": 49152,
+                    "sid": 33904,
+                    "tsv": 2190
+                },
+                {
+                    "advances": 5,
+                    "tid": 49152,
+                    "sid": 9415,
+                    "tsv": 7320
+                },
+                {
+                    "advances": 6,
+                    "tid": 49152,
+                    "sid": 44553,
+                    "tsv": 3521
+                },
+                {
+                    "advances": 7,
+                    "tid": 49152,
+                    "sid": 53044,
+                    "tsv": 486
+                },
+                {
+                    "advances": 8,
+                    "tid": 49152,
+                    "sid": 34685,
+                    "tsv": 2287
+                },
+                {
+                    "advances": 9,
+                    "tid": 49152,
+                    "sid": 13843,
+                    "tsv": 7874
+                }
+            ]
+        }
+    ],
+    "rs": [
+        {
+            "name": "RS 1",
+            "seed": 0,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 59774,
+                    "sid": 0,
+                    "tsv": 7471
+                },
+                {
+                    "advances": 1,
+                    "tid": 21105,
+                    "sid": 59774,
+                    "tsv": 5985
+                },
+                {
+                    "advances": 2,
+                    "tid": 12720,
+                    "sid": 21105,
+                    "tsv": 3192
+                },
+                {
+                    "advances": 3,
+                    "tid": 36418,
+                    "sid": 12720,
+                    "tsv": 6142
+                },
+                {
+                    "advances": 4,
+                    "tid": 58060,
+                    "sid": 36418,
+                    "tsv": 3473
+                },
+                {
+                    "advances": 5,
+                    "tid": 44997,
+                    "sid": 58060,
+                    "tsv": 2465
+                },
+                {
+                    "advances": 6,
+                    "tid": 26587,
+                    "sid": 44997,
+                    "tsv": 6403
+                },
+                {
+                    "advances": 7,
+                    "tid": 64563,
+                    "sid": 26587,
+                    "tsv": 4989
+                },
+                {
+                    "advances": 8,
+                    "tid": 61228,
+                    "sid": 64563,
+                    "tsv": 611
+                },
+                {
+                    "advances": 9,
+                    "tid": 64606,
+                    "sid": 61228,
+                    "tsv": 622
+                }
+            ]
+        },
+        {
+            "name": "RS 2",
+            "seed": 16384,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 36888,
+                    "sid": 37787,
+                    "tsv": 112
+                },
+                {
+                    "advances": 1,
+                    "tid": 49566,
+                    "sid": 36888,
+                    "tsv": 2608
+                },
+                {
+                    "advances": 2,
+                    "tid": 53621,
+                    "sid": 49566,
+                    "tsv": 541
+                },
+                {
+                    "advances": 3,
+                    "tid": 57425,
+                    "sid": 53621,
+                    "tsv": 1572
+                },
+                {
+                    "advances": 4,
+                    "tid": 63690,
+                    "sid": 57425,
+                    "tsv": 787
+                },
+                {
+                    "advances": 5,
+                    "tid": 1158,
+                    "sid": 63690,
+                    "tsv": 8073
+                },
+                {
+                    "advances": 6,
+                    "tid": 57251,
+                    "sid": 1158,
+                    "tsv": 7012
+                },
+                {
+                    "advances": 7,
+                    "tid": 32758,
+                    "sid": 57251,
+                    "tsv": 5130
+                },
+                {
+                    "advances": 8,
+                    "tid": 1743,
+                    "sid": 32758,
+                    "tsv": 3879
+                },
+                {
+                    "advances": 9,
+                    "tid": 64500,
+                    "sid": 1743,
+                    "tsv": 8103
+                }
+            ]
+        },
+        {
+            "name": "RS 3",
+            "seed": 32768,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 14002,
+                    "sid": 10038,
+                    "tsv": 560
+                },
+                {
+                    "advances": 1,
+                    "tid": 12491,
+                    "sid": 14002,
+                    "tsv": 207
+                },
+                {
+                    "advances": 2,
+                    "tid": 28985,
+                    "sid": 12491,
+                    "tsv": 2110
+                },
+                {
+                    "advances": 3,
+                    "tid": 12896,
+                    "sid": 28985,
+                    "tsv": 2155
+                },
+                {
+                    "advances": 4,
+                    "tid": 3785,
+                    "sid": 12896,
+                    "tsv": 1941
+                },
+                {
+                    "advances": 5,
+                    "tid": 22856,
+                    "sid": 3785,
+                    "tsv": 2800
+                },
+                {
+                    "advances": 6,
+                    "tid": 22380,
+                    "sid": 22856,
+                    "tsv": 452
+                },
+                {
+                    "advances": 7,
+                    "tid": 953,
+                    "sid": 22380,
+                    "tsv": 2714
+                },
+                {
+                    "advances": 8,
+                    "tid": 7793,
+                    "sid": 953,
+                    "tsv": 953
+                },
+                {
+                    "advances": 9,
+                    "tid": 64393,
+                    "sid": 7793,
+                    "tsv": 7359
+                }
+            ]
+        },
+        {
+            "name": "RS 4",
+            "seed": 49152,
+            "results": [
+                {
+                    "advances": 0,
+                    "tid": 56653,
+                    "sid": 47826,
+                    "tsv": 3315
+                },
+                {
+                    "advances": 1,
+                    "tid": 40952,
+                    "sid": 56653,
+                    "tsv": 2134
+                },
+                {
+                    "advances": 2,
+                    "tid": 4349,
+                    "sid": 40952,
+                    "tsv": 4576
+                },
+                {
+                    "advances": 3,
+                    "tid": 33904,
+                    "sid": 4349,
+                    "tsv": 4753
+                },
+                {
+                    "advances": 4,
+                    "tid": 9415,
+                    "sid": 33904,
+                    "tsv": 5142
+                },
+                {
+                    "advances": 5,
+                    "tid": 44553,
+                    "sid": 9415,
+                    "tsv": 4441
+                },
+                {
+                    "advances": 6,
+                    "tid": 53044,
+                    "sid": 44553,
+                    "tsv": 3111
+                },
+                {
+                    "advances": 7,
+                    "tid": 34685,
+                    "sid": 53044,
+                    "tsv": 2313
+                },
+                {
+                    "advances": 8,
+                    "tid": 13843,
+                    "sid": 34685,
+                    "tsv": 5677
+                },
+                {
+                    "advances": 9,
+                    "tid": 64286,
+                    "sid": 13843,
+                    "tsv": 6561
+                }
+            ]
+        }
+    ]
+}

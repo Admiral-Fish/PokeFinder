@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,29 +21,43 @@
 #define STATICGENERATOR_HPP
 
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Enum/Lead.hpp>
 
-class StaticGenerator : public Generator
+enum class Lead : u8;
+
+/**
+ * @brief Parent generator class for static encounters
+ *
+ * @tparam StaticTemplate Static template class that is used by the generator
+ * @tparam Profile Profile class that is used by the generator
+ * @tparam Filter Filter class that is used by the generator
+ */
+template <class StaticTemplate, class Profile, class Filter>
+class StaticGenerator : public Generator<Profile, Filter>
 {
 public:
-    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    /**
+     * @brief Construct a new StaticGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param staticTemplate Pokemon template
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const StaticTemplate &staticTemplate,
+                    const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, offset, method, profile, filter),
+        staticTemplate(staticTemplate),
+        lead(lead)
     {
-    }
-
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
-    }
-
-    void setSynchNature(u8 synchNature)
-    {
-        this->synchNature = synchNature;
     }
 
 protected:
+    StaticTemplate staticTemplate;
     Lead lead;
-    u8 synchNature;
 };
 
 #endif // STATICGENERATOR_HPP

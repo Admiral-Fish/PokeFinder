@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include <Core/Gen4/States/IDState4.hpp>
 #include <Core/RNG/MTFast.hpp>
 
-IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter), searching(false), progress(0)
+IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter)
 {
 }
 
@@ -49,11 +49,9 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                 u16 tid = sidtid & 0xffff;
                 u16 sid = sidtid >> 16;
 
-                IDState4 state(seed, tid, sid);
-                if (filter.compare(state))
+                IDState4 state(seed, efgh + 2000 - year, tid, sid);
+                if (filter.compareState(static_cast<const IDState &>(state)))
                 {
-                    state.setDelay(efgh + 2000 - year);
-
                     std::lock_guard<std::mutex> guard(mutex);
                     results.emplace_back(state);
                 }
@@ -62,21 +60,4 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
             }
         }
     }
-}
-
-void IDSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-std::vector<IDState4> IDSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
-}
-
-int IDSearcher4::getProgress() const
-{
-    return progress;
 }

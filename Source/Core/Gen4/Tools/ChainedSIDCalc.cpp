@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,32 +19,33 @@
 
 #include "ChainedSIDCalc.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
+#include <algorithm>
 
 ChainedSIDCalc::ChainedSIDCalc(u16 tid) : tid(tid)
 {
-    for (u32 i = 0; i <= 0xFFFF; i += 8)
+    for (u32 i = 0; i <= 0xffff; i += 8)
     {
-        sids.emplace_back(static_cast<u16>(i));
+        sids.emplace_back(i);
     }
 }
 
-void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability, u8 gender)
+void ChainedSIDCalc::addEntry(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u16 ability, u8 gender, u8 nature, const PersonalInfo *info)
 {
     std::vector<std::pair<u32, u32>> pids;
 
-    RNGCache cache(Method::Method1);
-    auto seeds = cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]);
-
-    for (const auto seed : seeds)
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
     {
-        u32 adjust = 0;
-        PokeRNGR rng(seed);
+        PokeRNGR rng(seeds[i]);
 
-        for (u8 i = 0; i < 13; i++)
+        u32 adjust = 0;
+        for (u8 j = 0; j < 13; j++)
         {
-            adjust |= static_cast<u32>((rng.nextUShort() & 1) << (15 - i));
+            adjust |= static_cast<u32>((rng.nextUShort() & 1) << (15 - j));
         }
 
         u16 pid2 = rng.nextUShort();
@@ -52,17 +53,33 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
 
         u32 adjustLow = adjust | (pid1 & 7);
 
-        u8 abilityNum = adjustLow & 1;
-        u8 genderNum = adjustLow & 0xFF;
+        u16 abilityNum = info->getAbility(adjustLow & 1);
 
-        if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2)) && matchGender(gender, genderNum))
+        u8 genderNum;
+        switch (info->getGender())
+        {
+        case 255: // Genderless
+            genderNum = 2;
+            break;
+        case 254: // Female
+            genderNum = 1;
+            break;
+        case 0: // Male
+            genderNum = 0;
+            break;
+        default: // Random gender
+            genderNum = (adjustLow & 255) < info->getGender();
+            break;
+        }
+
+        if (ability == abilityNum && gender == genderNum)
         {
             pids.emplace_back(adjustLow, pid2);
         }
     }
 
     std::vector<u16> newSids;
-    for (const auto &sid : sids)
+    for (u16 sid : sids)
     {
         for (const auto &pair : pids)
         {
@@ -77,39 +94,12 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
             }
         }
     }
+
     sids = newSids;
+    sids.erase(std::unique(sids.begin(), sids.end()), sids.end());
 }
 
 std::vector<u16> ChainedSIDCalc::getSIDs() const
 {
     return sids;
-}
-
-bool ChainedSIDCalc::matchGender(u8 gender, u8 val) const
-{
-    switch (gender)
-    {
-    case 0: // Genderless
-        return true;
-    case 1: // Male (50 M / 50 F)
-        return val >= 127;
-    case 2: // Female (50 M / 50 F)
-        return val <= 126;
-    case 3: // Male (25 M / 75 F)
-        return val >= 191;
-    case 4: // Female (25 M / 75 F)
-        return val <= 190;
-    case 5: // Male (75 M / 25 F)
-        return val >= 64;
-    case 6: // Female (75 M / 25 F)
-        return val <= 63;
-    case 7: // Male (87.5 M / 12.5 F)
-        return val >= 31;
-    case 8: // Female (87.5 < / 12.5 F)
-        return val <= 30;
-    case 9: // Male only
-    case 10: // Female only
-        return true;
-    }
-    return false;
 }

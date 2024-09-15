@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,16 +20,18 @@
 #include "StaticGenerator4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen4/States/State4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
-StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                   const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead,
+                                   const StaticTemplate4 &staticTemplate, const Profile4 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter)
 {
 }
 
-std::vector<State> StaticGenerator4::generate(u32 seed) const
+std::vector<GeneratorState4> StaticGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -39,44 +41,64 @@ std::vector<State> StaticGenerator4::generate(u32 seed) const
         return generateMethodJ(seed);
     case Method::MethodK:
         return generateMethodK(seed);
-    case Method::WondercardIVs:
-        return generateWonderCardIVs(seed);
     default:
-        return std::vector<State>();
+        return std::vector<GeneratorState4>();
     }
 }
 
-std::vector<State> StaticGenerator4::generateMethod1(u32 seed) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
 {
-    std::vector<State> states;
+    std::vector<GeneratorState4> states;
+    const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
 
-    // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        State state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng, jump);
 
-        u16 low = go.nextUShort();
-        u16 high = go.nextUShort();
+        u32 pid;
+        if (staticTemplate.getShiny() == Shiny::Always)
+        {
+            u16 low = go.nextUShort(8);
+            u16 high = go.nextUShort(8);
+
+            for (int i = 3; i < 16; i++)
+            {
+                low |= go.nextUShort(2) << i;
+            }
+            high |= (low ^ tsv) & 0xfff8;
+            pid = (high << 16) | low;
+        }
+        else
+        {
+            pid = go.nextUShort();
+            pid |= go.nextUShort() << 16;
+
+            if (staticTemplate.getShiny() == Shiny::Never)
+            {
+                while (Utilities::isShiny<true>(pid, tsv))
+                {
+                    pid = ARNG(pid).next();
+                }
+            }
+        }
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-        state.setPID(high, low);
-        state.setShiny<8>(tsv, high ^ low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
-            state.setSeed(low);
             states.emplace_back(state);
         }
     }
@@ -84,135 +106,79 @@ std::vector<State> StaticGenerator4::generateMethod1(u32 seed) const
     return states;
 }
 
-std::vector<State> StaticGenerator4::generateMethodJ(u32 seed) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
 {
-    std::vector<State> states;
+    std::vector<GeneratorState4> states;
+    const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
+    bool cuteCharmFlag = false;
     u8 buffer = 0;
-    switch (lead)
+    if (lead == Lead::CuteCharmF)
     {
-    case Lead::CuteCharmFemale:
-        buffer = 0;
-        break;
-    case Lead::CuteCharm25M:
-        buffer = 0xC8;
-        break;
-    case Lead::CuteCharm50M:
-        buffer = 0x96;
-        break;
-    case Lead::CuteCharm75M:
-        buffer = 0x4B;
-        break;
-    case Lead::CuteCharm875M:
-        buffer = 0x32;
-        break;
-    default:
-        break;
+        buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        State state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng, jump);
 
-        u16 first = go.nextUShort();
-        u32 pid = 0;
-        switch (lead)
+        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
-        case Lead::None:
-            // Get hunt nature
-            state.setNature(first / 0xa3e);
-            if (!filter.compareNature(state))
+            switch (info->getGender())
             {
-                continue;
+            case 0:
+            case 254:
+            case 255:
+                cuteCharmFlag = false;
+                break;
+            default:
+                cuteCharmFlag = go.nextUShort<false>(3) != 0;
+                break;
             }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort();
-                u16 high = go.nextUShort();
-                pid = (high << 16) | low;
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((first >> 15) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort() / 0xa3e);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort();
-                u16 high = go.nextUShort();
-                pid = (high << 16) | low;
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((first / 0x5556) != 0) // Successful cute charm
-            {
-                // Get nature
-                state.setNature(go.nextUShort() / 0xa3e);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-                pid = buffer + state.getNature();
-            }
-            else // Failed cute charm
-            {
-                // Get nature
-                state.setNature(go.nextUShort() / 0xa3e);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort();
-                    u16 high = go.nextUShort();
-                    pid = (high << 16) | low;
-                } while (pid % 25 != state.getNature());
-            }
-
-            break;
         }
 
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setPID(pid);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2) == 0 ? toInt(lead) : go.nextUShort<false>(25);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25);
+        }
+
+        u32 pid;
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort();
+                u16 high = go.nextUShort();
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
-            state.setSeed(first);
             states.emplace_back(state);
         }
     }
@@ -220,165 +186,79 @@ std::vector<State> StaticGenerator4::generateMethodJ(u32 seed) const
     return states;
 }
 
-std::vector<State> StaticGenerator4::generateMethodK(u32 seed) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
 {
-    std::vector<State> states;
+    std::vector<GeneratorState4> states;
+    const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
+    bool cuteCharmFlag = false;
     u8 buffer = 0;
-    switch (lead)
+    if (lead == Lead::CuteCharmF)
     {
-    case Lead::CuteCharmFemale:
-        buffer = 0;
-        break;
-    case Lead::CuteCharm25M:
-        buffer = 0xC8;
-        break;
-    case Lead::CuteCharm50M:
-        buffer = 0x96;
-        break;
-    case Lead::CuteCharm75M:
-        buffer = 0x4B;
-        break;
-    case Lead::CuteCharm875M:
-        buffer = 0x32;
-        break;
-    default:
-        break;
+        buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        State state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng, jump);
 
-        u16 first = go.nextUShort();
-        u32 pid = 0;
-        switch (lead)
+        u8 nature;
+        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
-        case Lead::None:
-            // Get hunt nature
-            state.setNature(first % 25);
-
-            if (!filter.compareNature(state))
+            switch (info->getGender())
             {
-                continue;
+            case 0:
+            case 254:
+            case 255:
+                cuteCharmFlag = false;
+                break;
+            default:
+                cuteCharmFlag = go.nextUShort(3) != 0;
+                break;
             }
+        }
 
-            // Begin search for valid pid
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);
+        }
+        else
+        {
+            nature = go.nextUShort(25);
+        }
+
+        u32 pid;
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
             do
             {
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((first & 1) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort() % 25);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort();
-                u16 high = go.nextUShort();
-                pid = (high << 16) | low;
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((first % 3) != 0) // Successfull cute charm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                pid = buffer + state.getNature();
-            }
-            else // Failed cutecharm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort();
-                    u16 high = go.nextUShort();
-                    pid = (high << 16) | low;
-                } while (pid % 25 != state.getNature());
-            }
-
-            break;
+            } while (pid % 25 != nature);
         }
-
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setPID(pid);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
-            state.setSeed(first);
-            states.emplace_back(state);
-        }
-    }
-
-    return states;
-}
-
-std::vector<State> StaticGenerator4::generateWonderCardIVs(u32 seed) const
-{
-    std::vector<State> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    // Wondercard IVs [SEED] [IVS] [IVS]
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        State state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
-
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareIVs(state))
-        {
-            state.setSeed(iv1);
             states.emplace_back(state);
         }
     }

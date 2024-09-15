@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,44 +20,46 @@
 #ifndef STATE5_HPP
 #define STATE5_HPP
 
-#include <Core/Util/DateTime.hpp>
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/States/State.hpp>
 
-enum class Buttons : u16;
-
-class State5
+/**
+ * @brief State class for Gen5 static generator encounters
+ */
+class State5 : public GeneratorState
 {
 public:
-    State5(const DateTime &dt, u64 initialSeed, Buttons buttons, u16 timer0) :
-        dt(dt), initialSeed(initialSeed), buttons(buttons), timer0(timer0)
+    /**
+     * @brief Construct a new State5 object
+     *
+     * @param prng PRNG call to determine Chatot pitch
+     * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    State5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+           const PersonalInfo *info) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), chatot(prng / 82)
     {
     }
 
-    DateTime getDateTime() const
+    /**
+     * @brief Returns the chatot pitch
+     *
+     * @return Chatot pitch
+     */
+    u8 getChatot() const
     {
-        return dt;
+        return chatot;
     }
 
-    u64 getInitialSeed() const
-    {
-        return initialSeed;
-    }
-
-    Buttons getButtons() const
-    {
-        return buttons;
-    }
-
-    u16 getTimer0() const
-    {
-        return timer0;
-    }
-
-protected:
-    DateTime dt;
-    u64 initialSeed;
-    Buttons buttons;
-    u16 timer0;
+private:
+    u8 chatot;
 };
 
 #endif // STATE5_HPP

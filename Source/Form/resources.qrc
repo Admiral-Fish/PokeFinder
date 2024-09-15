@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="pokefinder.ico">Images/pokefinder.ico</file>
+        <file alias="heads.png">Images/heads.png</file>
+        <file alias="tails.png">Images/tails.png</file>
+        <file alias="roamers.png">Images/roamers.png</file>
+        <file alias="raikou.png">Images/raikou.png</file>
+        <file alias="entei.png">Images/entei.png</file>
+        <file alias="latias.png">Images/latias.png</file>
+        <file alias="latios.png">Images/latios.png</file>
+        <file alias="spinda.png">Images/spinda.png</file>
+        <file alias="spinda_spot1.png">Images/spinda_spot1.png</file>
+        <file alias="spinda_spot2.png">Images/spinda_spot2.png</file>
+        <file alias="spinda_spot3.png">Images/spinda_spot3.png</file>
+        <file alias="spinda_spot4.png">Images/spinda_spot4.png</file>
+        <file alias="map.png">Images/map.png</file>
+        <file alias="map_ioa.png">Images/map_ioa.png</file>
+        <file alias="map_ct.png">Images/map_ct.png</file>
+    </qresource>
+</RCC>

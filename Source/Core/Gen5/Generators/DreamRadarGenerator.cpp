@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,84 +18,83 @@
  */
 
 #include "DreamRadarGenerator.hpp"
+#include <Core/Enum/Method.hpp>
 #include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
-DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                         const StateFilter &filter, const std::vector<DreamRadarSlot> &radarSlots) :
-    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
-    pidAdvances(0),
-    ivAdvances(0),
-    radarSlot(radarSlots.back())
+constexpr u8 levelTable[9] = { 5, 10, 10, 20, 20, 30, 30, 40, 40 };
+
+static u8 gen(MT &rng)
 {
-    for (size_t i = 0; i < radarSlots.size(); i++)
+    return rng.next() >> 27;
+}
+
+DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u8 badgeCount,
+                                         const std::vector<DreamRadarTemplate> &radarTemplates, const Profile5 &profile,
+                                         const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, 0, Method::None, profile, filter),
+    radarTemplate(radarTemplates.back()),
+    ivAdvances(0),
+    level(levelTable[badgeCount]),
+    pidAdvances(0)
+{
+    for (size_t i = 0; i < radarTemplates.size(); i++)
     {
-        auto slot = radarSlots[i];
-        if (slot.getType() == 0)
+        auto slot = radarTemplates[i];
+        if (slot.getGenie())
         {
             pidAdvances += 5;
             ivAdvances += 13;
         }
 
-        if (i != (radarSlots.size() - 1))
+        const PersonalInfo *info = slot.getInfo();
+        if (i != (radarTemplates.size() - 1))
         {
-            pidAdvances += (slot.getGenderRatio() == 255) ? 4 : 5;
+            pidAdvances += (slot.getLegend() || info->getGender() != 255) ? 5 : 4;
             ivAdvances += 13;
         }
     }
 }
 
-std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory) const
+std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 {
-    std::vector<DreamRadarState> states;
+    const PersonalInfo *info = radarTemplate.getInfo();
 
-    BWRNG rng(seed);
-    u32 initialAdvancesBW2 = Utilities5::initialAdvancesBW2(seed, memory);
-    rng.advance(initialAdvancesBW2 + (initialAdvances * 2));
-    if (!memory)
+    BWRNG rng(seed, (initialAdvances * 2) + Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
+    auto jump = rng.getJump(pidAdvances);
+
+    if (!profile.getMemoryLink())
     {
         rng.next();
     }
 
-    MT mt(seed >> 32);
-    mt.advance(9 + (initialAdvances * 2) + ivAdvances); // Initial advances, starting advance, slot advances
+    RNGList<u8, MT, 8, gen> rngList(seed >> 32, (initialAdvances * 2) + ivAdvances + 9);
 
-    RNGList<u8, MT, 8, 27> rngList(mt);
-
+    std::vector<DreamRadarState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
-        DreamRadarState state((cnt + initialAdvances) * 2 + initialAdvancesBW2 + 1);
-        state.setKeyAdvances(cnt + initialAdvances);
+        BWRNG go(rng, jump);
 
-        BWRNG go(rng.getSeed());
-        go.advance(pidAdvances);
+        std::array<u8, 6> ivs;
+        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(); });
 
-        for (u8 i = 0; i < 6; i++)
-        {
-            state.setIVs(i, rngList.getValue());
-        }
-        state.calculateHiddenPower();
-
-        go.next(); // Advance skip ???
+        go.next();
         u32 pid = go.nextUInt();
 
         // Gender modification
-        if (radarSlot.getType() == 0 || radarSlot.getType() == 1) // Genies already male, gen 4 legends also get assigned male pids
+        if (radarTemplate.getLegend()) // All dream radar legends are treated as 100% male
         {
-            pid = Utilities5::forceGender(pid, go.next() >> 32, 0, 0);
-            state.setGender(radarSlot.getGender());
+            pid = Utilities5::forceGender(pid, go, 0, 0);
         }
-        else if (radarSlot.getGender() == 0 || radarSlot.getGender() == 1)
+        else if (radarTemplate.getGender() == 0 || radarTemplate.getGender() == 1)
         {
-            pid = Utilities5::forceGender(pid, go.next() >> 32, radarSlot.getGender(), radarSlot.getGenderRatio());
-            state.setGender(pid & 0xff, radarSlot.getGenderRatio());
-        }
-        else
-        {
-            state.setGender(2);
+            pid = Utilities5::forceGender(pid, go, radarTemplate.getGender(), info->getGender());
         }
 
         // Flip ability
@@ -107,17 +106,18 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory
             pid ^= 0x10000000;
         }
 
-        state.setPID(pid);
-        state.setAbility(2);
-        state.setShiny(0);
+        u8 ability = 2;
+        if (radarTemplate.getAbility() == 255)
+        {
+            ability = (pid >> 16) & 1;
+        }
 
         go.advance(2);
 
-        state.setNature(go.nextUInt(25));
+        u8 nature = go.nextUInt(25);
 
-        state.setSeed(rng.nextUInt(8)); // Needle calculation
-
-        if (filter.compareState(state))
+        DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, radarTemplate.getGender(), level, nature, 0, info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

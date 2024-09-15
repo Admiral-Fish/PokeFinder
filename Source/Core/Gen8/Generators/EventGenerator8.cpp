@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,135 +19,126 @@
 
 #include "EventGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
-EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, const WB8 &parameters) :
-    Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter), parameters(parameters), ivCount(0)
+static u32 gen(Xorshift &rng)
 {
-    if (!parameters.isEgg())
-    {
-        tsv = parameters.getTID() ^ parameters.getSID();
-    }
-
-    ivCount = parameters.getIVCount();
+    return rng.next(0x80000000, 0x7fffffff);
 }
 
-std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
+EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, const WB8 &wb8, const Profile8 &profile,
+                                 const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), wb8(wb8)
 {
-    std::vector<State> states;
+    if (!wb8.getEgg())
+    {
+        tsv = wb8.getTID() ^ wb8.getSID();
+    }
+}
 
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances + offset);
+std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
+{
+    const PersonalInfo *info = wb8.getInfo(profile.getVersion());
+    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 32, 0> rngList(rng);
-
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        State state(initialAdvances + cnt);
-
-        // Check for rand EC
-        if (parameters.getEC() == 0)
-        {
-            rngList.advance(1);
-        }
+        u32 ec = wb8.getEC() == 0 ? rngList.next() : wb8.getEC();
 
         u32 pid;
-        switch (parameters.getPIDType())
+        u8 shiny;
+        switch (wb8.getShiny())
         {
         case 0:
-        {
-            pid = rngList.getValue();
-            u16 psv = (pid >> 16) & (pid & 0xffff);
-
-            if ((psv ^ tsv) < 16)
+            pid = rngList.next();
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
-            state.setShiny(0);
+            shiny = 0;
             break;
-        }
+
         case 1:
         case 2:
-        {
-            pid = rngList.getValue();
-            u16 psv = (pid >> 16) & (pid & 0xffff);
-
-            u16 realXOR = psv ^ tsv;
-            u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-            if (realShinyType != parameters.getPIDType())
+            pid = rngList.next();
+            if (Utilities::getShiny<false>(pid, tsv) != wb8.getShiny())
             {
-                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - parameters.getPIDType());
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - wb8.getShiny());
                 pid = (high << 16) | (pid & 0xFFFF);
             }
 
-            state.setShiny(parameters.getPIDType());
+            shiny = wb8.getShiny();
             break;
-        }
+
         case 4:
-            pid = parameters.getPID();
-            state.setShiny<16>(tsv, (pid >> 16) ^ (pid & 0xffff));
+            pid = wb8.getPID();
+            shiny = Utilities::getShiny<false>(pid, tsv);
             break;
         }
-        state.setPID(pid);
 
-        for (u8 i = 0; i < 6; i++)
+        std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
+        for (u8 i = 0; i < wb8.getIVCount();)
         {
-            state.setIV(i, 255);
-        }
-
-        for (u8 i = 0; i < ivCount;)
-        {
-            u8 index = rngList.getValue() % 6;
-            if (state.getIV(index) == 255)
+            u8 index = rngList.next() % 6;
+            if (ivs[index] == 255)
             {
-                state.setIV(index, 31);
+                ivs[index] = 31;
                 i++;
             }
         }
 
-        for (u8 i = 0; i < 6; i++)
+        for (u8 &iv : ivs)
         {
-            if (state.getIV(i) == 255)
+            if (iv == 255)
             {
-                state.setIV(i, rngList.getValue() % 32);
+                iv = rngList.next() % 32;
             }
         }
 
-        switch (parameters.getAbilityType())
+        u8 ability;
+        switch (wb8.getAbility())
         {
         case 0:
         case 1:
         case 2:
-            state.setAbility(parameters.getAbilityType());
+            ability = wb8.getAbility();
             break;
         case 3:
-            state.setAbility(rngList.getValue() % 2);
+            ability = rngList.next() % 2;
             break;
         case 4:
-            state.setAbility(rngList.getValue() % 3);
+            ability = rngList.next() % 3;
             break;
         }
 
-        switch (parameters.getGender())
+        u8 gender;
+        switch (wb8.getGender())
         {
         // Force gender
         case 0:
         case 1:
         case 2:
-            state.setGender(parameters.getGender());
+            gender = wb8.getGender();
             break;
         default:
-            state.setGender((rngList.getValue() % 252) + 1 < parameters.getGender());
+            gender = (rngList.next() % 252) + 1 < wb8.getGender();
             break;
         }
 
-        state.setNature(parameters.getNature() != 255 ? parameters.getNature() : rngList.getValue() % 25);
+        u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
-        if (filter.comparePID(state) && filter.compareIV(state))
+        u8 height = rngList.next() % 129;
+        height += rngList.next() % 128;
+
+        u8 weight = rngList.next() % 129;
+        weight += rngList.next() % 128;
+
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, height, weight, info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,26 +18,69 @@
  */
 
 #include "WildSearcher3.hpp"
+#include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, Game version) :
-    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), version(version), searching(false), progress(0)
+constexpr u8 feebasSlots[] = { 2, 3, 5 };
+
+static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
 {
+    switch (info->getGender())
+    {
+    case 0:
+    case 254:
+    case 255:
+        return false;
+    default:
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 255) >= info->getGender();
+        }
+        else
+        {
+            return (pid & 255) < info->getGender();
+        }
+    }
 }
 
-void WildSearcher3::setEncounterArea(const EncounterArea3 &encounterArea)
+static u8 unownLetter(u32 pid)
 {
-    this->encounterArea = encounterArea;
+    return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
+}
+
+WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
+                             const WildStateFilter &filter) :
+    WildSearcher(method, lead, area, profile, filter),
+    ivAdvance(method == Method::Method2),
+    feebasTile(feebasTile),
+    rate(0),
+    modifiedSlots(area.getSlots(lead))
+{
+    if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
+    {
+        rate = area.getRate() * 16;
+    }
 }
 
 void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
+
+    bool feebas = area.feebasLocation(profile.getVersion())
+        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+            || area.getEncounter() == Encounter::SuperRod);
+    bool safari = area.safariZone(profile.getVersion());
+    bool tanoby = area.tanobyChamber(profile.getVersion());
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -56,7 +99,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe, feebas, safari, tanoby);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -69,277 +112,326 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-void WildSearcher3::cancelSearch()
+std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari,
+                                                     bool tanoby) const
 {
-    searching = false;
-}
+    std::vector<WildSearcherState> states;
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
-std::vector<WildState> WildSearcher3::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
-}
-
-int WildSearcher3::getProgress() const
-{
-    return progress;
-}
-
-std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<WildState> states;
-
-    WildState state;
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-    if (!filter.compareHiddenPower(state))
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, method);
+    for (int i = 0; i < size; i++)
     {
-        return states;
-    }
-
-    // RSE encounters have different rng calls inside Safari Zone,
-    // so we set a flag to check if we're searching these kind of spreads
-    bool rseSafari = encounterArea.rseSafariZone() && (version & Game::RSE) != Game::None;
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 val : seeds)
-    {
-        // Setup normal state
-        PokeRNGR rng(val);
-        rng.advance(method == Method::MethodH2);
-
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
-
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        u32 seed = rng.next();
-
-        // Use for loop to check both normal and sister spread
-        for (const bool flag : { false, true })
+        PokeRNGR rng(seeds[i]);
+        if (ivAdvance)
         {
-            if (flag)
-            {
-                state.setPID(state.getPID() ^ 0x80008000);
-                state.setNature(state.getPID() % 25);
-                seed ^= 0x80000000;
-            }
-
-            if (!filter.comparePID(state))
-            {
-                continue;
-            }
-
-            PokeRNGR testRNG(seed);
-            u32 testPID;
-            u16 nextRNG = seed >> 16;
-            u16 nextRNG2 = testRNG.nextUShort();
-
-            do
-            {
-                switch (lead)
-                {
-                case Lead::None:
-                    if ((nextRNG % 25) == state.getNature())
-                    {
-                        state.setLead(Lead::None);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.getSeed() >> 16;
-                        u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-                    }
-                    break;
-                case Lead::Synchronize:
-                    // Successful synch
-                    if ((nextRNG & 1) == 0)
-                    {
-                        state.setLead(Lead::Synchronize);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.getSeed() >> 16;
-                        u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-                    }
-                    // Failed synch
-                    else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
-                    {
-                        state.setLead(Lead::Synchronize);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.getSeed() >> 16;
-                        u16 slot = temp.advance(2) >> 16;
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-                    }
-                    break;
-                case Lead::CuteCharm:
-                    if ((nextRNG % 25) == state.getNature() && (nextRNG2 % 3) > 0)
-                    {
-                        state.setLead(Lead::CuteCharm);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.nextUShort();
-                        u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-                    }
-                    break;
-                case Lead::Search:
-                default:
-                    // Normal
-                    if ((nextRNG % 25) == state.getNature())
-                    {
-                        state.setLead(Lead::None);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.getSeed() >> 16;
-                        u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-
-                        temp.setSeed(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        level = temp.nextUShort();
-                        slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-
-                            // Failed synch
-                            if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
-                            {
-                                state.setLead(Lead::Synchronize);
-                                states.emplace_back(state);
-                            }
-
-                            // Cute Charm
-                            if ((nextRNG2 % 3) > 0)
-                            {
-                                state.setLead(Lead::CuteCharm);
-                                states.emplace_back(state);
-                            }
-                        }
-                    }
-                    // Successful Synch
-                    else if ((nextRNG & 1) == 0)
-                    {
-                        state.setLead(Lead::Synchronize);
-                        PokeRNGR temp(testRNG.getSeed());
-                        if (rseSafari) // account RSE different rng calls inside Safari Zone
-                        {
-                            temp.advance(1);
-                        }
-                        u16 level = temp.getSeed() >> 16;
-                        u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
-                        if (filter.compareEncounterSlot(state))
-                        {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
-                            states.emplace_back(state);
-                        }
-                    }
-                    break;
-                }
-
-                testPID = (nextRNG << 16) | nextRNG2;
-                nextRNG = testRNG.nextUShort();
-                nextRNG2 = testRNG.nextUShort();
-            } while ((testPID % 25) != state.getNature());
+            rng.next();
         }
-    }
 
-    // RSE rock smash is dependent on origin seed for encounter check
-    if (encounter == Encounter::RockSmash)
-    {
-        u16 rate = encounterArea.getRate() * 16;
+        u32 pid;
 
-        // 2880 means FRLG which is not dependent on origin seed for encounter check
-        if ((version & Game::FRLG) == Game::None)
+        u8 letter;
+        if (tanoby)
         {
-            for (size_t i = 0; i < states.size();)
+            pid = rng.nextUShort();
+            pid |= rng.nextUShort() << 16;
+            letter = unownLetter(pid);
+        }
+        else
+        {
+            pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
+        }
+
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        u16 nextRNG = rng.nextUShort();
+        u16 nextRNG2 = rng.nextUShort();
+
+        do
+        {
+            bool cuteCharmFlag = false;
+            u8 encounterSlot[4];
+            bool force = false;
+            u16 levelRand[2];
+            PokeRNGR test[4] = { rng, rng, rng, rng };
+            bool valid[4] = { false, false, false, false };
+
+            switch (lead)
             {
-                u16 check;
-                if (rseSafari) // account RockSmash different rng calls inside RSE Safari Zone
+            case Lead::None:
+                if (tanoby)
                 {
-                    check = states[i].getSeed() >> 16;
+                    levelRand[0] = nextRNG;
+                    encounterSlot[0] = EncounterSlot::hSlot(nextRNG2 % 100, area.getEncounter());
+                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                 }
-                else
+                else if ((nextRNG % 25) == nature)
                 {
-                    check = PokeRNG(states[i].getSeed()).nextUShort();
-                }
-                if ((check % 2880) >= rate)
-                {
-                    states.erase(states.begin() + i);
-                }
-                else
-                {
-                    if (rseSafari) // account RockSmash different rng calls inside RSE Safari Zone
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+
+                    if (feebas)
                     {
-                        PokeRNGR temp(states[i].getSeed());
-                        states[i].setSeed(temp.advance(2));
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
                     }
                     else
                     {
-                        states[i].setSeed(PokeRNGR(states[i].getSeed()).next());
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                     }
-                    i++;
+                }
+                break;
+            case Lead::CuteCharmF:
+            case Lead::CuteCharmM:
+                if ((nextRNG % 25) == nature)
+                {
+                    cuteCharmFlag = (nextRNG2 % 3) > 0;
+                    if (safari)
+                    {
+                        test[0].next();
+                    }
+                    levelRand[0] = test[0].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
+                }
+                break;
+            case Lead::Synchronize:
+                if ((nextRNG & 1) == 0)
+                {
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
+                }
+
+                if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
+                {
+                    if (safari)
+                    {
+                        test[1].next();
+                    }
+                    levelRand[1] = test[2].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[2].nextUShort(100) < 50)
+                            {
+                                encounterSlot[2] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                            }
+
+                            test[3].advance(1);
+                            u8 rand = test[3].nextUShort(100);
+                            if (test[3].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[3] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[3] = filter.compareEncounterSlot(encounterSlot[3]);
+                            }
+                        }
+                        else
+                        {
+                            test[2].advance(1);
+                            encounterSlot[2] = EncounterSlot::hSlot(test[2].nextUShort(100), area.getEncounter());
+                            valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[2] = EncounterSlot::hSlot(test[2].nextUShort(100), area.getEncounter());
+                        valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
+                    }
+                }
+                break;
+            case Lead::MagnetPull:
+            case Lead::Static:
+                // Not possible to use this lead for fishing so skip the Feebas logic
+                if ((nextRNG % 25) == nature)
+                {
+                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+                    u16 encounterRand = test[0].nextUShort();
+                    if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
+                    {
+                        encounterSlot[0] = modifiedSlots[encounterRand];
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(encounterRand % 100, area.getEncounter());
+                    }
+                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                }
+                break;
+            case Lead::Pressure:
+                if ((nextRNG % 25) == nature)
+                {
+                    force = ((safari ? test[0].nextUShort() : nextRNG2) & 1) == 0;
+                    levelRand[0] = test[0].nextUShort();
+
+                    if (feebas)
+                    {
+                        if (feebasTile)
+                        {
+                            if (test[0].nextUShort(100) < 50)
+                            {
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+
+                            u8 rand = test[1].nextUShort(100);
+                            if (test[1].nextUShort(100) >= 50)
+                            {
+                                encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
+                        }
+                        else
+                        {
+                            test[0].advance(1);
+                            encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                    }
+                }
+                break;
+            default:
+                break;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (valid[i] && (rate == 0 || (test[i].nextUShort(2880) < rate)))
+                {
+                    const Slot &slot = area.getPokemon(encounterSlot[i]);
+                    const PersonalInfo *info = slot.getInfo();
+                    if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead))
+                        && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
+                    {
+                        u8 level;
+                        if (lead == Lead::Pressure)
+                        {
+                            level = area.calculateLevel(encounterSlot[i], levelRand[i >> 1], force);
+                        }
+                        else
+                        {
+                            level = area.EncounterArea::calculateLevel(encounterSlot[i], levelRand[i >> 1]);
+                        }
+
+                        WildSearcherState state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                                Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
+                                                info);
+                        if (filter.compareState(state))
+                        {
+                            states.emplace_back(state);
+                        }
+                    }
                 }
             }
-        }
+
+            if (tanoby)
+            {
+                u8 huntLetter = unownLetter(static_cast<u32>((nextRNG2 << 16) | nextRNG));
+                if (huntLetter == letter)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                u8 huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                if (huntNature == nature)
+                {
+                    break;
+                }
+            }
+
+            nextRNG = rng.nextUShort();
+            nextRNG2 = rng.nextUShort();
+        } while (true);
     }
 
     return states;

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,27 +21,35 @@
 #define IDSEARCHER4_HPP
 
 #include <Core/Parents/Filters/IDFilter.hpp>
-#include <mutex>
-#include <vector>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 class IDState4;
 
-class IDSearcher4
+/**
+ * @brief TID/SID searcher for Gen4
+ */
+class IDSearcher4 : public SearcherBase<IDState4>
 {
 public:
-    explicit IDSearcher4(const IDFilter &filter);
+    /**
+     * @brief Construct a new IDSearcher4 object
+     *
+     * @param filter State filter
+     */
+    IDSearcher4(const IDFilter &filter);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param infinite Whether to search all delays or not
+     * @param year Search year
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     */
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
-    void cancelSearch();
-    std::vector<IDState4> getResults();
-    int getProgress() const;
 
 private:
     IDFilter filter;
-
-    bool searching;
-    int progress;
-    std::vector<IDState4> results;
-    std::mutex mutex;
 };
 
 #endif // IDSEARCHER4_HPP

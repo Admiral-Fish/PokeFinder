@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,71 +18,62 @@
  */
 
 #include "PersonalLoader.hpp"
-#include <Core/Resources/Personal.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Resources/Personal.hpp>
 
 namespace PersonalLoader
 {
     const PersonalInfo *getPersonal(Game version)
     {
-        if ((version & Game::Emerald) != Game::None)
+        if ((version & Game::Gen3) != Game::None)
         {
-            return personal_e.data();
+            return PERSONAL_RSEFRLG.data();
         }
-        else if ((version & Game::RS) != Game::None)
+        else if ((version & Game::Diamond) != Game::None)
         {
-            return personal_rs.data();
+            return PERSONAL_D.data();
         }
-        else if ((version & Game::FireRed) != Game::None)
+        else if ((version & Game::Pearl) != Game::None)
         {
-            return personal_fr.data();
-        }
-        else if ((version & Game::LeafGreen) != Game::None)
-        {
-            return personal_lg.data();
-        }
-        else if ((version & Game::DP) != Game::None)
-        {
-            return personal_dp.data();
+            return PERSONAL_P.data();
         }
         else if ((version & Game::Platinum) != Game::None)
         {
-            return personal_pt.data();
+            return PERSONAL_PT.data();
         }
         else if ((version & Game::HGSS) != Game::None)
         {
-            return personal_hgss.data();
+            return PERSONAL_HGSS.data();
         }
         else if ((version & Game::BW) != Game::None)
         {
-            return personal_bw.data();
+            return PERSONAL_BW.data();
         }
         else if ((version & Game::BW2) != Game::None)
         {
-            return personal_b2w2.data();
+            return PERSONAL_B2W2.data();
         }
         else if ((version & Game::SwSh) != Game::None)
         {
-            return personal_swsh.data();
+            return PERSONAL_SWSH.data();
         }
         else
         {
-            return personal_bdsp.data();
+            return PERSONAL_BDSP.data();
         }
     }
 
-    PersonalInfo getPersonal(Game version, u16 species, u8 form)
+    const PersonalInfo *getPersonal(Game version, u16 specie, u8 form)
     {
-        const auto *info = getPersonal(version);
-        PersonalInfo base = info[species];
+        const PersonalInfo *info = getPersonal(version);
+        const PersonalInfo *base = &info[specie];
 
-        u16 formIndex = base.getFormStatIndex();
-
+        // Determine if we need to offset the index based off form
+        u16 formIndex = base->getFormStatIndex();
         if (form == 0 || formIndex == 0)
         {
             return base;
         }
-
-        return info[formIndex + form - 1];
+        return &info[formIndex + form - 1];
     }
 }

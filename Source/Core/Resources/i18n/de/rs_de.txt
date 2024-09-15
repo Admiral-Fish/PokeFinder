@@ -1,58 +1,39 @@
-0,Petalburg City
-1,Slateport City
-2,Lilycove City
-3,Mossdeep City
-4,Sootopolis City
-5,Ever Grande City
-6,Meteor Falls 1F 1R
-7,Meteor Falls 1F 2R
-8,Meteor Falls B1F 1R
-9,Meteor Falls B1F 2R
-10,Rusturf Tunnel
-11,Granite Cave 1F
-12,Granite Cave B1F
-13,Granite Cave B2F
-14,Granite Cave Stevens Room
-15,Petalburg Woods
-16,Jagged Pass
-17,Fiery Path
-18,Mt Pyre 1F
-19,Mt Pyre 2F
-20,Mt Pyre 3F
-21,Mt Pyre 4F
-22,Mt Pyre 5F
-23,Mt Pyre 6F
-24,Mt Pyre Exterior
-25,Mt Pyre Summit
-26,Seafloor Cavern Entrance
-27,Seafloor Cavern Room 1
-28,Seafloor Cavern Room 2
-29,Seafloor Cavern Room 3
-30,Seafloor Cavern Room 4
-31,Seafloor Cavern Room 5
-32,Seafloor Cavern Room 6
-33,Seafloor Cavern Room 7
-34,Seafloor Cavern Room 8
-35,Cave Of Origin Entrance
-36,Cave Of Origin 1F
-37,Cave Of Origin B1F
-38,Cave Of Origin B2F
-39,Cave Of Origin B3F
-40,Victory Road 1F
-41,Victory Road B1F
-42,Victory Road B2F
-43,Shoal Cave Low Tide Entrance Room
-44,Shoal Cave Low Tide Inner Room
-45,Shoal Cave Low Tide Stairs Room
-46,Shoal Cave Low Tide Lower Room
-47,Shoal Cave Low Tide Ice Room
-48,New Mauville Entrance
-49,New Mauville Inside
-50,Abandoned Ship Rooms B1F
-51,Abandoned Ship Hidden Floor Corridors
-52,Sky Pillar 1F
-53,Sky Pillar 3F
-54,Sky Pillar 5F
+0,Blütenburg City
+1,Graphitport City
+2,Seegrasulb City
+3,Moosbach City
+4,Xeneroville
+5,Prachtpolis City
+6,Meteorfälle EG Wasserfälle
+7,Meteorfälle EG oberhalb des Wasserfalls
+8,Meteorfälle UG unterhalb des Wasserfalls
+9,Meteorfälle UG Raum von Kindwurm
+10,Metaflurtunnel
+11,Granithöhle EG
+12,Granithöhle 1.UG
+13,Granithöhle 2.UG
+14,Granithöhle EG Troys Raum
+15,Blütenburgwald
+16,Steilpass
+17,Feuriger Pfad
+18,Pyroberg EG-2.OG
+21,Pyroberg 3.OG-5.OG
+24,Pyroberg Südhang
+25,Pyroberg Gipfel
+32,Tiefseehöhle
+35,Urzeithöhle Eingangsbereich
+36,Urzeithöhle EG-3.UG
+40,Siegesstraße EG
+41,Siegesstraße 1.UG
+42,Siegesstraße 2.UG
+44,Küstenhöhle (außer Eisraum)
+47,Küstenhöhle Eisraum
+48,Neu Malvenfroh Eingangsbereich
+49,Neu Malvenfroh Gebäudeinneres
+50,Schiffswrack
+52,Himmelturm EG
+53,Himmelturm 2.OG
+54,Himmelturm 4.OG
 55,Route 101
 56,Route 102
 57,Route 103
@@ -87,11 +68,11 @@
 86,Route 132
 87,Route 133
 88,Route 134
-89,Safari Zone Northwest
-90,Safari Zone Northeast
-91,Safari Zone Southwest
-92,Safari Zone Southeast
-93,Dewford Town
-94,Pacifidlog Town
-95,Underwater1
-96,Underwater2
+89,Safari-Zone Nordwesten
+90,Safari-Zone Nordosten
+91,Safari-Zone Südwesten
+92,Safari-Zone Südosten
+93,Faustauhaven
+94,Floßbrunn
+95,Route 124 Unterwasser
+96,Route 126 Unterwasser

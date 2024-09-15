@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,22 +20,23 @@
 #ifndef METHOD_HPP
 #define METHOD_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different encounter methods
+ */
 enum class Method : u8
 {
     None,
+
     Method1,
     Method1Reverse,
     Method2,
     Method4,
-    MethodH1,
-    MethodH2,
-    MethodH4,
-    XD,
-    Colo,
+
     XDColo,
     Channel,
+
     EBred,
     EBredSplit,
     EBredAlternate,
@@ -44,24 +45,26 @@ enum class Method : u8
     RSFRLGBredSplit,
     RSFRLGBredAlternate,
     RSFRLGBredMixed,
+
+    CuteCharmDPPt,
+    CuteCharmHGSS,
     MethodJ,
     MethodK,
-    ChainedShiny,
+    PokeRadar,
     WondercardIVs,
-    Gen4Normal,
-    Gen4Masuda,
-    DPPtIVs,
-    HGSSIVs,
-    Gen4Combined,
+
     Method5IVs,
     Method5CGear,
-    Method5,
-    BWBred,
-    BW2Bred,
-    DreamRadar,
-    Method5Event,
+    Method5
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param method Input method
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Method method)
 {
     return static_cast<u8>(method);

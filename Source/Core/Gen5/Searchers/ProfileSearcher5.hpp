@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,102 +20,235 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
+#include <Core/Gen5/Keypresses.hpp>
+#include <Core/Global.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/Util/DateTime.hpp>
-#include <Core/Util/Global.hpp>
 #include <array>
-#include <atomic>
-#include <mutex>
-#include <vector>
 
 class ProfileSearcherState5;
-enum class Buttons : u16;
 enum class Game : u32;
 enum class Language : u8;
 enum class DSType : u8;
 
-class ProfileSearcher5
+/**
+ * @brief Parent class to calibrate profiles
+ */
+class ProfileSearcher5 : public SearcherBase<ProfileSearcherState5>
 {
 public:
-    explicit ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                              u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType,
-                              u64 mac, Buttons keypress);
+    /**
+     * @brief Construct a new ProfileSearcher5 object
+     *
+     * @param date Date to search
+     * @param time Time to search
+     * @param minSeconds Minimum seconds
+     * @param maxSeconds Maximum seconds
+     * @param minVCount Minimum VCount
+     * @param maxVCount Maximum VCount
+     * @param minTimer0 Minimum Timer0
+     * @param maxTimer0 Maximum Timer0
+     * @param minGxStat Minimum GxStat
+     * @param maxGxStat Maximum GxStat
+     * @param softReset Whether game was soft reset
+     * @param version Game version
+     * @param language Game language
+     * @param dsType DS type
+     * @param mac DS MAC address
+     * @param buttons Keypresses selected
+     */
+    ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                     u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                     Buttons buttons);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param threads Number of threads to search with
+     * @param minVFrame Minimum VFrame
+     * @param maxVFrame Maximum VFrame
+     */
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
-    void cancelSearch();
-    std::vector<ProfileSearcherState5> getResults();
-    int getProgress() const;
 
 private:
-    Date date;
-    Time time;
-    u8 minSeconds;
-    u8 maxSeconds;
-    u8 minVCount;
-    u8 maxVCount;
-    u16 minTimer0;
-    u16 maxTimer0;
-    u8 minGxStat;
-    u8 maxGxStat;
-    bool softReset;
-    Game version;
-    Language language;
-    DSType dsType;
     u64 mac;
-    Buttons keypress;
+    Date date;
+    Game version;
+    Keypress keypress;
+    Time time;
+    u16 maxTimer0;
+    u16 minTimer0;
+    bool softReset;
+    DSType dsType;
+    Language language;
+    u8 maxGxStat;
+    u8 minGxStat;
+    u8 maxSeconds;
+    u8 minSeconds;
+    u8 maxVCount;
+    u8 minVCount;
 
-    bool searching;
-    std::atomic<int> progress;
-    std::vector<ProfileSearcherState5> results;
-    std::mutex mutex;
+    /**
+     * @brief Searches between \p minVFrame and \p maxVFrame for potentional matches
+     *
+     * @param minVFrame Minimum VFrame
+     * @param maxVFrame Maximum VFrame
+     */
+    void search(u8 minVFrame, u8 maxVFrame);
 
-    void search(u8 vframeStart, u8 vframeEnd);
-
-protected:
+    // protected:
+    /**
+     * @brief Checks if seed matches the provided calibration data
+     *
+     * @param seed PRNG state
+     *
+     * @return true Seed is valid
+     * @return false Seed is not valid
+     */
     virtual bool valid(u64 seed) = 0;
 };
 
-class ProfileIVSearcher5 : public ProfileSearcher5
+/**
+ * @brief Calibrates profiles based on IVs
+ */
+class ProfileIVSearcher5 final : public ProfileSearcher5
 {
 public:
-    explicit ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs, const Date &date, const Time &time,
-                                int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
-                                u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac, Buttons keypress);
+    /**
+     * @brief Construct a new ProfileSearcher5 object
+     *
+     * @param date Date to search
+     * @param time Time to search
+     * @param minSeconds Minimum seconds
+     * @param maxSeconds Maximum seconds
+     * @param minVCount Minimum VCount
+     * @param maxVCount Maximum VCount
+     * @param minTimer0 Minimum Timer0
+     * @param maxTimer0 Maximum Timer0
+     * @param minGxStat Minimum GxStat
+     * @param maxGxStat Maximum GxStat
+     * @param softReset Whether game was soft reset
+     * @param version Game version
+     * @param language Game language
+     * @param dsType DS type
+     * @param mac DS MAC address
+     * @param buttons Keypresses selected
+     * @param minIVs Minimum IVs
+     * @param maxIVs Maximum IVs
+     */
+    ProfileIVSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                       u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                       Buttons buttons, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs);
 
 private:
-    std::array<u8, 6> minIVs;
     std::array<u8, 6> maxIVs;
+    std::array<u8, 6> minIVs;
     u8 offset;
 
-    bool valid(u64 seed) override;
+    /**
+     * @brief Checks if seed matches the provided calibration IVs
+     *
+     * @param seed PRNG state
+     *
+     * @return true Seed is valid
+     * @return false Seed is not valid
+     */
+    bool valid(u64 seed) final;
 };
 
-class ProfileNeedleSearcher5 : public ProfileSearcher5
+/**
+ * @brief Calibrates profiles based on needles
+ */
+class ProfileNeedleSearcher5 final : public ProfileSearcher5
 {
 public:
-    explicit ProfileNeedleSearcher5(const std::vector<u8> &needles, bool unovaLink, bool memoryLink, const Date &date, const Time &time,
-                                    int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
-                                    u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                                    Buttons keypress);
+    /**
+     * @brief Construct a new ProfileSearcher5 object
+     *
+     * @param date Date to search
+     * @param time Time to search
+     * @param minSeconds Minimum seconds
+     * @param maxSeconds Maximum seconds
+     * @param minVCount Minimum VCount
+     * @param maxVCount Maximum VCount
+     * @param minTimer0 Minimum Timer0
+     * @param maxTimer0 Maximum Timer0
+     * @param minGxStat Minimum GxStat
+     * @param maxGxStat Maximum GxStat
+     * @param softReset Whether game was soft reset
+     * @param version Game version
+     * @param language Game language
+     * @param dsType DS type
+     * @param mac DS MAC address
+     * @param buttons Keypresses selected
+     * @param needles Save/Unova link needles
+     * @param Whether Unova link is used to obtain needles
+     * @param Whether memory link is enabled
+     */
+    ProfileNeedleSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                           u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType,
+                           u64 mac, Buttons buttons, const std::vector<u8> &needles, bool unovaLink, bool memoryLink);
 
 private:
     std::vector<u8> needles;
-    bool unovaLink;
-    bool memoryLink;
     bool game;
+    bool memoryLink;
+    bool unovaLink;
 
-    bool valid(u64 seed) override;
+    /**
+     * @brief Checks if seed matches the provided calibration needles
+     *
+     * @param seed PRNG state
+     *
+     * @return true Seed is valid
+     * @return false Seed is not valid
+     */
+    bool valid(u64 seed) final;
 };
 
-class ProfileSeedSearcher5 : public ProfileSearcher5
+/**
+ * @brief Calibrates profiles based on seed
+ */
+class ProfileSeedSearcher5 final : public ProfileSearcher5
 {
 public:
-    explicit ProfileSeedSearcher5(u64 seed, const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
-                                  u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
-                                  DSType dsType, u64 mac, Buttons keypress);
+    /**
+     * @brief Construct a new ProfileSearcher5 object
+     *
+     * @param date Date to search
+     * @param time Time to search
+     * @param minSeconds Minimum seconds
+     * @param maxSeconds Maximum seconds
+     * @param minVCount Minimum VCount
+     * @param maxVCount Maximum VCount
+     * @param minTimer0 Minimum Timer0
+     * @param maxTimer0 Maximum Timer0
+     * @param minGxStat Minimum GxStat
+     * @param maxGxStat Maximum GxStat
+     * @param softReset Whether game was soft reset
+     * @param version Game version
+     * @param language Game language
+     * @param dsType DS type
+     * @param mac DS MAC address
+     * @param buttons Keypresses selected
+     * @param seed PRNG state
+     */
+    ProfileSeedSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                         u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                         Buttons buttons, u64 seed);
 
 private:
     u64 seed;
 
-    bool valid(u64 seed) override;
+    /**
+     * @brief Checks if seed matches the provided calibration seed
+     *
+     * @param seed PRNG state
+     *
+     * @return true Seed is valid
+     * @return false Seed is not valid
+     */
+    bool valid(u64 seed) final;
 };
 
 #endif // PROFILESEARCHER5_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,87 +18,79 @@
  */
 
 #include "EventGenerator5.hpp"
-#include <Core/Parents/States/State.hpp>
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                 const StateFilter &filter, const PGF &parameters) :
-    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), parameters(parameters)
+EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const PGF &pgf, const Profile5 &profile,
+                                 const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), pgf(pgf)
 {
-    if (!parameters.isEgg())
+    if (!pgf.getEgg())
     {
-        tsv = parameters.getTID() ^ parameters.getSID();
+        tsv = pgf.getTID() ^ pgf.getSID();
     }
-
-    wondercardAdvances = parameters.getAdvances();
 }
 
-std::vector<State> EventGenerator5::generate(u64 seed) const
+std::vector<State5> EventGenerator5::generate(u64 seed) const
 {
-    std::vector<State> states;
+    const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
 
-    BWRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    u32 advances = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(pgf.getAdvances() + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    std::vector<State5> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        State state(initialAdvances + cnt);
+        BWRNG go(rng, jump);
 
-        BWRNG go(rng.getSeed());
-        state.setSeed(go.nextUInt(0x1FFF)); // Chatot pitch
-
-        go.advance(wondercardAdvances - 1); // Advances from loading wondercard
-
-        // IVs
+        std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)
         {
-            u8 parameterIV = parameters.getIV(i);
+            u8 parameterIV = pgf.getIV(i);
             if (parameterIV == 255)
             {
-                state.setIVs(i, go.nextUInt() >> 27);
+                ivs[i] = go.nextUInt(32);
             }
             else
             {
-                state.setIVs(i, parameterIV);
+                ivs[i] = parameterIV;
             }
         }
-        state.calculateHiddenPower();
 
         // 2 blanks
         go.advance(2);
 
-        u32 pid = go.nextUInt();
-
         // Gender locked handling
-        if (parameters.getGender() == 0 || parameters.getGender() == 1)
+        u32 pid = go.nextUInt();
+        if (pgf.getGender() == 0 || pgf.getGender() == 1)
         {
-            u64 rand = go.nextUInt();
-            pid = Utilities5::forceGender(pid, rand, parameters.getGender(), genderRatio);
-            state.setGender(parameters.getGender());
-        }
-        else
-        {
-            state.setGender(pid & 0xff, genderRatio);
+            pid = Utilities5::forceGender(pid, go, pgf.getGender(), info->getGender());
         }
 
-        if (parameters.getPIDType() == 0) // No shiny
+        if (pgf.getShiny() == 0) // No shiny
         {
             if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
             {
                 pid ^= 0x10000000;
             }
         }
-        else if (parameters.getPIDType() == 2) // Force shiny
+        else if (pgf.getShiny() == 2) // Force shiny
         {
             u32 low = pid & 0xff;
             pid = ((low ^ tsv) << 16) | low;
         }
 
         // Handle ability
-        if (parameters.getAbilityType() < 3)
+        u8 ability;
+        if (pgf.getAbility() < 3)
         {
-            if (parameters.getAbilityType() == 1)
+            ability = pgf.getAbility();
+            if (pgf.getAbility() == 1)
             {
                 pid |= 0x10000U;
             }
@@ -106,31 +98,27 @@ std::vector<State> EventGenerator5::generate(u64 seed) const
             {
                 pid &= ~0x10000U;
             }
-
-            state.setAbility(parameters.getAbilityType());
         }
-        else if (parameters.getAbilityType() == 3) // Ability flip
+        else // Ability flip
         {
             pid ^= 0x10000;
-            state.setAbility((pid >> 16) & 1);
+            ability = (pid >> 16) & 1;
         }
 
-        state.setPID(pid);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-        if (parameters.getNature() != 0xff)
+        u8 nature;
+        if (pgf.getNature() != 0xff)
         {
-            state.setNature(parameters.getNature());
+            nature = pgf.getNature();
         }
         else
         {
-            // Unused frame
             go.advance(1);
-
-            state.setNature(go.nextUInt(25));
+            nature = go.nextUInt(25);
         }
 
-        if (filter.compareState(state))
+        State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
+                     pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,106 +21,126 @@
 #include <Core/Enum/Encounter.hpp>
 #include <array>
 
-namespace
+/**
+ * @brief Calculates the encounter slot table from the \p ranges
+ *
+ * @tparam size Number of entries in \p ranges
+ * @tparam greater Whether to compare >= or <
+ * @param ranges Table PRNG range values
+ *
+ * @return Encounter slot table
+ */
+template <int size, bool greater = false>
+static consteval std::array<u8, 100> computeTable(const std::array<int, size> &ranges)
 {
-    template <u32 size, bool greater = false>
-    u8 calcSlot(u8 compare, const std::array<u8, size> &ranges)
+    std::array<u8, 100> table;
+
+    int r = greater ? 99 : 0;
+    for (int i = 0; i < size; i++)
     {
-        for (size_t i = 0; i < size; i++)
+        u8 range = ranges[i];
+        if constexpr (greater)
         {
-            if constexpr (greater)
+            for (; r >= range; r--)
             {
-                if (compare >= ranges[i])
-                {
-                    return i;
-                }
-            }
-            else
-            {
-                if (compare < ranges[i])
-                {
-                    return i;
-                }
+                table[r] = i;
             }
         }
-        return 255;
+        else
+        {
+            for (; r < range; r++)
+            {
+                table[r] = i;
+            }
+        }
     }
+
+    return table;
 }
+
+// Ground
+constexpr auto grass = computeTable<12>(std::array<int, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+constexpr auto rocksmash = computeTable<2>(std::array<int, 2> { 80, 100 });
+constexpr auto bug = computeTable<10, true>(std::array<int, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
+constexpr auto headbutt = computeTable<6>(std::array<int, 6> { 50, 65, 80, 90, 95, 100 });
+
+// Water
+constexpr auto water0 = computeTable<2>(std::array<int, 2> { 70, 100 });
+constexpr auto water1 = computeTable<3>(std::array<int, 3> { 60, 80, 100 });
+constexpr auto water2 = computeTable<5>(std::array<int, 5> { 40, 80, 95, 99, 100 });
+constexpr auto water3 = computeTable<5>(std::array<int, 5> { 40, 70, 85, 95, 100 });
+constexpr auto water4 = computeTable<5>(std::array<int, 5> { 60, 90, 95, 99, 100 });
 
 namespace EncounterSlot
 {
-    // Calcs the encounter slot for Method H 1/2/4 (Emerald, FRLG, RS)
-    u8 hSlot(u16 result, Encounter encounter)
+    u8 hSlot(u8 rand, Encounter encounter)
     {
-        u8 compare = result % 100;
         switch (encounter)
         {
         case Encounter::OldRod:
-            return calcSlot<2>(compare, std::array<u8, 2> { 70, 100 });
+            return water0[rand];
         case Encounter::GoodRod:
-            return calcSlot<3>(compare, std::array<u8, 3> { 60, 80, 100 });
+            return water1[rand];
         case Encounter::SuperRod:
-            return calcSlot<5>(compare, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::Surfing:
         case Encounter::RockSmash:
-            return calcSlot<5>(compare, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(compare, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
-    // Calcs the encounter slot for Method J (DPPt)
-    u8 jSlot(u16 result, Encounter encounter)
+    u8 jSlot(u8 rand, Encounter encounter)
     {
-        u8 compare = result / 656;
         switch (encounter)
         {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(compare, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::OldRod:
         case Encounter::Surfing:
-            return calcSlot<5>(compare, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(compare, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
-    // Calcs the encounter slot for Method K (HGSS)
-    u8 kSlot(u16 result, Encounter encounter)
+    u8 kSlot(u8 rand, Encounter encounter)
     {
-        u8 compare = result % 100;
         switch (encounter)
         {
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(compare, std::array<u8, 5> { 40, 70, 85, 95, 100 });
+            return water3[rand];
         case Encounter::Surfing:
-            return calcSlot<5>(compare, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         case Encounter::BugCatchingContest:
-            return calcSlot<10, true>(compare, std::array<u8, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
+            return bug[rand];
         case Encounter::Headbutt:
-            return calcSlot<6>(compare, std::array<u8, 6> { 50, 65, 80, 90, 95, 100 });
+        case Encounter::HeadbuttAlt:
+        case Encounter::HeadbuttSpecial:
+            return headbutt[rand];
         case Encounter::RockSmash:
-            return calcSlot<2>(compare, std::array<u8, 2> { 80, 100 });
+            return rocksmash[rand];
         default:
-            return calcSlot<12>(compare, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
-    u8 bdspSlot(u8 result, Encounter encounter)
+    u8 bdspSlot(u8 rand, Encounter encounter)
     {
         switch (encounter)
         {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(result, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::OldRod:
         case Encounter::Surfing:
-            return calcSlot<5>(result, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(result, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 }

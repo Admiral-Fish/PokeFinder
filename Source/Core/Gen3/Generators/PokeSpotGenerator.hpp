@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,15 +20,71 @@
 #ifndef POKESPOTGENERATOR_HPP
 #define POKESPOTGENERATOR_HPP
 
+#include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class GameCubeState;
+class EncounterArea;
+class PokeSpotState;
 
-class PokeSpotGenerator : public Generator
+/**
+ * @brief Poke Spot encounter generator for Gen3
+ */
+class PokeSpotGenerator : public Generator<Profile3, WildStateFilter>
 {
 public:
-    PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
-    std::vector<GameCubeState> generate(u32 seed, const std::vector<bool> &spots) const;
+    /**
+     * @brief Construct a new PokeSpotGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param initialAdvancesEncounter Initial number of pickup advances
+     * @param maxAdvancesEncounter Maximum number of pickup advances
+     * @param offsetEncounter Number of pickup advances to offset
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesEncounter, u32 maxAdvancesEncounter,
+                      u32 offsetEncounter, const Profile3 &profile, const WildStateFilter &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seedFood Starting PRNG food state
+     * @param seedEncounter Starting PRNG encounter state
+     * @param encounterArea Wild pokemon info
+     *
+     * @return Vector of computed states
+     */
+    std::vector<PokeSpotState> generate(u32 seedFood, u32 seedEncounter, const EncounterArea &encounterArea) const;
+
+private:
+    u32 initialAdvancesEncounter;
+    u32 maxAdvancesEncounter;
+    u32 offsetEncounter;
+
+    /**
+     * @brief Generates states for encountering the pokemon
+     *
+     * @param seed Starting PRNG state
+     * @param food Vector of food states
+     * @param encounterArea Wild pokemon info
+     *
+     * @return Vector of computed states
+     */
+    std::vector<PokeSpotState> generateEncounter(u32 seed, const std::vector<PokeSpotState> &food,
+                                                 const EncounterArea &encounterArea) const;
+
+    /**
+     * @brief Generates states for the pokemon eating the food at the Poke Spot
+     *
+     * @param seed Starting PRNG state
+     * @param encounterArea Wild pokemon info
+     *
+     * @return Vector of computed food states
+     */
+    std::vector<PokeSpotState> generateFood(u32 seed, const EncounterArea &encounterArea) const;
 };
 
 #endif // POKESPOTGENERATOR_HPP

@@ -1,85 +1,85 @@
-0,Striaton City
-1,Driftveil City
-2,Icirrus City
-3,Dreamyard (Ruins)
-4,Dreamyard (Basement)
-5,Pinwheel Forest (Exterior)
-6,Pinwheel Forest (Interior)
-7,Desert Resort (Entrance)
-8,Desert Resort (Desert)
-9,Relic Castle 1F-B1F
-11,Relic Castle B2F-B6F
-15,Relic Castle (Lowest Floor)
-30,Relic Castle (Volcarona)
-40,Cold Storage
-41,Chargestone Cave 1F
-42,Chargestone Cave B1F
-43,Chargestone Cave B2F
-44,Twist Mountain (Upper Level)
-45,Twist Mountain (Middle Level)
-46,Twist Mountain (Lower Level)
-47,Twist Mountain (Lowest Level)
-48,Dragonspiral Tower (Entrance)
-49,Dragonspiral Tower (Outside)
-50,Dragonspiral Tower 1F
-51,Dragonspiral Tower 2F
-52,Victory Road
-53,Victory Road 1F (Middle)
-54,Victory Road 2F (Left)
-55,Victory Road 3F (Middle)
-56,Victory Road 4F (Middle)
-57,Victory Road 2F (Right)
-58,Victory Road 1F (Right)
-59,Victory Road 3F (Right)
-60,Victory Road 1F (Left)
-61,Victory Road 3F (Left)
-62,Victory Road 4F (Left)
-63,Victory Road 5F
-64,Victory Road 6F
-65,Victory Road 4F (Right)
-66,Victory Road 7F
-67,Trial Chamber
-68,Giant Chasm (Entrance)
-69,Giant Chasm (Cave)
-70,Giant Chasm (Crater Forest)
-71,Giant Chasm (Cave Depths)
-72,P2 Laboratory
-73,Undella Bay
-74,Driftveil Drawbridge
-75,Village Bridge
-76,Marvelous Bridge
+0,Orion City
+1,Marea City
+2,Nevaio City
+3,Traumbrache (Ruinen)
+4,Traumbrache (Keller)
+5,Ewigenwald (Außen)
+6,Ewigenwald (Innen)
+7,Wüstenresort (Eingang)
+8,Wüstenresort  (Wüste)
+9,Alter Palast EG - 1.UG
+11,Alter Palast 2.UG - 6.UG
+15,Alter Palast (Unterste Ebene)
+30,Alter Palast (Ramoth)
+40,Tiefkühlcontainer
+41,Elektrolithhöhle EG
+42,Elektrolithhöhle 1.UG
+43,Elektrolithhöhle 2.UG
+44,Wendelberg (Obere Ebene)
+45,Wendelberg (Mittlere Ebene)
+46,Wendelberg (Untere Ebene)
+47,Wendelberg (Unterste Ebene)
+48,Drachenstiege (Eingangsbereich)
+49,Drachenstiege (Außenbereich)
+50,Drachenstiege EG
+51,Drachenstiege 1.OG
+52,Siegesstraße
+53,Siegesstraße EG (Mitte)
+54,Siegesstraße 1.OG (Links)
+55,Siegesstraße 2.OG (Mitte)
+56,Siegesstraße 3.OG (Mitte)
+57,Siegesstraße 1.OG (Rechts)
+58,Siegesstraße EG (Rechts)
+59,Siegesstraße 2.OG (Rechts)
+60,Siegesstraße EG (Links)
+61,Siegesstraße 2.OG (Links)
+62,Siegesstraße 3.OG (Links)
+63,Siegesstraße 4.OG
+64,Siegesstraße 5.OG
+65,Siegesstraße 3.OG (Rechts)
+66,Siegesstraße 6.OG
+67,Kammer der Prüfung
+68,Riesengrotte (Eingang)
+69,Riesengrotte (Vordere Höhle)
+70,Riesengrotte (Wald im Krater)
+71,Riesengrotte (Hintere Höhle)
+72,P2-Labor
+73,Bucht von Ondula
+74,Marea-Zugbrücke
+75,Dorfbrücke
+76,Wunderbrücke
 77,Route 1
 78,Route 2
 79,Route 3
-80,Wellspring Cave 1F
-81,Wellspring Cave B1F
+80,Grundwassersenke EG
+81,Grundwassersenke UG
 82,Route 4
 83,Route 5
 84,Route 6
-85,Mistralton Cave 1F
-86,Mistralton Cave 2F
-87,Guidance Chamber
+85,Panaero-Höhle EG
+86,Panaero-Höhle 1.OG
+87,Kammer der Weisung
 88,Route 7
-89,Celestial Tower 2F
-90,Celestial Tower 3F
-91,Celestial Tower 4F
-92,Celestial Tower 5F
+89,Turm des Himmels 1.OG
+90,Turm des Himmels 2.OG
+91,Turm des Himmels 3.OG
+92,Turm des Himmels Turmspitze
 93,Route 8
-94,Moor of Icirrus
+94,Moor von Nevaio
 95,Route 9
-96,Challenger's Cave 1F
-97,Challenger's Cave B1F
-98,Challenger's Cave B2F
+96,Höhle der Schulung EG
+97,Höhle der Schulung 1.UG
+98,Höhle der Schulung 2.UG
 99,Route 10
-100,Route 10 (Basic Badge Gate)
+100,Route 10 (Ordenskontrolltor Grundorden)
 101,Route 11
 102,Route 12
 103,Route 13
 104,Route 14
-105,Abundant Shrine
+105,Schrein der Ernte
 106,Route 15
 107,Route 16
-108,Lostlorn Forest
+108,Hain der Täuschung
 109,Route 18
-110,Undella Town
+110,Ondula
 111,Route 17

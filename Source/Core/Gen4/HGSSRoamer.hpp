@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,31 +20,51 @@
 #ifndef HGSSROAMER_HPP
 #define HGSSROAMER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <array>
 #include <string>
 
+/**
+ * @brief Generates routes HGSS roamers will appear on
+ */
 class HGSSRoamer
 {
 public:
-    HGSSRoamer() = default;
+    /**
+     * @brief Construct a new HGSSRoamer object
+     *
+     * @param seed PRNG state
+     * @param roamers Array of active roamers
+     * @param routes Array of roamer locations
+     */
     HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes);
-    u8 getSkips() const;
+
+    /**
+     * @brief Construct a new HGSSRoamer object
+     *
+     * @param other HGSSRoamer to copy
+     */
+    HGSSRoamer(const HGSSRoamer *other);
+
+    /**
+     * @brief Returns string of roamer locations
+     *
+     * @return Roamer locations
+     */
     std::string getRouteString() const;
-    void recalculateRoamers(u32 seed);
+
+    /**
+     * @brief Returns number of PRNG calls used to determine roamer locations
+     *
+     * @return PRNG call count
+     */
+    u8 getSkips() const;
 
 private:
-    void calculateRoamers();
-    u8 getRouteJ(u16 prng) const;
-    u8 getRouteK(u16 prng) const;
-
-    u8 skips;
-    u8 raikouRoute;
     u8 enteiRoute;
     u8 latiRoute;
-    u32 seed;
-    std::array<bool, 3> roamers;
-    std::array<u8, 3> routes;
+    u8 raikouRoute;
+    u8 skips;
 };
 
 #endif // HGSSROAMER_HPP

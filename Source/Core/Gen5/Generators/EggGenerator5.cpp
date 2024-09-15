@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,76 +20,85 @@
 #include "EggGenerator5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
+#include <Core/Util/Utilities.hpp>
 
-inline bool isShiny(u32 pid, u16 tsv)
-{
-    return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
-}
-
-EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                             const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare),
-    rolls((shinyCharm ? 2 : 0) + (daycare.getMasuda() ? 5 : 0)),
-    everstone(daycare.getEverstoneCount()),
-    poweritem(daycare.getPowerItemCount()),
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
+                             const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
-    parentAbility(daycare.getParentAbility(1))
+    everstone(daycare.getEverstoneCount()),
+    parentAbility(daycare.getParentAbility(1)),
+    poweritem(daycare.getPowerItemCount()),
+    rolls(((profile.getVersion() & Game::BW2) != Game::None && profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
 {
 }
 
-std::vector<EggState> EggGenerator5::generate(u64 seed) const
+std::vector<EggState5> EggGenerator5::generate(u64 seed) const
 {
-    switch (method)
+    switch (profile.getVersion())
     {
-    case Method::BWBred:
+    case Game::Black:
+    case Game::White:
         return generateBW(seed);
-    case Method::BW2Bred:
+    case Game::Black2:
+    case Game::White2:
         return generateBW2(seed);
     default:
-        return std::vector<EggState>();
+        return std::vector<EggState5>();
     }
 }
 
-std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
+std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 {
-    std::vector<EggState> states;
-
-    MTFast<13, true> mt(seed >> 32, 7);
-
-    u8 ivs[6];
-    for (u8 &iv : ivs)
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
+    const PersonalInfo *male;
+    const PersonalInfo *female;
+    if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
     {
-        iv = mt.next();
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 29);
+    }
+    else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 314);
     }
 
-    BWRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    MTFast<13, true> mt(seed >> 32, 7);
+    std::array<u8, 6> mtIVs;
+    std::generate(mtIVs.begin(), mtIVs.end(), [&mt] { return mt.next(); });
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    u32 advances = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    std::vector<EggState5> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        EggState state(cnt + initialAdvances);
+        BWRNG go(rng, jump);
 
-        BWRNG go(rng.getSeed());
-        state.setSeed(go.nextUInt(0x1fff)); // Chatot pitch
-
-        go.advance(1);
-
-        // False: Nidoran-F / Volbeat
-        // True: Nidoran-M / Illumise
-        if (daycare.getNidoranVolbeat())
+        // Nidoran
+        // Volbeat / Illumise
+        const PersonalInfo *info = base;
+        if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
         {
-            // TODO
-            go.nextUInt(2);
+            info = go.nextUInt(2) ? male : female;
+        }
+        else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
+        {
+            info = go.nextUInt(2) ? female : male;
         }
 
         u8 nature = go.nextUInt(25);
         // Everstone, first check for presence of item and proc
         if (everstone != 0)
         {
-            if ((go.nextUInt(2)) == 1)
+            if (go.nextUInt(2) == 1)
             {
                 if (everstone == 2)
                 {
@@ -103,97 +112,69 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
                 }
             }
         }
-        state.setNature(nature);
 
-        // Add check for mother having HA
-        bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
-
-        // Ability inheritance doesn't get used outside of hidden ability
-        /*u8 ability;
-        u8 abilityRand = go.nextUInt(100);
-        if (parentAbility == 0)
+        // Reroll ability to remove HA
+        bool hiddenAbility = false;
+        if (ditto)
         {
-            ability = abilityRand < 80 ? 0 : 1;
-        }
-        else if (parentAbility == 1)
-        {
-            ability = abilityRand < 20 ? 0 : 1;
+            go.advance(2);
         }
         else
         {
-            ability = abilityRand < 20 ? 0 : abilityRand < 40 ? 1 : 2;
-        }*/
-
-        // Reroll ability to remove HA
-        if (ditto)
-        {
-            // ability = go.nextUInt(2);
-            go.advance(1);
-            hiddenAbility = false;
+            hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
         }
 
         // Power Items
-        u8 inheritance = 0;
+        u8 inheritanceCount = 0;
+        std::array<u8, 6> ivs = mtIVs;
+        std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
         if (poweritem != 0)
         {
-            inheritance = 1;
-
-            // If both parents holding power item
-            // go.nextUInt(2) to determine which parent
+            inheritanceCount = 1;
             if (poweritem == 2)
             {
                 u8 parent = go.nextUInt(2);
                 u8 item = daycare.getParentItem(parent);
 
-                state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                state.setInheritance(item - 2, parent + 1);
+                ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+                inheritance[item - 2] = parent + 1;
             }
             else
             {
                 u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
                 u8 item = daycare.getParentItem(parent);
 
-                state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                state.setInheritance(item - 2, parent + 1);
+                ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+                inheritance[item - 2] = parent + 1;
             }
         }
 
         // IV Inheritance
-        for (; inheritance < 3;)
+        for (; inheritanceCount < 3;)
         {
             u8 index = go.nextUInt(6);
             u8 parent = go.nextUInt(2);
 
             // Assign stat inheritance
-            if (state.getInheritance(index) == 0)
+            if (inheritance[index] == 0)
             {
-                inheritance++;
-                state.setIVs(index, daycare.getParentIV(parent, index));
-                state.setInheritance(index, parent + 1);
+                inheritanceCount++;
+                ivs[index] = daycare.getParentIV(parent, index);
+                inheritance[index] = parent + 1;
             }
         }
-
-        for (u8 i = 0; i < 6; i++)
-        {
-            if (state.getInheritance(i) == 0)
-            {
-                state.setIVs(i, ivs[i]);
-            }
-        }
-        state.calculateHiddenPower();
 
         u32 pid = go.nextUInt(0xffffffff);
-        for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+        for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
         {
             pid = go.nextUInt(0xffffffff);
         }
 
-        state.setPID(pid);
-        state.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
-        state.setGender(pid & 255, genderRatio);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
+        u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        if (filter.compareState(state))
+        EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
+                        Utilities::getShiny<true>(pid, tsv), inheritance, info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -202,26 +183,27 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
     return states;
 }
 
-std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
+std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 {
-    std::vector<EggState> states;
+    std::vector<EggState5> states;
 
     MTFast<4> mt(seed >> 32, 2);
 
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
     eggSeed |= mt.next();
 
-    EggState state = generateBW2Egg(eggSeed);
-    if (filter.compareIVs(state) && filter.compareAbility(state) && filter.compareNature(state))
+    const PersonalInfo *info = nullptr;
+    EggState5 state = generateBW2Egg(eggSeed, &info);
+    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs())
+        && filter.compareHiddenPower(state.getHiddenPower()))
     {
-        BWRNG rng(seed);
-        rng.advance(initialAdvances + offset);
-        for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-        {
-            BWRNG go(rng.getSeed());
-            state.setSeed(go.nextUInt(0x1fff));
+        u32 advances = Utilities5::initialAdvances(seed, profile);
+        BWRNG rng(seed, advances + initialAdvances);
+        auto jump = rng.getJump(offset);
 
-            go.advance(1);
+        for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+        {
+            BWRNG go(rng, jump);
 
             u32 pid = go.nextUInt();
             if (((pid >> 16) & 1) != state.getAbility())
@@ -229,7 +211,7 @@ std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
                 pid ^= 0x10000;
             }
 
-            for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+            for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
             {
                 pid = go.nextUInt();
                 if (((pid >> 16) & 1) != state.getAbility())
@@ -238,13 +220,10 @@ std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
                 }
             }
 
-            state.setPID(pid);
-            state.setGender(pid & 255, genderRatio);
-            state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-            if (filter.compareShiny(state) && filter.compareGender(state))
+            state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
+                         Utilities::getShiny<true>(pid, tsv));
+            if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
-                state.setAdvances(initialAdvances + cnt);
                 states.emplace_back(state);
             }
         }
@@ -253,17 +232,37 @@ std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
     return states;
 }
 
-EggState EggGenerator5::generateBW2Egg(u64 seed) const
+EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) const
 {
-    EggState state(0);
     BWRNG rng(seed);
 
-    // False: Nidoran-F / Volbeat
-    // True: Nidoran-M / Illumise
-    if (daycare.getNidoranVolbeat())
+    // Nidoran
+    // Volbeat / Illumise
+    if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
     {
-        // TODO
-        rng.nextUInt(2);
+        if (rng.nextUInt(2))
+        {
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 32);
+        }
+        else
+        {
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 29);
+        }
+    }
+    else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
+    {
+        if (rng.nextUInt(2))
+        {
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 314);
+        }
+        else
+        {
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 313);
+        }
+    }
+    else
+    {
+        *info = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
     }
 
     u8 nature = rng.nextUInt(25);
@@ -278,7 +277,6 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
         u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
         nature = daycare.getParentNature(parent);
     }
-    state.setNature(nature);
 
     u8 ability;
     if (!ditto)
@@ -302,56 +300,53 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
         rng.advance(1);
         ability = rng.nextUInt(2);
     }
-    state.setAbility(ability);
 
     // Power Items
-    u8 inheritance = 0;
+    u8 inheritanceCount = 0;
+    std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
+    std::array<u8, 6> ivs;
     if (poweritem != 0)
     {
-        inheritance = 1;
-
-        // If both parents holding power item
-        // go.nextUInt(2) to determine which parent
+        inheritanceCount = 1;
         if (poweritem == 2)
         {
             u8 parent = rng.nextUInt(2);
             u8 item = daycare.getParentItem(parent);
 
-            state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            state.setInheritance(item - 2, parent + 1);
+            ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+            inheritance[item - 2] = parent + 1;
         }
         else
         {
             u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
             u8 item = daycare.getParentItem(parent);
 
-            state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            state.setInheritance(item - 2, parent + 1);
+            ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+            inheritance[item - 2] = parent + 1;
         }
     }
 
     // IV Inheritance
-    for (; inheritance < 3;)
+    for (; inheritanceCount < 3;)
     {
         u8 index = rng.nextUInt(6);
         u8 parent = rng.nextUInt(2);
 
-        if (state.getInheritance(index) == 0)
+        if (inheritance[index] == 0)
         {
-            state.setIVs(index, daycare.getParentIV(parent, index));
-            state.setInheritance(index, parent + 1);
-            inheritance++;
+            ivs[index] = daycare.getParentIV(parent, index);
+            inheritance[index] = parent + 1;
+            inheritanceCount++;
         }
     }
 
     for (u8 i = 0; i < 6; i++)
     {
-        if (state.getInheritance(i) == 0)
+        if (inheritance[i] == 0)
         {
-            state.setIVs(i, rng.nextUInt(32));
+            ivs[i] = rng.nextUInt(32);
         }
     }
-    state.calculateHiddenPower();
 
-    return state;
+    return EggState5(ivs, ability, nature, inheritance, *info);
 }

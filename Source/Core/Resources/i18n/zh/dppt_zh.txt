@@ -26,7 +26,14 @@
 26,Great Marsh Area 4
 27,Great Marsh Area 5
 28,Great Marsh Area 6
-29,Solaceon Ruins
+29,Solaceon Ruins 2F
+30,Solaceon Ruins
+32,Solaceon Ruins B1F (4 Stairs)
+34,Solaceon Ruins B2F (4 Stairs)
+40,Solaceon Ruins B3F (3 Stairs)
+41,Solaceon Ruins B3F (4 Stairs)
+42,Solaceon Ruins B4F (4 Stairs)
+43,Solaceon Ruins B4F (Chamber)
 47,Victory Road 1F
 48,Victory Road 2F
 49,Victory Road B1F
@@ -76,7 +83,7 @@
 143,Route 204 (South)
 144,Route 204 (North)
 145,Route 205 (South)
-146,Route 205 (South)
+146,Route 205 (North)
 147,Route 206
 148,Route 207
 149,Route 208

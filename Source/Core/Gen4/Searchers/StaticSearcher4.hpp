@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,47 +20,118 @@
 #ifndef STATICSEARCHER4_HPP
 #define STATICSEARCHER4_HPP
 
+#include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
-#include <mutex>
 
-class StaticState;
+class SearcherState4;
+class StaticTemplate4;
 
-class StaticSearcher4 : public StaticSearcher
+/**
+ * @brief Static encounter searcher for Gen4
+ */
+class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter, SearcherState4>
 {
 public:
-    StaticSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setDelay(u32 minDelay, u32 maxDelay);
-    void setState(u32 minAdvance, u32 maxAdvance);
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
-    void cancelSearch();
-    std::vector<StaticState> getResults();
-    int getProgress() const;
+    /**
+     * @brief Construct a new StaticSearcher4 object
+     *
+     * @param minAdvance Minimum advances
+     * @param maxAdvance Maximum advances
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
+                    const StateFilter &filter);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param staticTemplate Pokemon template
+     */
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate);
 
 private:
-    RNGCache cache;
-    u32 minDelay;
-    u32 maxDelay;
-    u32 minAdvance;
     u32 maxAdvance;
+    u32 minAdvance;
+    u32 maxDelay;
+    u32 minDelay;
+    u8 buffer;
 
-    bool searching;
-    int progress;
-    std::vector<StaticState> results;
-    std::mutex mutex;
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
 
-    std::vector<StaticState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<StaticState> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<StaticState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<StaticState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<StaticState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<StaticState> normalMethodJ(StaticState state, u32 seed) const;
-    std::vector<StaticState> synchMethodJ(StaticState state, u32 seed) const;
-    std::vector<StaticState> cuteCharmMethodJ(StaticState state, u32 seed) const;
-    std::vector<StaticState> normalMethodK(StaticState state, u32 seed) const;
-    std::vector<StaticState> synchMethodK(StaticState state, u32 seed) const;
-    std::vector<StaticState> cuteCharmMethodK(StaticState state, u32 seed) const;
-    std::vector<StaticState> searchInitialSeeds(const std::vector<StaticState> &results) const;
+    /**
+     * @brief Searches for initial seeds within min/max advances and min/max delay
+     *
+     * @param results Original results
+     *
+     * @return Computed results
+     */
+    std::vector<SearcherState4> searchInitialSeeds(const std::vector<SearcherState4> &results) const;
+
+    /**
+     * @brief Searches for matching states from provided IVs via Method 1
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState4> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
+
+    /**
+     * @brief Searches for matching states from provided IVs via Method J
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState4> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
+
+    /**
+     * @brief Searches for matching states from provided IVs via Method K
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState4> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
 };
 
 #endif // STATICSEARCHER4_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,28 +20,41 @@
 #ifndef MTFAST_HPP
 #define MTFAST_HPP
 
+#include <Core/Global.hpp>
 #include <Core/RNG/SIMD.hpp>
-#include <Core/Util/Global.hpp>
 
-// The assumptions of MTFast allow some simplifications to be made from normal MT
-// 1. computing less of the internal MT array
-// 2. storing less of the internal MT array
-// 3. skipping the shuffle check when generating numbers for use
-// 4. if the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
-// 5. Temper the results in the initial shuffle to take advantage of SIMD
+/**
+ * @brief Provides random numbers via the Mersenne Twister algorithm.
+ * The assumptions of MTFast allow some simplifications to be made from normal MT
+ * 1. Computing less of the internal MT array
+ * 2. Storing less of the internal MT array
+ * 3. Skipping the shuffle check when generating numbers for use
+ * 4. If the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
+ * 5. Temper the results in the initial shuffle to take advantage of SIMD
+ *
+ * @tparam size Number of values to have generated
+ * @tparam fast Whether to skip last bit shift operations
+ */
 template <u16 size, bool fast = false>
 class MTFast
 {
 public:
+    /**
+     * @brief Construct a new MTFast object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
     MTFast(u32 seed, u32 advances = 0) : index(advances)
     {
         static_assert(size < 227, "Size exceeds range of MTFast");
 
         u32 i = 1;
-        for (u32 &x : mt)
+        u32 *ptr = &state[0].uint32[0];
+        for (; i < size + 2; i++)
         {
-            x = seed;
-            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i++;
+            ptr[i - 1] = seed;
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
         }
 
         do
@@ -61,8 +74,8 @@ public:
 
             for (u32 j = 0; j < size - (size % 4); j += 4)
             {
-                vuint32x4 m0 = v32x4_load(&mt[j]);
-                vuint32x4 m1 = v32x4_load(&mt[j + 1]);
+                vuint32x4 m0 = state[j / 4].uint128;
+                vuint32x4 m1 = v32x4_load(ptr + j + 1);
 
                 u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
                 u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (j + 398);
@@ -89,7 +102,7 @@ public:
                     y = v32x4_xor(y, v32x4_shr<18>(y));
                 }
 
-                v32x4_store(&mt[j], y);
+                state[j / 4].uint128 = y;
             }
         }
 
@@ -98,8 +111,8 @@ public:
         {
             for (u32 j = size - (size % 4); j < size; j++)
             {
-                u32 m0 = mt[j];
-                u32 m1 = mt[j + 1];
+                u32 m0 = ptr[j];
+                u32 m1 = ptr[j + 1];
                 seed = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
 
                 u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
@@ -125,18 +138,24 @@ public:
                     y ^= (y >> 18);
                 }
 
-                mt[j] = y;
+                ptr[j] = y;
             }
         }
     }
 
+    /**
+     * @brief Gets the next 32bit PRNG state
+     *
+     * @return PRNG value
+     */
     u32 next()
     {
-        return mt[index++];
+        u32 *ptr = &state[0].uint32[0];
+        return ptr[index++];
     }
 
 private:
-    alignas(16) u32 mt[size + 1];
+    vuint128 state[(size + 4) / 4];
     u16 index;
 };
 

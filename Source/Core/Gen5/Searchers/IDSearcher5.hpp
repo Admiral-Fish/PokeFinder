@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,36 +20,41 @@
 #ifndef IDSEARCHER5_HPP
 #define IDSEARCHER5_HPP
 
-#include <Core/Gen5/Profile5.hpp>
-#include <Core/Util/Global.hpp>
-#include <atomic>
-#include <mutex>
+#include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
-class Date;
-class IDGenerator5;
-class IDState5;
-
-class IDSearcher5
+/**
+ * @brief TID/SID searcher for Gen5
+ */
+class IDSearcher5 : public Searcher5<IDGenerator5, IDState>
 {
 public:
-    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
-    void startSearch(const IDGenerator5 &generator, int threads, const Date &start, const Date &end);
-    void cancelSearch();
-    std::vector<IDState5> getResults();
-    int getProgress() const;
+    /**
+     * @brief Construct a new IDSearcher5 object
+     *
+     * @param generator ID state generator
+     * @param profile Profile information
+     */
+    IDSearcher5(const IDGenerator5 &generator, const Profile5 &profile) : Searcher5(generator, profile)
+    {
+    }
 
-private:
-    Profile5 profile;
-    u32 pid;
-    bool checkPID;
-    bool checkXOR;
-
-    bool searching;
-    std::atomic<int> progress;
-    std::vector<IDState5> results;
-    std::mutex mutex;
-
-    void search(IDGenerator5 generator, const Date &start, const Date &end);
+    /**
+     * @brief Searches specified date/time range for filtered matches
+     *
+     * @param generator State generator
+     * @param date Date to search
+     * @param hour Hour to search
+     * @param minute Minute to search
+     * @param minSecond Minimum second
+     * @param maxSecond Maximum second
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState5<IDState>> search(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
+                                                u8 maxSecond);
 };
 
 #endif // IDSEARCHER5_HPP

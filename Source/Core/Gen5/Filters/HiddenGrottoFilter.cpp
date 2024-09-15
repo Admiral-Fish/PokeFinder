@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,25 +20,26 @@
 #include "HiddenGrottoFilter.hpp"
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
 
-HiddenGrottoFilter::HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots,
-                                       const std::vector<bool> &genders) :
-    groups(groups), encounterSlots(encounterSlots), genders(genders)
+HiddenGrottoFilter::HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders,
+                                       const std::array<bool, 4> &groups) :
+    encounterSlots(encounterSlots), genders(genders), groups(groups)
 {
 }
 
 bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state) const
 {
-    if (!groups[state.getGroup()])
-    {
-        return false;
-    }
-
     if (!encounterSlots[state.getSlot()])
     {
         return false;
     }
 
-    if (!genders[state.getGender()])
+    // Only check gender filter if not an item
+    if (!state.getItem() && !genders[state.getGender()])
+    {
+        return false;
+    }
+
+    if (!groups[state.getGroup()])
     {
         return false;
     }

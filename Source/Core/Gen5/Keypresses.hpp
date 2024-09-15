@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,15 +20,40 @@
 #ifndef KEYPRESSES_HPP
 #define KEYPRESSES_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <vector>
 
+class Profile5;
 enum class Buttons : u16;
 
+struct Keypress
+{
+    u32 value;
+    Buttons button;
+};
+
+/**
+ * @brief Computes keypress and keypress values used as part of the Gen 5 seeding SHA1 input
+ */
 namespace Keypresses
 {
-    std::vector<Buttons> getKeyPresses(const std::vector<bool> &keypresses, bool skipLR);
-    std::vector<u32> getValues(const std::vector<Buttons> &buttons);
+    /**
+     * @brief Computes possible keypress combinations
+     *
+     * @param profile Profile information
+     *
+     * @return Vector of keypress inputs
+     */
+    std::vector<Keypress> getKeypresses(const Profile5 &profile);
+
+    /**
+     * @brief Computes value of held key presses
+     *
+     * @param button Held buttons
+     *
+     * @return Keypress value
+     */
+    u32 getValue(Buttons button);
 }
 
 #endif // KEYPRESSES_HPP

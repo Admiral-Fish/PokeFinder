@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,13 +22,23 @@
 
 #include <Core/Parents/EncounterArea.hpp>
 
+/**
+ * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
+ */
 class EncounterArea5 : public EncounterArea
 {
 public:
-    EncounterArea5() = default;
-    EncounterArea5(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u16 prng) const;
-    u8 calcLevel(u8 index) const;
+    /**
+     * @brief Construct a new EncounterArea4 object
+     *
+     * @param location Location number
+     * @param rate Encounter rate of the area
+     * @param encounter Encounter type of the area
+     * @param pokemon Available pokemon of the area
+     */
+    EncounterArea5(u8 location, u8 rate, Encounter type, const std::array<Slot, 12> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    {
+    }
 };
 
 #endif // ENCOUNTERAREA5_HPP

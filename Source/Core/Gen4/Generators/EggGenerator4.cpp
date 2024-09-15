@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,111 +18,163 @@
  */
 
 #include "EggGenerator4.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/States/EggState4.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
+#include <Core/Util/Utilities.hpp>
 
-template <bool broken>
-void setInheritance(const Daycare &daycare, EggState4 &state, const u16 *inh, const u16 *par)
+static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &right)
 {
-    constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
-
-    if constexpr (broken)
+    if (left.getAdvances() < right.getAdvances())
     {
-        // Avoid repeat IV inheritance doesn't work in DPPt
-        constexpr u8 available1[6] = { 0, 1, 2, 3, 4, 5 };
-        constexpr u8 available2[5] = { 1, 2, 3, 4, 5 };
-        constexpr u8 available3[4] = { 1, 3, 4, 5 };
+        return true;
+    }
+    else if (right.getAdvances() < left.getAdvances())
+    {
+        return false;
+    }
 
-        u8 stat = available1[inh[0] % 6];
-        u8 parent = par[0] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+    if (left.getPickupAdvances() < right.getPickupAdvances())
+    {
+        return true;
+    }
+    else if (right.getPickupAdvances() < left.getPickupAdvances())
+    {
+        return false;
+    }
 
-        stat = available2[inh[1] % 5];
-        parent = par[1] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+    return false;
+}
 
-        stat = available3[inh[2] % 4];
-        parent = par[2] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+/**
+ * @brief Inherits IVs from the parents
+ * In DPPt this is bugged to first remove HP followed by Defense which means it is less likely to inherit those and allows the
+ * possibility of repeat inheritance.
+ *
+ * In HGSS it works as expected with no repeat inheritance.
+ *
+ * @param daycare Daycare information
+ * @param ivs Pokemon IVs to set
+ * @param inheritance Pokemon inheritance values to set
+ * @param inh Rand inheritance values
+ * @param par Rand parent values
+ * @param dppt Whether the game version is DPPt
+ */
+static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::array<u8, 6> &inheritance, const u8 *inh, const u8 *par,
+                           bool dppt)
+{
+    if (dppt)
+    {
+        constexpr u8 available1[6] = { 0, 1, 2, 5, 3, 4 };
+        constexpr u8 available2[5] = { 1, 2, 5, 3, 4 };
+        constexpr u8 available3[4] = { 1, 5, 3, 4 };
+
+        u8 stat = available1[inh[0]];
+        ivs[stat] = daycare.getParentIV(par[0], stat);
+        inheritance[stat] = par[0] + 1;
+
+        stat = available2[inh[1]];
+        ivs[stat] = daycare.getParentIV(par[1], stat);
+        inheritance[stat] = par[1] + 1;
+
+        stat = available3[inh[2]];
+        ivs[stat] = daycare.getParentIV(par[2], stat);
+        inheritance[stat] = par[2] + 1;
     }
     else
     {
+        constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
+
         u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-        auto avoid = [&available](u8 stat, u8 i) {
-            for (u8 j = stat; j < 5 - i; j++)
+        auto avoid = [&available](u8 index, u8 max) {
+            for (u8 i = index; i < max; i++)
             {
-                available[j] = available[j + 1];
+                available[i] = available[i + 1];
             }
         };
 
-        u8 stat = available[inh[0] % 6];
-        u8 parent = par[0] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+        u8 stat = available[inh[0]];
+        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
+        inheritance[order[stat]] = par[0] + 1;
 
-        avoid(stat, 0);
+        avoid(inh[0], 5);
 
-        stat = available[inh[1] % 5];
-        parent = par[1] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+        stat = available[inh[1]];
+        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
+        inheritance[order[stat]] = par[1] + 1;
 
-        avoid(stat, 1);
+        avoid(inh[1], 4);
 
-        stat = available[inh[2] % 4];
-        parent = par[2] & 1;
-        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
-        state.setInheritance(order[stat], parent + 1);
+        stat = available[inh[2]];
+        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
+        inheritance[order[stat]] = par[2] + 1;
     }
 }
 
-EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                             const StateFilter &filter, const Daycare &daycare) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare)
+EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
+                             u32 offsetPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, 0, daycare, profile, filter),
+
+    initialAdvancesPickup(initialAdvancesPickup),
+    maxAdvancesPickup(maxAdvancesPickup),
+    offsetPickup(offsetPickup)
 {
 }
 
-std::vector<EggState4> EggGenerator4::generate(u32 seed) const
+std::vector<EggGeneratorState4> EggGenerator4::generate(u32 seedHeld, u32 seedPickup) const
 {
-    switch (method)
+    auto held = generateHeld(seedHeld);
+    if (!held.empty())
     {
-    case Method::Gen4Normal:
-        return generateNormal(seed);
-    case Method::Gen4Masuda:
-        return generateMasuda(seed);
-    case Method::DPPtIVs:
-        return generateDPPtIVs(seed);
-    case Method::HGSSIVs:
-        return generateHGSSIVs(seed);
-    default:
-        return std::vector<EggState4>();
+        return generatePickup(seedPickup, held);
     }
+    return held;
 }
 
-std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
+std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
 {
-    std::vector<EggState4> states;
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
+    const PersonalInfo *male = nullptr;
+    if (daycare.getEggSpecie() == 29) // Nidoran
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+    }
+    else if (daycare.getEggSpecie() == 314) // Illumise
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+    }
 
-    MT mt(seed);
-    mt.advance(initialAdvances);
+    MT mt(seed, initialAdvances + offset);
 
+    std::vector<EggGeneratorState4> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        EggState4 state(initialAdvances + cnt);
-
         u32 pid = mt.next();
-        state.setPID(pid);
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setNature(pid % 25);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
+        if (daycare.getMasuda())
+        {
+            ARNG rng(pid);
+            for (int i = 0; i < 4; i++)
+            {
+                if (Utilities::getShiny<true>(pid, tsv))
+                {
+                    break;
+                }
+                pid = rng.next();
+            }
+        }
 
-        if (filter.comparePID(state))
+        const PersonalInfo *info = base;
+        if (male && (pid & 0x8000))
+        {
+            info = male;
+        }
+
+        EggGeneratorState4 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()) && filter.compareNature(state.getNature())
+            && filter.compareShiny(state.getShiny()))
         {
             states.emplace_back(state);
         }
@@ -131,117 +183,68 @@ std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
     return states;
 }
 
-std::vector<EggState4> EggGenerator4::generateMasuda(u32 seed) const
+std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const std::vector<EggGeneratorState4> &held) const
 {
-    std::vector<EggState4> states;
-
-    MT mt(seed);
-    mt.advance(initialAdvances);
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
+    const PersonalInfo *male = nullptr;
+    if (daycare.getEggSpecie() == 29) // Nidoran
     {
-        EggState4 state(initialAdvances + cnt);
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+    }
+    else if (daycare.getEggSpecie() == 314) // Illumise
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+    }
 
-        u32 pid = mt.next();
-        for (int i = 0; i <= 3; i++)
+    PokeRNG rng(seed, initialAdvancesPickup);
+    auto jump = rng.getJump(offsetPickup);
+
+    std::vector<EggGeneratorState4> states;
+    for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++)
+    {
+        PokeRNG go(rng, jump);
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u8 inh[3];
+        inh[0] = go.nextUShort(6);
+        inh[1] = go.nextUShort(5);
+        inh[2] = go.nextUShort(4);
+
+        u8 par[3];
+        par[0] = go.nextUShort(2);
+        par[1] = go.nextUShort(2);
+        par[2] = go.nextUShort(2);
+
+        std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
+        setInheritance(daycare, ivs, inheritance, inh, par, (profile.getVersion() & Game::DPPt) != Game::None);
+
+        u16 prng = rng.nextUShort();
+        for (auto state : held)
         {
-            u16 val = (pid >> 16) ^ (pid & 0xFFFF);
-
-            if ((val ^ tsv) < 8)
+            const PersonalInfo *info = base;
+            if (male && (state.getPID() & 0x8000))
             {
-                break;
+                info = male;
             }
 
-            pid = ARNG(pid).next();
-        }
-
-        state.setPID(pid);
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setNature(pid % 25);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-        if (filter.comparePID(state))
-        {
-            states.emplace_back(state);
+            state.update(prng, initialAdvancesPickup + cnt, ivs, inheritance, info);
+            if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareIV(state.getIVs()))
+            {
+                states.emplace_back(state);
+            }
         }
     }
 
-    return states;
-}
-
-std::vector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
-{
-    std::vector<EggState4> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances);
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        EggState4 state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
-
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
-        state.setIVs(iv1, iv2);
-
-        u16 inh1 = go.nextUShort();
-        u16 inh2 = go.nextUShort();
-        u16 inh3 = go.nextUShort();
-        u16 inh[3] = { inh1, inh2, inh3 };
-
-        u16 par1 = go.nextUShort();
-        u16 par2 = go.nextUShort();
-        u16 par3 = go.nextUShort();
-        u16 par[3] = { par1, par2, par3 };
-
-        setInheritance<true>(daycare, state, inh, par);
-        state.calculateHiddenPower();
-
-        if (filter.compareIVs(state))
-        {
-            state.setSeed(iv1);
-            states.emplace_back(state);
-        }
-    }
-    return states;
-}
-
-std::vector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
-{
-    std::vector<EggState4> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances);
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        EggState4 state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
-
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
-        state.setIVs(iv1, iv2);
-
-        u16 inh1 = go.nextUShort();
-        u16 inh2 = go.nextUShort();
-        u16 inh3 = go.nextUShort();
-        u16 inh[3] = { inh1, inh2, inh3 };
-
-        u16 par1 = go.nextUShort();
-        u16 par2 = go.nextUShort();
-        u16 par3 = go.nextUShort();
-        u16 par[3] = { par1, par2, par3 };
-
-        setInheritance<false>(daycare, state, inh, par);
-        state.calculateHiddenPower();
-
-        if (filter.compareIVs(state))
-        {
-            state.setSeed(iv1);
-            states.emplace_back(state);
-        }
-    }
+    std::sort(states.begin(), states.end(), compare);
     return states;
 }

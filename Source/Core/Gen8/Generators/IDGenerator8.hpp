@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,13 +20,31 @@
 #ifndef IDGENERATOR8_HPP
 #define IDGENERATOR8_HPP
 
-#include <Core/Gen8/Filters/IDFilter8.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDGenerator8 : public IDGenerator<IDFilter8>
+/**
+ * @brief TID/SID generator for Gen8
+ */
+class IDGenerator8 : public IDGenerator
 {
 public:
-    IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter);
+    /**
+     * @brief Construct a new IDGenerator3 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param filter State filter
+     */
+    IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
     std::vector<IDState8> generate(u64 seed0, u64 seed1);
 };
 

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,76 +19,46 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4() : dual(Game::None), radio(0), radar(false), swarm(false), dex(false)
-{
-    version = Game::Diamond;
-}
+constexpr u8 unownForms[4][2] = { { 0, 9 }, { 17, 21 }, { 10, 16 }, { 22, 25 } };
 
-Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm, bool dex) :
-    Profile(profileName, version, tid, sid), dual(dual), radio(radio), radar(radar), swarm(swarm), dex(dex)
+std::vector<u8> Profile4::getUndiscoveredUnownForms(const std::vector<u8> &unlocked) const
 {
-}
+    std::vector<u8> forms;
+    forms.reserve(26);
 
-std::string Profile4::getDualSlotString() const
-{
-    switch (dual)
+    for (u8 letter : unlocked)
     {
-    case Game::Ruby:
-        return "Ruby";
-    case Game::Sapphire:
-        return "Sapphire";
-    case Game::FireRed:
-        return "Fire Red";
-    case Game::LeafGreen:
-        return "Leaf Green";
-    case Game::Emerald:
-        return "Emerald";
-    default:
-        return "None";
+        if (!unownDiscovered[letter])
+        {
+            forms.emplace_back(letter);
+        }
     }
+
+    return forms;
 }
 
-Game Profile4::getDualSlot() const
+std::vector<u8> Profile4::getUnlockedUnownForms() const
 {
-    return dual;
-}
+    std::vector<u8> forms;
+    forms.reserve(26);
 
-std::string Profile4::getRadioString() const
-{
-    switch (radio)
+    for (int i = 0; i < 4; i++)
     {
-    case 1:
-        return "Hoenn Sound";
-    case 2:
-        return "Sinnoh Sound";
-    default:
-        return "None";
+        if (unownPuzzle[i])
+        {
+            for (u8 form = unownForms[i][0]; form <= unownForms[i][1]; form++)
+            {
+                forms.emplace_back(form);
+            }
+        }
     }
-}
 
-int Profile4::getRadio() const
-{
-    return radio;
-}
-
-bool Profile4::getRadar() const
-{
-    return radar;
-}
-
-bool Profile4::getSwarm() const
-{
-    return swarm;
-}
-
-bool Profile4::getNationalDex() const
-{
-    return dex;
+    return forms;
 }
 
 bool Profile4::operator==(const Profile4 &other) const
 {
-    return Profile::operator==(other) && dual == other.dual && radio == other.radio && radar == other.radar && swarm == other.swarm && dex == other.dex;
+    return Profile::operator==(other) && dex == other.dex && unownDiscovered == other.unownDiscovered && unownPuzzle == other.unownPuzzle;
 }
 
 bool Profile4::operator!=(const Profile4 &other) const

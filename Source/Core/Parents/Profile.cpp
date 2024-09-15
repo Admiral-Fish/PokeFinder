@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,64 +18,6 @@
  */
 
 #include "Profile.hpp"
-#include <Core/Enum/Game.hpp>
-
-Profile::Profile() : name("-"), version(Game::Emerald), tid(12345), sid(54321)
-{
-}
-
-Profile::Profile(const std::string &name, Game version, u16 tid, u16 sid) : name(name), version(version), tid(tid), sid(sid)
-{
-}
-
-std::string Profile::getVersionString() const
-{
-    switch (version)
-    {
-    case Game::Ruby:
-        return "Ruby";
-    case Game::Sapphire:
-        return "Sapphire";
-    case Game::FireRed:
-        return "Fire Red";
-    case Game::LeafGreen:
-        return "Leaf Green";
-    case Game::Emerald:
-        return "Emerald";
-    case Game::Gales:
-        return "Gales";
-    case Game::Colosseum:
-        return "Colosseum";
-    case Game::Diamond:
-        return "Diamond";
-    case Game::Pearl:
-        return "Pearl";
-    case Game::Platinum:
-        return "Platinum";
-    case Game::HeartGold:
-        return "Heart Gold";
-    case Game::SoulSilver:
-        return "Soul Silver";
-    case Game::Black:
-        return "Black";
-    case Game::White:
-        return "White";
-    case Game::Black2:
-        return "Black 2";
-    case Game::White2:
-        return "White 2";
-    case Game::Sword:
-        return "Sword";
-    case Game::Shield:
-        return "Shield";
-    case Game::BD:
-        return "Brilliant Diamond";
-    case Game::SP:
-        return "Shining Pearl";
-    default:
-        return "-";
-    }
-}
 
 bool Profile::operator==(const Profile &other) const
 {

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,567 +19,236 @@
 
 #include "WildGenerator4.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const StateFilter &filter, bool platinum) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), platinum(platinum)
+static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
+{
+    u32 advances = 0;
+
+    // Fishing uses an advance to determine the visual frames range in which you have to press A
+    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+    {
+        advances += 1;
+    }
+
+    // DP uses 4 advances to create the information that determine if quick claw will proc
+    if ((version & Game::DP) != Game::None)
+    {
+        advances += 4;
+    }
+
+    // Advance used to determine the random ball position when thrown out
+    if (!area.greatMarsh(version) && !area.safariZone(version))
+    {
+        advances += 1;
+    }
+
+    return advances;
+}
+
+static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
+{
+    constexpr u8 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
+
+    if (info->getItem(0) == info->getItem(1) && info->getItem(0) != 0)
+    {
+        return info->getItem(0);
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][0])
+    {
+        return 0;
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][1])
+    {
+        return info->getItem(0);
+    }
+    else
+    {
+        return info->getItem(1);
+    }
+}
+
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
+                               bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                               const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
+    feebasTile(feebasTile),
+    shiny(shiny),
+    unownRadio(unownRadio),
+    happiness(happiness)
 {
 }
 
-std::vector<WildState4> WildGenerator4::generate(u32 seed, const EncounterArea4 &encounterArea) const
+std::vector<WildGeneratorState4> WildGenerator4::generate(u32 seed, u8 index) const
 {
     switch (method)
     {
     case Method::MethodJ:
-        return generateMethodJ(seed, encounterArea);
+        return generateMethodJ(seed);
     case Method::MethodK:
-        return generateMethodK(seed, encounterArea);
-    case Method::ChainedShiny:
-        return generateChainedShiny(seed, encounterArea);
+        return generateMethodK(seed);
+    case Method::PokeRadar:
+        if (shiny)
+        {
+            return generatePokeRadarShiny(seed, index);
+        }
+        else
+        {
+            return generatePokeRadar(seed, index);
+        }
     default:
-        return std::vector<WildState4>();
+        return std::vector<WildGeneratorState4>();
     }
 }
 
-std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed, const EncounterArea4 &encounterArea) const
+std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 {
-    std::vector<WildState4> states;
+    std::vector<WildGeneratorState4> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    u8 thresh = area.getRate();
+    auto modifiedSlots = area.getSlots(lead);
+    bool feebas = area.feebasLocation(profile.getVersion());
 
-    u8 buffer = 0;
-    u8 thresh = encounter == Encounter::OldRod ? 25 : encounter == Encounter::GoodRod ? 50 : encounter == Encounter::SuperRod ? 75 : 0;
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
 
-    switch (lead)
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-    case Lead::CuteCharmFemale:
-        buffer = 0;
-        break;
-    case Lead::CuteCharm25M:
-        buffer = 0xC8;
-        break;
-    case Lead::CuteCharm50M:
-        buffer = 0x96;
-        break;
-    case Lead::CuteCharm75M:
-        buffer = 0x4B;
-        break;
-    case Lead::CuteCharm875M:
-        buffer = 0x32;
-        break;
-    default:
-        break;
-    }
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        WildState4 state(initialAdvances + cnt);
-
-        u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed(), &occidentary);
-
-        u16 first = go.nextUShort<true>(); // Encounter slot call, nibble call for fishing
-
-        switch (encounter)
+        // Fishing nibble check
+        if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+             || area.getEncounter() == Encounter::SuperRod)
+            && go.nextUShort<false>(100, &battleAdvances) >= thresh)
         {
-        case Encounter::Grass:
-            state.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += platinum ? 1 : 5; // Compensate for the game's advances after the battle ends
-            break;
-        case Encounter::Surfing:
-            state.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += platinum ? 1 : 5; // Compensate for the game's advances after the battle ends
-            break;
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            if ((first / 656) >= thresh)
-            {
-                continue;
-            }
-
-            state.setEncounterSlot(EncounterSlot::jSlot(go.nextUShort<true>(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
-            break;
-        default:
-            break;
+            rng.next();
+            continue;
         }
 
-        u32 pid = 0;
-        switch (lead)
+        u8 encounterSlot;
+        if (feebas && go.nextUShort<false>(2, &battleAdvances) && feebasTile)
         {
-        case Lead::None:
-        case Lead::CompoundEyes:
-            if (lead == Lead::CompoundEyes)
-            {
-                state.setLead(Lead::CompoundEyes);
-            }
-            // Get hunt nature
-            state.setNature(go.nextUShort<true>() / 0xa3e);
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((go.nextUShort<true>() >> 15) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort<true>() / 0xa3e);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((go.nextUShort<true>() / 0x5556) != 0) // Successful cute charm
-            {
-                // Get nature
-                state.setNature(go.nextUShort<true>() / 0xa3e);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-                pid = buffer + state.getNature();
-            }
-            else // Failed cute charm
-            {
-                // Get nature
-                state.setNature(go.nextUShort<true>() / 0xa3e);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort<true>();
-                    u16 high = go.nextUShort<true>();
-                    pid = static_cast<u32>((high << 16) | low);
-                } while (pid % 25 != state.getNature());
-            }
-
-            break;
+            encounterSlot = 5;
+            go.advance((lead == Lead::MagnetPull || lead == Lead::Static) ? 2 : 1, &battleAdvances);
         }
-
-        state.setPID(pid);
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-        u16 iv1 = go.nextUShort<true>();
-        u16 iv2 = go.nextUShort<true>();
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        u8 item = go.nextUShort<true>() % 100;
-
-        state.setItem(item);
-
-        if (filter.compareState(state))
+        else
         {
-            state.setOccidentary(occidentary);
-            state.setSeed(first);
-            states.emplace_back(state);
-        }
-    }
-
-    return states;
-}
-
-template <bool bug>
-bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8 genderRatio, u16 tsv, const Lead &lead,
-                   const StateFilter &filter)
-{
-    u32 pid = 0;
-    if constexpr (bug)
-    {
-        if (lead == Lead::CuteCharmFemale || lead == Lead::CuteCharm25M || lead == Lead::CuteCharm50M || lead == Lead::CuteCharm75M
-            || lead == Lead::CuteCharm875M)
-        {
-            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
+            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0
+                && !modifiedSlots.empty())
             {
-                // Get hunt nature
-                state.setNature(go.nextUShort<true>() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    return false;
-                }
-
-                pid = buffer + state.getNature();
-
-                state.setPID(pid);
-
-                u16 iv1 = go.nextUShort<true>();
-                u16 iv2 = go.nextUShort<true>();
-
-                state.setIVs(iv1, iv2);
-
-                return true;
-            }
-        }
-
-        for (u8 loop = 0; loop < 4; loop++)
-        {
-            switch (lead)
-            {
-            case Lead::Synchronize:
-                if ((go.nextUShort<true>() & 1) == 0) // Successful synch
-                {
-                    state.setNature(synchNature);
-                }
-                else // Failed synch
-                {
-                    state.setNature(go.nextUShort<true>() % 25);
-                }
-                break;
-            case Lead::CompoundEyes:
-                state.setLead(Lead::CompoundEyes);
-            default: // Falls through to set nature for all cases other than cute charm and synch
-                state.setNature(go.nextUShort<true>() % 25);
-                break;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            state.setPID(pid);
-
-            u16 iv1 = go.nextUShort<true>();
-            u16 iv2 = go.nextUShort<true>();
-
-            state.setIVs(iv1, iv2);
-
-            for (u8 iv = 0; iv < 6; iv++)
-            {
-                if (state.getIV(iv) == 31)
-                {
-                    return true;
-                }
-            }
-        }
-
-        if (!filter.compareNature(state))
-        {
-            return false;
-        }
-    }
-    else
-    {
-        switch (lead)
-        {
-        case Lead::Synchronize:
-            if ((go.nextUShort<true>() & 1) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort<true>() % 25);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                return false;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-            break;
-        case Lead::CuteCharmFemale:
-        case Lead::CuteCharm25M:
-        case Lead::CuteCharm50M:
-        case Lead::CuteCharm75M:
-        case Lead::CuteCharm875M:
-            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort<true>() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    return false;
-                }
-
-                pid = buffer + state.getNature();
+                encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
             }
             else
             {
-                state.setNature(go.nextUShort<true>() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    return false;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort<true>();
-                    u16 high = go.nextUShort<true>();
-                    pid = static_cast<u32>((high << 16) | low);
-                } while (pid % 25 != state.getNature());
+                encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter());
             }
-            break;
-        case Lead::CompoundEyes:
-            state.setLead(Lead::CompoundEyes);
-        default: // Falls through to set nature for all cases other than cute charm and synch
-            state.setNature(go.nextUShort<true>() % 25);
+        }
 
-            if (!filter.compareNature(state))
+        if (!filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        u8 level;
+        if (area.getEncounter() == Encounter::Grass)
+        {
+            level = area.calculateLevel<false, false>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+        }
+        else
+        {
+            level = area.calculateLevel<true, false>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+
+        bool cuteCharmFlag = false;
+        u8 buffer = 0;
+        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+        {
+            switch (info->getGender())
             {
-                return false;
+            case 0:
+            case 254:
+            case 255:
+                cuteCharmFlag = false;
+                break;
+            default:
+                cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
+                if (lead == Lead::CuteCharmF)
+                {
+                    buffer = 25 * ((info->getGender() / 25) + 1);
+                }
+                break;
             }
+        }
 
-            // Begin search for valid pid
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort<false>(25, &battleAdvances);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &battleAdvances);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u32 pid;
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
             do
             {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-            break;
+                u16 low = go.nextUShort(&battleAdvances);
+                u16 high = go.nextUShort(&battleAdvances);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
         }
 
-        state.setPID(pid);
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-        u16 iv1 = go.nextUShort<true>();
-        u16 iv2 = go.nextUShort<true>();
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
 
-        state.setIVs(iv1, iv2);
-    }
-
-    return true;
-}
-
-std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const EncounterArea4 &encounterArea) const
-{
-    std::vector<WildState4> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    u8 buffer = 0;
-    u16 rate = encounterArea.getRate();
-    if (lead == Lead::SuctionCups
-        && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
-    {
-        rate <<= 1;
-    }
-
-    switch (lead)
-    {
-    case Lead::CuteCharmFemale:
-        buffer = 0;
-        break;
-    case Lead::CuteCharm25M:
-        buffer = 0xC8;
-        break;
-    case Lead::CuteCharm50M:
-        buffer = 0x96;
-        break;
-    case Lead::CuteCharm75M:
-        buffer = 0x4B;
-        break;
-    case Lead::CuteCharm875M:
-        buffer = 0x32;
-        break;
-    default:
-        break;
-    }
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        WildState4 state(initialAdvances + cnt);
-
-        u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed(), &occidentary);
-
-        u16 first = go.nextUShort<true>(); // Encounter slot, nibble for fishing, nibble for rock smash
-
-        switch (encounter)
+        u8 form = 0;
+        if (slot.getSpecie() == 201)
         {
-        case Encounter::Grass:
-            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 1; // Compensate for the game's advances after the battle ends
-            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        case Encounter::Surfing:
-            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += 1; // Compensate for the game's advances after the battle ends
-            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            if ((first % 100) >= rate)
-            {
-                continue;
-            }
-
-            state.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort<true>(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 2; // Compensate for the game's advances after the battle ends
-            go.next();
-            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        case Encounter::RockSmash:
-            if ((first % 100) >= rate)
-            {
-                continue;
-            }
-
-            state.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort<true>(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += 1; // Compensate for the game's advances after the battle ends
-            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        case Encounter::BugCatchingContest:
-            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            if (!createPokemon<true>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        case Encounter::Headbutt:
-            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += 1; // Compensate for the game's advances after the battle ends
-            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
-            {
-                continue;
-            }
-            break;
-        default:
-            break;
+            form = area.unownForm(go.nextUShort(&battleAdvances));
         }
 
-        u32 pid = state.getPID();
-
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-        state.calculateHiddenPower();
-
-        u8 item = go.nextUShort<true>() % 100;
-
-        state.setItem(item);
-
-        if (filter.compareState(state))
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
+                                  slot.getSpecie(), form, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
-            state.setOccidentary(occidentary);
-            state.setSeed(first);
             states.emplace_back(state);
         }
     }
@@ -587,44 +256,435 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
     return states;
 }
 
-std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed, const EncounterArea4 &encounterArea) const
+std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 {
-    std::vector<WildState4> states;
+    std::vector<WildGeneratorState4> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    u16 rate = area.getRate();
+    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
     {
-        WildState4 state(initialAdvances + cnt);
-
-        PokeRNG go(rng.getSeed());
-        u16 first = go.nextUShort();
-
-        u16 low = first & 7;
-        u16 high = go.nextUShort() & 7;
-
-        for (int i = 3; i < 16; i++)
+        rate += happiness;
+        if (lead == Lead::SuctionCups)
         {
-            low |= (go.nextUShort() & 1) << i;
+            rate *= 2;
         }
-        high |= (low ^ tid ^ sid) & 0xfff8;
+    }
+    else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
+    {
+        rate *= 2;
+    }
+    auto modifiedSlots = area.getSlots(lead);
+    bool safari = area.safariZone(profile.getVersion());
 
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
+    auto unlockedUnown = profile.getUnlockedUnownForms();
+    auto undiscoveredUnown = profile.getUndiscoveredUnownForms(unlockedUnown);
 
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
 
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
 
-        if (filter.compareState(state))
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        // Rock smash/fishing nibble check
+        if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
+             || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+            && go.nextUShort(100, &battleAdvances) >= rate)
         {
-            state.setSeed(first);
+            rng.next();
+            continue;
+        }
+
+        u8 encounterSlot;
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
+        {
+            encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
+        }
+        else
+        {
+            if (safari)
+            {
+                encounterSlot = go.nextUShort(10, &battleAdvances);
+            }
+            else
+            {
+                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &battleAdvances), area.getEncounter());
+            }
+        }
+
+        if (!filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        u8 level;
+        if (area.getEncounter() == Encounter::Grass || safari)
+        {
+            level = area.calculateLevel<false, true>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+        }
+        else
+        {
+            level = area.calculateLevel<true, true>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+
+        bool cuteCharmFlag = false;
+        u8 buffer = 0;
+        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+        {
+            switch (info->getGender())
+            {
+            case 0:
+            case 254:
+            case 255:
+                cuteCharmFlag = false;
+                break;
+            default:
+                cuteCharmFlag = go.nextUShort(3, &battleAdvances) != 0;
+                if (lead == Lead::CuteCharmF)
+                {
+                    buffer = 25 * ((info->getGender() / 25) + 1);
+                }
+                break;
+            }
+        }
+
+        u8 nature;
+        u32 pid;
+        u16 iv1;
+        u16 iv2;
+        if (cuteCharmFlag)
+        {
+            nature = go.nextUShort(25, &battleAdvances);
+            if (!filter.compareNature(nature))
+            {
+                rng.next();
+                continue;
+            }
+
+            pid = buffer + nature;
+            iv1 = go.nextUShort(&battleAdvances);
+            iv2 = go.nextUShort(&battleAdvances);
+        }
+        else
+        {
+            if (area.getEncounter() == Encounter::BugCatchingContest || safari)
+            {
+                for (u8 i = 0; i < 4; i++)
+                {
+                    if (lead <= Lead::SynchronizeEnd)
+                    {
+                        nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort(25, &battleAdvances);
+                    }
+                    else
+                    {
+                        nature = go.nextUShort(25, &battleAdvances);
+                    }
+
+                    do
+                    {
+                        u16 low = go.nextUShort(&battleAdvances);
+                        u16 high = go.nextUShort(&battleAdvances);
+                        pid = (high << 16) | low;
+                    } while (pid % 25 != nature);
+
+                    iv1 = go.nextUShort(&battleAdvances);
+                    iv2 = go.nextUShort(&battleAdvances);
+
+                    bool exit = false;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (((iv1 >> (5 * j)) & 31) == 31)
+                        {
+                            exit = true;
+                            break;
+                        }
+                        if (((iv2 >> (5 * j)) & 31) == 31)
+                        {
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    if (exit)
+                    {
+                        break;
+                    }
+                }
+
+                if (!filter.compareNature(nature))
+                {
+                    rng.next();
+                    continue;
+                }
+            }
+            else
+            {
+                if (lead <= Lead::SynchronizeEnd)
+                {
+                    nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort(25, &battleAdvances);
+                }
+                else
+                {
+                    nature = go.nextUShort(25, &battleAdvances);
+                }
+
+                if (!filter.compareNature(nature))
+                {
+                    rng.next();
+                    continue;
+                }
+
+                do
+                {
+                    u16 low = go.nextUShort(&battleAdvances);
+                    u16 high = go.nextUShort(&battleAdvances);
+                    pid = (high << 16) | low;
+                } while (pid % 25 != nature);
+
+                iv1 = go.nextUShort(&battleAdvances);
+                iv2 = go.nextUShort(&battleAdvances);
+            }
+        }
+
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        u8 form = 0;
+        if (slot.getSpecie() == 201 && !unlockedUnown.empty())
+        {
+            if (area.getLocation() == 10)
+            {
+                form = 26 + go.nextUShort(2, &battleAdvances);
+            }
+            else if (area.getLocation() == 11)
+            {
+                if (unownRadio && !undiscoveredUnown.empty() && go.nextUShort(100, &battleAdvances) < 50)
+                {
+                    form = undiscoveredUnown[go.nextUShort(undiscoveredUnown.size(), &battleAdvances)];
+                }
+                else
+                {
+                    form = unlockedUnown[go.nextUShort(unlockedUnown.size(), &battleAdvances)];
+                }
+            }
+        }
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
+                                  slot.getSpecie(), form, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    const Slot &slot = area.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    u8 buffer = 0;
+    switch (info->getGender())
+    {
+    case 0:
+    case 254:
+    case 255:
+        break;
+    default:
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 * ((info->getGender() / 25) + 1);
+        }
+        break;
+    }
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 nature;
+        u32 pid;
+
+        bool cuteCharmFlag = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
+        {
+            cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
+        }
+
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort<false>(25, &battleAdvances);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &battleAdvances);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort(&battleAdvances);
+                u16 high = go.nextUShort(&battleAdvances);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv), index,
+                                  item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed, u8 index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    const Slot &slot = area.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    switch (info->getGender())
+    {
+    case 0:
+    case 254:
+    case 255:
+        break;
+    default:
+        cuteCharm = true;
+        break;
+    }
+
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 nature;
+        u32 pid;
+
+        auto shinyPID = [this, &go, &battleAdvances]() {
+            u16 low = go.nextUShort(8, &battleAdvances);
+            u16 high = go.nextUShort(8, &battleAdvances);
+            for (int i = 3; i < 16; i++)
+            {
+                low |= (go.nextUShort(&battleAdvances) & 1) << i;
+            }
+            high |= (tsv ^ low) & 0xfff8;
+            return static_cast<u32>((high << 16) | low);
+        };
+
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm && go.nextUShort<false>(3, &battleAdvances) != 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (!cuteCharmCheck(info, pid));
+        }
+        else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &battleAdvances) == 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (pid % 25 != toInt(lead));
+        }
+        else
+        {
+            pid = shinyPID();
+        }
+
+        nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv), index,
+                                  item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
             states.emplace_back(state);
         }
     }

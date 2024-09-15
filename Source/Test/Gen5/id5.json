@@ -1,0 +1,138 @@
+{
+  "generate": [
+    {
+      "name": "Black",
+      "seed": 0,
+      "version": "Black",
+      "results": [
+        {
+          "advances": 25,
+          "sid": 39382,
+          "tid": 18185,
+          "tsv": 7131
+        },
+        {
+          "advances": 26,
+          "sid": 2547,
+          "tid": 45109,
+          "tsv": 5944
+        },
+        {
+          "advances": 27,
+          "sid": 62051,
+          "tid": 33963,
+          "tsv": 3801
+        },
+        {
+          "advances": 28,
+          "sid": 57259,
+          "tid": 48671,
+          "tsv": 3126
+        },
+        {
+          "advances": 29,
+          "sid": 10415,
+          "tid": 20018,
+          "tsv": 3283
+        },
+        {
+          "advances": 30,
+          "sid": 11109,
+          "tid": 16700,
+          "tsv": 3403
+        },
+        {
+          "advances": 31,
+          "sid": 3711,
+          "tid": 17216,
+          "tsv": 2471
+        },
+        {
+          "advances": 32,
+          "sid": 2362,
+          "tid": 5565,
+          "tsv": 912
+        },
+        {
+          "advances": 33,
+          "sid": 38423,
+          "tid": 33146,
+          "tsv": 749
+        },
+        {
+          "advances": 34,
+          "sid": 21809,
+          "tid": 49315,
+          "tsv": 4786
+        }
+      ]
+    },
+    {
+      "name": "Black 2",
+      "seed": 0,
+      "version": "Black2",
+      "results": [
+        {
+          "advances": 34,
+          "sid": 21809,
+          "tid": 49315,
+          "tsv": 4786
+        },
+        {
+          "advances": 35,
+          "sid": 1101,
+          "tid": 39672,
+          "tsv": 5078
+        },
+        {
+          "advances": 36,
+          "sid": 57482,
+          "tid": 3049,
+          "tsv": 7532
+        },
+        {
+          "advances": 37,
+          "sid": 52263,
+          "tid": 4119,
+          "tsv": 7046
+        },
+        {
+          "advances": 38,
+          "sid": 6116,
+          "tid": 16594,
+          "tsv": 2790
+        },
+        {
+          "advances": 39,
+          "sid": 62362,
+          "tid": 40328,
+          "tsv": 3522
+        },
+        {
+          "advances": 40,
+          "sid": 27093,
+          "tid": 58488,
+          "tsv": 4533
+        },
+        {
+          "advances": 41,
+          "sid": 38998,
+          "tid": 38204,
+          "tsv": 429
+        },
+        {
+          "advances": 42,
+          "sid": 33691,
+          "tid": 59196,
+          "tsv": 3220
+        },
+        {
+          "advances": 43,
+          "sid": 61973,
+          "tid": 4707,
+          "tsv": 7182
+        }
+      ]
+    }
+  ]
+}

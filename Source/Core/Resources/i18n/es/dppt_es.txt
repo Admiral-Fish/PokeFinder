@@ -26,7 +26,14 @@
 26,Gran Pantano Zona 4
 27,Gran Pantano Zona 5
 28,Gran Pantano Zona 6
-29,Ruinas Sosiego
+29,Ruinas Sosiego 2F
+30,Ruinas Sosiego
+32,Ruinas Sosiego B1F (4 Stairs)
+34,Ruinas Sosiego B2F (4 Stairs)
+40,Ruinas Sosiego B3F (3 Stairs)
+41,Ruinas Sosiego B3F (4 Stairs)
+42,Ruinas Sosiego B4F (4 Stairs)
+43,Ruinas Sosiego B4F (Chamber)
 47,Calle Victoria Entrada
 48,Calle Victoria Piso 1
 49,Calle Victoria Sótano
@@ -76,7 +83,7 @@
 143,Ruta 204 (Sur)
 144,Ruta 204 (Norte)
 145,Ruta 205 (Sur)
-146,Route 205 (South)
+146,Route 205 (North)
 147,Ruta 206
 148,Ruta 207
 149,Ruta 208

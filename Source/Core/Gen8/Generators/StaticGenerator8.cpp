@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,150 +18,158 @@
  */
 
 #include "StaticGenerator8.hpp"
-#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Parents/States/StaticState.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
-StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter)
+static u32 gen(Xorshift &rng)
+{
+    return rng.next(0x80000000, 0x7fffffff);
+}
+
+StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, const StaticTemplate8 &staticTemplate,
+                                   const Profile8 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, staticTemplate, profile, filter)
 {
 }
 
-std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate &parameters) const
+std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1) const
 {
-    PersonalInfo info = PersonalLoader::getPersonal(Game::BDSP, parameters.getSpecies());
+    if (staticTemplate.getRoamer())
+    {
+        return generateRoamer(seed0, seed1);
+    }
+    else
+    {
+        return generateNonRoamer(seed0, seed1);
+    }
+}
 
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances + offset);
+std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) const
+{
+    const PersonalInfo *info = staticTemplate.getInfo();
+    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 64, 0> rngList(rng);
-
-    std::vector<StaticState> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        StaticState state(initialAdvances + cnt);
+        u32 ec = rngList.next();
+        u32 sidtid = rngList.next();
+        u32 pid = rngList.next();
 
-        rngList.advance(1); // EC call
-        u32 sidtid = rngList.getValue();
-        u32 pid = rngList.getValue();
-
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        if (parameters.getShiny() == Shiny::Never)
+        u8 shiny;
+        if (staticTemplate.getShiny() == Shiny::Never)
         {
-            state.setShiny(0);
-            if ((psv ^ tsv) < 16)
+            shiny = 0;
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
         }
         else
         {
-            u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-            if (fakeXOR < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                u8 fakeShinyType = fakeXOR == 0 ? 2 : 1;
-
-                u16 realXOR = psv ^ tsv;
-                u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-                state.setShiny(fakeShinyType);
-                if (realShinyType != fakeShinyType)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
-                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
                 }
             }
             else // Force non shiny
             {
-                state.setShiny(0);
-                if ((psv ^ tsv) < 16)
+                shiny = 0;
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }
             }
         }
-        state.setPID(pid);
-
-        for (int i = 0; i < 6; i++)
-        {
-            state.setIV(i, 255);
-        }
 
         // Assign IVs set by template
-        for (int i = 0; i < parameters.getIVCount();)
+        std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
+        for (u8 i = 0; i < staticTemplate.getIVCount();)
         {
-            u8 index = rngList.getValue() % 6;
-            if (state.getIV(index) == 255)
+            u8 index = rngList.next() % 6;
+            if (ivs[index] == 255)
             {
-                state.setIV(index, 31);
+                ivs[index] = 31;
                 i++;
             }
         }
 
-        for (int i = 0; i < 6; i++)
+        for (u8 &iv : ivs)
         {
-            if (state.getIV(i) == 255)
+            if (iv == 255)
             {
-                state.setIV(i, rngList.getValue() % 32);
+                iv = rngList.next() % 32;
             }
         }
 
         u8 ability;
-        if (parameters.getAbility() != 255)
+        switch (staticTemplate.getAbility())
         {
-            ability = parameters.getAbility();
+        case 0:
+        case 1:
+            ability = staticTemplate.getAbility();
+            break;
+        case 2:
+            ability = 2;
+            rngList.next();
+            break;
+        default:
+            ability = rngList.next() % 2;
+            break;
         }
-        else
-        {
-            ability = rngList.getValue() % 2;
-        }
-        state.setAbility(ability);
 
-        if (info.getGender() == 255)
+        u8 gender;
+        switch (info->getGender())
         {
-            state.setGender(2);
-        }
-        else if (info.getGender() == 254)
-        {
-            state.setGender(1);
-        }
-        else if (info.getGender() == 0)
-        {
-            state.setGender(0);
-        }
-        else if ((lead == Lead::CuteCharm || lead == Lead::CuteCharmFemale) && (rngList.getValue() % 3) > 0)
-        {
-            if (lead == Lead::CuteCharmFemale)
+        case 255:
+            gender = 2;
+            break;
+        case 254:
+            gender = 1;
+            break;
+        case 0:
+            gender = 0;
+            break;
+        default:
+            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rngList.next() % 3) > 0)
             {
-                state.setGender(0);
+                gender = lead == Lead::CuteCharmF ? 0 : 1;
             }
             else
             {
-                state.setGender(1);
+                gender = (rngList.next() % 253) + 1 < info->getGender();
             }
+            break;
+        }
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = toInt(lead);
         }
         else
         {
-            u8 gender = (rngList.getValue() % 253) + 1 < info.getGender();
-            state.setGender(gender);
+            nature = rngList.next() % 25;
         }
 
-        if (lead == Lead::Synchronize)
-        {
-            state.setNature(synchNature);
-        }
-        else
-        {
-            state.setNature(rngList.getValue() % 25);
-        }
+        u8 height = rngList.next() % 129;
+        height += rngList.next() % 128;
 
-        if (filter.comparePID(state) && filter.compareIV(state))
+        u8 weight = (rngList.next() % 129);
+        weight += rngList.next() % 128;
+
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight, info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -170,90 +178,82 @@ std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const 
     return states;
 }
 
-std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate &parameters) const
+std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
 {
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters
-    u8 gender = parameters.getSpecies() == 488 ? 1 : 2;
+    u8 gender = staticTemplate.getSpecie() == 488 ? 1 : 2;
 
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances + offset);
+    Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
-    std::vector<StaticState> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        StaticState state(initialAdvances + cnt);
-        XoroshiroBDSP gen(rng.next());
+        u32 ec = roamer.next(0x80000000, 0x7fffffff);
+        XoroshiroBDSP rng(ec);
 
-        u32 sidtid = gen.next(0xffffffff);
-        u32 pid = gen.next(0xffffffff);
+        u32 sidtid = rng.nextUInt(0xffffffff);
+        u32 pid = rng.nextUInt(0xffffffff);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-        if (fakeXOR < 16) // Force shiny
+        u8 shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+        if (shiny) // Force shiny
         {
-            u8 fakeShinyType = fakeXOR == 0 ? 2 : 1;
-
-            u16 realXOR = psv ^ tsv;
-            u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-            state.setShiny(fakeShinyType);
-            if (realShinyType != fakeShinyType)
+            if (Utilities::getShiny<false>(pid, tsv) != shiny)
             {
-                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                 pid = (high << 16) | (pid & 0xFFFF);
             }
         }
         else // Force non shiny
         {
-            state.setShiny(0);
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
         }
-        state.setPID(pid);
-
-        for (int i = 0; i < 6; i++)
-        {
-            state.setIV(i, 255);
-        }
 
         // Assign 3 31 IVs
+        std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
         for (int i = 0; i < 3;)
         {
-            u8 index = gen.next(6);
-            if (state.getIV(index) == 255)
+            u8 index = rng.nextUInt(6);
+            if (ivs[index] == 255)
             {
-                state.setIV(index, 31);
+                ivs[index] = 31;
                 i++;
             }
         }
 
-        for (int i = 0; i < 6; i++)
+        for (u8 &iv : ivs)
         {
-            if (state.getIV(i) == 255)
+            if (iv == 255)
             {
-                state.setIV(i, gen.next(32));
+                iv = rng.nextUInt(32);
             }
         }
 
         // No HA possible for roamers
-        state.setAbility(gen.next(2));
+        u8 ability = rng.nextUInt(2);
 
-        // Each roamer has a fixed gender, set that now
-        state.setGender(gender);
-
-        if (lead == Lead::Synchronize)
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
         {
-            state.setNature(synchNature);
+            nature = toInt(lead);
         }
         else
         {
-            state.setNature(gen.next(25));
+            nature = rng.nextUInt(25);
         }
 
-        if (filter.comparePID(state) && filter.compareIV(state))
+        u8 height = rng.nextUInt(129);
+        height += rng.nextUInt(128);
+
+        u8 weight = rng.nextUInt(129);
+        weight += rng.nextUInt(128);
+
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight,
+                     staticTemplate.getInfo());
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

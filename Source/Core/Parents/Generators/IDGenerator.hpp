@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,22 +20,32 @@
 #ifndef IDGENERATOR_HPP
 #define IDGENERATOR_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <vector>
 
-template <class Filter>
+/**
+ * @brief Parent generator class for TID/SID generation
+ */
 class IDGenerator
 {
 public:
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const Filter &filter) :
-        initialAdvances(initialAdvances), maxAdvances(maxAdvances), filter(filter)
+    /**
+     * @brief Construct a new IDGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param filter State filter
+     */
+    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
+        filter(filter), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
     {
     }
 
 protected:
+    IDFilter filter;
     u32 initialAdvances;
     u32 maxAdvances;
-    Filter filter;
 };
 
 #endif // IDGENERATOR_HPP

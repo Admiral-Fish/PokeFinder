@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,30 +18,28 @@
  */
 
 #include "IDGenerator3.hpp"
-#include <Core/Gen3/States/IDState3.hpp>
+#include <Core/Parents/States/IDState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 IDGenerator3::IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
 }
 
-std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
+std::vector<IDState> IDGenerator3::generateXDColo(u32 seed)
 {
-    std::vector<IDState3> states;
+    std::vector<IDState> states;
 
-    XDRNG rng(seed);
-    rng.advance(initialAdvances);
-
+    XDRNG rng(seed, initialAdvances);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
         u16 tid = go.nextUShort();
         u16 sid = go.nextUShort();
+        u16 tsv = (tid ^ sid) >> 3;
 
-        IDState3 state(initialAdvances + cnt, tid, sid);
-
-        if (filter.compare(state))
+        IDState state(initialAdvances + cnt, tid, sid, tsv);
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }
@@ -50,19 +48,18 @@ std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
     return states;
 }
 
-std::vector<IDState3> IDGenerator3::generateFRLGE(u16 tid)
+std::vector<IDState> IDGenerator3::generateFRLGE(u16 tid)
 {
-    std::vector<IDState3> states;
+    std::vector<IDState> states;
 
-    PokeRNG rng(tid);
-    rng.advance(initialAdvances);
-
+    PokeRNG rng(tid, initialAdvances);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u16 sid = rng.nextUShort();
+        u16 tsv = (tid ^ sid) >> 3;
 
-        IDState3 state(initialAdvances + cnt, tid, sid);
-        if (filter.compare(state))
+        IDState state(initialAdvances + cnt, tid, sid, tsv);
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }
@@ -71,23 +68,21 @@ std::vector<IDState3> IDGenerator3::generateFRLGE(u16 tid)
     return states;
 }
 
-std::vector<IDState3> IDGenerator3::generateRS(u32 seed)
+std::vector<IDState> IDGenerator3::generateRS(u16 seed)
 {
-    std::vector<IDState3> states;
+    std::vector<IDState> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances);
-
+    PokeRNG rng(seed, initialAdvances);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u16 sid = go.nextUShort();
         u16 tid = go.nextUShort();
+        u16 tsv = (tid ^ sid) >> 3;
 
-        IDState3 state(initialAdvances + cnt, tid, sid);
-
-        if (filter.compare(state))
+        IDState state(initialAdvances + cnt, tid, sid, tsv);
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

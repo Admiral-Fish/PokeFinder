@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,102 +18,50 @@
  */
 
 #include "StaticGenerator3.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                   const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const StaticTemplate3 &staticTemplate,
+                                   const Profile3 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, Lead::None, staticTemplate, profile, filter)
 {
 }
 
-std::vector<State> StaticGenerator3::generate(u32 seed) const
+std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
 {
-    switch (method)
-    {
-    case Method::Method1:
-    case Method::Method2:
-    case Method::Method4:
-        return generateMethod124(seed);
-    case Method::Method1Reverse:
-        return generateMethod1Reverse(seed);
-    default:
-        return std::vector<State>();
-    }
-}
+    std::vector<GeneratorState> states;
+    const PersonalInfo *info = staticTemplate.getInfo();
 
-std::vector<State> StaticGenerator3::generateMethod124(u32 seed) const
-{
-    std::vector<State> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
-    // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
-    // Method 4 [SEED] [PID] [PID] [IVS] [BLANK] [IVS]
-
+    PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        State state(cnt + initialAdvances);
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
-        u16 low = go.nextUShort();
-        u16 high = go.nextUShort();
+        u32 pid = go.nextUShort();
+        pid |= go.nextUShort() << 16;
 
-        go.advance(method == Method::Method2);
-        u16 iv1 = go.nextUShort();
-        go.advance(method == Method::Method4);
-        u16 iv2 = go.nextUShort();
-
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        u16 iv1 = staticTemplate.getBuggedRoamer() ? go.nextUShort() & 0xff : go.nextUShort();
+        if (method == Method::Method4)
         {
-            states.emplace_back(state);
+            go.next();
         }
-    }
+        u16 iv2 = staticTemplate.getBuggedRoamer() ? 0 : go.nextUShort();
 
-    return states;
-}
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-std::vector<State> StaticGenerator3::generateMethod1Reverse(u32 seed) const
-{
-    std::vector<State> states;
-
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        State state(cnt + initialAdvances);
-        PokeRNG go(rng.getSeed());
-
-        u16 high = go.nextUShort();
-        u16 low = go.nextUShort();
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
-
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate.getLevel(), pid % 25,
+                             Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

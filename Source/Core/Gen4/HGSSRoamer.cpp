@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,47 +20,48 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
+/**
+ * @brief Calculates roamer location for Entei/Raikou
+ *
+ * @param prng PRNG state
+ *
+ * @return Roamer location
+ */
+static u8 getRouteJ(u16 prng)
+{
+    u8 val = prng & 15;
+    return val < 11 ? val + 29 : val + 31;
+}
+
+/**
+ * @brief Calculates roamer location for Latios/Latias
+ *
+ * @param prng PRNG state
+ *
+ * @return Roamer location
+ */
+static u8 getRouteK(u16 prng)
+{
+    u8 val = prng % 25;
+    if (val > 21)
+    {
+        switch (val)
+        {
+        case 22:
+            return 24;
+        case 23:
+            return 26;
+        case 24:
+            return 28;
+        }
+    }
+    return val + 1;
+}
+
 HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
-    seed(seed), roamers(roamers), routes(routes)
-{
-    calculateRoamers();
-}
-
-u8 HGSSRoamer::getSkips() const
-{
-    return skips;
-}
-
-std::string HGSSRoamer::getRouteString() const
-{
-    std::string route;
-
-    if (roamers[0])
-    {
-        route += "R: " + std::to_string(raikouRoute) + " ";
-    }
-    if (roamers[1])
-    {
-        route += "E: " + std::to_string(enteiRoute) + " ";
-    }
-    if (roamers[2])
-    {
-        route += "L: " + std::to_string(latiRoute);
-    }
-
-    return route;
-}
-
-void HGSSRoamer::recalculateRoamers(u32 seed)
-{
-    this->seed = seed;
-    calculateRoamers();
-}
-
-void HGSSRoamer::calculateRoamers()
+    enteiRoute(0), latiRoute(0), raikouRoute(0), skips(0)
 {
     PokeRNG rng(seed);
-    skips = 0;
 
     if (roamers[0])
     {
@@ -90,27 +91,32 @@ void HGSSRoamer::calculateRoamers()
     }
 }
 
-u8 HGSSRoamer::getRouteJ(u16 prng) const
+HGSSRoamer::HGSSRoamer(const HGSSRoamer *other) :
+    enteiRoute(other->enteiRoute), latiRoute(other->latiRoute), raikouRoute(other->raikouRoute), skips(other->skips)
 {
-    u8 val = prng & 15;
-    return val < 11 ? val + 29 : val + 31;
 }
 
-u8 HGSSRoamer::getRouteK(u16 prng) const
+std::string HGSSRoamer::getRouteString() const
 {
-    u8 val = prng % 25;
-    if (val > 21)
+    std::string route;
+
+    if (raikouRoute != 0)
     {
-        switch (val)
-        {
-        case 22:
-            return 24;
-        case 23:
-            return 26;
-        case 24:
-            return 28;
-        }
+        route += "R: " + std::to_string(raikouRoute) + " ";
+    }
+    if (enteiRoute != 0)
+    {
+        route += "E: " + std::to_string(enteiRoute) + " ";
+    }
+    if (latiRoute != 0)
+    {
+        route += "L: " + std::to_string(latiRoute);
     }
 
-    return val + 1;
+    return route;
+}
+
+u8 HGSSRoamer::getSkips() const
+{
+    return skips;
 }

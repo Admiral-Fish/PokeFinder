@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,162 +21,317 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Resources/Encounters.hpp>
-#include <algorithm>
-#include <cstring>
-#include <iterator>
+#include <Core/Resources/EncounterData3.hpp>
+#include <Core/Util/Utilities.hpp>
+
+struct DynamicSlot
+{
+    u16 specie;
+    u8 maxLevel;
+    u8 minLevel;
+};
+static_assert(sizeof(DynamicSlot) == 4);
+
+struct StaticSlot
+{
+    u16 specie;
+    u8 level;
+};
+static_assert(sizeof(StaticSlot) == 4);
+
+struct WildEncounter3
+{
+    u8 location;
+    u8 grassRate;
+    u8 surfRate;
+    u8 rockRate;
+    u8 fishRate;
+    StaticSlot grass[12];
+    DynamicSlot surf[5];
+    DynamicSlot rock[5];
+    DynamicSlot old[2];
+    DynamicSlot good[3];
+    DynamicSlot super[5];
+};
+static_assert(sizeof(WildEncounter3) == 134);
+
+struct WildEncounterPokeSpot
+{
+    u8 location;
+    DynamicSlot spot[3];
+};
+static_assert(sizeof(WildEncounterPokeSpot) == 14);
 
 namespace Encounters3
 {
-    namespace
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version)
     {
-        std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
+        u32 length;
+        u8 *data;
+
+        if (version == Game::Emerald)
         {
-            const u8 *data;
-            size_t size;
+            data = Utilities::decompress(EMERALD.data(), EMERALD.size(), length);
+        }
+        else if (version == Game::FireRed)
+        {
+            data = Utilities::decompress(FIRERED.data(), FIRERED.size(), length);
+        }
+        else if (version == Game::LeafGreen)
+        {
+            data = Utilities::decompress(LEAFGREEN.data(), LEAFGREEN.size(), length);
+        }
+        else if (version == Game::Ruby)
+        {
+            data = Utilities::decompress(RUBY.data(), RUBY.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(SAPPHIRE.data(), SAPPHIRE.size(), length);
+        }
 
-            if (game == Game::Emerald)
-            {
-                data = emerald.data();
-                size = emerald.size();
-            }
-            else if (game == Game::FireRed)
-            {
-                data = firered.data();
-                size = firered.size();
-            }
-            else if (game == Game::LeafGreen)
-            {
-                data = leafgreen.data();
-                size = leafgreen.size();
-            }
-            else if (game == Game::Ruby)
-            {
-                data = ruby.data();
-                size = ruby.size();
-            }
-            else
-            {
-                data = sapphire.data();
-                size = sapphire.size();
-            }
+        const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
-            std::vector<EncounterArea3> encounters;
-            for (size_t offset = 0; offset < size; offset += 121)
+        std::vector<EncounterArea3> encounters;
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter3))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounter3 *>(data + offset);
+
+            std::array<Slot, 12> slots;
+            switch (encounter)
             {
-                const u8 *entry = data + offset;
-
-                u8 location = entry[0];
-                u8 grass = entry[1];
-                u8 water = entry[2];
-                u8 rock = entry[3];
-                u8 fish = entry[4];
-
-                switch (encounter)
+            case Encounter::Grass:
+                if (entry->grassRate != 0)
                 {
-                case Encounter::Grass:
-                    if (grass != 0)
+                    for (size_t i = 0; i < 12; i++)
                     {
-                        std::vector<Slot> slots;
-                        slots.reserve(12);
-                        for (int i = 0; i < 12; i++)
-                        {
-                            u8 level = entry[5 + (i * 3)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
-                            slots.emplace_back(specie, level, info[specie]);
-                        }
-                        encounters.emplace_back(location, grass, encounter, slots);
+                        const auto &slot = entry->grass[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level, &info[slot.specie & 0x7ff]);
                     }
-                    break;
-                case Encounter::Surfing:
-                    if (water != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[41 + (i * 4)];
-                            u8 max = entry[42 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 43 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, water, encounter, slots);
-                    }
-                    break;
-                case Encounter::RockSmash:
-                    if (rock != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[61 + (i * 4)];
-                            u8 max = entry[62 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 63 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, rock, encounter, slots);
-                    }
-                    break;
-                case Encounter::OldRod:
-                    if (fish != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(2);
-                        for (int i = 0; i < 2; i++)
-                        {
-                            u8 min = entry[81 + (i * 4)];
-                            u8 max = entry[82 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 83 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, fish, encounter, slots);
-                    }
-                    break;
-                case Encounter::GoodRod:
-                    if (fish != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(3);
-                        for (int i = 0; i < 3; i++)
-                        {
-                            u8 min = entry[89 + (i * 4)];
-                            u8 max = entry[90 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 91 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, fish, encounter, slots);
-                    }
-                    break;
-                case Encounter::SuperRod:
-                    if (fish != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[101 + (i * 4)];
-                            u8 max = entry[102 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, fish, encounter, slots);
-                    }
-                    break;
-                default:
-                    break;
+                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
+                break;
+            case Encounter::Surfing:
+                if (entry->surfRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
+                }
+                break;
+            case Encounter::RockSmash:
+                if (entry->rockRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->rock[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->rockRate, encounter, slots);
+                }
+                break;
+            case Encounter::OldRod:
+                if (entry->fishRate != 0)
+                {
+                    for (size_t i = 0; i < 2; i++)
+                    {
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[2] = Slot(349, 20, 25, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                }
+                break;
+            case Encounter::GoodRod:
+                if (entry->fishRate != 0)
+                {
+                    for (size_t i = 0; i < 3; i++)
+                    {
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[3] = Slot(349, 20, 25, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                }
+                break;
+            case Encounter::SuperRod:
+                if (entry->fishRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[5] = Slot(349, 20, 25, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                }
+                break;
+            default:
+                break;
             }
-            return encounters;
+        }
+        delete[] data;
+        return encounters;
+    }
+
+    std::vector<EncounterArea> getPokeSpotEncounters()
+    {
+        u32 length;
+        u8 *data = Utilities::decompress(XD.data(), XD.size(), length);
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(Game::Gen3);
+
+        std::vector<EncounterArea> encounters;
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterPokeSpot))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounterPokeSpot *>(data + offset);
+
+            std::array<Slot, 12> slots;
+            for (size_t i = 0; i < 3; i++)
+            {
+                const auto &slot = entry->spot[i];
+                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+            }
+            encounters.emplace_back(entry->location, 0, Encounter::Grass, slots);
+        }
+        delete[] data;
+        return encounters;
+    }
+
+    const ShadowTemplate *getShadowTeams(int *size)
+    {
+        if (size)
+        {
+            *size = GALESCOLOSHADOW.size();
+        }
+        return GALESCOLOSHADOW.data();
+    }
+
+    const ShadowTemplate *getShadowTeam(int index)
+    {
+        const ShadowTemplate *templates = getShadowTeams();
+        return &templates[index];
+    }
+
+    const StaticTemplate3 *getStaticEncounters(int type, int *size)
+    {
+        if (type == 0)
+        {
+            if (size)
+            {
+                *size = STARTERS.size();
+            }
+            return STARTERS.data();
+        }
+        else if (type == 1)
+        {
+            if (size)
+            {
+                *size = FOSSILS.size();
+            }
+            return FOSSILS.data();
+        }
+        else if (type == 2)
+        {
+            if (size)
+            {
+                *size = GIFTS.size();
+            }
+            return GIFTS.data();
+        }
+        else if (type == 3)
+        {
+            if (size)
+            {
+                *size = GAMECORNER.size();
+            }
+            return GAMECORNER.data();
+        }
+        else if (type == 4)
+        {
+            if (size)
+            {
+                *size = STATIONARY.size();
+            }
+            return STATIONARY.data();
+        }
+        else if (type == 5)
+        {
+            if (size)
+            {
+                *size = LEGENDS.size();
+            }
+            return LEGENDS.data();
+        }
+        else if (type == 6)
+        {
+            if (size)
+            {
+                *size = EVENTS.size();
+            }
+            return EVENTS.data();
+        }
+        else if (type == 7)
+        {
+            if (size)
+            {
+                *size = ROAMERS.size();
+            }
+            return ROAMERS.data();
+        }
+        else if (type == 8)
+        {
+            if (size)
+            {
+                *size = GALESCOLO.size();
+            }
+            return GALESCOLO.data();
+        }
+        else
+        {
+            if (size)
+            {
+                *size = CHANNEL.size();
+            }
+            return CHANNEL.data();
         }
     }
 
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
+    const StaticTemplate3 *getStaticEncounter(int type, int index)
     {
-        const auto *info = PersonalLoader::getPersonal(version);
-        return getAreas(encounter, version, info);
+        const StaticTemplate3 *templates = getStaticEncounters(type);
+        return &templates[index];
     }
 }

@@ -1,0 +1,50 @@
+{
+    "advance": [
+        {
+            "name": "Advance 1",
+            "seed": 0,
+            "advances": 624,
+            "result": 3791854820
+        },
+        {
+            "name": "Advance 2",
+            "seed": 0,
+            "advances": 1248,
+            "result": 1145454359
+        },
+        {
+            "name": "Advance 3",
+            "seed": 2147483648,
+            "advances": 624,
+            "result": 2283417207
+        },
+        {
+            "name": "Advance 4",
+            "seed": 2147483648,
+            "advances": 1248,
+            "result": 1690627908
+        }
+    ],
+    "next": [
+        {
+            "name": "Next 1",
+            "seed": 0,
+            "result": 2357136044
+        },
+        {
+            "name": "Next 2",
+            "seed": 1073741824,
+            "result": 895099560
+        },
+        {
+            "name": "Next 3",
+            "seed": 2147483648,
+            "result": 652847386
+        },
+        {
+            "name": "Next 4",
+            "seed": 3221225472,
+            "result": 1288940985
+        }
+    ]
+}

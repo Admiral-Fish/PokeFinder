@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,19 +20,41 @@
 #ifndef STATICGENERATOR3_HPP
 #define STATICGENERATOR3_HPP
 
+#include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
-class State;
+class GeneratorState;
 
-class StaticGenerator3 : public StaticGenerator
+/**
+ * @brief Static encounter generator for Gen3
+ */
+class StaticGenerator3 : public StaticGenerator<StaticTemplate3, Profile3, StateFilter>
 {
 public:
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    std::vector<State> generate(u32 seed) const;
+    /**
+     * @brief Construct a new StaticGenerator3 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param method Encounter method
+     * @param staticTemplate Pokemon template
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const StaticTemplate3 &staticTemplate,
+                     const Profile3 &profile, const StateFilter &filter);
 
-private:
-    std::vector<State> generateMethod124(u32 seed) const;
-    std::vector<State> generateMethod1Reverse(u32 seed) const;
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<GeneratorState> generate(u32 seed) const;
 };
 
 #endif // STATICGENERATOR3_HPP

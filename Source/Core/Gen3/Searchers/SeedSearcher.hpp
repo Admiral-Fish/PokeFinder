@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,26 +20,24 @@
 #ifndef SEEDSEARCHER_HPP
 #define SEEDSEARCHER_HPP
 
-#include <Core/Util/Global.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
+#include <Core/Global.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
-class SeedSearcher
+template <class Criteria>
+class SeedSearcher : public SearcherBase<u32>
 {
 public:
-    explicit SeedSearcher(const std::vector<u32> &criteria);
-    std::vector<u32> getInitialSeeds();
-    void cancelSearch();
-    std::vector<u32> getResults() const;
-    virtual int getProgress() const;
+    /**
+     * @brief Construct a new SeedSearcher object
+     *
+     * @param criteria Filtering data
+     */
+    SeedSearcher(const Criteria &criteria) : criteria(criteria)
+    {
+    }
 
 protected:
-    std::vector<u32> results;
-    std::vector<u32> criteria;
-    bool searching;
-    std::atomic<u32> progress;
-    std::mutex mutex;
+    Criteria criteria;
 };
 
 #endif // SEEDSEARCHER_HPP

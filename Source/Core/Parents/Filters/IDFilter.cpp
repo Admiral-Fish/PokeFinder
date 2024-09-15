@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,15 +18,16 @@
  */
 
 #include "IDFilter.hpp"
-#include <Core/Parents/States/IDState.hpp>
+#include <Core/Gen8/States/IDState8.hpp>
 #include <algorithm>
 
-IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter) :
-    tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter)
+IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
+                   const std::vector<u32> &displayFilter) :
+    tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter), displayFilter(displayFilter)
 {
 }
 
-bool IDFilter::compare(const IDState &state) const
+bool IDFilter::compareState(const IDState &state) const
 {
     if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
     {
@@ -39,6 +40,31 @@ bool IDFilter::compare(const IDState &state) const
     }
 
     if (!tsvFilter.empty() && std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool IDFilter::compareState(const IDState8 &state) const
+{
+    if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
+    {
+        return false;
+    }
+
+    if (!sidFilter.empty() && std::find(sidFilter.begin(), sidFilter.end(), state.getSID()) == sidFilter.end())
+    {
+        return false;
+    }
+
+    if (!tsvFilter.empty() && std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
+    {
+        return false;
+    }
+
+    if (!displayFilter.empty() && std::find(displayFilter.begin(), displayFilter.end(), state.getDisplayTID()) == displayFilter.end())
     {
         return false;
     }

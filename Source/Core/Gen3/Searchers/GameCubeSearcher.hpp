@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,38 +20,102 @@
 #ifndef GAMECUBESEARCHER_HPP
 #define GAMECUBESEARCHER_HPP
 
-#include <Core/Gen3/ShadowLock.hpp>
-#include <Core/Parents/Searchers/Searcher.hpp>
-#include <mutex>
+#include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/Searchers/StaticSearcher.hpp>
 
-class GameCubeState;
+class StaticTemplate3;
+class ShadowTemplate;
 
-class GameCubeSearcher : public Searcher
+/**
+ * @brief Wild encounter searcher for GameCube
+ */
+class GameCubeSearcher : public StaticSearcher<Profile3, StateFilter, SearcherState>
 {
 public:
-    GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
-    void cancelSearch();
-    std::vector<GameCubeState> getResults();
-    int getProgress() const;
-    void setupNatureLock(u8 num);
+    /**
+     * @brief Construct a new GameCubeSearcher object
+     *
+     * @param method Encounter method
+     * @param unset Whether first shadow pokemon is unset or not
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter);
+
+    /**
+     * @brief Starts the search for the \p shadowTemplate
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param shadowTemplate Pokemon template
+     */
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const ShadowTemplate *shadowTemplate);
+
+    /**
+     * @brief Starts the search for the \p staticTemplate
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param staticTemplate Pokemon template
+     */
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate);
 
 private:
-    ShadowLock lock;
-    ShadowType type;
+    bool unset;
 
-    bool searching;
-    int progress;
-    std::vector<GameCubeState> results;
-    std::mutex mutex;
+    /**
+     * @brief Searches for matching states from provided IVs
+     * @param minSpd
+     * @param maxSpd
+     * @param staticTemplate Pokemon template
+     */
+    void searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate);
 
-    std::vector<GameCubeState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    std::vector<GameCubeState> searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    std::vector<GameCubeState> searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    std::vector<GameCubeState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    void searchChannel(u8 minSpD, u8 maxSpD);
-    bool validateJirachi(u32 seed);
-    bool validateMenu(u32 seed);
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param shadowTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param shadowTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState> searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate);
 };
 
 #endif // GAMECUBESEARCHER_HPP

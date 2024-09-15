@@ -8,6 +8,7 @@
 8,Ruta 32
 9,Ruinas Alfa (Exterior)
 10,Ruinas Alfa (Interior)
+11,Ruinas Alfa (Underground)
 14,Cueva Unión Planta baja
 15,Cueva Unión Sótano 1
 16,Cueva Unión Sótano 2
@@ -69,7 +70,7 @@
 85,Monte Plateado Exterior
 86,Cueva M Plateado Cueva con cascadas
 87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Export Belt)
+88,Mt. Silver Cave (Expert Belt)
 89,Mt. Silver Cave (Upper mountainside)
 91,Safari Zone
 92,Ruta 12
@@ -127,3 +128,15 @@
 146,Pueblo Azalea
 147,Ciudad Plateada
 148,Entrada Safari
+149,Safari Zone (Plains)
+150,Safari Zone (Meadow)
+151,Safari Zone (Savannah)
+152,Safari Zone (Peak)
+153,Safari Zone (Rocky Beach)
+154,Safari Zone (Wetland)
+155,Safari Zone (Forest)
+156,Safari Zone (Swamp)
+157,Safari Zone (Marshland)
+158,Safari Zone (Wasteland)
+159,Safari Zone (Mountain)
+160,Safari Zone (Desert)

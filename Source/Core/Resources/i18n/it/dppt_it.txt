@@ -26,7 +26,14 @@
 26,Gran Palude - Area 4
 27,Gran Palude - Area 5
 28,Gran Palude - Area 6
-29,Rovine Flemminia
+29,Rovine Flemminia 2F
+30,Rovine Flemminia 
+32,Rovine Flemminia B1F (4 Stairs)
+34,Rovine Flemminia B2F (4 Stairs)
+40,Rovine Flemminia B3F (3 Stairs)
+41,Rovine Flemminia B3F (4 Stairs)
+42,Rovine Flemminia B4F (4 Stairs)
+43,Rovine Flemminia B4F (Chamber)
 47,Via Vittoria - P1
 48,Via Vittoria - P2
 49,Via Vittoria - P1S
@@ -76,7 +83,7 @@
 143,Percorso 204 (Sud)
 144,Percorso 204 (Nord)
 145,Percorso 205 (Sud)
-146,Percorso 205 (South)
+146,Percorso 205 (Nord)
 147,Percorso 206
 148,Percorso 207
 149,Percorso 208

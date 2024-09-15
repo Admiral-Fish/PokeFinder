@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,28 +20,70 @@
 #ifndef XORSHIFT_HPP
 #define XORSHIFT_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
+/**
+ * @brief Provides random numbers via the Xoroshift algorithm.
+ */
 class Xorshift
 {
 public:
+    /**
+     * @brief Construct a new Xorshift object
+     *
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     */
     Xorshift(u64 seed0, u64 seed1);
-    Xorshift(const Xorshift &rng);
+
+    /**
+     * @brief Construct a new Xorshift object
+     *
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     * @param advances Number of initial advances
+     */
+    Xorshift(u64 seed0, u64 seed1, u32 advances);
+
+    /**
+     * @brief Advances the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
 
-    template <int min = -0x7fffffff - 1, int max = 0x7fffffff>
-    u32 next()
-    {
-        u32 t = nextState();
-        u32 diff = max - min;
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * Uses a precomputed jump table to complete in O(4096)
+     *
+     * @param advances Number of advances
+     */
+    void jump(u32 advances);
 
-        return (t % diff) + min;
+    /**
+     * @brief Gets the next 32bit PRNG state
+     *
+     * @return PRNG value
+     */
+    u32 next();
+
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the \p min and \p max values
+     *
+     * @param min Minimum value
+     * @param max Maximum value
+     *
+     * @return PRNG value
+     */
+    u32 next(u32 min, u32 max)
+    {
+        u32 diff = max - min;
+        return (next() % diff) + min;
     }
 
-public:
-    u32 state[4];
-
-    u32 nextState();
+private:
+    vuint128 state;
 };
 
 #endif // XORSHIFT_HPP

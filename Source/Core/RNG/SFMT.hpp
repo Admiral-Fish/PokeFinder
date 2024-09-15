@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,50 @@
 #ifndef SFMT_HPP
 #define SFMT_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
+/**
+ * @brief Provides random numbers via the SIMD-oriented Fast Mersenne Twister algorithm.
+ */
 class SFMT
 {
 public:
+    /**
+     * @brief Construct a new SFMT object
+     *
+     * @param seed Starting PRNG state
+     */
     SFMT(u32 seed);
+
+    /**
+     * @brief Advances the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 64bit PRNG state
+     *
+     * @return PRNG value
+     */
     u64 next();
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     *
+     * @return PRNG value
+     */
     u32 nextUInt();
 
 private:
-    alignas(16) u32 sfmt[624];
-    u32 index;
+    vuint128 state[156];
+    u16 index;
 
+    /**
+     * @brief Generates the next SFMT state after all 624 states have been consumed
+     */
     void shuffle();
 };
 

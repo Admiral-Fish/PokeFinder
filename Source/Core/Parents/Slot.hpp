@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,52 +20,118 @@
 #ifndef SLOT_HPP
 #define SLOT_HPP
 
-#include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+class PersonalInfo;
+
+/**
+ * @brief Contains information that impact the generation of wild encounters
+ */
 class Slot
 {
 public:
-    Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info) :
-        minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
+/**
+     * @brief Construct a new Slot object
+     */
+    Slot() : info(nullptr), specie(0), form(0), maxLevel(0), minLevel(0)
     {
     }
 
-    Slot(u16 specie, u8 level, const PersonalInfo &info) : minLevel(level), maxLevel(level), specie(specie), info(info)
+    /**
+     * @brief Construct a new Slot object
+     *
+     * @param specie Species of the pokemon
+     * @param minLevel Minimum level of the pokemon
+     * @param maxLevel Maximum level of the pokemon
+     * @param info Pokemon information
+     */
+    Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo *info) :
+        info(info), specie(specie), form(0), maxLevel(maxLevel), minLevel(minLevel)
     {
     }
 
-    u8 getMinLevel() const
+    /**
+     * @brief Construct a new Slot object
+     *
+     * @param specie Species of the pokemon
+     * @param form Form of the pokemon
+     * @param minLevel Minimum level of the pokemon
+     * @param maxLevel Maximum level of the pokemon
+     * @param info Pokemon information
+     */
+    Slot(u16 specie, u8 form, u8 minLevel, u8 maxLevel, const PersonalInfo *info) :
+        info(info), specie(specie), form(form), maxLevel(maxLevel), minLevel(minLevel)
     {
-        return minLevel;
     }
 
+    /**
+     * @brief Determines the form of the pokemon
+     *
+     * @return Pokemon form
+     */
+    u8 getForm() const
+    {
+        return form;
+    }
+
+    /**
+     * @brief Determines the information of the pokemon
+     *
+     * @return Pokemon information
+     */
+    const PersonalInfo *getInfo() const
+    {
+        return info;
+    }
+
+    /**
+     * @brief Determines the maximum level of the pokemon
+     *
+     * @return Maximum level
+     */
     u8 getMaxLevel() const
     {
         return maxLevel;
     }
 
+    /**
+     * @brief Determines the minimum level of the pokemon
+     *
+     * @return Minimum level
+     */
+    u8 getMinLevel() const
+    {
+        return minLevel;
+    }
+
+    /**
+     * @brief Determines the species of the pokemon
+     *
+     * @return Pokemon species
+     */
     u16 getSpecie() const
     {
         return specie;
     }
 
-    PersonalInfo getInfo() const
-    {
-        return info;
-    }
-
-    void setSpecie(u16 specie, const PersonalInfo &info)
+    /**
+     * @brief Allows the specie to be changed. Typically due to some modifier (radar, swarms, etc.)
+     *
+     * @param specie Pokemon species
+     * @param info Pokemon information
+     */
+    void setSpecie(u16 specie, const PersonalInfo *info)
     {
         this->specie = specie;
         this->info = info;
     }
 
 private:
+    const PersonalInfo *info;
+    u16 specie;
+    u8 form;
     u8 minLevel;
     u8 maxLevel;
-    u16 specie;
-    PersonalInfo info;
 };
 
 #endif // SLOT_HPP

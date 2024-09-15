@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,112 +19,88 @@
 
 #include "Keypresses.hpp"
 #include <Core/Enum/Buttons.hpp>
+#include <Core/Gen5/Profile5.hpp>
+#include <bit>
 
-constexpr Buttons keys[8] = { Buttons::R, Buttons::L, Buttons::X, Buttons::Y, Buttons::A, Buttons::B, Buttons::Select, Buttons::Start };
-constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::Up,        Buttons::Down,
-                                    Buttons::RightUp, Buttons::LeftUp, Buttons::RightDown, Buttons::LeftDown };
-constexpr u32 buttonValues[12]
-    = { 0x10000, 0x20000, 0x40000, 0x80000, 0x1000000, 0x2000000, 0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 };
+/**
+ * @brief Determines if the selected key presses are valid
+ *
+ * @param button Held buttons
+ * @param count Number of held key presses
+ * @param skipLR Whether to include combos with L/R
+ *
+ * @return true Held buttons are valid
+ * @return false Held buttons are invalid
+ */
+static bool valid(Buttons button, int count, bool skipLR)
+{
+    if (skipLR && (button & Buttons::LR) == Buttons::LR)
+    {
+        return false;
+    }
+
+    if ((button & Buttons::UpDown) == Buttons::UpDown)
+    {
+        return false;
+    }
+
+    if ((button & Buttons::LeftRight) == Buttons::LeftRight)
+    {
+        return false;
+    }
+
+    if ((button & Buttons::SoftReset) == Buttons::SoftReset)
+    {
+        return false;
+    }
+
+    if (count >= 7 && (button & Buttons::SelectStart) == Buttons::SelectStart)
+    {
+        return false;
+    }
+
+    return true;
+}
 
 namespace Keypresses
 {
-    namespace
+    std::vector<Keypress> getKeypresses(const Profile5 &profile)
     {
-        bool valid(Buttons button, bool skipLR)
+        std::vector<Keypress> keypress;
+
+        auto keypresses = profile.getKeypresses();
+        bool skipLR = profile.getSkipLR();
+
+        for (u16 bits = 0; bits < 0x1000; bits++)
         {
-            return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
+            auto combo = static_cast<Buttons>(bits);
+            int count = std::popcount(bits);
+            if (count <= 8 && keypresses[count] && valid(combo, count, skipLR))
+            {
+                Keypress k = { getValue(combo), combo };
+                keypress.emplace_back(k);
+            }
         }
+
+        return keypress;
     }
 
-    std::vector<Buttons> getKeyPresses(const std::vector<bool> &keypresses, bool skipLR)
+    u32 getValue(Buttons button)
     {
-        std::vector<Buttons> buttons;
+        constexpr u32 values[12] = { 0x10000,   0x20000,   0x40000,    0x80000,    0x1000000,  0x2000000,
+                                     0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 };
 
-        if (keypresses[0])
+        u32 value = 0xff2f0000;
+
+        u16 bits = toInt(button);
+        for (int i = 0; bits; bits >>= 1, i++)
         {
-            buttons.emplace_back(Buttons::None);
-        }
-
-        for (u8 i = 0; i < 8; i++)
-        {
-            if (keypresses[1])
+            if (bits & 1)
             {
-                Buttons combo = keys[i];
-                if (valid(combo, skipLR))
-                {
-                    buttons.emplace_back(keys[i]);
-                }
-
-                buttons.emplace_back(directions[i]);
-            }
-
-            if (keypresses[2])
-            {
-                for (u8 j = i + 1; j < 8; j++)
-                {
-                    Buttons combo = keys[i] | keys[j];
-                    if (valid(combo, skipLR))
-                    {
-                        buttons.emplace_back(combo);
-                    }
-                }
-
-                for (u8 j = 0; j < 8; j++)
-                {
-                    Buttons combo = keys[i] | directions[j];
-                    if (valid(combo, skipLR))
-                    {
-                        buttons.emplace_back(combo);
-                    }
-                }
-            }
-
-            if (keypresses[3])
-            {
-                for (u8 j = i + 1; j < 8; j++)
-                {
-                    for (u8 k = j + 1; k < 8; k++)
-                    {
-                        Buttons combo = keys[i] | keys[j] | keys[k];
-                        if (valid(combo, skipLR))
-                        {
-                            buttons.emplace_back(combo);
-                        }
-                    }
-
-                    for (u8 k = 0; k < 8; k++)
-                    {
-                        Buttons combo = keys[i] | keys[j] | directions[k];
-                        if (valid(combo, skipLR))
-                        {
-                            buttons.emplace_back(combo);
-                        }
-                    }
-                }
+                value -= values[i];
             }
         }
 
-        return buttons;
-    }
-
-    std::vector<u32> getValues(const std::vector<Buttons> &buttons)
-    {
-        std::vector<u32> values;
-        for (const auto button : buttons)
-        {
-            u32 value = 0xff2f0000;
-
-            for (int i = 0; i < 12; i++)
-            {
-                if ((button & static_cast<Buttons>(1 << i)) != Buttons::None)
-                {
-                    value -= buttonValues[i];
-                }
-            }
-
-            values.emplace_back(value);
-        }
-
-        return values;
+        return value;
     }
 }

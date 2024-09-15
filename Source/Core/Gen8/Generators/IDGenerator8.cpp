@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,38 +19,37 @@
 
 #include "IDGenerator8.hpp"
 #include <Core/Gen8/States/IDState8.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
-IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter) :
-    IDGenerator(initialAdvances, maxAdvances, filter)
+static u32 gen(Xorshift &rng)
 {
-    this->filter = filter;
+    return rng.next(0x80000000, 0x7fffffff);
+}
+
+IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
+{
 }
 
 std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
 {
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances);
+    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances);
 
     std::vector<IDState8> states;
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
-        u32 sidtid = rng.next();
-        if (sidtid == 0)
+        u32 sidtid;
+        do
         {
-            Xorshift gen(rng);
-            while (sidtid == 0)
-            {
-                sidtid = gen.next();
-            }
-        }
+            sidtid = rngList.next();
+        } while (sidtid == 0);
 
         u16 tid = sidtid & 0xffff;
         u16 sid = sidtid >> 16;
-        u32 g8tid = sidtid % 1000000;
+        u32 displayTID = sidtid % 1000000;
 
-        IDState8 state(initialAdvances + cnt, tid, sid, g8tid);
-        if (filter.compare(state))
+        IDState8 state(initialAdvances + cnt, tid, sid, displayTID);
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

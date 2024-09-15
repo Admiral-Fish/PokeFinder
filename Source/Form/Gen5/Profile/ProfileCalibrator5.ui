@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileCalibrator5</class>
+ <widget class="QWidget" name="ProfileCalibrator5">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>793</width>
+    <height>481</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Calibrator</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0" colspan="2">
+       <widget class="QTabWidget" name="tabWidgetType">
+        <widget class="QWidget" name="tabIVs">
+         <attribute name="title">
+          <string>IV Search</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMinIVs">
+            <property name="text">
+             <string>Min IVs</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxMinHP"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QSpinBox" name="spinBoxMinAtk"/>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxMinDef"/>
+          </item>
+          <item row="0" column="4">
+           <widget class="QSpinBox" name="spinBoxMinSpA"/>
+          </item>
+          <item row="0" column="5">
+           <widget class="QSpinBox" name="spinBoxMinSpD"/>
+          </item>
+          <item row="0" column="6">
+           <widget class="QSpinBox" name="spinBoxMinSpe"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelMaxIVs">
+            <property name="text">
+             <string>Max IVs</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxMaxHP"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QSpinBox" name="spinBoxMaxAtk"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QSpinBox" name="spinBoxMaxDef"/>
+          </item>
+          <item row="1" column="4">
+           <widget class="QSpinBox" name="spinBoxMaxSpA"/>
+          </item>
+          <item row="1" column="5">
+           <widget class="QSpinBox" name="spinBoxMaxSpD"/>
+          </item>
+          <item row="1" column="6">
+           <widget class="QSpinBox" name="spinBoxMaxSpe"/>
+          </item>
+          <item row="2" column="0" colspan="7">
+           <widget class="QPushButton" name="pushButtonIVCalculator">
+            <property name="text">
+             <string>IV Calculator</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabNeedles">
+         <attribute name="title">
+          <string>Needle Search</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="0" rowspan="2">
+           <widget class="QListWidget" name="listWidgetNeedles"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="radioButtonUnovaLink">
+            <property name="text">
+             <string>Unova Link</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupNeedleType</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButtonSaving">
+            <property name="text">
+             <string>Saving</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupNeedleType</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushButtonDelete">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="pushButtonClear">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="0">
+             <widget class="QPushButton" name="pushButtonUpLeft">
+              <property name="text">
+               <string notr="true">↖</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QPushButton" name="pushButtonUp">
+              <property name="text">
+               <string notr="true">↑</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QPushButton" name="pushButtonUpRight">
+              <property name="text">
+               <string notr="true">↗</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="pushButtonLeft">
+              <property name="text">
+               <string notr="true">←</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="pushButtonRight">
+              <property name="text">
+               <string notr="true">→</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="pushButtonDownLeft">
+              <property name="text">
+               <string notr="true">↙</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="pushButtonDown">
+              <property name="text">
+               <string notr="true">↓</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="pushButtonDownRight">
+              <property name="text">
+               <string notr="true">↘</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupNeedles</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabSeed">
+         <attribute name="title">
+          <string>Seed Search</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxSeed"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelDate">
+        <property name="text">
+         <string>Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="DateTimeEdit" name="dateTimeEdit"/>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButtonSearch">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonCancel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Variables</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0" rowspan="12">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelMin">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Min</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelMax">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Max</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelSeconds">
+          <property name="text">
+           <string>Seconds</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBoxMinSeconds">
+          <property name="maximum">
+           <number>59</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="spinBoxMaxSeconds">
+          <property name="maximum">
+           <number>59</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelVCount">
+          <property name="text">
+           <string>VCount</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="TextBox" name="textBoxMinVCount"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="TextBox" name="textBoxMaxVCount"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelTimer0">
+          <property name="text">
+           <string>Timer0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="TextBox" name="textBoxMinTimer0"/>
+        </item>
+        <item row="3" column="2">
+         <widget class="TextBox" name="textBoxMaxTimer0"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelGxStat">
+          <property name="text">
+           <string>GxStat</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="TextBox" name="textBoxMinGxStat"/>
+        </item>
+        <item row="4" column="2">
+         <widget class="TextBox" name="textBoxMaxGxStat"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="labelVFrame">
+          <property name="text">
+           <string>VFrame</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="TextBox" name="textBoxMinVFrame"/>
+        </item>
+        <item row="5" column="2">
+         <widget class="TextBox" name="textBoxMaxVFrame"/>
+        </item>
+        <item row="6" column="1">
+         <widget class="QCheckBox" name="checkBoxSoftReset">
+          <property name="text">
+           <string>Soft Reset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <widget class="QCheckBox" name="checkBoxMemoryLink">
+          <property name="text">
+           <string>Memory Link</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelVersion">
+        <property name="text">
+         <string>Version</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="ComboBox" name="comboBoxVersion">
+        <item>
+         <property name="text">
+          <string>Black</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>White</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Black 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>White 2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelLanguage">
+        <property name="text">
+         <string>Language</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="ComboBox" name="comboBoxLanguage">
+        <item>
+         <property name="text">
+          <string>ENG</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>SPA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>FRE</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ITA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DEU</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>JPN</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>KOR</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="labelDSType">
+        <property name="text">
+         <string>DS Type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="ComboBox" name="comboBoxDSType">
+        <item>
+         <property name="text">
+          <string>DS Original/Lite</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DSi/DSi XL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3DS</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="labelMACAddress">
+        <property name="text">
+         <string>MAC Address</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="TextBox" name="textBoxMACAddress"/>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="labelKeypresses">
+        <property name="text">
+         <string>Keypresses</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="ComboBox" name="comboBoxKeypress1"/>
+      </item>
+      <item row="10" column="1">
+       <widget class="ComboBox" name="comboBoxKeypress2"/>
+      </item>
+      <item row="11" column="1">
+       <widget class="ComboBox" name="comboBoxKeypress3"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QProgressBar" name="progressBar"/>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="TableView" name="tableView"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateTimeEdit</class>
+   <extends>QDateTimeEdit</extends>
+   <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidgetType</tabstop>
+  <tabstop>spinBoxMinHP</tabstop>
+  <tabstop>spinBoxMinAtk</tabstop>
+  <tabstop>spinBoxMinDef</tabstop>
+  <tabstop>spinBoxMinSpA</tabstop>
+  <tabstop>spinBoxMinSpD</tabstop>
+  <tabstop>spinBoxMinSpe</tabstop>
+  <tabstop>spinBoxMaxHP</tabstop>
+  <tabstop>spinBoxMaxAtk</tabstop>
+  <tabstop>spinBoxMaxDef</tabstop>
+  <tabstop>spinBoxMaxSpA</tabstop>
+  <tabstop>spinBoxMaxSpD</tabstop>
+  <tabstop>spinBoxMaxSpe</tabstop>
+  <tabstop>pushButtonIVCalculator</tabstop>
+  <tabstop>pushButtonUpLeft</tabstop>
+  <tabstop>pushButtonUp</tabstop>
+  <tabstop>pushButtonUpRight</tabstop>
+  <tabstop>pushButtonLeft</tabstop>
+  <tabstop>pushButtonRight</tabstop>
+  <tabstop>pushButtonDownLeft</tabstop>
+  <tabstop>pushButtonDown</tabstop>
+  <tabstop>pushButtonDownRight</tabstop>
+  <tabstop>listWidgetNeedles</tabstop>
+  <tabstop>radioButtonUnovaLink</tabstop>
+  <tabstop>radioButtonSaving</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>pushButtonClear</tabstop>
+  <tabstop>textBoxSeed</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>spinBoxMinSeconds</tabstop>
+  <tabstop>spinBoxMaxSeconds</tabstop>
+  <tabstop>textBoxMinVCount</tabstop>
+  <tabstop>textBoxMaxVCount</tabstop>
+  <tabstop>textBoxMinTimer0</tabstop>
+  <tabstop>textBoxMaxTimer0</tabstop>
+  <tabstop>textBoxMinGxStat</tabstop>
+  <tabstop>textBoxMaxGxStat</tabstop>
+  <tabstop>textBoxMinVFrame</tabstop>
+  <tabstop>textBoxMaxVFrame</tabstop>
+  <tabstop>checkBoxSoftReset</tabstop>
+  <tabstop>checkBoxMemoryLink</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>comboBoxDSType</tabstop>
+  <tabstop>textBoxMACAddress</tabstop>
+  <tabstop>comboBoxKeypress1</tabstop>
+  <tabstop>comboBoxKeypress2</tabstop>
+  <tabstop>comboBoxKeypress3</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupNeedles">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
+  <buttongroup name="buttonGroupNeedleType"/>
+ </buttongroups>
+</ui>

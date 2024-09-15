@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,17 +23,39 @@
 #include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class EggGenerator : public Generator
+/**
+ * @brief Parent generator class for egg encounters
+ *
+ * @tparam Profile Profile class that is used by the generator
+ * @tparam Filter Filter class that is used by the generator
+ */
+template <class Profile, class Filter>
+class EggGenerator : public Generator<Profile, Filter>
 {
 public:
-    EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
-                 const Daycare &daycare) :
-        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), daycare(daycare)
+    /**
+     * @brief Construct a new EggGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param method Encounter method
+     * @param compatability Parent compatability
+     * @param daycare Daycare parent information
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, u8 compatability, const Daycare &daycare,
+                 const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, offset, method, profile, filter),
+        daycare(daycare),
+        compatability(compatability)
     {
     }
 
 protected:
     Daycare daycare;
+    u8 compatability;
 };
 
 #endif // EGGGENERATOR_HPP

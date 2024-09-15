@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,27 +18,44 @@
  */
 
 #include "EggGenerator8.hpp"
-#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Gen8/States/EggState8.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
-EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter,
-                             const Daycare &daycare, bool shinyCharm, u8 compatability) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::None, filter, daycare),
-    shinyCharm(shinyCharm),
-    compatability(compatability)
+static u32 gen(Xorshift &rng)
+{
+    return rng.next(0x80000000, 0x7fffffff);
+}
+
+EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatability, const Daycare &daycare,
+                             const Profile8 &profile, const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, compatability, daycare, profile, filter),
+    shinyCharm(profile.getShinyCharm())
 {
 }
 
-std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances + offset);
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
+    const PersonalInfo *male;
+    const PersonalInfo *female;
+    if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 29);
+    }
+    else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
+    {
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 314);
+    }
 
-    RNGList<u32, Xorshift, 2, 0> rngList(rng);
+    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances + offset);
 
     u8 pidRolls = 0;
     if (daycare.getMasuda())
@@ -50,53 +67,57 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
         pidRolls += 2;
     }
 
-    std::vector<EggState> states;
+    // Intentionally ignoring power items
+    u8 inheritanceCount = 3;
+    if (daycare.getParentItem(0) == 8 || daycare.getParentItem(1) == 8)
+    {
+        inheritanceCount = 5;
+    }
+
+    std::vector<EggState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        if ((rngList.getValue() % 100) < compatability)
+        if ((rngList.next() % 100) < compatability)
         {
-            EggState state(initialAdvances + cnt);
-            state.setSeed(rngList.getValue());
-
             // Sign extend seed to signed 64bit
-            u64 seed = state.getSeed();
-            if (seed & 0x80000000)
-            {
-                seed |= 0xffffffff00000000;
-            }
+            constexpr u32 SIGN_EXTEND_MASK = 0x80000000;
+            u64 seed = (static_cast<u64>(rngList.next()) ^ SIGN_EXTEND_MASK) - SIGN_EXTEND_MASK;
 
-            XoroshiroBDSP gen(seed);
+            XoroshiroBDSP rng(seed);
 
-            // Nidoran, Illumise/Volbeat, Indeedee
-            if (daycare.getNidoranVolbeat())
+            // Nidoran
+            // Volbeat / Illumise
+            u8 gender;
+            const PersonalInfo *info = base;
+            if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32 || daycare.getEggSpecie() == 313
+                || daycare.getEggSpecie() == 314)
             {
-                // gen.next(2);
-                // Handle display result later
-                gen.next();
-            }
-
-            if (genderRatio == 255)
-            {
-                state.setGender(2);
-            }
-            else if (genderRatio == 254)
-            {
-                state.setGender(1);
-            }
-            else if (genderRatio == 0)
-            {
-                state.setGender(0);
+                gender = rng.nextUInt(2);
+                info = gender ? female : male;
             }
             else
             {
-                u8 gender = gen.next(252) + 1 < genderRatio;
-                state.setGender(gender);
+                switch (base->getGender())
+                {
+                case 255:
+                    gender = 2;
+                    break;
+                case 254:
+                    gender = 1;
+                    break;
+                case 0:
+                    gender = 0;
+                    break;
+                default:
+                    gender = rng.nextUInt(252) + 1 < base->getGender();
+                    break;
+                }
             }
 
-            u8 nature = gen.next(25);
+            u8 nature = rng.nextUInt(25);
             if (daycare.getEverstoneCount() == 2)
             {
-                nature = daycare.getParentNature(gen.next(2));
+                nature = daycare.getParentNature(rng.nextUInt(2));
             }
             else if (daycare.getParentItem(0) == 1)
             {
@@ -106,11 +127,10 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 nature = daycare.getParentNature(1);
             }
-            state.setNature(nature);
 
             // If we have a ditto acting as the female, get the ability from the other parent (this will be slot 0)
             u8 parentAbility = daycare.getParentAbility(daycare.getParentGender(1) == 3 ? 0 : 1);
-            u8 ability = gen.next(100);
+            u8 ability = rng.nextUInt(100);
             if (parentAbility == 2)
             {
                 ability = ability < 20 ? 0 : ability < 40 ? 1 : 2;
@@ -123,63 +143,54 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 ability = ability < 80 ? 0 : 1;
             }
-            state.setAbility(ability);
-
-            // Intentionally ignoring power items
-            u8 inheritance = 3;
-            if (daycare.getParentItem(0) == 8 || daycare.getParentItem(1) == 8)
-            {
-                inheritance = 5;
-            }
 
             // Determine inheritance
-            for (u8 i = 0; i < inheritance;)
+            std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
+            for (u8 i = 0; i < inheritanceCount;)
             {
-                u8 index = gen.next(6);
-                if (state.getInheritance(index) == 0)
+                u8 index = rng.nextUInt(6);
+                if (inheritance[index] == 0)
                 {
-                    state.setInheritance(index, gen.next(2) + 1);
+                    inheritance[index] = rng.nextUInt(2) + 1;
                     i++;
                 }
             }
 
             // Assign IVs and inheritance
+            std::array<u8, 6> ivs;
             for (u8 i = 0; i < 6; i++)
             {
-                u8 iv = gen.next(32);
-                if (state.getInheritance(i) == 1)
+                u8 iv = rng.nextUInt(32);
+                if (inheritance[i] == 1)
                 {
                     iv = daycare.getParentIV(0, i);
                 }
-                else if (state.getInheritance(i) == 2)
+                else if (inheritance[i] == 2)
                 {
                     iv = daycare.getParentIV(1, i);
                 }
-                state.setIV(i, iv);
+                ivs[i] = iv;
             }
 
-            // Encryption constant
-            gen.next();
+            u32 ec = rng.nextUInt(0xffffffff);
 
-            // Assign PID if
+            // Assign PID if we have masuda or shiny charm
             u32 pid = 0;
-            u16 psv = 0;
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
-                pid = gen.next(0xffffffff);
-                psv = (pid >> 16) ^ (pid & 0xffff);
-                if ((psv ^ tsv) < 16)
+                pid = rng.nextUInt(0xffffffff);
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     break;
                 }
             }
-            state.setPID(pid);
-            state.setShiny<16>(tsv, psv);
 
             // Ball handling check
             // Uses a rand call, maybe add later
 
-            if (filter.comparePID(state) && filter.compareIV(state))
+            EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv),
+                            inheritance, seed, info);
+            if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
             }

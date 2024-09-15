@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,72 +18,103 @@
  */
 
 #include "GameCubeGenerator.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
-#include <Core/Gen3/LockInfo.hpp>
-#include <Core/Gen3/States/GameCubeState.hpp>
+#include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
-GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+static bool isShiny(u16 high, u16 low, u16 tsv)
+{
+    return (high ^ low ^ tsv) < 8;
+}
+
+GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, bool unset, const Profile3 &profile,
                                      const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+    Generator(initialAdvances, maxAdvances, offset, method, profile, filter), unset(unset)
 {
 }
 
-std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
-    switch (method)
+    if ((profile.getVersion() & Game::Colosseum) != Game::None)
     {
-    case Method::XDColo:
-        return generateXDColo(seed);
-    case Method::XD:
-        return generateXDShadow(seed);
-    case Method::Colo:
-        return generateColoShadow(seed);
-    case Method::Channel:
-        return generateChannel(seed);
-    default:
-        return std::vector<GameCubeState>();
+        return generateColoShadow(seed, shadowTemplate);
     }
+    return generateGalesShadow(seed, shadowTemplate);
 }
 
-void GameCubeGenerator::setShadowTeam(u8 index, u8 type)
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
-    team = ShadowTeam::loadShadowTeams(method)[index];
-    this->type = type;
+    if (method == Method::Channel)
+    {
+        return generateChannel(seed, staticTemplate);
+    }
+    return generateNonLock(seed, staticTemplate);
 }
 
-std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
+std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
-    std::vector<GameCubeState> states;
+    std::vector<GeneratorState> states;
+    const PersonalInfo *info = staticTemplate->getInfo();
 
-    XDRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    constexpr u16 threshHolds[2] = { 0x4000, 0x547a };
 
-    // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
-
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        GameCubeState state(initialAdvances + cnt);
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
-        u16 iv1 = go.nextUShort();
-        u16 iv2 = go.nextUShort();
-        u8 ability = go.nextUShort() & 1;
+        // Advance through menu pattern
+        for (u8 mask = 0; mask < 14;)
+        {
+            mask |= 1 << (go.nextUShort() >> 14);
+        }
+
+        // Advance jirachi pattern
+        go.advance(4);
+        if (std::any_of(std::begin(threshHolds), std::end(threshHolds), [&go](u16 thresh) { return go.nextUShort() <= thresh; }))
+        {
+            go.advance(1);
+        }
+        else
+        {
+            go.advance(2);
+        }
+
+        constexpr u16 tid = 40122;
+        u16 sid = go.nextUShort();
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
 
-        state.setPID(high, low);
-        state.setAbility(ability);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
+        // u16 berry = go.nextUShort() >> 13; If >= 4 salac, else ganlon
+        // u16 game = go.nextUShort() >> 12; If >= 8 ruby, else sapphire
+        // u16 gender = go.nextUShort() >> 11; If >= 16 female, else male
+        go.advance(3);
 
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
+        // Failed non-shiny check due to operator precedence
+        if (tid ^ sid ^ high ^ low < 8)
+        {
+            high ^= 0x8000;
+        }
+        u32 pid = (high << 16) | low;
 
-        if (filter.compareState(state))
+        std::array<u8, 6> ivs;
+        ivs[0] = go.nextUShort() >> 11;
+        ivs[1] = go.nextUShort() >> 11;
+        ivs[2] = go.nextUShort() >> 11;
+        ivs[5] = go.nextUShort() >> 11;
+        ivs[3] = go.nextUShort() >> 11;
+        ivs[4] = go.nextUShort() >> 11;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25,
+                             Utilities::getShiny<true>(pid, tid ^ sid), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -92,34 +123,120 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
     return states;
 }
 
-std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
+std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
-    std::vector<GameCubeState> states;
+    std::vector<GeneratorState> states;
+    const PersonalInfo *info = shadowTemplate->getInfo();
 
-    XDRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    std::vector<LockInfo> locks = team.getLocks();
-
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        GameCubeState state(initialAdvances + cnt);
+        XDRNG go(rng);
 
-        XDRNG go(rng.getSeed());
+        // Trainer TID/SID
+        u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
+
+        u8 ability;
+        u16 high;
+        u16 low;
+        for (s8 i = 0; i < shadowTemplate->getCount(); i++)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(i);
+
+            // Temporary PID: 2 advances
+            // IVs: 2 advances
+            // Ability: 1 state
+            go.advance(4);
+            ability = go.nextUShort(2);
+
+            u32 pid;
+            do
+            {
+                high = go.nextUShort();
+                low = go.nextUShort();
+                pid = (high << 16) | low;
+
+                // Shiny lock is from enemy TSV
+                if (isShiny(high, low, trainerTSV))
+                {
+                    continue;
+                }
+            } while (!lock.compare(pid));
+        }
+
+        // E-Reader is included as part of the above loop, just need to set IVs to 0
+        u16 iv1;
+        u16 iv2;
+        if (shadowTemplate->getType() == ShadowType::EReader)
+        {
+            iv1 = 0;
+            iv2 = 0;
+        }
+        else
+        {
+            go.advance(2); // Fake PID
+
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
+            ability = go.nextUShort(2);
+            high = go.nextUShort();
+            low = go.nextUShort();
+
+            // Shiny lock is from enemy TSV
+            while (isShiny(high, low, trainerTSV))
+            {
+                high = go.nextUShort();
+                low = go.nextUShort();
+            }
+        }
+
+        ability &= info->getAbility(0) != info->getAbility(1);
+
+        u32 pid = (high << 16) | low;
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
+{
+    std::vector<GeneratorState> states;
+    const PersonalInfo *info = shadowTemplate->getInfo();
+
+    XDRNG rng(seed, initialAdvances + offset);
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    {
+        XDRNG go(rng);
 
         // Enemy TID/SID
         go.advance(2);
 
-        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        for (s8 i = 0; i < shadowTemplate->getCount(); i++)
         {
+            const LockInfo &lock = shadowTemplate->getLock(i);
+
             // Temporary PID: 2 advances
             // IVs: 2 advances
-            // Ability: 1 state
+            // Ability: 1 advance
             go.advance(5);
 
             // If we are looking at a shadow pokemon
             // We will assume it is already set and skip the PID process
-            if (!lock->getFree())
+            if (!lock.getIgnore())
             {
                 u32 pid;
                 do
@@ -128,25 +245,20 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
                     u16 low = go.nextUShort();
                     pid = (high << 16) | low;
 
-                    if ((high ^ low ^ tsv) < 8) // Shiny lock is from TSV of savefile
+                    // Shiny lock is from TSV of savefile
+                    if (isShiny(high, low, tsv))
                     {
                         continue;
                     }
-                } while (!lock->compare(pid));
+                } while (!lock.compare(pid));
             }
         }
 
-        if (team.getType() == ShadowType::SecondShadow || team.getType() == ShadowType::Salamence)
+        // Check for shiny lock with unset
+        if ((shadowTemplate->getType() == ShadowType::SecondShadow || shadowTemplate->getType() == ShadowType::Salamence) && unset)
         {
-            go.advance(5); // Set and Unset start the same
-
-            if (type == 1) // Check for shiny lock with unset
+            while (isShiny(go.nextUShort(), go.nextUShort(), tsv))
             {
-                u16 psv = go.nextUShort() ^ go.nextUShort();
-                while ((psv ^ tsv) < 8)
-                {
-                    psv = go.nextUShort() ^ go.nextUShort();
-                }
             }
         }
 
@@ -154,25 +266,29 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
-
-        state.setAbility(go.nextUShort() & 1);
-
+        u8 ability = go.nextUShort(2) & (info->getAbility(0) != info->getAbility(1));
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
-        while ((high ^ low ^ tsv) < 8) // Shiny lock is from TSV of savefile
+
+        // Shiny lock is from TSV of savefile
+        while (isShiny(high, low, tsv))
         {
             high = go.nextUShort();
             low = go.nextUShort();
         }
 
-        state.setPID(high, low);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny(0);
+        u32 pid = (high << 16) | low;
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -181,154 +297,96 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
     return states;
 }
 
-std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
+std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
-    std::vector<GameCubeState> states;
+    std::vector<GeneratorState> states;
+    const PersonalInfo *info = staticTemplate->getInfo();
 
-    XDRNG rng(seed);
-    rng.advance(initialAdvances + offset);
+    u16 actualTSV = tsv;
 
-    std::vector<LockInfo> locks = team.getLocks();
+    // Ageto Pikachu/Celebi
+    if (staticTemplate->getSpecie() == 25 || staticTemplate->getSpecie() == 251)
+    {
+        actualTSV = 31121; // TID: 31121 SID: 0
+    }
+    // Mattle Ho-Oh
+    else if (staticTemplate->getSpecie() == 250)
+    {
+        actualTSV = 10048; // TID: 10048 SID: 0
+    }
 
+    XDRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        GameCubeState state(initialAdvances + cnt);
+        XDRNG go(rng);
 
-        XDRNG go(rng.getSeed());
-
-        // Trainer TID/SID
-        u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
-
+        u16 iv1;
+        u16 iv2;
         u8 ability;
-        u32 pid;
-        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        u16 high;
+        u16 low;
+
+        // Gales eevee
+        if (staticTemplate->getSpecie() == 133)
         {
-            // Temporary PID: 2 advances
-            // IVs: 2 advances
-            // Ability: 1 state
-            go.advance(4);
-            ability = go.nextUShort() & 1;
-
-            do
-            {
-                u16 high = go.nextUShort();
-                u16 low = go.nextUShort();
-                pid = (high << 16) | low;
-
-                if ((high ^ low ^ trainerTSV) < 8) // Shiny lock is from enemy TSV
-                {
-                    continue;
-                }
-            } while (!lock->compare(pid));
+            actualTSV = go.nextUShort() ^ go.nextUShort();
+            go.advance(2);
         }
 
-        // E-Reader is included as part of the above loop
-        // Set the PID and ability that was already computed
-        // IVs are 0
-        if (team.getType() == ShadowType::EReader)
+        // Colo Espeon/Umbreon
+        if (staticTemplate->getSpecie() == 196 || staticTemplate->getSpecie() == 197)
         {
-            state.setIVs(0);
-            state.calculateHiddenPower();
+            actualTSV = go.nextUShort() ^ go.nextUShort();
 
-            state.setPID(pid);
-            state.setAbility(ability);
-            state.setGender(pid & 255, genderRatio);
-            state.setNature(pid % 25);
-            state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
+            int rounds = staticTemplate->getSpecie() == 196 ? 2 : 1;
+            for (int i = 0; i < rounds; i++)
+            {
+                go.advance(2);
+                iv1 = go.nextUShort();
+                iv2 = go.nextUShort();
+                ability = go.nextUShort(2);
+                high = go.nextUShort();
+                low = go.nextUShort();
+
+                // Colo starters are shiny locked and male locked
+                while (isShiny(high, low, actualTSV) || (low & 255) < info->getGender())
+                {
+                    high = go.nextUShort();
+                    low = go.nextUShort();
+                }
+            }
         }
         else
         {
-            go.advance(2); // Fake PID
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
+            ability = go.nextUShort(2);
+            high = go.nextUShort();
+            low = go.nextUShort();
 
-            u16 iv1 = go.nextUShort();
-            u16 iv2 = go.nextUShort();
-            state.setIVs(iv1, iv2);
-            state.calculateHiddenPower();
-
-            state.setAbility(go.nextUShort() & 1);
-
-            u16 high = go.nextUShort();
-            u16 low = go.nextUShort();
-            while ((high ^ low ^ trainerTSV) < 8) // Shiny lock is from enemy TSV
+            if (staticTemplate->getShiny() == Shiny::Never)
             {
-                high = go.nextUShort();
-                low = go.nextUShort();
+                while (isShiny(high, low, actualTSV))
+                {
+                    high = go.nextUShort();
+                    low = go.nextUShort();
+                }
             }
-
-            state.setPID(high, low);
-            state.setGender(low & 255, genderRatio);
-            state.setNature(state.getPID() % 25);
-            state.setShiny<8>(tsv, high ^ low);
         }
 
-        if (filter.compareState(state))
-        {
-            states.emplace_back(state);
-        }
-    }
+        u32 pid = (high << 16) | low;
+        ability &= info->getAbility(0) != info->getAbility(1);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
 
-    return states;
-}
-
-std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
-{
-    std::vector<GameCubeState> states;
-
-    XDRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
-    // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
-
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
-    {
-        GameCubeState state(initialAdvances + cnt);
-        XDRNG go(rng.getSeed());
-
-        // Advance through menu pattern
-        for (u8 mask = 0; (mask & 14) != 14;)
-        {
-            mask |= 1 << (go.next() >> 30);
-        }
-
-        // Advance jirachi pattern
-        constexpr std::array<u16, 2> threshHolds = { 0x4000, 0x547a };
-        go.advance(4);
-        bool flag = std::any_of(threshHolds.begin(), threshHolds.end(), [&go](u16 thresh) { return go.nextUShort() <= thresh; });
-        go.advance(flag ? 1 : 2);
-
-        constexpr u16 tid = 40122;
-        u16 sid = go.nextUShort();
-        u16 high = go.nextUShort();
-        u16 low = go.nextUShort();
-        go.advance(3);
-
-        // u16 berry = go.nextUShort() >> 13; If >= 4 salac, else ganlon
-        // u16 game = go.nextUShort() >> 12; If >= 8 ruby, else sapphire
-        // u16 gender = go.nextUShort() >> 11; If >= 16 female, else male
-
-        // Failed non-shiny check due to operator precedence
-        if (tid ^ sid ^ high ^ low < 8)
-        {
-            high ^= 0x8000;
-        }
-
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(40122 ^ sid, high ^ low);
-
-        u8 hp = go.nextUShort() >> 11;
-        u8 atk = go.nextUShort() >> 11;
-        u8 def = go.nextUShort() >> 11;
-        u8 spe = go.nextUShort() >> 11;
-        u8 spa = go.nextUShort() >> 11;
-        u8 spd = go.nextUShort() >> 11;
-
-        state.setIVs(hp, atk, def, spa, spd, spe);
-        state.calculateHiddenPower();
-
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny<true>(pid, actualTSV), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

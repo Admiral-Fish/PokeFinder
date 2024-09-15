@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,44 @@
 #ifndef WILDGENERATOR3_HPP
 #define WILDGENERATOR3_HPP
 
+#include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
-class EncounterArea3;
-class WildState;
-enum class Game : u32;
-
-class WildGenerator3 : public WildGenerator
+/**
+ * @brief Wild encounter generator for Gen3
+ */
+class WildGenerator3 : public WildGenerator<EncounterArea3, Profile3, WildStateFilter>
 {
 public:
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, Game version);
-    std::vector<WildState> generate(u32 seed, const EncounterArea3 &encounterArea) const;
+    /**
+     * @brief Construct a new WildGenerator3 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param feebasTile Whether Feebas tiles are active
+     * @param area Wild pokemon info
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, const EncounterArea3 &area,
+                   const Profile3 &profile, const WildStateFilter &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState> generate(u32 seed) const;
 
 private:
-    Game version;
+    bool feebasTile;
 };
 
 #endif // WILDGENERATOR3_HPP

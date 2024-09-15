@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 
 #include "ColoSeedSearcher.hpp"
 #include <algorithm>
-#include <future>
+#include <thread>
 
 constexpr u8 natures[8][6]
     = { { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 }, { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C }, { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 },
@@ -34,176 +34,20 @@ constexpr u8 genderRatios[8][6]
         { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f }, { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
-ColoSeedSearcher::ColoSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
+/**
+ * @brief Generates a pokemon that has the matching \p nature and \p gender
+ *
+ * @param rng Starting PRNG state
+ * @param tsv Trainer shiny value
+ * @param nature Pokemon nature
+ * @param gender Pokemon gender
+ * @param genderRatio Pokemon gender ratio
+ */
+static void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio)
 {
-}
+    // Fake PID / IVs / Ability
+    rng.advance(5);
 
-void ColoSeedSearcher::startSearch(int threads)
-{
-    searching = true;
-    threads = 1;
-
-    std::vector<std::future<void>> threadContainer;
-
-    u32 split = 0x10000 / threads;
-    u32 start = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0x10000); }));
-        }
-        else
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
-        }
-        start += split;
-    }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].wait();
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void ColoSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
-{
-    searching = true;
-
-    if (seeds.size() < threads)
-    {
-        threads = seeds.size();
-    }
-
-    std::vector<std::future<void>> threadContainer;
-
-    size_t split = seeds.size() / threads;
-    size_t start = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
-        }
-        else
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cbegin() + start + split); }));
-        }
-        start += split;
-    }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].wait();
-    }
-
-    std::sort(results.begin(), results.end());
-    results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void ColoSeedSearcher::search(u32 start, u32 end)
-{
-    for (u32 low = start; low < end; low++)
-    {
-        for (u32 high = criteria[0]; high < 0x10000; high += 8)
-        {
-            if (!searching)
-            {
-                return;
-            }
-
-            // Mimic no duplicate enemy and trainer party
-            XDRNGR reverse((high << 16) | low);
-            while ((reverse.nextUShort() & 7) == criteria[0]) { }
-
-            XDRNG rng(reverse.next());
-            if (searchSeed(rng))
-            {
-                std::lock_guard<std::mutex> lock(mutex);
-                results.emplace_back(rng.getSeed());
-            }
-
-            progress++;
-        }
-    }
-}
-
-void ColoSeedSearcher::search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end)
-{
-    for (auto it = start; it != end; it++)
-    {
-        if (!searching)
-        {
-            return;
-        }
-
-        XDRNG rng(*it);
-        if (searchSeed(rng))
-        {
-            std::lock_guard<std::mutex> lock(mutex);
-            results.emplace_back(rng.getSeed());
-        }
-
-        progress++;
-    }
-}
-
-bool ColoSeedSearcher::searchSeed(XDRNG &rng)
-{
-    u8 enemyIndex = rng.nextUShort() & 7;
-    u8 playerIndex;
-    do
-    {
-        playerIndex = rng.nextUShort() & 7;
-    } while (enemyIndex == playerIndex);
-
-    if (playerIndex != criteria[0])
-    {
-        return false;
-    }
-
-    u16 tid = rng.nextUShort();
-    u16 sid = rng.nextUShort();
-    u16 tsv = (tid ^ sid) >> 3;
-    for (u8 i = 0; i < 6; i++)
-    {
-        rng.advance(2); // Fake PID
-
-        rng.advance(2); // IVs
-
-        rng.next(); // Ability
-
-        generatePokemon(rng, tsv, natures[enemyIndex][i], genders[enemyIndex][i], genderRatios[enemyIndex][i]);
-    }
-
-    u8 playerName = rng.nextUShort() % 3;
-    if (playerName != criteria[1])
-    {
-        return false;
-    }
-
-    tid = rng.nextUShort();
-    sid = rng.nextUShort();
-    tsv = (tid ^ sid) >> 3;
-    for (u8 i = 0; i < 6; i++)
-    {
-        rng.advance(2); // Fake PID
-
-        rng.advance(2); // IVs
-
-        rng.next(); // Ability
-
-        generatePokemon(rng, tsv, natures[playerIndex][i], genders[playerIndex][i], genderRatios[playerIndex][i]);
-    }
-
-    return true;
-}
-
-void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio)
-{
     while (true)
     {
         u16 high = rng.nextUShort();
@@ -224,10 +68,157 @@ void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender
             continue;
         }
 
-        u16 psv = (high ^ low) >> 3;
-        if (psv != tsv)
+        if ((high ^ low ^ tsv) >= 8)
         {
             break;
         }
     }
+}
+
+ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
+{
+}
+
+void ColoSeedSearcher::startSearch(int threads)
+{
+    searching = true;
+
+    auto *threadContainer = new std::thread[threads];
+
+    u32 split = 0x10000 / threads;
+    u32 start = 0;
+    for (int i = 0; i < threads; i++, start += split)
+    {
+        if (i == threads - 1)
+        {
+            threadContainer[i] = std::thread([=] { search(start, 0x10000); });
+        }
+        else
+        {
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
+        }
+    }
+
+    for (int i = 0; i < threads; i++)
+    {
+        threadContainer[i].join();
+    }
+
+    delete[] threadContainer;
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
+void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
+{
+    searching = true;
+
+    for (u32 seed : seeds)
+    {
+        if (!searching)
+        {
+            return;
+        }
+
+        XDRNG rng(seed);
+        if (searchSeed(rng))
+        {
+            results.emplace_back(rng.getSeed());
+        }
+
+        progress++;
+    }
+
+    std::sort(results.begin(), results.end());
+    results.erase(std::unique(results.begin(), results.end()), results.end());
+}
+
+void ColoSeedSearcher::search(u32 start, u32 end)
+{
+    std::vector<u32> seeds;
+    for (u32 low = start; low < end; low++, progress++)
+    {
+        for (u32 high = criteria.lead; high < 0x10000; high += 8)
+        {
+            if (!searching)
+            {
+                return;
+            }
+
+            XDRNG rng((high << 16) | low);
+            if (searchSeedSkip(rng))
+            {
+                seeds.emplace_back(rng.getSeed());
+            }
+        }
+    }
+
+    std::lock_guard<std::mutex> lock(mutex);
+    results.insert(results.end(), seeds.begin(), seeds.end());
+}
+
+bool ColoSeedSearcher::searchSeed(XDRNG &rng) const
+{
+    u8 enemyLead = rng.nextUShort(8);
+    u8 playerLead;
+    do
+    {
+        playerLead = rng.nextUShort(8);
+    } while (enemyLead == playerLead);
+
+    if (playerLead != criteria.lead)
+    {
+        return false;
+    }
+
+    u16 tsv = rng.nextUShort() ^ rng.nextUShort();
+    for (u8 i = 0; i < 6; i++)
+    {
+        generatePokemon(rng, tsv, natures[enemyLead][i], genders[enemyLead][i], genderRatios[enemyLead][i]);
+    }
+
+    u8 playerName = rng.nextUShort(3);
+    if (playerName != criteria.trainer)
+    {
+        return false;
+    }
+
+    tsv = rng.nextUShort() ^ rng.nextUShort();
+    for (u8 i = 0; i < 6; i++)
+    {
+        generatePokemon(rng, tsv, natures[playerLead][i], genders[playerLead][i], genderRatios[playerLead][i]);
+    }
+
+    return true;
+}
+
+bool ColoSeedSearcher::searchSeedSkip(XDRNG &rng) const
+{
+    u8 enemyLead;
+    XDRNGR reverse(rng);
+    do
+    {
+        enemyLead = reverse.nextUShort(8);
+    } while (enemyLead == criteria.lead);
+
+    u16 tsv = rng.nextUShort() ^ rng.nextUShort();
+    for (u8 i = 0; i < 6; i++)
+    {
+        generatePokemon(rng, tsv, natures[enemyLead][i], genders[enemyLead][i], genderRatios[enemyLead][i]);
+    }
+
+    u8 playerName = rng.nextUShort(3);
+    if (playerName != criteria.trainer)
+    {
+        return false;
+    }
+
+    tsv = rng.nextUShort() ^ rng.nextUShort();
+    for (u8 i = 0; i < 6; i++)
+    {
+        generatePokemon(rng, tsv, natures[criteria.lead][i], genders[criteria.lead][i], genderRatios[criteria.lead][i]);
+    }
+
+    return true;
 }
