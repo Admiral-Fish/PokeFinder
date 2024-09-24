@@ -33,7 +33,7 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->comboBoxNature->addItem("Unknown");
+    ui->comboBoxNature->addItem(tr("None"));
     for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
@@ -53,6 +53,8 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
 
     ui->comboBoxGame->setup(
         { toInt(Game::Gen3), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });
+
+    ui->labelNextLevel->setToolTip(tr("Next level may not be completely accurate without specifying a nature"));
 
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
     connect(ui->pushButtonRemoveRow, &QPushButton::clicked, this, &IVCalculator::removeEntry);
