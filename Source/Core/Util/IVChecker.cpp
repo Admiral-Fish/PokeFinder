@@ -47,11 +47,26 @@ namespace
         {
             for (u8 iv = 0; iv < 32; iv++)
             {
-                u16 stat = Nature::computeStat(baseStats[i], iv, nature, level, i);
-                if (stat == stats[i])
+                u16 stat;
+                if (nature != 255)
                 {
-                    minIVs[i] = std::min(iv, minIVs[i]);
-                    maxIVs[i] = std::max(iv, maxIVs[i]);
+                    stat = Nature::computeStat(baseStats[i], iv, nature, level, i);
+                    if (stat == stats[i])
+                    {
+                        minIVs[i] = std::min(iv, minIVs[i]);
+                        maxIVs[i] = std::max(iv, maxIVs[i]);
+                    }
+                }
+                else
+                {
+                    // Hard pass nature as Hardy to not modify the stat
+                    stat = Nature::computeStat(baseStats[i], iv, 0, level, i);
+                    if (stat == stats[i]
+                        || (i != 0 && (static_cast<u16>(stat * 0.9f) == stats[i] || static_cast<u16>(stat * 1.1f) == stats[i])))
+                    {
+                        minIVs[i] = std::min(iv, minIVs[i]);
+                        maxIVs[i] = std::max(iv, maxIVs[i]);
+                    }
                 }
             }
         }
@@ -203,8 +218,21 @@ std::array<u8, 6> IVChecker::nextLevel(const std::array<u8, 6> &baseStats, const
         {
             for (size_t j = 1; j < statIVs.size(); j++)
             {
-                u16 previous = Nature::computeStat(baseStats[i], statIVs[j - 1], nature, l, i);
-                u16 current = Nature::computeStat(baseStats[i], statIVs[j], nature, l, i);
+                u16 previous;
+                u16 current;
+
+                if (nature != 255)
+                {
+                    previous = Nature::computeStat(baseStats[i], statIVs[j - 1], nature, l, i);
+                    current = Nature::computeStat(baseStats[i], statIVs[j], nature, l, i);
+                }
+                else
+                {
+                    // Hard pass nature as Hardy to not modify the stat
+                    previous = Nature::computeStat(baseStats[i], statIVs[j - 1], 0, l, i);
+                    current = Nature::computeStat(baseStats[i], statIVs[j], 0, l, i);
+                }
+
                 if (previous < current)
                 {
                     levels[i] = l;
