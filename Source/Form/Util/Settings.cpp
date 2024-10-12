@@ -56,7 +56,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
 
     // Style
     QString style = setting.value("style").toString();
-    QStringList styles = { "dark", "light" };
+    QStringList styles = { "auto", "dark", "light" };
     for (int i = 0; i < styles.size(); i++)
     {
         const QString &sty = styles[i];

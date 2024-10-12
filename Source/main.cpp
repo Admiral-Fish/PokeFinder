@@ -25,6 +25,7 @@
 #include <QHeaderView>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QStyleHints>
 #include <QThread>
 #include <QTranslator>
 
@@ -35,7 +36,7 @@
  */
 void validateSettings(QSettings &setting)
 {
-    if (!setting.contains("settings/profiles"))
+    if (!setting.contains("profiles"))
     {
         QString profilePath = QString("%1/profiles.json").arg(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
 
@@ -45,27 +46,27 @@ void validateSettings(QSettings &setting)
             f.write("{}");
         }
 
-        setting.setValue("settings/profiles", profilePath);
+        setting.setValue("profiles", profilePath);
     }
 
-    if (!setting.contains("settings/style"))
+    if (!setting.contains("style"))
     {
-        setting.setValue("settings/style", "dark");
+        setting.setValue("style", "auto");
     }
 
-    if (!setting.contains("settings/locale"))
+    if (!setting.contains("locale"))
     {
-        setting.setValue("settings/locale", "en");
+        setting.setValue("locale", "en");
     }
 
-    if (!setting.contains("settings/headerSize"))
+    if (!setting.contains("headerSize"))
     {
-        setting.setValue("settings/headerSize", QHeaderView::ResizeToContents);
+        setting.setValue("headerSize", QHeaderView::ResizeToContents);
     }
 
-    if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
+    if (!setting.contains("threads") || (setting.value("threads").toInt() > QThread::idealThreadCount()))
     {
-        setting.setValue("settings/threads", QThread::idealThreadCount());
+        setting.setValue("threads", QThread::idealThreadCount());
     }
 }
 
@@ -83,25 +84,29 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
-    Q_INIT_RESOURCE(darkstyle);
     Q_INIT_RESOURCE(i18n);
-    Q_INIT_RESOURCE(lightstyle);
     Q_INIT_RESOURCE(resources);
 
     QSettings setting;
+    setting.beginGroup("settings");
     validateSettings(setting);
 
-    QString profilePath = setting.value("settings/profiles").toString();
+    QString profilePath = setting.value("profiles").toString();
     bool profile = ProfileLoader::init(profilePath.toStdWString());
 
-    QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("settings/style").toString()));
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    a.setStyle("fusion");
+    if (setting.value("style").toString() == "dark")
     {
-        QTextStream ts(&file);
-        a.setStyleSheet(ts.readAll());
+        auto hints = a.styleHints();
+        hints->setColorScheme(Qt::ColorScheme::Dark);
+    }
+    else if (setting.value("style").toString() == "light")
+    {
+        auto hints = a.styleHints();
+        hints->setColorScheme(Qt::ColorScheme::Light);
     }
 
-    QString locale = setting.value("settings/locale").toString();
+    QString locale = setting.value("locale").toString();
     Translator::init(locale.toStdString());
 
     QTranslator translator;

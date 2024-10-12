@@ -97,6 +97,11 @@
     <widget class="QComboBox" name="comboBoxStyle">
      <item>
       <property name="text">
+       <string>Auto</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Dark</string>
       </property>
      </item>

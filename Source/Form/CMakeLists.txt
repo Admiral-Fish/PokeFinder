@@ -50,8 +50,6 @@ set(PROJECT_TS
 )
 
 set(PROJECT_QRC
-    External/QDarkStyleSheet/qdarkstyle/dark/darkstyle.qrc
-    External/QDarkStyleSheet/qdarkstyle/light/lightstyle.qrc
     resources.qrc
 )
 
