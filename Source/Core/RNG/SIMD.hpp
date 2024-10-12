@@ -102,7 +102,7 @@ union alignas(16) vuint128 {
 #if defined(SIMD_X86)
         ret.uint128 = _mm_xor_si128(uint128, _mm_cmpeq_epi32(uint128, uint128));
 #elif defined(SIMD_ARM)
-        ret.uint128 = veorq_u32(vceqq_u32(uint128, uint128));
+        ret.uint128 = veorq_u32(uint128, vceqq_u32(uint128, uint128));
 #else
         for (int i = 0; i < 4; i++)
         {
