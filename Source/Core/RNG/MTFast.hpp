@@ -65,44 +65,44 @@ public:
         // Shuffle with SIMD if size is big enough
         if constexpr (size >= 4)
         {
-            vuint32x4 upperMask = v32x4_set(0x80000000);
-            vuint32x4 lowerMask = v32x4_set(0x7fffffff);
-            vuint32x4 matrix = v32x4_set(0x9908b0df);
-            vuint32x4 one = v32x4_set(1);
-            vuint32x4 mask1 = v32x4_set(0x9d2c5680);
-            vuint32x4 mask2 = v32x4_set(fast ? 0xe8000000 : 0xefc60000);
+            vuint128 upperMask(0x80000000);
+            vuint128 lowerMask(0x7fffffff);
+            vuint128 matrix(0x9908b0df);
+            vuint128 one(1);
+            vuint128 mask1(0x9d2c5680);
+            vuint128 mask2(fast ? 0xe8000000 : 0xefc60000);
 
             for (u32 j = 0; j < size - (size % 4); j += 4)
             {
-                vuint32x4 m0 = state[j / 4].uint128;
-                vuint32x4 m1 = v32x4_load(ptr + j + 1);
+                vuint128 m0 = state[j / 4];
+                vuint128 m1 = v32x4_load(ptr + j + 1);
 
                 u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
                 u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (j + 398);
                 u32 x2 = 0x6c078965 * (x1 ^ (x1 >> 30)) + (j + 399);
                 seed = 0x6c078965 * (x2 ^ (x2 >> 30)) + (j + 400);
 
-                vuint32x4 m2 = v32x4_set(x0, x1, x2, seed);
+                vuint128 m2(x0, x1, x2, seed);
 
-                vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-                vuint32x4 y1 = v32x4_shr<1>(y);
-                vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
+                vuint128 y = (m0 & upperMask) | (m1 & lowerMask);
+                vuint128 y1 = y >> 1;
+                vuint128 mag01 = ((y & one) == one) & matrix;
 
                 // Temper results while shuffling
-                y = v32x4_xor(v32x4_xor(y1, mag01), m2);
-                y = v32x4_xor(y, v32x4_shr<11>(y));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl<7>(y), mask1));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl<15>(y), mask2));
+                y = y1 ^ mag01 ^ m2;
+                y = y ^ (y >> 11);
+                y = y ^ ((y << 7) & mask1);
+                y = y ^ ((y << 15) & mask2);
                 if constexpr (fast)
                 {
-                    y = v32x4_shr<27>(y);
+                    y = y >> 27;
                 }
                 else
                 {
-                    y = v32x4_xor(y, v32x4_shr<18>(y));
+                    y = y ^ (y >> 18);
                 }
 
-                state[j / 4].uint128 = y;
+                state[j / 4] = y;
             }
         }
 

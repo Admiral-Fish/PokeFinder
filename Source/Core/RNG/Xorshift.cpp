@@ -60,7 +60,7 @@ void Xorshift::jump(u32 advances)
     {
         if (advances & 1)
         {
-            vuint32x4 jump = v32x4_set(0);
+            vuint128 jump(0);
 
             for (int j = 1; j >= 0; j--)
             {
@@ -69,13 +69,13 @@ void Xorshift::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.uint128);
+                        jump = jump ^ state;
                     }
                     next();
                 }
             }
 
-            state.uint128 = jump;
+            state = jump;
         }
     }
 }

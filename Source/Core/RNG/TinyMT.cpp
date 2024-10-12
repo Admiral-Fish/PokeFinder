@@ -30,7 +30,7 @@ constexpr u64 jumpTable[25][2]
         { 0x197365ac9569a8b4, 0x6dd7a644730f081a }, { 0xf2156d44b37e61be, 0x80bfd2b6153ed5cc }, { 0xac7a0ab2f43b15a9, 0x227df3de640734f4 },
         { 0x40afea91e9ad4b2c, 0x58440d15ded1d336 } };
 
-TinyMT::TinyMT(u32 seed) : state { seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff }
+TinyMT::TinyMT(u32 seed) : state(seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff)
 {
     u32 *ptr = &state.uint32[0];
     for (u32 i = 1; i < 8; i++)
@@ -70,7 +70,7 @@ void TinyMT::jump(u32 advances)
     {
         if (advances & 1)
         {
-            vuint32x4 jump = v32x4_set(0);
+            vuint128 jump(0);
 
             for (int j = 1; j >= 0; j--)
             {
@@ -79,13 +79,13 @@ void TinyMT::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.uint128);
+                        jump = jump ^ state;
                     }
                     nextState();
                 }
             }
 
-            state.uint128 = jump;
+            state = jump;
         }
     }
 }
