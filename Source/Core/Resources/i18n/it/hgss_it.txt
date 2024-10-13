@@ -7,18 +7,18 @@
 6,Torre Sprout
 8,Percorso 32
 9,Rovine d'Alfa (Esterno)
-10,Rovine d'Alfa (Inside)
-11,Rovine d'Alfa (Underground)
+10,Rovine d'Alfa (Interno)
+11,Rovine d'Alfa (Sotterraneo)
 14,Grotta di mezzo P1
 15,Grotta di mezzo P1S
 16,Grotta di mezzo P2S
 17,Percorso 33
 18,Pozzo SLOWPOKE P1S
-19,SLOWPOKE Well B2F
+19,Pozzo SLOWPOKE P2S
 20,Bosco di Lecci
 21,Percorso 34
 22,Percorso 35
-23,National Park
+23,Parco Nazionale
 24,Parco Nazionale
 25,Percorso 36
 26,Percorso 37
@@ -34,7 +34,7 @@
 43,Isole Vorticose P1
 44,Isole Vorticose P1S
 46,Isole Vorticose P2S
-48,Whirl Islands B3F
+48,Isole Vorticose P3S
 51,Fiorlisopoli
 52,Percorso 42
 53,Monte Scodella P1
@@ -55,24 +55,24 @@
 69,Grotta Scura (Percorso 31)
 70,Grotta Scura (Percorso 45)
 71,Percorso 47
-72,Mt. Moon Square
-73,Mt. Moon Square (Clefairy Event)
+72,Piazza Monteluna
+73,Piazza Monteluna (Evento Clefairy)
 74,Isole Spumarine P1
 75,Isole Spumarine P1S
 76,Isole Spumarine P2S
 77,Isole Spumarine P3S
 78,Isole Spumarine P4S
-79,Mt. Silver Cave (Moltres Chamber)
-80,Mt. Silver Cave 2F
-81,Grotta Argento - Grotta P3
+79,Grotta Argento (Stanza di Moltres)
+80,Grotta Argento P2
+81,Grotta Argento P3
 82,Ingresso Falesia
 83,Grotta Falesia
-85,Grotta Argento
-86,Grotta Argento P1
-87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Expert Belt)
-89,Mt. Silver Cave (Upper mountainside)
-91,Safari Zone
+85,Monte Argento
+86,Monte Argento P1
+87,Grotta Argento (Pendio più basso)
+88,Grotta Argento (Abilcintura)
+89,Grotta Argento (Pendio più alto)
+91,Zona Safari
 92,Percorso 12
 93,Percorso 19
 94,Percorso 20
@@ -87,7 +87,7 @@
 103,Percorso 26
 104,Percorso 27
 105,Percorso 28
-106,Mt. Moon 1F
+106,Monte Luna P1
 108,Tunnel Roccioso P1
 109,Tunnel Roccioso P2
 110,Via Vittoria P1
@@ -128,15 +128,15 @@
 146,Azalina
 147,Plumbeopoli
 148,Ingresso Safari
-149,Safari Zone (Pianure)
-150,Safari Zone (Fiori)
-151,Safari Zone (Savana)
-152,Safari Zone (Rocce)
-153,Safari Zone (Scogli)
-154,Safari Zone (Palude)
-155,Safari Zone (Bosco)
-156,Safari Zone (Pini)
-157,Safari Zone (Stagno)
-158,Safari Zone (Terra selvaggia)
-159,Safari Zone (Area montana)
-160,Safari Zone (Deserto)
+149,Zona Safari (Pianure)
+150,Zona Safari (Fiori)
+151,Zona Safari (Savana)
+152,Zona Safari (Rocce)
+153,Zona Safari (Scogli)
+154,Zona Safari (Palude)
+155,Zona Safari (Bosco)
+156,Zona Safari (Pini)
+157,Zona Safari (Stagno)
+158,Zona Safari (Terra selvaggia)
+159,Zona Safari (Area montana)
+160,Zona Safari (Deserto)

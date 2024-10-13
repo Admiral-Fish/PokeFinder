@@ -15,30 +15,30 @@
 14,Landa delle Pietre
 15,Torre Diroccata
 16,Lago Axew (ovest)
-17,Fields of Honor
-18,Soothing Wetlands
-19,Forest of Focus
-20,Challenge Beach
-21,Brawlers' Cave
-22,Challenge Road
-23,Courageous Cavern
-24,Loop Lagoon
-25,Training Lowlands
-26,Potbottom Desert
-27,Workout Sea
-28,Stepping-Stone Sea
-29,Insular Sea
-30,Honeycalm Sea
-31,Honeycalm Island
-32,Slippery Slope
-33,Frostpoint Field
-34,Giant's Bed
-35,Old Cemetery
-36,Snowslide Slope
-37,Path to the Peak
-38,Crown Shrine
-39,Giant's Foot
-40,Frigid Sea
-41,Three-Point Pass
-42,Ballimere Lake
-43,Dyna Tree Hill
+17,Pianura Inchino
+18,Acquitrino Fresco
+19,Bosco Concentrazione
+20,Spiaggia Sfida
+21,Antro Scontro
+22,Cammino Sfida
+23,Grotta Grinta
+24,Baia Circolare
+25,Piana Addestramento
+26,Deserto Paiolo
+27,Mar Ginnico
+28,Mar Lineapelago
+29,Mar Sperdipelago
+30,Mar Quietarnia
+31,Isola Quietarnia
+32,Nevi Primoscivolo
+33,Piana Sottozero
+34,Letto del Gigante
+35,Cimitero Antico
+36,Valle Innevata
+37,Sentiero Biancacima
+38,Tempio Corona
+39,Suola del Gigante
+40,Mar Gelido
+41,Campo Trivio
+42,Riva del Lago Ball
+43,Collina Dynalbero
