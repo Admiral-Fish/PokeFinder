@@ -39,7 +39,7 @@
 48,Monte Antipodi
 49,Monte Antipodi P1
 50,Monte Antipodi P1S
-52,Monte Antipodi P1S (Stanza)
+52,Monte Antipodi P1S (Sala)
 61,Casa Bizzarra
 65,Casa Bizzarra (Stanze)
 71,Via Vittoria P1
@@ -99,7 +99,7 @@
 132,Spiraria
 133,Percorso 17
 134,Percorso 21
-135,Percorso 6 (Cave)
+135,Percorso 6 (Grotta)
 136,Percorso 13 (Fossa Gigante)
 137,Tempio Abbondanza (Stagno)
 138,Percorso 3 (Stagno)

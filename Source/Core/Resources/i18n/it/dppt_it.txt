@@ -4,7 +4,7 @@
 3,Arenipoli
 4,Lega Pokémon
 5,Cava Mineropoli P1S
-6,Oreburgh Mine P2S
+6,Cava Mineropoli P2S
 7,Impianto Turbine
 8,Bosco Evopoli
 9,Fonderie Fuego
@@ -33,7 +33,7 @@
 40,Rovine Flemminia P3S (3 Scale)
 41,Rovine Flemminia P3S (4 Scale)
 42,Rovine Flemminia P4S (4 Scale)
-43,Rovine Flemminia P4S (Stanza)
+43,Rovine Flemminia P4S (Sala)
 47,Via Vittoria P1
 48,Via Vittoria P2
 49,Via Vittoria P1S
@@ -47,7 +47,7 @@
 57,Monte Ostile Interno 1
 58,Monte Ostile Interno 2
 59,Fonte Saluto
-63,Grotta Ritorno Entrata
+63,Grotta Ritorno Ingresso
 69,Grotta Ritorno 1° Pilastro
 75,Grotta Ritorno 2° Pilastro
 106,Tempio Nevepoli P1
@@ -56,19 +56,19 @@
 109,Tempio Nevepoli P3S
 110,Tempio Nevepoli P4S
 111,Tempio Nevepoli P5S
-112,Wayward Cave P1
-113,Wayward Cave P1S
+112,Grotta Labirinto P1
+113,Grotta Labirinto P1S
 114,Grotta Rovine (< 10 Unown)
 115,Grotta Rovine (> 10 Unown)
 116,Tunnel Rovine
 117,Giardino Trofeo
 118,Isola Ferrosa
 119,Isola Ferrosa P1
-120,Iron Island P1S 1
-121,Iron Island P1S 2
-122,Iron Island P2S 1
-123,Iron Island P2S 2
-124,Iron Island P3S 1
+120,Isola Ferrosa P1S 1
+121,Isola Ferrosa P1S 2
+122,Isola Ferrosa P2S 1
+123,Isola Ferrosa P2S 2
+124,Isola Ferrosa P3S 1
 125,Antico Château
 132,Antico Château P2 (Stanza degli occhi)
 134,Lago Verità (Pre Evento Team Galassia)

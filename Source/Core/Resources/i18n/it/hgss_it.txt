@@ -62,7 +62,7 @@
 76,Isole Spumarine P2S
 77,Isole Spumarine P3S
 78,Isole Spumarine P4S
-79,Grotta Argento (Stanza di Moltres)
+79,Grotta Argento (Sala di Moltres)
 80,Grotta Argento P2
 81,Grotta Argento P3
 82,Ingresso Falesia

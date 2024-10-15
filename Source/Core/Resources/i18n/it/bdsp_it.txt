@@ -33,7 +33,7 @@
 40,Rovine di Flemminia P3S (3 Scale)
 41,Rovine di Flemminia P3S (4 Scale)
 42,Rovine di Flemminia P4S (4 Scale)
-43,Rovine di Flemminia P4S (Stanza)
+43,Rovine di Flemminia P4S (Sala)
 47,Via Vittoria P1
 48,Via Vittoria P2
 49,Via Vittoria P1S
@@ -50,7 +50,7 @@
 60,Grotta Ritorno
 61,Grotta Ritorno
 62,Grotta Ritorno
-63,Grotta Ritorno Entrata
+63,Grotta Ritorno Ingresso
 69,Grotta Ritorno 1° Pilastro
 75,Grotta Ritorno 2° Pilastro
 106,Tempio di Nevepoli P1
@@ -77,8 +77,8 @@
 135,Lago Verità (Post Evento Team Galassia)
 136,Lago Valore
 137,Lago Arguzia
-138,Riva Valore
-139,Riva Arguzia
+138,Riva del Lago Valore
+139,Riva del Lago Arguzia
 140,Percorso 201
 141,Percorso 202
 142,Percorso 203

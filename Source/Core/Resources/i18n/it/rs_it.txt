@@ -26,11 +26,11 @@
 40,Via Vittoria P1
 41,Via Vittoria P1S
 42,Via Vittoria P2S
-44,Grotta Ondosa Stanza Interna
-47,Grotta Ondosa Stanza di Ghiaccio
+44,Grotta Ondosa
+47,Grotta Ondosa Stanza Ghiacciata
 48,Ciclanova Ingresso
 49,Ciclanova Interno
-50,Vecchia Nave
+50,Vecchia Nave Stanze
 52,Torre dei Cieli P1
 53,Torre dei Cieli P3
 54,Torre dei Cieli P5
