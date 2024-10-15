@@ -148,7 +148,107 @@ union alignas(16) vuint128 {
 #if defined(SIMD_X86)
         ret.uint128 = _mm_slli_epi32(uint128, shift);
 #elif defined(SIMD_ARM)
-        ret.uint128 = vshlq_n_u32(uint128, shift);
+        switch (shift)
+        {
+        case 0:
+            ret.uint128 = uint128;
+            break;
+        case 1:
+            ret.uint128 = vshlq_n_u32(uint128, 1);
+            break;
+        case 2:
+            ret.uint128 = vshlq_n_u32(uint128, 2);
+            break;
+        case 3:
+            ret.uint128 = vshlq_n_u32(uint128, 3);
+            break;
+        case 4:
+            ret.uint128 = vshlq_n_u32(uint128, 4);
+            break;
+        case 5:
+            ret.uint128 = vshlq_n_u32(uint128, 5);
+            break;
+        case 6:
+            ret.uint128 = vshlq_n_u32(uint128, 6);
+            break;
+        case 7:
+            ret.uint128 = vshlq_n_u32(uint128, 7);
+            break;
+        case 8:
+            ret.uint128 = vshlq_n_u32(uint128, 8);
+            break;
+        case 9:
+            ret.uint128 = vshlq_n_u32(uint128, 9);
+            break;
+        case 10:
+            ret.uint128 = vshlq_n_u32(uint128, 10);
+            break;
+        case 11:
+            ret.uint128 = vshlq_n_u32(uint128, 11);
+            break;
+        case 12:
+            ret.uint128 = vshlq_n_u32(uint128, 12);
+            break;
+        case 13:
+            ret.uint128 = vshlq_n_u32(uint128, 13);
+            break;
+        case 14:
+            ret.uint128 = vshlq_n_u32(uint128, 14);
+            break;
+        case 15:
+            ret.uint128 = vshlq_n_u32(uint128, 15);
+            break;
+        case 16:
+            ret.uint128 = vshlq_n_u32(uint128, 16);
+            break;
+        case 17:
+            ret.uint128 = vshlq_n_u32(uint128, 17);
+            break;
+        case 18:
+            ret.uint128 = vshlq_n_u32(uint128, 18);
+            break;
+        case 19:
+            ret.uint128 = vshlq_n_u32(uint128, 19);
+            break;
+        case 20:
+            ret.uint128 = vshlq_n_u32(uint128, 20);
+            break;
+        case 21:
+            ret.uint128 = vshlq_n_u32(uint128, 21);
+            break;
+        case 22:
+            ret.uint128 = vshlq_n_u32(uint128, 22);
+            break;
+        case 23:
+            ret.uint128 = vshlq_n_u32(uint128, 23);
+            break;
+        case 24:
+            ret.uint128 = vshlq_n_u32(uint128, 24);
+            break;
+        case 25:
+            ret.uint128 = vshlq_n_u32(uint128, 25);
+            break;
+        case 26:
+            ret.uint128 = vshlq_n_u32(uint128, 26);
+            break;
+        case 27:
+            ret.uint128 = vshlq_n_u32(uint128, 27);
+            break;
+        case 28:
+            ret.uint128 = vshlq_n_u32(uint128, 28);
+            break;
+        case 29:
+            ret.uint128 = vshlq_n_u32(uint128, 29);
+            break;
+        case 30:
+            ret.uint128 = vshlq_n_u32(uint128, 30);
+            break;
+        case 31:
+            ret.uint128 = vshlq_n_u32(uint128, 31);
+            break;
+        default:
+            ret.uint128 = vdupq_n_u32(0);
+        }
 #else
         for (int i = 0; i < 4; i++)
         {
@@ -171,7 +271,107 @@ union alignas(16) vuint128 {
 #if defined(SIMD_X86)
         ret.uint128 = _mm_srli_epi32(uint128, shift);
 #elif defined(SIMD_ARM)
-        ret.uint128 = vshrq_n_u32(uint128, shift);
+        switch (shift)
+        {
+        case 0:
+            ret.uint128 = uint128;
+            break;
+        case 1:
+            ret.uint128 = vshrq_n_u32(uint128, 1);
+            break;
+        case 2:
+            ret.uint128 = vshrq_n_u32(uint128, 2);
+            break;
+        case 3:
+            ret.uint128 = vshrq_n_u32(uint128, 3);
+            break;
+        case 4:
+            ret.uint128 = vshrq_n_u32(uint128, 4);
+            break;
+        case 5:
+            ret.uint128 = vshrq_n_u32(uint128, 5);
+            break;
+        case 6:
+            ret.uint128 = vshrq_n_u32(uint128, 6);
+            break;
+        case 7:
+            ret.uint128 = vshrq_n_u32(uint128, 7);
+            break;
+        case 8:
+            ret.uint128 = vshrq_n_u32(uint128, 8);
+            break;
+        case 9:
+            ret.uint128 = vshrq_n_u32(uint128, 9);
+            break;
+        case 10:
+            ret.uint128 = vshrq_n_u32(uint128, 10);
+            break;
+        case 11:
+            ret.uint128 = vshrq_n_u32(uint128, 11);
+            break;
+        case 12:
+            ret.uint128 = vshrq_n_u32(uint128, 12);
+            break;
+        case 13:
+            ret.uint128 = vshrq_n_u32(uint128, 13);
+            break;
+        case 14:
+            ret.uint128 = vshrq_n_u32(uint128, 14);
+            break;
+        case 15:
+            ret.uint128 = vshrq_n_u32(uint128, 15);
+            break;
+        case 16:
+            ret.uint128 = vshrq_n_u32(uint128, 16);
+            break;
+        case 17:
+            ret.uint128 = vshrq_n_u32(uint128, 17);
+            break;
+        case 18:
+            ret.uint128 = vshrq_n_u32(uint128, 18);
+            break;
+        case 19:
+            ret.uint128 = vshrq_n_u32(uint128, 19);
+            break;
+        case 20:
+            ret.uint128 = vshrq_n_u32(uint128, 20);
+            break;
+        case 21:
+            ret.uint128 = vshrq_n_u32(uint128, 21);
+            break;
+        case 22:
+            ret.uint128 = vshrq_n_u32(uint128, 22);
+            break;
+        case 23:
+            ret.uint128 = vshrq_n_u32(uint128, 23);
+            break;
+        case 24:
+            ret.uint128 = vshrq_n_u32(uint128, 24);
+            break;
+        case 25:
+            ret.uint128 = vshrq_n_u32(uint128, 25);
+            break;
+        case 26:
+            ret.uint128 = vshrq_n_u32(uint128, 26);
+            break;
+        case 27:
+            ret.uint128 = vshrq_n_u32(uint128, 27);
+            break;
+        case 28:
+            ret.uint128 = vshrq_n_u32(uint128, 28);
+            break;
+        case 29:
+            ret.uint128 = vshrq_n_u32(uint128, 29);
+            break;
+        case 30:
+            ret.uint128 = vshrq_n_u32(uint128, 30);
+            break;
+        case 31:
+            ret.uint128 = vshrq_n_u32(uint128, 31);
+            break;
+        default:
+            ret.uint128 = vdupq_n_u32(0);
+        }
 #else
         for (int i = 0; i < 4; i++)
         {
