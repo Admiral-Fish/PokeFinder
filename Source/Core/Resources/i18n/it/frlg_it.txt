@@ -1,72 +1,72 @@
-0,Seven Island Tanoby Ruins Monean Chamber
-1,Seven Island Tanoby Ruins Liptoo Chamber
-2,Seven Island Tanoby Ruins Weepth Chamber
-3,Seven Island Tanoby Ruins Dilford Chamber
-4,Seven Island Tanoby Ruins Scufib Chamber
-5,Seven Island Tanoby Ruins Rixy Chamber
-6,Seven Island Tanoby Ruins Viapois Chamber
+0,Settimisola Rovine Florabeto Sala A-loe
+1,Settimisola Rovine Florabeto Sala B-etulla
+2,Settimisola Rovine Florabeto Sala C-iclamino
+3,Settimisola Rovine Florabeto Sala D-afne
+4,Settimisola Rovine Florabeto Sala E-dera
+5,Settimisola Rovine Florabeto Sala F-elce
+6,Settimisola Rovine Florabeto Sala G-ardenia
 7,Bosco Smeraldo
-8,Mt Moon 1F
-9,Mt Moon B1F
-10,Mt Moon B2F
-11,S.S Anne Exterior
-12,Digletts Cave B1F
-13,Victory Road 1F/3F
-14,Victory Road 2F
-16,Pokemon Mansion 1F-3F
-19,Pokemon Mansion B1F
-20,Safari Zone Center
-21,Safari Zone East
-22,Safari Zone North
-23,Safari Zone West
+8,Monte Luna P1
+9,Monte Luna P1S
+10,Monte Luna P2S
+11,M/N Anna Esterno
+12,Grotta Diglett P1S
+13,Via Vittoria P1/P3
+14,Via Vittoria P2
+16,Villa Pokemon P1-P3
+19,Villa Pokemon P1S
+20,Zona Safari Centro
+21,Zona Safari Est
+22,Zona Safari Nord
+23,Zona Safari Ovest
 24,Grotta Celeste P1
 25,Grotta Celeste P2
-26,Cerulean Cave B1F
-27,Rock Tunnel 1F
-28,Rock Tunnel B1F
-29,Seafoam Islands 1F
+26,Grotta Celeste P1S
+27,Tunnel Roccioso P1
+28,Tunnel Roccioso P1S
+29,Isole Spumarine P1
 30,Isole Spumarine P1S
 31,Isole Spumarine P2S
-32,Seafoam Islands B3F
+32,Isole Spumarine P3S
 33,Isole Spumarine P4S
-34,Pokemon Tower 3F
-35,Pokemon Tower 4F-5F
-37,Pokemon Tower 6F
-38,Pokemon Tower 7F
+34,Torre Pokemon P3
+35,Torre Pokemon P4-P5
+37,Torre Pokemon P6
+38,Torre Pokemon P7
 39,Centrale Elettrica
-40,Mt Ember Exterior
-41,Mt Ember Summit Path 1F/3F
-42,Mt Ember Summit Path 2F
-44,Mt Ember Ruby Path 1F
-45,Mt Ember Ruby Path B1F
-46,Mt Ember Ruby Path B2F
-47,Mt Ember Ruby Path B3F
-48,Mt Ember Ruby Path B1F Stairs
-49,Mt Ember Ruby Path B2F Stairs
-50,Three Island Berry Forest
-51,Four Island Icefall Cave Entrance
-52,Four Island Icefall Cave 1F/B1F
-54,Four Island Icefall Cave Back
-55,Six Island Pattern Bush
-56,Five Island Lost Cave
-66,Five Island Lost Cave Item Room
-70,One Island Kindle Road
-71,One Island Treasure Beach
-72,Two Island Cape Brink
-73,Three Island Bond Bridge
-74,Three Island Port
-75,Five Island Resort Gorgeous
-76,Five Island Water Labyrinth
-77,Five Island Meadow
-78,Five Island Memorial Pillar
-79,Six Island Outcast Island
-80,Six Island Green Path
-81,Six Island Water Path
-82,Six Island Ruin Valley
-83,Seven Island Trainer Tower
-84,Seven Island Sevault Canyon Entrance
-85,Seven Island Sevault Canyon
-86,Seven Island Tanoby Ruins
+40,Monte Brace Esterno
+41,Monte Brace Percorso della Cima P1/P3
+42,Monte Brace Percorso della Cima P2
+44,Monte Brace Percorso del Rubino P1
+45,Monte Brace Percorso del Rubino P1S
+46,Monte Brace Percorso del Rubino P2S
+47,Monte Brace Percorso del Rubino P3S
+48,Monte Brace Percorso del Rubino P1S Scale
+49,Monte Brace Percorso del Rubino P2S Scale
+50,Terzisola Bosco Baccoso
+51,Quartisola Grotta Gelata Ingresso
+52,Quartisola Grotta Gelata P1/P1S
+54,Quartisola Grotta Gelata Retro
+55,Sestisola Bosco Disegnato
+56,Quintisola Grotta Sperduta
+66,Quintisola Grotta Sperduta Stanza dell'Oggetto
+70,Primisola Via Vulcanica
+71,Primisola Riva del Tesoro
+72,Secondisola Capo Estremo
+73,Terzisola Ponte Abbraccio
+74,Porto Terzisola
+75,Quintisola Perla dei Mari
+76,Quintisola Labirinto Marino
+77,Prato Quintisola
+78,Quintisola Colonna Rocciosa
+79,Sestisola Isola Solitaria
+80,Sestisola Via Verde
+81,Sestisola Via Marina
+82,Sestisola Valle Antica
+83,Settimisola Torre Allenatori
+84,Settimisola Canyon Seption Ingresso
+85,Settimisola Canyon Seption
+86,Settimisola Rovine Florabeto
 87,Percorso 1
 88,Percorso 2
 89,Percorso 3
@@ -92,14 +92,14 @@
 110,Percorso 23
 111,Percorso 24
 112,Percorso 25
-113,Pallet Town
-114,Viridian City
+113,Biancavilla
+114,Smeraldopoli
 115,Celestopoli
 116,Aranciopoli
 117,Azzurropoli
-118,Fuchsia City
+118,Fucsiapoli
 119,Isola Cannella
-120,One Island
+120,Primisola
 121,Quartisola
-122,Five Island
-123,Six Island Altering Cave
+122,Quintisola
+123,Sestisola Grotta Mutevole

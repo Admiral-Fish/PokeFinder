@@ -16,11 +16,11 @@
 15,Tunnel Menferro
 16,Grotta Pietrosa P1
 17,Grotta Pietrosa P1S
-18,Mt Pyre 1F-3F
+18,Monte Pira P1-P3
 19,Via Vittoria P1
-20,Safari Zone South
-21,Route 126 Underwater
-22,Abandoned Ship
+20,Zona Safari Sud
+21,Percorso 126 Sott'acqua
+22,Vecchia Nave
 23,Grotta Pietrosa P2S
 24,Cammino Ardente
 25,Cascate Meteora P1S 2S
@@ -30,16 +30,16 @@
 29,Percorso 108
 30,Percorso 109
 31,Percorso 115
-32,New Mauville Inside
+32,Ciclanova Interno
 33,Percorso 119
 34,Percorso 120
 35,Percorso 121
 36,Percorso 122
 37,Percorso 123
-40,Mt Pyre 4F-6F
-43,Mt Pyre Exterior
-44,Mt Pyre Summit
-45,Granite Cave Stevens Room
+40,Monte Pira P4-P6
+43,Monte Pira Esterno
+44,Monte Pira Cima
+45,Grotta Pietrosa Stanza di Rocco
 46,Percorso 125
 47,Percorso 126
 48,Percorso 127
@@ -50,19 +50,19 @@
 53,Percorso 132
 54,Percorso 133
 55,Percorso 134
-62,Seafloor Cavern
-66,Cave Of Origin Entrance
-67,Cave Of Origin 1F
-71,New Mauville Entrance
-72,Safari Zone Southwest
-73,Safari Zone North
-74,Safari Zone Northwest
+62,Antro Abissale
+66,Grotta dei Tempi Ingresso
+67,Grotta dei Tempi P1
+71,Ciclanova Ingresso
+72,Zona Safari Sud-ovest
+73,Zona Safari Nord
+74,Zona Safari Nord-ovest
 75,Via Vittoria P1S
-76,Victory Road B2F
+76,Via Vittoria P2S
 77,Cascate Meteora P1 1S
 78,Cascate Meteora P1 2S
 79,Cascate Meteora P1S 1S
-82,Shoal Cave
+82,Grotta Ondosa
 84,Porto Alghepoli
 85,Bluruvia
 86,Porto Selcepoli
@@ -70,17 +70,17 @@
 88,Orocea
 89,Iridopoli
 90,Petalipoli
-91,Route 124 Underwater
-92,Shoal Cave Ice Room
+91,Percorso 124 Sott'acqua
+92,Grotta Ondosa Stanza Ghiacciata
 93,Torre dei Cieli P1
 94,Ceneride
 95,Torre dei Cieli P3
 96,Torre dei Cieli P5
-97,Safari Zone Southeast
-98,Safari Zone Northeast
-99,Magma Hideout 
-107,Mirage Tower
+97,Zona Safari Sud-est
+98,Zona Safari Nord-est
+99,Rifugio Magma
+107,Torre Miraggio
 111,Galleria Deserto
-112,Artisan Cave
-114,Altering Cave
-123,Meteor Falls Stevens Cave
+112,Grotta Artistica
+114,Grotta Mutevole
+123,Cascate Meteora Stanza di Rocco
