@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
     QString profilePath = setting.value("profiles").toString();
     bool profile = ProfileLoader::init(profilePath.toStdWString());
 
+#if QT_VERSION > QT_VERSION_CHECK(6, 8, 0)
     a.setStyle("fusion");
     if (setting.value("style").toString() == "dark")
     {
@@ -105,6 +106,15 @@ int main(int argc, char *argv[])
         auto hints = a.styleHints();
         hints->setColorScheme(Qt::ColorScheme::Light);
     }
+#else
+    QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("style").toString()));
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream ts(&file);
+        a.setStyleSheet(ts.readAll());
+    }
+
+#endif
 
     QString locale = setting.value("locale").toString();
     Translator::init(locale.toStdString());
