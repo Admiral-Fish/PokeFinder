@@ -1,142 +1,142 @@
-0,Canalave City
-1,Eterna City
-2,Pastoria City
-3,Sunyshore City
-4,Pokémon League
-5,Oreburgh Mine B1F
-6,Oreburgh Mine B2F
-7,Valley Windworks
-8,Eterna Forest
-9,Fuego Ironworks
-10,Mt. Coronet 1F 1
-11,Mt. Coronet 2F
-12,Mt. Coronet 3F
-13,Mt. Coronet Summit
-15,Mt. Coronet 4F 1-2
-16,Mt. Coronet 4F 3
-17,Mt. Coronet 5F
-18,Mt. Coronet 6F
-19,Mt. Coronet 1F 2
-20,Mt. Coronet Upper 1F 2
-21,Mt. Coronet Upper 1F 1
-22,Mt. Coronet Upper B1F
-23,Great Marsh Area 1
-24,Great Marsh Area 2
-25,Great Marsh Area 3
-26,Great Marsh Area 4
-27,Great Marsh Area 5
-28,Great Marsh Area 6
-29,Solaceon Ruins 2F
-30,Solaceon Ruins
-32,Solaceon Ruins B1F (4 Stairs)
-34,Solaceon Ruins B2F (4 Stairs)
-40,Solaceon Ruins B3F (3 Stairs)
-41,Solaceon Ruins B3F (4 Stairs)
-42,Solaceon Ruins B4F (4 Stairs)
-43,Solaceon Ruins B4F (Chamber)
-47,Victory Road 1F
-48,Victory Road 2F
-49,Victory Road B1F
-50,Victory Road 1F Back 2
-51,Victory Road 1F Back 1
-52,Victory Road 1F Back 3
-53,Ravaged Path
-54,Oreburgh Gate 1F
-55,Oreburgh Gate B1F
-56,Stark Mountain
-57,Stark Mountain Interior 1
-58,Stark Mountain Interior 2
-59,Sendoff Spring
-60,Turnback Cave
-61,Turnback Cave
-62,Turnback Cave
-63,Turnback Cave Entrance
-69,Turnback 1st Pillar
-75,Turnback 2nd Pillar
-106,Snowpoint Temple 1F
-107,Snowpoint Temple B1F
-108,Snowpoint Temple B2F
-109,Snowpoint Temple B3F
-110,Snowpoint Temple B4F
-111,Snowpoint Temple B5F
-112,Wayward Cave 1F
-113,Wayward Cave B1F
-114,Ruin Maniac Cave (< 10 Unown)
-115,Ruin Maniac Cave (> 10 Unown)
-116,Maniac Tunnel
-117,Trophy Garden
-118,Iron Island
-119,Iron Island 1F
-120,Iron Island B1F 1
-121,Iron Island B1F 2
-122,Iron Island B2F 1
-123,Iron Island B2F 2
-124,Iron Island B3F 1
-125,Old Chateau
-134,Lake Verity (Pre Team Galatic Event)
-135,Lake Verity (Post Team Galatic Event)
-136,Lake Valor
-137,Lake Acuity
-138,Valor Lakefront
-139,Acuity Lakefront
-140,Route 201
-141,Route 202
-142,Route 203
-143,Route 204 (South)
-144,Route 204 (North)
-145,Route 205 (South)
-146,Route 205 (North)
-147,Route 206
-148,Route 207
-149,Route 208
-150,Route 209
-151,Lost Tower 1F
-152,Lost Tower 2F
-153,Lost Tower 3F
-154,Lost Tower 4F
-155,Lost Tower 5F
-156,Route 210 (South)
-157,Route 210 (North)
-158,Route 211 (West)
-159,Route 211 (East)
-160,Route 212 (North)
-161,Route 212 (South)
-162,Route 213
-163,Route 214
-164,Route 215
-165,Route 216
-166,Route 217
-167,Route 218
-168,Route 219
-169,Route 221
-170,Route 222
-171,Route 224
-172,Route 225
-173,Route 227
-174,Route 228
-175,Route 229
-176,Twinleaf Town
-177,Celestic Town
-178,Resort Area
-179,Route 220
-180,Route 223
-181,Route 226
-182,Route 230
-183,Spacious Cave
-184,Grassland Cave
-185,Fountainspring Cave
-186,Rocky Cave
-187,Volcanic Cave
-188,Swampy Cave
-189,Dazzling Cave
-190,Whiteout Cave
-191,Ice Cave
-192,Riverbank Cave
-193,Sandsear Cave
-194,Still-Water Cavern
-195,Sunlit Cavern
-196,Big Bluff Cavern
-197,Stargleam Cavern
-198,Glacial Cavern
-199,Bogsunk Cavern
-200,Typhlo Cavern
+0,Canalipoli
+1,Evopoli
+2,Pratopoli
+3,Arenipoli
+4,Lega Pokémon
+5,Cava di Mineropoli P1S
+6,Cava di Mineropoli P2S
+7,Impianto Turbine
+8,Bosco Evopoli
+9,Fonderie Fuego
+10,Monte Corona P1 1
+11,Monte Corona P2
+12,Monte Corona P3
+13,Monte Corona Cima
+15,Monte Corona P4 1-2
+16,Monte Corona P4 3
+17,Monte Corona P5
+18,Monte Corona P6
+19,Monte Corona P1 2
+20,Monte Corona Superiore P1 2
+21,Monte Corona Superiore P1 1
+22,Monte Corona Superiore P1S
+23,Gran Palude Area 1
+24,Gran Palude Area 2
+25,Gran Palude Area 3
+26,Gran Palude Area 4
+27,Gran Palude Area 5
+28,Gran Palude Area 6
+29,Rovine di Flemminia P2
+30,Rovine di Flemminia
+32,Rovine di Flemminia P1S (4 Scale)
+34,Rovine di Flemminia P2S (4 Scale)
+40,Rovine di Flemminia P3S (3 Scale)
+41,Rovine di Flemminia P3S (4 Scale)
+42,Rovine di Flemminia P4S (4 Scale)
+43,Rovine di Flemminia P4S (Sala)
+47,Via Vittoria P1
+48,Via Vittoria P2
+49,Via Vittoria P1S
+50,Via Vittoria P1 Retro 2
+51,Via Vittoria P1 Retro 1
+52,Via Vittoria P1 Retro 3
+53,Cammino Roccioso
+54,Varco di Mineropoli P1
+55,Varco di Mineropoli P1S
+56,Monte Ostile
+57,Monte Ostile Interno 1
+58,Monte Ostile Interno 2
+59,Fonte Saluto
+60,Grotta Ritorno
+61,Grotta Ritorno
+62,Grotta Ritorno
+63,Grotta Ritorno Ingresso
+69,Grotta Ritorno 1° Pilastro
+75,Grotta Ritorno 2° Pilastro
+106,Tempio di Nevepoli P1
+107,Tempio di Nevepoli P1S
+108,Tempio di Nevepoli P2S
+109,Tempio di Nevepoli P3S
+110,Tempio di Nevepoli P4S
+111,Tempio di Nevepoli P5S
+112,Grotta Labirinto P1
+113,Grotta Labirinto P1S
+114,Grotta Rovine (< 10 Unown)
+115,Grotta Rovine (> 10 Unown)
+116,Tunnel Rovine
+117,Giardino Trofeo
+118,Isola Ferrosa
+119,Isola Ferrosa P1
+120,Isola Ferrosa P1S 1
+121,Isola Ferrosa P1S 2
+122,Isola Ferrosa P2S 1
+123,Isola Ferrosa P2S 2
+124,Isola Ferrosa P3S 1
+125,Antico Château
+134,Lago Verità (Pre Evento Team Galassia)
+135,Lago Verità (Post Evento Team Galassia)
+136,Lago Valore
+137,Lago Arguzia
+138,Riva del Lago Valore
+139,Riva del Lago Arguzia
+140,Percorso 201
+141,Percorso 202
+142,Percorso 203
+143,Percorso 204 (Sud)
+144,Percorso 204 (Nord)
+145,Percorso 205 (Sud)
+146,Percorso 205 (Nord)
+147,Percorso 206
+148,Percorso 207
+149,Percorso 208
+150,Percorso 209
+151,Torre Memoria P1
+152,Torre Memoria P2
+153,Torre Memoria P3
+154,Torre Memoria P4
+155,Torre Memoria P5
+156,Percorso 210 (Sud)
+157,Percorso 210 (Nord)
+158,Percorso 211 (Ovest)
+159,Percorso 211 (Est)
+160,Percorso 212 (Nord)
+161,Percorso 212 (Sud)
+162,Percorso 213
+163,Percorso 214
+164,Percorso 215
+165,Percorso 216
+166,Percorso 217
+167,Percorso 218
+168,Percorso 219
+169,Percorso 221
+170,Percorso 222
+171,Percorso 224
+172,Percorso 225
+173,Percorso 227
+174,Percorso 228
+175,Percorso 229
+176,Duefoglie
+177,Memoride
+178,Area Svago
+179,Percorso 220
+180,Percorso 223
+181,Percorso 226
+182,Percorso 230
+183,Antro spazioso
+184,Antro della prateria
+185,Antro delle falde acquifere
+186,Antro delle rocce
+187,Antro della lava
+188,Antro dell’acquitrino
+189,Antro dei bagliori
+190,Antro della tormenta
+191,Via Gelata
+192,Antro della riva
+193,Antro delle sabbie ardenti
+194,Caverna del lago
+195,Caverna del sole
+196,Caverna della rupe
+197,Caverna delle stelle
+198,Caverna del ghiacciaio
+199,Caverna della palude
+200,Caverna Typhlosion
