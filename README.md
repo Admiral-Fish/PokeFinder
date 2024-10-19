@@ -4,7 +4,7 @@ Join the PokéFinder Discord server to talk about development and contribute.
 
 [![PokéFinder](https://discordapp.com/assets/07dca80a102d4149e9736d4b162cff6f.ico)](https://discord.gg/XmgQF9X)
 
-This will be a RNG Tool for all main Pokémon games generations 3-7. It currently supports generations 3/4 and parts of generation 5/8.
+This will be a RNG Tool for all main Pokémon games generations 3-8. It currently supports generations 3/4 and parts of generation 5/8.
 
 # Download
 
@@ -14,30 +14,34 @@ This will be a RNG Tool for all main Pokémon games generations 3-7. It currentl
 
 # Features
 Gen 3
+- Egg
+- GameCube
+- IDs
 - Static
 - Wild
-- Egg
-- IDs
-- Gales/Colo/Channel
 
 Gen 4
-- Events
+- Egg
+- Event
+- IDs
 - Static
 - Wild
-- Egg
-- IDs
 
 Gen 5
-- Events
 - Dream Radar
 - Egg
+- Event
+- Hidden Grotto
 - IDs
 
 Gen 8
-- Raids
-- Wild
 - Egg
+- Event
 - IDs
+- Raid
+- Static
+- Underground
+- Wild
 
 # Supported Platforms
 
@@ -46,13 +50,16 @@ Windows
 - Windows 11
 
 MacOS
-- MacOS Catalina
-- MacOS Big Sur
-- MacOS Monterey
+- MacOS Ventura
+- MacOS Sonoma
+- MacOS Sequoia
 
 Linux
-- Ubuntu 20.04
 - Ubuntu 22.04
+- Ubuntu 24.04
+
+Qt
+- 6.8 or newer
 
 # Installing
 
@@ -98,7 +105,7 @@ MacOS
   - git submodule update
   - mkdir build
   - cd build
-  - PATH="PATH=$PATH:$HOME/Qt/6.2/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - PATH="PATH=$PATH:$HOME/Qt/6.8/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
     - Replace Qt path/version as necessary
   - cmake --build .
 - Bundle
@@ -114,7 +121,7 @@ Linux
   - git submodule update
   - mkdir build
   - cd build
-  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.2/gcc_64 ../
+  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.8/gcc_64 ../
     - Replace Qt path/version as necessary
   - cmake --build .
 
