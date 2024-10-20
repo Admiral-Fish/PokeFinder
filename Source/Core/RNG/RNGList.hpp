@@ -134,7 +134,6 @@ public:
     /**
      * @brief Gets the next PRNG state
      *
-     *
      * @return PRNG state
      */
     Integer next()

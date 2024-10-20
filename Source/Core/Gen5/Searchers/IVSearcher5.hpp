@@ -83,7 +83,7 @@ private:
      */
     void search(const Date &start, const Date &end) override
     {
-        SHA1 sha(this->profile);
+        MultiSHA1 sha(this->profile);
 
         for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
         {
@@ -96,7 +96,7 @@ private:
                 {
                     sha.setButton(keypress.value);
 
-                    for (u32 time = 0; time < 86400; time++)
+                    for (u32 time = 0; time < 86400; time += 4)
                     {
                         if (!this->searching)
                         {
@@ -104,46 +104,52 @@ private:
                         }
 
                         sha.setTime(time, this->profile.getDSType());
-                        u64 seed = sha.hashSeed(alpha);
+                        auto seeds = sha.hashSeed(alpha);
 
                         if (useCache)
                         {
-                            for (u32 i = initialAdvances; i <= (initialAdvances + maxAdvances) && i < ivCache.size(); i++)
+                            for (u32 i = 0; i < seeds.size(); i++)
                             {
-                                const auto entry = ivCache[i].find(seed >> 32);
-                                if (entry == ivCache[i].end())
+                                for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
                                 {
-                                    continue;
-                                }
+                                    const auto entry = ivCache[j].find(seeds[i] >> 32);
+                                    if (entry == ivCache[j].end())
+                                    {
+                                        continue;
+                                    }
 
-                                auto states = this->generator.generate(seed, { { i, entry->second } });
+                                    auto states = this->generator.generate(seeds[i], { { j, entry->second } });
+                                    if (!states.empty())
+                                    {
+                                        DateTime dt(date, time + i);
+
+                                        std::lock_guard<std::mutex> lock(this->mutex);
+                                        this->results.reserve(this->results.capacity() + states.size());
+                                        for (const auto &state : states)
+                                        {
+                                            this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
+                                        }
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (u32 i = 0; i < seeds.size(); i++)
+                            {
+                                auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
                                 if (!states.empty())
                                 {
-                                    DateTime dt(date, time);
+                                    DateTime dt(date, time + i);
 
                                     std::lock_guard<std::mutex> lock(this->mutex);
                                     this->results.reserve(this->results.capacity() + states.size());
                                     for (const auto &state : states)
                                     {
-                                        this->results.emplace_back(dt, seed, keypress.button, timer0, state);
+                                        this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
                                     }
-                                }
-
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            auto states = this->generator.generate(seed, initialAdvances, maxAdvances);
-                            if (!states.empty())
-                            {
-                                DateTime dt(date, time);
-
-                                std::lock_guard<std::mutex> lock(this->mutex);
-                                this->results.reserve(this->results.capacity() + states.size());
-                                for (const auto &state : states)
-                                {
-                                    this->results.emplace_back(dt, seed, keypress.button, timer0, state);
                                 }
                             }
                         }

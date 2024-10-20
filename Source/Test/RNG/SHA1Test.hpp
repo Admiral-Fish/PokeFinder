@@ -33,4 +33,15 @@ private slots:
     void hashTime();
 };
 
+class MultiSHA1Test : public QObject
+{
+    Q_OBJECT
+private slots:
+    void hash_data();
+    void hash();
+
+    void hashTime_data();
+    void hashTime();
+};
+
 #endif // SHA1TEST_HPP

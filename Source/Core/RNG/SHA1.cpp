@@ -32,6 +32,13 @@ static u32 calcW(u32 *data, int i)
     return val;
 }
 
+static vuint128 calcWMulti(vuint128 *data, int i)
+{
+    vuint128 val = v32x4_rotl<1>(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16]);
+    data[i] = val;
+    return val;
+}
+
 static void calcWSIMD(u32 *data, int i)
 {
     for (int index = i; index < i + 4; index++)
@@ -44,15 +51,6 @@ static void calcWSIMD(u32 *data, int i)
 static consteval u32 computeBCD(u8 val)
 {
     return ((val / 10) << 4) + (val % 10);
-}
-
-static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
-{
-    u32 a = month < 3 ? 1 : 0;
-    u32 y = year + 4800 - a;
-    u32 m = month + 12 * a - 3;
-    u32 jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
-    return (jd + 1) % 7;
 }
 
 static consteval std::array<u32, 36525> computeDateValues()
@@ -113,10 +111,25 @@ static consteval std::array<u32, 86400> computeTimeValues()
     return times;
 }
 
+static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
+{
+    u32 a = month < 3 ? 1 : 0;
+    u32 y = year + 4800 - a;
+    u32 m = month + 12 * a - 3;
+    u32 jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
+    return (jd + 1) % 7;
+}
+
 static inline void section1Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
     t = std::rotl(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
     b = std::rotr(b, 2);
+};
+
+static inline void section1CalcMulti(vuint128 a, vuint128 &b, vuint128 c, vuint128 d, vuint128 e, vuint128 &t, vuint128 input)
+{
+    t = v32x4_rotl<5>(a) + ((b & c) | (~b & d)) + e + vuint128(0x5a827999) + input;
+    b = v32x4_rotr<2>(b);
 };
 
 static inline void section2Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
@@ -125,16 +138,34 @@ static inline void section2Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 
     b = std::rotr(b, 2);
 };
 
+static inline void section2CalcMulti(vuint128 a, vuint128 &b, vuint128 c, vuint128 d, vuint128 e, vuint128 &t, vuint128 input)
+{
+    t = v32x4_rotl<5>(a) + (b ^ c ^ d) + e + vuint128(0x6ed9eba1) + input;
+    b = v32x4_rotr<2>(b);
+};
+
 static inline void section3Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
     t = std::rotl(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
     b = std::rotr(b, 2);
 };
 
+static inline void section3CalcMulti(vuint128 a, vuint128 &b, vuint128 c, vuint128 d, vuint128 e, vuint128 &t, vuint128 input)
+{
+    t = v32x4_rotl<5>(a) + ((b & c) | ((b | c) & d)) + e + vuint128(0x8f1bbcdc) + input;
+    b = v32x4_rotr<2>(b);
+};
+
 static inline void section4Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
     t = std::rotl(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
     b = std::rotr(b, 2);
+};
+
+static inline void section4CalcMulti(vuint128 a, vuint128 &b, vuint128 c, vuint128 d, vuint128 e, vuint128 &t, vuint128 input)
+{
+    t = v32x4_rotl<5>(a) + (b ^ c ^ d) + e + vuint128(0xca62c1d6) + input;
+    b = v32x4_rotr<2>(b);
 };
 
 constexpr std::array<u32, 36525> dateValues = computeDateValues();
@@ -323,6 +354,11 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
     data[5] = std::byteswap(static_cast<u32>(vcount << 16) | timer0);
 }
 
+void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
+{
+    setTime(hour * 3600 + minute * 60 + second, dsType);
+}
+
 void SHA1::setTime(u32 time, DSType dsType)
 {
     u32 val = timeValues[time];
@@ -333,7 +369,197 @@ void SHA1::setTime(u32 time, DSType dsType)
     data[9] = val;
 }
 
-void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
+MultiSHA1::MultiSHA1(const Profile5 &profile) :
+    MultiSHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(),
+              profile.getVFrame(), profile.getGxStat())
+{
+}
+
+MultiSHA1::MultiSHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+{
+    auto nazos = Nazos::getNazo(version, language, type);
+    for (int i = 0; i < nazos.size(); i++)
+    {
+        data[i] = vuint128(nazos[i]);
+    }
+
+    data[6] = vuint128(mac & 0xffff);
+    if (softReset)
+    {
+        data[6] = data[6] ^ vuint128(0x01000000);
+    }
+    data[7] = vuint128(static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat));
+
+    // Set values
+    data[10] = vuint128(0x00000000);
+    data[11] = vuint128(0x00000000);
+    data[13] = vuint128(0x80000000);
+    data[14] = vuint128(0x00000000);
+    data[15] = vuint128(0x000001a0);
+
+    // Precompute data[18]
+    calcWMulti(data, 18);
+}
+
+std::array<u64, 4> MultiSHA1::hashSeed(const std::array<vuint128, 5> &alpha)
+{
+    vuint128 a = alpha[0];
+    vuint128 b = alpha[1];
+    vuint128 c = alpha[2];
+    vuint128 d = alpha[3];
+    vuint128 e = alpha[4];
+    vuint128 t;
+
+    // Section 1: 0-19
+    // 0-8 already computed
+    section1CalcMulti(a, b, c, d, e, t, data[9]);
+    section1CalcMulti(t, a, b, c, d, e, data[10]);
+    section1CalcMulti(e, t, a, b, c, d, data[11]);
+    section1CalcMulti(d, e, t, a, b, c, data[12]);
+    section1CalcMulti(c, d, e, t, a, b, data[13]);
+    section1CalcMulti(b, c, d, e, t, a, data[14]);
+    section1CalcMulti(a, b, c, d, e, t, data[15]);
+    section1CalcMulti(t, a, b, c, d, e, data[16]);
+    section1CalcMulti(e, t, a, b, c, d, calcWMulti(data, 17));
+    section1CalcMulti(d, e, t, a, b, c, data[18]);
+    section1CalcMulti(c, d, e, t, a, b, data[19]);
+
+    // Section 2: 20 - 39
+    section2CalcMulti(b, c, d, e, t, a, calcWMulti(data, 20));
+    section2CalcMulti(a, b, c, d, e, t, data[21]);
+    section2CalcMulti(t, a, b, c, d, e, data[22]);
+    section2CalcMulti(e, t, a, b, c, d, calcWMulti(data, 23));
+    section2CalcMulti(d, e, t, a, b, c, data[24]);
+    section2CalcMulti(c, d, e, t, a, b, calcWMulti(data, 25));
+    section2CalcMulti(b, c, d, e, t, a, calcWMulti(data, 26));
+    section2CalcMulti(a, b, c, d, e, t, data[27]);
+    section2CalcMulti(t, a, b, c, d, e, calcWMulti(data, 28));
+    section2CalcMulti(e, t, a, b, c, d, calcWMulti(data, 29));
+    section2CalcMulti(d, e, t, a, b, c, data[30]);
+    section2CalcMulti(c, d, e, t, a, b, calcWMulti(data, 31));
+    section2CalcMulti(b, c, d, e, t, a, calcWMulti(data, 32));
+    section2CalcMulti(a, b, c, d, e, t, calcWMulti(data, 33));
+    section2CalcMulti(t, a, b, c, d, e, calcWMulti(data, 34));
+    section2CalcMulti(e, t, a, b, c, d, calcWMulti(data, 35));
+    section2CalcMulti(d, e, t, a, b, c, calcWMulti(data, 36));
+    section2CalcMulti(c, d, e, t, a, b, calcWMulti(data, 37));
+    section2CalcMulti(b, c, d, e, t, a, calcWMulti(data, 38));
+    section2CalcMulti(a, b, c, d, e, t, calcWMulti(data, 39));
+
+    // Section 3: 40 - 59
+    section3CalcMulti(t, a, b, c, d, e, calcWMulti(data, 40));
+    section3CalcMulti(e, t, a, b, c, d, calcWMulti(data, 41));
+    section3CalcMulti(d, e, t, a, b, c, calcWMulti(data, 42));
+    section3CalcMulti(c, d, e, t, a, b, calcWMulti(data, 43));
+    section3CalcMulti(b, c, d, e, t, a, calcWMulti(data, 44));
+    section3CalcMulti(a, b, c, d, e, t, calcWMulti(data, 45));
+    section3CalcMulti(t, a, b, c, d, e, calcWMulti(data, 46));
+    section3CalcMulti(e, t, a, b, c, d, calcWMulti(data, 47));
+    section3CalcMulti(d, e, t, a, b, c, calcWMulti(data, 48));
+    section3CalcMulti(c, d, e, t, a, b, calcWMulti(data, 49));
+    section3CalcMulti(b, c, d, e, t, a, calcWMulti(data, 50));
+    section3CalcMulti(a, b, c, d, e, t, calcWMulti(data, 51));
+    section3CalcMulti(t, a, b, c, d, e, calcWMulti(data, 52));
+    section3CalcMulti(e, t, a, b, c, d, calcWMulti(data, 53));
+    section3CalcMulti(d, e, t, a, b, c, calcWMulti(data, 54));
+    section3CalcMulti(c, d, e, t, a, b, calcWMulti(data, 55));
+    section3CalcMulti(b, c, d, e, t, a, calcWMulti(data, 56));
+    section3CalcMulti(a, b, c, d, e, t, calcWMulti(data, 57));
+    section3CalcMulti(t, a, b, c, d, e, calcWMulti(data, 58));
+    section3CalcMulti(e, t, a, b, c, d, calcWMulti(data, 59));
+
+    // Section 3: 60 - 79
+    section4CalcMulti(d, e, t, a, b, c, calcWMulti(data, 60));
+    section4CalcMulti(c, d, e, t, a, b, calcWMulti(data, 61));
+    section4CalcMulti(b, c, d, e, t, a, calcWMulti(data, 62));
+    section4CalcMulti(a, b, c, d, e, t, calcWMulti(data, 63));
+    section4CalcMulti(t, a, b, c, d, e, calcWMulti(data, 64));
+    section4CalcMulti(e, t, a, b, c, d, calcWMulti(data, 65));
+    section4CalcMulti(d, e, t, a, b, c, calcWMulti(data, 66));
+    section4CalcMulti(c, d, e, t, a, b, calcWMulti(data, 67));
+    section4CalcMulti(b, c, d, e, t, a, calcWMulti(data, 68));
+    section4CalcMulti(a, b, c, d, e, t, calcWMulti(data, 69));
+    section4CalcMulti(t, a, b, c, d, e, calcWMulti(data, 70));
+    section4CalcMulti(e, t, a, b, c, d, calcWMulti(data, 71));
+    section4CalcMulti(d, e, t, a, b, c, calcWMulti(data, 72));
+    section4CalcMulti(c, d, e, t, a, b, calcWMulti(data, 73));
+    section4CalcMulti(b, c, d, e, t, a, calcWMulti(data, 74));
+    section4CalcMulti(a, b, c, d, e, t, calcWMulti(data, 75));
+    section4CalcMulti(t, a, b, c, d, e, calcWMulti(data, 76));
+    section4CalcMulti(e, t, a, b, c, d, calcWMulti(data, 77));
+    section4CalcMulti(d, e, t, a, b, c, calcWMulti(data, 78));
+    section4CalcMulti(c, d, e, t, a, b, calcWMulti(data, 79));
+
+    vuint128 part1 = v32x4_byteswap(b + vuint128(0x67452301));
+    vuint128 part2 = v32x4_byteswap(c + vuint128(0xefcdab89));
+
+    std::array<u64, 4> seeds;
+    for (int i = 0; i < seeds.size(); i++)
+    {
+        u64 seed = (static_cast<u64>(part2.uint32[i]) << 32) | static_cast<u64>(part1.uint32[i]);
+        seeds[i] = BWRNG(seed).next();
+    }
+
+    return seeds;
+}
+
+std::array<vuint128, 5> MultiSHA1::precompute()
+{
+    vuint128 a(0x67452301);
+    vuint128 b(0xefcdab89);
+    vuint128 c(0x98badcfe);
+    vuint128 d(0x10325476);
+    vuint128 e(0xc3d2e1f0);
+    vuint128 t;
+
+    section1CalcMulti(a, b, c, d, e, t, data[0]);
+    section1CalcMulti(t, a, b, c, d, e, data[1]);
+    section1CalcMulti(e, t, a, b, c, d, data[2]);
+    section1CalcMulti(d, e, t, a, b, c, data[3]);
+    section1CalcMulti(c, d, e, t, a, b, data[4]);
+    section1CalcMulti(b, c, d, e, t, a, data[5]);
+    section1CalcMulti(a, b, c, d, e, t, data[6]);
+    section1CalcMulti(t, a, b, c, d, e, data[7]);
+    section1CalcMulti(e, t, a, b, c, d, data[8]);
+
+    // Select values will be the same for same date
+    calcWMulti(data, 16);
+    calcWMulti(data, 19);
+    calcWMulti(data, 21);
+    calcWMulti(data, 22);
+    calcWMulti(data, 24);
+    calcWMulti(data, 27);
+    calcWMulti(data, 30);
+
+    return { d, e, t, a, b };
+}
+
+void MultiSHA1::setButton(u32 button)
+{
+    data[12] = vuint128(button);
+}
+
+void MultiSHA1::setDate(const Date &date)
+{
+    data[8] = vuint128(dateValues[date.getJD() - Date().getJD()]);
+}
+
+void MultiSHA1::setTimer0(u32 timer0, u8 vcount)
+{
+    data[5] = vuint128(std::byteswap(static_cast<u32>(vcount << 16) | timer0));
+}
+
+void MultiSHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 {
     setTime(hour * 3600 + minute * 60 + second, dsType);
+}
+
+void MultiSHA1::setTime(u32 time, DSType dsType)
+{
+    vuint128 val(timeValues[time], timeValues[time + 1], timeValues[time + 2], timeValues[time + 3]);
+    if (time >= 43200 && dsType != DSType::DS3)
+    {
+        val = val | 0x40000000;
+    }
+    data[9] = val;
 }

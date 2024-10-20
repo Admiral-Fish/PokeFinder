@@ -36,6 +36,7 @@
         <file alias="lcrngreverse.json">RNG/lcrngreverse.json</file>
         <file alias="lcrng64.json">RNG/lcrng64.json</file>
         <file alias="mt.json">RNG/mt.json</file>
+        <file alias="multisha1.json">RNG/multisha1.json</file>
         <file alias="sfmt.json">RNG/sfmt.json</file>
         <file alias="sha1.json">RNG/sha1.json</file>
         <file alias="tinymt.json">RNG/tinymt.json</file>

@@ -51,7 +51,7 @@ private:
      */
     void search(const Date &start, const Date &end) override
     {
-        SHA1 sha(this->profile);
+        MultiSHA1 sha(this->profile);
 
         for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
         {
@@ -64,7 +64,7 @@ private:
                 {
                     sha.setButton(keypress.value);
 
-                    for (u32 time = 0; time < 86400; time++)
+                    for (u32 time = 0; time < 86400; time += 4)
                     {
                         if (!this->searching)
                         {
@@ -72,18 +72,21 @@ private:
                         }
 
                         sha.setTime(time, this->profile.getDSType());
-                        u64 seed = sha.hashSeed(alpha);
+                        auto seeds = sha.hashSeed(alpha);
 
-                        auto states = this->generator.generate(seed);
-                        if (!states.empty())
+                        for (u32 i = 0; i < seeds.size(); i++)
                         {
-                            DateTime dt(date, time);
-
-                            std::lock_guard<std::mutex> lock(this->mutex);
-                            this->results.reserve(this->results.capacity() + states.size());
-                            for (const auto &state : states)
+                            auto states = this->generator.generate(seeds[i]);
+                            if (!states.empty())
                             {
-                                this->results.emplace_back(dt, seed, keypress.button, timer0, state);
+                                DateTime dt(date, time + i);
+
+                                std::lock_guard<std::mutex> lock(this->mutex);
+                                this->results.reserve(this->results.capacity() + states.size());
+                                for (const auto &state : states)
+                                {
+                                    this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
+                                }
                             }
                         }
                     }
