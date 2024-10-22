@@ -182,7 +182,7 @@ void Underground::locationIndexChanged(int index)
         const auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getSpecies();
         auto names = area.getSpecieNames();
-        ui->checkListPokemon->setup(names, species);
+        ui->checkListPokemon->addItems(names, species);
     }
 }
 

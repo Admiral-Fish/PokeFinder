@@ -40,9 +40,6 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
         ui->checkListUnownDiscovered->addItem(QChar(letter));
     }
 
-    ui->checkListUnownDiscovered->setup();
-    ui->checkListUnownPuzzles->setup();
-
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor4::reject);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor4::versionIndexChanged);

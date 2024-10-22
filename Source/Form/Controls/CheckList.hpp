@@ -23,11 +23,8 @@
 #include <Core/Global.hpp>
 #include <QComboBox>
 
-class QStandardItemModel;
+class QListWidget;
 
-/**
- * @brief Provides a combo box of check boxes
- */
 class CheckList : public QComboBox
 {
     Q_OBJECT
@@ -38,6 +35,37 @@ public:
      * @param parent Parent widget, which takes memory ownership
      */
     CheckList(QWidget *parent = nullptr);
+
+    /**
+     * @brief Add item to the combobox
+     *
+     * @param string Item that should be added to the combo box
+     * @param data Data to assign to the item
+     */
+    void addItem(const QString &string, const QVariant &data = QVariant());
+
+    /**
+     * @brief Add item to the combobox
+     *
+     * @param string Item that should be added to the combo box
+     * @param data Data to assign to the item
+     */
+    void addItem(const std::string &string, u16 data);
+
+    /**
+     * @brief Adds items to the combobox
+     *
+     * @param strings List of items that should be added to the combo box
+     */
+    void addItems(const std::vector<std::string> &strings);
+
+    /**
+     * @brief Adds items to the combobox
+     *
+     * @param strings List of items that should be added to the combo box
+     * @param data List of data to assign with the items
+     */
+    void addItems(const std::vector<std::string> &strings, std::vector<u16> &data);
 
     /**
      * @brief Determines which of the check boxes are checked
@@ -70,6 +98,11 @@ public:
     std::vector<u16> getCheckedData() const;
 
     /**
+     * @brief Hides popup window if we aren't clicked on the combobox
+     */
+    void hidePopup() override;
+
+    /**
      * @brief Sets all check boxes to be unchecked
      */
     void resetChecks();
@@ -96,21 +129,24 @@ public:
     }
 
     /**
-     * @brief Setups the model of check boxes to be checkable by the user
+     * @brief Sets text for a combo box item
      *
-     * @param items List of items that should be added to the combo box
+     * @param index Item to update
+     * @param text Text to update with
      */
-    void setup(const std::vector<std::string> &items = std::vector<std::string>());
+    void setItemText(int index, const QString &text);
+
+private:
+    QLineEdit *lineEdit;
+    QListWidget *listWidget;
 
     /**
-     * @brief Setups the model of check boxes to be checkable by the user
+     * @brief Determines the check state of the check boxes
      *
-     * @param items List of items that should be added to the combo box
-     * @param data List of data to assign with the items
+     * @return Checked if all check boxes are checked, PartiallyChecked if some of the check boxes are checked, and Unchecked otherwise
      */
-    void setup(const std::vector<std::string> &items, const std::vector<u16> &data);
+    Qt::CheckState checkState() const;
 
-protected:
     /**
      * @brief Shows the combo box model when clicked
      *
@@ -122,33 +158,32 @@ protected:
      */
     bool eventFilter(QObject *object, QEvent *event) override;
 
-private:
-    QStandardItemModel *model;
-
     /**
-     * @brief Determines the check state of the check boxes
+     * @brief Unused event
      *
-     * @return Checked if all check boxes are checked, PartiallyChecked if some of the check boxes are checked, and Unchecked otherwise
+     * @param event Contains keypress event information
      */
-    Qt::CheckState checkState() const;
+    void keyPressEvent(QKeyEvent *event) override;
 
     /**
-     * @brief Setups the model of check boxes to be checkable by the user and sets the minimum width for the popup
+     * @brief Unused event
+     *
+     * @param event Contains wheel event information
      */
-    void setupChecks();
+    void wheelEvent(QWheelEvent *event) override;
 
 private slots:
-    /**
-     * @brief Updates the text displayed of the combo box based upon which check boxes are checked
-     */
-    void modelDataChanged();
-
     /**
      * @brief Updates the checked status of the check box that is selected
      *
      * @param index Index of the check box
      */
-    void itemPressed(const QModelIndex &index);
+    void itemPressed(int index);
+
+    /**
+     * @brief Updates the text displayed of the combo box based upon which check boxes are checked
+     */
+    void modelDataChanged();
 };
 
 #endif // CHECKLIST

@@ -48,8 +48,6 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->comboBoxLanguage->setup({ toInt(Language::English), toInt(Language::Spanish), toInt(Language::French), toInt(Language::Italian),
                                   toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
 
-    ui->comboBoxKeypresses->setup();
-
     connect(ui->pushButtonAccept, &QPushButton::clicked, this, &ProfileEditor5::okay);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor5::reject);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);

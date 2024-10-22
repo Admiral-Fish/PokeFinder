@@ -56,14 +56,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorGrottoPower->setup({ 5, 15, 25, 35, 55 });
-    ui->checkListGeneratorSlot->setup();
-    ui->checkListGeneratorGroup->setup();
-    ui->checkListGeneratorGender->setup();
 
     ui->comboBoxSearcherGrottoPower->setup({ 5, 15, 25, 35, 55 });
-    ui->checkListSearcherSlot->setup();
-    ui->checkListSearcherGroup->setup();
-    ui->checkListSearcherGender->setup();
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();

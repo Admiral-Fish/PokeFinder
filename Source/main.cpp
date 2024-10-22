@@ -97,12 +97,12 @@ int main(int argc, char *argv[])
     a.setStyle("fusion");
     if (setting.value("style").toString() == "dark")
     {
-        auto hints = a.styleHints();
+        auto *hints = a.styleHints();
         hints->setColorScheme(Qt::ColorScheme::Dark);
     }
     else if (setting.value("style").toString() == "light")
     {
-        auto hints = a.styleHints();
+        auto *hints = a.styleHints();
         hints->setColorScheme(Qt::ColorScheme::Light);
     }
 
