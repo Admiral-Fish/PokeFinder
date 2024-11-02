@@ -64,7 +64,7 @@ void SearchCalls::callsTextChanged(const QString &text)
 {
     if (!text.isEmpty())
     {
-        std::string result = text.toStdString();
+        std::string result = text.toUpper().toStdString();
         std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
 
         int num = 0;
