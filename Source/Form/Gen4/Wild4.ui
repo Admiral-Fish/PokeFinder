@@ -197,6 +197,21 @@
             </item>
             <item>
              <property name="text">
+              <string>Honey</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honey Rare</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honey Munchlax</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Rock Smash</string>
              </property>
             </item>
@@ -627,6 +642,21 @@
             <item>
              <property name="text">
               <string>Grass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honey</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honey Rare</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honey Munchlax</string>
              </property>
             </item>
             <item>

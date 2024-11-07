@@ -87,6 +87,16 @@ private:
     std::vector<WildGeneratorState4> generateMethodK(u32 seed) const;
 
     /**
+     * @brief Generates states via Honey Tree
+     *
+     * @param seed Starting PRNG state
+     * @param index Honey tree slot index
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState4> generateHoneyTree(u32 seed, u8 index) const;
+
+    /**
      * @brief Generates states via Poke Radar
      *
      * @param seed Starting PRNG state

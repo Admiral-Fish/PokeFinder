@@ -70,6 +70,20 @@ struct WildEncounterDPPt
 };
 static_assert(sizeof(WildEncounterDPPt) == 174);
 
+struct WildEncounterDPPtHoney
+{
+    union {
+        struct
+        {
+            DynamicSlot normal[6];
+            DynamicSlot rare[6];
+            DynamicSlot munchlax[6];
+        };
+        DynamicSlot slots[18];
+    };
+};
+static_assert(sizeof(WildEncounterDPPtHoney) == 72);
+
 struct HGSSEncounterGrass
 {
     union {
@@ -345,111 +359,145 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
     u32 length;
     u8 *data;
 
-    if (version == Game::Diamond)
+    std::vector<EncounterArea4> encounters;
+    if (encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax)
     {
-        data = Utilities::decompress(DIAMOND.data(), DIAMOND.size(), length);
-    }
-    else if (version == Game::Pearl)
-    {
-        data = Utilities::decompress(PEARL.data(), PEARL.size(), length);
+        if (version == Game::Diamond)
+        {
+            data = Utilities::decompress(D_HONEY.data(), D_HONEY.size(), length);
+        }
+        else if (version == Game::Pearl)
+        {
+            data = Utilities::decompress(P_HONEY.data(), P_HONEY.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(PT_HONEY.data(), PT_HONEY.size(), length);
+        }
+
+        u8 honey = toInt(encounter) - toInt(Encounter::Honey);
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPtHoney))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounterDPPtHoney *>(data + offset);
+
+            std::array<Slot, 12> slots;
+
+            const DynamicSlot *honeySlot = &entry->slots[6 * honey];
+            for (size_t i = 0; i < 6; i++)
+            {
+                const auto &slot = honeySlot[i];
+                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+            }
+            encounters.emplace_back(0, 0, encounter, slots);
+        }
     }
     else
     {
-        data = Utilities::decompress(PLATINUM.data(), PLATINUM.size(), length);
-    }
-
-    std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPt))
-    {
-        const auto *entry = reinterpret_cast<const WildEncounterDPPt *>(data + offset);
-
-        std::array<Slot, 12> slots;
-        switch (encounter)
+        if (version == Game::Diamond)
         {
-        case Encounter::Grass:
-            if (entry->grassRate != 0)
+            data = Utilities::decompress(DIAMOND.data(), DIAMOND.size(), length);
+        }
+        else if (version == Game::Pearl)
+        {
+            data = Utilities::decompress(PEARL.data(), PEARL.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(PLATINUM.data(), PLATINUM.size(), length);
+        }
+
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPt))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounterDPPt *>(data + offset);
+
+            std::array<Slot, 12> slots;
+            switch (encounter)
             {
-                for (size_t i = 0; i < 12; i++)
+            case Encounter::Grass:
+                if (entry->grassRate != 0)
                 {
-                    const auto &slot = entry->grass[i];
-                    slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    for (size_t i = 0; i < 12; i++)
+                    {
+                        const auto &slot = entry->grass[i];
+                        slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    }
+                    modifySwarmDPPt(slots, entry, info, settings.swarm);
+                    modifyTimeDPPt(slots, entry, info, settings.time);
+                    modifyRadar(slots, entry, info, settings.dppt.radar);
+                    modifyGreatMarsh(slots, settings.dppt.replacement, info, entry->location);
+                    modifyTrophyGarden(slots, settings.dppt.replacement, info, entry->location);
+                    modifyDual(slots, entry, info, settings.dppt.dual);
+                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
-                modifySwarmDPPt(slots, entry, info, settings.swarm);
-                modifyTimeDPPt(slots, entry, info, settings.time);
-                modifyRadar(slots, entry, info, settings.dppt.radar);
-                modifyGreatMarsh(slots, settings.dppt.replacement, info, entry->location);
-                modifyTrophyGarden(slots, settings.dppt.replacement, info, entry->location);
-                modifyDual(slots, entry, info, settings.dppt.dual);
-                encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
+                break;
+            case Encounter::Surfing:
+                if (entry->surfRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
+                }
+                break;
+            case Encounter::OldRod:
+                if (entry->oldRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.dppt.feebasTile && entry->location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
+                }
+                break;
+            case Encounter::GoodRod:
+                if (entry->goodRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.dppt.feebasTile && entry->location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
+                }
+                break;
+            case Encounter::SuperRod:
+                if (entry->superRate != 0)
+                {
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.dppt.feebasTile && entry->location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
+                    encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
+                }
+                break;
+            default:
+                break;
             }
-            break;
-        case Encounter::Surfing:
-            if (entry->surfRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
-                {
-                    const auto &slot = entry->surf[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                }
-                encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
-            }
-            break;
-        case Encounter::OldRod:
-            if (entry->oldRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
-                {
-                    const auto &slot = entry->old[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                }
-
-                // Insert Feebas for Mt Coronet B1F
-                if (settings.dppt.feebasTile && entry->location == 22)
-                {
-                    slots[5] = Slot(349, 10, 20, &info[349]);
-                }
-
-                encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
-            }
-            break;
-        case Encounter::GoodRod:
-            if (entry->goodRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
-                {
-                    const auto &slot = entry->good[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                }
-
-                // Insert Feebas for Mt Coronet B1F
-                if (settings.dppt.feebasTile && entry->location == 22)
-                {
-                    slots[5] = Slot(349, 10, 20, &info[349]);
-                }
-
-                encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
-            }
-            break;
-        case Encounter::SuperRod:
-            if (entry->superRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
-                {
-                    const auto &slot = entry->super[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                }
-
-                // Insert Feebas for Mt Coronet B1F
-                if (settings.dppt.feebasTile && entry->location == 22)
-                {
-                    slots[5] = Slot(349, 10, 20, &info[349]);
-                }
-
-                encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
-            }
-            break;
-        default:
-            break;
         }
     }
     delete[] data;

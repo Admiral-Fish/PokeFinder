@@ -31,6 +31,7 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
     switch (method)
     {
     case Method::MethodJ:
+    case Method::HoneyTree:
     case Method::PokeRadar:
         return 20;
     case Method::MethodK:
@@ -123,6 +124,7 @@ int WildGeneratorModel4::getColumn(int column) const
     switch (method)
     {
     case Method::MethodJ:
+    case Method::HoneyTree:
     case Method::PokeRadar:
         return column > 1 ? column + 1 : column;
     case Method::MethodK:

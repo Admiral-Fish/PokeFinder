@@ -22,7 +22,7 @@ def embed_encounters4():
             string += " };"
             arrays.append(string)
 
-    files = ("diamond", "heartgold", "hg_headbutt", "hgss_bug", "hgss_safari", "pearl", "platinum", "soulsilver", "ss_headbutt")
+    files = ("d_honey", "diamond", "heartgold", "hg_headbutt", "hgss_bug", "hgss_safari", "p_honey", "pearl", "platinum", "pt_honey", "soulsilver", "ss_headbutt")
     for file in files:
         with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()

@@ -50,6 +50,7 @@ enum class Method : u8
     CuteCharmHGSS,
     MethodJ,
     MethodK,
+    HoneyTree,
     PokeRadar,
     WondercardIVs,
 
