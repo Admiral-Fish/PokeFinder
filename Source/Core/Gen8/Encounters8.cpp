@@ -76,6 +76,20 @@ struct WildEncounter8
 };
 static_assert(sizeof(WildEncounter8) == 154);
 
+struct WildEncounterHoney
+{
+    union {
+        struct
+        {
+            DynamicSlot normal[6];
+            DynamicSlot rare[6];
+            DynamicSlot munchlax[6];
+        };
+        DynamicSlot slots[18];
+    };
+};
+static_assert(sizeof(WildEncounterHoney) == 72);
+
 struct WildEncounterUnderground
 {
     u8 location;
@@ -502,85 +516,115 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
     u32 length;
     u8 *data;
 
-    if (version == Game::BD)
+    std::vector<EncounterArea8> encounters;
+    if (encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax)
     {
-        data = Utilities::decompress(BD.data(), BD.size(), length);
+        if (version == Game::BD)
+        {
+            data = Utilities::decompress(BD_HONEY.data(), BD_HONEY.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(SP_HONEY.data(), SP_HONEY.size(), length);
+        }
+
+        u8 honey = toInt(encounter) - toInt(Encounter::Honey);
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHoney))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounterHoney *>(data + offset);
+
+            std::array<Slot, 12> slots;
+
+            const DynamicSlot *honeySlot = &entry->slots[6 * honey];
+            for (size_t i = 0; i < 6; i++)
+            {
+                const auto &slot = honeySlot[i];
+                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+            }
+            encounters.emplace_back(0, 0, encounter, slots);
+        }
     }
     else
     {
-        data = Utilities::decompress(SP.data(), SP.size(), length);
-    }
-
-    std::vector<EncounterArea8> encounters;
-    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter8))
-    {
-        const auto *entry = reinterpret_cast<const WildEncounter8 *>(data + offset);
-
-        std::array<Slot, 12> slots;
-        switch (encounter)
+        if (version == Game::BD)
         {
-        case Encounter::Grass:
-            if (entry->grassRate != 0)
+            data = Utilities::decompress(BD.data(), BD.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(SP.data(), SP.size(), length);
+        }
+
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter8))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounter8 *>(data + offset);
+
+            std::array<Slot, 12> slots;
+            switch (encounter)
             {
-                for (size_t i = 0; i < 12; i++)
+            case Encounter::Grass:
+                if (entry->grassRate != 0)
                 {
-                    const auto &slot = entry->grass[i];
-                    slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    for (size_t i = 0; i < 12; i++)
+                    {
+                        const auto &slot = entry->grass[i];
+                        slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    }
+                    modifySwarm(slots, entry, info, settings.swarm);
+                    modifyTime(slots, entry, info, settings.time);
+                    modifyRadar(slots, entry, info, settings.radar);
+                    modifyGreatMarsh(slots, settings.replacement, info, entry->location);
+                    modifyTrophyGarden(slots, settings.replacement, info, entry->location);
+                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
-                modifySwarm(slots, entry, info, settings.swarm);
-                modifyTime(slots, entry, info, settings.time);
-                modifyRadar(slots, entry, info, settings.radar);
-                modifyGreatMarsh(slots, settings.replacement, info, entry->location);
-                modifyTrophyGarden(slots, settings.replacement, info, entry->location);
-                encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
-            }
-            break;
-        case Encounter::Surfing:
-            if (entry->surfRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::Surfing:
+                if (entry->surfRate != 0)
                 {
-                    const auto &slot = entry->surf[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
-            }
-            break;
-        case Encounter::OldRod:
-            if (entry->oldRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::OldRod:
+                if (entry->oldRate != 0)
                 {
-                    const auto &slot = entry->old[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
-            }
-            break;
-        case Encounter::GoodRod:
-            if (entry->goodRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::GoodRod:
+                if (entry->goodRate != 0)
                 {
-                    const auto &slot = entry->good[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
-            }
-            break;
-        case Encounter::SuperRod:
-            if (entry->superRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::SuperRod:
+                if (entry->superRate != 0)
                 {
-                    const auto &slot = entry->super[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->superRate, Encounter::SuperRod, slots);
                 }
-                encounters.emplace_back(entry->location, entry->superRate, Encounter::SuperRod, slots);
+                break;
+            default:
+                break;
             }
-            break;
-        default:
-            break;
         }
     }
     delete[] data;

@@ -60,7 +60,6 @@ static consteval std::array<u8, 100> computeTable(const std::array<int, size> &r
 
 // Ground
 constexpr auto grass = computeTable<12>(std::array<int, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
-constexpr auto honey = computeTable<6, true>(std::array<int, 6> { 60, 40, 20, 10, 5, 0 });
 constexpr auto rocksmash = computeTable<2>(std::array<int, 2> { 80, 100 });
 constexpr auto bug = computeTable<10, true>(std::array<int, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
 constexpr auto headbutt = computeTable<6>(std::array<int, 6> { 50, 65, 80, 90, 95, 100 });
@@ -96,10 +95,6 @@ namespace EncounterSlot
     {
         switch (encounter)
         {
-        case Encounter::Honey:
-        case Encounter::HoneyRare:
-        case Encounter::HoneyMunchlax:
-            return honey[rand];
         case Encounter::GoodRod:
         case Encounter::SuperRod:
             return water2[rand];

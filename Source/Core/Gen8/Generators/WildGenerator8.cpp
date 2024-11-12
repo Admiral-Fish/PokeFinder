@@ -58,13 +58,26 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, const EncounterArea8 &area,
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const EncounterArea8 &area,
                                const Profile8 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, area, profile, filter)
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter)
 {
 }
 
-std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, u8 index) const
+{
+    switch (method)
+    {
+    case Method::None:
+        return generateWild(seed0, seed1);
+    case Method::HoneyTree:
+        return generateHoneyTree(seed0, seed1, index);
+    default:
+        return std::vector<WildState8>();
+    }
+}
+
+std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
 
@@ -180,6 +193,102 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
                          form, height, weight, info);
+        if (filter.compareState(static_cast<const WildState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, u8 index) const
+{
+    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
+
+    std::vector<WildState8> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    {
+        const Slot &slot = area.getPokemon(index);
+
+        u8 level = area.calculateLevel<true>(index, rngList, false);
+
+        rngList.advance((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) ? 85 : 84);
+
+        u32 ec = rngList.next(rand);
+        u32 sidtid = rngList.next(rand);
+        u32 pid = rngList.next(rand);
+
+        u8 shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+        if (shiny) // Force shiny
+        {
+            if (Utilities::getShiny<false>(pid, tsv) != shiny)
+            {
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
+                pid = (high << 16) | (pid & 0xFFFF);
+            }
+        }
+        else
+        {
+            if (Utilities::isShiny<false>(pid, tsv)) // Force non shiny
+            {
+                pid ^= 0x10000000;
+            }
+        }
+
+        std::array<u8, 6> ivs;
+        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
+
+        u8 ability = rngList.next(rand) % 2;
+
+        const PersonalInfo *info = slot.getInfo();
+
+        u8 gender;
+        u32 rnd;
+        bool cute = false;
+        switch (info->getGender())
+        {
+        case 255:
+            gender = 2;
+            break;
+        case 254:
+            gender = 1;
+            break;
+        case 0:
+            gender = 0;
+            break;
+        default:
+            rnd = rngList.next(rand);
+            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rnd % 3) != 0)
+            {
+                gender = lead == Lead::CuteCharmF ? 0 : 1;
+                cute = true;
+            }
+            else
+            {
+                gender = (rnd % 253) + 1 < info->getGender();
+            }
+            break;
+        }
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = toInt(lead);
+        }
+        else
+        {
+            nature = cute ? rnd % 25 : rngList.next(rand) % 25;
+        }
+
+        u8 height = rngList.next(rand) % 129;
+        height += rngList.next(rand) % 128;
+
+        u8 weight = rngList.next(rand) % 129;
+        weight += rngList.next(rand) % 128;
+
+        WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, index, info->getItem(0), slot.getSpecie(),
+                         0, height, weight, info);
         if (filter.compareState(static_cast<const WildState &>(state)))
         {
             states.emplace_back(state);

@@ -21,6 +21,7 @@
 #include "ui_Wild8.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
@@ -59,8 +60,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
         { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
-                                   toInt(Encounter::SuperRod) });
+    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Honey), toInt(Encounter::HoneyRare), toInt(Encounter::HoneyMunchlax),
+                                   toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
     ui->comboBoxLocation->enableAutoComplete();
 
@@ -163,6 +164,11 @@ void Wild8::encounterIndexChanged(int index)
         case Encounter::Grass:
             ui->filter->setEncounterSlots(12);
             break;
+        case Encounter::Honey:
+        case Encounter::HoneyRare:
+        case Encounter::HoneyMunchlax:
+            ui->filter->setEncounterSlots(6);
+            break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -172,6 +178,21 @@ void Wild8::encounterIndexChanged(int index)
         default:
             break;
         }
+
+        bool honey = encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax;
+        ui->comboMenuLead->hideAction(toInt(Lead::CompoundEyes), honey); // Also handles Super Luck
+        ui->comboMenuLead->hideAction(toInt(Lead::Pressure), honey); // Also handles Hustle and Vital Spirit
+        ui->comboMenuLead->hideAction(toInt(Lead::Harvest), honey);
+        ui->comboMenuLead->hideAction(toInt(Lead::FlashFire), honey);
+        ui->comboMenuLead->hideAction(toInt(Lead::MagnetPull), honey);
+        ui->comboMenuLead->hideAction(toInt(Lead::Static), honey);
+        ui->comboMenuLead->hideAction(toInt(Lead::StormDrain), honey);
+        ui->labelLocation->setVisible(!honey);
+        ui->comboBoxLocation->setVisible(!honey);
+        ui->labelTime->setVisible(!honey);
+        ui->comboBoxTime->setVisible(!honey);
+        ui->checkBoxRadar->setVisible(!honey);
+        ui->checkBoxSwarm->setVisible(!honey);
 
         updateEncounters();
 
@@ -203,6 +224,27 @@ void Wild8::generate()
         return;
     }
 
+
+    auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
+    Method method = Method::None;
+    bool honey = encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax;
+    u8 fixedSlot = 0;
+    if (honey)
+    {
+        std::array<bool, 12> encounters = ui->filter->getEncounterSlots();
+        if (std::count(encounters.begin(), encounters.end(), true) != 1)
+        {
+            QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"), tr("Please a single encounter slot for Honey Tree"));
+            msg.exec();
+            return;
+        }
+        else
+        {
+            method = Method::HoneyTree;
+            fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+        }
+    }
+
     model->clearModel();
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
@@ -211,10 +253,10 @@ void Wild8::generate()
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
                              filter);
 
-    auto states = generator.generate(seed0, seed1);
+    auto states = generator.generate(seed0, seed1, fixedSlot);
     model->addItems(states);
 }
 
