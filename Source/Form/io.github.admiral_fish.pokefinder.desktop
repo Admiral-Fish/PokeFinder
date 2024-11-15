@@ -5,5 +5,5 @@ Exec=PokeFinder %f
 Type=Application
 Categories=Game;Utility;
 Terminal=false
-Icon=pokefinder
+Icon=io.github.admiral_fish.pokefinder
 Keywords=pokemon;RNG;tool;
