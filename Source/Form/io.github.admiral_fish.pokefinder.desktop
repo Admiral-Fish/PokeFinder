@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=PokéFinder
+Comment=Cross platform Pokémon RNG tool
+Exec=PokeFinder %f
+Type=Application
+Categories=Game;Utility;
+Terminal=false
+Icon=io.github.admiral_fish.pokefinder
+Keywords=pokemon;RNG;tool;
