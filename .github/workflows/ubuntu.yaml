@@ -34,17 +34,6 @@ jobs:
 
       - name: Test PokeFinder
         run: ctest --test-dir ${{github.workspace}}/build -V
-
-      - name: Package PokeFinder binary
-        run: |
-          mkdir upload
-          mv build/Source/PokeFinder .
-          tar czf PokeFinder-linux.tar.gz PokeFinder
-      
-      - uses: actions/upload-artifact@v4
-        with:
-          name: PokeFinder-linux
-          path: PokeFinder
       
       - name: Fetch AppImage tools
         run: |
@@ -58,7 +47,7 @@ jobs:
         run: |
           export QMAKE=$QT_ROOT_DIR/bin/qmake
           ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt \
-            -e PokeFinder \
+            -e build/source/PokeFinder \
             -d Source/Form/io.github.admiral_fish.pokefinder.desktop \
             -i Source/Form/Images/Icon/pokefinder_16x16.png \
             -i Source/Form/Images/Icon/pokefinder_24x24.png \
@@ -69,14 +58,27 @@ jobs:
           mkdir AppDir/usr/share/metainfo
           cp Source/Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
           ./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
+          mv PokéFinder-x86_64.AppImage PokeFinder-x86_64.AppImage
+      
+      - name: Package PokeFinder
+        run: |
+          tar czf PokeFinder-linux.tar.gz -C ./build/Source/ PokeFinder
+          tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
       
       - uses: actions/upload-artifact@v4
         with:
-          name: PokeFinder-linux-appimage
-          path: PokéFinder-x86_64.AppImage
+          name: PokeFinder-linux
+          path: ./build/Source/PokeFinder
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-linux-AppImage
+          path: PokeFinder-x86_64.AppImage
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: PokeFinder-linux.tar.gz
+          files: |
+            PokeFinder-linux.tar.gz
+            PokeFinder-linux-AppImage.tar.gz
