@@ -35,18 +35,45 @@ jobs:
       - name: Test PokeFinder
         run: ctest --test-dir ${{github.workspace}}/build -V
 
-      - name: Package PokeFinder
+      - name: Package PokeFinder binary
         run: |
           mkdir upload
           mv build/Source/PokeFinder .
           tar czf PokeFinder-linux.tar.gz PokeFinder
-          mv PokeFinder upload
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+      
+      - uses: actions/upload-artifact@v4
         with:
           name: PokeFinder-linux
-          path: upload
+          path: PokeFinder
+      
+      - name: Fetch AppImage tools
+        run: |
+          sudo apt install appstream
+          sudo apt install libfuse2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod a+x linuxdeploy-*.AppImage
+      
+      - name: Build AppImage
+        run: |
+          export QMAKE=$QT_ROOT_DIR/bin/qmake
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt \
+            -e PokeFinder \
+            -d Source/Form/io.github.admiral_fish.pokefinder.desktop \
+            -i Source/Form/Images/Icon/pokefinder_16x16.png \
+            -i Source/Form/Images/Icon/pokefinder_24x24.png \
+            -i Source/Form/Images/Icon/pokefinder_32x32.png \
+            -i Source/Form/Images/Icon/pokefinder_48x48.png \
+            -i Source/Form/Images/Icon/pokefinder_256x256.png \
+            --icon-filename io.github.admiral_fish.pokefinder
+          mkdir AppDir/usr/share/metainfo
+          cp Source/Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-linux-appimage
+          path: PokéFinder-x86_64.AppImage
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
