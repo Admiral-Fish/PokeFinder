@@ -95,7 +95,7 @@ QVariant StaticGeneratorModel5::headerData(int section, Qt::Orientation orientat
 void StaticGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
 }
 
 StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -121,7 +121,7 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
         case 1:
             return state.getAdvances();
         case 2:
-            // return state.getIVAdvances();
+            return state.getIVAdvances();
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:
@@ -148,7 +148,7 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
+            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
             return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 14:
@@ -196,10 +196,10 @@ void StaticSearcherModel5::sort(int column, Qt::SortOrder order)
             });
             break;
         case 2:
-            // std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-            //     return flag ? state1.getState().getIVAdvances() < state2.getState().getIVAdvances()
-            //                 : state1.getState().getIVAdvances() > state2.getState().getIVAdvances();
-            // });
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
+                return flag ? state1.getState().getIVAdvances() < state2.getState().getIVAdvances()
+                            : state1.getState().getIVAdvances() > state2.getState().getIVAdvances();
+            });
             break;
         case 3:
             std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
@@ -277,5 +277,5 @@ void StaticSearcherModel5::sort(int column, Qt::SortOrder order)
 void StaticSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
 }
