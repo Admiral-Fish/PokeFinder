@@ -44,7 +44,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
     std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
 
     RNGList<u8, MT, 8, gen> rngList(seed >> 32, initialAdvances + (bw ? 0 : 2) + (staticTemplate.getRoamer() ? 1 : 0));
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         std::array<u8, 6> iv;
 
