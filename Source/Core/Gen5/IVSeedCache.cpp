@@ -25,7 +25,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <numeric>
 
-enum class CacheType
+enum class CacheType : u8
 {
     Entralink,
     Normal,

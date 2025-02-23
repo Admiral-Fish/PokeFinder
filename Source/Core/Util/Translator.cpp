@@ -27,7 +27,7 @@
 #include <iterator>
 #include <map>
 
-enum class Language
+enum class Language : u8
 {
     German,
     English,
@@ -40,7 +40,7 @@ enum class Language
     Count
 };
 
-enum class Translation
+enum class Translation : u8
 {
     Ability,
     BDSP,

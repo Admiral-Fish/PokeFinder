@@ -133,30 +133,30 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &DreamRadarSearcherModel5::setShowStats);
 
     connect(ui->comboBoxGeneratorSpecie1, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie1, ui->comboBoxGeneratorGender1); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie1, ui->comboBoxGeneratorGender1); });
     connect(ui->comboBoxGeneratorSpecie2, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie2, ui->comboBoxGeneratorGender2); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie2, ui->comboBoxGeneratorGender2); });
     connect(ui->comboBoxGeneratorSpecie3, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie3, ui->comboBoxGeneratorGender3); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie3, ui->comboBoxGeneratorGender3); });
     connect(ui->comboBoxGeneratorSpecie4, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie4, ui->comboBoxGeneratorGender4); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie4, ui->comboBoxGeneratorGender4); });
     connect(ui->comboBoxGeneratorSpecie5, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie5, ui->comboBoxGeneratorGender5); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie5, ui->comboBoxGeneratorGender5); });
     connect(ui->comboBoxGeneratorSpecie6, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxGeneratorSpecie6, ui->comboBoxGeneratorGender6); });
+            [=]() { updateGenders(ui->comboBoxGeneratorSpecie6, ui->comboBoxGeneratorGender6); });
 
     connect(ui->comboBoxSearcherSpecie1, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie1, ui->comboBoxSearcherGender1); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie1, ui->comboBoxSearcherGender1); });
     connect(ui->comboBoxSearcherSpecie2, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie2, ui->comboBoxSearcherGender2); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie2, ui->comboBoxSearcherGender2); });
     connect(ui->comboBoxSearcherSpecie3, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie3, ui->comboBoxSearcherGender3); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie3, ui->comboBoxSearcherGender3); });
     connect(ui->comboBoxSearcherSpecie4, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie4, ui->comboBoxSearcherGender4); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie4, ui->comboBoxSearcherGender4); });
     connect(ui->comboBoxSearcherSpecie5, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie5, ui->comboBoxSearcherGender5); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie5, ui->comboBoxSearcherGender5); });
     connect(ui->comboBoxSearcherSpecie6, &ComboBox::currentIndexChanged, this,
-            [=](int index) { updateGenders(ui->comboBoxSearcherSpecie6, ui->comboBoxSearcherGender6); });
+            [=]() { updateGenders(ui->comboBoxSearcherSpecie6, ui->comboBoxSearcherGender6); });
 
     int size;
     const DreamRadarTemplate *dreamRadarTemplates = Encounters5::getDreamRadarEncounters(&size);

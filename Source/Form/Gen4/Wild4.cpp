@@ -179,10 +179,10 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     });
     connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { generatorEncounterUpdate(); });
     connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
-    connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::stateChanged, this, &Wild4::generatorFeebasTileStateChanged);
-    connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::stateChanged, this, &Wild4::searcherFeebasTileStateChanged);
-    connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarStateChanged);
-    connect(ui->checkBoxSearcherPokeRadar, &QCheckBox::stateChanged, this, &Wild4::searcherPokeRadarStateChanged);
+    connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::checkStateChanged, this, &Wild4::generatorFeebasTileStateChanged);
+    connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::checkStateChanged, this, &Wild4::searcherFeebasTileStateChanged);
+    connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::checkStateChanged, this, &Wild4::generatorPokeRadarStateChanged);
+    connect(ui->checkBoxSearcherPokeRadar, &QCheckBox::checkStateChanged, this, &Wild4::searcherPokeRadarStateChanged);
     connect(ui->spinBoxGeneratorPlainsBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
     connect(ui->spinBoxGeneratorForestBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
     connect(ui->spinBoxGeneratorPeakBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
@@ -474,7 +474,7 @@ void Wild4::generatorEncounterUpdate()
     generatorLocationIndexChanged(0);
 }
 
-void Wild4::generatorFeebasTileStateChanged(int state)
+void Wild4::generatorFeebasTileStateChanged(Qt::CheckState state)
 {
     ui->filterGenerator->setEncounterSlots(state == Qt::Checked ? 6 : 5);
     updateEncounterGenerator();
@@ -593,7 +593,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Wild4::generatorPokeRadarStateChanged(int state)
+void Wild4::generatorPokeRadarStateChanged(Qt::CheckState state)
 {
     ui->checkBoxGeneratorPokeRadarShiny->setVisible(state == Qt::Checked);
     if (!ui->checkBoxGeneratorPokeRadarShiny->isVisible())
@@ -848,7 +848,7 @@ void Wild4::searcherEncounterUpdate()
     searcherLocationIndexChanged(0);
 }
 
-void Wild4::searcherFeebasTileStateChanged(int state)
+void Wild4::searcherFeebasTileStateChanged(Qt::CheckState state)
 {
     ui->filterSearcher->setEncounterSlots(state == Qt::Checked ? 6 : 5);
     updateEncounterSearcher();
@@ -964,7 +964,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     }
 }
 
-void Wild4::searcherPokeRadarStateChanged(int state)
+void Wild4::searcherPokeRadarStateChanged(Qt::CheckState state)
 {
     ui->checkBoxSearcherPokeRadarShiny->setVisible(state == Qt::Checked);
     if (!ui->checkBoxSearcherPokeRadarShiny->isVisible())

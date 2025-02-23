@@ -23,7 +23,7 @@
 #include <Core/Global.hpp>
 #include <QWidget>
 
-enum class Controls : u16;
+enum class Controls : u8;
 class QSpinBox;
 
 namespace Ui
