@@ -45,6 +45,8 @@ public:
     {
     }
 
+    virtual ~SearcherBase() = default;
+
     /**
      * @brief Cancels the running search
      */
