@@ -262,7 +262,7 @@ void Wild4::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
-    EncounterSettings4 settings;
+    EncounterSettings4 settings = {};
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         settings.dppt.dual = ui->checkBoxGeneratorDualSlot->isChecked() ? ui->comboBoxGeneratorDualSlot->getEnum<Game>() : Game::None;
@@ -292,7 +292,7 @@ void Wild4::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
-    EncounterSettings4 settings;
+    EncounterSettings4 settings = {};
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         settings.dppt.dual = ui->checkBoxSearcherDualSlot->isChecked() ? ui->comboBoxSearcherDualSlot->getEnum<Game>() : Game::None;

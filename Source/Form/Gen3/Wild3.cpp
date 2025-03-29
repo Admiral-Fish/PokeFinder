@@ -152,7 +152,7 @@ void Wild3::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings;
+    EncounterSettings3 settings = {};
     settings.feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
 
     encounterGenerator = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
@@ -162,7 +162,7 @@ void Wild3::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings;
+    EncounterSettings3 settings = {};
     settings.feebasTile = ui->checkBoxSearcherFeebasTile->isChecked();
 
     encounterSearcher = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
