@@ -120,7 +120,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
         {
             cuteCharm = (go.nextUInt(0xffff) / 656) < 67;
 
-            // Failed cute charm seems to consume another advance
+            // Failed cute charm continues to check for other leads
             if (!cuteCharm)
             {
                 go.next();

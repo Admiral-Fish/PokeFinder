@@ -162,17 +162,18 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             }
             else
             {
+                bool flag = go.nextUInt(2);
                 if (lead == Lead::MagnetPull || lead == Lead::Static)
                 {
-                    magnetStatic = go.nextUInt(2);
+                    magnetStatic = flag;
                 }
                 else if (lead == Lead::Pressure)
                 {
-                    pressure = go.nextUInt(2);
+                    pressure = flag;
                 }
                 else if (lead <= Lead::Synchronize)
                 {
-                    sync = go.nextUInt(2);
+                    sync = flag;
                 }
             }
         }

@@ -23,18 +23,21 @@
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class HiddenGrottoState;
+class State5;
+enum class Lead : u8;
 
 /**
- * @brief Hidden grotto generator for Gen 5
+ * @brief Hidden grotto slot generator for Gen 5
  */
-class HiddenGrottoGenerator : public Generator<Profile5, HiddenGrottoFilter>
+class HiddenGrottoSlotGenerator : public Generator<Profile5, HiddenGrottoFilter>
 {
 public:
     /**
-     * @brief Construct a new HiddenGrottoGenerator object
+     * @brief Construct a new HiddenGrottoSlotGenerator object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
@@ -44,8 +47,8 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel, const HiddenGrottoArea &encounterArea,
-                          const Profile5 &profile, const HiddenGrottoFilter &filter);
+    HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel, const HiddenGrottoArea &encounterArea,
+                              const Profile5 &profile, const HiddenGrottoFilter &filter);
 
     /**
      * @brief Generates states
@@ -59,6 +62,53 @@ public:
 private:
     HiddenGrottoArea encounterArea;
     u8 powerLevel;
+};
+
+/**
+ * @brief Hidden grotto pokemon generator for Gen 5
+ */
+class HiddenGrottoGenerator : public Generator<Profile5, StateFilter>
+{
+public:
+    /**
+     * @brief Construct a new HiddenGrottoGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param powerLevel Hidden grotto encounter rate
+     * @param encounterArea Hidden grotto information
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, u8 gender, const HiddenGrottoSlot &slot,
+                          const Profile5 &profile, const StateFilter &filter);
+
+    /**
+     * @brief Generates states for the \p encounterArea
+     *
+     * @param seed Starting PRNG state
+     * @param initialAdvances Initial number of IV advances
+     * @param maxAdvances Maximum number of IV advances
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const;
+
+    /**
+     * @brief Generates states for the \p encounterArea
+     *
+     * @param seed Starting PRNG state
+     * @param iv Vector of IV advances and IVs
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
+
+private:
+    HiddenGrottoSlot slot;
+    Lead lead;
+    u8 gender;
 };
 
 #endif // HIDDENGROTTOGENERATOR_HPP

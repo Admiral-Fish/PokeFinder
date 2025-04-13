@@ -327,5 +327,5 @@ void WildSearcherModel5::sort(int column, Qt::SortOrder order)
 void WildSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 10), index(rowCount(), 15), { Qt::DisplayRole });
 }

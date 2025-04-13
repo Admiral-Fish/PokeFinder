@@ -22,12 +22,117 @@
 
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show hidden grotto information for Gen 5
  */
-class HiddenGrottoGeneratorModel5 : public TableModel<HiddenGrottoState>
+class HiddenGrottoSlotGeneratorModel5 : public TableModel<HiddenGrottoState>
+{
+    Q_OBJECT
+public:
+    /**
+     * @brief Construct a new HiddenGrottoSlotGeneratorModel5 object
+     *
+     * @param parent Parent object, which takes memory ownership
+     */
+    HiddenGrottoSlotGeneratorModel5(QObject *parent);
+
+    /**
+     * @brief Returns the number of columns in the model
+     *
+     * @param parent Unused parent index
+     *
+     * @return Number of columns
+     */
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+
+    /**
+     * @brief Returns data at the \p index with \p role
+     *
+     * @param index Row/column index
+     * @param role Model data role
+     *
+     * @return Data at index
+     */
+    QVariant data(const QModelIndex &index, int role) const override;
+
+    /**
+     * @brief Returns header text at the \p section, \p orientation, and \p role
+     *
+     * @param section Column index
+     * @param orientation Header position
+     * @param role Model data role
+     *
+     * @return Header text at column
+     */
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Group"), tr("Slot") };
+};
+
+/**
+ * @brief Provides a table model implementation to show hidden grotto information for Gen 5
+ */
+class HiddenGrottoSlotSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
+{
+    Q_OBJECT
+public:
+    /**
+     * @brief Construct a new HiddenGrottoSlotSearcherModel5 object
+     *
+     * @param parent Parent object, which takes memory ownership
+     */
+    HiddenGrottoSlotSearcherModel5(QObject *parent);
+
+    /**
+     * @brief Returns the number of columns in the model
+     *
+     * @param parent Unused parent index
+     *
+     * @return Number of columns
+     */
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+
+    /**
+     * @brief Returns data at the \p index with \p role
+     *
+     * @param index Row/column index
+     * @param role Model data role
+     *
+     * @return Data at index
+     */
+    QVariant data(const QModelIndex &index, int role) const override;
+
+    /**
+     * @brief Returns header text at the \p section, \p orientation, and \p role
+     *
+     * @param section Column index
+     * @param orientation Header position
+     * @param role Model data role
+     *
+     * @return Header text at column
+     */
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+    /**
+     * @brief Sorts the displayed data in the \p column by the given \p order
+     *
+     * @param column Column to sort
+     * @param order Order to sort
+     */
+    void sort(int column, Qt::SortOrder order) override;
+
+private:
+    QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+};
+
+/**
+ * @brief Provides a table model implementation to show hidden grotto pokemon information for Gen 5
+ */
+class HiddenGrottoGeneratorModel5 : public TableModel<State5>
 {
     Q_OBJECT
 public:
@@ -68,14 +173,25 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    /**
+     * @brief Sets flag that controls whether the model display stats or IVs
+     *
+     * @param flag Whether to show stats or not
+     */
+    void setShowStats(bool flag);
+
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Group"), tr("Slot") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Level"), tr("PID"),    tr("Shiny"),         tr("Nature"),
+                           tr("Ability"),  tr("HP"),     tr("Atk"),   tr("Def"),    tr("SpA"),           tr("SpD"),
+                           tr("Spe"),      tr("Hidden"), tr("Power"), tr("Gender"), tr("Characteristic") };
+    bool showStats;
 };
 
 /**
- * @brief Provides a table model implementation to show hidden grotto information for Gen 5
+ * @brief Provides a table model implementation to show hidden grotto pokemon information for Gen 5
  */
-class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
+class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<State5>>
 {
     Q_OBJECT
 public:
@@ -124,8 +240,19 @@ public:
      */
     void sort(int column, Qt::SortOrder order) override;
 
+public slots:
+    /**
+     * @brief Sets flag that controls whether the model display stats or IVs
+     *
+     * @param flag Whether to show stats or not
+     */
+    void setShowStats(bool flag);
+
 private:
-    QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    QStringList header = { tr("Seed"),    tr("Advances"), tr("IV Advances"), tr("Level"),     tr("PID"),    tr("Shiny"),  tr("Nature"),
+                           tr("Ability"), tr("HP"),       tr("Atk"),         tr("Def"),       tr("SpA"),    tr("SpD"),    tr("Spe"),
+                           tr("Hidden"),  tr("Power"),    tr("Gender"),      tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    bool showStats;
 };
 
 #endif // HIDDENGROTTOMODEL_HPP

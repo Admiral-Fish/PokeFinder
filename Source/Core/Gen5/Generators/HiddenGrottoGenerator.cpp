@@ -18,11 +18,18 @@
  */
 
 #include "HiddenGrottoGenerator.hpp"
+#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/State5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
+#include <Core/RNG/MT.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 // clang-format off
 // See EncounterSlot.cpp computeTable() with { 1, 5, 20, 21, 25, 35, 60, 61, 65, 75, 100 }
@@ -41,14 +48,19 @@ constexpr u8 encounterTable[100] = {
 };
 // clang-format on
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel,
-                                             const HiddenGrottoArea &encounterArea, const Profile5 &profile,
-                                             const HiddenGrottoFilter &filter) :
+static u8 gen(MT &rng)
+{
+    return rng.next() >> 27;
+}
+
+HiddenGrottoSlotGenerator::HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel,
+                                                     const HiddenGrottoArea &encounterArea, const Profile5 &profile,
+                                                     const HiddenGrottoFilter &filter) :
     Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), encounterArea(encounterArea), powerLevel(powerLevel)
 {
 }
 
-std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
+std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) const
 {
     u32 advances = Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
     BWRNG rng(seed, advances + initialAdvances);
@@ -90,6 +102,91 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
                 {
                     states.emplace_back(state);
                 }
+            }
+        }
+    }
+
+    return states;
+}
+
+HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, u8 gender,
+                                             const HiddenGrottoSlot &slot, const Profile5 &profile, const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), slot(slot), lead(lead), gender(gender)
+{
+}
+
+std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
+{
+    bool bw = (profile.getVersion() & Game::BW) != Game::None;
+
+    std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
+
+    RNGList<u8, MT, 8, gen> rngList(seed >> 32, initialAdvances + (bw ? 0 : 2));
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    {
+        std::array<u8, 6> iv;
+        std::generate(iv.begin(), iv.end(), [&rngList] { return rngList.next(); });
+        if (filter.compareIV(iv))
+        {
+            ivs.emplace_back(initialAdvances + cnt, iv);
+        }
+    }
+
+    if (ivs.empty())
+    {
+        return std::vector<State5>();
+    }
+    else
+    {
+        return generate(seed, ivs);
+    }
+}
+
+std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
+{
+    u32 advances = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u8 range = slot.getMaxLevel() - slot.getMinLevel();
+
+    std::vector<State5> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        BWRNG go(rng, jump);
+
+        u8 level = slot.getMinLevel() + go.nextUInt(range);
+
+        bool sync = false;
+        if (lead != Lead::CompoundEyes)
+        {
+            sync = go.nextUInt(2) && lead <= Lead::Synchronize;
+        }
+
+        const PersonalInfo *info = slot.getInfo();
+
+        u32 pid = Utilities5::createPID(tsv, 2, gender, Shiny::Never, false, info->getGender(), go);
+
+        u8 ability = 2;
+        if (info->getAbility(2) == 0)
+        {
+            ability = (pid >> 16) & 1;
+        }
+        u8 shiny = Utilities::getShiny<true>(pid, tsv);
+
+        u8 nature = go.nextUInt(25);
+        if (sync)
+        {
+            nature = toInt(lead);
+        }
+
+        u16 chatot = rng.nextUInt(0x1fff);
+        for (const auto &iv : ivs)
+        {
+            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny, info);
+            if (filter.compareState(static_cast<const State &>(state)))
+            {
+                states.emplace_back(state);
             }
         }
     }
