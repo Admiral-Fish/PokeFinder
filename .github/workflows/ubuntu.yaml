@@ -22,7 +22,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.8.0"
+          version: "6.8.3"
           archives: icu qtbase qtsvg qttools
           cache: true
 
