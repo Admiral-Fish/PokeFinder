@@ -64,7 +64,7 @@ Qt
 # Installing
 
 Windows
-- Install the [Microsoft Visual C++ Redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)
+- Install the [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
 - Download the win zip folder from the [releases page](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 - Extract PokéFinder from the zip folder
 
