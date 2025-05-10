@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.admiral_fish.pokefinder</id>
+
+    <name>PokéFinder</name>
+    <summary>Cross platform Pokémon RNG tool </summary>
+
+    <metadata_license>CC-BY-SA-4.0</metadata_license>
+    <project_license>GPL-3.0-or-later</project_license>
+
+    <description>
+        <p>
+            This will be a RNG Tool for all main Pokémon games generations 3-8. It currently supports generations 3/4 and parts of generation 5/8.
+        </p>
+    </description>
+
+    <launchable type="desktop-id">io.github.admiral_fish.pokefinder.desktop</launchable>
+</component>

@@ -25,7 +25,7 @@
 /**
  * @brief Enum that encompasses which controls can be enabled/disabled
  */
-enum class Controls : u16
+enum class Controls : u8
 {
     None = 0,
     IVs = 1 << 0,

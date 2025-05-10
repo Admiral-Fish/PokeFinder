@@ -23,7 +23,7 @@
 #include <Core/Global.hpp>
 #include <QWidget>
 
-enum class Controls : u16;
+enum class Controls : u8;
 class QSpinBox;
 
 namespace Ui
@@ -42,6 +42,11 @@ signals:
      * @brief Emits that show stats setting has been changed
      */
     void showStatsChanged(bool);
+
+    /**
+     * @brief Emits that IV filter has been changed
+     */
+    void ivsChanged();
 
 public:
     /**

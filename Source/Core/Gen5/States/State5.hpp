@@ -33,6 +33,7 @@ public:
      *
      * @param prng PRNG call to determine Chatot pitch
      * @param advances Advances of the state
+     * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
@@ -42,9 +43,9 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    State5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-           const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), chatot(prng / 82)
+    State5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
+           u8 shiny, const PersonalInfo *info) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), ivAdvances(ivAdvances), chatot(prng / 82)
     {
     }
 
@@ -58,7 +59,18 @@ public:
         return chatot;
     }
 
+    /**
+     * @brief Returns the IV advances of the state
+     *
+     * @return State IV advances
+     */
+    u32 getIVAdvances() const
+    {
+        return ivAdvances;
+    }
+
 private:
+    u32 ivAdvances;
     u8 chatot;
 };
 

@@ -378,7 +378,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGHeld(u32 seed) const
         male = PersonalLoader::getPersonal(profile.getVersion(), 313);
     }
 
-    PokeRNG rng(seed, initialAdvances);
+    PokeRNG rng(seed, initialAdvances + offset);
 
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())

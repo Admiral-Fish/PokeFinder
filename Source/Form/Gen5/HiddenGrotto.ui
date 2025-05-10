@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>700</height>
+    <width>1465</width>
+    <height>888</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Hidden Grotto</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
+  <layout class="QGridLayout" name="gridLayout_10">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxProfile">
      <property name="title">
@@ -60,7 +60,7 @@
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line_4">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -87,7 +87,7 @@
       <item row="0" column="7" rowspan="2">
        <widget class="Line" name="line_3">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -114,7 +114,7 @@
       <item row="0" column="10" rowspan="2">
        <widget class="Line" name="line_2">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -141,7 +141,7 @@
       <item row="0" column="13" rowspan="2">
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -169,612 +169,1072 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
-     <widget class="QWidget" name="tabGenerator">
+    <widget class="QTabWidget" name="tabWidget">
+     <widget class="QWidget" name="tabGrotto">
       <attribute name="title">
-       <string>Generator</string>
+       <string>Grotto</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>RNG Info</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">1000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorOffset">
-            <property name="text">
-             <string>Offset</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorOffset"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorGrottoPower">
-            <property name="text">
-             <string>Grotto Power</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorGrottoPower">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
+        <widget class="QTabWidget" name="tabSlotRNGSelector">
+         <widget class="QWidget" name="tabGrottoGenerator">
+          <attribute name="title">
+           <string>Generator</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBoxGrottoGeneratorRNGInfo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
+             <property name="title">
+              <string>RNG Info</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorSeed">
+                <property name="text">
+                 <string>Seed</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="TextBox" name="textBoxGrottoGeneratorSeed"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorInitialAdvances">
+                <property name="text">
+                 <string>Initial Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="TextBox" name="textBoxGrottoGeneratorInitialAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorMaxAdvances">
+                <property name="text">
+                 <string>Max Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="TextBox" name="textBoxGrottoGeneratorMaxAdvances">
+                <property name="text">
+                 <string notr="true">1000</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorOffset">
+                <property name="text">
+                 <string>Offset</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="TextBox" name="textBoxGrottoGeneratorOffset"/>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorGrottoPower">
+                <property name="text">
+                 <string>Grotto Power</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoGeneratorGrottoPower">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>S/MAX</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="5" column="0" colspan="2">
+               <widget class="QPushButton" name="pushButtonGrottoGenerate">
+                <property name="text">
+                 <string>Generate</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QGroupBox" name="groupBoxGrottoGeneratorSettings">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
+             <property name="title">
+              <string>Settings</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorLocation">
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoGeneratorLocation"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorPokemon">
+                <property name="text">
+                 <string>Pokemon</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoGeneratorPokemon"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorItems">
+                <property name="text">
+                 <string>Items</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoGeneratorItems"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QGroupBox" name="groupBoxGrottoGeneratorFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="text">
-             <string>Generate</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+             <property name="title">
+              <string>Filters</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorSlot">
+                <property name="text">
+                 <string>Slot</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="CheckList" name="checkListGrottoGeneratorSlot">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">4</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">5</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">6</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">7</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">8</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">9</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">10</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorGroup">
+                <property name="text">
+                 <string>Group</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="CheckList" name="checkListGrottoGeneratorGroup">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoGeneratorGender">
+                <property name="text">
+                 <string>Gender</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="CheckList" name="checkListGrottoGeneratorGender">
+                <item>
+                 <property name="text">
+                  <string notr="true">♂</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">♀</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="TableView" name="tableViewGrottoGenerator"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tabSlotSearcher">
+          <attribute name="title">
+           <string>Searcher</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_20">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBoxGrottoSearcherRNGInfo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>RNG Info</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherInitialAdvances">
+                <property name="text">
+                 <string>Initial Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="TextBox" name="textBoxGrottoSearcherInitialAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherMaxAdvances">
+                <property name="text">
+                 <string>Max Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="TextBox" name="textBoxGrottoSearcherMaxAdvances">
+                <property name="text">
+                 <string notr="true">100</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherGrottoPower">
+                <property name="text">
+                 <string>Grotto Power</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoSearcherGrottoPower">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>S/MAX</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherStartDate">
+                <property name="text">
+                 <string>Start Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="DateEdit" name="dateEditGrottoSearcherStartDate"/>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherEndDate">
+                <property name="text">
+                 <string>End Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="DateEdit" name="dateEditGrottoSearcherEndDate"/>
+              </item>
+              <item row="5" column="0" colspan="2">
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QPushButton" name="pushButtonGrottoSearch">
+                  <property name="text">
+                   <string>Search</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonGrottoCancel">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>Cancel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QGroupBox" name="groupBoxGrottoSearcherSettings">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Settings</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherLocation">
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoSearcherLocation"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherPokemon">
+                <property name="text">
+                 <string>Pokemon</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoSearcherPokemon"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherItems">
+                <property name="text">
+                 <string>Items</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ComboBox" name="comboBoxGrottoSearcherItems"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QGroupBox" name="groupBoxGrottoSearcherFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Filters</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherSlot">
+                <property name="text">
+                 <string>Slot</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="CheckList" name="checkListGrottoSearcherSlot">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">4</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">5</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">6</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">7</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">8</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">9</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">10</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherGroup">
+                <property name="text">
+                 <string>Group</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="CheckList" name="checkListGrottoSearcherGroup">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelGrottoSearcherGender">
+                <property name="text">
+                 <string>Gender</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="CheckList" name="checkListGrottoSearcherGender">
+                <item>
+                 <property name="text">
+                  <string notr="true">♂</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">♀</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="4">
+            <widget class="QProgressBar" name="progressBarGrotto"/>
+           </item>
+           <item row="2" column="0" colspan="4">
+            <widget class="TableView" name="tableViewGrottoSearcher">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxGeneratorSettings">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Settings</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorLocation">
-            <property name="text">
-             <string>Location</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorLocation"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorPokemon">
-            <property name="text">
-             <string>Pokemon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorItems">
-            <property name="text">
-             <string>Items</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorItems"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxGeneratorFilter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorSlot">
-            <property name="text">
-             <string>Slot</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="CheckList" name="checkListGeneratorSlot">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">4</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">5</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">6</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">7</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">8</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">9</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">10</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorGroup">
-            <property name="text">
-             <string>Group</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="CheckList" name="checkListGeneratorGroup">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorGender">
-            <property name="text">
-             <string>Gender</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="CheckList" name="checkListGeneratorGender">
-            <item>
-             <property name="text">
-              <string notr="true">♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="TableView" name="tableViewGenerator"/>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSearcher">
+     <widget class="QWidget" name="tabPokemon">
       <attribute name="title">
-       <string>Searcher</string>
+       <string>Pokemon</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_20">
+      <layout class="QGridLayout" name="gridLayout_18">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>RNG Info</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_9">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherInitialAdvances">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxSearcherInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
-            <property name="text">
-             <string notr="true">100</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherGrottoPower">
-            <property name="text">
-             <string>Grotto Power</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherGrottoPower">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
+        <widget class="QTabWidget" name="tabRNGSelector_2">
+         <widget class="QWidget" name="tabPokemonGenerator">
+          <attribute name="title">
+           <string>Generator</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBoxPokemonGeneratorRNGInfo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
+             <property name="title">
+              <string>RNG Info</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorLead">
+                <property name="text">
+                 <string>Lead</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboMenu" name="comboMenuPokemonGeneratorLead"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelGeneratorSeed_2">
+                <property name="text">
+                 <string>Seed</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="TextBox" name="textBoxPokemonGeneratorSeed"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorIVAdvances">
+                <property name="text">
+                 <string>IV Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="TextBox" name="textBoxPokemonGeneratorIVAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorInitialAdvances">
+                <property name="text">
+                 <string>Initial Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="TextBox" name="textBoxPokemonGeneratorInitialAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorMaxAdvances">
+                <property name="text">
+                 <string>Max Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="TextBox" name="textBoxPokemonGeneratorMaxAdvances">
+                <property name="text">
+                 <string notr="true">1000</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorOffset">
+                <property name="text">
+                 <string>Offset</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="TextBox" name="textBoxPokemonGeneratorOffset"/>
+              </item>
+              <item row="6" column="0" colspan="2">
+               <widget class="QPushButton" name="pushButtonPokemonGenerate">
+                <property name="text">
+                 <string>Generate</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QGroupBox" name="groupBoxPokemonGeneratorSettings">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
+             <property name="title">
+              <string>Settings</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+             <layout class="QGridLayout" name="gridLayout_13">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorLocation">
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonGeneratorLocation"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorGroup">
+                <property name="text">
+                 <string>Group</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBoxPokemonGeneratorGroup">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorPokemon">
+                <property name="text">
+                 <string>Pokemon</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonGeneratorPokemon"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelPokemonGeneratorGender">
+                <property name="text">
+                 <string>Gender</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonGeneratorGender"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QGroupBox" name="groupBoxPokemonGeneratorFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherStartDate">
-            <property name="text">
-             <string>Start Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="DateEdit" name="dateEditSearcherStartDate"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelSearcherEndDate">
-            <property name="text">
-             <string>End Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="DateEdit" name="dateEditSearcherEndDate"/>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="pushButtonSearch">
-              <property name="text">
-               <string>Search</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonCancel">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Cancel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QGroupBox" name="groupBoxSearcherSettings">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Settings</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherLocation">
-            <property name="text">
-             <string>Location</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLocation"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPokemon">
-            <property name="text">
-             <string>Pokemon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherItems">
-            <property name="text">
-             <string>Items</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItems"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QGroupBox" name="groupBoxSearcherFilter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherSlot">
-            <property name="text">
-             <string>Slot</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="CheckList" name="checkListSearcherSlot">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
+             <property name="title">
+              <string>Filters</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
+             <layout class="QGridLayout" name="gridLayout_14">
+              <item row="0" column="0">
+               <widget class="Filter" name="filterPokemonGenerator" native="true"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="TableView" name="tableViewPokemonGenerator"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tabPokemonSearcher">
+          <attribute name="title">
+           <string>Searcher</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_21">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBoxPokemonSearcherRNGInfo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
+             <property name="title">
+              <string>RNG Info</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
+             <layout class="QGridLayout" name="gridLayout_15">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherLead">
+                <property name="text">
+                 <string>Lead</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboMenu" name="comboMenuPokemonSearcherLead"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherInitialIVAdvances">
+                <property name="text">
+                 <string>Initial IV Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="TextBox" name="textBoxPokemonSearcherInitialIVAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherMaxIVAdvances">
+                <property name="text">
+                 <string>Max IV Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="TextBox" name="textBoxPokemonSearcherMaxIVAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherInitialAdvances">
+                <property name="text">
+                 <string>Initial Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="TextBox" name="textBoxPokemonSearcherInitialAdvances">
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherMaxAdvances">
+                <property name="text">
+                 <string>Max Advances</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="TextBox" name="textBoxPokemonSearcherMaxAdvances">
+                <property name="text">
+                 <string notr="true">100</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherStartDate">
+                <property name="text">
+                 <string>Start Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="DateEdit" name="dateEditPokemonSearcherStartDate"/>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherEndDate">
+                <property name="text">
+                 <string>End Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="DateEdit" name="dateEditPokemonSearcherEndDate"/>
+              </item>
+              <item row="7" column="0" colspan="2">
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QPushButton" name="pushButtonPokemonSearch">
+                  <property name="text">
+                   <string>Search</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonPokemonCancel">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>Cancel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QGroupBox" name="groupBoxPokemonSearcherSettings">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">4</string>
+             <property name="title">
+              <string>Settings</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">5</string>
+             <layout class="QGridLayout" name="gridLayout_16">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherLocation">
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonSearcherLocation"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherGroup">
+                <property name="text">
+                 <string>Group</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBoxPokemonSearcherGroup">
+                <item>
+                 <property name="text">
+                  <string notr="true">0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">3</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherPokemon">
+                <property name="text">
+                 <string>Pokemon</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonSearcherPokemon"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelPokemonSearcherGender">
+                <property name="text">
+                 <string>Gender</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="ComboBox" name="comboBoxPokemonSearcherGender"/>
+              </item>
+              <item row="4" column="0" colspan="2">
+               <widget class="QLabel" name="labelPokemonSearcherIVFastSearch">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QGroupBox" name="groupBoxPokemonSearcherFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">6</string>
+             <property name="title">
+              <string>Filters</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">7</string>
+             <layout class="QGridLayout" name="gridLayout_17">
+              <item row="0" column="0">
+               <widget class="Filter" name="filterPokemonSearcher" native="true"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="4">
+            <widget class="QProgressBar" name="progressBarPokemon"/>
+           </item>
+           <item row="2" column="0" colspan="4">
+            <widget class="TableView" name="tableViewPokemonSearcher">
+             <property name="sortingEnabled">
+              <bool>true</bool>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">8</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">9</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">10</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherGroup">
-            <property name="text">
-             <string>Group</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="CheckList" name="checkListSearcherGroup">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherGender">
-            <property name="text">
-             <string>Gender</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="CheckList" name="checkListSearcherGender">
-            <item>
-             <property name="text">
-              <string notr="true">♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="4">
-        <widget class="QProgressBar" name="progressBar"/>
-       </item>
-       <item row="2" column="0" colspan="4">
-        <widget class="TableView" name="tableViewSearcher">
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -790,11 +1250,6 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
@@ -805,6 +1260,22 @@
    <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
   <customwidget>
+   <class>Filter</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/CheckList.hpp</header>
@@ -813,31 +1284,62 @@
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
-  <tabstop>tabRNGSelector</tabstop>
-  <tabstop>textBoxGeneratorSeed</tabstop>
-  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
-  <tabstop>textBoxGeneratorMaxAdvances</tabstop>
-  <tabstop>textBoxGeneratorOffset</tabstop>
-  <tabstop>comboBoxGeneratorGrottoPower</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>comboBoxGeneratorLocation</tabstop>
-  <tabstop>comboBoxGeneratorPokemon</tabstop>
-  <tabstop>comboBoxGeneratorItems</tabstop>
-  <tabstop>checkListGeneratorSlot</tabstop>
-  <tabstop>checkListGeneratorGroup</tabstop>
-  <tabstop>checkListGeneratorGender</tabstop>
-  <tabstop>tableViewGenerator</tabstop>
-  <tabstop>dateEditSearcherStartDate</tabstop>
-  <tabstop>dateEditSearcherEndDate</tabstop>
-  <tabstop>pushButtonSearch</tabstop>
-  <tabstop>pushButtonCancel</tabstop>
-  <tabstop>comboBoxSearcherLocation</tabstop>
-  <tabstop>comboBoxSearcherPokemon</tabstop>
-  <tabstop>comboBoxSearcherItems</tabstop>
-  <tabstop>checkListSearcherSlot</tabstop>
-  <tabstop>checkListSearcherGroup</tabstop>
-  <tabstop>checkListSearcherGender</tabstop>
-  <tabstop>tableViewSearcher</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tabSlotRNGSelector</tabstop>
+  <tabstop>textBoxGrottoGeneratorSeed</tabstop>
+  <tabstop>textBoxGrottoGeneratorInitialAdvances</tabstop>
+  <tabstop>textBoxGrottoGeneratorMaxAdvances</tabstop>
+  <tabstop>textBoxGrottoGeneratorOffset</tabstop>
+  <tabstop>comboBoxGrottoGeneratorGrottoPower</tabstop>
+  <tabstop>pushButtonGrottoGenerate</tabstop>
+  <tabstop>comboBoxGrottoGeneratorLocation</tabstop>
+  <tabstop>comboBoxGrottoGeneratorPokemon</tabstop>
+  <tabstop>comboBoxGrottoGeneratorItems</tabstop>
+  <tabstop>checkListGrottoGeneratorSlot</tabstop>
+  <tabstop>checkListGrottoGeneratorGroup</tabstop>
+  <tabstop>checkListGrottoGeneratorGender</tabstop>
+  <tabstop>tableViewGrottoGenerator</tabstop>
+  <tabstop>textBoxGrottoSearcherInitialAdvances</tabstop>
+  <tabstop>textBoxGrottoSearcherMaxAdvances</tabstop>
+  <tabstop>comboBoxGrottoSearcherGrottoPower</tabstop>
+  <tabstop>dateEditGrottoSearcherStartDate</tabstop>
+  <tabstop>dateEditGrottoSearcherEndDate</tabstop>
+  <tabstop>pushButtonGrottoSearch</tabstop>
+  <tabstop>pushButtonGrottoCancel</tabstop>
+  <tabstop>comboBoxGrottoSearcherLocation</tabstop>
+  <tabstop>comboBoxGrottoSearcherPokemon</tabstop>
+  <tabstop>comboBoxGrottoSearcherItems</tabstop>
+  <tabstop>checkListGrottoSearcherSlot</tabstop>
+  <tabstop>checkListGrottoSearcherGroup</tabstop>
+  <tabstop>checkListGrottoSearcherGender</tabstop>
+  <tabstop>tableViewGrottoSearcher</tabstop>
+  <tabstop>tabRNGSelector_2</tabstop>
+  <tabstop>comboMenuPokemonGeneratorLead</tabstop>
+  <tabstop>textBoxPokemonGeneratorSeed</tabstop>
+  <tabstop>textBoxPokemonGeneratorIVAdvances</tabstop>
+  <tabstop>textBoxPokemonGeneratorInitialAdvances</tabstop>
+  <tabstop>textBoxPokemonGeneratorMaxAdvances</tabstop>
+  <tabstop>textBoxPokemonGeneratorOffset</tabstop>
+  <tabstop>pushButtonPokemonGenerate</tabstop>
+  <tabstop>comboBoxPokemonGeneratorLocation</tabstop>
+  <tabstop>comboBoxPokemonGeneratorGroup</tabstop>
+  <tabstop>comboBoxPokemonGeneratorPokemon</tabstop>
+  <tabstop>comboBoxPokemonGeneratorGender</tabstop>
+  <tabstop>tableViewPokemonGenerator</tabstop>
+  <tabstop>comboMenuPokemonSearcherLead</tabstop>
+  <tabstop>textBoxPokemonSearcherInitialIVAdvances</tabstop>
+  <tabstop>textBoxPokemonSearcherMaxIVAdvances</tabstop>
+  <tabstop>textBoxPokemonSearcherInitialAdvances</tabstop>
+  <tabstop>textBoxPokemonSearcherMaxAdvances</tabstop>
+  <tabstop>dateEditPokemonSearcherStartDate</tabstop>
+  <tabstop>dateEditPokemonSearcherEndDate</tabstop>
+  <tabstop>pushButtonPokemonSearch</tabstop>
+  <tabstop>pushButtonPokemonCancel</tabstop>
+  <tabstop>comboBoxPokemonSearcherLocation</tabstop>
+  <tabstop>comboBoxPokemonSearcherGroup</tabstop>
+  <tabstop>comboBoxPokemonSearcherPokemon</tabstop>
+  <tabstop>comboBoxPokemonSearcherGender</tabstop>
+  <tabstop>tableViewPokemonSearcher</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -272,7 +272,7 @@ public:
      */
     u32 nextUInt(u32 max, u32 *count = nullptr)
     {
-        return (static_cast<u64>(nextUInt(count)) * max) >> 32;
+        return ((next(count) >> 32) * max) >> 32;
     }
 
 private:

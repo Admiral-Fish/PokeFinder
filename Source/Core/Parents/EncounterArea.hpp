@@ -34,16 +34,16 @@ enum class Game : u32;
 struct ModifiedSlots
 {
     u8 count;
-    u8 index[12];
+    u8 encounters[12];
 
     bool empty() const
     {
         return count == 0;
     }
 
-    u8 operator[](u32 rand) const
+    u8 operator[](u8 index) const
     {
-        return index[rand % count];
+        return encounters[index];
     }
 };
 

@@ -75,7 +75,7 @@ void HiddenGrottoGeneratorTest::generate()
     });
 
     HiddenGrottoFilter filter(encounterSlots, genders, groups);
-    HiddenGrottoGenerator generator(0, 99, 0, 55, *encounterArea, profile, filter);
+    HiddenGrottoSlotGenerator generator(0, 99, 0, 55, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());

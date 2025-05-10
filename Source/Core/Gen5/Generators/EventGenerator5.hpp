@@ -25,7 +25,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class State5;
+class EventState5;
 
 /**
  * @brief Event generator for Gen 5
@@ -52,7 +52,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<State5> generate(u64 seed) const;
+    std::vector<EventState5> generate(u64 seed) const;
 
 private:
     PGF pgf;

@@ -28,6 +28,7 @@
 class DateTime;
 class Profile5;
 enum class Game : u32;
+enum class Shiny : u8;
 
 namespace Utilities
 {
@@ -186,16 +187,20 @@ namespace Utilities4
 namespace Utilities5
 {
     /**
-     * @brief Modifies PID to force a gender
+     * @brief Creates PID from parameters
      *
-     * @param pid PID value to modify
-     * @param rng PRNG state
+     * @param tsv Trainer shiny value
+     * @param ability Ability to force
      * @param gender Gender to force
-     * @param genderRatio Pokemon gender ratio
+     * @param shiny Shiny to force
+     * @param boost Whether to boost shiny odds
+     * @param ratio Gender ratio
+     * @param rng PRNG state
+     * @param info Pokemon information
      *
-     * @return Modified PID
+     * @return PID
      */
-    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, u8 genderRatio);
+    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool boost, u8 ratio, BWRNG &rng);
 
     /**
      * @brief Returns the chatot pitch

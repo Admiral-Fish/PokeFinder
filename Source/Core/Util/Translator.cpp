@@ -27,7 +27,7 @@
 #include <iterator>
 #include <map>
 
-enum class Language
+enum class Language : u8
 {
     German,
     English,
@@ -40,7 +40,7 @@ enum class Language
     Count
 };
 
-enum class Translation
+enum class Translation : u8
 {
     Ability,
     BDSP,
@@ -70,7 +70,7 @@ static std::vector<std::string> characteristics;
 static std::map<u16, std::string> forms;
 static std::vector<std::string> games;
 static std::vector<std::string> hiddenPowers;
-static std::vector<std::string> items;
+static std::map<u16, std::string> items;
 static std::vector<std::string> moves;
 static std::vector<std::string> natures;
 static std::vector<std::string> species;
@@ -370,7 +370,7 @@ namespace Translator
         forms = readFile(Translation::Form);
         readFile(Translation::Game, games);
         readFile(Translation::Power, hiddenPowers);
-        readFile(Translation::Item, items);
+        items = readFile(Translation::Item);
         readFile(Translation::Move, moves);
         readFile(Translation::Nature, natures);
         readFile(Translation::Specie, species);

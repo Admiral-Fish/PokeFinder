@@ -102,7 +102,6 @@ DreamRadarSearcherModel5::DreamRadarSearcherModel5(QObject *parent) : TableModel
 {
 }
 
-
 int DreamRadarSearcherModel5::columnCount(const QModelIndex &parent) const
 {
     return 18;

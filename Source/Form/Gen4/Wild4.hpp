@@ -105,7 +105,7 @@ private slots:
      *
      * @param state Checked state
      */
-    void generatorFeebasTileStateChanged(int state);
+    void generatorFeebasTileStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates the pokemon listed
@@ -126,7 +126,7 @@ private slots:
      *
      * @param state Checkbox state
      */
-    void generatorPokeRadarStateChanged(int state);
+    void generatorPokeRadarStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
@@ -163,7 +163,7 @@ private slots:
      *
      * @param state Checked state
      */
-    void searcherFeebasTileStateChanged(int state);
+    void searcherFeebasTileStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates the pokemon listed
@@ -184,7 +184,7 @@ private slots:
      *
      * @param state Checkbox state
      */
-    void searcherPokeRadarStateChanged(int state);
+    void searcherPokeRadarStateChanged(Qt::CheckState state);
 
     /**
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.

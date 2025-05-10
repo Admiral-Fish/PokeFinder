@@ -149,7 +149,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
             if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0
                 && !modifiedSlots.empty())
             {
-                encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
+                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count, &battleAdvances)];
             }
             else
             {
@@ -303,7 +303,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         u8 encounterSlot;
         if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
+            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count, &battleAdvances)];
         }
         else
         {

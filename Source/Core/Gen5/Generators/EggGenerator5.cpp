@@ -96,20 +96,17 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 nature = go.nextUInt(25);
         // Everstone, first check for presence of item and proc
-        if (everstone != 0)
+        if (everstone != 0 && go.nextUInt(2))
         {
-            if (go.nextUInt(2) == 1)
+            if (everstone == 2)
             {
-                if (everstone == 2)
-                {
-                    // 0->parent1 / 1->parent2
-                    nature = daycare.getParentNature(go.nextUInt(2));
-                }
-                else
-                {
-                    u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
-                    nature = daycare.getParentNature(parent);
-                }
+                // 0->parent1 / 1->parent2
+                nature = daycare.getParentNature(go.nextUInt(2));
+            }
+            else
+            {
+                u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
+                nature = daycare.getParentNature(parent);
             }
         }
 
@@ -141,7 +138,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
             }
             else
             {
-                u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
+                u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(0) <= 7) ? 0 : 1;
                 u8 item = daycare.getParentItem(parent);
 
                 ivs[item - 2] = daycare.getParentIV(parent, item - 2);
@@ -281,18 +278,18 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
     u8 ability;
     if (!ditto)
     {
-        u8 abilityRand = rng.nextUInt(100);
+        u8 rand = rng.nextUInt(100);
         if (parentAbility == 0)
         {
-            ability = abilityRand < 80 ? 0 : 1;
+            ability = rand < 80 ? 0 : 1;
         }
         else if (parentAbility == 1)
         {
-            ability = abilityRand < 20 ? 0 : 1;
+            ability = rand < 20 ? 0 : 1;
         }
         else
         {
-            ability = abilityRand < 20 ? 0 : abilityRand < 40 ? 1 : 2;
+            ability = rand < 20 ? 0 : rand < 40 ? 1 : 2;
         }
     }
     else
@@ -318,7 +315,7 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
         }
         else
         {
-            u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
+            u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(0) <= 7) ? 0 : 1;
             u8 item = daycare.getParentItem(parent);
 
             ivs[item - 2] = daycare.getParentIV(parent, item - 2);

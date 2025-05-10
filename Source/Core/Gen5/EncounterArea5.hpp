@@ -29,16 +29,82 @@ class EncounterArea5 : public EncounterArea
 {
 public:
     /**
-     * @brief Construct a new EncounterArea4 object
+     * @brief Construct a new EncounterArea5 object
      *
      * @param location Location number
      * @param rate Encounter rate of the area
+     * @param season Whether encounter area has seasonal encounters
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, Encounter type, const std::array<Slot, 12> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    EncounterArea5(u8 location, u8 rate, bool season, Encounter type, const std::array<Slot, 12> &pokemon) :
+        EncounterArea(location, rate, type, pokemon), season(season)
     {
     }
+
+    /**
+     * @brief Calculates the level of a pokemon
+     *
+     * @tparam diff Whether min and max levels are different
+     * @param prng Level RNG call
+     * @param rng RNG object
+     * @param force Whether Pressure lead is being used
+     *
+     * @return Level of the encounter
+     */
+    template <bool diff>
+    u8 calculateLevel(u8 &encounterSlot, u8 prng, bool force) const
+    {
+        if constexpr (diff)
+        {
+            const Slot &slot = pokemon[encounterSlot];
+
+            u8 min = slot.getMinLevel();
+            u8 max = slot.getMaxLevel();
+            u8 range = max - min + 1;
+
+            u8 level = min + (prng % range);
+            if (force)
+            {
+                level += 5;
+                if (level > max)
+                {
+                    level = max;
+                }
+            }
+
+            return level;
+        }
+        else
+        {
+            if (force)
+            {
+                for (u8 i = 0; i < pokemon.size(); i++)
+                {
+                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
+                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
+                    {
+                        encounterSlot = i;
+                    }
+                }
+            }
+            return pokemon[encounterSlot].getMaxLevel();
+        }
+    }
+
+    /**
+     * @brief Returns if the encounter area has multiple seasonal differences
+     *
+     * @return true Differences based on the season
+     * @return false No differences based on the season
+     */
+    bool getSeason() const
+    {
+        return season;
+    }
+
+private:
+    bool season;
 };
 
 #endif // ENCOUNTERAREA5_HPP

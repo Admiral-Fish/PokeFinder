@@ -90,6 +90,8 @@ set(PROJECT_UI
     Gen5/Profile/ProfileCalibrator5.ui
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
+    Gen5/Static5.ui
+    Gen5/Wild5.ui
     Gen8/Eggs8.ui
     Gen8/Event8.ui
     Gen8/IDs8.ui
@@ -198,6 +200,10 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileEditor5.hpp
     Gen5/Profile/ProfileManager5.cpp
     Gen5/Profile/ProfileManager5.hpp
+    Gen5/Static5.cpp
+    Gen5/Static5.hpp
+    Gen5/Wild5.cpp
+    Gen5/Wild5.hpp
     Gen8/Eggs8.cpp
     Gen8/Eggs8.hpp
     Gen8/Event8.cpp

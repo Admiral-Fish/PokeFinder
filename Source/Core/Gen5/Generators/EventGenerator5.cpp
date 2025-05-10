@@ -19,7 +19,7 @@
 
 #include "EventGenerator5.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
@@ -35,75 +35,43 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offse
     }
 }
 
-std::vector<State5> EventGenerator5::generate(u64 seed) const
+std::vector<EventState5> EventGenerator5::generate(u64 seed) const
 {
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(pgf.getAdvances() + offset);
+    u8 abilitySpec = pgf.getAbility() == 2 ? 0 : pgf.getAbility();
 
-    std::vector<State5> states;
+    std::vector<EventState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
 
+        // Level can be random, but no existing wondercard utilizies this
+
         std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)
         {
-            u8 parameterIV = pgf.getIV(i);
-            if (parameterIV == 255)
+            u8 iv = pgf.getIV(i);
+            if (iv == 255)
             {
                 ivs[i] = go.nextUInt(32);
             }
             else
             {
-                ivs[i] = parameterIV;
+                ivs[i] = iv;
             }
         }
 
-        // 2 blanks
+        // Temp PID, temp nature
         go.advance(2);
 
-        // Gender locked handling
-        u32 pid = go.nextUInt();
-        if (pgf.getGender() == 0 || pgf.getGender() == 1)
-        {
-            pid = Utilities5::forceGender(pid, go, pgf.getGender(), info->getGender());
-        }
+        // Ability can be random between 1/2/H, but no existing wondercard utilizies this
 
-        if (pgf.getShiny() == 0) // No shiny
-        {
-            if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
-            {
-                pid ^= 0x10000000;
-            }
-        }
-        else if (pgf.getShiny() == 2) // Force shiny
-        {
-            u32 low = pid & 0xff;
-            pid = ((low ^ tsv) << 16) | low;
-        }
-
-        // Handle ability
-        u8 ability;
-        if (pgf.getAbility() < 3)
-        {
-            ability = pgf.getAbility();
-            if (pgf.getAbility() == 1)
-            {
-                pid |= 0x10000U;
-            }
-            else
-            {
-                pid &= ~0x10000U;
-            }
-        }
-        else // Ability flip
-        {
-            pid ^= 0x10000;
-            ability = (pid >> 16) & 1;
-        }
+        // PID can be static, but no existing wondercard utilizies this
+        u32 pid = Utilities5::createPID(tsv, abilitySpec, pgf.getGender(), pgf.getShiny(), false, info->getGender(), go);
 
         u8 nature;
         if (pgf.getNature() != 0xff)
@@ -112,12 +80,22 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
         }
         else
         {
-            go.advance(1);
+            go.advance(1); // Temp nature, this call happens regardless but we can hide it in our else branch for speed
             nature = go.nextUInt(25);
         }
 
-        State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
-                     pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
+        u8 ability;
+        if (pgf.getAbility() <= 2)
+        {
+            ability = pgf.getAbility();
+        }
+        else
+        {
+            ability = (pid >> 16) & 1;
+        }
+
+        EventState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
+                          pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

@@ -25,6 +25,8 @@
 class HiddenGrottoArea;
 class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
+class HiddenGrottoSlotGeneratorModel5;
+class HiddenGrottoSlotSearcherModel5;
 class Profile5;
 
 namespace Ui
@@ -74,45 +76,112 @@ private:
     Ui::HiddenGrotto *ui;
 
     std::vector<HiddenGrottoArea> encounter;
-    HiddenGrottoGeneratorModel5 *generatorModel;
-    HiddenGrottoSearcherModel5 *searcherModel;
+    HiddenGrottoSlotGeneratorModel5 *grottoGeneratorModel;
+    HiddenGrottoSlotSearcherModel5 *grottoSearcherModel;
+    HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;
+    HiddenGrottoSearcherModel5 *pokemonSearcherModel;
     Profile5 *currentProfile;
     std::vector<Profile5> profiles;
+
+    /**
+     * @brief Determines if the IV seed cache can be used for fast IV search
+     *
+     * @return true Fast search is enabled
+     * @return false Fast search is not disabled
+     */
+    bool fastSearchEnabled() const;
 
 private slots:
     /**
      * @brief Generates grotto encounters from a starting seed
      */
-    void generate();
+    void grottoGenerate();
 
     /**
      * @brief Updates the grotto listed
      *
      * @param index Location index
      */
-    void generatorLocationIndexChanged(int index);
+    void grottoGeneratorLocationIndexChanged(int index);
 
     /**
      * @brief Updates generator filter with selected pokemon and item
      */
-    void generatorUpdateFilter();
+    void grottoGeneratorUpdateFilter();
 
     /**
      * @brief Searches grotto encounters from date range
      */
-    void search();
+    void grottoSearch();
 
     /**
      * @brief Updates the grotto listed
      *
      * @param index Location index
      */
-    void searcherLocationIndexChanged(int index);
+    void grottoSearcherLocationIndexChanged(int index);
 
     /**
      * @brief Updates searcher filter with selected pokemon and item
      */
-    void searcherUpdateFilter();
+    void grottoSearcherUpdateFilter();
+
+    /**
+     * @brief Generates grotto pokemon from a starting seed
+     */
+    void pokemonGenerate();
+
+    /**
+     * @brief Updates the group listed
+     *
+     * @param index Group index
+     */
+    void pokemonGeneratorGroupIndexChanged(int index);
+
+    /**
+     * @brief Updates the grotto listed
+     *
+     * @param index Location index
+     */
+    void pokemonGeneratorLocationIndexChanged(int index);
+
+    /**
+     * @brief Updates the pokemon listed
+     *
+     * @param index Pokemonindex
+     */
+    void pokemonGeneratorPokemonIndexChanged(int index);
+
+    /**
+     * @brief Searches grotto pokemon from date range
+     */
+    void pokemonSearch();
+
+    /**
+     * @brief Updates fast search eligibility based on IV advances and IV filters.
+     */
+    void pokemonSearcherFastSearchChanged();
+
+    /**
+     * @brief Updates the group listed
+     *
+     * @param index Group index
+     */
+    void pokemonSearcherGroupIndexChanged(int index);
+
+    /**
+     * @brief Updates the grotto listed
+     *
+     * @param index Location index
+     */
+    void pokemonSearcherLocationIndexChanged(int index);
+
+    /**
+     * @brief Updates the pokemon listed
+     *
+     * @param index Pokemon index
+     */
+    void pokemonSearcherPokemonIndexChanged(int index);
 
     /**
      * @brief Updates displayed information for a profile

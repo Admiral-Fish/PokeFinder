@@ -85,25 +85,15 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(); });
 
         go.next();
-        u32 pid = go.nextUInt();
 
-        // Gender modification
+        u32 pid;
         if (radarTemplate.getLegend()) // All dream radar legends are treated as 100% male
         {
-            pid = Utilities5::forceGender(pid, go, 0, 0);
+            pid = Utilities5::createPID(tsv, 2, 0, radarTemplate.getShiny(), false, 0, go);
         }
-        else if (radarTemplate.getGender() == 0 || radarTemplate.getGender() == 1)
+        else
         {
-            pid = Utilities5::forceGender(pid, go, radarTemplate.getGender(), info->getGender());
-        }
-
-        // Flip ability
-        pid ^= 0x10000;
-
-        // Force non-shiny
-        if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
-        {
-            pid ^= 0x10000000;
+            pid = Utilities5::createPID(tsv, 2, radarTemplate.getGender(), radarTemplate.getShiny(), false, info->getGender(), go);
         }
 
         u8 ability = 2;

@@ -38,6 +38,7 @@ class DreamRadar;
 class HiddenGrotto;
 class Eggs5;
 class IDs5;
+class Wild5;
 class Static8;
 class Wild8;
 class Event8;
@@ -96,6 +97,7 @@ private:
     HiddenGrotto *hiddenGrotto = nullptr;
     IDs5 *ids5 = nullptr;
     Static5 *static5 = nullptr;
+    Wild5 *wild5 = nullptr;
 
     // Gen 8
     Eggs8 *egg8 = nullptr;
@@ -250,6 +252,16 @@ private slots:
     void openIDs5();
 
     /**
+     * @brief Opens the Gen 5 Static window
+     */
+    void openStatic5();
+
+    /**
+     * @brief Opens the Gen 5 Wild window
+     */
+    void openWild5();
+
+    /**
      * @brief Opens the Gen 5 Profile Calibrator window
      */
     void openProfileCalibrator() const;
@@ -258,8 +270,6 @@ private slots:
      * @brief Opens the Gen 5 Profile Manager window
      */
     void openProfileManager5() const;
-
-    // void openStatic5();
 
     // Gen 8
     /**
