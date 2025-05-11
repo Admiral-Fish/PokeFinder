@@ -53,7 +53,7 @@ public:
      *
      * @return Level of the encounter
      */
-    template <bool diff, bool mod, bool notHoney = true>
+    template <bool diff, bool mod>
     u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *battleAdvances, bool force) const
     {
         if constexpr (diff)
@@ -64,7 +64,7 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = rng.nextUShort<notHoney>(range, battleAdvances);
+            u8 rand = rng.nextUShort<mod>(range, battleAdvances);
             if (force && rng.nextUShort<mod>(2, battleAdvances) != 0)
             {
                 return max;

@@ -531,13 +531,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
-        u8 level = area.calculateLevel<true, false, false>(index, go, &battleAdvances, lead == Lead::Pressure);
+        u8 level = area.calculateLevel<true, false>(index, go, &battleAdvances, lead == Lead::Pressure);
 
         u8 nature;
         u32 pid;
 
         bool cuteCharmFlag = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
+        if (cuteCharm)
         {
             cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
         }
@@ -584,8 +584,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 
         u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
-                                  Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), index,
-                                  item, slot.getSpecie(), 0, info);
+                                  Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), index, item,
+                                  slot.getSpecie(), 0, info);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);

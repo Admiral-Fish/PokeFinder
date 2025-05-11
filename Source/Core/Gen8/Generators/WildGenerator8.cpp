@@ -213,7 +213,16 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
 
         u8 level = area.calculateLevel<true>(index, rngList, false);
 
-        rngList.advance((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) ? 85 : 84);
+        rngList.advance(84);
+
+        const PersonalInfo *info = slot.getInfo();
+
+        bool cuteCharm = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && info->getGender() != 0 & info->getGender() != 254
+            && info->getGender() != 255)
+        {
+            cuteCharm = (rngList.next(rand) % 3) != 0;
+        }
 
         u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
@@ -241,11 +250,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
 
         u8 ability = rngList.next(rand) % 2;
 
-        const PersonalInfo *info = slot.getInfo();
-
         u8 gender;
-        u32 rnd;
-        bool cute = false;
         switch (info->getGender())
         {
         case 255:
@@ -258,15 +263,13 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
             gender = 0;
             break;
         default:
-            rnd = rngList.next(rand);
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rnd % 3) != 0)
+            if (cuteCharm)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
-                cute = true;
             }
             else
             {
-                gender = (rnd % 253) + 1 < info->getGender();
+                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
             }
             break;
         }
@@ -278,7 +281,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         }
         else
         {
-            nature = cute ? rnd % 25 : rngList.next(rand) % 25;
+            nature = rngList.next(rand) % 25;
         }
 
         u8 height = rngList.next(rand) % 129;
@@ -287,8 +290,8 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         u8 weight = rngList.next(rand) % 129;
         weight += rngList.next(rand) % 128;
 
-        WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, index, info->getItem(0), slot.getSpecie(),
-                         0, height, weight, info);
+        WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, index, info->getItem(0),
+                         slot.getSpecie(), 0, height, weight, info);
         if (filter.compareState(static_cast<const WildState &>(state)))
         {
             states.emplace_back(state);
