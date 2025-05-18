@@ -121,6 +121,14 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
             level = area.calculateLevel<true>(encounterSlot, rngList, lead == Lead::Pressure);
         }
 
+        const PersonalInfo *info = slot.getInfo();
+
+        bool cuteCharm = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && info->getGender() > 0 & info->getGender() < 254)
+        {
+            cuteCharm = (rngList.next(rand) % 3) != 0;
+        }
+
         u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
         u32 pid = rngList.next(rand);
@@ -147,8 +155,6 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
 
         u8 ability = rngList.next(rand) % 2;
 
-        const PersonalInfo *info = slot.getInfo();
-
         u8 gender;
         switch (info->getGender())
         {
@@ -162,7 +168,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
             gender = 0;
             break;
         default:
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rngList.next(rand) % 3) != 0)
+            if (cuteCharm)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
             }
@@ -218,8 +224,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharm = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && info->getGender() != 0 & info->getGender() != 254
-            && info->getGender() != 255)
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && info->getGender() > 0 & info->getGender() < 254)
         {
             cuteCharm = (rngList.next(rand) % 3) != 0;
         }
