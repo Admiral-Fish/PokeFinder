@@ -78,6 +78,7 @@ static_assert(sizeof(WildEncounter8) == 154);
 
 struct WildEncounterHoney
 {
+    u8 location;
     union {
         struct
         {
@@ -88,7 +89,7 @@ struct WildEncounterHoney
         DynamicSlot slots[18];
     };
 };
-static_assert(sizeof(WildEncounterHoney) == 72);
+static_assert(sizeof(WildEncounterHoney) == 74);
 
 struct WildEncounterUnderground
 {
@@ -517,7 +518,7 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
     u8 *data;
 
     std::vector<EncounterArea8> encounters;
-    if (encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax)
+    if (encounter == Encounter::HoneyTree)
     {
         if (version == Game::BD)
         {
@@ -528,20 +529,24 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
             data = Utilities::decompress(SP_HONEY.data(), SP_HONEY.size(), length);
         }
 
-        u8 honey = toInt(encounter) - toInt(Encounter::Honey);
         for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHoney))
         {
             const auto *entry = reinterpret_cast<const WildEncounterHoney *>(data + offset);
 
             std::array<Slot, 12> slots;
 
-            const DynamicSlot *honeySlot = &entry->slots[6 * honey];
-            for (size_t i = 0; i < 6; i++)
+            // While we technically have 18 slots with the number of duplicates it will always be below 12
+            int count = 0;
+            for (const auto &slot : entry->slots)
             {
-                const auto &slot = honeySlot[i];
-                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                bool add
+                    = std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; });
+                if (add)
+                {
+                    slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                }
             }
-            encounters.emplace_back(0, 0, encounter, slots);
+            encounters.emplace_back(entry->location, 0, encounter, slots);
         }
     }
     else

@@ -60,8 +60,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
         { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Honey), toInt(Encounter::HoneyRare), toInt(Encounter::HoneyMunchlax),
-                                   toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
+    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::Surfing),
+                                   toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
     ui->comboBoxLocation->enableAutoComplete();
 
@@ -159,27 +159,14 @@ void Wild8::encounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filter->setEncounterSlots(12);
-            break;
-        case Encounter::Honey:
-        case Encounter::HoneyRare:
-        case Encounter::HoneyMunchlax:
-            ui->filter->setEncounterSlots(6);
-            break;
-        case Encounter::Surfing:
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            ui->filter->setEncounterSlots(5);
-            break;
-        default:
-            break;
-        }
 
-        bool honey = encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax;
+        bool honey = encounter == Encounter::HoneyTree;
+
+        ui->labelTime->setVisible(!honey);
+        ui->comboBoxTime->setVisible(!honey);
+        ui->checkBoxRadar->setVisible(!honey);
+        ui->checkBoxSwarm->setVisible(!honey);
+
         ui->comboMenuLead->hideAction(toInt(Lead::CompoundEyes), honey); // Also handles Super Luck
         ui->comboMenuLead->hideAction(toInt(Lead::Pressure), honey); // Also handles Hustle and Vital Spirit
         ui->comboMenuLead->hideAction(toInt(Lead::Harvest), honey);
@@ -187,12 +174,6 @@ void Wild8::encounterIndexChanged(int index)
         ui->comboMenuLead->hideAction(toInt(Lead::MagnetPull), honey);
         ui->comboMenuLead->hideAction(toInt(Lead::Static), honey);
         ui->comboMenuLead->hideAction(toInt(Lead::StormDrain), honey);
-        ui->labelLocation->setVisible(!honey);
-        ui->comboBoxLocation->setVisible(!honey);
-        ui->labelTime->setVisible(!honey);
-        ui->comboBoxTime->setVisible(!honey);
-        ui->checkBoxRadar->setVisible(!honey);
-        ui->checkBoxSwarm->setVisible(!honey);
 
         updateEncounters();
 
@@ -224,17 +205,16 @@ void Wild8::generate()
         return;
     }
 
-
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     Method method = Method::None;
-    bool honey = encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax;
     u8 fixedSlot = 0;
-    if (honey)
+    if (encounter == Encounter::HoneyTree)
     {
         std::array<bool, 12> encounters = ui->filter->getEncounterSlots();
         if (std::count(encounters.begin(), encounters.end(), true) != 1)
         {
-            QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"), tr("Please a single encounter slot for Honey Tree"));
+            QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
+                            tr("Please select a single encounter slot for Honey Tree"));
             msg.exec();
             return;
         }
@@ -253,8 +233,8 @@ void Wild8::generate()
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
-                             filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->getCurrentInt()],
+                             *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, fixedSlot);
     model->addItems(states);
@@ -269,6 +249,8 @@ void Wild8::locationIndexChanged(int index)
         auto names = area.getSpecieNames();
         bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
         bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+
+        ui->filter->setEncounterSlots(area.getCount());
 
         ui->checkBoxReplacement->setVisible(greatMarsh || trophyGarden);
         ui->comboBoxReplacement0->setVisible(greatMarsh || trophyGarden);

@@ -28,6 +28,7 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData4.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 #include <cstring>
 
 struct DynamicSlot
@@ -72,6 +73,7 @@ static_assert(sizeof(WildEncounterDPPt) == 174);
 
 struct WildEncounterDPPtHoney
 {
+    u8 location;
     union {
         struct
         {
@@ -82,7 +84,7 @@ struct WildEncounterDPPtHoney
         DynamicSlot slots[18];
     };
 };
-static_assert(sizeof(WildEncounterDPPtHoney) == 72);
+static_assert(sizeof(WildEncounterDPPtHoney) == 74);
 
 struct HGSSEncounterGrass
 {
@@ -360,7 +362,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
     u8 *data;
 
     std::vector<EncounterArea4> encounters;
-    if (encounter == Encounter::Honey || encounter == Encounter::HoneyRare || encounter == Encounter::HoneyMunchlax)
+    if (encounter == Encounter::HoneyTree)
     {
         if (version == Game::Diamond)
         {
@@ -375,20 +377,24 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
             data = Utilities::decompress(PT_HONEY.data(), PT_HONEY.size(), length);
         }
 
-        u8 honey = toInt(encounter) - toInt(Encounter::Honey);
         for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPtHoney))
         {
             const auto *entry = reinterpret_cast<const WildEncounterDPPtHoney *>(data + offset);
 
             std::array<Slot, 12> slots;
 
-            const DynamicSlot *honeySlot = &entry->slots[6 * honey];
-            for (size_t i = 0; i < 6; i++)
+            // While we technically have 18 slots with the number of duplicates it will always be below 12
+            int count = 0;
+            for (const auto &slot : entry->slots)
             {
-                const auto &slot = honeySlot[i];
-                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                bool add
+                    = std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; });
+                if (add)
+                {
+                    slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                }
             }
-            encounters.emplace_back(0, 0, encounter, slots);
+            encounters.emplace_back(entry->location, 0, encounter, slots);
         }
     }
     else

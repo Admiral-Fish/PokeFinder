@@ -205,18 +205,6 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterGenerator->setEncounterSlots(12);
-            break;
-        case Encounter::Surfing:
-        case Encounter::SuperRod:
-            ui->filterGenerator->setEncounterSlots(5);
-            break;
-        default:
-            break;
-        }
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -245,6 +233,8 @@ void Wild5::generatorLocationIndexChanged(int index)
         auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+
+        ui->filterGenerator->setEncounterSlots(area.getCount());
 
         ui->comboBoxGeneratorPokemon->clear();
         ui->comboBoxGeneratorPokemon->addItem("-");
@@ -395,18 +385,6 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterSearcher->setEncounterSlots(12);
-            break;
-        case Encounter::Surfing:
-        case Encounter::SuperRod:
-            ui->filterSearcher->setEncounterSlots(5);
-            break;
-        default:
-            break;
-        }
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -449,6 +427,8 @@ void Wild5::searcherLocationIndexChanged(int index)
         auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+
+        ui->filterSearcher->setEncounterSlots(area.getCount());
 
         ui->comboBoxSearcherPokemon->clear();
         ui->comboBoxSearcherPokemon->addItem("-");

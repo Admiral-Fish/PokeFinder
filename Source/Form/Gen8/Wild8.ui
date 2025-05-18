@@ -165,7 +165,7 @@
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -204,17 +204,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Honey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Honey Rare</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Honey Munchlax</string>
+          <string>Honey Tree</string>
          </property>
         </item>
         <item>

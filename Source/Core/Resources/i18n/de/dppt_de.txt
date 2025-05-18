@@ -20,6 +20,12 @@
 20,Kraterberg Nördliches EG
 21,Kraterberg Zentrales EG
 22,Kraterberg UG
+23,Großmoor Areal 1
+24,Großmoor Areal 2
+25,Großmoor Areal 3
+26,Großmoor Areal 4
+27,Großmoor Areal 5
+28,Großmoor Areal 6
 29,Trostu-Ruinen OG
 30,Trostu-Ruinen EG
 32,Trostu-Ruinen 1.UG (4 Treppen)
@@ -42,6 +48,8 @@
 58,Kahlberg Hauptkammer
 59,Scheidequelle
 63,Höhle der Umkehr Eingangsbereich
+69,Höhle der Umkehr nach Säule 1
+75,Höhle der Umkehr nach Säule 2
 106,Blizzach-Tempel EG
 107,Blizzach-Tempel 1.UG
 108,Blizzach-Tempel 2.UG
@@ -51,6 +59,8 @@
 112,Bizarre Höhle EG
 113,Bizarre Höhle UG
 114,Maniac-Höhle (< 10 Icognito)
+115,Maniac-Höhle (> 10 Icognito)
+116,Maniac-Tunnel
 117,Trophäengarten
 118,Eiseninsel Außenbereich
 119,Eiseninsel Eingang der Höhle
@@ -110,13 +120,4 @@
 180,Route 223
 181,Route 226
 182,Route 230
-23,Großmoor Areal 1
-24,Großmoor Areal 2
-25,Großmoor Areal 3
-26,Großmoor Areal 4
-27,Großmoor Areal 5
-28,Großmoor Areal 6
-115,Maniac-Höhle (> 10 Icognito)
-116,Maniac-Tunnel
-69,Höhle der Umkehr nach Säule 1
-75,Höhle der Umkehr nach Säule 2
+183,Floaroma Meadow
