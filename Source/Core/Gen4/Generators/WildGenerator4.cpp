@@ -506,19 +506,22 @@ std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 
 
     bool cuteCharm = false;
     u8 buffer = 0;
-    switch (info->getGender())
+    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
     {
-    case 0:
-    case 254:
-    case 255:
-        break;
-    default:
-        cuteCharm = true;
-        if (lead == Lead::CuteCharmF)
+        switch (info->getGender())
         {
-            buffer = 25 * ((info->getGender() / 25) + 1);
+        case 0:
+        case 254:
+        case 255:
+            break;
+        default:
+            cuteCharm = true;
+            if (lead == Lead::CuteCharmF)
+            {
+                buffer = 25 * ((info->getGender() / 25) + 1);
+            }
+            break;
         }
-        break;
     }
 
     PokeRNG rng(seed, initialAdvances);
@@ -531,7 +534,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
-        u8 level = area.calculateLevel<true, false>(index, go, &battleAdvances, lead == Lead::Pressure);
+        u8 level = area.calculateLevel<true, false, true>(index, go, &battleAdvances, lead == Lead::Pressure);
 
         u8 nature;
         u32 pid;
@@ -604,21 +607,23 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
 
     bool cuteCharm = false;
     u8 buffer = 0;
-    switch (info->getGender())
+    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
     {
-    case 0:
-    case 254:
-    case 255:
-        break;
-    default:
-        cuteCharm = true;
-        if (lead == Lead::CuteCharmF)
+        switch (info->getGender())
         {
-            buffer = 25 * ((info->getGender() / 25) + 1);
+        case 0:
+        case 254:
+        case 255:
+            break;
+        default:
+            cuteCharm = true;
+            if (lead == Lead::CuteCharmF)
+            {
+                buffer = 25 * ((info->getGender() / 25) + 1);
+            }
+            break;
         }
-        break;
     }
-
     PokeRNG rng(seed, initialAdvances);
     auto jump = rng.getJump(offset);
 
@@ -633,7 +638,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
         u32 pid;
 
         bool cuteCharmFlag = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
+        if (cuteCharm)
         {
             cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
         }
@@ -699,15 +704,18 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
     const PersonalInfo *info = slot.getInfo();
 
     bool cuteCharm = false;
-    switch (info->getGender())
+    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
     {
-    case 0:
-    case 254:
-    case 255:
-        break;
-    default:
-        cuteCharm = true;
-        break;
+        switch (info->getGender())
+        {
+        case 0:
+        case 254:
+        case 255:
+            break;
+        default:
+            cuteCharm = true;
+            break;
+        }
     }
 
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
@@ -742,7 +750,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
             return static_cast<u32>((high << 16) | low);
         };
 
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm && go.nextUShort<false>(3, &battleAdvances) != 0)
+        if (cuteCharm && go.nextUShort<false>(3, &battleAdvances) != 0)
         {
             do
             {

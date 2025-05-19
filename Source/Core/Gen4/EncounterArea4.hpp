@@ -47,13 +47,14 @@ public:
      *
      * @tparam diff Whether min and max levels are different
      * @tparam mod Whether the max calculation is done without mod
+     * @tparam honey Whether the encounter is honey tree
      * @param encounterSlot Pokemon slot
      * @param rng RNG object
      * @param force Whether Pressure lead is being used
      *
      * @return Level of the encounter
      */
-    template <bool diff, bool mod>
+    template <bool diff, bool mod, bool honey = false>
     u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *battleAdvances, bool force) const
     {
         if constexpr (diff)
@@ -64,7 +65,7 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = rng.nextUShort<mod>(range, battleAdvances);
+            u8 rand = rng.nextUShort<!honey>(range, battleAdvances);
             if (force && rng.nextUShort<mod>(2, battleAdvances) != 0)
             {
                 return max;
@@ -90,43 +91,17 @@ public:
     }
 
     /**
-     * @brief Calculates the level of an Honey Tree pokemon
-     *
-     * @param encounterSlot Pokemon slot
-     * @param rng RNG object
-     * @param force Whether Pressure lead is being used
-     *
-     * @return Level of the encounter
-     */
-    u8 calculateHoneyLevel(u8 &encounterSlot, PokeRNGR &rng, bool force) const
-    {
-        const Slot &slot = pokemon[encounterSlot];
-
-        u8 min = slot.getMinLevel();
-        u8 max = slot.getMaxLevel();
-        u8 range = max - min + 1;
-
-        if (force && (rng.getSeed() >> 16) / ((0xffff / 2) + 1) != 0)
-        {
-            rng.next();
-            return max;
-        }
-        u8 rand = (force ? rng.nextUShort() : rng.getSeed() >> 16) / ((0xffff / range) + 1);
-
-        return min + rand;
-    }
-
-    /**
      * @brief Calculates the level of a pokemon
      *
      * @tparam diff Whether min and max levels are different
+     * @tparam honey Whether the encounter is honey tree
      * @param encounterSlot Pokemon slot
      * @param levelRand PRNG call for the level
      * @param force PRNG call for Pressure
      *
      * @return Level of the encounter
      */
-    template <bool diff>
+    template <bool diff, bool honey = false>
     u8 calculateLevel(u8 &encounterSlot, u16 levelRand, bool force) const
     {
         if constexpr (diff)
@@ -137,7 +112,16 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = levelRand % range;
+            u8 rand;
+            if constexpr (honey)
+            {
+                rand = levelRand / ((0xffff / range) + 1);
+            }
+            else
+            {
+                rand = levelRand % range;
+            }
+
             if (force)
             {
                 return max;
