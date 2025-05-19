@@ -209,6 +209,82 @@ void WildSearcher4Test::searchMethodK()
     }
 }
 
+void WildSearcher4Test::searchHoneyTree_data()
+{
+    QTest::addColumn<IVs>("min");
+    QTest::addColumn<IVs>("max");
+    QTest::addColumn<u32>("minAdvance");
+    QTest::addColumn<u32>("maxAdvance");
+    QTest::addColumn<u32>("minDelay");
+    QTest::addColumn<u32>("maxDelay");
+    QTest::addColumn<Game>("version");
+    QTest::addColumn<Encounter>("encounter");
+    QTest::addColumn<Lead>("lead");
+    QTest::addColumn<int>("location");
+    QTest::addColumn<u8>("index");
+    QTest::addColumn<int>("results");
+
+    json data = readData("wild4", "wildsearcher4", "searchHoneyTree");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["index"].get<u8>() << d["results"].get<int>();
+    }
+}
+
+void WildSearcher4Test::searchHoneyTree()
+{
+    QFETCH(IVs, min);
+    QFETCH(IVs, max);
+    QFETCH(u32, minAdvance);
+    QFETCH(u32, maxAdvance);
+    QFETCH(u32, minDelay);
+    QFETCH(u32, maxDelay);
+    QFETCH(Game, version);
+    QFETCH(Encounter, encounter);
+    QFETCH(Lead, lead);
+    QFETCH(int, location);
+    QFETCH(u8, index);
+    QFETCH(int, results);
+
+    std::array<bool, 25> natures;
+    natures.fill(true);
+
+    std::array<bool, 16> powers;
+    powers.fill(true);
+
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
+
+    Profile4 profile("", version, 12345, 54321, false);
+    EncounterSettings4 settings = {};
+
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
+    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
+                                      [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::HoneyTree, lead, settings.dppt.feebasTile, false, false, 50,
+                           *encounterArea, profile, filter);
+
+    searcher.startSearch(min, max, index);
+    auto states = searcher.getResults();
+    QCOMPARE(states.size(), results);
+
+    for (const auto &state : states)
+    {
+        // Ensure generator agrees
+        WildGenerator4 generator(state.getAdvances(), 0, 0, Method::HoneyTree, lead != Lead::Synchronize ? lead : lead + state.getNature(),
+                                 false, false, false, 50, *encounterArea, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), index);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
+    }
+}
+
 void WildSearcher4Test::searchPokeRadar_data()
 {
     QTest::addColumn<IVs>("min");

@@ -913,7 +913,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8
 
             if (rng.nextUShort<false>(3) != 0)
             {
-                u8 level = area.calculateLevel<false, true>(index, rng.nextUShort(), false);
+                u8 level = area.calculateLevel<true, true>(index, rng.nextUShort(), false);
                 u32 pid = nature + buffer;
                 WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
                                          Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);

@@ -26,8 +26,11 @@ class WildGenerator8Test : public QObject
 {
     Q_OBJECT
 private slots:
-    void generate_data();
-    void generate();
+    void generateWild_data();
+    void generateWild();
+
+    void generateHoneyTree_data();
+    void generateHoneyTree();
 };
 
 #endif // WILDGENERATOR8TEST_HPP
