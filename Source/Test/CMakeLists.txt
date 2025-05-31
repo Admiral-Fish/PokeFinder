@@ -3,7 +3,7 @@ project(PokeFinderTest LANGUAGES CXX)
 find_package(Qt6 COMPONENTS Core Test REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)

@@ -113,12 +113,6 @@ static consteval std::array<u32, 86400> computeTimeValues()
     return times;
 }
 
-static inline u32 changeEndian(u32 val)
-{
-    val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff);
-    return (val << 16) | (val >> 16);
-}
-
 static inline void section1Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
     t = std::rotl(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
@@ -276,8 +270,8 @@ u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
     section4Calc(d, e, t, a, b, c, data[78]);
     section4Calc(c, d, e, t, a, b, data[79]);
 
-    u64 part1 = changeEndian(b + 0x67452301);
-    u64 part2 = changeEndian(c + 0xefcdab89);
+    u64 part1 = std::byteswap(b + 0x67452301);
+    u64 part2 = std::byteswap(c + 0xefcdab89);
 
     u64 seed = (part2 << 32) | part1;
     return BWRNG(seed).next();
@@ -326,7 +320,7 @@ void SHA1::setDate(const Date &date)
 
 void SHA1::setTimer0(u32 timer0, u8 vcount)
 {
-    data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
+    data[5] = std::byteswap(static_cast<u32>(vcount << 16) | timer0);
 }
 
 void SHA1::setTime(u32 time, DSType dsType)
