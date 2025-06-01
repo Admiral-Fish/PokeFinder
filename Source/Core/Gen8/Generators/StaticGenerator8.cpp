@@ -183,6 +183,7 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters
     u8 gender = staticTemplate.getSpecie() == 488 ? 1 : 2;
+    const PersonalInfo *info = staticTemplate.getInfo();
 
     Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
@@ -251,8 +252,7 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
         u8 weight = rng.nextUInt(129);
         weight += rng.nextUInt(128);
 
-        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight,
-                     staticTemplate.getInfo());
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

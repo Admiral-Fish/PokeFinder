@@ -211,6 +211,10 @@ void Static4::generatorPokemonIndexChanged(int index)
         {
             ui->labelGeneratorLead->setVisible(true);
             ui->comboMenuGeneratorLead->setVisible(true);
+
+            bool flag = staticTemplate->getInfo()->getFixedGender();
+            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmF), flag);
+            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmM), flag);
         }
 
         ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxGeneratorShiny->findData(toInt(staticTemplate->getShiny())));
@@ -334,6 +338,10 @@ void Static4::searcherPokemonIndexChanged(int index)
         {
             ui->labelSearcherLead->setVisible(true);
             ui->comboMenuSearcherLead->setVisible(true);
+
+            bool flag = staticTemplate->getInfo()->getFixedGender();
+            ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
+            ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmM), flag);
         }
 
         ui->comboBoxSearcherShiny->setCurrentIndex(ui->comboBoxSearcherShiny->findData(toInt(staticTemplate->getShiny())));

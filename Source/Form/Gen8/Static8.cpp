@@ -165,6 +165,10 @@ void Static8::pokemonIndexChanged(int index)
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(staticTemplate->getAbility()));
         ui->comboBoxShiny->setCurrentIndex(ui->comboBoxShiny->findData(toInt(staticTemplate->getShiny())));
         ui->spinBoxIVCount->setValue(staticTemplate->getIVCount());
+
+        bool flag = staticTemplate->getInfo()->getFixedGender();
+        ui->comboMenuLead->hideAction(toInt(Lead::CuteCharmF), flag);
+        ui->comboMenuLead->hideAction(toInt(Lead::CuteCharmM), flag);
     }
 }
 

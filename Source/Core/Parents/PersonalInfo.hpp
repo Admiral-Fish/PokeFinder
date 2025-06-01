@@ -81,6 +81,17 @@ public:
     }
 
     /**
+     * @brief Determines if the pokemon has a fixed gender
+     *
+     * @return true Pokemon has a fixed gender
+     * @return false Pokemon does not have a fixed gender
+     */
+    bool getFixedGender() const
+    {
+        return gender == 0 || gender == 254 || gender == 255;
+    }
+
+    /**
      * @brief Number of alternate forms the pokemon has
      *
      * @return Form count
@@ -118,7 +129,7 @@ public:
     }
 
     /**
-     * @brief getHatchSpecie
+     * @brief Hatch specie of the pokemon
      *
      * @return Pokemon base hatch specie
      */

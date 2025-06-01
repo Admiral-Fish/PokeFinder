@@ -41,9 +41,17 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
     searching = true;
-    if (lead == Lead::CuteCharmF)
+
+    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
     {
-        buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
+        if (staticTemplate->getInfo()->getFixedGender())
+        {
+            lead = Lead::None;
+        }
+        else if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
+        }
     }
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
@@ -208,7 +216,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
 
                 u32 pid = nature + buffer;
                 SearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
-                                     Utilities::getShiny<true>(pid, tsv), staticTemplate->getInfo());
+                                     Utilities::getShiny<true>(pid, tsv), info);
                 if (filter.compareState(static_cast<const SearcherState &>(state)))
                 {
                     states.emplace_back(state);
