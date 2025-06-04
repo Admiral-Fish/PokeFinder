@@ -53,6 +53,15 @@ static consteval u32 computeBCD(u8 val)
     return ((val / 10) << 4) + (val % 10);
 }
 
+static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
+{
+    u32 a = month < 3 ? 1 : 0;
+    u32 y = year + 4800 - a;
+    u32 m = month + 12 * a - 3;
+    u32 jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
+    return (jd + 1) % 7;
+}
+
 static consteval std::array<u32, 36525> computeDateValues()
 {
     std::array<u32, 36525> dates;
@@ -109,15 +118,6 @@ static consteval std::array<u32, 86400> computeTimeValues()
     }
 
     return times;
-}
-
-static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
-{
-    u32 a = month < 3 ? 1 : 0;
-    u32 y = year + 4800 - a;
-    u32 m = month + 12 * a - 3;
-    u32 jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
-    return (jd + 1) % 7;
 }
 
 static inline void section1Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
