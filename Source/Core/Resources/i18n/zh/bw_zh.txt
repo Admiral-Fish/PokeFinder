@@ -1,4 +1,4 @@
-0,Striaton City
+0,三曜市
 1,Driftveil City
 2,Icirrus City
 3,Dreamyard (Ruins)
@@ -24,20 +24,20 @@
 50,Dragonspiral Tower 1F
 51,Dragonspiral Tower 2F
 52,Victory Road
-53,Victory Road 1F (Middle)
-54,Victory Road 2F (Left)
-55,Victory Road 3F (Middle)
-56,Victory Road 4F (Middle)
-57,Victory Road 2F (Right)
-58,Victory Road 1F (Right)
-59,Victory Road 3F (Right)
-60,Victory Road 1F (Left)
-61,Victory Road 3F (Left)
-62,Victory Road 4F (Left)
-63,Victory Road 5F
-64,Victory Road 6F
-65,Victory Road 4F (Right)
-66,Victory Road 7F
+53,冠军之路1F (Middle)
+54,冠军之路2F (Left)
+55,冠军之路3F (Middle)
+56,冠军之路4F (Middle)
+57,冠军之路2F (Right)
+58,冠军之路1F (Right)
+59,冠军之路3F (Right)
+60,冠军之路1F (Left)
+61,冠军之路3F (Left)
+62,冠军之路4F (Left)
+63,冠军之路5F
+64,冠军之路6F
+65,冠军之路4F (Right)
+66,冠军之路7F
 67,Trial Chamber
 68,Giant Chasm (Entrance)
 69,Giant Chasm (Cave)

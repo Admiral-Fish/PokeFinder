@@ -1,4 +1,4 @@
-0,Striaton City
+0,三曜市
 1,Castelia City
 2,Icirrus City
 3,Aspertia City
@@ -25,7 +25,7 @@
 28,Dragonspiral Tower (Outside)
 29,Dragonspiral Tower 1F
 30,Dragonspiral Tower 2F
-31,Victory Road 4F
+31,冠军之路4F
 32,Giant Chasm (Entrance)
 33,Giant Chasm (Cave)
 34,Giant Chasm (Crater Forest)
@@ -42,14 +42,14 @@
 52,Reversal Mountain B1F (Chamber)
 61,Strange House
 65,Strange House (Rooms)
-71,Victory Road 1F
-72,Victory Road (Grove)
-73,Victory Road (Outside 1)
-74,Victory Road 2F
-75,Victory Road 2F (Back)
-76,Victory Road (Outside 2)
-77,Victory Road 3F
-80,Victory Road 3F (Back)
+71,冠军之路1F
+72,冠军之路(Grove)
+73,冠军之路(Outside 1)
+74,冠军之路2F
+75,冠军之路2F (Back)
+76,冠军之路(Outside 2)
+77,冠军之路3F
+80,冠军之路3F (Back)
 81,Relic Passage (Castelia City Exit)
 82,Relic Passage (Middle)
 83,Relic Passage (Driftveil City Exit)

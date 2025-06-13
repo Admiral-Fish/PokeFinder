@@ -89,7 +89,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -354,7 +354,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -369,7 +369,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -457,7 +457,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
@@ -467,7 +467,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
@@ -585,7 +585,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="100"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="101"/>
@@ -668,7 +668,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -683,7 +683,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -786,7 +786,7 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
@@ -864,7 +864,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
@@ -879,7 +879,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
@@ -1065,7 +1065,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="162"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="162"/>
@@ -1075,7 +1075,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="162"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="162"/>
@@ -1135,7 +1135,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
@@ -1345,7 +1345,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1485,7 +1485,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1630,7 +1630,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1685,7 +1685,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1762,7 +1762,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Filters</source>
-        <translation type="unfinished">过滤器</translation>
+        <translation type="unfinished">筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -2130,7 +2130,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2228,7 +2228,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2348,7 +2348,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2383,7 +2383,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2520,7 +2520,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2648,7 +2648,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
@@ -2721,7 +2721,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
@@ -2736,7 +2736,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
@@ -2809,7 +2809,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
@@ -2877,7 +2877,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="147"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="147"/>
@@ -2887,7 +2887,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="147"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="147"/>
@@ -2947,7 +2947,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
@@ -2995,7 +2995,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -3015,7 +3015,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Disable Filters</source>
-        <translation>关闭过滤器</translation>
+        <translation>关闭筛选项</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="76"/>
@@ -3082,7 +3082,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>个体值计算器</translation>
     </message>
 </context>
 <context>
@@ -3140,7 +3140,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3200,7 +3200,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3233,7 +3233,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
@@ -3243,7 +3243,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
@@ -3331,7 +3331,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="142"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="142"/>
@@ -3719,7 +3719,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3849,7 +3849,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3859,7 +3859,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="241"/>
@@ -3882,7 +3882,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="72"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="72"/>
@@ -3910,7 +3910,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
@@ -3925,7 +3925,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
@@ -3943,7 +3943,7 @@
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
@@ -4009,7 +4009,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
@@ -4029,7 +4029,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
@@ -4047,7 +4047,7 @@
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
@@ -4130,12 +4130,12 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
 </context>
 <context>
@@ -4143,7 +4143,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Gen 4 TID/SID</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代TID/SID</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4153,17 +4153,17 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Min Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最小Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Max Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最大Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Infinite Search</source>
-        <translation type="unfinished"></translation>
+        <translation>无限搜索</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4173,12 +4173,12 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Seed Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>反查Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>TID Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>获得的TID</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4188,7 +4188,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4203,7 +4203,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4236,7 +4236,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4399,7 +4399,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.cpp" line="67"/>
@@ -4455,7 +4455,7 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>个体值计算器</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4950,7 +4950,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>个体值计算器</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5036,7 +5036,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>ID乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5145,7 +5145,7 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -5253,7 +5253,7 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="84"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="85"/>
@@ -5326,7 +5326,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5366,7 +5366,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>软复位</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5506,12 +5506,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Unova Link</source>
-        <translation type="unfinished"></translation>
+        <translation>合众连接</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Saving</source>
-        <translation type="unfinished"></translation>
+        <translation>存档</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5568,7 +5568,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>个体值计算器</translation>
     </message>
 </context>
 <context>
@@ -5734,7 +5734,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>全国图鉴</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5902,7 +5902,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5932,7 +5932,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>软复位</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -6030,7 +6030,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>全国图鉴</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.cpp" line="77"/>
@@ -6316,7 +6316,7 @@
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>全国图鉴</translation>
     </message>
 </context>
 <context>
@@ -6370,7 +6370,7 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
@@ -6405,7 +6405,7 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>软复位</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -6516,7 +6516,7 @@
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="80"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="80"/>
@@ -6531,7 +6531,7 @@
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="80"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="80"/>
@@ -6654,7 +6654,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6746,7 +6746,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -7120,7 +7120,7 @@
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
@@ -7337,7 +7337,7 @@
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
 </context>
 <context>
@@ -7410,7 +7410,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>地图</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7485,7 +7485,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7521,7 +7521,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="71"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="71"/>
@@ -7534,7 +7534,7 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
@@ -7584,17 +7584,17 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>主题</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Dark</source>
-        <translation>恶</translation>
+        <translation>深色</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>浅色</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
@@ -7609,7 +7609,7 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Change</source>
-        <translation type="unfinished"></translation>
+        <translation>修改</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
@@ -7724,7 +7724,7 @@
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.ui"/>
+        <location filename="../Gen3/Static3.ui"/>c
         <source>Method</source>
         <translation>方式</translation>
     </message>
@@ -7746,7 +7746,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7816,7 +7816,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7904,7 +7904,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8029,7 +8029,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8087,7 +8087,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8197,7 +8197,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8212,7 +8212,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8265,7 +8265,7 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
@@ -8275,7 +8275,7 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
@@ -8353,7 +8353,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
@@ -8373,7 +8373,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
@@ -8456,7 +8456,7 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
@@ -8471,7 +8471,7 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
@@ -8564,7 +8564,7 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="145"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="145"/>
@@ -8647,7 +8647,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="167"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="167"/>
@@ -8657,7 +8657,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="167"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="167"/>
@@ -8778,7 +8778,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>全国图鉴</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8868,7 +8868,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -9001,7 +9001,7 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
@@ -9036,7 +9036,7 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="81"/>
@@ -9114,7 +9114,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="68"/>
@@ -9374,7 +9374,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9680,7 +9680,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>全国图鉴</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9923,7 +9923,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Filters</source>
-        <translation>过滤器</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="51"/>
@@ -10101,7 +10101,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
@@ -10121,7 +10121,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
@@ -10199,7 +10199,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
@@ -10239,7 +10239,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
@@ -10322,7 +10322,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
@@ -10352,7 +10352,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="80"/>
@@ -10460,7 +10460,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="145"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="145"/>
@@ -10543,7 +10543,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
@@ -10568,7 +10568,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="167"/>

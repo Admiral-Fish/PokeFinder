@@ -23,9 +23,9 @@
 32,Seafloor Cavern
 35,Cave Of Origin Entrance
 36,Cave Of Origin 1F-B3F
-40,Victory Road 1F
-41,Victory Road B1F
-42,Victory Road B2F
+40,冠军之路1F
+41,冠军之路B1F
+42,冠军之路B2F
 44,Shoal Cave
 47,Shoal Cave Ice Room
 48,New Mauville Entrance

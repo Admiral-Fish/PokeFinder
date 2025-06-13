@@ -90,7 +90,7 @@
 106,Mt. Moon 1F
 108,Rock Tunnel 1F
 109,Rock Tunnel B1F
-110,Victory Road 1F
+110,冠军之路1F
 111,Route 1
 112,Route 2 (South)
 113,Route 3
@@ -114,8 +114,8 @@
 131,Route 25
 132,Tohjo Falls
 133,DIGLETT’s Cave
-134,Victory Road 2F
-135,Victory Road 3F
+134,冠军之路2F
+135,冠军之路3F
 136,Route 2 (North)
 137,Viridian Forest
 139,Cerulean Cave 1F

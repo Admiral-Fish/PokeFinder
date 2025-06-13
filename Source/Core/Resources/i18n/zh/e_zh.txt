@@ -17,7 +17,7 @@
 16,Granite Cave 1F
 17,Granite Cave B1F
 18,Mt Pyre 1F-3F
-19,Victory Road 1F
+19,冠军之路1F
 20,Safari Zone South
 21,Route 126 Underwater
 22,Abandoned Ship
@@ -57,8 +57,8 @@
 72,Safari Zone Southwest
 73,Safari Zone North
 74,Safari Zone Northwest
-75,Victory Road B1F
-76,Victory Road B2F
+75,冠军之路B1F
+76,冠军之路B2F
 77,Meteor Falls 1F 1R
 78,Meteor Falls 1F 2R
 79,Meteor Falls B1F 1R

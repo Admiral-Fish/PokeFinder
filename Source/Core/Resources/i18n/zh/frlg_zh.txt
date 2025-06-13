@@ -11,8 +11,8 @@
 10,Mt Moon B2F
 11,S.S Anne Exterior
 12,Digletts Cave B1F
-13,Victory Road 1F/3F
-14,Victory Road 2F
+13,冠军之路1F/3F
+14,冠军之路2F
 16,Pokemon Mansion 1F-3F
 19,Pokemon Mansion B1F
 20,Safari Zone Center
