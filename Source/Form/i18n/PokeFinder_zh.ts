@@ -58,7 +58,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Calculate</source>
-        <translation type="unfinished"></translation>
+        <translation>推算</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="109"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Possible Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果:</translation>
     </message>
 </context>
 <context>
@@ -102,7 +102,7 @@
     <message>
         <location filename="../Controls/CheckList.cpp" line="184"/>
         <source>Any</source>
-        <translation>任何</translation>
+        <translation>任意</translation>
     </message>
 </context>
 <context>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -173,7 +173,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -208,12 +208,12 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
@@ -429,7 +429,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -512,12 +512,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
@@ -630,12 +630,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="109"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="110"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="111"/>
@@ -645,7 +645,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="112"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -728,12 +728,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
@@ -743,7 +743,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -831,12 +831,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
@@ -934,7 +934,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -1022,12 +1022,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="209"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="210"/>
@@ -1037,7 +1037,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="211"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -1120,12 +1120,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
@@ -1320,12 +1320,12 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Manager</source>
-        <translation>管理</translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1440,7 +1440,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1460,7 +1460,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1590,7 +1590,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1620,7 +1620,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1665,12 +1665,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1772,12 +1772,12 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1822,7 +1822,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1848,7 +1848,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1907,7 +1907,7 @@
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Encounter Lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌查询</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -1927,12 +1927,12 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Encounter Type</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Level Range</source>
-        <translation type="unfinished"></translation>
+        <translation>等级范围</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -1962,42 +1962,42 @@
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>钻石</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>珍珠</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>白金</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Heart Gold</source>
-        <translation type="unfinished"></translation>
+        <translation>心金</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Soul Silver</source>
-        <translation type="unfinished"></translation>
+        <translation>魂银</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>晶灿钻石</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>明亮珍珠</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="78"/>
         <source>Grass</source>
-        <translation>草</translation>
+        <translation>草丛</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="80"/>
@@ -2007,17 +2007,17 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="82"/>
         <source>Old Rod</source>
-        <translation>好钓竿</translation>
+        <translation>破旧钓竿</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="84"/>
         <source>Good Rod</source>
-        <translation>中级钓竿</translation>
+        <translation>好钓竿</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="86"/>
         <source>Super Rod</source>
-        <translation>高级钓竿</translation>
+        <translation>厉害钓竿</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="88"/>
@@ -2050,12 +2050,12 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2095,12 +2095,12 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2188,7 +2188,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2218,7 +2218,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2258,12 +2258,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2475,7 +2475,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2485,7 +2485,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2495,7 +2495,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2510,7 +2510,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2693,12 +2693,12 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
 </context>
 <context>
@@ -2781,12 +2781,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
@@ -2796,7 +2796,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -2844,12 +2844,12 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
 </context>
 <context>
@@ -2932,12 +2932,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
@@ -2970,7 +2970,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Any</source>
-        <translation>任何</translation>
+        <translation>任意</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -3095,7 +3095,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3110,7 +3110,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3165,12 +3165,12 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3288,12 +3288,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
@@ -3376,12 +3376,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="143"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="143"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="143"/>
@@ -3414,7 +3414,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Possible Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果:</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3471,7 +3471,7 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="136"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="162"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="90"/>
@@ -3699,7 +3699,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3734,7 +3734,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3774,12 +3774,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -4004,7 +4004,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
@@ -4100,12 +4100,12 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -4226,7 +4226,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4256,7 +4256,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4286,7 +4286,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4374,7 +4374,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -4384,7 +4384,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -4475,7 +4475,7 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4774,7 +4774,7 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
@@ -4960,7 +4960,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Encounter Lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌查询</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4995,7 +4995,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Profile Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5160,7 +5160,7 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -5170,7 +5170,7 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -5298,12 +5298,12 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="95"/>
@@ -5581,7 +5581,7 @@
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.ui"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.ui"/>
@@ -5679,7 +5679,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5777,7 +5777,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5970,7 +5970,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -5995,12 +5995,12 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>晶灿钻石</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>明亮珍珠</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6048,7 +6048,7 @@
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.ui"/>
         <source>Profile Manager Gen 3</source>
-        <translation>配置管理 Gen3</translation>
+        <translation>存档信息管理 Gen3</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.ui"/>
@@ -6098,7 +6098,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.ui"/>
         <source>Profile Manager Gen 4</source>
-        <translation>配置管理 Gen4</translation>
+        <translation>存档信息管理 Gen4</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.ui"/>
@@ -6148,7 +6148,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.ui"/>
         <source>Profile Manager Gen 5</source>
-        <translation>配置管理 Gen5</translation>
+        <translation>存档信息管理 Gen5</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.ui"/>
@@ -6198,7 +6198,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.ui"/>
         <source>Profile Manager Gen 8</source>
-        <translation>配置管理 Gen8</translation>
+        <translation>存档信息管理 Gen8</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.ui"/>
@@ -6258,7 +6258,7 @@
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
@@ -6296,7 +6296,7 @@
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
@@ -6340,7 +6340,7 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
@@ -6435,7 +6435,7 @@
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
@@ -6581,17 +6581,17 @@
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="81"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="81"/>
         <source>Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>体重</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -6639,12 +6639,12 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6751,7 +6751,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6771,7 +6771,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -7025,12 +7025,12 @@
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
@@ -7216,12 +7216,12 @@
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <source>Search Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>打电话反查</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <source>Possible Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
@@ -7257,7 +7257,7 @@
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="32"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="92"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="105"/>
@@ -7293,7 +7293,7 @@
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.ui"/>
         <source>Possible Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.ui"/>
@@ -7309,7 +7309,7 @@
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="82"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>可能的结果: %1</translation>
     </message>
 </context>
 <context>
@@ -7360,7 +7360,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Second</source>
-        <translation type="unfinished"></translation>
+        <translation>秒数</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7375,7 +7375,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Search Flips</source>
-        <translation type="unfinished"></translation>
+        <translation>掷硬币反查</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7405,7 +7405,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Search Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>打电话反查</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7676,7 +7676,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7691,7 +7691,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7711,7 +7711,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7731,7 +7731,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7844,7 +7844,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -7859,7 +7859,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -7884,12 +7884,12 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8057,7 +8057,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8072,7 +8072,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8092,7 +8092,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8102,7 +8102,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8320,12 +8320,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
@@ -8418,12 +8418,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
@@ -8433,7 +8433,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -8521,17 +8521,17 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>体重</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -8609,12 +8609,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="146"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="146"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="146"/>
@@ -8702,12 +8702,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="168"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="168"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="168"/>
@@ -8717,7 +8717,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="168"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -8838,7 +8838,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8853,12 +8853,12 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>晶灿钻石</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8898,12 +8898,12 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="51"/>
@@ -9086,7 +9086,7 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -9189,7 +9189,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9224,7 +9224,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Encounter</source>
-        <translation>遇敌</translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9239,17 +9239,17 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Old Rod</source>
-        <translation>好钓竿</translation>
+        <translation>破旧钓竿</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Good Rod</source>
-        <translation>中级钓竿</translation>
+        <translation>好钓竿</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Super Rod</source>
-        <translation>高级钓竿</translation>
+        <translation>厉害钓竿</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="75"/>
@@ -9270,12 +9270,12 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Manager</source>
-        <translation>管理器</translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Grass</source>
-        <translation>草</translation>
+        <translation>草丛</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9296,12 +9296,12 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9344,7 +9344,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9359,7 +9359,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9379,7 +9379,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Grass</source>
-        <translation>草</translation>
+        <translation>草丛</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9419,7 +9419,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Encounter</source>
-        <translation>遇敌</translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9429,17 +9429,17 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Old Rod</source>
-        <translation>好钓竿</translation>
+        <translation>破旧钓竿</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Good Rod</source>
-        <translation>中级钓竿</translation>
+        <translation>好钓竿</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Super Rod</source>
-        <translation>高级钓竿</translation>
+        <translation>厉害钓竿</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="77"/>
@@ -9670,12 +9670,12 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9828,7 +9828,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Profile</source>
-        <translation>配置</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -9843,7 +9843,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -9863,17 +9863,17 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Encounter</source>
-        <translation>遇敌</translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10028,7 +10028,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Grass</source>
-        <translation>草</translation>
+        <translation>草丛</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10038,17 +10038,17 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Old Rod</source>
-        <translation>好钓竿</translation>
+        <translation>破旧钓竿</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Good Rod</source>
-        <translation>中级钓竿</translation>
+        <translation>好钓竿</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Super Rod</source>
-        <translation>高级钓竿</translation>
+        <translation>厉害钓竿</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10166,12 +10166,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
@@ -10284,12 +10284,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
@@ -10299,7 +10299,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -10397,7 +10397,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
@@ -10407,17 +10407,17 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>体重</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -10505,12 +10505,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="146"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="146"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="146"/>
@@ -10613,12 +10613,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="168"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="168"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>觉醒力量威力</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="168"/>
@@ -10628,7 +10628,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="168"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>个性</translation>
     </message>
 </context>
 </TS>

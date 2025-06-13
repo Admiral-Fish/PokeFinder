@@ -1,105 +1,105 @@
-0,Seven Island Tanoby Ruins Monean Chamber
-1,Seven Island Tanoby Ruins Liptoo Chamber
-2,Seven Island Tanoby Ruins Weepth Chamber
-3,Seven Island Tanoby Ruins Dilford Chamber
-4,Seven Island Tanoby Ruins Scufib Chamber
-5,Seven Island Tanoby Ruins Rixy Chamber
-6,Seven Island Tanoby Ruins Viapois Chamber
-7,Viridian Forest
-8,Mt Moon 1F
-9,Mt Moon B1F
-10,Mt Moon B2F
-11,S.S Anne Exterior
-12,Digletts Cave B1F
+0,第7岛Tanoby Ruins Monean Chamber
+1,第7岛Tanoby Ruins Liptoo Chamber
+2,第7岛Tanoby Ruins Weepth Chamber
+3,第7岛Tanoby Ruins Dilford Chamber
+4,第7岛Tanoby Ruins Scufib Chamber
+5,第7岛Tanoby Ruins Rixy Chamber
+6,第7岛Tanoby Ruins Viapois Chamber
+7,常青森林
+8,月见山1F
+9,月见山B1F
+10,月见山B2F
+11,圣特安努号
+12,地鼠洞穴B1F
 13,冠军之路1F/3F
 14,冠军之路2F
-16,Pokemon Mansion 1F-3F
-19,Pokemon Mansion B1F
-20,Safari Zone Center
-21,Safari Zone East
-22,Safari Zone North
-23,Safari Zone West
-24,Cerulean Cave 1F
-25,Cerulean Cave 2F
-26,Cerulean Cave B1F
-27,Rock Tunnel 1F
-28,Rock Tunnel B1F
-29,Seafoam Islands 1F
-30,Seafoam Islands B1F
-31,Seafoam Islands B2F
-32,Seafoam Islands B3F
-33,Seafoam Islands B4F
-34,Pokemon Tower 3F
-35,Pokemon Tower 4F-5F
-37,Pokemon Tower 6F
-38,Pokemon Tower 7F
-39,Power Plant
-40,Mt Ember Exterior
-41,Mt Ember Summit Path 1F/3F
-42,Mt Ember Summit Path 2F
-44,Mt Ember Ruby Path 1F
-45,Mt Ember Ruby Path B1F
-46,Mt Ember Ruby Path B2F
-47,Mt Ember Ruby Path B3F
-48,Mt Ember Ruby Path B1F Stairs
-49,Mt Ember Ruby Path B2F Stairs
-50,Three Island Berry Forest
-51,Four Island Icefall Cave Entrance
-52,Four Island Icefall Cave 1F/B1F
-54,Four Island Icefall Cave Back
-55,Six Island Pattern Bush
-56,Five Island Lost Cave
-66,Five Island Lost Cave Item Room
-70,One Island Kindle Road
-71,One Island Treasure Beach
+16,宝可梦屋1F-3F
+19,宝可梦屋B1F
+20,狩猎地带Center
+21,狩猎地带East
+22,狩猎地带North
+23,狩猎地带West
+24,华蓝洞窟1F
+25,华蓝洞窟2F
+26,华蓝洞窟B1F
+27,岩山隧道1F
+28,岩山隧道B1F
+29,双子岛1F
+30,双子岛B1F
+31,双子岛B2F
+32,双子岛B3F
+33,双子岛B4F
+34,宝可梦塔3F
+35,宝可梦塔4F-5F
+37,宝可梦塔6F
+38,宝可梦塔7F
+39,无人发电厂
+40,灯火山Exterior
+41,灯火山Summit Path 1F/3F
+42,灯火山Summit Path 2F
+44,灯火山Ruby Path 1F
+45,灯火山Ruby Path B1F
+46,灯火山Ruby Path B2F
+47,灯火山Ruby Path B3F
+48,灯火山Ruby Path B1F Stairs
+49,灯火山Ruby Path B2F Stairs
+50,树果森林
+51,第4岛 Icefall Cave Entrance
+52,第4岛 Icefall Cave 1F/B1F
+54,第4岛 Icefall Cave Back
+55,第6岛Pattern Bush
+56,第5岛 Lost Cave
+66,第5岛 Lost Cave Item Room
+70,第1岛 Kindle Road
+71,第1岛 Treasure Beach
 72,Two Island Cape Brink
 73,Three Island Bond Bridge
 74,Three Island Port
-75,Five Island Resort Gorgeous
-76,Five Island Water Labyrinth
-77,Five Island Meadow
-78,Five Island Memorial Pillar
-79,Six Island Outcast Island
-80,Six Island Green Path
-81,Six Island Water Path
-82,Six Island Ruin Valley
-83,Seven Island Trainer Tower
-84,Seven Island Sevault Canyon Entrance
-85,Seven Island Sevault Canyon
-86,Seven Island Tanoby Ruins
-87,Route 1
-88,Route 2
-89,Route 3
-90,Route 4
-91,Route 5
-92,Route 6
-93,Route 7
-94,Route 8
-95,Route 9
-96,Route 10
-97,Route 11
-98,Route 12
-99,Route 13
-100,Route 14
-101,Route 15
-102,Route 16
-103,Route 17
-104,Route 18
-105,Route 19
-106,Route 20
-107,Route 21
-109,Route 22
-110,Route 23
-111,Route 24
-112,Route 25
-113,Pallet Town
-114,Viridian City
-115,Cerulean City
-116,Vermilion City
-117,Celadon City
-118,Fuchsia City
-119,Cinnabar Island
-120,One Island
-121,Four Island
-122,Five Island
-123,Six Island Altering Cave
+75,第5岛 Resort Gorgeous
+76,第5岛 Water Labyrinth
+77,第5岛 Meadow
+78,第5岛 Memorial Pillar
+79,第6岛Outcast Island
+80,第6岛Green Path
+81,第6岛Water Path
+82,第6岛Ruin Valley
+83,第7岛Trainer Tower
+84,第7岛Sevault Canyon Entrance
+85,第7岛Sevault Canyon
+86,第7岛Tanoby Ruins
+87,1号道路
+88,2号道路
+89,3号道路
+90,4号道路
+91,5号道路
+92,6号道路
+93,7号道路
+94,8号道路
+95,9号道路
+96,10号道路
+97,11号道路
+98,12号道路
+99,13号道路
+100,14号道路
+101,15号道路
+102,16号道路
+103,17号道路
+104,18号道路
+105,19号道路
+106,20号道路
+107,21号道路
+109,22号道路
+110,23号道路
+111,24号道路
+112,25号道路
+113,真新镇
+114,常青市
+115,华蓝市
+116,枯叶市
+117,玉虹市
+118,浅红市
+119,红莲镇
+120,第1岛
+121,第4岛
+122,第5岛
+123,第6岛Altering Cave
