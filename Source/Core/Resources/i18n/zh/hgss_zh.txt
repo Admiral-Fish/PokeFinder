@@ -1,78 +1,78 @@
-0,New Bark Town
-1,Route 29
-2,Cherrygrove City
-3,Route 30
-4,Route 31
-5,Violet City
-6,Sprout Tower
-8,Route 32
-9,Ruins of Alph (Outside)
-10,Ruins of Alph (Inside)
-11,Ruins of Alph (Underground)
-14,Union Cave 1F
-15,Union Cave B1F
-16,Union Cave B2F
-17,Route 33
-18,SLOWPOKE Well B1F
-19,SLOWPOKE Well B2F
-20,Ilex Forest
-21,Route 34
-22,Route 35
-23,National Park
-24,National Park
-25,Route 36
-26,Route 37
-27,Ecruteak City
-28,Burned Tower 1F
-29,Burned Tower B1F
-30,Bell Tower
-38,Route 38
-39,Route 39
-40,Olivine City
-41,Route 40
-42,Route 41
-43,Whirl Islands 1F
-44,Whirl Islands B1F
-46,Whirl Islands B2F
-48,Whirl Islands B3F
-51,Cianwood City
-52,Route 42
-53,Mt. Mortar 1F
-54,Mt. Mortar 1F (Back)
-55,Mt. Mortar 2F
-56,Mt. Mortar B1F
-57,Route 43
-58,Lake of Rage
-59,Route 44
-60,Ice Path 1F
-61,Ice Path B1F
-62,Ice Path B2F
-63,Ice Path B3F
-65,Blackthorn City
-66,Dragon’s Den
-67,Route 45
-68,Route 46
-69,Dark Cave (Route 31)
-70,Dark Cave (Route 45)
-71,Route 47
-72,Mt. Moon Square
-73,Mt. Moon Square (Clefairy Event)
+0,若叶镇
+1,29号道路
+2,吉花市
+3,30号道路
+4,31号道路
+5,桔梗市
+6,喇叭芽之塔
+8,32号道路
+9,阿露福遗迹(Outside)
+10,阿露福遗迹(Inside)
+11,阿露福遗迹(Underground)
+14,互连洞1F
+15,互连洞B1F
+16,互连洞B2F
+17,33号道路
+18,呆呆兽之井B1F
+19,呆呆兽之井B2F
+20,栎树林
+21,34号道路
+22,35号道路
+23,自然公园
+24,自然公园
+25,36号道路
+26,37号道路
+27,缘朱市
+28,烧焦塔1F
+29,烧焦塔B1F
+30,铃铛塔
+38,38号道路
+39,39号道路
+40,浅葱市
+41,40号道路
+42,41号道路
+43,漩涡岛1F
+44,漩涡岛B1F
+46,漩涡岛B2F
+48,漩涡岛B3F
+51,湛蓝市
+52,42号道路
+53,擂钵山1F
+54,擂钵山1F (Back)
+55,擂钵山2F
+56,擂钵山B1F
+57,43号道路
+58,愤怒之湖
+59,44号道路
+60,冰雪小径1F
+61,冰雪小径B1F
+62,冰雪小径B2F
+63,冰雪小径B3F
+65,烟墨市
+66,龙穴
+67,45号道路
+68,46号道路
+69,黑暗洞穴(31号道路)
+70,黑暗洞穴(45号道路)
+71,47号道路
+72,月见山广场
+73,月见山广场 (Clefairy Event)
 74,双子岛1F
 75,双子岛B1F
 76,双子岛B2F
 77,双子岛B3F
 78,双子岛B4F
-79,Mt. Silver Cave (Moltres Chamber)
-80,Mt. Silver Cave 2F
-81,Mt. Silver Cave 3F
-82,Cliff Edge Gate
-83,Cliff Cave
-85,Mt. Silver
-86,Mt. Silver 1F
-87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Expert Belt)
-89,Mt. Silver Cave (Upper mountainside)
-91,Safari Zone
+79,白银山(Moltres Chamber)
+80,白银山2F
+81,白银山3F
+82,断崖入口
+83,断崖洞窟
+85,白银山
+86,白银山 1F
+87,白银山(Lower mountainside)
+88,白银山(Expert Belt)
+89,白银山(Upper mountainside)
+91,狩猎地带
 92,12号道路
 93,19号道路
 94,20号道路
@@ -83,11 +83,11 @@
 99,玉虹市
 100,浅红市
 101,红莲镇
-102,Route 48
-103,Route 26
-104,Route 27
-105,Route 28
-106,Mt. Moon 1F
+102,48号道路
+103,26号道路
+104,27号道路
+105,28号道路
+106,月见山1F
 108,岩山隧道1F
 109,岩山隧道B1F
 110,冠军之路1F
@@ -111,9 +111,9 @@
 128,21号道路
 129,22号道路
 130,24号道路
-131,Route 25
-132,Tohjo Falls
-133,DIGLETT’s Cave
+131,25号道路
+132,都城瀑布
+133,地鼠洞穴
 134,冠军之路2F
 135,冠军之路3F
 136,2号道路 (North)
@@ -121,12 +121,12 @@
 139,华蓝洞窟1F
 140,华蓝洞窟2F
 141,华蓝洞窟B1F
-142,Bug Contest
-143,Bug Contest (Tuesday)
-144,Bug Contest (Thursday)
-145,Bug Contest (Saturday)
-146,Azalea Town
-147,Pewter City
+142,捕虫大赛
+143,捕虫大赛 (Tuesday)
+144,捕虫大赛 (Thursday)
+145,捕虫大赛 (Saturday)
+146,桧皮镇
+147,深灰市
 148,狩猎地带Gate
 149,狩猎地带(Plains)
 150,狩猎地带(Meadow)
