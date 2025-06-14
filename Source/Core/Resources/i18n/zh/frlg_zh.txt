@@ -1,10 +1,10 @@
-0,第7岛Tanoby Ruins Monean Chamber
-1,第7岛Tanoby Ruins Liptoo Chamber
-2,第7岛Tanoby Ruins Weepth Chamber
-3,第7岛Tanoby Ruins Dilford Chamber
-4,第7岛Tanoby Ruins Scufib Chamber
-5,第7岛Tanoby Ruins Rixy Chamber
-6,第7岛Tanoby Ruins Viapois Chamber
+0,伊莱斯石室
+1,那藏石室
+2,由格石室
+3,阿利波卡石室
+4,科斗石室
+5,阿努泽石室
+6,澳利弗石室
 7,常青森林
 8,月见山1F
 9,月见山B1F
@@ -15,10 +15,10 @@
 14,冠军之路2F
 16,宝可梦屋1F-3F
 19,宝可梦屋B1F
-20,狩猎地带Center
-21,狩猎地带East
-22,狩猎地带North
-23,狩猎地带West
+20,狩猎地带（入口）
+21,狩猎地带东区（第1区）
+22,狩猎地带北区（第2区）
+23,狩猎地带西区（第3区）
 24,华蓝洞窟1F
 25,华蓝洞窟2F
 26,华蓝洞窟B1F
@@ -34,39 +34,39 @@
 37,宝可梦塔6F
 38,宝可梦塔7F
 39,无人发电厂
-40,灯火山Exterior
-41,灯火山Summit Path 1F/3F
-42,灯火山Summit Path 2F
-44,灯火山Ruby Path 1F
-45,灯火山Ruby Path B1F
-46,灯火山Ruby Path B2F
-47,灯火山Ruby Path B3F
-48,灯火山Ruby Path B1F Stairs
-49,灯火山Ruby Path B2F Stairs
+40,灯火山（底部）
+41,灯火山（山腰洞窟）1F/3F
+42,灯火山（山腰洞窟）2F
+44,灯火山（红宝石之路）1F
+45,灯火山（红宝石之路）B1F
+46,灯火山（红宝石之路）B2F
+47,灯火山（红宝石之路）B3F
+48,灯火山（红宝石之路）B1F楼梯
+49,灯火山（红宝石之路）B2F楼梯
 50,树果森林
-51,第4岛 Icefall Cave Entrance
-52,第4岛 Icefall Cave 1F/B1F
-54,第4岛 Icefall Cave Back
-55,第6岛Pattern Bush
-56,第5岛 Lost Cave
-66,第5岛 Lost Cave Item Room
-70,第1岛 Kindle Road
-71,第1岛 Treasure Beach
-72,Two Island Cape Brink
-73,Three Island Bond Bridge
-74,Three Island Port
-75,第5岛 Resort Gorgeous
-76,第5岛 Water Labyrinth
-77,第5岛 Meadow
-78,第5岛 Memorial Pillar
-79,第6岛Outcast Island
-80,第6岛Green Path
-81,第6岛Water Path
-82,第6岛Ruin Valley
-83,第7岛Trainer Tower
-84,第7岛Sevault Canyon Entrance
-85,第7岛Sevault Canyon
-86,第7岛Tanoby Ruins
+51,冻瀑洞窟
+52,冻瀑洞窟1F/B1F
+54,冻瀑洞窟（最深处）
+55,标志之林
+56,不归之穴
+66,不归之穴（有物品的房间）
+70,热气之路
+71,宝物海滩
+72,边缘海岬
+73,索桥
+74,第3岛码头
+75,豪华度假区
+76,水之迷宫
+77,第5岛空地
+78,回忆之塔
+79,外岛
+80,绿之步道
+81,水之步道
+82,遗迹山谷
+83,训练家塔
+84,溪谷入口
+85,七宝溪谷
+86,阿斯卡纳遗迹
 87,1号道路
 88,2号道路
 89,3号道路
@@ -102,4 +102,4 @@
 120,第1岛
 121,第4岛
 122,第5岛
-123,第6岛Altering Cave
+123,变幻洞窟
