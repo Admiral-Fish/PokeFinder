@@ -37,32 +37,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
-    <widget class="QLabel" name="labelParentA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Parent A</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="QLabel" name="labelParentB">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Parent B</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QLabel" name="labelHP">
      <property name="text">
@@ -89,19 +63,6 @@
       <number>31</number>
      </property>
     </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLabel" name="labelAbility">
-     <property name="text">
-      <string>Ability</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QComboBox" name="comboBoxParentAAbility"/>
-   </item>
-   <item row="1" column="5">
-    <widget class="QComboBox" name="comboBoxParentBAbility"/>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="labelAtk">
@@ -130,19 +91,6 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
-    <widget class="QLabel" name="labelGender">
-     <property name="text">
-      <string>Gender</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="4">
-    <widget class="QComboBox" name="comboBoxParentAGender"/>
-   </item>
-   <item row="2" column="5">
-    <widget class="QComboBox" name="comboBoxParentBGender"/>
-   </item>
    <item row="3" column="0">
     <widget class="QLabel" name="labelDef">
      <property name="text">
@@ -169,19 +117,6 @@
       <number>31</number>
      </property>
     </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QLabel" name="labelItem">
-     <property name="text">
-      <string>Item</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="4">
-    <widget class="ComboBox" name="comboBoxParentAItem"/>
-   </item>
-   <item row="3" column="5">
-    <widget class="ComboBox" name="comboBoxParentBItem"/>
    </item>
    <item row="4" column="0">
     <widget class="QLabel" name="labelSpA">
@@ -210,19 +145,6 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="3">
-    <widget class="QLabel" name="labelNature">
-     <property name="text">
-      <string>Nature</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="4">
-    <widget class="QComboBox" name="comboBoxParentANature"/>
-   </item>
-   <item row="4" column="5">
-    <widget class="QComboBox" name="comboBoxParentBNature"/>
-   </item>
    <item row="5" column="0">
     <widget class="QLabel" name="labelSpD">
      <property name="text">
@@ -249,16 +171,6 @@
       <number>31</number>
      </property>
     </widget>
-   </item>
-   <item row="5" column="3">
-    <widget class="QLabel" name="labelEggSpecie">
-     <property name="text">
-      <string>Egg Specie</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="4">
-    <widget class="ComboBox" name="comboBoxEggSpecie"/>
    </item>
    <item row="6" column="0">
     <widget class="QLabel" name="labelSpe">
@@ -287,14 +199,109 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="3">
+   <item row="0" column="3" rowspan="7">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QLabel" name="labelParentA">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Parent A</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6">
+    <widget class="QLabel" name="labelParentB">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Parent B</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelAbility">
+     <property name="text">
+      <string>Ability</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QComboBox" name="comboBoxParentAAbility"/>
+   </item>
+   <item row="1" column="6">
+    <widget class="QComboBox" name="comboBoxParentBAbility"/>
+   </item>
+   <item row="2" column="4">
+    <widget class="QLabel" name="labelGender">
+     <property name="text">
+      <string>Gender</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <widget class="QComboBox" name="comboBoxParentAGender"/>
+   </item>
+   <item row="2" column="6">
+    <widget class="QComboBox" name="comboBoxParentBGender"/>
+   </item>
+   <item row="3" column="4">
+    <widget class="QLabel" name="labelItem">
+     <property name="text">
+      <string>Item</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="ComboBox" name="comboBoxParentAItem"/>
+   </item>
+   <item row="3" column="6">
+    <widget class="ComboBox" name="comboBoxParentBItem"/>
+   </item>
+   <item row="4" column="4">
+    <widget class="QLabel" name="labelNature">
+     <property name="text">
+      <string>Nature</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <widget class="QComboBox" name="comboBoxParentANature"/>
+   </item>
+   <item row="4" column="6">
+    <widget class="QComboBox" name="comboBoxParentBNature"/>
+   </item>
+   <item row="5" column="4">
+    <widget class="QLabel" name="labelEggSpecie">
+     <property name="text">
+      <string>Egg Specie</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="5">
+    <widget class="ComboBox" name="comboBoxEggSpecie"/>
+   </item>
+   <item row="6" column="4">
     <widget class="QCheckBox" name="checkBoxMasuda">
      <property name="text">
       <string>Masuda</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="4" colspan="2">
+   <item row="6" column="5" colspan="2">
     <widget class="QCheckBox" name="checkBoxShowInheritance">
      <property name="text">
       <string>Show Inheritance</string>
