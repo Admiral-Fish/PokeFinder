@@ -69,7 +69,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Chained Shiny to SID</source>
-        <translation type="unfinished"></translation>
+        <translation>连锁异色查询SID</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="37"/>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Den Map</source>
-        <translation type="unfinished"></translation>
+        <translation>巢穴点位分布</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -163,12 +163,12 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -178,12 +178,12 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -203,7 +203,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -339,12 +339,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
@@ -437,12 +437,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="129"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="129"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="129"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="149"/>
@@ -545,12 +545,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
@@ -653,12 +653,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
@@ -751,12 +751,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
@@ -776,7 +776,7 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
         <source>Redraws</source>
-        <translation>重抽</translation>
+        <translation>查看图鉴</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
@@ -849,12 +849,12 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
@@ -942,12 +942,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
@@ -1045,12 +1045,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
@@ -1140,7 +1140,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
@@ -1295,12 +1295,12 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Redraws</source>
-        <translation>重抽</translation>
+        <translation>查看图鉴</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Calibration</source>
-        <translation>标定</translation>
+        <translation>校准</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1340,7 +1340,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1402,7 +1402,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1455,7 +1455,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>钻石</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1475,7 +1475,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1495,7 +1495,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1557,7 +1557,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1600,22 +1600,22 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1635,12 +1635,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1655,12 +1655,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1762,12 +1762,12 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Filters</source>
-        <translation type="unfinished">筛选项</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>RNG Info</source>
-        <translation type="unfinished">RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1802,12 +1802,12 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1817,7 +1817,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -2032,7 +2032,7 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="94"/>
         <source>Bug Catching Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>捕虫大赛</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -2075,7 +2075,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>钻石</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2085,7 +2085,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2110,7 +2110,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2198,22 +2198,22 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2233,12 +2233,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2253,7 +2253,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2278,7 +2278,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2465,7 +2465,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2480,7 +2480,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2490,7 +2490,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2525,12 +2525,12 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2565,12 +2565,12 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2706,12 +2706,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
@@ -2857,12 +2857,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
@@ -2952,7 +2952,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="149"/>
@@ -3000,12 +3000,12 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -3015,7 +3015,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Disable Filters</source>
-        <translation>关闭筛选项</translation>
+        <translation>取消筛选</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="76"/>
@@ -3027,22 +3027,22 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="80"/>
         <source>Click to clear</source>
-        <translation type="unfinished"></translation>
+        <translation>点击清空数值</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="80"/>
         <source>Click holding ctrl to set 31</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+点击设置为31</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="80"/>
         <source>Click holding alt to set 30-31</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+点击设置为30-31</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="81"/>
         <source>Click holding ctrl+alt to set 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+单击设置为0</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -3077,7 +3077,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Show Stats</source>
-        <translation type="unfinished"></translation>
+        <translation>显示能力值</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -3090,7 +3090,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>GameCube RNG</source>
-        <translation type="unfinished"></translation>
+        <translation>NGC乱数</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3125,7 +3125,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3180,12 +3180,12 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -3218,12 +3218,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
@@ -3306,12 +3306,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
@@ -3394,7 +3394,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>GameCube Seed Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>NGC Seed查询</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3424,7 +3424,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>重置</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3591,7 +3591,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3686,7 +3686,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Clear</source>
-        <translation type="unfinished">清空</translation>
+        <translation>清空</translation>
     </message>
 </context>
 <context>
@@ -3694,7 +3694,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Hidden Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏洞穴</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3714,7 +3714,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3724,12 +3724,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3739,12 +3739,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3754,7 +3754,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3764,7 +3764,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3799,12 +3799,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3887,7 +3887,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="72"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>聒噪鸟</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="72"/>
@@ -3897,7 +3897,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="72"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
 </context>
 <context>
@@ -3920,7 +3920,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
@@ -3930,7 +3930,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="128"/>
@@ -3958,7 +3958,7 @@
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation>TSV</translation>
     </message>
 </context>
 <context>
@@ -3981,12 +3981,12 @@
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation>TSV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
@@ -4024,7 +4024,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation>TSV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
@@ -4034,7 +4034,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
@@ -4067,7 +4067,7 @@
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation>TSV</translation>
     </message>
 </context>
 <context>
@@ -4110,7 +4110,7 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -4208,7 +4208,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.cpp" line="52"/>
@@ -4231,7 +4231,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4241,17 +4241,17 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4261,7 +4261,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4271,7 +4271,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4369,7 +4369,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -4389,12 +4389,12 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -4422,7 +4422,7 @@
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
         <source>TID/SID</source>
-        <translation type="unfinished"></translation>
+        <translation>TID/SID</translation>
     </message>
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
@@ -4432,7 +4432,7 @@
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation>TSV</translation>
     </message>
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
@@ -4447,7 +4447,7 @@
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
         <source>TID/PID</source>
-        <translation type="unfinished"></translation>
+        <translation>TID/PID</translation>
     </message>
 </context>
 <context>
@@ -4460,7 +4460,7 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4490,7 +4490,7 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Find IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>计算</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4525,47 +4525,47 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>计算结果</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>种族值</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base HP</source>
-        <translation type="unfinished"></translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Atk</source>
-        <translation type="unfinished"></translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Def</source>
-        <translation type="unfinished"></translation>
+        <translation>防御</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base SpA</source>
-        <translation type="unfinished"></translation>
+        <translation>特攻</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base SpD</source>
-        <translation type="unfinished"></translation>
+        <translation>特防</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Spe</source>
-        <translation type="unfinished"></translation>
+        <translation>速度</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="85"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>无效值</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4580,17 +4580,17 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>速度</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Add row</source>
-        <translation type="unfinished"></translation>
+        <translation>新增行</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Remove row</source>
-        <translation type="unfinished"></translation>
+        <translation>删除行</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4600,37 +4600,37 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Heartgold/Soulsilver</source>
-        <translation type="unfinished"></translation>
+        <translation>心金/魂银</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Sword/Shield</source>
-        <translation type="unfinished"></translation>
+        <translation>剑/盾</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Brilliant Diamond/Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>晶灿钻石/明亮珍珠</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Emerald/RS/FRLG</source>
-        <translation type="unfinished"></translation>
+        <translation>绿宝石/红蓝宝石/火红叶绿</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Diamond/Pearl/Platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>钻石/珍珠/白金</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Black/White/Black 2/White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>黑/白/黑2/白2</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Next level</source>
-        <translation type="unfinished"></translation>
+        <translation>下一级</translation>
     </message>
 </context>
 <context>
@@ -4691,22 +4691,22 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="48"/>
         <source>Method 1</source>
-        <translation>算法 1</translation>
+        <translation>Method 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="50"/>
         <source>Reverse Method 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverse Method 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="52"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Method 2</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="54"/>
         <source>Method 4</source>
-        <translation>算法 4</translation>
+        <translation>Method 4</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
@@ -4769,7 +4769,7 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Target Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>目标Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
@@ -4935,17 +4935,17 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>GameCube</source>
-        <translation type="unfinished"></translation>
+        <translation>NGC 乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>SID from Chained Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>连锁异色查询SID</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4955,7 +4955,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Spinda Painter</source>
-        <translation type="unfinished"></translation>
+        <translation>晃晃斑的斑点</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4965,7 +4965,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>GameCube Seed Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>NGC Seed查询</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4975,12 +4975,12 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Event</source>
-        <translation type="unfinished"></translation>
+        <translation>配信乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Dream Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>AR搜寻器乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4990,7 +4990,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Profile Calibrator</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息校准</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5005,7 +5005,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Hidden Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏洞穴</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5031,7 +5031,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Den Map</source>
-        <translation type="unfinished"></translation>
+        <translation>巢穴点位分布</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5046,7 +5046,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Poke Spot</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可场所</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5087,17 +5087,17 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="45"/>
         <source>Method 1</source>
-        <translation>算法 1</translation>
+        <translation>Method 1</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="47"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Method 2</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="49"/>
         <source>Method 4</source>
-        <translation>算法 4</translation>
+        <translation>Method 4</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="51"/>
@@ -5135,7 +5135,7 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -5190,7 +5190,7 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -5213,12 +5213,12 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
@@ -5238,7 +5238,7 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="81"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="82"/>
@@ -5316,7 +5316,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Profile Calibrator</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息校准</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5331,12 +5331,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5346,22 +5346,22 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Max</source>
-        <translation type="unfinished"></translation>
+        <translation>最大</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Min</source>
-        <translation type="unfinished"></translation>
+        <translation>最小</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5371,22 +5371,22 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Memory Link</source>
-        <translation type="unfinished"></translation>
+        <translation>记忆连接</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>DS Original/Lite</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Original/Lite</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>DSi/DSi XL</source>
-        <translation type="unfinished"></translation>
+        <translation>DSi/DSi XL</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>3DS</source>
-        <translation type="unfinished"></translation>
+        <translation>3DS</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5396,12 +5396,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5411,62 +5411,62 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Black</source>
-        <translation type="unfinished"></translation>
+        <translation>黑</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation>白</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Black 2</source>
-        <translation type="unfinished"></translation>
+        <translation>黑2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>白2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation>ENG</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation>SPA</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation>FRE</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation>ITA</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation>DEU</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation>JPN</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>KOR</source>
-        <translation type="unfinished"></translation>
+        <translation>KOR</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5501,7 +5501,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Needle Search</source>
-        <translation type="unfinished"></translation>
+        <translation>指针检索</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5526,7 +5526,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Seed Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed检索</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5553,7 +5553,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="173"/>
         <source>Please select a row</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一行</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
@@ -5563,7 +5563,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
         <source>Invalid Input</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的输入</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -5576,7 +5576,7 @@
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.ui"/>
         <source>Profile Editor Gen 3</source>
-        <translation type="unfinished"></translation>
+        <translation>第三世代存档信息编辑</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.ui"/>
@@ -5646,17 +5646,17 @@
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.ui"/>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="79"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>未输入存档名</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="79"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入存档名</translation>
     </message>
 </context>
 <context>
@@ -5664,7 +5664,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Profile Editor Gen 4</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代存档信息编辑</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5689,27 +5689,27 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>钻石</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>珍珠</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>白金</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Heart Gold</source>
-        <translation type="unfinished"></translation>
+        <translation>心金</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Soul Silver</source>
-        <translation type="unfinished"></translation>
+        <translation>魂银</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5719,17 +5719,17 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="90"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入存档名</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="90"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>未输入存档名</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5744,22 +5744,22 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>A-J</source>
-        <translation type="unfinished"></translation>
+        <translation>A-J</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>R-V</source>
-        <translation type="unfinished"></translation>
+        <translation>R-V</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>K-Q</source>
-        <translation type="unfinished"></translation>
+        <translation>K-Q</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>W-Z</source>
-        <translation type="unfinished"></translation>
+        <translation>W-Z</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -5772,7 +5772,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Profile Editor Gen 5</source>
-        <translation type="unfinished"></translation>
+        <translation>第五世代存档信息编辑</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5782,12 +5782,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>MAC</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5807,27 +5807,27 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Black</source>
-        <translation type="unfinished"></translation>
+        <translation>黑</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation>白</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Black 2</source>
-        <translation type="unfinished"></translation>
+        <translation>黑2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>白2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5837,7 +5837,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Timer0 Min</source>
-        <translation type="unfinished"></translation>
+        <translation>最小Timer0</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5857,42 +5857,42 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation>ENG</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation>SPA</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation>FRE</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation>ITA</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation>DEU</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation>JPN</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>KOR</source>
-        <translation type="unfinished"></translation>
+        <translation>KOR</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5907,27 +5907,27 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>DS Original/Lite</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Original/Lite</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>DSi/DSi XL</source>
-        <translation type="unfinished"></translation>
+        <translation>DSi/DSi XL</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>3DS</source>
-        <translation type="unfinished"></translation>
+        <translation>3DS</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Find Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>查询参数</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5937,12 +5937,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Skip L/R</source>
-        <translation type="unfinished"></translation>
+        <translation>Skip L/R</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Memory Link</source>
-        <translation type="unfinished"></translation>
+        <translation>记忆连接</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -5952,12 +5952,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="124"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入存档名</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="124"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>未输入存档名</translation>
     </message>
 </context>
 <context>
@@ -5965,7 +5965,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Profile Editor Gen 8</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代存档信息编辑</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -5985,12 +5985,12 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Sword</source>
-        <translation type="unfinished"></translation>
+        <translation>剑</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shield</source>
-        <translation type="unfinished"></translation>
+        <translation>盾</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6025,7 +6025,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6035,12 +6035,12 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.cpp" line="77"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>未输入存档名</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.cpp" line="77"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入存档名</translation>
     </message>
 </context>
 <context>
@@ -6074,23 +6074,23 @@
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未选择存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>删除存档信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除此存档信息吗？</translation>
     </message>
 </context>
 <context>
@@ -6124,23 +6124,23 @@
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未选择存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>删除存档信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除此存档信息吗？</translation>
     </message>
 </context>
 <context>
@@ -6174,23 +6174,23 @@
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未选择存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>删除存档信息</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除此存档信息吗？</translation>
     </message>
 </context>
 <context>
@@ -6224,23 +6224,23 @@
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未选择存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>删除存档信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除此存档信息吗？</translation>
     </message>
 </context>
 <context>
@@ -6365,7 +6365,7 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Address</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
@@ -6375,32 +6375,32 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Skip L/R</source>
-        <translation type="unfinished"></translation>
+        <translation>Skip L/R</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -6410,7 +6410,7 @@
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Memory Link</source>
-        <translation type="unfinished"></translation>
+        <translation>记忆连接</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -6478,22 +6478,22 @@
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation>Timer0</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation>VFrame</translation>
     </message>
 </context>
 <context>
@@ -6501,12 +6501,12 @@
     <message>
         <location filename="../../Model/Gen8/RaidModel.cpp" line="49"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.cpp" line="49"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/RaidModel.cpp" line="49"/>
@@ -6604,7 +6604,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6776,7 +6776,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Event</source>
-        <translation type="unfinished"></translation>
+        <translation>配信乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.cpp" line="235"/>
@@ -7045,12 +7045,12 @@
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
@@ -7101,18 +7101,18 @@
         <location filename="../Util/Researcher.cpp" line="410"/>
         <location filename="../Util/Researcher.cpp" line="434"/>
         <source>No result</source>
-        <translation type="unfinished"></translation>
+        <translation>无结果</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="410"/>
         <location filename="../Util/Researcher.cpp" line="434"/>
         <source>Unable to find a result</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到结果</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Xoroshiro</source>
-        <translation type="unfinished"></translation>
+        <translation>Xoroshiro</translation>
     </message>
 </context>
 <context>
@@ -7350,12 +7350,12 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>DPPt</source>
-        <translation type="unfinished"></translation>
+        <translation>DPPt</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Calibration</source>
-        <translation>标定</translation>
+        <translation>校准</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7370,7 +7370,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7435,7 +7435,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Roamers:</source>
-        <translation type="unfinished"></translation>
+        <translation>游走:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
@@ -7467,7 +7467,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>No roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>无游走</translation>
     </message>
 </context>
 <context>
@@ -7475,7 +7475,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.cpp" line="87"/>
         <source>No roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>无游走</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7490,7 +7490,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7505,7 +7505,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Roamer locations</source>
-        <translation type="unfinished"></translation>
+        <translation>游走位置</translation>
     </message>
 </context>
 <context>
@@ -7526,7 +7526,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="71"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay</translation>
     </message>
 </context>
 <context>
@@ -7599,12 +7599,12 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Threads</source>
-        <translation type="unfinished"></translation>
+        <translation>计算进程数</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Profiles Path</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息文件路径</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
@@ -7614,43 +7614,43 @@
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
         <source>Language update</source>
-        <translation type="unfinished"></translation>
+        <translation>语言更改</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Restart for changes to take effect. Restart now?</source>
-        <translation type="unfinished"></translation>
+        <translation>重新启动以使更改生效，现在重启吗？</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Style change</source>
-        <translation type="unfinished"></translation>
+        <translation>主题更改</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="126"/>
         <source>Profile File</source>
-        <translation type="unfinished"></translation>
+        <translation>存档信息文件</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="126"/>
         <source>There was a problem creating the file</source>
-        <translation type="unfinished"></translation>
+        <translation>创建文件时出现问题</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Table Header Size</source>
-        <translation type="unfinished"></translation>
+        <translation>表头大小</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Stretch to fit contents</source>
-        <translation type="unfinished"></translation>
+        <translation>拉伸以适应内容</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Stretch to fit width</source>
-        <translation type="unfinished"></translation>
+        <translation>拉伸至适合宽度</translation>
     </message>
 </context>
 <context>
@@ -7658,7 +7658,7 @@
     <message>
         <location filename="../Gen3/Tools/SpindaPainter.ui"/>
         <source>Spinda Painter</source>
-        <translation type="unfinished"></translation>
+        <translation>晃晃斑的斑点</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/SpindaPainter.ui"/>
@@ -7671,7 +7671,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Gen 3 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>第三世代定点乱数</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7706,7 +7706,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7736,12 +7736,12 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Method 1</source>
-        <translation>算法 1</translation>
+        <translation>Method 1</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Method 4</source>
-        <translation>算法 4</translation>
+        <translation>Method 4</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7771,37 +7771,37 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>御三家</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>化石</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>礼物</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Game Corner</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏城</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>定点</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7826,7 +7826,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>游走</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7874,7 +7874,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -7933,7 +7933,7 @@
         <location filename="../Gen4/Static4.cpp" line="65"/>
         <location filename="../Gen4/Static4.cpp" line="70"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -7969,7 +7969,7 @@
         <location filename="../Gen4/Static4.cpp" line="65"/>
         <location filename="../Gen4/Static4.cpp" line="70"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.cpp" line="74"/>
@@ -7979,37 +7979,37 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>御三家</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>化石</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>礼物</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Game Corner</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏城</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>定点</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8024,7 +8024,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>游走</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8052,7 +8052,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8067,7 +8067,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8077,7 +8077,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8132,12 +8132,12 @@
     <message>
         <location filename="../Gen8/Static8.cpp" line="50"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="50"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="137"/>
@@ -8152,32 +8152,32 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>礼物</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>化石</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>定点</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>游走</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8232,7 +8232,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>御三家</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8250,12 +8250,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
@@ -8338,12 +8338,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
@@ -8441,12 +8441,12 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
@@ -8539,12 +8539,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
@@ -8627,12 +8627,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
@@ -8743,7 +8743,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8873,7 +8873,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8883,7 +8883,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8893,7 +8893,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -8918,12 +8918,12 @@
     <message>
         <location filename="../Gen8/Underground.cpp" line="52"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="52"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="53"/>
@@ -8986,12 +8986,12 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
@@ -9104,7 +9104,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9126,13 +9126,13 @@
         <location filename="../Gen3/Wild3.cpp" line="69"/>
         <location filename="../Gen3/Wild3.cpp" line="78"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="69"/>
         <location filename="../Gen3/Wild3.cpp" line="78"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="73"/>
@@ -9306,27 +9306,27 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Wild 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wild 1</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Wild 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wild 2</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Wild 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Wild 4</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Feebas Tile</source>
-        <translation type="unfinished"></translation>
+        <translation>丑丑鱼钓点</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9339,7 +9339,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Gen 4 Wild</source>
-        <translation>Gen4 野生</translation>
+        <translation>第四世代野生乱数</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9384,7 +9384,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9399,17 +9399,17 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Morning</source>
-        <translation type="unfinished"></translation>
+        <translation>清晨</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Day</source>
-        <translation type="unfinished"></translation>
+        <translation>白天</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Night</source>
-        <translation type="unfinished"></translation>
+        <translation>夜晚</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9477,7 +9477,7 @@
         <location filename="../Gen4/Wild4.cpp" line="68"/>
         <location filename="../Gen4/Wild4.cpp" line="81"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="71"/>
@@ -9587,7 +9587,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Max Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最大Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9597,7 +9597,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Min Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最小Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9640,7 +9640,7 @@
         <location filename="../Gen4/Wild4.cpp" line="68"/>
         <location filename="../Gen4/Wild4.cpp" line="81"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9650,12 +9650,12 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Radio</source>
-        <translation type="unfinished"></translation>
+        <translation>广播</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Dual Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>双插槽</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9665,7 +9665,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Poke Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可追踪</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9685,22 +9685,22 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Poke Radar Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可追踪闪草</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Bug Catching Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>捕虫大赛</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Headbutt</source>
-        <translation type="unfinished"></translation>
+        <translation>撞树</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9740,12 +9740,12 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Hoenn Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>丰缘之声</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Sinnoh Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>神奥之声</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9775,7 +9775,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Mysterious Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation>神秘之声</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9810,7 +9810,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Feebas Tile</source>
-        <translation type="unfinished"></translation>
+        <translation>丑丑鱼钓点</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -9853,7 +9853,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -9883,7 +9883,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 1</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -9893,22 +9893,22 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed 0</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Morning</source>
-        <translation type="unfinished"></translation>
+        <translation>清晨</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Day</source>
-        <translation type="unfinished"></translation>
+        <translation>白天</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Night</source>
-        <translation type="unfinished"></translation>
+        <translation>夜晚</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10018,12 +10018,12 @@
     <message>
         <location filename="../Gen8/Wild8.cpp" line="52"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="52"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10053,7 +10053,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10086,12 +10086,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
@@ -10106,7 +10106,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
@@ -10184,12 +10184,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="72"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="72"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="72"/>
@@ -10224,7 +10224,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
@@ -10307,12 +10307,12 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
@@ -10332,7 +10332,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
@@ -10425,12 +10425,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
@@ -10445,7 +10445,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="145"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="145"/>
@@ -10523,12 +10523,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="168"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="168"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="168"/>
@@ -10553,7 +10553,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
