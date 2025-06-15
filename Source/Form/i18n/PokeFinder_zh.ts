@@ -1365,7 +1365,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Method</source>
-        <translation>方式</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -4691,7 +4691,7 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="48"/>
         <source>Method 1</source>
-        <translation>方式 1</translation>
+        <translation>算法 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="50"/>
@@ -4706,7 +4706,7 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="54"/>
         <source>Method 4</source>
-        <translation>方式 4</translation>
+        <translation>算法 4</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
@@ -4741,7 +4741,7 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Method</source>
-        <translation>方式</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
@@ -5087,7 +5087,7 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="45"/>
         <source>Method 1</source>
-        <translation>方式 1</translation>
+        <translation>算法 1</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="47"/>
@@ -5097,7 +5097,7 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="49"/>
         <source>Method 4</source>
-        <translation>方式 4</translation>
+        <translation>算法 4</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="51"/>
@@ -5117,7 +5117,7 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>Method</source>
-        <translation>方式</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
@@ -7724,9 +7724,9 @@
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.ui"/>c
+        <location filename="../Gen3/Static3.ui"/>
         <source>Method</source>
-        <translation>方式</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7736,12 +7736,12 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Method 1</source>
-        <translation>方式 1</translation>
+        <translation>算法 1</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Method 4</source>
-        <translation>方式 4</translation>
+        <translation>算法 4</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -9209,7 +9209,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Method</source>
-        <translation>方式</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
