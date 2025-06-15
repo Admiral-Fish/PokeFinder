@@ -1384,7 +1384,7 @@
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>Seed (Held / Pickup)</source>
+        <source>Seed （Held / Pickup）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1426,7 +1426,7 @@
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>Offset (Held / Pickup)</source>
+        <source>Offset （Held / Pickup）</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1561,7 +1561,7 @@
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
-        <source>Seed (Held / Pickup)</source>
+        <source>Seed （Held / Pickup）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1576,7 +1576,7 @@
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
-        <source>Offset (Held / Pickup)</source>
+        <source>Offset （Held / Pickup）</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3480,7 +3480,7 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
-        <source>Your seed(s) is %1. Copy to clipboard?</source>
+        <source>Your seed（s） is %1. Copy to clipboard?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4710,12 +4710,12 @@
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
-        <source>Cute Charm (DPPt)</source>
+        <source>Cute Charm （DPPt）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="58"/>
-        <source>Cute Charm (HGSS)</source>
+        <source>Cute Charm （HGSS）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5179,7 +5179,7 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
-        <source>Seed (Food / Encounter)</source>
+        <source>Seed （Food / Encounter）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5204,7 +5204,7 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
-        <source>Offset (Food / Encounter)</source>
+        <source>Offset （Food / Encounter）</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7034,7 +7034,7 @@
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
-        <source>Xoroshiro (BDSP)</source>
+        <source>Xoroshiro （BDSP）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7054,7 +7054,7 @@
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
-        <source>Value (Hex)</source>
+        <source>Value （Hex）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8186,12 +8186,12 @@
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
-        <source>Ramanas Park (Pure Space)</source>
+        <source>Ramanas Park （Pure Space）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
-        <source>Ramanas Park (Strange Space)</source>
+        <source>Ramanas Park （Strange Space）</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -6,9 +6,9 @@
 5,桔梗市
 6,喇叭芽之塔
 8,32号道路
-9,阿露福遗迹(Outside)
-10,阿露福遗迹(Inside)
-11,阿露福遗迹(Underground)
+9,阿露福遗迹（Outside）
+10,阿露福遗迹（Inside）
+11,阿露福遗迹（Underground）
 14,互连洞1F
 15,互连洞B1F
 16,互连洞B2F
@@ -38,7 +38,7 @@
 51,湛蓝市
 52,42号道路
 53,擂钵山1F
-54,擂钵山1F (Back)
+54,擂钵山1F （Back）
 55,擂钵山2F
 56,擂钵山B1F
 57,43号道路
@@ -52,26 +52,26 @@
 66,龙穴
 67,45号道路
 68,46号道路
-69,黑暗洞穴(31号道路)
-70,黑暗洞穴(45号道路)
+69,黑暗洞穴（31号道路）
+70,黑暗洞穴（45号道路）
 71,47号道路
 72,月见山广场
-73,月见山广场 (Clefairy Event)
+73,月见山广场 （Clefairy Event）
 74,双子岛1F
 75,双子岛B1F
 76,双子岛B2F
 77,双子岛B3F
 78,双子岛B4F
-79,白银山(Moltres Chamber)
+79,白银山（Moltres Chamber）
 80,白银山2F
 81,白银山3F
 82,断崖入口
 83,断崖洞窟
 85,白银山
 86,白银山 1F
-87,白银山(Lower mountainside)
-88,白银山(Expert Belt)
-89,白银山(Upper mountainside)
+87,白银山（Lower mountainside）
+88,白银山（Expert Belt）
+89,白银山（Upper mountainside）
 91,狩猎地带
 92,12号道路
 93,19号道路
@@ -92,7 +92,7 @@
 109,岩山隧道B1F
 110,冠军之路1F
 111,1号道路
-112,2号道路 (South)
+112,2号道路 （South）
 113,3号道路
 114,4号道路
 115,5号道路
@@ -116,27 +116,27 @@
 133,地鼠洞穴
 134,冠军之路2F
 135,冠军之路3F
-136,2号道路 (North)
+136,2号道路 （North）
 137,常青森林
 139,华蓝洞窟1F
 140,华蓝洞窟2F
 141,华蓝洞窟B1F
 142,捕虫大赛
-143,捕虫大赛 (Tuesday)
-144,捕虫大赛 (Thursday)
-145,捕虫大赛 (Saturday)
+143,捕虫大赛 （Tuesday）
+144,捕虫大赛 （Thursday）
+145,捕虫大赛 （Saturday）
 146,桧皮镇
 147,深灰市
 148,狩猎地带Gate
-149,狩猎地带(Plains)
-150,狩猎地带(Meadow)
-151,狩猎地带(Savannah)
-152,狩猎地带(Peak)
-153,狩猎地带(Rocky Beach)
-154,狩猎地带(Wetland)
-155,狩猎地带(Forest)
-156,狩猎地带(Swamp)
-157,狩猎地带(Marshland)
-158,狩猎地带(Wasteland)
-159,狩猎地带(Mountain)
-160,狩猎地带(Desert)
+149,狩猎地带（Plains）
+150,狩猎地带（Meadow）
+151,狩猎地带（Savannah）
+152,狩猎地带（Peak）
+153,狩猎地带（Rocky Beach）
+154,狩猎地带（Wetland）
+155,狩猎地带（Forest）
+156,狩猎地带（Swamp）
+157,狩猎地带（Marshland）
+158,狩猎地带（Wasteland）
+159,狩猎地带（Mountain）
+160,狩猎地带（Desert）
