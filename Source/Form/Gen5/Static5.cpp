@@ -95,8 +95,11 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
 
     updateProfiles();
-    generatorCategoryIndexChanged(0);
-    searcherCategoryIndexChanged(0);
+    if (hasProfiles())
+    {
+        generatorCategoryIndexChanged(0);
+        searcherCategoryIndexChanged(0);
+    }
     searcherFastSearchChanged();
 
     QSettings setting;
