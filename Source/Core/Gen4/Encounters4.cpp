@@ -187,16 +187,36 @@ struct WildEncounterHGSSSafari
 };
 static_assert(sizeof(WildEncounterHGSSSafari) == 906);
 
-constexpr std::array<u8, 21> honeyTreeMapIds = { 145, 146, 147, 148, 149, 150, 156, 157, 159, 160, 161, 162, 163, 164, 167, 169, 170, 7, 8, 9, 183 };
-
 constexpr std::array<u16, 15> greatMarshDP = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
 constexpr std::array<u16, 15> greatMarshDPDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
 
 constexpr std::array<u16, 15> greatMarshPt = { 114, 193, 194, 195, 357, 451, 453, 455 };
 constexpr std::array<u16, 15> greatMarshPtDex = { 46, 102, 114, 115, 193, 195, 285, 316, 352, 357, 451, 452, 453, 454, 455 };
 
+constexpr std::array<u8, 21> honeyTreeMapIDs = { 145, 146, 147, 148, 149, 150, 156, 157, 159, 160, 161, 162, 163, 164, 167, 169, 170, 7, 8, 9, 183 };
+
 constexpr std::array<u16, 16> trophyGardenDP = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 constexpr std::array<u16, 16> trophyGardenPt = { 35, 39, 52, 113, 132, 133, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
+
+/**
+ * @brief Gets the tree ID from location
+ *
+ * @param location Location
+ *
+ * @return Tree ID
+ */
+static u8 getTreeIDFromMapID(u8 location)
+{
+    for (u8 i = 0; i < honeyTreeMapIDs.size(); i++)
+    {
+        if (location == honeyTreeMapIDs[i])
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 /**
  * @brief Modifies encounter slots based on the dual slot game
@@ -349,24 +369,6 @@ static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u
 }
 
 /**
- * @brief Gets the tree Id from the map Id
- *
- * @param mapId map Id
- *
- * @return Tree Id
- */
-static u8 getTreeIdFromMapId(const u8 mapId)
-{
-    u8 i = 0;
-    for (; i < 21; i++) {
-        if (mapId == honeyTreeMapIds[i]) {
-            return i;
-        }
-    }
-    return i;
-}
-
-/**
  * @brief Gets the encounter area for DPPt
  *
  * @param version Game version
@@ -376,7 +378,8 @@ static u8 getTreeIdFromMapId(const u8 mapId)
  *
  * @return Vector of encounter areas
  */
-static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, const EncounterSettings4 &settings, const PersonalInfo *info, const u32 IDs)
+static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, const Profile4 *profile, const EncounterSettings4 &settings,
+                                           const PersonalInfo *info)
 {
     u32 length;
     u8 *data;
@@ -397,12 +400,15 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
             data = Utilities::decompress(PT_HONEY.data(), PT_HONEY.size(), length);
         }
 
-        std::array<u8, 4> munchlaxTreeIDs;
-        for (size_t i = 0; i < 4; i++) {
-            munchlaxTreeIDs[i] = ((IDs >> (8 * (3 - i))) & 0xFF) % 21;
-
-            for (size_t j = 0; j < i; j++) {
-                if (munchlaxTreeIDs[j] == munchlaxTreeIDs[i]) {
+        u16 tid = profile->getTID();
+        u16 sid = profile->getSID();
+        std::array<u8, 4> munchlaxTreeIDs = { (sid & 0xff) % 21, (sid >> 8) % 21, (tid & 0xff) % 21, (tid >> 8) % 21 };
+        for (size_t i = 1; i < 4; i++)
+        {
+            for (size_t j = 0; j < i; j++)
+            {
+                if (munchlaxTreeIDs[j] == munchlaxTreeIDs[i])
+                {
                     ++munchlaxTreeIDs[i] %= 21;
                 }
             }
@@ -414,48 +420,24 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
 
             std::array<Slot, 12> slots;
 
+            int max = 12;
+            u8 treeID = getTreeIDFromMapID(entry->location);
+            if (std::any_of(munchlaxTreeIDs.begin(), munchlaxTreeIDs.end(), [treeID](u8 tree) { return tree == treeID; }))
+            {
+                max = 18;
+            }
+
             // While we technically have 18 slots with the number of duplicates it will always be below 12
             int count = 0;
-            for (const auto &slot : entry->normal)
+            for (int i = 0; i < max; i++)
             {
-                bool add
-                    = std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; });
-                if (add)
+                const auto &slot = entry->slots[i];
+                if (std::all_of(slots.begin(), slots.end() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; }))
                 {
                     slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
             }
 
-            for (const auto &slot : entry->rare)
-            {
-                bool add
-                    = std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; });
-                if (add)
-                {
-                    slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                }
-            }
-
-            bool isMunchlaxTree = false;
-            for (size_t i = 0; i < 4; i++) {
-                if (munchlaxTreeIDs[i] == getTreeIdFromMapId(entry->location)) {
-                    isMunchlaxTree = true;
-                    break;
-                }
-            }
-
-            if (isMunchlaxTree)
-            {
-                for (const auto &slot : entry->munchlax)
-                {
-                    bool add
-                        = std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; });
-                    if (add)
-                    {
-                        slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
-                    }
-                }
-            }
             encounters.emplace_back(entry->location, 0, encounter, slots);
         }
     }
@@ -1031,7 +1013,7 @@ namespace Encounters4
         const auto *info = PersonalLoader::getPersonal(version);
         if ((version & Game::DPPt) != Game::None)
         {
-            return getDPPt(version, encounter, settings, info, (profile->getSID() << 16) + profile->getTID());
+            return getDPPt(version, encounter, profile, settings, info);
         }
         return getHGSS(version, encounter, profile, settings, info);
     }
