@@ -9,40 +9,40 @@
 8,荒野名胜区（Desert）
 9,古代城1F-B1F
 11,古代城B2F-B6F
-15,古代城（Lowest Floor）
+15,古代城（LowestFloor）
 30,古代城（Volcarona）
 40,冷冻仓库
 41,电气石洞穴1F
 42,电气石洞穴B1F
 43,电气石洞穴B2F
-44,罗斯山（Upper Level）
-45,罗斯山（Middle Level）
-46,罗斯山（Lower Level）
-47,罗斯山（Lowest Level）
+44,罗斯山（UpperLevel）
+45,罗斯山（MiddleLevel）
+46,罗斯山（LowerLevel）
+47,罗斯山（LowestLevel）
 48,龙螺旋之塔（Entrance）
 49,龙螺旋之塔（Outside）
 50,龙螺旋之塔1F
 51,龙螺旋之塔2F
 52,冠军之路
-53,冠军之路1F （Middle）
-54,冠军之路2F （Left）
-55,冠军之路3F （Middle）
-56,冠军之路4F （Middle）
-57,冠军之路2F （Right）
-58,冠军之路1F （Right）
-59,冠军之路3F （Right）
-60,冠军之路1F （Left）
-61,冠军之路3F （Left）
-62,冠军之路4F （Left）
+53,冠军之路1F（Middle）
+54,冠军之路2F（Left）
+55,冠军之路3F（Middle）
+56,冠军之路4F（Middle）
+57,冠军之路2F（Right）
+58,冠军之路1F（Right）
+59,冠军之路3F（Right）
+60,冠军之路1F（Left）
+61,冠军之路3F（Left）
+62,冠军之路4F（Left）
 63,冠军之路5F
 64,冠军之路6F
-65,冠军之路4F （Right）
+65,冠军之路4F（Right）
 66,冠军之路7F
-67,Trial Chamber
+67,TrialChamber
 68,巨人洞窟（Entrance）
 69,巨人洞窟（Cave）
-70,巨人洞窟（Crater Forest）
-71,巨人洞窟（Cave Depths）
+70,巨人洞窟（CraterForest）
+71,巨人洞窟（CaveDepths）
 72,P2实验室
 73,涟漪湾
 74,帆巴吊桥
@@ -71,7 +71,7 @@
 97,修行岩屋B1F
 98,修行岩屋B2F
 99,10号道路
-100,10号道路 （Basic Badge Gate）
+100,10号道路（BasicBadgeGate）
 101,11号道路
 102,12号道路
 103,13号道路

@@ -12,15 +12,15 @@
 11,荒野名胜区（Desert）
 12,古代城1F
 13,古代城B1F
-14,古代城（Lowest Floor）
+14,古代城（LowestFloor）
 18,古代城（Volcarona）
 20,电气石洞穴1F
 21,电气石洞穴B1F
 22,电气石洞穴B2F
-23,罗斯山（Upper Level）
-24,罗斯山（Middle Level）
-25,罗斯山（Lower Level）
-26,罗斯山（Lowest Level）
+23,罗斯山（UpperLevel）
+24,罗斯山（MiddleLevel）
+25,罗斯山（LowerLevel）
+26,罗斯山（LowestLevel）
 27,龙螺旋之塔（Entrance）
 28,龙螺旋之塔（Outside）
 29,龙螺旋之塔1F
@@ -28,8 +28,8 @@
 31,冠军之路4F
 32,巨人洞窟（Entrance）
 33,巨人洞窟（Cave）
-34,巨人洞窟（Crater Forest）
-36,巨人洞窟（Cave Depths）
+34,巨人洞窟（CraterForest）
+36,巨人洞窟（CaveDepths）
 37,飞云下水道
 42,P2实验室
 43,涟漪湾
@@ -39,20 +39,20 @@
 48,反转山
 49,反转山1F
 50,反转山B1F
-52,反转山B1F （Chamber）
+52,反转山B1F（Chamber）
 61,陌生人之家
-65,陌生人之家 （Rooms）
+65,陌生人之家（Rooms）
 71,冠军之路1F
 72,冠军之路（Grove）
-73,冠军之路（Outside 1）
+73,冠军之路（Outside1）
 74,冠军之路2F
-75,冠军之路2F （Back）
-76,冠军之路（Outside 2）
+75,冠军之路2F（Back）
+76,冠军之路（Outside2）
 77,冠军之路3F
-80,冠军之路3F （Back）
-81,古代秘道（飞云市 Exit）
+80,冠军之路3F（Back）
+81,古代秘道（飞云市Exit）
 82,古代秘道（Middle）
-83,古代秘道（帆巴市 Exit）
+83,古代秘道（帆巴市Exit）
 85,菊老大之路
 87,地底遗迹
 90,岩山之室
@@ -99,7 +99,7 @@
 132,涟漪镇
 133,17号道路
 134,21号道路
-135,6号道路 （Cave）
-136,13号道路 （Giant Chasm）
-137,丰饶之祠 （Pond）
-138,3号道路 （Pond）
+135,6号道路（Cave）
+136,13号道路（GiantChasm）
+137,丰饶之祠（Pond）
+138,3号道路（Pond）
