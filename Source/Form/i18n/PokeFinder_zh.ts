@@ -115,17 +115,17 @@
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Wild Area</source>
-        <translation type="unfinished"></translation>
+        <translation>旷野地带</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Isle of Armor</source>
-        <translation type="unfinished"></translation>
+        <translation>铠岛</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Crown Tundra</source>
-        <translation type="unfinished"></translation>
+        <translation>王冠雪原</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Dream Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>AR搜寻器乱数</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>最后日期</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>起始日期</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="87"/>
@@ -560,12 +560,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="95"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="96"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="97"/>
@@ -575,7 +575,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="98"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="99"/>
@@ -673,7 +673,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -766,12 +766,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
@@ -962,12 +962,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="196"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="197"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
@@ -1145,7 +1145,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="164"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>按键</translation>
     </message>
 </context>
 <context>
@@ -1153,17 +1153,17 @@
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Parent A</source>
-        <translation type="unfinished"></translation>
+        <translation>父母A</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Parent B</source>
-        <translation type="unfinished"></translation>
+        <translation>父母B</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Show Inheritance</source>
-        <translation type="unfinished"></translation>
+        <translation>显示遗传来源</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
@@ -1208,7 +1208,7 @@
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
@@ -1219,37 +1219,37 @@
         <location filename="../Controls/EggSettings.cpp" line="227"/>
         <location filename="../Controls/EggSettings.cpp" line="234"/>
         <source>Power Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>力量负重</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="228"/>
         <location filename="../Controls/EggSettings.cpp" line="235"/>
         <source>Power Bracer</source>
-        <translation type="unfinished"></translation>
+        <translation>力量护腕</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="229"/>
         <location filename="../Controls/EggSettings.cpp" line="236"/>
         <source>Power Belt</source>
-        <translation type="unfinished"></translation>
+        <translation>力量腰带</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="230"/>
         <location filename="../Controls/EggSettings.cpp" line="237"/>
         <source>Power Lens</source>
-        <translation type="unfinished"></translation>
+        <translation>力量镜</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="231"/>
         <location filename="../Controls/EggSettings.cpp" line="238"/>
         <source>Power Band</source>
-        <translation type="unfinished"></translation>
+        <translation>力量束带</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="232"/>
         <location filename="../Controls/EggSettings.cpp" line="239"/>
         <source>Power Anklet</source>
-        <translation type="unfinished"></translation>
+        <translation>力量护踝</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="248"/>
@@ -1277,7 +1277,7 @@
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Egg Specie</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋种类</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Calibration</source>
-        <translation>校准</translation>
+        <translation>校准值</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1330,7 +1330,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Gen 3 Eggs</source>
-        <translation type="unfinished"></translation>
+        <translation>第三世代孵化乱数</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1384,8 +1384,8 @@
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>Seed （Held / Pickup）</source>
-        <translation type="unfinished"></translation>
+        <source>Seed (Held / Pickup)</source>
+        <translation>Seed (生成 / 领取)</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.cpp" line="129"/>
@@ -1407,12 +1407,12 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -1422,12 +1422,12 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>RS/FRLG</source>
-        <translation type="unfinished"></translation>
+        <translation>红蓝宝石/火红叶绿</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
-        <source>Offset （Held / Pickup）</source>
-        <translation type="unfinished"></translation>
+        <source>Offset (Held / Pickup)</source>
+        <translation>Offset (生成 / 领取)</translation>
     </message>
 </context>
 <context>
@@ -1435,7 +1435,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Gen 4 Eggs</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代孵化乱数</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -1561,23 +1561,23 @@
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
-        <source>Seed （Held / Pickup）</source>
-        <translation type="unfinished"></translation>
+        <source>Seed (Held / Pickup)</source>
+        <translation>Seed (生成 / 领取)</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
-        <source>Offset （Held / Pickup）</source>
-        <translation type="unfinished"></translation>
+        <source>Offset (Held / Pickup)</source>
+        <translation>Offset (生成 / 领取)</translation>
     </message>
 </context>
 <context>
@@ -1585,7 +1585,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Gen 5 Eggs</source>
-        <translation type="unfinished"></translation>
+        <translation>第五世代孵化乱数</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1695,12 +1695,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>起始日期</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>最后日期</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -1757,7 +1757,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Gen 8 Eggs</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代孵化乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1782,7 +1782,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Compatibility</source>
-        <translation type="unfinished">好感度</translation>
+        <translation>好感度</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -2027,7 +2027,7 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="92"/>
         <source>Headbutt</source>
-        <translation type="unfinished"></translation>
+        <translation>撞树</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="94"/>
@@ -2045,7 +2045,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Wondercard IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代配信乱数</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2115,7 +2115,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2140,12 +2140,12 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Min Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最小Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Max Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最大Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -2183,7 +2183,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Gen 5 Event</source>
-        <translation type="unfinished"></translation>
+        <translation>第五世代配信乱数</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2283,7 +2283,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2338,7 +2338,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>随机</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2363,12 +2363,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Event TID</source>
-        <translation type="unfinished"></translation>
+        <translation>配信TID</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Event SID</source>
-        <translation type="unfinished"></translation>
+        <translation>配信SID</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2378,7 +2378,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2393,12 +2393,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>起始日期</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>最后日期</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2460,7 +2460,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Gen 8 Event</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代配信乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2560,7 +2560,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>随机</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2585,7 +2585,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -2673,7 +2673,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
@@ -2726,7 +2726,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
@@ -3429,12 +3429,12 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Enemy Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>对手队首</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Your lead</source>
-        <translation type="unfinished"></translation>
+        <translation>你的队首</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3444,22 +3444,22 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Wes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wes</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Seth</source>
-        <translation type="unfinished"></translation>
+        <translation>Seth</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Thomas</source>
-        <translation type="unfinished"></translation>
+        <translation>Thomas</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Party Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>队伍队首</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
@@ -3476,11 +3476,11 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="90"/>
         <source>Result: Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>结果: 无效</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
-        <source>Your seed（s） is %1. Copy to clipboard?</source>
+        <source>Your seed(s) is %1. Copy to clipboard?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3507,7 +3507,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="104"/>
         <source>Result: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Result: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="122"/>
@@ -3521,7 +3521,7 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="126"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="152"/>
         <source>Seed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="267"/>
@@ -3581,12 +3581,12 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>结果:</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Inputs</source>
-        <translation type="unfinished"></translation>
+        <translation>输入框</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3596,67 +3596,67 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>S-&gt;N-&gt;O-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>S-&gt;N-&gt;O-&gt;C</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;S-&gt;O-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;S-&gt;O-&gt;C</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>O-&gt;N-&gt;S-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>O-&gt;N-&gt;S-&gt;C</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;O-&gt;S-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;O-&gt;S-&gt;C</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>S-&gt;N-&gt;C-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>S-&gt;N-&gt;C-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;S-&gt;C-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;S-&gt;C-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>C-&gt;N-&gt;S-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>C-&gt;N-&gt;S-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;C-&gt;S-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;C-&gt;S-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>O-&gt;N-&gt;C-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>O-&gt;N-&gt;C-&gt;S</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;O-&gt;C-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;O-&gt;C-&gt;S</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>C-&gt;N-&gt;O-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>C-&gt;N-&gt;O-&gt;S</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;C-&gt;O-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;C-&gt;O-&gt;S</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3681,7 +3681,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Trainer</source>
-        <translation type="unfinished"></translation>
+        <translation>训练家</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -3834,12 +3834,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>起始日期</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>最后日期</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -3854,7 +3854,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Items</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -4075,7 +4075,7 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Gen 3 TID\SID</source>
-        <translation>Gen3 ID乱数</translation>
+        <translation>第三世代ID乱数</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -4120,12 +4120,12 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>FRLGE</source>
-        <translation type="unfinished"></translation>
+        <translation>火叶/绿宝石</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>RS</source>
-        <translation type="unfinished"></translation>
+        <translation>红蓝宝石</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -4143,7 +4143,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Gen 4 TID/SID</source>
-        <translation>第四世代TID/SID</translation>
+        <translation>第四世代ID乱数</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -4221,7 +4221,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Gen 5 TID/SID</source>
-        <translation type="unfinished"></translation>
+        <translation>第五世代ID乱数</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -4364,7 +4364,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Gen 8 TID/SID</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代ID乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -4638,7 +4638,7 @@
     <message>
         <location filename="../Util/IVToPID.ui"/>
         <source>IVs to PID</source>
-        <translation>个体到PID</translation>
+        <translation>个体值查询PID</translation>
     </message>
     <message>
         <location filename="../Util/IVToPID.ui"/>
@@ -4710,13 +4710,13 @@
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
-        <source>Cute Charm （DPPt）</source>
-        <translation type="unfinished"></translation>
+        <source>Cute Charm (DPPt)</source>
+        <translation>迷人之躯(DPPt)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="58"/>
-        <source>Cute Charm （HGSS）</source>
-        <translation type="unfinished"></translation>
+        <source>Cute Charm (HGSS)</source>
+        <translation>迷人之躯(HGSS)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="60"/>
@@ -4759,12 +4759,12 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Jirachi Advancer</source>
-        <translation type="unfinished"></translation>
+        <translation>基拉祈帧数查询</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Starting Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>起始Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
@@ -4789,7 +4789,7 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="65"/>
         <source>Invalid advance</source>
-        <translation type="unfinished"></translation>
+        <translation>无效帧数</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="65"/>
@@ -4799,7 +4799,7 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
         <source>Invalid target</source>
-        <translation type="unfinished"></translation>
+        <translation>无效目标</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
@@ -4862,7 +4862,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Seed to Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed查询时间</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4935,7 +4935,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>GameCube</source>
-        <translation>NGC 乱数</translation>
+        <translation>NGC乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5015,7 +5015,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Raid</source>
-        <translation type="unfinished"></translation>
+        <translation>团体战乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5041,7 +5041,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Underground</source>
-        <translation type="unfinished"></translation>
+        <translation>地下大洞窟乱数</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5051,17 +5051,17 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>PID to IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>PID查询个体值</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>IVs to PID</source>
-        <translation type="unfinished">个体到PID</translation>
+        <translation>个体值查询PID</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Jirachi Advancer</source>
-        <translation type="unfinished"></translation>
+        <translation>基拉祈帧数查询</translation>
     </message>
 </context>
 <context>
@@ -5069,7 +5069,7 @@
     <message>
         <location filename="../Gen3/Tools/PIDToIV.ui"/>
         <source>PID to IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>PID查询个体值</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PIDToIV.ui"/>
@@ -5179,7 +5179,7 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
-        <source>Seed （Food / Encounter）</source>
+        <source>Seed (Food / Encounter)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5204,7 +5204,7 @@
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
-        <source>Offset （Food / Encounter）</source>
+        <source>Offset (Food / Encounter)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5486,17 +5486,17 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>IV Search</source>
-        <translation type="unfinished"></translation>
+        <translation>个体值检索</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Min IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>最小个体值</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Max IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>最大个体值</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -6048,7 +6048,7 @@
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.ui"/>
         <source>Profile Manager Gen 3</source>
-        <translation>存档信息管理 Gen3</translation>
+        <translation>第三世代存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.ui"/>
@@ -6098,7 +6098,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.ui"/>
         <source>Profile Manager Gen 4</source>
-        <translation>存档信息管理 Gen4</translation>
+        <translation>第四世代存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.ui"/>
@@ -6148,7 +6148,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.ui"/>
         <source>Profile Manager Gen 5</source>
-        <translation>存档信息管理 Gen5</translation>
+        <translation>第五世代存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.ui"/>
@@ -6198,7 +6198,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.ui"/>
         <source>Profile Manager Gen 8</source>
-        <translation>存档信息管理 Gen8</translation>
+        <translation>第八世代存档信息管理</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.ui"/>
@@ -6599,7 +6599,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Gen 8 Raids</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代团体战乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6614,17 +6614,17 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Wild Area</source>
-        <translation type="unfinished"></translation>
+        <translation>旷野地带</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Isle of Armor</source>
-        <translation type="unfinished"></translation>
+        <translation>铠岛</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Crown Tundra</source>
-        <translation type="unfinished"></translation>
+        <translation>王冠雪原</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6679,7 +6679,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>随机</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -6689,7 +6689,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -7034,7 +7034,7 @@
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
-        <source>Xoroshiro （BDSP）</source>
+        <source>Xoroshiro (BDSP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7054,7 +7054,7 @@
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
-        <source>Value （Hex）</source>
+        <source>Value (Hex)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7208,7 +7208,7 @@
     <message>
         <location filename="../Gen4/Tools/RoamerMap.ui"/>
         <source>Roamer Map</source>
-        <translation type="unfinished"></translation>
+        <translation>游走地图</translation>
     </message>
 </context>
 <context>
@@ -7288,7 +7288,7 @@
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.ui"/>
         <source>Search Coin Flips</source>
-        <translation type="unfinished"></translation>
+        <translation>查询硬币翻转序列</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.ui"/>
@@ -7317,7 +7317,7 @@
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
         <source>Gen 3 Seed to Time</source>
-        <translation>Gen3 Seed到时间</translation>
+        <translation>第三世代Seed查询时间</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
@@ -7345,7 +7345,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Gen 4 Seed to Time</source>
-        <translation>Gen4 Seed到时间</translation>
+        <translation>第四世代Seed查询时间</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7395,12 +7395,12 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Coin Flips:</source>
-        <translation type="unfinished"></translation>
+        <translation>硬币序列:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>HGSS</source>
-        <translation type="unfinished"></translation>
+        <translation>HGSS</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7430,7 +7430,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Elm Calls:</source>
-        <translation type="unfinished"></translation>
+        <translation>电话序列:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -7452,17 +7452,17 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="187"/>
         <source>Coin Flips: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>硬币序列: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="237"/>
         <source>Elm Calls: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>电话序列: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>Roamers: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>游走: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
@@ -7495,7 +7495,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Coin flips</source>
-        <translation type="unfinished"></translation>
+        <translation>硬币序列</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7806,12 +7806,12 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>传说</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Events</source>
-        <translation type="unfinished"></translation>
+        <translation>配信</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -7839,7 +7839,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Gen 4 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代定点乱数</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -7938,12 +7938,12 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Min Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最小Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Max Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>最大Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8014,12 +8014,12 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>传说</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Events</source>
-        <translation type="unfinished"></translation>
+        <translation>配信</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -8047,7 +8047,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Static Gen 8</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代定点乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8182,17 +8182,17 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>传说</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
-        <source>Ramanas Park （Pure Space）</source>
-        <translation type="unfinished"></translation>
+        <source>Ramanas Park (Pure Space)</source>
+        <translation>玫瑰公园(美丽空间)</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
-        <source>Ramanas Park （Strange Space）</source>
-        <translation type="unfinished"></translation>
+        <source>Ramanas Park (Strange Space)</source>
+        <translation>玫瑰公园(神秘空间)</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8222,7 +8222,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>随机</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8237,7 +8237,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Mythics</source>
-        <translation type="unfinished"></translation>
+        <translation>幻兽</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -8363,7 +8363,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
@@ -8738,7 +8738,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Underground</source>
-        <translation type="unfinished"></translation>
+        <translation>地下大洞窟乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -9011,12 +9011,12 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
@@ -9094,7 +9094,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Gen 3 Wild</source>
-        <translation>Gen3 野生</translation>
+        <translation>第三世代野生乱数</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -9823,7 +9823,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Wild Gen 8</source>
-        <translation type="unfinished"></translation>
+        <translation>第八世代野生乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10073,7 +10073,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可追踪</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -10214,12 +10214,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>音高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
@@ -10327,7 +10327,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
@@ -10548,7 +10548,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>道具</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="166"/>
