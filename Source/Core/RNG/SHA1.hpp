@@ -115,7 +115,10 @@ private:
     u32 data[80];
 };
 
-class MultiSHA1
+/**
+ * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds. Computes 4 seeds at a time
+ */
+class SHA1Multi
 {
 public:
     /**
@@ -123,7 +126,7 @@ public:
      *
      * @param profile Profile input parameters
      */
-    MultiSHA1(const Profile5 &profile);
+    SHA1Multi(const Profile5 &profile);
 
     /**
      * @brief Construct a new SHA1 object
@@ -136,7 +139,7 @@ public:
      * @param vFrame VFrame parameter
      * @param gxStat GxStat parameter
      */
-    MultiSHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat);
+    SHA1Multi(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat);
 
     /**
      * @brief Hashes input parameters from the precomputed \p alpha

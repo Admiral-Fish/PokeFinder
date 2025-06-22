@@ -148,7 +148,7 @@ void SHA1Test::hashTime()
     QCOMPARE(sha.hashSeed(alpha), seed);
 }
 
-void MultiSHA1Test::hash_data()
+void SHA1MultiTest::hash_data()
 {
     QTest::addColumn<KeyPresses>("keypresses");
     QTest::addColumn<bool>("skipLR");
@@ -163,7 +163,7 @@ void MultiSHA1Test::hash_data()
     QTest::addColumn<DSType>("dsType");
     QTest::addColumn<Seeds>("seed");
 
-    json data = readData("multisha1", "hash");
+    json data = readData("sha1multi", "hash");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -173,7 +173,7 @@ void MultiSHA1Test::hash_data()
     }
 }
 
-void MultiSHA1Test::hash()
+void SHA1MultiTest::hash()
 {
     QFETCH(KeyPresses, keypresses);
     QFETCH(bool, skipLR);
@@ -197,7 +197,7 @@ void MultiSHA1Test::hash()
     const Date &date = dateTime.getDate();
     const Time &time = dateTime.getTime();
 
-    MultiSHA1 sha(profile);
+    SHA1Multi sha(profile);
     sha.setButton(buttons.front().value);
     sha.setDate(date);
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
@@ -207,7 +207,7 @@ void MultiSHA1Test::hash()
     QCOMPARE(sha.hashSeed(alpha), seed);
 }
 
-void MultiSHA1Test::hashTime_data()
+void SHA1MultiTest::hashTime_data()
 {
     QTest::addColumn<KeyPresses>("keypresses");
     QTest::addColumn<bool>("skipLR");
@@ -222,7 +222,7 @@ void MultiSHA1Test::hashTime_data()
     QTest::addColumn<DSType>("dsType");
     QTest::addColumn<Seeds>("seed");
 
-    json data = readData("multisha1", "hashTime");
+    json data = readData("sha1multi", "hashTime");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -232,7 +232,7 @@ void MultiSHA1Test::hashTime_data()
     }
 }
 
-void MultiSHA1Test::hashTime()
+void SHA1MultiTest::hashTime()
 {
     QFETCH(KeyPresses, keypresses);
     QFETCH(bool, skipLR);
@@ -255,7 +255,7 @@ void MultiSHA1Test::hashTime()
     Date date;
     Time time(12, 0, 0);
 
-    MultiSHA1 sha(profile);
+    SHA1Multi sha(profile);
     sha.setButton(buttons.front().value);
     sha.setDate(date);
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());

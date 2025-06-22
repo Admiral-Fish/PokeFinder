@@ -41,11 +41,7 @@ static vuint128 calcWMulti(vuint128 *data, int i)
 
 static void calcWSIMD(u32 *data, int i)
 {
-    for (int index = i; index < i + 4; index++)
-    {
-        u32 val = std::rotl(data[index - 6] ^ data[index - 16] ^ data[index - 28] ^ data[index - 32], 2);
-        data[index] = val;
-    }
+    v32x4_store(&data[i], v32x4_rotl<2>(v32x4_load(&data[i - 6]) ^ v32x4_load(&data[i - 16]) ^ v32x4_load(&data[i - 28]) ^ v32x4_load(&data[i - 32])));
 };
 
 static consteval u32 computeBCD(u8 val)
@@ -369,13 +365,13 @@ void SHA1::setTime(u32 time, DSType dsType)
     data[9] = val;
 }
 
-MultiSHA1::MultiSHA1(const Profile5 &profile) :
-    MultiSHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(),
+SHA1Multi::SHA1Multi(const Profile5 &profile) :
+    SHA1Multi(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(),
               profile.getVFrame(), profile.getGxStat())
 {
 }
 
-MultiSHA1::MultiSHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+SHA1Multi::SHA1Multi(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
 {
     auto nazos = Nazos::getNazo(version, language, type);
     for (int i = 0; i < nazos.size(); i++)
@@ -401,7 +397,7 @@ MultiSHA1::MultiSHA1(Game version, Language language, DSType type, u64 mac, bool
     calcWMulti(data, 18);
 }
 
-std::array<u64, 4> MultiSHA1::hashSeed(const std::array<vuint128, 5> &alpha)
+std::array<u64, 4> SHA1Multi::hashSeed(const std::array<vuint128, 5> &alpha)
 {
     vuint128 a = alpha[0];
     vuint128 b = alpha[1];
@@ -503,7 +499,7 @@ std::array<u64, 4> MultiSHA1::hashSeed(const std::array<vuint128, 5> &alpha)
     return seeds;
 }
 
-std::array<vuint128, 5> MultiSHA1::precompute()
+std::array<vuint128, 5> SHA1Multi::precompute()
 {
     vuint128 a(0x67452301);
     vuint128 b(0xefcdab89);
@@ -534,27 +530,27 @@ std::array<vuint128, 5> MultiSHA1::precompute()
     return { d, e, t, a, b };
 }
 
-void MultiSHA1::setButton(u32 button)
+void SHA1Multi::setButton(u32 button)
 {
     data[12] = vuint128(button);
 }
 
-void MultiSHA1::setDate(const Date &date)
+void SHA1Multi::setDate(const Date &date)
 {
     data[8] = vuint128(dateValues[date.getJD() - Date().getJD()]);
 }
 
-void MultiSHA1::setTimer0(u32 timer0, u8 vcount)
+void SHA1Multi::setTimer0(u32 timer0, u8 vcount)
 {
     data[5] = vuint128(std::byteswap(static_cast<u32>(vcount << 16) | timer0));
 }
 
-void MultiSHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
+void SHA1Multi::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 {
     setTime(hour * 3600 + minute * 60 + second, dsType);
 }
 
-void MultiSHA1::setTime(u32 time, DSType dsType)
+void SHA1Multi::setTime(u32 time, DSType dsType)
 {
     vuint128 val(timeValues[time], timeValues[time + 1], timeValues[time + 2], timeValues[time + 3]);
     if (time >= 43200 && dsType != DSType::DS3)

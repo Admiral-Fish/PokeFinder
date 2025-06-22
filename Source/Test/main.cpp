@@ -133,9 +133,9 @@ int main()
     status += runTest<LCRNGReverseTest>(fails);
     status += runTest<LCRNG64Test>(fails);
     status += runTest<MTTest>(fails);
-    status += runTest<MultiSHA1Test>(fails);
     status += runTest<SFMTTest>(fails);
     status += runTest<SHA1Test>(fails);
+    status += runTest<SHA1MultiTest>(fails);
     status += runTest<TinyMTTest>(fails);
     status += runTest<XoroshiroTest>(fails);
     status += runTest<XoroshiroBDSPTest>(fails);

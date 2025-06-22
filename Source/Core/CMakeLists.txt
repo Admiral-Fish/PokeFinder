@@ -12,7 +12,7 @@ if (MSVC)
     add_compile_options(/Zc:inline)
 endif ()
 
-if (UNIX AND SIMD)
+if ((MINGW OR UNIX) AND SIMD)
     include(GetTargetArch)
     get_target_arch(ARCH)
     if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))

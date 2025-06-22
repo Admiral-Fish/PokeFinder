@@ -83,7 +83,7 @@ private:
      */
     void search(const Date &start, const Date &end) override
     {
-        MultiSHA1 sha(this->profile);
+        SHA1Multi sha(this->profile);
 
         for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
         {
