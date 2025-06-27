@@ -304,7 +304,7 @@ if (MSVC)
 endif ()
 
 if (SIMD)
-    target_compile_definitions(PokeFinderCore PRIVATE SIMD)
+    target_compile_definitions(PokeFinderCore PUBLIC SIMD)
 
     if (APPLE)
         if ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES AND "arm64" IN_LIST CMAKE_OSX_ARCHITECTURES)

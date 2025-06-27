@@ -775,3 +775,374 @@ void SHA1AVX2::setTime(u32 time, DSType dsType)
     data[9] = val;
 }
 #endif
+
+#if defined(SIMD_X86) || defined(SIMD_ARM)
+SHA1SIMD::SHA1SIMD(const Profile5 &profile) :
+    SHA1SIMD(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getVFrame(), profile.getGxStat())
+{
+}
+
+SHA1SIMD::SHA1SIMD(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat)
+{
+    auto nazos = Nazos::getNazo(version, language, type);
+    std::copy(nazos.begin(), nazos.end(), data);
+
+    data[6] = mac & 0xffff;
+    data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);
+
+    // Set values
+    data[10] = 0x00000000;
+    data[11] = 0x00000000;
+    data[13] = 0x80000000;
+    data[14] = 0x00000000;
+    data[15] = 0x000001a0;
+
+    // Precompute data[18]
+    calcW(data, 18);
+}
+
+u64 SHA1SIMD::hashSeed()
+{
+    vuint128 ABCD, E0, E1;
+    vuint128 MSG0, MSG1, MSG2, MSG3;
+
+    /* Load initial values */
+    ABCD = vuint128(0x10325476, 0x98badcfe, 0xefcdab89, 0x67452301);
+    E0 = vuint128(0, 0, 0, 0xc3d2e1f0);
+
+#ifdef SIMD_X86
+    /* Rounds 0-3 */
+    MSG0 = v32x4_load(&data[0]);
+    MSG0.uint128 = _mm_shuffle_epi32(MSG0.uint128, 0x1B);
+    E0 = E0 + MSG0;
+    E1 = ABCD;
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 0);
+
+    /* Rounds 4-7 */
+    MSG1 = v32x4_load(&data[4]);
+    MSG1.uint128 = _mm_shuffle_epi32(MSG1.uint128, 0x1B);
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG1.uint128);
+    E0 = ABCD;
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 0);
+    MSG0.uint128 = _mm_sha1msg1_epu32(MSG0.uint128, MSG1.uint128);
+
+    /* Rounds 8-11 */
+    MSG2 = v32x4_load(&data[8]);
+    MSG2.uint128 = _mm_shuffle_epi32(MSG2.uint128, 0x1B);
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG2.uint128);
+    E1 = ABCD;
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 0);
+    MSG1.uint128 = _mm_sha1msg1_epu32(MSG1.uint128, MSG2.uint128);
+    MSG0 = MSG0 ^ MSG2;
+
+    /* Rounds 12-15 */
+    MSG3 = v32x4_load(&data[12]);
+    MSG3.uint128 = _mm_shuffle_epi32(MSG3.uint128, 0x1B);
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG3.uint128);
+    E0 = ABCD;
+    MSG0.uint128 = _mm_sha1msg2_epu32(MSG0.uint128, MSG3.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 0);
+    MSG2.uint128 = _mm_sha1msg1_epu32(MSG2.uint128, MSG3.uint128);
+    MSG1 = MSG1 ^ MSG3;
+
+    /* Rounds 16-19 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG0.uint128);
+    E1 = ABCD;
+    MSG1.uint128 = _mm_sha1msg2_epu32(MSG1.uint128, MSG0.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 0);
+    MSG3.uint128 = _mm_sha1msg1_epu32(MSG3.uint128, MSG0.uint128);
+    MSG2 = MSG2 ^ MSG0;
+
+    /* Rounds 20-23 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG1.uint128);
+    E0 = ABCD;
+    MSG2.uint128 = _mm_sha1msg2_epu32(MSG2.uint128, MSG1.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 1);
+    MSG0.uint128 = _mm_sha1msg1_epu32(MSG0.uint128, MSG1.uint128);
+    MSG3 = MSG3 ^ MSG1;
+
+    /* Rounds 24-27 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG2.uint128);
+    E1 = ABCD;
+    MSG3.uint128 = _mm_sha1msg2_epu32(MSG3.uint128, MSG2.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 1);
+    MSG1.uint128 = _mm_sha1msg1_epu32(MSG1.uint128, MSG2.uint128);
+    MSG0 = MSG0 ^ MSG2;
+
+    /* Rounds 28-31 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG3.uint128);
+    E0 = ABCD;
+    MSG0.uint128 = _mm_sha1msg2_epu32(MSG0.uint128, MSG3.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 1);
+    MSG2.uint128 = _mm_sha1msg1_epu32(MSG2.uint128, MSG3.uint128);
+    MSG1 = MSG1 ^ MSG3;
+
+    /* Rounds 32-35 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG0.uint128);
+    E1 = ABCD;
+    MSG1.uint128 = _mm_sha1msg2_epu32(MSG1.uint128, MSG0.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 1);
+    MSG3.uint128 = _mm_sha1msg1_epu32(MSG3.uint128, MSG0.uint128);
+    MSG2 = MSG2 ^ MSG0;
+
+    /* Rounds 36-39 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG1.uint128);
+    E0 = ABCD;
+    MSG2.uint128 = _mm_sha1msg2_epu32(MSG2.uint128, MSG1.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 1);
+    MSG0.uint128 = _mm_sha1msg1_epu32(MSG0.uint128, MSG1.uint128);
+    MSG3 = MSG3 ^ MSG1;
+
+    /* Rounds 40-43 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG2.uint128);
+    E1 = ABCD;
+    MSG3.uint128 = _mm_sha1msg2_epu32(MSG3.uint128, MSG2.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 2);
+    MSG1.uint128 = _mm_sha1msg1_epu32(MSG1.uint128, MSG2.uint128);
+    MSG0 = MSG0 ^ MSG2;
+
+    /* Rounds 44-47 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG3.uint128);
+    E0 = ABCD;
+    MSG0.uint128 = _mm_sha1msg2_epu32(MSG0.uint128, MSG3.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 2);
+    MSG2.uint128 = _mm_sha1msg1_epu32(MSG2.uint128, MSG3.uint128);
+    MSG1 = MSG1 ^ MSG3;
+
+    /* Rounds 48-51 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG0.uint128);
+    E1 = ABCD;
+    MSG1.uint128 = _mm_sha1msg2_epu32(MSG1.uint128, MSG0.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 2);
+    MSG3.uint128 = _mm_sha1msg1_epu32(MSG3.uint128, MSG0.uint128);
+    MSG2 = MSG2 ^ MSG0;
+
+    /* Rounds 52-55 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG1.uint128);
+    E0 = ABCD;
+    MSG2.uint128 = _mm_sha1msg2_epu32(MSG2.uint128, MSG1.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 2);
+    MSG0.uint128 = _mm_sha1msg1_epu32(MSG0.uint128, MSG1.uint128);
+    MSG3 = MSG3 ^ MSG1;
+
+    /* Rounds 56-59 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG2.uint128);
+    E1 = ABCD;
+    MSG3.uint128 = _mm_sha1msg2_epu32(MSG3.uint128, MSG2.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 2);
+    MSG1.uint128 = _mm_sha1msg1_epu32(MSG1.uint128, MSG2.uint128);
+    MSG0 = MSG0 ^ MSG2;
+
+    /* Rounds 60-63 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG3.uint128);
+    E0 = ABCD;
+    MSG0.uint128 = _mm_sha1msg2_epu32(MSG0.uint128, MSG3.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 3);
+    MSG2.uint128 = _mm_sha1msg1_epu32(MSG2.uint128, MSG3.uint128);
+    MSG1 = MSG1 ^ MSG3;
+
+    /* Rounds 64-67 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG0.uint128);
+    E1 = ABCD;
+    MSG1.uint128 = _mm_sha1msg2_epu32(MSG1.uint128, MSG0.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 3);
+    MSG3.uint128 = _mm_sha1msg1_epu32(MSG3.uint128, MSG0.uint128);
+    MSG2 = MSG2 ^ MSG0;
+
+    /* Rounds 68-71 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG1.uint128);
+    E0 = ABCD;
+    MSG2.uint128 = _mm_sha1msg2_epu32(MSG2.uint128, MSG1.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 3);
+    MSG3 = MSG3 ^ MSG1;
+
+    /* Rounds 72-75 */
+    E0.uint128 = _mm_sha1nexte_epu32(E0.uint128, MSG2.uint128);
+    E1 = ABCD;
+    MSG3.uint128 = _mm_sha1msg2_epu32(MSG3.uint128, MSG2.uint128);
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E0.uint128, 3);
+
+    /* Rounds 76-79 */
+    E1.uint128 = _mm_sha1nexte_epu32(E1.uint128, MSG3.uint128);
+    E0 = ABCD;
+    ABCD.uint128 = _mm_sha1rnds4_epu32(ABCD.uint128, E1.uint128, 3);
+#else
+    /* Reverse for little endian */
+    MSG0 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG0)));
+    MSG1 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG1)));
+    MSG2 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG2)));
+    MSG3 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG3)));
+
+    TMP0 = vaddq_u32(MSG0, vdupq_n_u32(0x5A827999));
+    TMP1 = vaddq_u32(MSG1, vdupq_n_u32(0x5A827999));
+
+    /* Rounds 0-3 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1cq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG2, vdupq_n_u32(0x5A827999));
+    MSG0 = vsha1su0q_u32(MSG0, MSG1, MSG2);
+
+    /* Rounds 4-7 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1cq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG3, vdupq_n_u32(0x5A827999));
+    MSG0 = vsha1su1q_u32(MSG0, MSG3);
+    MSG1 = vsha1su0q_u32(MSG1, MSG2, MSG3);
+
+    /* Rounds 8-11 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1cq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG0, vdupq_n_u32(0x5A827999));
+    MSG1 = vsha1su1q_u32(MSG1, MSG0);
+    MSG2 = vsha1su0q_u32(MSG2, MSG3, MSG0);
+
+    /* Rounds 12-15 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1cq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG1, vdupq_n_u32(0x6ED9EBA1));
+    MSG2 = vsha1su1q_u32(MSG2, MSG1);
+    MSG3 = vsha1su0q_u32(MSG3, MSG0, MSG1);
+
+    /* Rounds 16-19 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1cq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG2, vdupq_n_u32(0x6ED9EBA1));
+    MSG3 = vsha1su1q_u32(MSG3, MSG2);
+    MSG0 = vsha1su0q_u32(MSG0, MSG1, MSG2);
+
+    /* Rounds 20-23 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG3, vdupq_n_u32(0x6ED9EBA1));
+    MSG0 = vsha1su1q_u32(MSG0, MSG3);
+    MSG1 = vsha1su0q_u32(MSG1, MSG2, MSG3);
+
+    /* Rounds 24-27 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG0, vdupq_n_u32(0x6ED9EBA1));
+    MSG1 = vsha1su1q_u32(MSG1, MSG0);
+    MSG2 = vsha1su0q_u32(MSG2, MSG3, MSG0);
+
+    /* Rounds 28-31 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG1, vdupq_n_u32(0x6ED9EBA1));
+    MSG2 = vsha1su1q_u32(MSG2, MSG1);
+    MSG3 = vsha1su0q_u32(MSG3, MSG0, MSG1);
+
+    /* Rounds 32-35 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG2, vdupq_n_u32(0x8F1BBCDC));
+    MSG3 = vsha1su1q_u32(MSG3, MSG2);
+    MSG0 = vsha1su0q_u32(MSG0, MSG1, MSG2);
+
+    /* Rounds 36-39 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG3, vdupq_n_u32(0x8F1BBCDC));
+    MSG0 = vsha1su1q_u32(MSG0, MSG3);
+    MSG1 = vsha1su0q_u32(MSG1, MSG2, MSG3);
+
+    /* Rounds 40-43 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1mq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG0, vdupq_n_u32(0x8F1BBCDC));
+    MSG1 = vsha1su1q_u32(MSG1, MSG0);
+    MSG2 = vsha1su0q_u32(MSG2, MSG3, MSG0);
+
+    /* Rounds 44-47 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1mq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG1, vdupq_n_u32(0x8F1BBCDC));
+    MSG2 = vsha1su1q_u32(MSG2, MSG1);
+    MSG3 = vsha1su0q_u32(MSG3, MSG0, MSG1);
+
+    /* Rounds 48-51 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1mq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG2, vdupq_n_u32(0x8F1BBCDC));
+    MSG3 = vsha1su1q_u32(MSG3, MSG2);
+    MSG0 = vsha1su0q_u32(MSG0, MSG1, MSG2);
+
+    /* Rounds 52-55 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1mq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG3, vdupq_n_u32(0xCA62C1D6));
+    MSG0 = vsha1su1q_u32(MSG0, MSG3);
+    MSG1 = vsha1su0q_u32(MSG1, MSG2, MSG3);
+
+    /* Rounds 56-59 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1mq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG0, vdupq_n_u32(0xCA62C1D6));
+    MSG1 = vsha1su1q_u32(MSG1, MSG0);
+    MSG2 = vsha1su0q_u32(MSG2, MSG3, MSG0);
+
+    /* Rounds 60-63 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG1, vdupq_n_u32(0xCA62C1D6));
+    MSG2 = vsha1su1q_u32(MSG2, MSG1);
+    MSG3 = vsha1su0q_u32(MSG3, MSG0, MSG1);
+
+    /* Rounds 64-67 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E0, TMP0);
+    TMP0 = vaddq_u32(MSG2, vdupq_n_u32(0xCA62C1D6));
+    MSG3 = vsha1su1q_u32(MSG3, MSG2);
+    MSG0 = vsha1su0q_u32(MSG0, MSG1, MSG2);
+
+    /* Rounds 68-71 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+    TMP1 = vaddq_u32(MSG3, vdupq_n_u32(0xCA62C1D6));
+    MSG0 = vsha1su1q_u32(MSG0, MSG3);
+
+    /* Rounds 72-75 */
+    E1 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E0, TMP0);
+
+    /* Rounds 76-79 */
+    E0 = vsha1h_u32(vgetq_lane_u32(ABCD, 0));
+    ABCD = vsha1pq_u32(ABCD, E1, TMP1);
+#endif
+
+    u64 part1 = std::byteswap(ABCD.uint32[3] + 0x67452301);
+    u64 part2 = std::byteswap(ABCD.uint32[2] + 0xefcdab89);
+
+    u64 seed = (part2 << 32) | part1;
+    return BWRNG(seed).next();
+}
+
+void SHA1SIMD::setButton(u32 button)
+{
+    data[12] = button;
+}
+
+void SHA1SIMD::setDate(const Date &date)
+{
+    data[8] = dateValues[date.getJD() - Date().getJD()];
+}
+
+void SHA1SIMD::setTimer0(u32 timer0, u8 vcount)
+{
+    data[5] = std::byteswap(static_cast<u32>(vcount << 16) | timer0);
+}
+
+void SHA1SIMD::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
+{
+    setTime(hour * 3600 + minute * 60 + second, dsType);
+}
+
+void SHA1SIMD::setTime(u32 time, DSType dsType)
+{
+    u32 val = timeValues[time];
+    if (time >= 43200 && dsType == DSType::DS3)
+    {
+        val ^= 0x40000000;
+    }
+    data[9] = val;
+}
+#endif

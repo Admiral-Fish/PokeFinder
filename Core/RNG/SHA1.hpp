@@ -284,4 +284,84 @@ private:
 };
 #endif
 
+#if defined(SIMD_X86) || defined(SIMD_ARM)
+/**
+ * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds
+ */
+class SHA1SIMD
+{
+public:
+    /**
+     * @brief Construct a new SHA1 object
+     *
+     * @param profile Profile input parameters
+     */
+    SHA1SIMD(const Profile5 &profile);
+
+    /**
+     * @brief Construct a new SHA1 object
+     *
+     * @param version Game version parameter
+     * @param language Language parameter
+     * @param type DS type parameter
+     * @param mac MAC address parameter
+     * @param vFrame VFrame parameter
+     * @param gxStat GxStat parameter
+     */
+    SHA1SIMD(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat);
+
+    /**
+     * @brief Hashes input parameters from the precomputed \p alpha
+     *
+     * @param alpha Precomputed first 8 rounds alpha
+     *
+     * @return Hashed seed
+     */
+    u64 hashSeed();
+
+    /**
+     * @brief Sets the SHA1 parameter based on \p button
+     *
+     * @param button Keypress parameter
+     */
+    void setButton(u32 button);
+
+    /**
+     * @brief Sets the SHA1 parameter based on \p date
+     *
+     * @param date Date parameter
+     */
+    void setDate(const Date &date);
+
+    /**
+     * @brief Sets the SHA1 parameter based on \p timer0 and \p vcount
+     *
+     * @param timer0 Timer0 parameter
+     * @param vcount VCount parameter
+     */
+    void setTimer0(u32 timer0, u8 vcount);
+
+    /**
+     * @brief Sets the SHA1 parameter based on time and \p dsType
+     *
+     * @param hour Hour parameter
+     * @param minute Minute parameter
+     * @param second Second parameter
+     * @param dsType DS type parameter
+     */
+    void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
+
+    /**
+     * @brief Sets the SHA1 parameter based on time and \p dsType
+     *
+     * @param time Time parameter
+     * @param dsType DS type parameter
+     */
+    void setTime(u32 time, DSType dsType);
+
+private:
+    u32 data[16];
+};
+#endif
+
 #endif // SHA1_HPP
