@@ -28,24 +28,90 @@
 #define SIMD_X86
 #include <immintrin.h>
 #include <smmintrin.h>
+
 #ifdef _MSC_VER
 #include <intrin.h>
 #else
 #include <cpuid.h>
 #endif
 
-using vuint32x8 = __m256i;
 using vuint32x4 = __m128i;
-#elif defined(SIMD) && (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
+
+#elif defined(ENABLE_SIMD) && (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
 #define SIMD_ARM
 #include <arm_neon.h>
 
+#if defined(__APPLE__)
+#include <sys/sysctl.h>
+
+#elif defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <processthreadsapi.h>
+#include <windows.h>
+
+#elif defined(__linux__)
+#include <asm/hwcap.h>
+#include <sys/auxv.h>
+
+#endif
+
 using vuint32x4 = uint32x4_t;
+
 #else
 #include <bit>
 
 using vuint32x4 = std::array<u32, 4>;
+
 #endif
+
+inline bool hasSHA()
+{
+#if defined(SIMD_X86)
+    int info[4];
+#ifdef _MSC_VER
+    __cpuidex(info, 7, 0); // EAX=7, ECX=0 for extended features
+#else
+    __cpuid_count(7, 0, info[0], info[1], info[2], info[3]);
+#endif
+    // Check bit 29 of EBX for native Intel/AMD SHA Extensions support
+    return (info[1] & (1 << 29)) != 0;
+
+#elif defined(SIMD_ARM)
+    static const bool has_sha1 = []() -> bool {
+        
+    #if defined(__APPLE__)
+        int supported = 0;
+        size_t len = sizeof(supported);
+        if (sysctlbyname("hw.optional.armv8_sha1", &supported, &len, nullptr, 0) == 0) {
+            return supported == 1;
+        }
+        return false;
+
+    #elif defined(_WIN32)
+        return IsProcessorFeaturePresent(PF_ARM_V8_CRYPTO_INSTRUCTIONS_AVAILABLE) != 0;
+
+    #elif defined(__linux__)
+        return (getauxval(AT_HWCAP) & HWCAP_SHA1) != 0;
+
+    #else
+        // Compile-time fallback for unknown or bare-metal ARM systems
+        #if defined(__ARM_FEATURE_CRYPTO) || defined(__ARM_FEATURE_SHA1)
+            return true;
+        #else
+            return false;
+        #endif
+    #endif
+    }();
+
+    return has_sha1;
+
+#else
+    return false;
+
+#endif
+}
 
 union alignas(16) vuint128 {
     vuint32x4 uint128;
@@ -792,238 +858,5 @@ inline vuint128 v128_clmul64(vuint128 x, vuint128 y)
 #endif
     return ret;
 }
-
-#if defined(SIMD_X86)
-inline bool hasAVX2()
-{
-    int info[4];
-#ifdef _MSC_VER
-    __cpuidex(info, 7, 0); // EAX=7, ECX=0 for extended features
-#else
-    __cpuid_count(7, 0, info[0], info[1], info[2], info[3]);
-#endif
-    // Check bit 5 of EBX for AVX2 support
-    return (info[1] & (1 << 5)) != 0;
-}
-
-#if defined(__GNUC__) || defined(__clang__)
-#define VECTOR_TARGET_AVX2 __attribute__((target("avx,avx2")))
-#else
-#define VECTOR_TARGET_AVX2 // Resolves to nothing on MSVC
-#endif
-
-union alignas(32) vuint256 {
-    vuint32x8 uint256;
-    u64 uint64[4];
-    u32 uint32[8];
-
-    /**
-     * @brief Construct a new vuint256 object
-     */
-    vuint256() = default;
-
-    /**
-     * @brief Construct a new vuint256 object
-     *
-     * @param x Initalization number
-     */
-    VECTOR_TARGET_AVX2
-    vuint256(u32 x)
-    {
-        uint256 = _mm256_set1_epi32(x);
-    }
-
-    /**
-     * @brief Returns reference to u32 data element
-     *
-     * @param i Index
-     */
-    VECTOR_TARGET_AVX2
-    inline u32 &operator[](int i)
-    {
-        return uint32[i];
-    }
-
-    /**
-     * @brief Computes the bitwise NOT of each 32bit number pair in the vector
-     *
-     * @return Computed bitwise NOT vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator~() const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_xor_si256(uint256, _mm256_set1_epi32(-1));
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise ADD of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise ADD vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator+(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_add_epi32(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise left shift of each 32bit number pair in the vector
-     *
-     * @param shift Amount to shift by
-     *
-     * @return Computed bitwise left shift vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator<<(int shift) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_slli_epi32(uint256, shift);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise right shift of each 32bit number pair in the vector
-     *
-     * @param shift Amount to shift by
-     *
-     * @return Computed bitwise right shift vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator>>(int shift) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_srli_epi32(uint256, shift);
-        return ret;
-    }
-
-    /**
-     * @brief Compares each 32bit number pair in the vector for equality. Assigns 0xFFFFFFFF on equal and 0 when not
-     *
-     * @param y Second operand
-     *
-     * @return Computed equality vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator==(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_cmpeq_epi32(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise AND of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise AND vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator&(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_and_si256(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise XOR of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise XOR vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator^(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_xor_si256(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise OR of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise OR vector
-     */
-    VECTOR_TARGET_AVX2
-    inline vuint256 operator|(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_or_si256(uint256, y.uint256);
-        return ret;
-    }
-};
-
-/**
- * @brief Computes the byteswap of each 32bit number pair in the vector
- *
- * @param x Input vector
- *
- * @return Computed byteswap vector
- */
-VECTOR_TARGET_AVX2
-inline vuint256 v32x8_byteswap(vuint256 x)
-{
-    vuint256 ret;
-    ret.uint256 = _mm256_shuffle_epi8(x.uint256,
-                                      _mm256_setr_epi8(3, 2, 1, 0, 7, 6, 5, 4, 11, 10, 9, 8, 15, 14, 13, 12, 19, 18, 17, 16, 23, 22, 21, 20,
-                                                       27, 26, 25, 24, 31, 30, 29, 28));
-    return ret;
-}
-
-/**
- * @brief Loads vector from memory
- *
- * @param address Memory address
- *
- * @return Loaded vector
- */
-VECTOR_TARGET_AVX2
-inline vuint256 v32x8_load(const u32 *address)
-{
-    vuint256 ret;
-    ret.uint256 = _mm256_loadu_si256((const vuint32x8 *)address);
-    return ret;
-}
-
-/**
- * @brief Computes the bitwise rotate left of each 32bit number pair in the vector
- *
- * @tparam rotate Amount to rotateby
- * @param x Input vector
- *
- * @return Computed bitwise rotate left vector
- */
-template <int rotate>
-VECTOR_TARGET_AVX2
-inline vuint256 v32x8_rotl(vuint256 x)
-{
-    return (x << rotate) | (x >> (32 - rotate));
-}
-
-/**
- * @brief Computes the bitwise rotate right of each 32bit number pair in the vector
- *
- * @tparam rotate Amount to rotateby
- * @param x Input vector
- *
- * @return Computed bitwise rotate right vector
- */
-template <int rotate>
-VECTOR_TARGET_AVX2
-inline vuint256 v32x8_rotr(vuint256 x)
-{
-    return (x >> rotate) | (x << (32 - rotate));
-}
-#endif
 
 #endif // SIMD_HPP

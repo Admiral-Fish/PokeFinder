@@ -29,95 +29,45 @@ Searcher5<Generator, State>::Searcher5(const Generator &generator, const Profile
 template <class Generator, class State>
 void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 {
-#ifdef SIMD_X86
-    if (hasAVX2())
+    SHA1SSE sha(this->profile);
+    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
     {
-        SHA1AVX2 sha(this->profile);
-        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        sha.setTimer0(timer0, this->profile.getVCount());
+        for (Date date = start; date <= end; ++date)
         {
-            sha.setTimer0(timer0, this->profile.getVCount());
-            for (Date date = start; date <= end; ++date)
+            sha.setDate(date);
+            auto alpha = sha.precompute();
+            for (const auto &keypress : this->keypresses)
             {
-                sha.setDate(date);
-                auto alpha = sha.precompute();
-                for (const auto &keypress : this->keypresses)
+                sha.setButton(keypress.value);
+
+                for (u32 time = 0; time < 86400; time += 4)
                 {
-                    sha.setButton(keypress.value);
-
-                    for (u32 time = 0; time < 86400; time += 8)
+                    if (!this->searching)
                     {
-                        if (!this->searching)
-                        {
-                            return;
-                        }
+                        return;
+                    }
 
-                        sha.setTime(time, this->profile.getDSType());
-                        auto seeds = sha.hashSeed(alpha);
+                    sha.setTime(time, this->profile.getDSType());
+                    auto seeds = sha.hashSeed(alpha);
 
-                        for (u32 i = 0; i < seeds.size(); i++)
+                    for (u32 i = 0; i < seeds.size(); i++)
+                    {
+                        auto states = this->generator.generate(seeds[i]);
+                        if (!states.empty())
                         {
-                            auto states = this->generator.generate(seeds[i]);
-                            if (!states.empty())
+                            DateTime dt(date, time + i);
+
+                            std::lock_guard<std::mutex> lock(this->mutex);
+                            this->results.reserve(this->results.capacity() + states.size());
+                            for (const auto &state : states)
                             {
-                                DateTime dt(date, time + i);
-
-                                std::lock_guard<std::mutex> lock(this->mutex);
-                                this->results.reserve(this->results.capacity() + states.size());
-                                for (const auto &state : states)
-                                {
-                                    this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                }
+                                this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
                             }
                         }
                     }
-                    this->progress++;
                 }
-            }
-        }
-    }
-    else
-#endif
-    {
-        SHA1SSE sha(this->profile);
-        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
-        {
-            sha.setTimer0(timer0, this->profile.getVCount());
-            for (Date date = start; date <= end; ++date)
-            {
-                sha.setDate(date);
-                auto alpha = sha.precompute();
-                for (const auto &keypress : this->keypresses)
-                {
-                    sha.setButton(keypress.value);
-
-                    for (u32 time = 0; time < 86400; time += 4)
-                    {
-                        if (!this->searching)
-                        {
-                            return;
-                        }
-
-                        sha.setTime(time, this->profile.getDSType());
-                        auto seeds = sha.hashSeed(alpha);
-
-                        for (u32 i = 0; i < seeds.size(); i++)
-                        {
-                            auto states = this->generator.generate(seeds[i]);
-                            if (!states.empty())
-                            {
-                                DateTime dt(date, time + i);
-
-                                std::lock_guard<std::mutex> lock(this->mutex);
-                                this->results.reserve(this->results.capacity() + states.size());
-                                for (const auto &state : states)
-                                {
-                                    this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                }
-                            }
-                        }
-                    }
-                    this->progress++;
-                }
+                this->progress++;
             }
         }
     }
