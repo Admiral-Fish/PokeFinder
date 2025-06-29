@@ -19,6 +19,7 @@
 
 #include "Eggs8.hpp"
 #include "ui_Eggs8.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>

@@ -84,7 +84,6 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             }
             else // Force non shiny
             {
-                shiny = 0;
                 if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
@@ -96,7 +95,7 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
         std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
         for (u8 i = 0; i < staticTemplate.getIVCount();)
         {
-            u8 index = rngList.next() % 6;
+            u8 index = rngList.next(6);
             if (ivs[index] == 255)
             {
                 ivs[index] = 31;
@@ -108,7 +107,7 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
         {
             if (iv == 255)
             {
-                iv = rngList.next() % 32;
+                iv = rngList.next(32);
             }
         }
 
@@ -124,7 +123,7 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             rngList.next();
             break;
         default:
-            ability = rngList.next() % 2;
+            ability = rngList.next(2);
             break;
         }
 
@@ -141,13 +140,13 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             gender = 0;
             break;
         default:
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rngList.next() % 3) > 0)
+            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && rngList.next(3) > 0)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
             }
             else
             {
-                gender = (rngList.next() % 253) + 1 < info->getGender();
+                gender = rngList.next(253) + 1 < info->getGender();
             }
             break;
         }
@@ -159,14 +158,14 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
         }
         else
         {
-            nature = rngList.next() % 25;
+            nature = rngList.next(25);
         }
 
-        u8 height = rngList.next() % 129;
-        height += rngList.next() % 128;
+        u8 height = rngList.next(129);
+        height += rngList.next(128);
 
-        u8 weight = (rngList.next() % 129);
-        weight += rngList.next() % 128;
+        u8 weight = rngList.next(129);
+        weight += rngList.next(128);
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))

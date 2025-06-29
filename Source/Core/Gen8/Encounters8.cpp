@@ -29,7 +29,6 @@
 #include <Core/Resources/EncounterData8.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cstddef>
 
 struct DynamicSlot
 {

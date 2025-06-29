@@ -30,7 +30,7 @@ class PokeSpotState : public GeneratorState
 {
 public:
     /**
-     * @brief Construct a new WildSearcherState3 object
+     * @brief Construct a new PokeSpotState object
      *
      * @param seed Seed of the state
      * @param pid Pokemon PID

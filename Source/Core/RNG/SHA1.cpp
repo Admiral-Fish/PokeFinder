@@ -41,7 +41,9 @@ static vuint128 calcWMulti(vuint128 *data, int i)
 
 static void calcWSIMD(u32 *data, int i)
 {
-    v32x4_store(&data[i], v32x4_rotl<2>(v32x4_load(&data[i - 6]) ^ v32x4_load(&data[i - 16]) ^ v32x4_load(&data[i - 28]) ^ v32x4_load(&data[i - 32])));
+    v32x4_store(
+        &data[i],
+        v32x4_rotl<2>(v32x4_load(&data[i - 6]) ^ v32x4_load(&data[i - 16]) ^ v32x4_load(&data[i - 28]) ^ v32x4_load(&data[i - 32])));
 };
 
 static consteval u32 computeBCD(u8 val)

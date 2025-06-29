@@ -20,8 +20,9 @@
 #ifndef PROFILE8_HPP
 #define PROFILE8_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
+
+enum class Game : u32;
 
 /**
  * @brief Provides additional storage specific to Gen8

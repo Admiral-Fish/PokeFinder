@@ -53,7 +53,7 @@ public:
     Eggs4(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the Eggs4 object
      */
     ~Eggs4() override;
 

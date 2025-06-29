@@ -144,7 +144,7 @@ void IVCalculator::addEntry()
     def->setRange(1, 545); // Shuckle
 
     auto *spa = new QSpinBox(ui->scrollAreaWidgetContents);
-    spa->setRange(1, 420); // Xurkitree
+    spa->setRange(1, 435); // Deoxys (Attack Form)
 
     auto *spd = new QSpinBox(ui->scrollAreaWidgetContents);
     spd->setRange(1, 545); // Shuckle

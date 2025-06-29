@@ -50,7 +50,7 @@ public:
     ProfileManager4(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the ProfileManager3 object
+     * @brief Destroy the ProfileManager4 object
      */
     ~ProfileManager4() override;
 

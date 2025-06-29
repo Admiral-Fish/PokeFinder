@@ -33,7 +33,7 @@ class EventGenerator4 : public Generator<Profile4, StateFilter>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator4 object
+     * @brief Construct a new EventGenerator4 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances

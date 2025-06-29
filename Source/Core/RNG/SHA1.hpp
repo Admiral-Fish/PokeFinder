@@ -122,14 +122,14 @@ class SHA1Multi
 {
 public:
     /**
-     * @brief Construct a new SHA1 object
+     * @brief Construct a new SHA1Multi object
      *
      * @param profile Profile input parameters
      */
     SHA1Multi(const Profile5 &profile);
 
     /**
-     * @brief Construct a new SHA1 object
+     * @brief Construct a new SHA1Multi object
      *
      * @param version Game version parameter
      * @param language Language parameter

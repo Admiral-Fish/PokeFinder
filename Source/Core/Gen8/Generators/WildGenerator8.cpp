@@ -75,13 +75,13 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
-        if (encounterForce && (rngList.next() % 2) == 0 && !modifiedSlots.empty())
+        if (encounterForce && rngList.next(2) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[rngList.next() % modifiedSlots.count];
+            encounterSlot = modifiedSlots[rngList.next(modifiedSlots.count)];
         }
         else
         {
-            encounterSlot = EncounterSlot::bdspSlot(rngList.next() % 100, area.getEncounter());
+            encounterSlot = EncounterSlot::bdspSlot(rngList.next(100), area.getEncounter());
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -176,7 +176,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
         u8 weight = rngList.next(rand) % 129;
         weight += rngList.next(rand) % 128;
 
-        u16 item = getItem(rngList.next() % 100, lead, info);
+        u16 item = getItem(rngList.next(100), lead, info);
 
         WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
                          form, height, weight, info);

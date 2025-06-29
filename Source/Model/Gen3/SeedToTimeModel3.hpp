@@ -31,7 +31,7 @@ class SeedToTimeModel3 : public TableModel<DateTime>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new SeedTimeModel3 object
+     * @brief Construct a new SeedToTimeModel3 object
      *
      * @param parent Parent object, which takes memory ownership
      */

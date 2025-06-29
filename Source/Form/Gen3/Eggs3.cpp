@@ -175,8 +175,8 @@ void Eggs3::rsfrlgGenerate()
     auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
 
     auto filter = ui->filterRSFRLG->getFilter<StateFilter>();
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup, 0, 0, 0,
-                            method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup, 0, 0,
+                            0, method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 
     auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
     rsfrlg->addItems(states);

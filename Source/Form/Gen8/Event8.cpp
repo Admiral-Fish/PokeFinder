@@ -19,6 +19,7 @@
 
 #include "Event8.hpp"
 #include "ui_Event8.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Generators/EventGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>

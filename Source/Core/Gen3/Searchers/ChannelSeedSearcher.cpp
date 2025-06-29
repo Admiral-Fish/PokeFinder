@@ -21,7 +21,7 @@
 #include <algorithm>
 #include <thread>
 
-ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : SeedSearcher(criteria)
+ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria)
 {
 }
 

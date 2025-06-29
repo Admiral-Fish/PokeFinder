@@ -18,7 +18,6 @@
  */
 
 #include "Xoroshiro.hpp"
-#include <bit>
 
 constexpr u64 jumpTable[25][2]
     = { { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },

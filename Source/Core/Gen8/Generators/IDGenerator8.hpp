@@ -29,7 +29,7 @@ class IDGenerator8 : public IDGenerator
 {
 public:
     /**
-     * @brief Construct a new IDGenerator3 object
+     * @brief Construct a new IDGenerator8 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
