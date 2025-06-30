@@ -874,21 +874,12 @@ std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8
 
     bool cuteCharm = false;
     u8 buffer = 0;
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
     {
-        switch (info->getGender())
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
         {
-        case 0:
-        case 254:
-        case 255:
-            break;
-        default:
-            cuteCharm = true;
-            if (lead == Lead::CuteCharmF)
-            {
-                buffer = 25 * ((info->getGender() / 25) + 1);
-            }
-            break;
+            buffer = 25 * ((info->getGender() / 25) + 1);
         }
     }
 
@@ -1012,19 +1003,9 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
     if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
     {
         cuteCharm = true;
-        switch (info->getGender())
+        if (lead == Lead::CuteCharmF)
         {
-        case 0:
-        case 254:
-        case 255:
-            break;
-        default:
-            cuteCharm = true;
-            if (lead == Lead::CuteCharmF)
-            {
-                buffer = 25 * ((info->getGender() / 25) + 1);
-            }
-            break;
+            buffer = 25 * ((info->getGender() / 25) + 1);
         }
     }
 
