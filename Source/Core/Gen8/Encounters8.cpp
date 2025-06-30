@@ -583,7 +583,7 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
             for (int i = 0; i < max; i++)
             {
                 const auto &slot = entry->slots[i];
-                if (std::all_of(slots.begin(), slots.end() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; }))
+                if (std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; }))
                 {
                     slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
