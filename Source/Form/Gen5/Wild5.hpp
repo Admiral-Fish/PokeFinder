@@ -53,7 +53,7 @@ public:
     Wild5(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the Wild5 object
      */
     ~Wild5() override;
 

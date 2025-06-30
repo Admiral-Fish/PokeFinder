@@ -45,14 +45,14 @@ signals:
 
 public:
     /**
-     * @brief Construct a new Wild5 object
+     * @brief Construct a new Static5 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
     Static5(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the Static5 object
      */
     ~Static5() override;
 

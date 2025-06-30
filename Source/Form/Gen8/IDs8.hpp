@@ -44,7 +44,7 @@ public:
     IDs8(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the IDs3 object
+     * @brief Destroy the IDs8 object
      */
     ~IDs8() override;
 

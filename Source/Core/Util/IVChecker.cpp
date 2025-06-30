@@ -88,8 +88,12 @@ namespace
                 // Keep the highest value to filter with below
                 if ((i % 5) == result)
                 {
-                    possible[charIndex].emplace_back(i);
-                    characteristicHigh = i;
+                    // Only add values that are greater or equal to the minimums of all the stats
+                    if (std::all_of(minIVs.begin(), minIVs.end(), [i](u8 minIV) { return i >= minIV; }))
+                    {
+                        possible[charIndex].emplace_back(i);
+                        characteristicHigh = i;
+                    }
                 }
             }
         }

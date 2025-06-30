@@ -20,9 +20,9 @@
 #include "StaticSearcher3.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -71,7 +71,8 @@ std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa
 {
     std::vector<SearcherState> states;
     std::array<u8, 6> ivs;
-    if (staticTemplate->getBuggedRoamer()) {
+    if (staticTemplate->getBuggedRoamer())
+    {
         ivs = { hp, static_cast<u8>(atk & 7), 0, 0, 0, 0 };
     }
     else

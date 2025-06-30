@@ -35,13 +35,8 @@ constexpr u8 feebasSlots[] = { 2, 3, 5 };
 
 static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
 {
-    switch (info->getGender())
+    if (!info->getFixedGender())
     {
-    case 0:
-    case 254:
-    case 255:
-        return false;
-    default:
         if (lead == Lead::CuteCharmF)
         {
             return (pid & 255) >= info->getGender();
@@ -51,6 +46,8 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
             return (pid & 255) < info->getGender();
         }
     }
+
+    return false;
 }
 
 static u8 unownLetter(u32 pid)

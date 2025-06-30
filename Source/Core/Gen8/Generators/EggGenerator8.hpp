@@ -33,7 +33,7 @@ class EggGenerator8 : public EggGenerator<Profile8, StateFilter>
 {
 public:
     /**
-     * @brief Construct a new EggGenerator object
+     * @brief Construct a new EggGenerator8 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances

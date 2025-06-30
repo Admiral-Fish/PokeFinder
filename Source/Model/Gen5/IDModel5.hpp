@@ -34,7 +34,7 @@ class IDModel5 : public TableModel<SearcherState5<IDState>>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new IDModel4 object
+     * @brief Construct a new IDModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */

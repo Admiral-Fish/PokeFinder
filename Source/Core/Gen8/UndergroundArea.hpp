@@ -26,7 +26,6 @@
 #include <string>
 #include <vector>
 
-class PersonalInfo;
 class Xorshift;
 
 struct TypeRate

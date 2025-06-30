@@ -107,7 +107,7 @@ static u8 generatePokemon(XDRNG &rng, u16 tsv)
     return hp;
 }
 
-GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : SeedSearcher(criteria)
+GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : criteria(criteria)
 {
 }
 

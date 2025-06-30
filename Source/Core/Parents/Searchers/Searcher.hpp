@@ -34,6 +34,12 @@ template <class Profile, class Result>
 class Searcher : public SearcherBase<Result>
 {
 public:
+    /**
+     * @brief Construct a new Searcher object
+     *
+     * @param method Encounter method
+     * @param profile Profile Information
+     */
     Searcher(Method method, const Profile &profile) :
         SearcherBase<Result>(), method(method), profile(profile), tsv(profile.getTID() ^ profile.getSID())
     {

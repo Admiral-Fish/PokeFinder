@@ -29,7 +29,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
-#include <Model/Gen8/RaidModel.hpp>
+#include <Model/Gen8/StaticModel8.hpp>
 #include <QFile>
 #include <QSettings>
 
@@ -38,7 +38,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    model = new RaidModel(ui->tableView);
+    model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
@@ -74,7 +74,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     connect(ui->comboBoxDen, &QComboBox::currentIndexChanged, this, &Raids::denIndexChanged);
     connect(ui->comboBoxRarity, &QComboBox::currentIndexChanged, this, &Raids::rarityIndexChange);
     connect(ui->comboBoxSpecies, &QComboBox::currentIndexChanged, this, &Raids::specieIndexChanged);
-    connect(ui->filter, &Filter::showStatsChanged, model, &RaidModel::setShowStats);
+    connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 
     updateProfiles();
     locationIndexChanged(0);

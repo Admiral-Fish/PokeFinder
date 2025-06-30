@@ -20,7 +20,7 @@
 #ifndef COLOSEEDSEARCHER_HPP
 #define COLOSEEDSEARCHER_HPP
 
-#include <Core/Gen3/Searchers/SeedSearcher.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 struct ColoCriteria
@@ -32,11 +32,11 @@ struct ColoCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class ColoSeedSearcher final : public SeedSearcher<ColoCriteria>
+class ColoSeedSearcher final : public SearcherBase<u32>
 {
 public:
     /**
-     * @brief Construct a new GalesSeedSearcher object
+     * @brief Construct a new ColoSeedSearcher object
      *
      * @param criteria Filtering data
      */
@@ -57,6 +57,8 @@ public:
     void startSearch(const std::vector<u32> &seeds);
 
 private:
+    ColoCriteria criteria;
+
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *

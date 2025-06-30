@@ -1,29 +1,29 @@
-Ruby
-Sapphire
-Emerald
-Fire Red
-Leaf Green
-Gales
-Colosseum
-Diamond
-Pearl
-Platinum
-Heart Gold
-Soul Silver
-Black
-White
-Black 2
-White 2
+红宝石
+蓝宝石
+绿宝石
+火红
+叶绿
+暗之旋风
+圆形竞技场
+钻石
+珍珠
+白金
+心金
+魂银
+黑
+白
+黑2
+白2
 X
 Y
-Omega Ruby
-Alpha Sapphire
-Sun
-Moon
-Ultra Sun
-Ultra Moon
-Sword
-Shield
-Brilliant Diamond
-Shining Pearl
-None
+欧米伽红宝石
+阿尔法蓝宝石
+太阳
+月亮
+究极之日
+究极之月
+剑
+盾
+晶灿钻石
+明亮珍珠
+无

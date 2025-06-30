@@ -117,8 +117,11 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
 
     updateProfiles();
-    generatorEncounterIndexChanged(0);
-    searcherEncounterIndexChanged(0);
+    if (hasProfiles())
+    {
+        generatorEncounterIndexChanged(0);
+        searcherEncounterIndexChanged(0);
+    }
     searcherFastSearchChanged();
 
     QSettings setting;

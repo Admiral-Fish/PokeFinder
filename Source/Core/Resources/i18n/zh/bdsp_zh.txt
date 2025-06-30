@@ -1,143 +1,143 @@
-0,Canalave City
-1,Eterna City
-2,Pastoria City
-3,Sunyshore City
-4,Pokémon League
-5,Oreburgh Mine B1F
-6,Oreburgh Mine B2F
-7,Valley Windworks
-8,Eterna Forest
-9,Fuego Ironworks
-10,Mt. Coronet 1F 1
-11,Mt. Coronet 2F
-12,Mt. Coronet 3F
-13,Mt. Coronet Summit
-15,Mt. Coronet 4F 1-2
-16,Mt. Coronet 4F 3
-17,Mt. Coronet 5F
-18,Mt. Coronet 6F
-19,Mt. Coronet 1F 2
-20,Mt. Coronet Upper 1F 2
-21,Mt. Coronet Upper 1F 1
-22,Mt. Coronet Upper B1F
-23,Great Marsh Area 1
-24,Great Marsh Area 2
-25,Great Marsh Area 3
-26,Great Marsh Area 4
-27,Great Marsh Area 5
-28,Great Marsh Area 6
-29,Solaceon Ruins 2F
-30,Solaceon Ruins
-32,Solaceon Ruins B1F (4 Stairs)
-34,Solaceon Ruins B2F (4 Stairs)
-40,Solaceon Ruins B3F (3 Stairs)
-41,Solaceon Ruins B3F (4 Stairs)
-42,Solaceon Ruins B4F (4 Stairs)
-43,Solaceon Ruins B4F (Chamber)
-47,Victory Road 1F
-48,Victory Road 2F
-49,Victory Road B1F
-50,Victory Road 1F Back 2
-51,Victory Road 1F Back 1
-52,Victory Road 1F Back 3
-53,Ravaged Path
-54,Oreburgh Gate 1F
-55,Oreburgh Gate B1F
-56,Stark Mountain
-57,Stark Mountain Interior 1
-58,Stark Mountain Interior 2
-59,Sendoff Spring
-60,Turnback Cave
-61,Turnback Cave
-62,Turnback Cave
-63,Turnback Cave Entrance
-69,Turnback 1st Pillar
-75,Turnback 2nd Pillar
-106,Snowpoint Temple 1F
-107,Snowpoint Temple B1F
-108,Snowpoint Temple B2F
-109,Snowpoint Temple B3F
-110,Snowpoint Temple B4F
-111,Snowpoint Temple B5F
-112,Wayward Cave 1F
-113,Wayward Cave B1F
-114,Ruin Maniac Cave (< 10 Unown)
-115,Ruin Maniac Cave (> 10 Unown)
-116,Maniac Tunnel
-117,Trophy Garden
-118,Iron Island
-119,Iron Island 1F
-120,Iron Island B1F 1
-121,Iron Island B1F 2
-122,Iron Island B2F 1
-123,Iron Island B2F 2
-124,Iron Island B3F 1
-125,Old Chateau
-134,Lake Verity (Pre Team Galatic Event)
-135,Lake Verity (Post Team Galatic Event)
-136,Lake Valor
-137,Lake Acuity
-138,Valor Lakefront
-139,Acuity Lakefront
-140,Route 201
-141,Route 202
-142,Route 203
-143,Route 204 (South)
-144,Route 204 (North)
-145,Route 205 (South)
-146,Route 205 (North)
-147,Route 206
-148,Route 207
-149,Route 208
-150,Route 209
-151,Lost Tower 1F
-152,Lost Tower 2F
-153,Lost Tower 3F
-154,Lost Tower 4F
-155,Lost Tower 5F
-156,Route 210 (South)
-157,Route 210 (North)
-158,Route 211 (West)
-159,Route 211 (East)
-160,Route 212 (North)
-161,Route 212 (South)
-162,Route 213
-163,Route 214
-164,Route 215
-165,Route 216
-166,Route 217
-167,Route 218
-168,Route 219
-169,Route 221
-170,Route 222
-171,Route 224
-172,Route 225
-173,Route 227
-174,Route 228
-175,Route 229
-176,Twinleaf Town
-177,Celestic Town
-178,Resort Area
-179,Route 220
-180,Route 223
-181,Route 226
-182,Route 230
-183,Spacious Cave
-184,Grassland Cave
-185,Fountainspring Cave
-186,Rocky Cave
-187,Volcanic Cave
-188,Swampy Cave
-189,Dazzling Cave
-190,Whiteout Cave
-191,Ice Cave
-192,Riverbank Cave
-193,Sandsear Cave
-194,Still-Water Cavern
-195,Sunlit Cavern
-196,Big Bluff Cavern
-197,Stargleam Cavern
-198,Glacial Cavern
-199,Bogsunk Cavern
-200,Typhlo Cavern
+0,水脉市
+1,百代市
+2,野原市
+3,滨海市
+4,宝可梦联盟
+5,黑金炭坑B1F
+6,黑金炭坑B2F
+7,山谷发电厂
+8,百代森林
+9,多多罗钢铁厂
+10,天冠山1F（207号道路洞口）
+11,天冠山2F
+12,天冠山3F
+13,天冠山（外部）
+15,天冠山4F1-2
+16,天冠山4F3
+17,天冠山5F
+18,天冠山6F
+19,天冠山（隧道）
+20,天冠山（216号道路洞口）
+21,天冠山（211号道路洞口）
+22,天冠山B1F
+23,大湿地区域1
+24,大湿地区域2
+25,大湿地区域3
+26,大湿地区域4
+27,大湿地区域5
+28,大湿地区域6
+29,随意遗迹2F
+30,随意遗迹
+32,随意遗迹B1F（4楼梯）
+34,随意遗迹B2F（4楼梯）
+40,随意遗迹B3F（3楼梯）
+41,随意遗迹B3F（4楼梯）
+42,随意遗迹B4F（4楼梯）
+43,随意遗迹B4F（最深处的房间）
+47,冠军之路1F
+48,冠军之路2F
+49,冠军之路B1F
+50,冠军之路1F（全国图鉴）
+51,冠军之路1F入口处（全国图鉴）
+52,冠军之路1F出口处（全国图鉴）
+53,荒芜小道
+54,黑金闸口1F
+55,黑金闸口B1F
+56,严酷山（入口）
+57,严酷山（内部）
+58,严酷山（外部）
+59,送行之泉	
+60,归途洞窟
+61,归途洞窟
+62,归途洞窟
+63,归途洞窟（入口）
+69,归途洞窟（1个柱子）
+75,归途洞窟（2个柱子）
+106,雪峰神殿1F
+107,雪峰神殿B1F
+108,雪峰神殿B2F
+109,雪峰神殿B3F
+110,雪峰神殿B4F
+111,雪峰神殿B5F
+112,迷幻洞窟1F
+113,迷幻洞窟B1F
+114,遗迹迷洞穴（未知图腾<10）
+115,遗迹迷洞穴（未知图腾>10）
+116,遗迹迷隧道
+117,自豪的后院
+118,钢铁岛
+119,钢铁岛1F
+120,钢铁岛B1F（左侧）
+121,钢铁岛B1F（右侧）
+122,钢铁岛B2F（左侧）
+123,钢铁岛B2F（右侧）
+124,钢铁岛B3F
+125,森之洋馆
+134,心齐湖（银河队来之前）
+135,心齐湖（银河队来后）
+136,立志湖
+137,睿智湖
+138,立志湖畔
+139,睿智湖畔
+140,201号道路
+141,202号道路
+142,203号道路
+143,204号道路（南段）
+144,204号道路（北段）
+145,205号道路（南段）
+146,205号道路（北段）
+147,206号道路
+148,207号道路
+149,208号道路
+150,209号道路
+151,迷失塔1F
+152,迷失塔2F
+153,迷失塔3F
+154,迷失塔4F
+155,迷失塔5F
+156,210号道路（南段）
+157,210号道路（北段）
+158,211号道路（西段）
+159,211号道路（东段）
+160,212号道路（北段）
+161,212号道路（南段）
+162,213号道路
+163,214号道路
+164,215号道路
+165,216号道路
+166,217号道路
+167,218号道路
+168,219号道路
+169,221号道路
+170,222号道路
+171,224号道路
+172,225号道路
+173,227号道路
+174,228号道路
+175,229号道路
+176,双叶镇
+177,神和镇
+178,名胜区
+179,220号道路
+180,223号道路
+181,226号道路
+182,230号道路
+183,广阔空洞
+184,草原空洞
+185,地下水脉空洞
+186,岩石空洞
+187,熔岩空洞
+188,湿地空洞
+189,光辉空洞
+190,风雪空洞
+191,冰柱空洞
+192,河岸空洞
+193,热沙空洞
+194,水镜大空洞
+195,暖阳大空洞
+196,断崖大空洞
+197,星影大空洞
+198,冰河大空洞
+199,无底沼泽大空洞
+200,火爆兽大空洞
 201,Floaroma Meadow

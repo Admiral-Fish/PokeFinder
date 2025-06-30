@@ -20,7 +20,6 @@
 #ifndef STATICTEMPLATE8_HPP
 #define STATICTEMPLATE8_HPP
 
-#include <Core/Enum/Method.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 
 /**

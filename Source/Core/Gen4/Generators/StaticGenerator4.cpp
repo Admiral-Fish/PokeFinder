@@ -111,8 +111,8 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = staticTemplate.getInfo();
 
-    bool cuteCharmFlag = false;
     u8 buffer = 0;
+    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
     if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);
@@ -125,19 +125,10 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
     {
         PokeRNG go(rng, jump);
 
-        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        bool cuteCharmFlag = false;
+        if (cuteCharm)
         {
-            switch (info->getGender())
-            {
-            case 0:
-            case 254:
-            case 255:
-                cuteCharmFlag = false;
-                break;
-            default:
-                cuteCharmFlag = go.nextUShort<false>(3) != 0;
-                break;
-            }
+            cuteCharmFlag = go.nextUShort<false>(3) != 0;
         }
 
         u8 nature;
@@ -191,8 +182,8 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = staticTemplate.getInfo();
 
-    bool cuteCharmFlag = false;
     u8 buffer = 0;
+    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
     if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);
@@ -205,22 +196,13 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
     {
         PokeRNG go(rng, jump);
 
-        u8 nature;
-        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        bool cuteCharmFlag = false;
+        if (cuteCharm)
         {
-            switch (info->getGender())
-            {
-            case 0:
-            case 254:
-            case 255:
-                cuteCharmFlag = false;
-                break;
-            default:
-                cuteCharmFlag = go.nextUShort(3) != 0;
-                break;
-            }
+            cuteCharmFlag = go.nextUShort(3) != 0;
         }
 
+        u8 nature;
         if (lead <= Lead::SynchronizeEnd)
         {
             nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);

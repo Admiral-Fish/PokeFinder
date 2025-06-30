@@ -22,12 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
 #include <Core/Gen5/Profile5.hpp>
-
-consteval static u32 changeEndian(u32 val)
-{
-    val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff);
-    return (val << 16) | (val >> 16);
-}
+#include <bit>
 
 consteval static std::array<u32, 5> computeNazoBW(u32 nazo)
 {
@@ -36,9 +31,9 @@ consteval static std::array<u32, 5> computeNazoBW(u32 nazo)
 
     std::array<u32, 5> nazos;
 
-    nazos[0] = changeEndian(nazo);
-    nazos[1] = nazos[2] = changeEndian(nazo + offset1);
-    nazos[3] = nazos[4] = changeEndian(nazo + offset2);
+    nazos[0] = std::byteswap(nazo);
+    nazos[1] = nazos[2] = std::byteswap(nazo + offset1);
+    nazos[3] = nazos[4] = std::byteswap(nazo + offset2);
 
     return nazos;
 }
@@ -49,10 +44,10 @@ consteval static std::array<u32, 5> computeNazoBW2(u32 nazo, u32 nazo0, u32 nazo
 
     std::array<u32, 5> nazos;
 
-    nazos[0] = changeEndian(nazo0);
-    nazos[1] = changeEndian(nazo1);
-    nazos[2] = changeEndian(nazo);
-    nazos[3] = nazos[4] = changeEndian(nazo + offset);
+    nazos[0] = std::byteswap(nazo0);
+    nazos[1] = std::byteswap(nazo1);
+    nazos[2] = std::byteswap(nazo);
+    nazos[3] = nazos[4] = std::byteswap(nazo + offset);
 
     return nazos;
 }

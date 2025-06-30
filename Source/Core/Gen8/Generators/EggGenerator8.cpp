@@ -77,7 +77,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
     std::vector<EggState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        if ((rngList.next() % 100) < compatability)
+        if (rngList.next(100) < compatability)
         {
             // Sign extend seed to signed 64bit
             constexpr u32 SIGN_EXTEND_MASK = 0x80000000;

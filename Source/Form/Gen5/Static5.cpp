@@ -95,8 +95,11 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
 
     updateProfiles();
-    generatorCategoryIndexChanged(0);
-    searcherCategoryIndexChanged(0);
+    if (hasProfiles())
+    {
+        generatorCategoryIndexChanged(0);
+        searcherCategoryIndexChanged(0);
+    }
     searcherFastSearchChanged();
 
     QSettings setting;
@@ -209,6 +212,10 @@ void Static5::generatorPokemonIndexChanged(int index)
             = Encounters5::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
         ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
         ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxGeneratorShiny->findData(toInt(staticTemplate->getShiny())));
+
+        bool flag = staticTemplate->getInfo()->getFixedGender();
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmF), flag);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmM), flag);
     }
 }
 
@@ -353,5 +360,9 @@ void Static5::searcherPokemonIndexChanged(int index)
             = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
         ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
         ui->comboBoxSearcherShiny->setCurrentIndex(ui->comboBoxSearcherShiny->findData(toInt(staticTemplate->getShiny())));
+
+        bool flag = staticTemplate->getInfo()->getFixedGender();
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmM), flag);
     }
 }

@@ -20,6 +20,7 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>

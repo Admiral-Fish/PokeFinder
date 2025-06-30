@@ -51,7 +51,6 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 
-    bool cuteCharm = false;
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
         if (lead == Lead::CuteCharmF)
         {
@@ -109,19 +108,10 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
-        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        bool cuteCharm = false;
+        if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && !info->getFixedGender())
         {
-            switch (info->getGender())
-            {
-            case 0:
-            case 254:
-            case 255:
-                cuteCharm = false;
-                break;
-            default:
-                cuteCharm = go.nextUShort(3) != 0;
-                break;
-            }
+            cuteCharm = go.nextUShort(3) != 0;
         }
 
         // Safari zone in RSE takes an extra RNG call to determine shuffling of pokeblocks

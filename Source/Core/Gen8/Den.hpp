@@ -21,7 +21,6 @@
 #define DEN_HPP
 
 #include <Core/Gen8/Raid.hpp>
-#include <vector>
 
 /**
  * @brief Contains all the Raid pokemon within a Den and the identifying hash value

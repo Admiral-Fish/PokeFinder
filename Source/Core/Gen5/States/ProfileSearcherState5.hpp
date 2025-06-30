@@ -29,7 +29,7 @@ class ProfileSearcherState5
 {
 public:
     /**
-     * @brief Construct a new ProfileModel5 object
+     * @brief Construct a new ProfileSearcherState5 object
      *
      * @param seed Calibrated seed
      * @param timer0 Calibrated Timer0

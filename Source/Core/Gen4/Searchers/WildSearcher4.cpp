@@ -247,18 +247,16 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                     const PersonalInfo *info = slot.getInfo();
 
                     u8 buffer = 0;
-                    switch (info->getGender())
+                    if (!info->getFixedGender())
                     {
-                    case 0:
-                    case 254:
-                    case 255:
-                        continue;
-                    default:
                         if (lead == Lead::CuteCharmF)
                         {
                             buffer = 25 * ((info->getGender() / 25) + 1);
                         }
-                        break;
+                    }
+                    else
+                    {
+                        continue;
                     }
 
                     u8 level;
@@ -655,18 +653,16 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                     const PersonalInfo *info = slot.getInfo();
 
                     u8 buffer = 0;
-                    switch (info->getGender())
+                    if (!info->getFixedGender())
                     {
-                    case 0:
-                    case 254:
-                    case 255:
-                        continue;
-                    default:
                         if (lead == Lead::CuteCharmF)
                         {
                             buffer = 25 * ((info->getGender() / 25) + 1);
                         }
-                        break;
+                    }
+                    else
+                    {
+                        continue;
                     }
 
                     u8 level;
@@ -1011,10 +1007,11 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
     const Slot &slot = area.getPokemon(index);
     const PersonalInfo *info = slot.getInfo();
 
-    bool cuteCharm = false;
     u8 buffer = 0;
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+    bool cuteCharm = false;
+    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
     {
+        cuteCharm = true;
         switch (info->getGender())
         {
         case 0:
@@ -1132,20 +1129,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
     const Slot &slot = area.getPokemon(index);
     const PersonalInfo *info = slot.getInfo();
 
-    bool cuteCharm = false;
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
-    {
-        switch (info->getGender())
-        {
-        case 0:
-        case 254:
-        case 255:
-            break;
-        default:
-            cuteCharm = true;
-            break;
-        }
-    }
+    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
 
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
         if (lead == Lead::CuteCharmF)
@@ -1211,12 +1195,9 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
 
                 u32 huntPID = shinyPID(rng);
                 huntNature = huntPID % 25;
-                if (cuteCharm)
+                if (cuteCharm && gender == ((huntPID & 0xff) < info->getGender()))
                 {
-                    if (gender == ((huntPID & 0xff) < info->getGender()))
-                    {
-                        break;
-                    }
+                    break;
                 }
             } while (huntNature != nature);
         }

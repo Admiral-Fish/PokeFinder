@@ -31,7 +31,7 @@ class PIDToIVModel : public TableModel<PIDToIVState>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new PIDIVModel object
+     * @brief Construct a new PIDToIVModel object
      *
      * @param parent Parent object, which takes memory ownership
      */

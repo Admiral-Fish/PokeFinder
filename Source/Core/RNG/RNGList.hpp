@@ -37,7 +37,6 @@ template <typename Integer, class RNG, u16 size, Integer (*generate)(RNG &) = nu
 class RNGList
 {
     static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
-
 public:
     /**
      * @brief Construct a new RNGList object
@@ -134,7 +133,6 @@ public:
     /**
      * @brief Gets the next PRNG state
      *
-     *
      * @return PRNG state
      */
     Integer next()
@@ -154,6 +152,18 @@ public:
         }
 
         return result;
+    }
+
+    /**
+     * @brief Gets the next PRNG state
+     * 
+     * @param max Max bounding value
+     *
+     * @return PRNG state
+     */
+    Integer next(u32 max)
+    {
+        return next() % max;
     }
 
     /**

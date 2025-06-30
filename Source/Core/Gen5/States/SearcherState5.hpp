@@ -35,7 +35,7 @@ class SearcherState5
 {
 public:
     /**
-     * @brief SearcherState5
+     * @brief Construct a new SearcherState5 object
      *
      * @param dt Date/time
      * @param initialSeed Initial seed

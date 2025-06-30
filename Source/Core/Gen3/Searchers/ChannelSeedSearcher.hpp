@@ -20,17 +20,17 @@
 #ifndef CHANNELSEEDSEARCHER_HPP
 #define CHANNELSEEDSEARCHER_HPP
 
-#include <Core/Gen3/Searchers/SeedSearcher.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 /**
  * @brief Searches for candidate PRNG states
  */
-class ChannelSeedSearcher final : public SeedSearcher<std::vector<u8>>
+class ChannelSeedSearcher final : public SearcherBase<u32>
 {
 public:
     /**
-     * @brief Construct a new GalesSeedSearcher object
+     * @brief Construct a new ChannelSeedSearcher object
      *
      * @param criteria Filtering data
      */
@@ -51,6 +51,8 @@ public:
     void startSearch(int threads);
 
 private:
+    std::vector<u8> criteria;
+
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *

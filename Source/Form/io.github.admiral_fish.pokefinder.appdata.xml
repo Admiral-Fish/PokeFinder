@@ -14,5 +14,7 @@
         </p>
     </description>
 
+    <url type="homepage">https://github.com/Admiral-Fish/PokeFinder</url>
+
     <launchable type="desktop-id">io.github.admiral_fish.pokefinder.desktop</launchable>
 </component>

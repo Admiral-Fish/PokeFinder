@@ -34,7 +34,7 @@ class DreamRadarGenerator : public Generator<Profile5, StateFilter>
 {
 public:
     /**
-     * @brief Construct a new EventGenerator5 object
+     * @brief Construct a new DreamRadarGenerator object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances

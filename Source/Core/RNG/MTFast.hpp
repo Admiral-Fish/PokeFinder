@@ -49,18 +49,17 @@ public:
     {
         static_assert(size < 227, "Size exceeds range of MTFast");
 
-        u32 i = 1;
         u32 *ptr = &state[0].uint32[0];
-        for (; i < size + 2; i++)
+        for (u32 i = 1; i < size + 2; i++)
         {
             ptr[i - 1] = seed;
             seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
         }
 
-        do
+        for(u32 i = size + 2; i < 397; i++)
         {
-            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i++;
-        } while (i < 397);
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
+        }
 
         // Shuffle with SIMD if size is big enough
         if constexpr (size >= 4)
@@ -72,15 +71,15 @@ public:
             vuint128 mask1(0x9d2c5680);
             vuint128 mask2(fast ? 0xe8000000 : 0xefc60000);
 
-            for (u32 j = 0; j < size - (size % 4); j += 4)
+            for (u32 i = 0; i < size - (size % 4); i += 4)
             {
-                vuint128 m0 = state[j / 4];
-                vuint128 m1 = v32x4_load(ptr + j + 1);
+                vuint128 m0 = state[i / 4];
+                vuint128 m1 = v32x4_load(ptr + i + 1);
 
-                u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
-                u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (j + 398);
-                u32 x2 = 0x6c078965 * (x1 ^ (x1 >> 30)) + (j + 399);
-                seed = 0x6c078965 * (x2 ^ (x2 >> 30)) + (j + 400);
+                u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (i + 397);
+                u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (i + 398);
+                u32 x2 = 0x6c078965 * (x1 ^ (x1 >> 30)) + (i + 399);
+                seed = 0x6c078965 * (x2 ^ (x2 >> 30)) + (i + 400);
 
                 vuint128 m2(x0, x1, x2, seed);
 
@@ -102,18 +101,18 @@ public:
                     y = y ^ (y >> 18);
                 }
 
-                state[j / 4] = y;
+                state[i / 4] = y;
             }
         }
 
         // Shuffle without SIMD if neccessary (SIMD usage not possible or didn't cover everything)
         if constexpr ((size % 4) != 0)
         {
-            for (u32 j = size - (size % 4); j < size; j++)
+            for (u32 i = size - (size % 4); i < size; i++)
             {
-                u32 m0 = ptr[j];
-                u32 m1 = ptr[j + 1];
-                seed = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
+                u32 m0 = ptr[i];
+                u32 m1 = ptr[i + 1];
+                seed = 0x6c078965 * (seed ^ (seed >> 30)) + (i + 397);
 
                 u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
 
@@ -138,7 +137,7 @@ public:
                     y ^= (y >> 18);
                 }
 
-                ptr[j] = y;
+                ptr[i] = y;
             }
         }
     }

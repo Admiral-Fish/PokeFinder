@@ -19,6 +19,7 @@
 
 #include "ProfileLoader.hpp"
 #include <Core/Enum/DSType.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/Profile4.hpp>

@@ -51,7 +51,7 @@ public:
     IVCalculator(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the MainWindow object
+     * @brief Destroy the IVCalculator object
      */
     ~IVCalculator() override;
 

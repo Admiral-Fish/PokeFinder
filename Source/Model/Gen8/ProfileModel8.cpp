@@ -31,7 +31,7 @@ int ProfileModel8::columnCount(const QModelIndex &parent) const
 
 QVariant ProfileModel8::data(const QModelIndex &index, int role) const
 {
-        if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole)
     {
         const auto &profile = model[index.row()];
         switch (index.column())

@@ -21,8 +21,8 @@
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
-#include <Core/Parents/States/State.hpp>
 #include <Core/Gen3/StaticTemplate3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
