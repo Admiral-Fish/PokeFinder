@@ -588,6 +588,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
             buffer = 25 * ((info->getGender() / 25) + 1);
         }
     }
+
     PokeRNG rng(seed, initialAdvances);
     auto jump = rng.getJump(offset);
 
