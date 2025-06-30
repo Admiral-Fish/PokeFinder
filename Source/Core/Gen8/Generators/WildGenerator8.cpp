@@ -126,7 +126,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
         bool cuteCharm = false;
         if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
         {
-            cuteCharm = (rngList.next(rand) % 3) != 0;
+            cuteCharm = rngList.next(3) != 0;
         }
 
         u32 ec = rngList.next(rand);
@@ -226,7 +226,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         bool cuteCharm = false;
         if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
         {
-            cuteCharm = (rngList.next(rand) % 3) != 0;
+            cuteCharm = rngList.next(3) != 0;
         }
 
         u32 ec = rngList.next(rand);

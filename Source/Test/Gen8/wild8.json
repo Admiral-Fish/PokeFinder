@@ -771,8 +771,8 @@
                     "ec": 1485739543,
                     "encounterSlot": 4,
                     "form": 0,
-                    "gender": 1,
-                    "height": 97,
+                    "gender": 0,
+                    "height": 100,
                     "hiddenPower": 8,
                     "item": 0,
                     "ivs": [
@@ -784,19 +784,19 @@
                         28
                     ],
                     "level": 41,
-                    "nature": 3,
+                    "nature": 19,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 122,
                     "stats": [
                         93,
-                        53,
+                        49,
                         59,
-                        83,
-                        106,
+                        102,
+                        95,
                         90
                     ],
-                    "weight": 114
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -806,8 +806,8 @@
                     "ec": 1395503922,
                     "encounterSlot": 7,
                     "form": 0,
-                    "gender": 0,
-                    "height": 97,
+                    "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -831,7 +831,7 @@
                         83,
                         46
                     ],
-                    "weight": 114
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -841,8 +841,8 @@
                     "ec": 2174149616,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 114,
+                    "gender": 0,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -854,19 +854,19 @@
                         2
                     ],
                     "level": 40,
-                    "nature": 20,
+                    "nature": 3,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 419,
                     "stats": [
                         118,
-                        85,
+                        104,
                         51,
-                        84,
-                        59,
+                        75,
+                        54,
                         97
                     ],
-                    "weight": 49
+                    "weight": 91
                 },
                 {
                     "ability": 0,
@@ -877,7 +877,7 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
-                    "height": 114,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -889,19 +889,19 @@
                         13
                     ],
                     "level": 41,
-                    "nature": 20,
+                    "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 122,
                     "stats": [
                         90,
-                        39,
+                        44,
                         69,
-                        96,
-                        114,
-                        84
+                        105,
+                        104,
+                        75
                     ],
-                    "weight": 49
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -911,8 +911,8 @@
                     "ec": 1493587827,
                     "encounterSlot": 1,
                     "form": 0,
-                    "gender": 1,
-                    "height": 49,
+                    "gender": 0,
+                    "height": 91,
                     "hiddenPower": 7,
                     "item": 0,
                     "ivs": [
@@ -924,7 +924,7 @@
                         30
                     ],
                     "level": 40,
-                    "nature": 14,
+                    "nature": 17,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 423,
@@ -932,11 +932,11 @@
                         141,
                         82,
                         69,
-                        79,
-                        67,
-                        52
+                        86,
+                        75,
+                        43
                     ],
-                    "weight": 74
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -947,7 +947,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "height": 218,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -959,19 +959,19 @@
                         23
                     ],
                     "level": 40,
-                    "nature": 16,
+                    "nature": 14,
                     "pid": 2252305767,
                     "shiny": 0,
                     "specie": 419,
                     "stats": [
                         129,
                         98,
-                        44,
-                        85,
-                        57,
-                        106
+                        49,
+                        78,
+                        51,
+                        116
                     ],
-                    "weight": 59
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -981,8 +981,8 @@
                     "ec": 1362312496,
                     "encounterSlot": 5,
                     "form": 0,
-                    "gender": 1,
-                    "height": 74,
+                    "gender": 0,
+                    "height": 218,
                     "hiddenPower": 10,
                     "item": 0,
                     "ivs": [
@@ -994,19 +994,19 @@
                         29
                     ],
                     "level": 41,
-                    "nature": 3,
+                    "nature": 16,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
                         93,
-                        33,
-                        34,
-                        55,
+                        30,
+                        30,
+                        68,
                         39,
                         86
                     ],
-                    "weight": 144
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -1016,8 +1016,8 @@
                     "ec": 2252305767,
                     "encounterSlot": 1,
                     "form": 0,
-                    "gender": 0,
-                    "height": 74,
+                    "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -1029,19 +1029,19 @@
                         13
                     ],
                     "level": 40,
-                    "nature": 3,
+                    "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 423,
                     "stats": [
                         139,
-                        83,
-                        71,
-                        78,
+                        76,
+                        63,
+                        95,
                         82,
                         41
                     ],
-                    "weight": 144
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -1051,8 +1051,8 @@
                     "ec": 1835599644,
                     "encounterSlot": 1,
                     "form": 0,
-                    "gender": 1,
-                    "height": 144,
+                    "gender": 0,
+                    "height": 59,
                     "hiddenPower": 14,
                     "item": 0,
                     "ivs": [
@@ -1064,7 +1064,7 @@
                         29
                     ],
                     "level": 40,
-                    "nature": 21,
+                    "nature": 16,
                     "pid": 606895394,
                     "shiny": 0,
                     "specie": 423,
@@ -1072,11 +1072,11 @@
                         144,
                         83,
                         61,
-                        90,
-                        82,
+                        99,
+                        75,
                         47
                     ],
-                    "weight": 48
+                    "weight": 148
                 }
             ]
         },
@@ -6176,8 +6176,8 @@
                     "ec": 1485739543,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 97,
+                    "gender": 0,
+                    "height": 100,
                     "hiddenPower": 8,
                     "item": 151,
                     "ivs": [
@@ -6189,19 +6189,19 @@
                         28
                     ],
                     "level": 7,
-                    "nature": 3,
+                    "nature": 19,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         24,
-                        13,
+                        12,
                         10,
-                        7,
-                        9,
+                        8,
+                        8,
                         9
                     ],
-                    "weight": 114
+                    "weight": 190
                 },
                 {
                     "ability": 0,
@@ -6211,8 +6211,8 @@
                     "ec": 1395503922,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 0,
-                    "height": 97,
+                    "gender": 1,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 151,
                     "ivs": [
@@ -6236,7 +6236,7 @@
                         14,
                         12
                     ],
-                    "weight": 114
+                    "weight": 91
                 },
                 {
                     "ability": 1,
@@ -6246,8 +6246,8 @@
                     "ec": 2174149616,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 114,
+                    "gender": 0,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 151,
                     "ivs": [
@@ -6259,19 +6259,19 @@
                         2
                     ],
                     "level": 13,
-                    "nature": 20,
+                    "nature": 3,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         34,
-                        16,
+                        19,
                         15,
-                        13,
-                        16,
+                        11,
+                        15,
                         10
                     ],
-                    "weight": 49
+                    "weight": 91
                 },
                 {
                     "ability": 0,
@@ -6282,7 +6282,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "height": 114,
+                    "height": 91,
                     "hiddenPower": 2,
                     "item": 151,
                     "ivs": [
@@ -6294,19 +6294,19 @@
                         13
                     ],
                     "level": 14,
-                    "nature": 20,
+                    "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         38,
-                        16,
                         18,
-                        13,
+                        18,
                         14,
-                        12
+                        13,
+                        10
                     ],
-                    "weight": 49
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -6316,8 +6316,8 @@
                     "ec": 1493587827,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 49,
+                    "gender": 0,
+                    "height": 91,
                     "hiddenPower": 7,
                     "item": 151,
                     "ivs": [
@@ -6329,7 +6329,7 @@
                         30
                     ],
                     "level": 7,
-                    "nature": 14,
+                    "nature": 17,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 265,
@@ -6338,10 +6338,10 @@
                         13,
                         11,
                         7,
-                        9,
-                        9
+                        10,
+                        8
                     ],
-                    "weight": 74
+                    "weight": 218
                 },
                 {
                     "ability": 1,
@@ -6352,7 +6352,7 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "height": 218,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 151,
                     "ivs": [
@@ -6364,19 +6364,19 @@
                         23
                     ],
                     "level": 6,
-                    "nature": 16,
+                    "nature": 14,
                     "pid": 2252305767,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         23,
                         11,
+                        9,
                         8,
-                        8,
-                        10,
+                        9,
                         8
                     ],
-                    "weight": 59
+                    "weight": 74
                 },
                 {
                     "ability": 1,
@@ -6386,8 +6386,8 @@
                     "ec": 1362312496,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 74,
+                    "gender": 0,
+                    "height": 218,
                     "hiddenPower": 10,
                     "item": 151,
                     "ivs": [
@@ -6399,19 +6399,19 @@
                         29
                     ],
                     "level": 7,
-                    "nature": 3,
+                    "nature": 16,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         24,
-                        12,
-                        10,
-                        8,
+                        11,
+                        9,
+                        9,
                         10,
                         9
                     ],
-                    "weight": 144
+                    "weight": 59
                 },
                 {
                     "ability": 1,
@@ -6421,8 +6421,8 @@
                     "ec": 2252305767,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 0,
-                    "height": 74,
+                    "gender": 1,
+                    "height": 59,
                     "hiddenPower": 13,
                     "item": 151,
                     "ivs": [
@@ -6434,19 +6434,19 @@
                         13
                     ],
                     "level": 7,
-                    "nature": 3,
+                    "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 265,
                     "stats": [
                         23,
-                        13,
                         12,
-                        8,
+                        10,
+                        9,
                         11,
                         8
                     ],
-                    "weight": 144
+                    "weight": 148
                 },
                 {
                     "ability": 0,
@@ -6456,8 +6456,8 @@
                     "ec": 1835599644,
                     "encounterSlot": 0,
                     "form": 0,
-                    "gender": 1,
-                    "height": 144,
+                    "gender": 0,
+                    "height": 59,
                     "hiddenPower": 14,
                     "item": 151,
                     "ivs": [
@@ -6469,7 +6469,7 @@
                         29
                     ],
                     "level": 12,
-                    "nature": 21,
+                    "nature": 16,
                     "pid": 606895394,
                     "shiny": 0,
                     "specie": 265,
@@ -6477,11 +6477,11 @@
                         34,
                         19,
                         14,
-                        13,
                         14,
+                        13,
                         13
                     ],
-                    "weight": 48
+                    "weight": 148
                 }
             ]
         },
