@@ -553,7 +553,8 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
 
         u16 tid = profile->getTID();
         u16 sid = profile->getSID();
-        std::array<u8, 4> munchlaxTreeIDs = { (sid & 0xff) % 21, (sid >> 8) % 21, (tid & 0xff) % 21, (tid >> 8) % 21 };
+        std::array<u8, 4> munchlaxTreeIDs = { static_cast<u8>((sid & 0xff) % 21), static_cast<u8>((sid >> 8) % 21),
+                                              static_cast<u8>((tid & 0xff) % 21), static_cast<u8>((tid >> 8) % 21) };
         for (size_t i = 1; i < 4; i++)
         {
             for (size_t j = 0; j < i; j++)
