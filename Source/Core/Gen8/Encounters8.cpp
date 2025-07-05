@@ -75,6 +75,21 @@ struct WildEncounter8
 };
 static_assert(sizeof(WildEncounter8) == 154);
 
+struct WildEncounterHoney
+{
+    u8 location;
+    union {
+        struct
+        {
+            DynamicSlot normal[6];
+            DynamicSlot rare[6];
+            DynamicSlot munchlax[6];
+        };
+        DynamicSlot slots[18];
+    };
+};
+static_assert(sizeof(WildEncounterHoney) == 74);
+
 struct WildEncounterUnderground
 {
     u8 location;
@@ -378,9 +393,31 @@ constexpr DenInfo denInfo[276] = {
 constexpr std::array<u16, 14> greatMarsh = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
 constexpr std::array<u16, 14> greatMarshDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
 
+constexpr std::array<u8, 21> honeyTreeMapIDs = { 145, 146, 147, 148, 149, 150, 156, 157, 159, 160, 161, 162, 163, 164, 167, 169, 170, 7, 8, 9, 201 };
+
 constexpr std::array<u16, 16> trophyGarden = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 
 constexpr u16 pokemonSizes[] = { 1, 10, 100, 1000 };
+
+/**
+ * @brief Gets the tree ID from location
+ *
+ * @param location Location
+ *
+ * @return Tree ID
+ */
+static u8 getTreeIDFromMapID(u8 location)
+{
+    for (u8 i = 0; i < honeyTreeMapIDs.size(); i++)
+    {
+        if (location == honeyTreeMapIDs[i])
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 /**
  * @brief Modifies encounter slots based on the Great Marsh
@@ -496,90 +533,147 @@ static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u
  *
  * @return Vector of encounter areas
  */
-static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, const EncounterSettings8 &settings, const PersonalInfo *info)
+static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, const Profile8 *profile, const EncounterSettings8 &settings,
+                                           const PersonalInfo *info)
 {
     u32 length;
     u8 *data;
 
-    if (version == Game::BD)
+    std::vector<EncounterArea8> encounters;
+    if (encounter == Encounter::HoneyTree)
     {
-        data = Utilities::decompress(BD.data(), BD.size(), length);
+        if (version == Game::BD)
+        {
+            data = Utilities::decompress(BD_HONEY.data(), BD_HONEY.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(SP_HONEY.data(), SP_HONEY.size(), length);
+        }
+
+        u16 tid = profile->getTID();
+        u16 sid = profile->getSID();
+        std::array<u8, 4> munchlaxTreeIDs = { static_cast<u8>((sid & 0xff) % 21), static_cast<u8>((sid >> 8) % 21),
+                                              static_cast<u8>((tid & 0xff) % 21), static_cast<u8>((tid >> 8) % 21) };
+        for (size_t i = 1; i < 4; i++)
+        {
+            for (size_t j = 0; j < i; j++)
+            {
+                if (munchlaxTreeIDs[j] == munchlaxTreeIDs[i])
+                {
+                    ++munchlaxTreeIDs[i] %= 21;
+                }
+            }
+        }
+
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHoney))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounterHoney *>(data + offset);
+
+            std::array<Slot, 12> slots;
+
+            int max = 12;
+            u8 treeID = getTreeIDFromMapID(entry->location);
+            if (std::any_of(munchlaxTreeIDs.begin(), munchlaxTreeIDs.end(), [treeID](u8 tree) { return tree == treeID; }))
+            {
+                max = 18;
+            }
+
+            // While we technically have 18 slots with the number of duplicates it will always be below 12
+            int count = 0;
+            for (int i = 0; i < max; i++)
+            {
+                const auto &slot = entry->slots[i];
+                if (std::all_of(slots.begin(), slots.begin() + count, [slot](const auto &s) { return s.getSpecie() != slot.specie; }))
+                {
+                    slots[count++] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                }
+            }
+
+            encounters.emplace_back(entry->location, 0, encounter, slots);
+        }
     }
     else
     {
-        data = Utilities::decompress(SP.data(), SP.size(), length);
-    }
-
-    std::vector<EncounterArea8> encounters;
-    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter8))
-    {
-        const auto *entry = reinterpret_cast<const WildEncounter8 *>(data + offset);
-
-        std::array<Slot, 12> slots;
-        switch (encounter)
+        if (version == Game::BD)
         {
-        case Encounter::Grass:
-            if (entry->grassRate != 0)
+            data = Utilities::decompress(BD.data(), BD.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress(SP.data(), SP.size(), length);
+        }
+
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter8))
+        {
+            const auto *entry = reinterpret_cast<const WildEncounter8 *>(data + offset);
+
+            std::array<Slot, 12> slots;
+            switch (encounter)
             {
-                for (size_t i = 0; i < 12; i++)
+            case Encounter::Grass:
+                if (entry->grassRate != 0)
                 {
-                    const auto &slot = entry->grass[i];
-                    slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    for (size_t i = 0; i < 12; i++)
+                    {
+                        const auto &slot = entry->grass[i];
+                        slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    }
+                    modifySwarm(slots, entry, info, settings.swarm);
+                    modifyTime(slots, entry, info, settings.time);
+                    modifyRadar(slots, entry, info, settings.radar);
+                    modifyGreatMarsh(slots, settings.replacement, info, entry->location);
+                    modifyTrophyGarden(slots, settings.replacement, info, entry->location);
+                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
-                modifySwarm(slots, entry, info, settings.swarm);
-                modifyTime(slots, entry, info, settings.time);
-                modifyRadar(slots, entry, info, settings.radar);
-                modifyGreatMarsh(slots, settings.replacement, info, entry->location);
-                modifyTrophyGarden(slots, settings.replacement, info, entry->location);
-                encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
-            }
-            break;
-        case Encounter::Surfing:
-            if (entry->surfRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::Surfing:
+                if (entry->surfRate != 0)
                 {
-                    const auto &slot = entry->surf[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
-            }
-            break;
-        case Encounter::OldRod:
-            if (entry->oldRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::OldRod:
+                if (entry->oldRate != 0)
                 {
-                    const auto &slot = entry->old[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
-            }
-            break;
-        case Encounter::GoodRod:
-            if (entry->goodRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::GoodRod:
+                if (entry->goodRate != 0)
                 {
-                    const auto &slot = entry->good[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
                 }
-                encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
-            }
-            break;
-        case Encounter::SuperRod:
-            if (entry->superRate != 0)
-            {
-                for (size_t i = 0; i < 5; i++)
+                break;
+            case Encounter::SuperRod:
+                if (entry->superRate != 0)
                 {
-                    const auto &slot = entry->super[i];
-                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    for (size_t i = 0; i < 5; i++)
+                    {
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    }
+                    encounters.emplace_back(entry->location, entry->superRate, Encounter::SuperRod, slots);
                 }
-                encounters.emplace_back(entry->location, entry->superRate, Encounter::SuperRod, slots);
+                break;
+            default:
+                break;
             }
-            break;
-        default:
-            break;
         }
     }
     delete[] data;
@@ -613,7 +707,7 @@ namespace Encounters8
     std::vector<EncounterArea8> getEncounters(Encounter encounter, const EncounterSettings8 &settings, const Profile8 *profile)
     {
         const auto *info = PersonalLoader::getPersonal(profile->getVersion());
-        return getBDSP(encounter, profile->getVersion(), settings, info);
+        return getBDSP(encounter, profile->getVersion(), profile, settings, info);
     }
 
     std::array<u16, 14> getGreatMarshPokemon(const Profile8 *profile)

@@ -39,12 +39,13 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
+     * @param method Encounter method
      * @param lead Encounter lead
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, const EncounterArea8 &area, const Profile8 &profile,
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const EncounterArea8 &area, const Profile8 &profile,
                    const WildStateFilter &filter);
 
     /**
@@ -52,10 +53,32 @@ public:
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
+     * @param index Honey Tree slot index
      *
      * @return Vector of computed states
      */
-    std::vector<WildState8> generate(u64 seed0, u64 seed1) const;
+    std::vector<WildState8> generate(u64 seed0, u64 seed1, u8 index) const;
+
+    /**
+     * @brief Generates states via Wild
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildState8> generateWild(u64 seed0, u64 seed1) const;
+
+    /**
+     * @brief Generates states via Honey Tree
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     * @param index Honey Tree slot index
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildState8> generateHoneyTree(u64 seed0, u64 seed1, u8 index) const;
 };
 
 #endif // WILDGENERATOR8_HPP

@@ -140,3 +140,4 @@
 198,Caverna del ghiacciaio
 199,Caverna della palude
 200,Caverna Typhlosion
+201,Floaroma Meadow

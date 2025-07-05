@@ -32,6 +32,9 @@ private slots:
     void generateMethodK_data();
     void generateMethodK();
 
+    void generateHoneyTree_data();
+    void generateHoneyTree();
+
     void generatePokeRadar_data();
     void generatePokeRadar();
 };

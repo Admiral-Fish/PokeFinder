@@ -32,6 +32,9 @@ private slots:
     void searchMethodK_data();
     void searchMethodK();
 
+    void searchHoneyTree_data();
+    void searchHoneyTree();
+
     void searchPokeRadar_data();
     void searchPokeRadar();
 };

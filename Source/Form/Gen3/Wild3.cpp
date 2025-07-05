@@ -193,25 +193,6 @@ void Wild3::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterGenerator->setEncounterSlots(12);
-            break;
-        case Encounter::RockSmash:
-        case Encounter::Surfing:
-        case Encounter::SuperRod:
-            ui->filterGenerator->setEncounterSlots(5);
-            break;
-        case Encounter::OldRod:
-            ui->filterGenerator->setEncounterSlots(2);
-            break;
-        case Encounter::GoodRod:
-            ui->filterGenerator->setEncounterSlots(3);
-            break;
-        default:
-            break;
-        }
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -239,22 +220,6 @@ void Wild3::generatorEncounterIndexChanged(int index)
 
 void Wild3::generatorFeebasTileStateChanged(Qt::CheckState state)
 {
-    auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    switch (encounter)
-    {
-    case Encounter::OldRod:
-        ui->filterGenerator->setEncounterSlots(state == Qt::Checked ? 3 : 2);
-        break;
-    case Encounter::GoodRod:
-        ui->filterGenerator->setEncounterSlots(state == Qt::Checked ? 4 : 3);
-        break;
-    case Encounter::SuperRod:
-        ui->filterGenerator->setEncounterSlots(state == Qt::Checked ? 6 : 5);
-        break;
-    default:
-        break;
-    }
-
     updateEncounterGenerator();
     generatorLocationIndexChanged(0);
 }
@@ -266,6 +231,8 @@ void Wild3::generatorLocationIndexChanged(int index)
         auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+
+        ui->filterGenerator->setEncounterSlots(area.getCount());
 
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         if (area.feebasLocation(currentProfile->getVersion())
@@ -400,25 +367,6 @@ void Wild3::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterSearcher->setEncounterSlots(12);
-            break;
-        case Encounter::RockSmash:
-        case Encounter::Surfing:
-        case Encounter::SuperRod:
-            ui->filterSearcher->setEncounterSlots(5);
-            break;
-        case Encounter::OldRod:
-            ui->filterSearcher->setEncounterSlots(2);
-            break;
-        case Encounter::GoodRod:
-            ui->filterSearcher->setEncounterSlots(3);
-            break;
-        default:
-            break;
-        }
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -446,22 +394,6 @@ void Wild3::searcherEncounterIndexChanged(int index)
 
 void Wild3::searcherFeebasTileStateChanged(Qt::CheckState state)
 {
-    auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-    switch (encounter)
-    {
-    case Encounter::OldRod:
-        ui->filterSearcher->setEncounterSlots(state == Qt::Checked ? 3 : 2);
-        break;
-    case Encounter::GoodRod:
-        ui->filterSearcher->setEncounterSlots(state == Qt::Checked ? 4 : 3);
-        break;
-    case Encounter::SuperRod:
-        ui->filterSearcher->setEncounterSlots(state == Qt::Checked ? 6 : 5);
-        break;
-    default:
-        break;
-    }
-
     updateEncounterSearcher();
     searcherLocationIndexChanged(0);
 }
@@ -473,6 +405,8 @@ void Wild3::searcherLocationIndexChanged(int index)
         auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+
+        ui->filterSearcher->setEncounterSlots(area.getCount());
 
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         if (area.feebasLocation(currentProfile->getVersion())

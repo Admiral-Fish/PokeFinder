@@ -132,7 +132,7 @@ def embed_encounters8():
     string += "};"
     arrays.append(string)
 
-    files = ("bd", "bd_underground", "sp", "sp_underground")
+    files = ("bd", "bd_honey", "bd_underground", "sp", "sp_honey", "sp_underground")
     for file in files:
         with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()

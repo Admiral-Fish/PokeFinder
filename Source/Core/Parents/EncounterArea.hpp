@@ -90,6 +90,13 @@ public:
     }
 
     /**
+     * @brief Return number of encounter slots
+     *
+     * @return Encounter slot count
+     */
+    u8 getCount() const;
+
+    /**
      * @brief Returns the type of encounter of the area
      *
      * @return Encounter type

@@ -89,15 +89,15 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
-    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::BugCatchingContest),
-                                            toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt), toInt(Encounter::HeadbuttSpecial),
-                                            toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
-                                            toInt(Encounter::SuperRod) });
+    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
+                                            toInt(Encounter::BugCatchingContest), toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt),
+                                            toInt(Encounter::HeadbuttSpecial), toInt(Encounter::Surfing), toInt(Encounter::OldRod),
+                                            toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
-    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::BugCatchingContest),
-                                           toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt), toInt(Encounter::HeadbuttSpecial),
-                                           toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
-                                           toInt(Encounter::SuperRod) });
+    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
+                                           toInt(Encounter::BugCatchingContest), toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt),
+                                           toInt(Encounter::HeadbuttSpecial), toInt(Encounter::Surfing), toInt(Encounter::OldRod),
+                                           toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
     ui->comboBoxGeneratorDualSlot->setup(
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
@@ -321,7 +321,8 @@ void Wild4::updateEncounterSearcher()
 void Wild4::generate()
 {
     Method method;
-    u8 radarSlot = 0;
+    u8 fixedSlot = 0;
+    auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         if (ui->checkBoxGeneratorPokeRadar->isChecked())
@@ -330,13 +331,30 @@ void Wild4::generate()
             std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
             if (std::count(encounters.begin(), encounters.end(), true) != 1)
             {
-                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"), tr("Please a single encounter slot for Poke Radar"));
+                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
+                                tr("Please select a single encounter slot for Poke Radar"));
                 msg.exec();
                 return;
             }
             else
             {
-                radarSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+            }
+        }
+        else if (encounter == Encounter::HoneyTree)
+        {
+            method = Method::HoneyTree;
+            std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
+            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            {
+                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
+                                tr("Please select a single encounter slot for Honey Tree"));
+                msg.exec();
+                return;
+            }
+            else
+            {
+                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
             }
         }
         else
@@ -366,7 +384,7 @@ void Wild4::generate()
     WildGenerator4 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, chained, unownRadio, happiness,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
-    auto states = generator.generate(seed, radarSlot);
+    auto states = generator.generate(seed, fixedSlot);
     generatorModel->addItems(states);
 }
 
@@ -375,31 +393,6 @@ void Wild4::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterGenerator->setEncounterSlots(12);
-            break;
-        case Encounter::Surfing:
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            ui->filterGenerator->setEncounterSlots(5);
-            break;
-        case Encounter::RockSmash:
-            ui->filterGenerator->setEncounterSlots(2);
-            break;
-        case Encounter::BugCatchingContest:
-            ui->filterGenerator->setEncounterSlots(10);
-            break;
-        case Encounter::Headbutt:
-        case Encounter::HeadbuttAlt:
-        case Encounter::HeadbuttSpecial:
-            ui->filterGenerator->setEncounterSlots(6);
-            break;
-        default:
-            break;
-        }
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -407,6 +400,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
         bool swarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+        bool honey = encounter == Encounter::HoneyTree;
 
         ui->labelGeneratorHappiness->setVisible(hgss && fish);
         ui->comboBoxGeneratorHappiness->setVisible(hgss && fish);
@@ -441,8 +435,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
         ui->labelGeneratorTime->setVisible((!hgss && grass) || hgss);
         ui->comboBoxGeneratorTime->setVisible((!hgss && grass) || hgss);
 
-        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), bug);
-        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), bug);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), bug || honey);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), bug || honey);
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Pressure), bug); // Also handles Hustle and Vital Spirit
 
         updateEncounterGenerator();
@@ -476,7 +470,6 @@ void Wild4::generatorEncounterUpdate()
 
 void Wild4::generatorFeebasTileStateChanged(Qt::CheckState state)
 {
-    ui->filterGenerator->setEncounterSlots(state == Qt::Checked ? 6 : 5);
     updateEncounterGenerator();
     generatorLocationIndexChanged(0);
 }
@@ -493,6 +486,8 @@ void Wild4::generatorLocationIndexChanged(int index)
         bool safari = area.safariZone(currentProfile->getVersion());
         bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+
+        ui->filterGenerator->setEncounterSlots(area.getCount());
 
         ui->checkBoxGeneratorReplacement->setVisible(greatMarsh || trophyGarden);
         ui->comboBoxGeneratorReplacement0->setVisible(greatMarsh || trophyGarden);
@@ -553,7 +548,6 @@ void Wild4::generatorLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->filterGenerator->setEncounterSlots(10);
             ui->labelGeneratorTime->setVisible(true);
             ui->comboBoxGeneratorTime->setVisible(true);
         }
@@ -618,6 +612,7 @@ void Wild4::profileIndexChanged(int index)
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
+        ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::HoneyTree)), hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::RockSmash)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::BugCatchingContest)),
                                                       !hgss);
@@ -627,6 +622,7 @@ void Wild4::profileIndexChanged(int index)
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::ArenaTrap), !hgss); // Also handles Illuminate and No Guard
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::StickyHold), !hgss); // Also handles Suction Cups
 
+        ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::HoneyTree)), hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::RockSmash)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::BugCatchingContest)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::Headbutt)), !hgss);
@@ -650,7 +646,8 @@ void Wild4::profileManager()
 void Wild4::search()
 {
     Method method;
-    u8 radarSlot = 0;
+    u8 fixedSlot = 0;
+    auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         if (ui->checkBoxSearcherPokeRadar->isChecked())
@@ -659,13 +656,30 @@ void Wild4::search()
             std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
             if (std::count(encounters.begin(), encounters.end(), true) != 1)
             {
-                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"), tr("Please a single encounter slot for Poke Radar"));
+                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
+                                tr("Please select a single encounter slot for Poke Radar"));
                 msg.exec();
                 return;
             }
             else
             {
-                radarSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+            }
+        }
+        else if (encounter == Encounter::HoneyTree)
+        {
+            method = Method::HoneyTree;
+            std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
+            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            {
+                QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
+                                tr("Please select a single encounter slot for Honey Tree"));
+                msg.exec();
+                return;
+            }
+            else
+            {
+                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
             }
         }
         else
@@ -681,7 +695,6 @@ void Wild4::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
     if (encounter == Encounter::BugCatchingContest || area.safariZone(currentProfile->getVersion()))
     {
@@ -721,7 +734,7 @@ void Wild4::search()
     }
     ui->progressBar->setRange(0, maxProgress);
 
-    auto *thread = QThread::create([=] { searcher->startSearch(min, max, radarSlot); });
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max, fixedSlot); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
@@ -749,31 +762,6 @@ void Wild4::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        switch (encounter)
-        {
-        case Encounter::Grass:
-            ui->filterSearcher->setEncounterSlots(12);
-            break;
-        case Encounter::Surfing:
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            ui->filterSearcher->setEncounterSlots(5);
-            break;
-        case Encounter::RockSmash:
-            ui->filterSearcher->setEncounterSlots(2);
-            break;
-        case Encounter::BugCatchingContest:
-            ui->filterSearcher->setEncounterSlots(10);
-            break;
-        case Encounter::Headbutt:
-        case Encounter::HeadbuttAlt:
-        case Encounter::HeadbuttSpecial:
-            ui->filterSearcher->setEncounterSlots(6);
-            break;
-        default:
-            break;
-        }
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -781,6 +769,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
         bool swarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+        bool honey = encounter == Encounter::HoneyTree;
 
         ui->labelSearcherHappiness->setVisible(hgss && fish);
         ui->comboBoxSearcherHappiness->setVisible(hgss && fish);
@@ -815,8 +804,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
         ui->labelSearcherTime->setVisible((!hgss && grass) || hgss);
         ui->comboBoxSearcherTime->setVisible((!hgss && grass) || hgss);
 
-        ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), bug);
-        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), bug);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), bug || honey);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), bug || honey);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::Pressure), bug); // Also handles Hustle and Vital Spirit
 
         updateEncounterSearcher();
@@ -850,7 +839,6 @@ void Wild4::searcherEncounterUpdate()
 
 void Wild4::searcherFeebasTileStateChanged(Qt::CheckState state)
 {
-    ui->filterSearcher->setEncounterSlots(state == Qt::Checked ? 6 : 5);
     updateEncounterSearcher();
     searcherLocationIndexChanged(0);
 }
@@ -867,6 +855,8 @@ void Wild4::searcherLocationIndexChanged(int index)
         bool safari = area.safariZone(currentProfile->getVersion());
         bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+
+        ui->filterSearcher->setEncounterSlots(area.getCount());
 
         ui->checkBoxSearcherReplacement->setVisible(greatMarsh || trophyGarden);
         ui->comboBoxSearcherReplacement0->setVisible(greatMarsh || trophyGarden);
@@ -927,7 +917,6 @@ void Wild4::searcherLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->filterSearcher->setEncounterSlots(12);
             ui->labelSearcherTime->setVisible(true);
             ui->comboBoxSearcherTime->setVisible(true);
         }
