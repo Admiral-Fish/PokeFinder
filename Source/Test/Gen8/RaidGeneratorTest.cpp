@@ -86,7 +86,7 @@ void RaidGeneratorTest::generate()
     const Den *den = Encounters8::getDen(denIndex, rarity);
     Raid raid = den->getRaid(raidIndex, version);
 
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     RaidGenerator generator(0, 9, 0, profile, filter);
 
     auto states = generator.generate(seed, level, raid);

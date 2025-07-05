@@ -120,6 +120,42 @@ Filter::~Filter()
 
 void Filter::disableControls(Controls control)
 {
+    if ((control & Controls::Ability) != Controls::None)
+    {
+        ui->labelAbility->setVisible(false);
+        ui->comboBoxAbility->setVisible(false);
+    }
+
+    if ((control & Controls::DisableFilter) != Controls::None)
+    {
+        ui->checkBoxDisableFilters->setVisible(false);
+    }
+
+    if ((control & Controls::EncounterSlots) != Controls::None)
+    {
+        ui->labelEncounterSlot->setVisible(false);
+        ui->checkListEncounterSlot->setVisible(false);
+    }
+
+    if ((control & Controls::Gender) != Controls::None)
+    {
+        ui->labelGender->setVisible(false);
+        ui->comboBoxGender->setVisible(false);
+    }
+
+    if ((control & Controls::Height) != Controls::None)
+    {
+        ui->labelHeight->setVisible(false);
+        ui->spinBoxHeightMin->setVisible(false);
+        ui->spinBoxHeightMax->setVisible(false);
+    }
+
+    if ((control & Controls::HiddenPowers) != Controls::None)
+    {
+        ui->labelHiddenPower->setVisible(false);
+        ui->checkListHiddenPower->setVisible(false);
+    }
+
     if ((control & Controls::IVs) != Controls::None)
     {
         ui->labelHP->setVisible(false);
@@ -150,30 +186,6 @@ void Filter::disableControls(Controls control)
         ui->pushButtonIVCalculator->setVisible(false);
     }
 
-    if ((control & Controls::Ability) != Controls::None)
-    {
-        ui->labelAbility->setVisible(false);
-        ui->comboBoxAbility->setVisible(false);
-    }
-
-    if ((control & Controls::Gender) != Controls::None)
-    {
-        ui->labelGender->setVisible(false);
-        ui->comboBoxGender->setVisible(false);
-    }
-
-    if ((control & Controls::EncounterSlots) != Controls::None)
-    {
-        ui->labelEncounterSlot->setVisible(false);
-        ui->checkListEncounterSlot->setVisible(false);
-    }
-
-    if ((control & Controls::HiddenPowers) != Controls::None)
-    {
-        ui->labelHiddenPower->setVisible(false);
-        ui->checkListHiddenPower->setVisible(false);
-    }
-
     if ((control & Controls::Natures) != Controls::None)
     {
         ui->labelNature->setVisible(false);
@@ -185,10 +197,12 @@ void Filter::disableControls(Controls control)
         ui->labelShiny->setVisible(false);
         ui->comboBoxShiny->setVisible(false);
     }
-
-    if ((control & Controls::DisableFilter) != Controls::None)
+    
+    if ((control & Controls::Weight) != Controls::None)
     {
-        ui->checkBoxDisableFilters->setVisible(false);
+        ui->labelWeight->setVisible(false);
+        ui->spinBoxWeightMin->setVisible(false);
+        ui->spinBoxWeightMax->setVisible(false);
     }
 }
 
@@ -217,6 +231,16 @@ std::array<bool, 12> Filter::getEncounterSlots() const
 u8 Filter::getGender() const
 {
     return ui->comboBoxGender->getCurrentUChar();
+}
+
+u8 Filter::getHeightMax() const
+{
+    return static_cast<u8>(ui->spinBoxHeightMax->value());
+}
+
+u8 Filter::getHeightMin() const
+{
+    return static_cast<u8>(ui->spinBoxHeightMin->value());
 }
 
 std::array<bool, 16> Filter::getHiddenPowers() const
@@ -268,6 +292,16 @@ void Filter::setEncounterSlots(u8 max) const
 void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setChecks(encounterSlots);
+}
+
+u8 Filter::getWeightMax() const
+{
+    return static_cast<u8>(ui->spinBoxWeightMax->value());
+}
+
+u8 Filter::getWeightMin() const
+{
+    return static_cast<u8>(ui->spinBoxWeightMin->value());
 }
 
 bool Filter::eventFilter(QObject *object, QEvent *event)

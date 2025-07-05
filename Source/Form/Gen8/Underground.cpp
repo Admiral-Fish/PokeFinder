@@ -166,7 +166,8 @@ void Underground::generate()
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();
 
-    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
+    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getHeightMin(),
+                                  ui->filter->getHeightMax(), ui->filter->getWeightMin(), ui->filter->getWeightMax(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, lead, bonus, levelFlag,

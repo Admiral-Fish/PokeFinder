@@ -180,7 +180,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
                          form, height, weight, info);
-        if (filter.compareState(static_cast<const WildState &>(state)))
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

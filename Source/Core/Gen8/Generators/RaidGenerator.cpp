@@ -172,7 +172,7 @@ std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid
         weight += rng.nextUInt<128>();
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

@@ -99,7 +99,7 @@ void WildGenerator3Test::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);

@@ -75,7 +75,7 @@ void StaticSearcher3Test::search()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     StaticSearcher3 searcher(method, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);

@@ -46,7 +46,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 
     ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->eggSettings->setup(Game::BDSP);
 

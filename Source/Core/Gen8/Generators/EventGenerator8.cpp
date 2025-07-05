@@ -138,7 +138,7 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
         weight += rngList.next(128);
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, height, weight, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

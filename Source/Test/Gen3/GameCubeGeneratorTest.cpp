@@ -72,7 +72,7 @@ void GameCubeGeneratorTest::generateChannel()
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
     const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(9, 0);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::Channel, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -122,7 +122,7 @@ void GameCubeGeneratorTest::generateColoShadow()
     Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
@@ -174,7 +174,7 @@ void GameCubeGeneratorTest::generateGalesShadow()
     Profile3 profile("-", Game::Gales, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, unset, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
@@ -226,7 +226,7 @@ void GameCubeGeneratorTest::generateNonLock()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(8, pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
