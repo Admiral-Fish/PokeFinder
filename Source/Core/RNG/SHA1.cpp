@@ -554,7 +554,7 @@ void SHA1Multi::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 
 void SHA1Multi::setTime(u32 time, DSType dsType)
 {
-    vuint128 val(timeValues[time], timeValues[time + 1], timeValues[time + 2], timeValues[time + 3]);
+    vuint128 val = v32x4_load(&timeValues[time]);
     if (time >= 43200 && dsType != DSType::DS3)
     {
         val = val | 0x40000000;
