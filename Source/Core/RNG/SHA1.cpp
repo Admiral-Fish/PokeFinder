@@ -494,7 +494,7 @@ std::array<u64, 4> SHA1SSE::hashSeed(const std::array<vuint128, 5> &alpha)
     std::array<u64, 4> seeds;
     for (int i = 0; i < seeds.size(); i++)
     {
-        u64 seed = (static_cast<u64>(part2.uint32[i]) << 32) | static_cast<u64>(part1.uint32[i]);
+        u64 seed = (static_cast<u64>(part2[i]) << 32) | static_cast<u64>(part1[i]);
         seeds[i] = BWRNG(seed).next();
     }
 
@@ -721,7 +721,7 @@ std::array<u64, 8> SHA1AVX2::hashSeed(const std::array<vuint256, 5> &alpha)
     std::array<u64, 8> seeds;
     for (int i = 0; i < seeds.size(); i++)
     {
-        u64 seed = (static_cast<u64>(part2.uint32[i]) << 32) | static_cast<u64>(part1.uint32[i]);
+        u64 seed = (static_cast<u64>(part2[i]) << 32) | static_cast<u64>(part1[i]);
         seeds[i] = BWRNG(seed).next();
     }
 
