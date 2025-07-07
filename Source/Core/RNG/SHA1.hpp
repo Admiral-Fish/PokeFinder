@@ -202,7 +202,7 @@ private:
 
 #ifdef SIMD_X86
 /**
- * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds. Computes 4 seeds at a time
+ * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds. Computes 8 seeds at a time
  */
 class SHA1AVX2
 {
