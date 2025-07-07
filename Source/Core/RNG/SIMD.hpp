@@ -658,12 +658,12 @@ union alignas(32) vuint256 {
     u32 uint32[8];
 
     /**
-     * @brief Construct a new vuint128 object
+     * @brief Construct a new vuint256 object
      */
     vuint256() = default;
 
     /**
-     * @brief Construct a new vuint128 object
+     * @brief Construct a new vuint256 object
      *
      * @param x Initalization number
      */

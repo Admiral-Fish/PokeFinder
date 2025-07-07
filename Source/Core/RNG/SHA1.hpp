@@ -122,14 +122,14 @@ class SHA1SSE
 {
 public:
     /**
-     * @brief Construct a new SHA1Multi object
+     * @brief Construct a new SHA1SSE object
      *
      * @param profile Profile input parameters
      */
     SHA1SSE(const Profile5 &profile);
 
     /**
-     * @brief Construct a new SHA1Multi object
+     * @brief Construct a new SHA1SSE object
      *
      * @param version Game version parameter
      * @param language Language parameter
@@ -208,14 +208,14 @@ class SHA1AVX2
 {
 public:
     /**
-     * @brief Construct a new SHA1Multi object
+     * @brief Construct a new SHA1AVX2 object
      *
      * @param profile Profile input parameters
      */
     SHA1AVX2(const Profile5 &profile);
 
     /**
-     * @brief Construct a new SHA1Multi object
+     * @brief Construct a new SHA1AVX2 object
      *
      * @param version Game version parameter
      * @param language Language parameter
