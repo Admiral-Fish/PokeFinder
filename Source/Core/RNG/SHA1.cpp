@@ -562,7 +562,7 @@ void SHA1SSE::setTime(u32 time, DSType dsType)
     data[9] = val;
 }
 
-#if defined(SIMD_X86)
+#ifdef SIMD_X86
 static vuint256 calcWAVX2(vuint256 *data, int i)
 {
     vuint256 val = v32x8_rotl<1>(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16]);

@@ -200,7 +200,7 @@ private:
     vuint128 data[80];
 };
 
-#if defined(SIMD_X86)
+#ifdef SIMD_X86
 /**
  * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds. Computes 4 seeds at a time
  */
