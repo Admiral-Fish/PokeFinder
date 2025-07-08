@@ -23,7 +23,7 @@
 #include <QWidget>
 
 class Profile8;
-class RaidModel;
+class StaticModel8;
 
 namespace Ui
 {
@@ -64,7 +64,7 @@ private:
     Ui::Raids *ui;
 
     Profile8 *currentProfile;
-    RaidModel *model;
+    StaticModel8 *model;
     std::vector<Profile8> profiles;
 
 private slots:

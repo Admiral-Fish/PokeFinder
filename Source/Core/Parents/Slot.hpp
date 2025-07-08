@@ -30,7 +30,7 @@ class PersonalInfo;
 class Slot
 {
 public:
-/**
+    /**
      * @brief Construct a new Slot object
      */
     Slot() : info(nullptr), specie(0), form(0), maxLevel(0), minLevel(0)

@@ -40,7 +40,7 @@ public:
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param mac MAC address
-     * @param keypresses Vector of keypress values
+     * @param keypresses Array of keypress values
      * @param vcount VCount value
      * @param gxstat GxStat value
      * @param vframe VFrame value
@@ -103,7 +103,7 @@ public:
     /**
      * @brief Returns the keypresses selected of the profile
      *
-     * @return Vector of keypress where true indicates that value is used and false means that value is not used
+     * @return Array of keypress where true indicates that value is used and false means that value is not used
      */
     std::array<bool, 9> getKeypresses() const
     {

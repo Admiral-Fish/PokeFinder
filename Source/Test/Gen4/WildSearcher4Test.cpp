@@ -109,7 +109,7 @@ void WildSearcher4Test::searchMethodJ()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50,
                            *encounterArea, profile, filter);
 
@@ -189,7 +189,7 @@ void WildSearcher4Test::searchMethodK()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, false, false, false, 50, *encounterArea,
                            profile, filter);
 
@@ -270,7 +270,7 @@ void WildSearcher4Test::searchPokeRadar()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::PokeRadar, lead, false, shiny, false, 50, *encounterArea,
                            profile, filter);
 

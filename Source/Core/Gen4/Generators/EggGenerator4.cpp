@@ -25,6 +25,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &right)
 {

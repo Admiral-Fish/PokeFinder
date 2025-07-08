@@ -98,7 +98,7 @@ void EggGenerator4Test::generate()
     Profile4 profile("-", version, 12345, 54321, false);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, masuda);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     EggGenerator4 generator(0, 9, 0, 0, 9, 0, daycare, profile, filter);
 
     auto states = generator.generate(seed, seedPickup);

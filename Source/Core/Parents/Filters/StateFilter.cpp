@@ -19,10 +19,24 @@
 
 #include "StateFilter.hpp"
 #include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/State8.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 
-StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
-    natures(natures), powers(powers), max(max), min(min), skip(skip), ability(ability), gender(gender), shiny(shiny)
+StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+                         const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+                         const std::array<bool, 16> &powers) :
+    skip(skip),
+    natures(natures),
+    powers(powers),
+    ivMax(ivMax),
+    ivMin(ivMin),
+    ability(ability),
+    gender(gender),
+    heightMax(heightMax),
+    heightMin(heightMin),
+    shiny(shiny),
+    weightMax(weightMax),
+    weightMin(weightMin)
 {
 }
 
@@ -51,7 +65,7 @@ bool StateFilter::compareIV(const std::array<u8, 6> &ivs) const
     for (int i = 0; i < 6; i++)
     {
         u8 iv = ivs[i];
-        if (iv < min[i] || iv > max[i])
+        if (iv < ivMin[i] || iv > ivMax[i])
         {
             return false;
         }
@@ -130,7 +144,7 @@ bool StateFilter::compareState(const State &state) const
     for (int i = 0; i < 6; i++)
     {
         u8 iv = state.getIV(i);
-        if (iv < min[i] || iv > max[i])
+        if (iv < ivMin[i] || iv > ivMax[i])
         {
             return false;
         }
@@ -139,10 +153,31 @@ bool StateFilter::compareState(const State &state) const
     return true;
 }
 
-WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                                 const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
-                                 const std::array<bool, 12> &encounterSlots) :
-    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), encounterSlots(encounterSlots)
+bool StateFilter::compareState(const State8 &state) const
+{
+    if (!compareState(static_cast<const State &>(state)))
+    {
+        return false;
+    }
+
+    if (state.getHeight() < heightMin || state.getHeight() > heightMax)
+    {
+        return false;
+    }
+
+    if (state.getWeight() < weightMin || state.getWeight() > weightMax)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+                                 const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+                                 const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots) :
+    StateFilter(gender, ability, shiny, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
+    encounterSlots(encounterSlots)
 {
 }
 
@@ -181,7 +216,7 @@ bool WildStateFilter::compareState(const WildGeneratorState &state) const
     for (int i = 0; i < 6; i++)
     {
         u8 iv = state.getIV(i);
-        if (iv < min[i] || iv > max[i])
+        if (iv < ivMin[i] || iv > ivMax[i])
         {
             return false;
         }
@@ -218,4 +253,25 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
 bool WildStateFilter::compareState(const WildState &state) const
 {
     return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
+}
+
+
+bool WildStateFilter::compareState(const WildState8 &state) const
+{
+    if (!compareState(static_cast<const WildState &>(state)))
+    {
+        return false;
+    }
+
+    if (state.getHeight() < heightMin || state.getHeight() > heightMax)
+    {
+        return false;
+    }
+
+    if (state.getWeight() < weightMin || state.getWeight() > weightMax)
+    {
+        return false;
+    }
+
+    return true;
 }

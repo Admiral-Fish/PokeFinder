@@ -54,8 +54,8 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->eggSettingsGenerator->setup(Game::Gen5);
     ui->eggSettingsSearcher->setup(Game::Gen5);

@@ -1,86 +1,86 @@
-0,Route 101
-1,Route 102
-2,Route 103
-3,Route 104
-4,Route 105
-5,Route 110
-6,Route 111
-7,Route 112
-8,Route 113
-9,Route 114
-10,Route 116
-11,Route 117
-12,Route 118
-13,Route 124
-14,Petalburg Woods
-15,Rusturf Tunnel
-16,Granite Cave 1F
-17,Granite Cave B1F
-18,Mt Pyre 1F-3F
-19,Victory Road 1F
-20,Safari Zone South
-21,Route 126 Underwater
-22,Abandoned Ship
-23,Granite Cave B2F
-24,Fiery Path
-25,Meteor Falls B1F 2R
-26,Jagged Pass
-27,Route 106
-28,Route 107
-29,Route 108
-30,Route 109
-31,Route 115
-32,New Mauville Inside
-33,Route 119
-34,Route 120
-35,Route 121
-36,Route 122
-37,Route 123
-40,Mt Pyre 4F-6F
-43,Mt Pyre Exterior
-44,Mt Pyre Summit
-45,Granite Cave Stevens Room
-46,Route 125
-47,Route 126
-48,Route 127
-49,Route 128
-50,Route 129
-51,Route 130
-52,Route 131
-53,Route 132
-54,Route 133
-55,Route 134
-62,Seafloor Cavern
-66,Cave Of Origin Entrance
-67,Cave Of Origin 1F
-71,New Mauville Entrance
-72,Safari Zone Southwest
-73,Safari Zone North
-74,Safari Zone Northwest
-75,Victory Road B1F
-76,Victory Road B2F
-77,Meteor Falls 1F 1R
-78,Meteor Falls 1F 2R
-79,Meteor Falls B1F 1R
-82,Shoal Cave
-84,Lilycove City
-85,Dewford Town
-86,Slateport City
-87,Mossdeep City
-88,Pacifidlog Town
-89,Ever Grande City
-90,Petalburg City
-91,Route 124 Underwater
-92,Shoal Cave Ice Room
-93,Sky Pillar 1F
-94,Sootopolis City
-95,Sky Pillar 3F
-96,Sky Pillar 5F
-97,Safari Zone Southeast
-98,Safari Zone Northeast
-99,Magma Hideout
-107,Mirage Tower
-111,Desert Underpass
-112,Artisan Cave
-114,Altering Cave
-123,Meteor Falls Stevens Cave
+0,101号道路
+1,102号道路
+2,103号道路
+3,104号道路
+4,105号道路
+5,110号道路
+6,111号道路
+7,112号道路
+8,113号道路
+9,114号道路
+10,116号道路
+11,117号道路
+12,118号道路
+13,124号道路
+14,橙华森林
+15,卡绿隧道
+16,石之洞窟1F
+17,石之洞窟B1F
+18,送神山1F-3F
+19,冠军之路1F
+20,狩猎地带（地区1）
+21,水中（126号水路）
+22,弃船
+23,石之洞窟B2F
+24,烈焰小径
+25,流星瀑布（内部下层深处的洞窟）
+26,凹凸山道
+27,106号道路
+28,107号道路
+29,108号道路
+30,109号道路
+31,115号道路
+32,新紫堇（内部）
+33,119号道路
+34,120号道路
+35,121号道路
+36,122号道路
+37,123号道路
+40,送神山4F-6F
+43,送神山（外部）
+44,送神山（顶部）
+45,石之洞窟（大吾的房间）
+46,125号道路
+47,126号道路
+48,127号道路
+49,128号道路
+50,129号道路
+51,130号道路
+52,131号道路
+53,132号道路
+54,133号道路
+55,134号道路
+62,海底洞窟
+66,觉醒神殿（入口）
+67,觉醒神殿1F
+71,新紫堇（入口）
+72,狩猎地带（地区2）
+73,狩猎地带（地区4）
+74,狩猎地带（地区3）
+75,冠军之路B1F
+76,冠军之路B2F
+77,流星瀑布（入口）
+78,流星瀑布（内部上层）
+79,流星瀑布（内部下层）
+82,浅滩洞穴
+84,水静市
+85,武斗镇
+86,凯那市
+87,绿岭市
+88,暮水镇
+89,彩悠市
+90,橙华市
+91,水中（124号水路）
+92,浅滩洞穴（冰之房间）
+93,天空之柱1F
+94,琉璃市
+95,天空之柱3F
+96,天空之柱5F
+97,狩猎地带（地区5）
+98,狩猎地带（地区6）
+99,熔岩队基地
+107,幻影之塔
+111,沙漠的地下道
+112,工匠之穴
+114,变幻洞窟
+123,流星瀑布（大吾的房间）

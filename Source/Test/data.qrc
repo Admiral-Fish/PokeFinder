@@ -38,7 +38,8 @@
         <file alias="mt.json">RNG/mt.json</file>
         <file alias="sfmt.json">RNG/sfmt.json</file>
         <file alias="sha1.json">RNG/sha1.json</file>
-        <file alias="sha1multi.json">RNG/sha1multi.json</file>
+        <file alias="sha1avx2.json">RNG/sha1avx2.json</file>
+        <file alias="sha1sse.json">RNG/sha1sse.json</file>
         <file alias="tinymt.json">RNG/tinymt.json</file>
         <file alias="xoroshiro.json">RNG/xoroshiro.json</file>
         <file alias="xorshift.json">RNG/xorshift.json</file>

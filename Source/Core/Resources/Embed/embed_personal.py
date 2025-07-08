@@ -124,7 +124,7 @@ def embed_personal():
                 items = f"std::array<u16, 3> {{ {item1}, {item2}, {item3} }}"
                 ability = f"std::array<u16, 3> {{ {ability1}, {ability2}, {abilityH} }}"
                 personal = f"PersonalInfo({stats}, {types}, {items}, {gender}, {ability}, {form_count}, {form_stat_index}, {hatch_species}, {present})"
-                
+
                 string += personal
                 if i != size - offset:
                     string += ", "

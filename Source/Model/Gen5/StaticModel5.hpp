@@ -32,7 +32,7 @@ class StaticGeneratorModel5 : public TableModel<State5>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new WildGeneratorModel5 object
+     * @brief Construct a new StaticGeneratorModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */
@@ -91,7 +91,7 @@ class StaticSearcherModel5 : public TableModel<SearcherState5<State5>>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new WildSearcherModel5 object
+     * @brief Construct a new StaticSearcherModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */

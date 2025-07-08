@@ -82,18 +82,17 @@ ModifiedSlots EncounterArea::getSlots(Lead lead) const
         return modifiedSlots;
     }
 
-    u8 count = 0;
-    for (size_t i = 0; i < pokemon.size() && pokemon[i].getInfo() != nullptr; i++)
+    u8 i = 0;
+    for (i = 0; i < pokemon.size() && pokemon[i].getInfo() != nullptr; i++)
     {
         const PersonalInfo *info = pokemon[i].getInfo();
         if (info->getType(0) == type || info->getType(1) == type)
         {
-            modifiedSlots.encounters[modifiedSlots.count++] = static_cast<u8>(i);
+            modifiedSlots.encounters[modifiedSlots.count++] = i;
         }
-        count++;
     }
 
-    if (modifiedSlots.count == count)
+    if (modifiedSlots.count == i)
     {
         modifiedSlots.count = 0;
     }

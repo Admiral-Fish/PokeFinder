@@ -31,7 +31,7 @@ class SeedToTimeModel4 : public TableModel<SeedTime4>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new SeedTimeModel4 object
+     * @brief Construct a new SeedToTimeModel4 object
      *
      * @param parent Parent object, which takes memory ownership
      */
@@ -79,7 +79,7 @@ class SeedToTimeCalibrateModel4 : public TableModel<SeedTimeCalibrate4>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new SeedTimeCalibrateModel4 object
+     * @brief Construct a new SeedToTimeCalibrateModel4 object
      *
      * @param parent Parent object, which takes memory ownership
      * @param dppt Whether the game version is DPPt or not

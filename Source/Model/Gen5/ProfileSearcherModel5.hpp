@@ -31,7 +31,7 @@ class ProfileSearcherModel5 : public TableModel<ProfileSearcherState5>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new ProfileModel5 object
+     * @brief Construct a new ProfileSearcherModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */

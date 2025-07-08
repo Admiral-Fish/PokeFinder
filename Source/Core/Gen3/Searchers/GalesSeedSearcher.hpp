@@ -20,7 +20,7 @@
 #ifndef GALESSEEDSEARCHER_HPP
 #define GALESSEEDSEARCHER_HPP
 
-#include <Core/Gen3/Searchers/SeedSearcher.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 struct GalesCriteria
@@ -34,7 +34,7 @@ struct GalesCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class GalesSeedSearcher final : public SeedSearcher<GalesCriteria>
+class GalesSeedSearcher final : public SearcherBase<u32>
 {
 public:
     /**
@@ -60,6 +60,8 @@ public:
     void startSearch(const std::vector<u32> &seeds);
 
 private:
+    GalesCriteria criteria;
+
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *

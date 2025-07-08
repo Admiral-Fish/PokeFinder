@@ -26,6 +26,7 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
                              const StateFilter &filter) :

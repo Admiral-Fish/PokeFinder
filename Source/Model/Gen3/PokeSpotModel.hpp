@@ -31,7 +31,7 @@ class PokeSpotModel : public TableModel<PokeSpotState>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new WildGeneratorModel3 object
+     * @brief Construct a new PokeSpotModel object
      *
      * @param parent Parent object, which takes memory ownership
      */

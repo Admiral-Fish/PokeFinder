@@ -18,7 +18,6 @@
  */
 
 #include "UndergroundArea.hpp"
-#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
@@ -141,7 +140,7 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
             }
         }
 
-        u8 size = sizes[rngList.next() % sizeCount];
+        u8 size = sizes[rngList.next(sizeCount)];
         u16 value = pokemonSizes[size] + type;
 
         TypeSize slot = { value, size, type };
@@ -152,7 +151,7 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
 
 u16 UndergroundArea::getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const
 {
-    if ((rngList.next() % 100) < 50)
+    if (rngList.next(100) < 50)
     {
         float rate = rngList.next(rand) * specialSum;
         auto it = std::find_if(specialPokemon.begin(), specialPokemon.end(), [rate](const SpecialPokemon &mon) { return rate < mon.rate; });

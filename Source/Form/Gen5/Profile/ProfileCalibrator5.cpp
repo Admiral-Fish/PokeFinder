@@ -143,8 +143,8 @@ void ProfileCalibrator5::updateParameters()
         {
             ui->textBoxMinVCount->setText("A0");
             ui->textBoxMaxVCount->setText("C0");
-            ui->textBoxMinTimer0->setText("1600");
-            ui->textBoxMaxTimer0->setText("1790");
+            ui->textBoxMinTimer0->setText("1400");
+            ui->textBoxMaxTimer0->setText("1900");
         }
         break;
     }

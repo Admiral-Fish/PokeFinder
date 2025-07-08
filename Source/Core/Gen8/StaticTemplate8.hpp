@@ -20,7 +20,6 @@
 #ifndef STATICTEMPLATE8_HPP
 #define STATICTEMPLATE8_HPP
 
-#include <Core/Enum/Method.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 
 /**
@@ -40,11 +39,23 @@ public:
      * @param gender Gender of the template
      * @param ivCount Gender of the template
      * @param level Level of the template
+     * @param fateful Whether the template is a fateful encounter
      * @param roamer Whether the template is a roamer
      */
-    constexpr StaticTemplate8(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level, bool roamer) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, ivCount, level), roamer(roamer)
+    constexpr StaticTemplate8(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level, bool fateful, bool roamer) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, ivCount, level), fateful(fateful), roamer(roamer)
     {
+    }
+
+    /**
+     * @brief Determines whether the template is a fateful encounter or not
+     *
+     * @return true Template is a fateful encounter
+     * @return false Template is not a fateful encounter
+     */
+    bool getFateful() const
+    {
+        return fateful;
     }
 
     /**
@@ -59,6 +70,7 @@ public:
     }
 
 private:
+    bool fateful;
     bool roamer;
 };
 

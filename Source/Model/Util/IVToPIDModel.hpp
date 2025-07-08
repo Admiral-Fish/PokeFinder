@@ -28,7 +28,7 @@ class IVToPIDModel : public TableModel<IVToPIDState>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new IDModel8 object
+     * @brief Construct a new IVToPIDModel object
      *
      * @param parent Parent object, which takes memory ownership
      */

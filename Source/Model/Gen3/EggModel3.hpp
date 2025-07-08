@@ -31,7 +31,7 @@ class EggModel3 : public TableModel<EggState3>
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new EggGeneratorModel5 object
+     * @brief Construct a new EggGeneratorModel3 object
      *
      * @param parent Parent object, which takes memory ownership
      * @param emerald Whether the version is Emerald or not

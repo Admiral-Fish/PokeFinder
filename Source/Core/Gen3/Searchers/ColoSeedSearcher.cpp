@@ -75,7 +75,7 @@ static void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 gender
     }
 }
 
-ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
+ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : criteria(criteria)
 {
 }
 

@@ -25,17 +25,19 @@
 /**
  * @brief Enum that encompasses which controls can be enabled/disabled
  */
-enum class Controls : u8
+enum class Controls : u16
 {
     None = 0,
-    IVs = 1 << 0,
-    Ability = 1 << 1,
-    Gender = 1 << 2,
-    EncounterSlots = 1 << 3,
-    HiddenPowers = 1 << 4,
-    Natures = 1 << 5,
-    Shiny = 1 << 6,
-    DisableFilter = 1 << 7
+    Ability = 1 << 0,
+    DisableFilter = 1 << 1,
+    EncounterSlots = 1 << 2,
+    Gender = 1 << 3,
+    Height = 1 << 4,
+    HiddenPowers = 1 << 5,
+    IVs = 1 << 6,
+    Natures = 1 << 7,
+    Shiny = 1 << 8,
+    Weight = 1 << 9
 };
 
 /**

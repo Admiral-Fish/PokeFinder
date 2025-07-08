@@ -52,7 +52,7 @@ public:
     Wild8(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the Wild8 object
      */
     ~Wild8() override;
 

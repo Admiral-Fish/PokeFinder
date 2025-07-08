@@ -51,7 +51,7 @@ public:
     Eggs8(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static8 object
+     * @brief Destroy the Eggs8 object
      */
     ~Eggs8() override;
 

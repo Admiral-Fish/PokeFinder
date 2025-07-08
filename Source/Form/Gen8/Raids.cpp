@@ -29,7 +29,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
-#include <Model/Gen8/RaidModel.hpp>
+#include <Model/Gen8/StaticModel8.hpp>
 #include <QFile>
 #include <QSettings>
 
@@ -38,34 +38,22 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    model = new RaidModel(ui->tableView);
+    model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
     ui->filter->enableHiddenAbility();
 
-    ui->comboBoxAbilityType->setItemData(0, 0);
-    ui->comboBoxAbilityType->setItemData(1, 1);
-    ui->comboBoxAbilityType->setItemData(2, 2);
-    ui->comboBoxAbilityType->setItemData(3, 3);
-    ui->comboBoxAbilityType->setItemData(4, 4);
+    ui->comboBoxAbilityType->setup({ 0, 1, 2, 3, 4 });
 
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGenderRatio->setItemData(0, 255);
-    ui->comboBoxGenderRatio->setItemData(1, 0);
-    ui->comboBoxGenderRatio->setItemData(2, 254);
-    ui->comboBoxGenderRatio->setItemData(3, 31);
-    ui->comboBoxGenderRatio->setItemData(4, 63);
-    ui->comboBoxGenderRatio->setItemData(5, 127);
-    ui->comboBoxGenderRatio->setItemData(6, 191);
+    ui->comboBoxGenderRatio->setup({ 255, 0, 254, 31, 63, 127, 191 });
 
-    ui->comboBoxShinyType->setItemData(0, 0); // Random shiny chance
-    ui->comboBoxShinyType->setItemData(1, 1); // Forced non-shiny
-    ui->comboBoxShinyType->setItemData(2, 2); // Forced shiny
+    ui->comboBoxShinyType->setup({ 0, 1, 2 }); // Random, Non-shiny, shiny
 
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Raids::profileManager);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Raids::profileIndexChanged);
@@ -74,7 +62,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     connect(ui->comboBoxDen, &QComboBox::currentIndexChanged, this, &Raids::denIndexChanged);
     connect(ui->comboBoxRarity, &QComboBox::currentIndexChanged, this, &Raids::rarityIndexChange);
     connect(ui->comboBoxSpecies, &QComboBox::currentIndexChanged, this, &Raids::specieIndexChanged);
-    connect(ui->filter, &Filter::showStatsChanged, model, &RaidModel::setShowStats);
+    connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 
     updateProfiles();
     locationIndexChanged(0);

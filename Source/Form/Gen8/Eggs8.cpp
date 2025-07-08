@@ -19,6 +19,7 @@
 
 #include "Eggs8.hpp"
 #include "ui_Eggs8.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -45,7 +46,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 
     ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->eggSettings->setup(Game::BDSP);
 

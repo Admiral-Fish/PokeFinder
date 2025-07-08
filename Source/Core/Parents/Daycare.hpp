@@ -21,7 +21,6 @@
 #define DAYCARE_HPP
 
 #include <Core/Global.hpp>
-#include <algorithm>
 #include <array>
 
 /**
@@ -62,7 +61,7 @@ public:
      */
     bool getDitto() const
     {
-        return std::any_of(parentGender.begin(), parentGender.end(), [](u8 gender) { return gender == 3; });
+        return parentGender[0] == 3 || parentGender[1] == 3;
     }
 
     /**
@@ -82,7 +81,7 @@ public:
      */
     u8 getEverstoneCount() const
     {
-        return std::count_if(parentItem.begin(), parentItem.end(), [](u8 item) { return item == 1; });
+        return (parentItem[0] == 1) + (parentItem[1] == 1);
     }
 
     /**
@@ -164,7 +163,7 @@ public:
      */
     u8 getPowerItemCount() const
     {
-        return std::count_if(parentItem.begin(), parentItem.end(), [](u8 item) { return item >= 2 && item <= 7; });
+        return (parentItem[0] >= 2 && parentItem[0] <= 7) + (parentItem[1] >= 2 && parentItem[1] <= 7);
     }
 
 private:

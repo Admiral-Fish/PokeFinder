@@ -1,78 +1,78 @@
-0,Petalburg City
-1,Slateport City
-2,Lilycove City
-3,Mossdeep City
-4,Sootopolis City
-5,Ever Grande City
-6,Meteor Falls 1F 1R
-7,Meteor Falls 1F 2R
-8,Meteor Falls B1F 1R
-9,Meteor Falls B1F 2R
-10,Rusturf Tunnel
-11,Granite Cave 1F
-12,Granite Cave B1F
-13,Granite Cave B2F
-14,Granite Cave Stevens Room
-15,Petalburg Woods
-16,Jagged Pass
-17,Fiery Path
-18,Mt Pyre 1F-3F
-21,Mt Pyre 4F-6F
-24,Mt Pyre Exterior
-25,Mt Pyre Summit
-32,Seafloor Cavern
-35,Cave Of Origin Entrance
-36,Cave Of Origin 1F-B3F
-40,Victory Road 1F
-41,Victory Road B1F
-42,Victory Road B2F
-44,Shoal Cave
-47,Shoal Cave Ice Room
-48,New Mauville Entrance
-49,New Mauville Inside
-50,Abandoned Ship Rooms
-52,Sky Pillar 1F
-53,Sky Pillar 3F
-54,Sky Pillar 5F
-55,Route 101
-56,Route 102
-57,Route 103
-58,Route 104
-59,Route 105
-60,Route 106
-61,Route 107
-62,Route 108
-63,Route 109
-64,Route 110
-65,Route 111
-66,Route 112
-67,Route 113
-68,Route 114
-69,Route 115
-70,Route 116
-71,Route 117
-72,Route 118
-73,Route 119
-74,Route 120
-75,Route 121
-76,Route 122
-77,Route 123
-78,Route 124
-79,Route 125
-80,Route 126
-81,Route 127
-82,Route 128
-83,Route 129
-84,Route 130
-85,Route 131
-86,Route 132
-87,Route 133
-88,Route 134
-89,Safari Zone Northwest
-90,Safari Zone Northeast
-91,Safari Zone Southwest
-92,Safari Zone Southeast
-93,Dewford Town
-94,Pacifidlog Town
-95,Route 124 Underwater
-96,Route 126 Underwater
+0,橙华市
+1,凯那市
+2,水静市
+3,绿岭市
+4,琉璃市
+5,彩悠市
+6,流星瀑布（入口）
+7,流星瀑布（内部上层）
+8,流星瀑布（内部下层）
+9,流星瀑布（内部下层深处的洞窟）
+10,卡绿隧道
+11,石之洞窟1F
+12,石之洞窟B1F
+13,石之洞窟B2F
+14,石之洞窟（大吾的房间）
+15,橙华森林
+16,凹凸山道
+17,烈焰小径
+18,送神山1F-3F
+21,送神山4F-6F
+24,送神山（外部）
+25,送神山（顶部）
+32,海底洞窟
+35,觉醒神殿（入口）
+36,觉醒神殿1F-B3F
+40,冠军之路1F
+41,冠军之路B1F
+42,冠军之路B2F
+44,浅滩洞穴
+47,浅滩洞穴（冰之房间）
+48,新紫堇（入口）
+49,新紫堇（内部）
+50,弃船
+52,天空之柱1F
+53,天空之柱3F
+54,天空之柱5F
+55,101号道路
+56,102号道路
+57,103号道路
+58,104号道路
+59,105号道路
+60,106号道路
+61,107号道路
+62,108号道路
+63,109号道路
+64,110号道路
+65,111号道路
+66,112号道路
+67,113号道路
+68,114号道路
+69,115号道路
+70,116号道路
+71,117号道路
+72,118号道路
+73,119号道路
+74,120号道路
+75,121号道路
+76,122号道路
+77,123号道路
+78,124号道路
+79,125号道路
+80,126号道路
+81,127号道路
+82,128号道路
+83,129号道路
+84,130号道路
+85,131号道路
+86,132号道路
+87,133号道路
+88,134号道路
+89,狩猎地带（地区3）
+90,狩猎地带（地区4）
+91,狩猎地带（地区2）
+92,狩猎地带（地区1）
+93,武斗镇
+94,暮水镇
+95,水中（124号水路）
+96,水中（126号水路）

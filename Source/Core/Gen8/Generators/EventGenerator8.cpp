@@ -83,7 +83,7 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
         std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
         for (u8 i = 0; i < wb8.getIVCount();)
         {
-            u8 index = rngList.next() % 6;
+            u8 index = rngList.next(6);
             if (ivs[index] == 255)
             {
                 ivs[index] = 31;
@@ -95,7 +95,7 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
         {
             if (iv == 255)
             {
-                iv = rngList.next() % 32;
+                iv = rngList.next(32);
             }
         }
 
@@ -108,10 +108,10 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
             ability = wb8.getAbility();
             break;
         case 3:
-            ability = rngList.next() % 2;
+            ability = rngList.next(2);
             break;
         case 4:
-            ability = rngList.next() % 3;
+            ability = rngList.next(3);
             break;
         }
 
@@ -125,20 +125,20 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
             gender = wb8.getGender();
             break;
         default:
-            gender = (rngList.next() % 252) + 1 < wb8.getGender();
+            gender = rngList.next(252) + 1 < wb8.getGender();
             break;
         }
 
-        u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
+        u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next(25);
 
-        u8 height = rngList.next() % 129;
-        height += rngList.next() % 128;
+        u8 height = rngList.next(129);
+        height += rngList.next(128);
 
-        u8 weight = rngList.next() % 129;
-        weight += rngList.next() % 128;
+        u8 weight = rngList.next(129);
+        weight += rngList.next(128);
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, height, weight, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }

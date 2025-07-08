@@ -33,7 +33,18 @@ private slots:
     void hashTime();
 };
 
-class SHA1MultiTest : public QObject
+class SHA1SSETest : public QObject
+{
+    Q_OBJECT
+private slots:
+    void hash_data();
+    void hash();
+
+    void hashTime_data();
+    void hashTime();
+};
+
+class SHA1AVX2Test : public QObject
 {
     Q_OBJECT
 private slots:

@@ -52,7 +52,7 @@ public:
     Event8(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the Event8 object
      */
     ~Event8() override;
 

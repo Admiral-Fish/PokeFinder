@@ -135,7 +135,8 @@ int main()
     status += runTest<MTTest>(fails);
     status += runTest<SFMTTest>(fails);
     status += runTest<SHA1Test>(fails);
-    status += runTest<SHA1MultiTest>(fails);
+    status += runTest<SHA1AVX2Test>(fails);
+    status += runTest<SHA1SSETest>(fails);
     status += runTest<TinyMTTest>(fails);
     status += runTest<XoroshiroTest>(fails);
     status += runTest<XoroshiroBDSPTest>(fails);

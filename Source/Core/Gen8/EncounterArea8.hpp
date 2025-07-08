@@ -63,8 +63,8 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = rngList.next() % range;
-            if (force && (rngList.next() % 2) != 0)
+            u8 rand = rngList.next(range);
+            if (force && rngList.next(2) != 0)
             {
                 return max;
             }
@@ -75,7 +75,7 @@ public:
         {
             const Slot &slot = pokemon[encounterSlot];
             u8 level = slot.getMaxLevel();
-            if (force && (rngList.next() % 2) != 0)
+            if (force && rngList.next(2) != 0)
             {
                 for (const Slot &s : pokemon)
                 {

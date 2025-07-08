@@ -46,7 +46,7 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
             return (pid & 255) < info->getGender();
         }
     }
-    
+
     return false;
 }
 

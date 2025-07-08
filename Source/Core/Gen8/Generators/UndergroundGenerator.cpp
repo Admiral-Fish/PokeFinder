@@ -259,7 +259,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         else
         {
             u8 range = levelInfo.max - levelInfo.min + 1;
-            level = levelInfo.min + (rngList.next() % range);
+            level = levelInfo.min + rngList.next(range);
         }
 
         u32 ec = rngList.next(rand);
@@ -309,7 +309,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             gender = 0;
             break;
         default:
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rngList.next() % 100) < 67)
+            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && rngList.next(100) < 67)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
             }
@@ -335,14 +335,14 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         u8 weight = rngList.next(rand) % 129;
         weight += rngList.next(rand) % 128;
 
-        u16 item = getItem(rngList.next() % 100, lead, info);
+        u16 item = getItem(rngList.next(100), lead, info);
 
         u16 eggMove = 0;
         auto eggMoves = std::lower_bound(eggMoveList.begin(), eggMoveList.end(), info->getHatchSpecie(),
                                          [](const EggMoveList &move, u16 specie) { return move.specie < specie; });
         if (eggMoves != eggMoveList.end() && eggMoves->specie == info->getHatchSpecie())
         {
-            eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
+            eggMove = eggMoves->moves[rngList.next(eggMoves->count)];
         }
 
         return UndergroundState(initialAdvances + advances, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, eggMove,
@@ -356,7 +356,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
         u16 specialPokemon = area.getSpecialPokemon(rngList);
 
-        if ((rngList.next() % 100) >= 50)
+        if (rngList.next(100) >= 50)
         {
             spawnCount = area.getMax();
         }
