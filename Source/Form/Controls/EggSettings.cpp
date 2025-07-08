@@ -71,8 +71,7 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
-    connect(ui->checkBoxShowInheritance, &QCheckBox::checkStateChanged, this,
-            [=](Qt::CheckState state) { emit showInheritanceChanged(state == Qt::Checked); });
+    connect(ui->checkBoxShowInheritance, &QCheckBox::toggled, this, &EggSettings::showInheritanceChanged);
 }
 
 EggSettings::~EggSettings()

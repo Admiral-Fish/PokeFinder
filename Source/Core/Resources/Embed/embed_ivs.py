@@ -19,7 +19,7 @@ def embed_ivs():
         string += str(data[i])
         if i != len(data) - 1:
             string += ", "
-    
+
     string += " };"
 
     write_data([string], "IVs.hpp", ("Core/Global.hpp", "array"))

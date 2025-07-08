@@ -13,10 +13,10 @@ def _get_shiny(flag: int):
         return "Shiny::Never"
     elif flag == 2:
         return "Shiny::Always"
-    
+
 
 def _get_stars(flags: List[str]):
-    stars = [ "1" if int(x) != 0 else "0" for x in flags ]
+    stars = ["1" if int(x) != 0 else "0" for x in flags]
     return f"std::array<bool, 5> {{ {', '.join(stars)} }}"
 
 
@@ -29,8 +29,8 @@ def embed_encounters8():
             string = f"constexpr std::array<StaticTemplate8, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
-                string += f"StaticTemplate8({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']}, {int(encounter.get('roamer', False))})"
-                
+                string += f"StaticTemplate8({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']}, {int(encounter.get('fateful', False))}, {int(encounter.get('roamer', False))})"
+
                 if i != len(encounters) - 1:
                     string += ", "
 
@@ -126,7 +126,7 @@ def embed_encounters8():
                 stars = _get_stars(raid["Probabilities"])
                 raids.append(f"Raid({species}, {altform}, {shiny}, {ability}, {gender}, {iv_count}, {gigantamax}, {stars}, {level})")
             string += f"{', '.join(raids)} }})"
-        
+
         if i != 69:
             string += ", "
     string += "};"

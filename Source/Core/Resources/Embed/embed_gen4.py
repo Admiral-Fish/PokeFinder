@@ -15,7 +15,7 @@ def embed_encounters4():
 
             for i, encounter in enumerate(encounters):
                 string += f"StaticTemplate4({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter['level']}, {encounter['method']})"
-                
+
                 if i != len(encounters) - 1:
                     string += ", "
 

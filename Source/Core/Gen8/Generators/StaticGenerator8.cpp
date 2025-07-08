@@ -76,6 +76,11 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
             if (shiny) // Force shiny
             {
+                if (staticTemplate.getFateful())
+                {
+                    shiny = 2;
+                }
+
                 if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
