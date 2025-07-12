@@ -101,7 +101,7 @@ static consteval std::array<u32, 86400> computeTimeValues()
         u32 h = computeBCD(hour) << 24;
         if (hour >= 12)
         {
-            hour |= 0x40000000;
+            h |= 0x40000000;
         }
 
         for (u8 minute = 0; minute < 60; minute++)
@@ -360,9 +360,9 @@ void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 void SHA1::setTime(u32 time, DSType dsType)
 {
     u32 val = timeValues[time];
-    if (time >= 43200 && dsType != DSType::DS3)
+    if (time >= 43200 && dsType == DSType::DS3)
     {
-        val |= 0x40000000;
+        val ^= 0x40000000;
     }
     data[9] = val;
 }
@@ -555,9 +555,9 @@ void SHA1SSE::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 void SHA1SSE::setTime(u32 time, DSType dsType)
 {
     vuint128 val = v32x4_load(&timeValues[time]);
-    if (time >= 43200 && dsType != DSType::DS3)
+    if (time >= 43200 && dsType == DSType::DS3)
     {
-        val = val | 0x40000000;
+        val = val ^ 0x40000000;
     }
     data[9] = val;
 }
@@ -782,9 +782,9 @@ void SHA1AVX2::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 void SHA1AVX2::setTime(u32 time, DSType dsType)
 {
     vuint256 val = v32x8_load(&timeValues[time]);
-    if (time >= 43200 && dsType != DSType::DS3)
+    if (time >= 43200 && dsType == DSType::DS3)
     {
-        val = val | 0x40000000;
+        val = val ^ 0x40000000;
     }
     data[9] = val;
 }
