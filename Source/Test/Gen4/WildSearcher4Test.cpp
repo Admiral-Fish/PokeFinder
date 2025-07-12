@@ -265,7 +265,7 @@ void WildSearcher4Test::searchHoneyTree()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::HoneyTree, lead, settings.dppt.feebasTile, false, false, 50,
                            *encounterArea, profile, filter);
 
