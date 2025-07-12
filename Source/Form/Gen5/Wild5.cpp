@@ -69,7 +69,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
                                            toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
                                            toInt(Encounter::SuperRodRippling) });
 
-    ui->filterSearcher->disableControls(Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));

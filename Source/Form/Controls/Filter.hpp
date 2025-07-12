@@ -23,7 +23,7 @@
 #include <Core/Global.hpp>
 #include <QWidget>
 
-enum class Controls : u8;
+enum class Controls : u16;
 class QSpinBox;
 
 namespace Ui
@@ -108,13 +108,13 @@ public:
     {
         if constexpr (wild)
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
-                              getHiddenPowers(), getEncounterSlots());
+            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
+                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots());
         }
         else
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
-                              getHiddenPowers());
+            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
+                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers());
         }
     }
 
@@ -124,6 +124,20 @@ public:
      * @return Gender value
      */
     u8 getGender() const;
+
+    /**
+     * @brief Gets upper bound height to filter by
+     *
+     * @return Maximum height
+     */
+    u8 getHeightMax() const;
+
+    /**
+     * @brief Gets lower bound height to filter by
+     *
+     * @return Minimum height
+     */
+    u8 getHeightMin() const;
 
     /**
      * @brief Gets hidden powers to filter by
@@ -178,6 +192,20 @@ public:
      * @param encounterSlots Vector of encounter slots
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
+
+    /**
+     * @brief Gets upper bound height to filter by
+     *
+     * @return Maximum height
+     */
+    u8 getWeightMax() const;
+
+    /**
+     * @brief Gets lower bound height to filter by
+     *
+     * @return Minimum height
+     */
+    u8 getWeightMin() const;
 
 protected:
     /**

@@ -56,8 +56,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
     ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots);
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);

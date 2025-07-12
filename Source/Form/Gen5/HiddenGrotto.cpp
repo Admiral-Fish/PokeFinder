@@ -83,8 +83,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->textBoxPokemonSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxPokemonSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterPokemonGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterPokemonSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots);
+    ui->filterPokemonGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterPokemonSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->comboBoxPokemonGeneratorLocation->enableAutoComplete();
     ui->comboBoxPokemonSearcherLocation->enableAutoComplete();

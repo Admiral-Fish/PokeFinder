@@ -103,7 +103,7 @@ void EventGenerator8Test::generate()
     Profile8 profile("-", Game::BD, 12345, 54321, false, false, false);
 
     WB8 wb8(tid, sid, ec, pid, specie, form, gender, egg, nature, ability, shiny, ivCount, level);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     EventGenerator8 generator(0, 9, 0, wb8, profile, filter);
 
     auto states = generator.generate(seed0, seed1);

@@ -83,7 +83,7 @@ void PokeSpotGeneratorTest::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     PokeSpotGenerator generator(0, 9, 0, 0, 9, 0, profile, filter);
 
     auto states = generator.generate(seed, seed, *encounterArea);

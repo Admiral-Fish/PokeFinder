@@ -94,7 +94,7 @@ void UndergroundGeneratorTest::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const UndergroundArea &encounterArea) { return encounterArea.getLocation() == location; });
 
-    UndergroundStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterArea->getSpecies());
+    UndergroundStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterArea->getSpecies());
     UndergroundGenerator generator(0, 9, 0, lead, diglett, levelFlag, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed0, seed1);

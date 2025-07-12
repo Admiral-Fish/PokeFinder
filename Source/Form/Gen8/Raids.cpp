@@ -44,28 +44,16 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
     ui->filter->enableHiddenAbility();
 
-    ui->comboBoxAbilityType->setItemData(0, 0);
-    ui->comboBoxAbilityType->setItemData(1, 1);
-    ui->comboBoxAbilityType->setItemData(2, 2);
-    ui->comboBoxAbilityType->setItemData(3, 3);
-    ui->comboBoxAbilityType->setItemData(4, 4);
+    ui->comboBoxAbilityType->setup({ 0, 1, 2, 3, 4 });
 
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGenderRatio->setItemData(0, 255);
-    ui->comboBoxGenderRatio->setItemData(1, 0);
-    ui->comboBoxGenderRatio->setItemData(2, 254);
-    ui->comboBoxGenderRatio->setItemData(3, 31);
-    ui->comboBoxGenderRatio->setItemData(4, 63);
-    ui->comboBoxGenderRatio->setItemData(5, 127);
-    ui->comboBoxGenderRatio->setItemData(6, 191);
+    ui->comboBoxGenderRatio->setup({ 255, 0, 254, 31, 63, 127, 191 });
 
-    ui->comboBoxShinyType->setItemData(0, 0); // Random shiny chance
-    ui->comboBoxShinyType->setItemData(1, 1); // Forced non-shiny
-    ui->comboBoxShinyType->setItemData(2, 2); // Forced shiny
+    ui->comboBoxShinyType->setup({ 0, 1, 2 }); // Random, Non-shiny, shiny
 
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Raids::profileManager);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Raids::profileIndexChanged);

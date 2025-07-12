@@ -78,7 +78,7 @@ void GameCubeSearcherTest::searchChannel()
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
     const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(9, 0);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::Channel, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
@@ -129,7 +129,7 @@ void GameCubeSearcherTest::searchColoShadow()
     Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter filter(255, 255, 255, false, shadowTemplate->getType() == ShadowType::EReader ? zero : min,
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, shadowTemplate->getType() == ShadowType::EReader ? zero : min,
                        shadowTemplate->getType() == ShadowType::EReader ? zero : max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
@@ -188,7 +188,7 @@ void GameCubeSearcherTest::searchGalesShadow()
     Profile3 profile("-", Game::Gales, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, unset, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
@@ -239,7 +239,7 @@ void GameCubeSearcherTest::searchNonLock()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(8, pokemon);
-    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
