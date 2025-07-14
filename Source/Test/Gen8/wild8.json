@@ -1,5 +1,5 @@
 {
-    "generate": [
+    "generateWild": [
         {
             "name": "Route 222 Grass",
             "seed0": 1311768467139281697,
@@ -729,50 +729,15 @@
             "location": 170,
             "results": [
                 {
-                    "ability": 1,
-                    "abilityIndex": 93,
+                    "ability": 0,
+                    "abilityIndex": 51,
                     "advances": 0,
-                    "characteristic": 14,
-                    "ec": 4201972612,
+                    "characteristic": 9,
+                    "ec": 2064772326,
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
-                    "height": 100,
-                    "hiddenPower": 3,
-                    "item": 0,
-                    "ivs": [
-                        18,
-                        16,
-                        24,
-                        19,
-                        2,
-                        16
-                    ],
-                    "level": 41,
-                    "nature": 19,
-                    "pid": 1485739543,
-                    "shiny": 0,
-                    "specie": 278,
-                    "stats": [
-                        91,
-                        36,
-                        39,
-                        62,
-                        27,
-                        81
-                    ],
-                    "weight": 190
-                },
-                {
-                    "ability": 0,
-                    "abilityIndex": 43,
-                    "advances": 1,
-                    "characteristic": 9,
-                    "ec": 2064772326,
-                    "encounterSlot": 4,
-                    "form": 0,
-                    "gender": 0,
-                    "height": 100,
+                    "height": 72,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -784,29 +749,29 @@
                         7
                     ],
                     "level": 41,
-                    "nature": 19,
+                    "nature": 16,
                     "pid": 1395503922,
                     "shiny": 0,
-                    "specie": 122,
+                    "specie": 278,
                     "stats": [
                         90,
-                        51,
-                        66,
-                        95,
-                        98,
-                        81
+                        39,
+                        33,
+                        55,
+                        36,
+                        77
                     ],
-                    "weight": 190
+                    "weight": 97
                 },
                 {
                     "ability": 0,
-                    "abilityIndex": 60,
-                    "advances": 2,
+                    "abilityIndex": 43,
+                    "advances": 1,
                     "characteristic": 18,
                     "ec": 1485739543,
-                    "encounterSlot": 7,
+                    "encounterSlot": 4,
                     "form": 0,
-                    "gender": 0,
+                    "gender": 1,
                     "height": 97,
                     "hiddenPower": 8,
                     "item": 0,
@@ -822,27 +787,27 @@
                     "nature": 3,
                     "pid": 2174149616,
                     "shiny": 0,
-                    "specie": 423,
+                    "specie": 122,
                     "stats": [
-                        151,
-                        88,
-                        61,
-                        78,
-                        75,
-                        48
+                        93,
+                        53,
+                        59,
+                        83,
+                        106,
+                        90
                     ],
                     "weight": 114
                 },
                 {
                     "ability": 0,
-                    "abilityIndex": 33,
-                    "advances": 3,
+                    "abilityIndex": 60,
+                    "advances": 2,
                     "characteristic": 28,
                     "ec": 1395503922,
-                    "encounterSlot": 0,
+                    "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
-                    "height": 114,
+                    "height": 190,
                     "hiddenPower": 4,
                     "item": 0,
                     "ivs": [
@@ -853,31 +818,31 @@
                         28,
                         24
                     ],
-                    "level": 40,
-                    "nature": 20,
+                    "level": 41,
+                    "nature": 3,
                     "pid": 4120136184,
                     "shiny": 0,
-                    "specie": 419,
+                    "specie": 423,
                     "stats": [
-                        125,
+                        149,
                         80,
-                        55,
-                        75,
-                        61,
-                        106
+                        67,
+                        74,
+                        83,
+                        46
                     ],
-                    "weight": 49
+                    "weight": 91
                 },
                 {
                     "ability": 1,
-                    "abilityIndex": 111,
-                    "advances": 4,
+                    "abilityIndex": 33,
+                    "advances": 3,
                     "characteristic": 23,
                     "ec": 2174149616,
-                    "encounterSlot": 4,
+                    "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "height": 91,
+                    "height": 190,
                     "hiddenPower": 0,
                     "item": 0,
                     "ivs": [
@@ -888,31 +853,31 @@
                         24,
                         2
                     ],
-                    "level": 41,
-                    "nature": 17,
+                    "level": 40,
+                    "nature": 3,
                     "pid": 1493587827,
                     "shiny": 0,
-                    "specie": 122,
+                    "specie": 419,
                     "stats": [
-                        84,
-                        48,
-                        61,
-                        107,
-                        113,
-                        71
+                        118,
+                        104,
+                        51,
+                        75,
+                        54,
+                        97
                     ],
-                    "weight": 218
+                    "weight": 91
                 },
                 {
                     "ability": 0,
-                    "abilityIndex": 60,
-                    "advances": 5,
+                    "abilityIndex": 43,
+                    "advances": 4,
                     "characteristic": 13,
                     "ec": 4120136184,
-                    "encounterSlot": 1,
+                    "encounterSlot": 4,
                     "form": 0,
                     "gender": 0,
-                    "height": 91,
+                    "height": 114,
                     "hiddenPower": 2,
                     "item": 0,
                     "ivs": [
@@ -923,30 +888,30 @@
                         2,
                         13
                     ],
-                    "level": 40,
-                    "nature": 17,
+                    "level": 41,
+                    "nature": 20,
                     "pid": 3876379458,
                     "shiny": 0,
-                    "specie": 423,
+                    "specie": 122,
                     "stats": [
-                        145,
-                        74,
-                        70,
+                        90,
+                        39,
+                        69,
                         96,
-                        71,
-                        36
+                        114,
+                        84
                     ],
-                    "weight": 218
+                    "weight": 49
                 },
                 {
                     "ability": 1,
-                    "abilityIndex": 33,
-                    "advances": 6,
+                    "abilityIndex": 114,
+                    "advances": 5,
                     "characteristic": 15,
                     "ec": 1493587827,
-                    "encounterSlot": 0,
+                    "encounterSlot": 1,
                     "form": 0,
-                    "gender": 0,
+                    "gender": 1,
                     "height": 49,
                     "hiddenPower": 7,
                     "item": 0,
@@ -962,27 +927,27 @@
                     "nature": 14,
                     "pid": 1362312496,
                     "shiny": 0,
-                    "specie": 419,
+                    "specie": 423,
                     "stats": [
-                        120,
-                        100,
-                        58,
-                        73,
-                        45,
-                        119
+                        141,
+                        82,
+                        69,
+                        79,
+                        67,
+                        52
                     ],
                     "weight": 74
                 },
                 {
                     "ability": 1,
-                    "abilityIndex": 93,
-                    "advances": 7,
+                    "abilityIndex": 33,
+                    "advances": 6,
                     "characteristic": 25,
                     "ec": 3876379458,
-                    "encounterSlot": 5,
+                    "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "height": 218,
+                    "height": 49,
                     "hiddenPower": 5,
                     "item": 0,
                     "ivs": [
@@ -993,30 +958,30 @@
                         30,
                         23
                     ],
-                    "level": 41,
-                    "nature": 16,
+                    "level": 40,
+                    "nature": 14,
                     "pid": 2252305767,
                     "shiny": 0,
-                    "specie": 278,
+                    "specie": 419,
                     "stats": [
-                        95,
-                        39,
-                        27,
-                        60,
-                        41,
-                        84
+                        129,
+                        98,
+                        49,
+                        78,
+                        51,
+                        116
                     ],
-                    "weight": 59
+                    "weight": 74
                 },
                 {
                     "ability": 1,
-                    "abilityIndex": 114,
-                    "advances": 8,
+                    "abilityIndex": 93,
+                    "advances": 7,
                     "characteristic": 20,
                     "ec": 1362312496,
-                    "encounterSlot": 1,
+                    "encounterSlot": 5,
                     "form": 0,
-                    "gender": 0,
+                    "gender": 1,
                     "height": 74,
                     "hiddenPower": 10,
                     "item": 0,
@@ -1028,31 +993,31 @@
                         23,
                         29
                     ],
-                    "level": 40,
+                    "level": 41,
                     "nature": 3,
                     "pid": 1835599644,
                     "shiny": 0,
-                    "specie": 423,
+                    "specie": 278,
                     "stats": [
-                        148,
-                        79,
-                        64,
-                        81,
-                        79,
-                        47
+                        93,
+                        33,
+                        34,
+                        55,
+                        39,
+                        86
                     ],
                     "weight": 144
                 },
                 {
                     "ability": 1,
                     "abilityIndex": 114,
-                    "advances": 9,
+                    "advances": 8,
                     "characteristic": 10,
                     "ec": 2252305767,
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 0,
-                    "height": 59,
+                    "height": 74,
                     "hiddenPower": 13,
                     "item": 0,
                     "ivs": [
@@ -1064,17 +1029,52 @@
                         13
                     ],
                     "level": 40,
-                    "nature": 16,
+                    "nature": 3,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 423,
                     "stats": [
                         139,
-                        76,
-                        63,
-                        95,
+                        83,
+                        71,
+                        78,
                         82,
                         41
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 60,
+                    "advances": 9,
+                    "characteristic": 5,
+                    "ec": 1835599644,
+                    "encounterSlot": 1,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 59,
+                    "hiddenPower": 14,
+                    "item": 0,
+                    "ivs": [
+                        13,
+                        30,
+                        23,
+                        29,
+                        13,
+                        29
+                    ],
+                    "level": 40,
+                    "nature": 16,
+                    "pid": 606895394,
+                    "shiny": 0,
+                    "specie": 423,
+                    "stats": [
+                        144,
+                        83,
+                        61,
+                        99,
+                        75,
+                        47
                     ],
                     "weight": 148
                 }
@@ -2258,18 +2258,18 @@
                         28,
                         24
                     ],
-                    "level": 42,
+                    "level": 41,
                     "nature": 3,
                     "pid": 4120136184,
                     "shiny": 0,
                     "specie": 423,
                     "stats": [
-                        153,
-                        82,
-                        68,
-                        76,
-                        85,
-                        47
+                        149,
+                        80,
+                        67,
+                        74,
+                        83,
+                        46
                     ],
                     "weight": 91
                 },
@@ -2293,18 +2293,18 @@
                         24,
                         2
                     ],
-                    "level": 40,
+                    "level": 42,
                     "nature": 20,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 419,
                     "stats": [
-                        118,
-                        85,
-                        51,
-                        84,
-                        59,
-                        97
+                        124,
+                        89,
+                        54,
+                        88,
+                        62,
+                        102
                     ],
                     "weight": 49
                 },
@@ -2328,18 +2328,18 @@
                         2,
                         13
                     ],
-                    "level": 41,
+                    "level": 42,
                     "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 122,
                     "stats": [
-                        90,
-                        44,
-                        69,
-                        105,
-                        104,
-                        75
+                        92,
+                        45,
+                        71,
+                        108,
+                        106,
+                        77
                     ],
                     "weight": 218
                 },
@@ -3628,18 +3628,18 @@
                         16,
                         7
                     ],
-                    "level": 20,
+                    "level": 22,
                     "nature": 19,
                     "pid": 1395503922,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
-                        49,
-                        21,
-                        20,
-                        29,
+                        53,
+                        23,
+                        22,
+                        31,
                         18,
-                        40
+                        43
                     ],
                     "weight": 190
                 },
@@ -3663,18 +3663,18 @@
                         7,
                         28
                     ],
-                    "level": 23,
+                    "level": 26,
                     "nature": 3,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
-                        56,
-                        25,
-                        19,
-                        29,
-                        20,
-                        50
+                        63,
+                        27,
+                        21,
+                        33,
+                        22,
+                        56
                     ],
                     "weight": 114
                 },
@@ -3698,18 +3698,18 @@
                         28,
                         24
                     ],
-                    "level": 24,
+                    "level": 28,
                     "nature": 3,
                     "pid": 4120136184,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
-                        57,
-                        20,
-                        23,
-                        29,
+                        65,
+                        24,
                         26,
-                        51
+                        33,
+                        29,
+                        59
                     ],
                     "weight": 91
                 },
@@ -3733,18 +3733,18 @@
                         24,
                         2
                     ],
-                    "level": 21,
+                    "level": 29,
                     "nature": 20,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 72,
                     "stats": [
-                        48,
-                        22,
-                        21,
-                        31,
-                        57,
-                        34
+                        62,
+                        28,
+                        27,
+                        42,
+                        75,
+                        46
                     ],
                     "weight": 49
                 },
@@ -3768,18 +3768,18 @@
                         2,
                         13
                     ],
-                    "level": 30,
+                    "level": 22,
                     "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
-                        68,
-                        25,
-                        31,
-                        49,
-                        23,
-                        53
+                        53,
+                        19,
+                        24,
+                        37,
+                        18,
+                        40
                     ],
                     "weight": 218
                 },
@@ -3803,18 +3803,18 @@
                         13,
                         30
                     ],
-                    "level": 28,
+                    "level": 21,
                     "nature": 14,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 72,
                     "stats": [
-                        62,
-                        35,
-                        31,
-                        33,
-                        57,
-                        57
+                        49,
+                        27,
+                        24,
+                        26,
+                        44,
+                        44
                     ],
                     "weight": 74
                 },
@@ -3838,18 +3838,18 @@
                         30,
                         23
                     ],
-                    "level": 28,
+                    "level": 22,
                     "nature": 16,
                     "pid": 2252305767,
                     "shiny": 0,
                     "specie": 72,
                     "stats": [
-                        68,
-                        34,
-                        22,
-                        39,
-                        69,
-                        50
+                        55,
+                        27,
+                        18,
+                        31,
+                        55,
+                        40
                     ],
                     "weight": 59
                 },
@@ -3873,18 +3873,18 @@
                         23,
                         29
                     ],
-                    "level": 24,
+                    "level": 22,
                     "nature": 3,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 278,
                     "stats": [
-                        58,
-                        20,
-                        22,
-                        34,
-                        24,
-                        52
+                        54,
+                        19,
+                        21,
+                        31,
+                        23,
+                        48
                     ],
                     "weight": 144
                 },
@@ -3908,18 +3908,18 @@
                         29,
                         13
                     ],
-                    "level": 28,
+                    "level": 27,
                     "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 72,
                     "stats": [
-                        60,
-                        31,
-                        29,
-                        42,
-                        69,
-                        47
+                        59,
+                        30,
+                        28,
+                        41,
+                        66,
+                        46
                     ],
                     "weight": 148
                 },
@@ -3943,18 +3943,18 @@
                         13,
                         29
                     ],
-                    "level": 26,
+                    "level": 29,
                     "nature": 21,
                     "pid": 606895394,
                     "shiny": 0,
                     "specie": 72,
                     "stats": [
-                        60,
-                        33,
-                        26,
-                        38,
-                        66,
-                        48
+                        65,
+                        36,
+                        27,
+                        42,
+                        72,
+                        54
                     ],
                     "weight": 48
                 }
@@ -3988,18 +3988,18 @@
                         16,
                         7
                     ],
-                    "level": 7,
+                    "level": 5,
                     "nature": 19,
                     "pid": 1395503922,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        20,
-                        8,
-                        14,
+                        17,
                         7,
-                        7,
-                        16
+                        11,
+                        6,
+                        6,
+                        13
                     ],
                     "weight": 190
                 },
@@ -4023,18 +4023,18 @@
                         7,
                         28
                     ],
-                    "level": 7,
+                    "level": 4,
                     "nature": 3,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        21,
-                        7,
-                        12,
-                        7,
-                        8,
-                        18
+                        16,
+                        6,
+                        9,
+                        5,
+                        6,
+                        12
                     ],
                     "weight": 114
                 },
@@ -4093,18 +4093,18 @@
                         24,
                         2
                     ],
-                    "level": 6,
+                    "level": 5,
                     "nature": 20,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        18,
-                        6,
-                        12,
+                        17,
+                        5,
+                        10,
+                        7,
                         8,
-                        8,
-                        14
+                        13
                     ],
                     "weight": 49
                 },
@@ -4128,18 +4128,18 @@
                         2,
                         13
                     ],
-                    "level": 6,
+                    "level": 5,
                     "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        19,
+                        17,
                         6,
-                        13,
-                        8,
+                        11,
                         7,
-                        13
+                        7,
+                        11
                     ],
                     "weight": 218
                 },
@@ -4163,18 +4163,18 @@
                         13,
                         30
                     ],
-                    "level": 5,
+                    "level": 4,
                     "nature": 14,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        17,
-                        7,
-                        11,
+                        15,
+                        6,
+                        10,
                         6,
                         6,
-                        15
+                        13
                     ],
                     "weight": 74
                 },
@@ -4233,18 +4233,18 @@
                         23,
                         29
                     ],
-                    "level": 3,
+                    "level": 5,
                     "nature": 3,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        14,
-                        5,
-                        8,
-                        5,
+                        18,
                         6,
-                        10
+                        11,
+                        7,
+                        8,
+                        14
                     ],
                     "weight": 144
                 },
@@ -4268,18 +4268,18 @@
                         29,
                         13
                     ],
-                    "level": 4,
+                    "level": 5,
                     "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        15,
+                        17,
                         6,
-                        9,
+                        10,
                         7,
-                        7,
-                        11
+                        8,
+                        13
                     ],
                     "weight": 148
                 },
@@ -4348,18 +4348,18 @@
                         16,
                         7
                     ],
-                    "level": 17,
+                    "level": 19,
                     "nature": 19,
                     "pid": 1395503922,
                     "shiny": 0,
                     "specie": 223,
                     "stats": [
-                        41,
-                        31,
-                        20,
-                        29,
-                        17,
-                        28
+                        45,
+                        34,
+                        21,
+                        33,
+                        18,
+                        31
                     ],
                     "weight": 190
                 },
@@ -4383,18 +4383,18 @@
                         7,
                         28
                     ],
-                    "level": 17,
+                    "level": 15,
                     "nature": 3,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 223,
                     "stats": [
-                        42,
-                        33,
-                        17,
-                        26,
-                        18,
-                        31
+                        39,
+                        29,
+                        15,
+                        23,
+                        16,
+                        28
                     ],
                     "weight": 114
                 },
@@ -4418,18 +4418,18 @@
                         28,
                         24
                     ],
-                    "level": 17,
+                    "level": 14,
                     "nature": 3,
                     "pid": 4120136184,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        37,
+                        32,
                         8,
-                        26,
+                        22,
                         9,
-                        16,
-                        36
+                        14,
+                        30
                     ],
                     "weight": 91
                 },
@@ -4453,18 +4453,18 @@
                         24,
                         2
                     ],
-                    "level": 17,
+                    "level": 16,
                     "nature": 20,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        34,
+                        32,
                         9,
-                        24,
+                        23,
                         14,
                         16,
-                        32
+                        30
                     ],
                     "weight": 49
                 },
@@ -4488,18 +4488,18 @@
                         2,
                         13
                     ],
-                    "level": 15,
+                    "level": 20,
                     "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 223,
                     "stats": [
-                        37,
-                        25,
+                        47,
+                        32,
+                        24,
+                        38,
                         19,
-                        30,
-                        15,
-                        23
+                        29
                     ],
                     "weight": 218
                 },
@@ -4523,18 +4523,18 @@
                         13,
                         30
                     ],
-                    "level": 19,
+                    "level": 15,
                     "nature": 14,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        37,
-                        14,
-                        30,
-                        11,
-                        13,
-                        45
+                        32,
+                        12,
+                        25,
+                        9,
+                        10,
+                        36
                     ],
                     "weight": 74
                 },
@@ -4593,18 +4593,18 @@
                         23,
                         29
                     ],
-                    "level": 19,
+                    "level": 15,
                     "nature": 3,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 223,
                     "stats": [
-                        46,
-                        33,
-                        20,
-                        31,
-                        22,
-                        35
+                        39,
+                        26,
+                        17,
+                        26,
+                        18,
+                        28
                     ],
                     "weight": 144
                 },
@@ -4628,18 +4628,18 @@
                         29,
                         13
                     ],
-                    "level": 15,
+                    "level": 19,
                     "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 129,
                     "stats": [
-                        31,
-                        9,
-                        23,
-                        13,
-                        15,
-                        30
+                        36,
+                        11,
+                        27,
+                        16,
+                        18,
+                        37
                     ],
                     "weight": 148
                 },
@@ -4708,18 +4708,18 @@
                         16,
                         7
                     ],
-                    "level": 30,
+                    "level": 32,
                     "nature": 19,
                     "pid": 1395503922,
                     "shiny": 0,
                     "specie": 224,
                     "stats": [
-                        89,
-                        75,
-                        55,
-                        74,
-                        48,
-                        34
+                        95,
+                        79,
+                        59,
+                        79,
+                        52,
+                        36
                     ],
                     "weight": 190
                 },
@@ -4743,18 +4743,18 @@
                         7,
                         28
                     ],
-                    "level": 33,
+                    "level": 36,
                     "nature": 3,
                     "pid": 2174149616,
                     "shiny": 0,
                     "specie": 224,
                     "stats": [
-                        100,
-                        88,
-                        55,
-                        71,
-                        56,
-                        43
+                        108,
+                        95,
+                        59,
+                        77,
+                        61,
+                        47
                     ],
                     "weight": 114
                 },
@@ -4778,18 +4778,18 @@
                         28,
                         24
                     ],
-                    "level": 47,
+                    "level": 44,
                     "nature": 3,
                     "pid": 4120136184,
                     "shiny": 0,
                     "specie": 319,
                     "stats": [
-                        131,
-                        129,
-                        50,
-                        87,
-                        55,
-                        105
+                        123,
+                        122,
+                        47,
+                        81,
+                        52,
+                        99
                     ],
                     "weight": 91
                 },
@@ -4813,18 +4813,18 @@
                         24,
                         2
                     ],
-                    "level": 31,
+                    "level": 39,
                     "nature": 20,
                     "pid": 1493587827,
                     "shiny": 0,
                     "specie": 130,
                     "stats": [
-                        100,
-                        78,
-                        56,
-                        50,
-                        81,
-                        55
+                        123,
+                        97,
+                        69,
+                        62,
+                        101,
+                        68
                     ],
                     "weight": 49
                 },
@@ -4848,18 +4848,18 @@
                         2,
                         13
                     ],
-                    "level": 40,
+                    "level": 32,
                     "nature": 17,
                     "pid": 3876379458,
                     "shiny": 0,
                     "specie": 224,
                     "stats": [
-                        116,
-                        91,
-                        76,
-                        107,
-                        65,
-                        41
+                        95,
+                        74,
+                        61,
+                        86,
+                        53,
+                        33
                     ],
                     "weight": 218
                 },
@@ -4883,18 +4883,18 @@
                         13,
                         30
                     ],
-                    "level": 38,
+                    "level": 31,
                     "nature": 14,
                     "pid": 1362312496,
                     "shiny": 0,
                     "specie": 130,
                     "stats": [
-                        122,
-                        110,
-                        74,
-                        51,
-                        76,
-                        84
+                        102,
+                        91,
+                        61,
+                        42,
+                        63,
+                        70
                     ],
                     "weight": 74
                 },
@@ -4918,18 +4918,18 @@
                         30,
                         23
                     ],
-                    "level": 38,
+                    "level": 32,
                     "nature": 16,
                     "pid": 2252305767,
                     "shiny": 0,
                     "specie": 130,
                     "stats": [
-                        130,
-                        109,
-                        58,
-                        60,
+                        111,
                         92,
-                        75
+                        50,
+                        51,
+                        78,
+                        64
                     ],
                     "weight": 59
                 },
@@ -4953,18 +4953,18 @@
                         23,
                         29
                     ],
-                    "level": 34,
+                    "level": 32,
                     "nature": 3,
                     "pid": 1835599644,
                     "shiny": 0,
                     "specie": 224,
                     "stats": [
-                        103,
-                        84,
+                        97,
+                        79,
+                        57,
+                        72,
                         60,
-                        77,
-                        63,
-                        45
+                        43
                     ],
                     "weight": 144
                 },
@@ -4988,18 +4988,18 @@
                         29,
                         13
                     ],
-                    "level": 38,
+                    "level": 37,
                     "nature": 16,
                     "pid": 1824393016,
                     "shiny": 0,
                     "specie": 130,
                     "stats": [
-                        120,
-                        104,
-                        68,
-                        64,
-                        92,
-                        71
+                        118,
+                        102,
+                        66,
+                        62,
+                        89,
+                        69
                     ],
                     "weight": 148
                 },
@@ -5023,18 +5023,18 @@
                         13,
                         29
                     ],
-                    "level": 36,
+                    "level": 39,
                     "nature": 21,
                     "pid": 606895394,
                     "shiny": 0,
                     "specie": 130,
                     "stats": [
-                        119,
-                        105,
+                        128,
+                        114,
+                        67,
                         63,
-                        58,
-                        89,
-                        73
+                        96,
+                        79
                     ],
                     "weight": 48
                 }
@@ -5397,6 +5397,1813 @@
                         30
                     ],
                     "weight": 148
+                }
+            ]
+        }
+    ],
+    "generateHoneyTree": [
+        {
+            "name": "Route 205 (South)",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "encounter": "HoneyTree",
+            "lead": "None",
+            "location": 145,
+            "index": 0,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 0,
+                    "characteristic": 14,
+                    "ec": 4201972612,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 72,
+                    "hiddenPower": 3,
+                    "item": 151,
+                    "ivs": [
+                        18,
+                        16,
+                        24,
+                        19,
+                        2,
+                        16
+                    ],
+                    "level": 14,
+                    "nature": 16,
+                    "pid": 1485739543,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        39,
+                        19,
+                        16,
+                        14,
+                        13,
+                        12
+                    ],
+                    "weight": 97
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 1,
+                    "characteristic": 9,
+                    "ec": 2064772326,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 100,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        24,
+                        19,
+                        2,
+                        16,
+                        7
+                    ],
+                    "level": 7,
+                    "nature": 19,
+                    "pid": 1395503922,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        11,
+                        7,
+                        9,
+                        8
+                    ],
+                    "weight": 190
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 2,
+                    "characteristic": 18,
+                    "ec": 1485739543,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 97,
+                    "hiddenPower": 8,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        19,
+                        2,
+                        16,
+                        7,
+                        28
+                    ],
+                    "level": 11,
+                    "nature": 3,
+                    "pid": 2174149616,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        17,
+                        12,
+                        9,
+                        12,
+                        12
+                    ],
+                    "weight": 114
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 3,
+                    "characteristic": 28,
+                    "ec": 1395503922,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 190,
+                    "hiddenPower": 4,
+                    "item": 151,
+                    "ivs": [
+                        19,
+                        2,
+                        16,
+                        7,
+                        28,
+                        24
+                    ],
+                    "level": 13,
+                    "nature": 3,
+                    "pid": 4120136184,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        37,
+                        17,
+                        16,
+                        9,
+                        16,
+                        13
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 4,
+                    "characteristic": 23,
+                    "ec": 2174149616,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 114,
+                    "hiddenPower": 0,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        16,
+                        7,
+                        28,
+                        24,
+                        2
+                    ],
+                    "level": 14,
+                    "nature": 20,
+                    "pid": 1493587827,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        36,
+                        17,
+                        15,
+                        14,
+                        17,
+                        10
+                    ],
+                    "weight": 49
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 5,
+                    "characteristic": 13,
+                    "ec": 4120136184,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 91,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        7,
+                        28,
+                        24,
+                        2,
+                        13
+                    ],
+                    "level": 7,
+                    "nature": 17,
+                    "pid": 3876379458,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        11,
+                        11,
+                        9,
+                        9,
+                        7
+                    ],
+                    "weight": 218
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 6,
+                    "characteristic": 15,
+                    "ec": 1493587827,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 49,
+                    "hiddenPower": 7,
+                    "item": 151,
+                    "ivs": [
+                        7,
+                        28,
+                        24,
+                        2,
+                        13,
+                        30
+                    ],
+                    "level": 6,
+                    "nature": 14,
+                    "pid": 1362312496,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        21,
+                        12,
+                        10,
+                        7,
+                        8,
+                        9
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 7,
+                    "characteristic": 25,
+                    "ec": 3876379458,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 218,
+                    "hiddenPower": 5,
+                    "item": 151,
+                    "ivs": [
+                        28,
+                        24,
+                        2,
+                        13,
+                        30,
+                        23
+                    ],
+                    "level": 7,
+                    "nature": 16,
+                    "pid": 2252305767,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        25,
+                        12,
+                        9,
+                        8,
+                        11,
+                        9
+                    ],
+                    "weight": 59
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 8,
+                    "characteristic": 20,
+                    "ec": 1362312496,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 74,
+                    "hiddenPower": 10,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        2,
+                        13,
+                        30,
+                        23,
+                        29
+                    ],
+                    "level": 7,
+                    "nature": 3,
+                    "pid": 1835599644,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        10,
+                        8,
+                        10,
+                        9
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 9,
+                    "characteristic": 10,
+                    "ec": 2252305767,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 59,
+                    "hiddenPower": 13,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        13,
+                        30,
+                        23,
+                        29,
+                        13
+                    ],
+                    "level": 12,
+                    "nature": 16,
+                    "pid": 1824393016,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        17,
+                        15,
+                        13,
+                        15,
+                        11
+                    ],
+                    "weight": 148
+                }
+            ]
+        },
+        {
+            "name": "Route 205 (South) Compound Eyes",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "encounter": "HoneyTree",
+            "lead": "CompoundEyes",
+            "location": 145,
+            "index": 0,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 0,
+                    "characteristic": 14,
+                    "ec": 4201972612,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 72,
+                    "hiddenPower": 3,
+                    "item": 151,
+                    "ivs": [
+                        18,
+                        16,
+                        24,
+                        19,
+                        2,
+                        16
+                    ],
+                    "level": 14,
+                    "nature": 16,
+                    "pid": 1485739543,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        39,
+                        19,
+                        16,
+                        14,
+                        13,
+                        12
+                    ],
+                    "weight": 97
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 1,
+                    "characteristic": 9,
+                    "ec": 2064772326,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 100,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        24,
+                        19,
+                        2,
+                        16,
+                        7
+                    ],
+                    "level": 7,
+                    "nature": 19,
+                    "pid": 1395503922,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        11,
+                        7,
+                        9,
+                        8
+                    ],
+                    "weight": 190
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 2,
+                    "characteristic": 18,
+                    "ec": 1485739543,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 97,
+                    "hiddenPower": 8,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        19,
+                        2,
+                        16,
+                        7,
+                        28
+                    ],
+                    "level": 11,
+                    "nature": 3,
+                    "pid": 2174149616,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        17,
+                        12,
+                        9,
+                        12,
+                        12
+                    ],
+                    "weight": 114
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 3,
+                    "characteristic": 28,
+                    "ec": 1395503922,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 190,
+                    "hiddenPower": 4,
+                    "item": 151,
+                    "ivs": [
+                        19,
+                        2,
+                        16,
+                        7,
+                        28,
+                        24
+                    ],
+                    "level": 13,
+                    "nature": 3,
+                    "pid": 4120136184,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        37,
+                        17,
+                        16,
+                        9,
+                        16,
+                        13
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 4,
+                    "characteristic": 23,
+                    "ec": 2174149616,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 114,
+                    "hiddenPower": 0,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        16,
+                        7,
+                        28,
+                        24,
+                        2
+                    ],
+                    "level": 14,
+                    "nature": 20,
+                    "pid": 1493587827,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        36,
+                        17,
+                        15,
+                        14,
+                        17,
+                        10
+                    ],
+                    "weight": 49
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 5,
+                    "characteristic": 13,
+                    "ec": 4120136184,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 91,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        7,
+                        28,
+                        24,
+                        2,
+                        13
+                    ],
+                    "level": 7,
+                    "nature": 17,
+                    "pid": 3876379458,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        11,
+                        11,
+                        9,
+                        9,
+                        7
+                    ],
+                    "weight": 218
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 6,
+                    "characteristic": 15,
+                    "ec": 1493587827,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 49,
+                    "hiddenPower": 7,
+                    "item": 151,
+                    "ivs": [
+                        7,
+                        28,
+                        24,
+                        2,
+                        13,
+                        30
+                    ],
+                    "level": 6,
+                    "nature": 14,
+                    "pid": 1362312496,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        21,
+                        12,
+                        10,
+                        7,
+                        8,
+                        9
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 7,
+                    "characteristic": 25,
+                    "ec": 3876379458,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 218,
+                    "hiddenPower": 5,
+                    "item": 151,
+                    "ivs": [
+                        28,
+                        24,
+                        2,
+                        13,
+                        30,
+                        23
+                    ],
+                    "level": 7,
+                    "nature": 16,
+                    "pid": 2252305767,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        25,
+                        12,
+                        9,
+                        8,
+                        11,
+                        9
+                    ],
+                    "weight": 59
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 8,
+                    "characteristic": 20,
+                    "ec": 1362312496,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 74,
+                    "hiddenPower": 10,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        2,
+                        13,
+                        30,
+                        23,
+                        29
+                    ],
+                    "level": 7,
+                    "nature": 3,
+                    "pid": 1835599644,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        10,
+                        8,
+                        10,
+                        9
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 9,
+                    "characteristic": 10,
+                    "ec": 2252305767,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 59,
+                    "hiddenPower": 13,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        13,
+                        30,
+                        23,
+                        29,
+                        13
+                    ],
+                    "level": 12,
+                    "nature": 16,
+                    "pid": 1824393016,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        17,
+                        15,
+                        13,
+                        15,
+                        11
+                    ],
+                    "weight": 148
+                }
+            ]
+        },
+        {
+            "name": "Route 205 (South) Cute Charm",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "encounter": "HoneyTree",
+            "lead": "CuteCharmF",
+            "location": 145,
+            "index": 0,
+            "results": [
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 0,
+                    "characteristic": 9,
+                    "ec": 2064772326,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 72,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        24,
+                        19,
+                        2,
+                        16,
+                        7
+                    ],
+                    "level": 14,
+                    "nature": 16,
+                    "pid": 1395503922,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        38,
+                        20,
+                        15,
+                        11,
+                        15,
+                        11
+                    ],
+                    "weight": 97
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 1,
+                    "characteristic": 18,
+                    "ec": 1485739543,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 97,
+                    "hiddenPower": 8,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        19,
+                        2,
+                        16,
+                        7,
+                        28
+                    ],
+                    "level": 7,
+                    "nature": 3,
+                    "pid": 2174149616,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        13,
+                        10,
+                        7,
+                        9,
+                        9
+                    ],
+                    "weight": 114
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 2,
+                    "characteristic": 28,
+                    "ec": 1395503922,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 190,
+                    "hiddenPower": 4,
+                    "item": 151,
+                    "ivs": [
+                        19,
+                        2,
+                        16,
+                        7,
+                        28,
+                        24
+                    ],
+                    "level": 11,
+                    "nature": 3,
+                    "pid": 4120136184,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        32,
+                        16,
+                        14,
+                        9,
+                        14,
+                        12
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 3,
+                    "characteristic": 23,
+                    "ec": 2174149616,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 190,
+                    "hiddenPower": 0,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        16,
+                        7,
+                        28,
+                        24,
+                        2
+                    ],
+                    "level": 13,
+                    "nature": 3,
+                    "pid": 1493587827,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        34,
+                        19,
+                        15,
+                        11,
+                        15,
+                        10
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 4,
+                    "characteristic": 13,
+                    "ec": 4120136184,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 114,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        7,
+                        28,
+                        24,
+                        2,
+                        13
+                    ],
+                    "level": 14,
+                    "nature": 20,
+                    "pid": 3876379458,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        38,
+                        16,
+                        18,
+                        13,
+                        14,
+                        12
+                    ],
+                    "weight": 49
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 5,
+                    "characteristic": 15,
+                    "ec": 1493587827,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 49,
+                    "hiddenPower": 7,
+                    "item": 151,
+                    "ivs": [
+                        7,
+                        28,
+                        24,
+                        2,
+                        13,
+                        30
+                    ],
+                    "level": 7,
+                    "nature": 14,
+                    "pid": 1362312496,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        23,
+                        13,
+                        11,
+                        7,
+                        9,
+                        9
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 6,
+                    "characteristic": 25,
+                    "ec": 3876379458,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 49,
+                    "hiddenPower": 5,
+                    "item": 151,
+                    "ivs": [
+                        28,
+                        24,
+                        2,
+                        13,
+                        30,
+                        23
+                    ],
+                    "level": 6,
+                    "nature": 14,
+                    "pid": 2252305767,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        23,
+                        11,
+                        9,
+                        8,
+                        9,
+                        8
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 7,
+                    "characteristic": 20,
+                    "ec": 1362312496,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 74,
+                    "hiddenPower": 10,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        2,
+                        13,
+                        30,
+                        23,
+                        29
+                    ],
+                    "level": 7,
+                    "nature": 3,
+                    "pid": 1835599644,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        10,
+                        8,
+                        10,
+                        9
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 8,
+                    "characteristic": 10,
+                    "ec": 2252305767,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 74,
+                    "hiddenPower": 13,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        13,
+                        30,
+                        23,
+                        29,
+                        13
+                    ],
+                    "level": 7,
+                    "nature": 3,
+                    "pid": 1824393016,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        23,
+                        13,
+                        12,
+                        8,
+                        11,
+                        8
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 9,
+                    "characteristic": 5,
+                    "ec": 1835599644,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 59,
+                    "hiddenPower": 14,
+                    "item": 151,
+                    "ivs": [
+                        13,
+                        30,
+                        23,
+                        29,
+                        13,
+                        29
+                    ],
+                    "level": 12,
+                    "nature": 16,
+                    "pid": 606895394,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        34,
+                        19,
+                        14,
+                        14,
+                        13,
+                        13
+                    ],
+                    "weight": 148
+                }
+            ]
+        },
+        {
+            "name": "Route 205 (South) Pressure",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "encounter": "Grass",
+            "lead": "Pressure",
+            "location": 145,
+            "index": 0,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 0,
+                    "characteristic": 14,
+                    "ec": 4201972612,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 72,
+                    "hiddenPower": 3,
+                    "item": 0,
+                    "ivs": [
+                        18,
+                        16,
+                        24,
+                        19,
+                        2,
+                        16
+                    ],
+                    "level": 8,
+                    "nature": 16,
+                    "pid": 1485739543,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        16,
+                        10,
+                        17,
+                        9,
+                        19
+                    ],
+                    "weight": 97
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 1,
+                    "characteristic": 9,
+                    "ec": 2064772326,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 100,
+                    "hiddenPower": 2,
+                    "item": 0,
+                    "ivs": [
+                        16,
+                        24,
+                        19,
+                        2,
+                        16,
+                        7
+                    ],
+                    "level": 8,
+                    "nature": 19,
+                    "pid": 1395503922,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        17,
+                        12,
+                        15,
+                        9,
+                        19
+                    ],
+                    "weight": 190
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 2,
+                    "characteristic": 18,
+                    "ec": 1485739543,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 97,
+                    "hiddenPower": 8,
+                    "item": 0,
+                    "ivs": [
+                        24,
+                        19,
+                        2,
+                        16,
+                        7,
+                        28
+                    ],
+                    "level": 8,
+                    "nature": 3,
+                    "pid": 2174149616,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        17,
+                        10,
+                        13,
+                        10,
+                        20
+                    ],
+                    "weight": 114
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 3,
+                    "characteristic": 28,
+                    "ec": 1395503922,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 190,
+                    "hiddenPower": 4,
+                    "item": 0,
+                    "ivs": [
+                        19,
+                        2,
+                        16,
+                        7,
+                        28,
+                        24
+                    ],
+                    "level": 8,
+                    "nature": 3,
+                    "pid": 4120136184,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        16,
+                        11,
+                        13,
+                        12,
+                        20
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 4,
+                    "characteristic": 23,
+                    "ec": 2174149616,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 114,
+                    "hiddenPower": 0,
+                    "item": 0,
+                    "ivs": [
+                        2,
+                        16,
+                        7,
+                        28,
+                        24,
+                        2
+                    ],
+                    "level": 8,
+                    "nature": 20,
+                    "pid": 1493587827,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        26,
+                        14,
+                        11,
+                        16,
+                        12,
+                        18
+                    ],
+                    "weight": 49
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 5,
+                    "characteristic": 13,
+                    "ec": 4120136184,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 91,
+                    "hiddenPower": 2,
+                    "item": 0,
+                    "ivs": [
+                        16,
+                        7,
+                        28,
+                        24,
+                        2,
+                        13
+                    ],
+                    "level": 8,
+                    "nature": 17,
+                    "pid": 3876379458,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        15,
+                        12,
+                        17,
+                        9,
+                        17
+                    ],
+                    "weight": 218
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 6,
+                    "characteristic": 15,
+                    "ec": 1493587827,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 49,
+                    "hiddenPower": 7,
+                    "item": 0,
+                    "ivs": [
+                        7,
+                        28,
+                        24,
+                        2,
+                        13,
+                        30
+                    ],
+                    "level": 8,
+                    "nature": 14,
+                    "pid": 1362312496,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        27,
+                        17,
+                        12,
+                        14,
+                        9,
+                        23
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 7,
+                    "characteristic": 25,
+                    "ec": 3876379458,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 218,
+                    "hiddenPower": 5,
+                    "item": 0,
+                    "ivs": [
+                        28,
+                        24,
+                        2,
+                        13,
+                        30,
+                        23
+                    ],
+                    "level": 8,
+                    "nature": 16,
+                    "pid": 2252305767,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        29,
+                        17,
+                        9,
+                        16,
+                        12,
+                        20
+                    ],
+                    "weight": 59
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 8,
+                    "characteristic": 20,
+                    "ec": 1362312496,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 74,
+                    "hiddenPower": 10,
+                    "item": 0,
+                    "ivs": [
+                        24,
+                        2,
+                        13,
+                        30,
+                        23,
+                        29
+                    ],
+                    "level": 8,
+                    "nature": 3,
+                    "pid": 1835599644,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        28,
+                        16,
+                        11,
+                        15,
+                        11,
+                        20
+                    ],
+                    "weight": 144
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 9,
+                    "characteristic": 10,
+                    "ec": 2252305767,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 59,
+                    "hiddenPower": 13,
+                    "item": 0,
+                    "ivs": [
+                        2,
+                        13,
+                        30,
+                        23,
+                        29,
+                        13
+                    ],
+                    "level": 8,
+                    "nature": 16,
+                    "pid": 1824393016,
+                    "shiny": 0,
+                    "specie": 418,
+                    "stats": [
+                        26,
+                        16,
+                        11,
+                        17,
+                        12,
+                        19
+                    ],
+                    "weight": 148
+                }
+            ]
+        },
+        {
+            "name": "Route 205 (South) Synchronize",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "encounter": "HoneyTree",
+            "lead": "Synchronize",
+            "location": 145,
+            "index": 0,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 0,
+                    "characteristic": 14,
+                    "ec": 4201972612,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 101,
+                    "hiddenPower": 3,
+                    "item": 151,
+                    "ivs": [
+                        18,
+                        16,
+                        24,
+                        19,
+                        2,
+                        16
+                    ],
+                    "level": 14,
+                    "nature": 0,
+                    "pid": 1485739543,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        39,
+                        19,
+                        18,
+                        13,
+                        13,
+                        12
+                    ],
+                    "weight": 100
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 1,
+                    "characteristic": 9,
+                    "ec": 2064772326,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 72,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        24,
+                        19,
+                        2,
+                        16,
+                        7
+                    ],
+                    "level": 7,
+                    "nature": 0,
+                    "pid": 1395503922,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        12,
+                        11,
+                        7,
+                        10,
+                        8
+                    ],
+                    "weight": 97
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 2,
+                    "characteristic": 18,
+                    "ec": 1485739543,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 100,
+                    "hiddenPower": 8,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        19,
+                        2,
+                        16,
+                        7,
+                        28
+                    ],
+                    "level": 11,
+                    "nature": 0,
+                    "pid": 2174149616,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        16,
+                        12,
+                        11,
+                        12,
+                        12
+                    ],
+                    "weight": 190
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 3,
+                    "characteristic": 28,
+                    "ec": 1395503922,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 97,
+                    "hiddenPower": 4,
+                    "item": 151,
+                    "ivs": [
+                        19,
+                        2,
+                        16,
+                        7,
+                        28,
+                        24
+                    ],
+                    "level": 13,
+                    "nature": 0,
+                    "pid": 4120136184,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        37,
+                        16,
+                        16,
+                        11,
+                        16,
+                        13
+                    ],
+                    "weight": 114
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 4,
+                    "characteristic": 23,
+                    "ec": 2174149616,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 190,
+                    "hiddenPower": 0,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        16,
+                        7,
+                        28,
+                        24,
+                        2
+                    ],
+                    "level": 14,
+                    "nature": 0,
+                    "pid": 1493587827,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        36,
+                        19,
+                        15,
+                        14,
+                        16,
+                        10
+                    ],
+                    "weight": 91
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 19,
+                    "advances": 5,
+                    "characteristic": 13,
+                    "ec": 4120136184,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 114,
+                    "hiddenPower": 2,
+                    "item": 151,
+                    "ivs": [
+                        16,
+                        7,
+                        28,
+                        24,
+                        2,
+                        13
+                    ],
+                    "level": 7,
+                    "nature": 0,
+                    "pid": 3876379458,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        11,
+                        11,
+                        9,
+                        9,
+                        8
+                    ],
+                    "weight": 49
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 6,
+                    "characteristic": 15,
+                    "ec": 1493587827,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 91,
+                    "hiddenPower": 7,
+                    "item": 151,
+                    "ivs": [
+                        7,
+                        28,
+                        24,
+                        2,
+                        13,
+                        30
+                    ],
+                    "level": 6,
+                    "nature": 0,
+                    "pid": 1362312496,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        21,
+                        12,
+                        10,
+                        7,
+                        9,
+                        9
+                    ],
+                    "weight": 218
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 7,
+                    "characteristic": 25,
+                    "ec": 3876379458,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 0,
+                    "height": 49,
+                    "hiddenPower": 5,
+                    "item": 151,
+                    "ivs": [
+                        28,
+                        24,
+                        2,
+                        13,
+                        30,
+                        23
+                    ],
+                    "level": 7,
+                    "nature": 0,
+                    "pid": 2252305767,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        25,
+                        12,
+                        10,
+                        8,
+                        11,
+                        9
+                    ],
+                    "weight": 74
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 8,
+                    "characteristic": 20,
+                    "ec": 1362312496,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 218,
+                    "hiddenPower": 10,
+                    "item": 151,
+                    "ivs": [
+                        24,
+                        2,
+                        13,
+                        30,
+                        23,
+                        29
+                    ],
+                    "level": 7,
+                    "nature": 0,
+                    "pid": 1835599644,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        24,
+                        11,
+                        10,
+                        9,
+                        10,
+                        9
+                    ],
+                    "weight": 59
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 19,
+                    "advances": 9,
+                    "characteristic": 10,
+                    "ec": 2252305767,
+                    "encounterSlot": 0,
+                    "form": 0,
+                    "gender": 1,
+                    "height": 74,
+                    "hiddenPower": 13,
+                    "item": 151,
+                    "ivs": [
+                        2,
+                        13,
+                        30,
+                        23,
+                        29,
+                        13
+                    ],
+                    "level": 12,
+                    "nature": 0,
+                    "pid": 1824393016,
+                    "shiny": 0,
+                    "specie": 265,
+                    "stats": [
+                        33,
+                        17,
+                        17,
+                        12,
+                        15,
+                        11
+                    ],
+                    "weight": 144
                 }
             ]
         }

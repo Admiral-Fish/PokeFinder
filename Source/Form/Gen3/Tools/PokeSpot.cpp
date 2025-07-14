@@ -52,8 +52,6 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
 
     encounters = Encounters3::getPokeSpotEncounters();
 
-    ui->filter->setEncounterSlots(3);
-
     std::vector<u16> locs;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const EncounterArea &area) { return area.getLocation(); });
@@ -148,6 +146,8 @@ void PokeSpot::locationIndexChanged(int index)
         auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+
+        ui->filter->setEncounterSlots(area.getCount());
 
         ui->comboBoxPokemon->clear();
         ui->comboBoxPokemon->addItem("-");

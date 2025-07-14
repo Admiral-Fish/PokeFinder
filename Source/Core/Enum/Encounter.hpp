@@ -38,6 +38,7 @@ enum class Encounter : u8
     SuperRod,
     SuperRodRippling,
     Static,
+    HoneyTree,
     BugCatchingContest,
     Headbutt,
     HeadbuttAlt,

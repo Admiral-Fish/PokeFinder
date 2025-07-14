@@ -136,6 +136,10 @@ std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 
     {
         states = searchMethodK(hp, atk, def, spa, spd, spe);
     }
+    else if (method == Method::HoneyTree)
+    {
+        states = searchHoneyTree(hp, atk, def, spa, spd, spe, index);
+    }
     else if (method == Method::PokeRadar)
     {
         if (shiny)
@@ -843,6 +847,132 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                         WildSearcherState4 state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
                                                  Utilities::getShiny<true>(pid, tsv), encounterSlot[i], item, slot.getSpecie(),
                                                  slot.getSpecie() == 201 ? form : 0, info);
+                        if (filter.compareState(static_cast<const WildSearcherState &>(state)))
+                        {
+                            states.emplace_back(state);
+                        }
+                    }
+                }
+
+                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                nextRNG = rng.nextUShort();
+                nextRNG2 = rng.nextUShort();
+            } while (huntNature != nature);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
+{
+    std::vector<WildSearcherState4> states;
+
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    const Slot &slot = area.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    u8 buffer = 0;
+    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+    {
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 * ((info->getGender() / 25) + 1);
+        }
+    }
+
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
+    {
+        PokeRNGR rng(seeds[i]);
+        u16 item = getItem((PokeRNG(seeds[i]).advance(2) >> 16) % 100, lead, info);
+
+        if (cuteCharm)
+        {
+            u8 nature = rng.nextUShort<false>(25);
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
+
+            if (rng.nextUShort<false>(3) != 0)
+            {
+                u8 level = area.calculateLevel<true, true>(index, rng.nextUShort(), false);
+                u32 pid = nature + buffer;
+                WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                         Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
+                if (filter.compareState(static_cast<const WildSearcherState &>(state)))
+                {
+                    states.emplace_back(state);
+                }
+            }
+        }
+        else
+        {
+            u32 pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
+
+            u8 nature = pid % 25;
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
+
+            u8 huntNature;
+            u16 nextRNG = rng.nextUShort();
+            u16 nextRNG2 = rng.nextUShort();
+
+            do
+            {
+                bool force = false;
+                u16 levelRand[2];
+                PokeRNGR test[2] = { rng, rng };
+                bool valid[2] = { false, false };
+
+                switch (lead)
+                {
+                case Lead::None:
+                case Lead::CompoundEyes:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        levelRand[0] = nextRNG2;
+                        valid[0] = true;
+                    }
+                    break;
+                case Lead::Synchronize:
+                    if ((nextRNG / 0x8000) == 0)
+                    {
+                        levelRand[0] = nextRNG2;
+                        valid[0] = true;
+                    }
+
+                    if ((nextRNG2 / 0x8000) == 1 && (nextRNG / 0xa3e) == nature)
+                    {
+                        levelRand[1] = test[1].nextUShort();
+                        valid[1] = true;
+                    }
+                    break;
+                case Lead::Pressure:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        force = (nextRNG2 / 0x8000) != 0;
+                        levelRand[0] = test[0].nextUShort();
+                        valid[0] = true;
+                    }
+                default:
+                    break;
+                }
+
+                for (int i = 0; i < 2; i++)
+                {
+                    if (valid[i])
+                    {
+                        u8 level = area.calculateLevel<true, true>(index, levelRand[i], force);
+                        WildSearcherState4 state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                                 Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
                         if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                         {
                             states.emplace_back(state);
