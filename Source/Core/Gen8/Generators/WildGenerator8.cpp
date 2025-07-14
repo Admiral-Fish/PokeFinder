@@ -102,15 +102,6 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
             continue;
         }
 
-        const Slot &slot = area.getPokemon(encounterSlot);
-        u8 form = 0;
-        if (slot.getSpecie() == 201)
-        {
-            form = area.unownForm(rngList.next());
-        }
-
-        rngList.advance(84);
-
         u8 level;
         if (area.getEncounter() == Encounter::Grass)
         {
@@ -121,6 +112,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
             level = area.calculateLevel<true>(encounterSlot, rngList, lead == Lead::Pressure);
         }
 
+        const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharm = false;
@@ -128,6 +120,14 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
         {
             cuteCharm = rngList.next(3) != 0;
         }
+
+        u8 form = 0;
+        if (slot.getSpecie() == 201)
+        {
+            form = area.unownForm(rngList.next());
+        }
+
+        rngList.advance(84);
 
         u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
@@ -219,8 +219,6 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
 
         u8 level = area.calculateLevel<true>(index, rngList, false);
 
-        rngList.advance(84);
-
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharm = false;
@@ -228,6 +226,8 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         {
             cuteCharm = rngList.next(3) != 0;
         }
+
+        rngList.advance(84);
 
         u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
