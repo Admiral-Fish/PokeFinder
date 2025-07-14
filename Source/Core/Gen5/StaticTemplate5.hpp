@@ -39,7 +39,7 @@ public:
      * @param gender Gender of the template
      * @param level Level of the template
      * @param egg Whether the template is a egg
-     * @param egg Whether the template is a starter
+     * @param starter Whether the template is a starter
      * @param roamer Whether the template is a roamer
      */
     constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool starter, bool roamer) :
