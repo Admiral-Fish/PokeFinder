@@ -43,7 +43,7 @@ static bool operator==(const WildState8 &left, const json &right)
         && left.getWeight() == right["weight"].get<u8>();
 }
 
-void WildGenerator8Test::generate_data()
+void WildGenerator8Test::generateWild_data()
 {
     QTest::addColumn<u64>("seed0");
     QTest::addColumn<u64>("seed1");
@@ -52,7 +52,7 @@ void WildGenerator8Test::generate_data()
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("wild8", "generate");
+    json data = readData("wild8", "generateWild");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -61,7 +61,7 @@ void WildGenerator8Test::generate_data()
     }
 }
 
-void WildGenerator8Test::generate()
+void WildGenerator8Test::generateWild()
 {
     QFETCH(u64, seed0);
     QFETCH(u64, seed1);
@@ -95,9 +95,75 @@ void WildGenerator8Test::generate()
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator8 generator(0, 9, 0, lead, *encounterArea, profile, filter);
+    WildGenerator8 generator(0, 9, 0, Method::None, lead, *encounterArea, profile, filter);
 
-    auto states = generator.generate(seed0, seed1);
+    auto states = generator.generate(seed0, seed1, 0);
+    QCOMPARE(states.size(), j.size());
+
+    for (size_t i = 0; i < states.size(); i++)
+    {
+        const auto &state = states[i];
+        QVERIFY(state == j[i]);
+    }
+}
+
+void WildGenerator8Test::generateHoneyTree_data()
+{
+    QTest::addColumn<u64>("seed0");
+    QTest::addColumn<u64>("seed1");
+    QTest::addColumn<Encounter>("encounter");
+    QTest::addColumn<Lead>("lead");
+    QTest::addColumn<int>("location");
+    QTest::addColumn<u8>("index");
+    QTest::addColumn<std::string>("results");
+
+    json data = readData("wild8", "generateHoneyTree");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["index"].get<u8>() << d["results"].get<json>().dump();
+    }
+}
+
+void WildGenerator8Test::generateHoneyTree()
+{
+    QFETCH(u64, seed0);
+    QFETCH(u64, seed1);
+    QFETCH(Encounter, encounter);
+    QFETCH(Lead, lead);
+    QFETCH(int, location);
+    QFETCH(u8, index);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
+
+    std::array<u8, 6> min;
+    min.fill(0);
+
+    std::array<u8, 6> max;
+    max.fill(31);
+
+    std::array<bool, 25> natures;
+    natures.fill(true);
+
+    std::array<bool, 16> powers;
+    powers.fill(true);
+
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
+
+    Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
+    EncounterSettings8 settings = {};
+
+    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
+    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
+                                      [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
+
+    WildStateFilter filter(255, 255, 255,0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildGenerator8 generator(0, 9, 0, Method::HoneyTree, lead, *encounterArea, profile, filter);
+
+    auto states = generator.generate(seed0, seed1, index);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

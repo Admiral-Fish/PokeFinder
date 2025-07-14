@@ -31,6 +31,11 @@ EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const st
 {
 }
 
+u8 EncounterArea::getCount() const
+{
+    return std::count_if(pokemon.begin(), pokemon.end(), [](const auto &mon) { return mon.getSpecie() != 0; });
+}
+
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
     std::pair<u8, u8> range = std::make_pair(100, 0);

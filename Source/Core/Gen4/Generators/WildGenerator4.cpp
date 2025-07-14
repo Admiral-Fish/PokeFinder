@@ -95,6 +95,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generate(u32 seed, u8 index) co
         return generateMethodJ(seed);
     case Method::MethodK:
         return generateMethodK(seed);
+    case Method::HoneyTree:
+        return generateHoneyTree(seed, index);
     case Method::PokeRadar:
         if (shiny)
         {
@@ -468,6 +470,98 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
                                   slot.getSpecie(), form, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    const Slot &slot = area.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    u8 buffer = 0;
+    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+    {
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 * ((info->getGender() / 25) + 1);
+        }
+    }
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 level = area.calculateLevel<true, false, true>(index, go, &battleAdvances, lead == Lead::Pressure);
+
+        u8 nature;
+        u32 pid;
+
+        bool cuteCharmFlag = false;
+        if (cuteCharm)
+        {
+            cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
+        }
+
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort<false>(25, &battleAdvances);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &battleAdvances);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort(&battleAdvances);
+                u16 high = go.nextUShort(&battleAdvances);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), index, item,
+                                  slot.getSpecie(), 0, info);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
