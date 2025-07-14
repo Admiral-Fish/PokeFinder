@@ -140,8 +140,8 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
             else
             {
-                pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), true,
-                                            info->getGender(), go);
+                pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(),
+                                            !staticTemplate.getStarter(), info->getGender(), go);
             }
 
             if (Utilities::isShiny<true>(pid, tsv))

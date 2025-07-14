@@ -39,10 +39,11 @@ public:
      * @param gender Gender of the template
      * @param level Level of the template
      * @param egg Whether the template is a egg
+     * @param starter Whether the template is a starter
      * @param roamer Whether the template is a roamer
      */
-    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool roamer) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), roamer(roamer)
+    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool starter, bool roamer) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), starter(starter), roamer(roamer)
     {
     }
 
@@ -57,6 +58,16 @@ public:
     }
 
     /**
+     * @brief Determines if the template is a starter
+     *
+     * @return Template starter status
+     */
+    bool getStarter() const
+    {
+        return starter;
+    }
+
+    /**
      * @brief Determines if the template is a roamer
      *
      * @return Template roamer status
@@ -68,6 +79,7 @@ public:
 
 private:
     bool egg;
+    bool starter;
     bool roamer;
 };
 
