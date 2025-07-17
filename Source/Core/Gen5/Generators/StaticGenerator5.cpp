@@ -111,6 +111,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
 
         bool cuteCharm = false;
         bool sync = false;
+        bool boost = staticTemplate.getStationary() || staticTemplate.getLegend();
 
         if (lead <= Lead::SynchronizeEnd)
         {
@@ -140,7 +141,6 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
             else
             {
-                bool boost = staticTemplate.getStationary() || staticTemplate.getLegend();
                 pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(),
                                             boost, info->getGender(), go);
             }
