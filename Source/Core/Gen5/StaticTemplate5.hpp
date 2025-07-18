@@ -50,7 +50,7 @@ public:
     /**
      * @brief Determines if the template is an egg
      *
-     * @return Template Larvesta egg status
+     * @return Template egg status
      */
     bool getEgg() const
     {
