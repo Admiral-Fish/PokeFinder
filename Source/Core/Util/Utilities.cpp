@@ -255,6 +255,8 @@ namespace Utilities5
             pid ^= 0x10000;
         }
 
+        // This is the 0x80000000 XOR decision for wild encounters
+        // This was supposed to boost the shiny rate but operator precedence led to this
         if (boost && shiny != Shiny::Never)
         {
             if ((tsv ^ pid) & 1)
