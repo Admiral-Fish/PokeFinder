@@ -42,8 +42,8 @@ public:
      * @param starter Whether the template is a starter
      * @param roamer Whether the template is a roamer
      */
-    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool stationary, bool legend, bool roamer) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), stationary(stationary), legend(legend), roamer(roamer)
+    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool legend, bool roamer, bool stationary) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), legend(legend), roamer(roamer), stationary(stationary)
     {
     }
 
@@ -55,16 +55,6 @@ public:
     bool getEgg() const
     {
         return egg;
-    }
-
-    /**
-     * @brief Determines if the template is a stationary
-     *
-     * @return Template stationary status
-     */
-    bool getStationary() const
-    {
-        return stationary;
     }
 
     /**
@@ -87,11 +77,21 @@ public:
         return roamer;
     }
 
+    /**
+     * @brief Determines if the template is a stationary
+     *
+     * @return Template stationary status
+     */
+    bool getStationary() const
+    {
+        return stationary;
+    }
+
 private:
     bool egg;
-    bool stationary;
     bool legend;
     bool roamer;
+    bool stationary;
 };
 
 #endif // STATICTEMPLATE5_HPP
