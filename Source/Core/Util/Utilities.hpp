@@ -193,14 +193,14 @@ namespace Utilities5
      * @param ability Ability to force
      * @param gender Gender to force
      * @param shiny Shiny to force
-     * @param boost Whether to boost shiny odds
+     * @param wild Whether encounter is considered a wild battle
      * @param ratio Gender ratio
      * @param rng PRNG state
      * @param info Pokemon information
      *
      * @return PID
      */
-    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool boost, u8 ratio, BWRNG &rng);
+    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool wild, u8 ratio, BWRNG &rng);
 
     /**
      * @brief Returns the chatot pitch

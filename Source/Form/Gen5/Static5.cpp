@@ -201,6 +201,10 @@ void Static5::generatorCategoryIndexChanged(int index)
                     QVariant::fromValue(i));
             }
         }
+
+        bool flag = index >= 3 && index <= 5; // Only allow leads for stationary, legends, and event
+        ui->labelGeneratorLead->setVisible(flag);
+        ui->comboMenuGeneratorLead->setVisible(flag);
     }
 }
 
@@ -335,6 +339,10 @@ void Static5::searcherCategoryIndexChanged(int index)
                     QVariant::fromValue(i));
             }
         }
+
+        bool flag = index >= 3 && index <= 5; // Only allow leads for stationary, legends, and event
+        ui->labelSearcherLead->setVisible(flag);
+        ui->comboMenuSearcherLead->setVisible(flag);
     }
 }
 

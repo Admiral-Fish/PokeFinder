@@ -38,12 +38,14 @@ public:
      * @param ability Ability of the template
      * @param gender Gender of the template
      * @param level Level of the template
-     * @param egg Whether the template is a egg
-     * @param starter Whether the template is a starter
+     * @param egg Whether the template is an egg
+     * @param event Whether the template is an event
+     * @param legend Whether the template is a legend
      * @param roamer Whether the template is a roamer
+     * @param stationary Whether the template is stationary
      */
-    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool legend, bool roamer, bool stationary) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), legend(legend), roamer(roamer), stationary(stationary)
+    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool event, bool legend, bool roamer, bool stationary) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), event(event), legend(legend), roamer(roamer), stationary(stationary)
     {
     }
 
@@ -55,6 +57,16 @@ public:
     bool getEgg() const
     {
         return egg;
+    }
+
+    /**
+     * @brief Determines if the template is an event
+     *
+     * @return Template event status
+     */
+    bool getEvent() const
+    {
+        return event;
     }
 
     /**
@@ -78,7 +90,7 @@ public:
     }
 
     /**
-     * @brief Determines if the template is a stationary
+     * @brief Determines if the template is stationary
      *
      * @return Template stationary status
      */
@@ -89,6 +101,7 @@ public:
 
 private:
     bool egg;
+    bool event;
     bool legend;
     bool roamer;
     bool stationary;

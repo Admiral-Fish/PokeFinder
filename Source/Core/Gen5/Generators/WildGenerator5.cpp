@@ -153,7 +153,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         bool pressure = false;
         bool sync = false;
 
-        if (lead != Lead::CompoundEyes)
+        if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && (go.nextUInt(0xffff) / 656) < 67)

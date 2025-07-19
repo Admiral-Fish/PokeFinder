@@ -104,9 +104,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
         }
     }
 
-    // This should also technically check for events, namely Zoroark/Victini/Zorua
-    // Zorua does not use this logic and the other two are shiny locked so we can ignore checking for event here
-    bool boost = staticTemplate.getStationary() || staticTemplate.getLegend();
+    bool wild = staticTemplate.getEvent() || staticTemplate.getLegend() || staticTemplate.getStationary();
 
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -116,23 +114,21 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
         bool cuteCharm = false;
         bool sync = false;
 
-        if (lead <= Lead::SynchronizeEnd)
+        if (wild)
         {
-            sync = go.nextUInt(2);
-        }
-        else if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
-        {
-            cuteCharm = (go.nextUInt(0xffff) / 656) < 67;
-
             // Failed cute charm continues to check for other leads
-            if (!cuteCharm)
+            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && (go.nextUInt(0xffff) / 656) < 67)
             {
-                go.next();
+                cuteCharm = true;
             }
-        }
-        else if (lead != Lead::CompoundEyes)
-        {
-            go.next();
+            else
+            {
+                bool flag = go.nextUInt(2);
+                if (lead <= Lead::SynchronizeEnd)
+                {
+                    sync = true;
+                }
+            }
         }
 
         u32 pid;
@@ -144,7 +140,15 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
             else
             {
-                pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), boost,
+                u8 gender = staticTemplate.getGender();
+
+                // Only override the gender with cutecharm if the template doesn't have a forced gender
+                if (cuteCharm && gender == 255)
+                {
+                    gender = lead == Lead::CuteCharmF ? 0 : 1;
+                }
+
+                pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), gender, staticTemplate.getShiny(), wild,
                                             info->getGender(), go);
             }
 

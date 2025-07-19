@@ -30,22 +30,22 @@ static u32 advanceProbabilityTable(BWRNG &rng)
 {
     u32 count = 0;
 
-    // Round 1
+    // Round 1: 50, 100
     rng.advance(1, &count);
 
-    // Round 2
+    // Round 2: 50, 50, 100
     if (rng.nextUInt(101, &count) > 50)
     {
         rng.advance(1, &count);
     }
 
-    // Round 3
+    // Round 3: 30, 50, 100
     if (rng.nextUInt(101, &count) > 30)
     {
         rng.advance(1, &count);
     }
 
-    // Round 4
+    // Round 4: 25, 30, 50, 100
     if (rng.nextUInt(101, &count) > 25)
     {
         if (rng.nextUInt(101, &count) > 30)
@@ -54,7 +54,7 @@ static u32 advanceProbabilityTable(BWRNG &rng)
         }
     }
 
-    // Round 5
+    // Round 5: 20, 25, 33, 50, 100
     if (rng.nextUInt(101, &count) > 20)
     {
         if (rng.nextUInt(101, &count) > 25)
@@ -208,7 +208,7 @@ namespace Utilities4
 
 namespace Utilities5
 {
-    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool boost, u8 ratio, BWRNG &rng)
+    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool wild, u8 ratio, BWRNG &rng)
     {
         u32 pid = rng.nextUInt();
 
@@ -257,7 +257,7 @@ namespace Utilities5
 
         // This is the 0x80000000 XOR decision for wild encounters
         // This was supposed to boost the shiny rate but operator precedence led to this
-        if (boost && shiny != Shiny::Never)
+        if (wild && shiny != Shiny::Never)
         {
             if ((tsv ^ pid) & 1)
             {
