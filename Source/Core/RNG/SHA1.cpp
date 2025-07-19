@@ -23,6 +23,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
+#include <algorithm>
 #include <bit>
 
 static u32 calcW(u32 *data, int i)
