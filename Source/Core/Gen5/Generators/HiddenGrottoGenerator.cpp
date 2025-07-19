@@ -157,15 +157,14 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
 
         u8 level = slot.getMinLevel() + go.nextUInt(range);
 
-        bool sync = false;
-        if (lead != Lead::CompoundEyes)
-        {
-            sync = go.nextUInt(2) && lead <= Lead::Synchronize;
-        }
+        // While cute charm is technically possible it would be overwritten by the forced gender so don't check for it
+        // In theory cute charm could cause a 2nd call to be consumed but the UI doesn't allow selecting it
+        bool flag = go.nextUInt(100) < 50;
+        bool sync = flag && lead <= Lead::SynchronizeEnd;
 
         const PersonalInfo *info = slot.getInfo();
 
-        u32 pid = Utilities5::createPID(tsv, 2, gender, Shiny::Never, false, info->getGender(), go);
+        u32 pid = Utilities5::createPID(tsv, 2, gender, Shiny::Never, true, info->getGender(), go);
 
         u8 ability = 2;
         if (info->getAbility(2) == 0)

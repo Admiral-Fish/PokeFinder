@@ -30,6 +30,18 @@ static u8 gen(MT &rng)
     return rng.next() >> 27;
 }
 
+static u8 getPercentRand(BWRNG &rng, bool bw)
+{
+    if (bw)
+    {
+        return rng.nextUInt(0xffff) / 656;
+    }
+    else
+    {
+        return rng.nextUInt(100);
+    }
+}
+
 StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                    const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
@@ -89,6 +101,8 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
     const PersonalInfo *info = staticTemplate.getInfo();
+    
+    bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
     u8 shinyRolls = 1;
     if (staticTemplate.getShiny() == Shiny::Random && (profile.getVersion() & Game::BW2) != Game::None)
@@ -117,13 +131,13 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
         if (wild)
         {
             // Failed cute charm continues to check for other leads
-            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && (go.nextUInt(0xffff) / 656) < 67)
+            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
             {
                 cuteCharm = true;
             }
             else
             {
-                bool flag = go.nextUInt(2);
+                bool flag = getPercentRand(go, bw) < 50;
                 if (lead <= Lead::SynchronizeEnd)
                 {
                     sync = true;

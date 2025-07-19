@@ -35,11 +35,23 @@ static u8 gen(MT &rng)
     return rng.next() >> 27;
 }
 
-static u8 getEncounterRand(BWRNG &rng, bool bw)
+static u8 getEncounterRand(BWRNG &rng, u8 max, bool bw)
 {
     if (bw)
     {
-        return rng.nextUInt(0x10000) / 656;
+        return (rng.nextUInt(0xffff) / 656) % max;
+    }
+    else
+    {
+        return rng.nextUInt(max);
+    }
+}
+
+static u8 getPercentRand(BWRNG &rng, bool bw)
+{
+    if (bw)
+    {
+        return rng.nextUInt(0xffff) / 656;
     }
     else
     {
@@ -47,7 +59,7 @@ static u8 getEncounterRand(BWRNG &rng, bool bw)
     }
 }
 
-static u16 getItem(BWRNG &rng, Lead lead, Encounter encounter, const PersonalInfo *info)
+static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const PersonalInfo *info)
 {
     constexpr u8 ItemTable[2][3] = { { 50, 55, 0 }, { 60, 80, 0 } };
     constexpr u8 ItemTableRare[2][3] = { { 50, 55, 56 }, { 60, 80, 85 } };
@@ -67,23 +79,15 @@ static u16 getItem(BWRNG &rng, Lead lead, Encounter encounter, const PersonalInf
         table = ItemTableRare[lead == Lead::CompoundEyes ? 1 : 0];
     }
 
-    u8 rand = rng.nextUInt(100);
-    if (rand < table[0])
+    u8 rand = getPercentRand(rng, bw);
+    for (int i = 0; i < 3; i++)
     {
-        return info->getItem(0);
+        if (rand < table[i])
+        {
+            return info->getItem(i);
+        }
     }
-    else if (rand < table[1])
-    {
-        return info->getItem(1);
-    }
-    else if (rand < table[2])
-    {
-        return info->getItem(2);
-    }
-    else
-    {
-        return 0;
-    }
+    return 0;
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
@@ -129,6 +133,12 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
     auto modifiedSlots = area.getSlots(lead);
 
+    u8 rate = area.getRate();
+    if (area.getEncounter() == Encounter::SuperRod && lead == Lead::SuctionCups)
+    {
+        rate *= 2;
+    }
+
     u8 shinyRolls = 1;
     if ((profile.getVersion() & Game::BW2) != Game::None)
     {
@@ -156,13 +166,13 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
             // Failed cute charm continues to check for other leads
-            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && (go.nextUInt(0xffff) / 656) < 67)
+            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
             {
                 cuteCharm = true;
             }
             else
             {
-                bool flag = go.nextUInt(2);
+                bool flag = getPercentRand(go, bw) < 50;
                 if (lead == Lead::MagnetPull || lead == Lead::Static)
                 {
                     magnetStatic = flag;
@@ -178,38 +188,29 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             }
         }
 
-        if (area.getEncounter() == Encounter::SuperRod && lead != Lead::SuctionCups && go.nextUInt(100) > area.getRate())
+        bool doubleBattle = false;
+        if (area.getEncounter() == Encounter::Grass && getPercentRand(go, bw) < 40)
+        {
+            doubleBattle = true;
+        }
+
+        if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
             rng.next();
             continue;
         }
 
-        bool doubleBattle = false;
-        if (area.getEncounter() == Encounter::Grass && go.nextUInt(100) < 40)
-        {
-            doubleBattle = true;
-        }
-
         u8 encounterSlot;
         if (magnetStatic && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[go.nextUInt()];
+            encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
         }
         else
         {
-            encounterSlot = EncounterSlot::bwSlot(getEncounterRand(go, bw), area.getEncounter(), luckyPower);
+            encounterSlot = EncounterSlot::bwSlot(getPercentRand(go, bw), area.getEncounter(), luckyPower);
         }
 
-        u8 level;
-        if (area.getEncounter() == Encounter::Grass || area.getEncounter() == Encounter::GrassDark
-            || area.getEncounter() == Encounter::GrassRustling)
-        {
-            level = area.calculateLevel<false>(encounterSlot, go.next(), pressure);
-        }
-        else
-        {
-            level = area.calculateLevel<true>(encounterSlot, go.nextUInt(100), pressure);
-        }
+        u8 level = area.calculateLevel(encounterSlot, getPercentRand(go, bw), pressure);
 
         // RNG calls for left encounter slot and level
         if (doubleBattle)
@@ -225,7 +226,6 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         {
             pid = Utilities5::createPID(tsv, 2, cuteCharm ? (lead == Lead::CuteCharmF ? 0 : 1) : 255, Shiny::Random, true,
                                         info->getGender(), go);
-
             if (Utilities::isShiny<true>(pid, tsv))
             {
                 break;
@@ -242,7 +242,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             nature = toInt(lead);
         }
 
-        u16 item = getItem(go, lead, area.getEncounter(), info);
+        u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
         u16 chatot = rng.nextUInt(0x1fff);
         for (const auto &iv : ivs)

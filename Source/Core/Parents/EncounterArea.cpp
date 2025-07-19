@@ -113,7 +113,7 @@ std::vector<std::string> EncounterArea::getSpecieNames() const
 std::vector<u16> EncounterArea::getUniqueSpecies() const
 {
     std::vector<u16> nums;
-    for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie(); i++)
+    for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
     {
         u16 num = (pokemon[i].getForm() << 11) | pokemon[i].getSpecie();
         if (std::find(nums.begin(), nums.end(), num) == nums.end())

@@ -37,59 +37,51 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, bool season, Encounter type, const std::array<Slot, 12> &pokemon) :
-        EncounterArea(location, rate, type, pokemon), season(season)
+    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 12> &pokemon) :
+        EncounterArea(location, rate, encounter, pokemon), season(season)
     {
     }
 
     /**
      * @brief Calculates the level of a pokemon
      *
-     * @tparam diff Whether min and max levels are different
+     * @param encounterSlot Pokemon index to use
      * @param prng Level RNG call
-     * @param rng RNG object
      * @param force Whether Pressure lead is being used
      *
      * @return Level of the encounter
      */
-    template <bool diff>
-    u8 calculateLevel(u8 &encounterSlot, u8 prng, bool force) const
+    u8 calculateLevel(u8 encounterSlot, u8 prng, bool force) const
     {
-        if constexpr (diff)
+        const Slot &slot = pokemon[encounterSlot];
+
+        u8 min = slot.getMinLevel();
+        u8 max = slot.getMaxLevel();
+        u8 range = max - min + 1;
+
+        u8 level = min + (prng % range);
+        if (force)
         {
-            const Slot &slot = pokemon[encounterSlot];
-
-            u8 min = slot.getMinLevel();
-            u8 max = slot.getMaxLevel();
-            u8 range = max - min + 1;
-
-            u8 level = min + (prng % range);
-            if (force)
+            u8 max = level;
+            for (u8 i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
             {
-                level += 5;
-                if (level > max)
+                if (slot.getSpecie() == pokemon[i].getSpecie())
                 {
-                    level = max;
+                    max = std::max(max, pokemon[i].getMaxLevel());
                 }
             }
 
-            return level;
-        }
-        else
-        {
-            if (force)
+            if (range > 1 && (level + 5) <= max)
             {
-                for (u8 i = 0; i < pokemon.size(); i++)
-                {
-                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
-                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
-                    {
-                        encounterSlot = i;
-                    }
-                }
+                return level + 5;
             }
-            return pokemon[encounterSlot].getMaxLevel();
+            else
+            {
+                return max;
+            }
         }
+
+        return level;
     }
 
     /**
