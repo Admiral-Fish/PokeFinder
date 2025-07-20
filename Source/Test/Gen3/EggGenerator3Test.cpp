@@ -27,8 +27,10 @@
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-using IVs = std::array<std::array<u8, 6>, 2>;
 using Attribute = std::array<u8, 2>;
+using IVs = std::array<std::array<u8, 6>, 2>;
+using ParentGender = std::array<Gender, 2>;
+using ParentItem = std::array<Item, 2>;
 
 static bool operator==(const EggState3 &left, const json &right)
 {
@@ -55,8 +57,8 @@ void EggGenerator3Test::generate_data()
     QTest::addColumn<u16>("pokemon");
     QTest::addColumn<IVs>("parentIVs");
     QTest::addColumn<Attribute>("parentAbility");
-    QTest::addColumn<Attribute>("parentGender");
-    QTest::addColumn<Attribute>("parentItem");
+    QTest::addColumn<ParentGender>("parentGender");
+    QTest::addColumn<ParentItem>("parentItem");
     QTest::addColumn<Attribute>("parentNature");
     QTest::addColumn<std::string>("results");
 
@@ -67,7 +69,7 @@ void EggGenerator3Test::generate_data()
             << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << d["calibration"].get<u8>() << d["minRedraw"].get<u8>()
             << d["maxRedraw"].get<u8>() << d["method"].get<Method>() << d["compatability"].get<u8>() << d["version"].get<Game>()
             << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>() << d["parentAbility"].get<Attribute>()
-            << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>() << d["parentNature"].get<Attribute>()
+            << d["parentGender"].get<ParentGender>() << d["parentItem"].get<ParentItem>() << d["parentNature"].get<Attribute>()
             << d["results"].get<json>().dump();
     }
 }
@@ -85,8 +87,8 @@ void EggGenerator3Test::generate()
     QFETCH(u16, pokemon);
     QFETCH(IVs, parentIVs);
     QFETCH(Attribute, parentAbility);
-    QFETCH(Attribute, parentGender);
-    QFETCH(Attribute, parentItem);
+    QFETCH(ParentGender, parentGender);
+    QFETCH(ParentItem, parentItem);
     QFETCH(Attribute, parentNature);
     QFETCH(std::string, results);
 
