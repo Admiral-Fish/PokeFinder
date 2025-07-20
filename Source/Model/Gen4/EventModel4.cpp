@@ -20,6 +20,7 @@
 #include "EventModel4.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 
 EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), version(Game::DPPt), showStats(false)
 {
@@ -50,7 +51,7 @@ QVariant EventGeneratorModel4::data(const QModelIndex &index, int role) const
         case 1:
             return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
         case 2:
-            return state.getChatot();
+            return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
         case 3:
         case 4:
         case 5:
