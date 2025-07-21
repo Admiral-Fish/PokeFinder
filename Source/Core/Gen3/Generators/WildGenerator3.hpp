@@ -54,7 +54,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState> generate(u32 seed) const;
+    std::vector<WildGeneratorState3> generate(u32 seed) const;
 
 private:
     bool feebasTile;
