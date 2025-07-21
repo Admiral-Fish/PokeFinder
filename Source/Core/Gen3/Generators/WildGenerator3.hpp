@@ -25,6 +25,8 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
+class WildGeneratorState3;
+
 /**
  * @brief Wild encounter generator for Gen3
  */
