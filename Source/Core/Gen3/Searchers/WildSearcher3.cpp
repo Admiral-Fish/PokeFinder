@@ -126,6 +126,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
         }
 
         u32 pid;
+        u32 pidRollCount = 0;
 
         u8 letter;
         if (tanoby)
@@ -151,6 +152,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
 
         do
         {
+            pidRollCount++;
             bool cuteCharmFlag = false;
             u8 encounterSlot[4];
             bool force = false;
@@ -398,9 +400,9 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                             level = area.EncounterArea::calculateLevel(encounterSlot[i], levelRand[i >> 1]);
                         }
 
-                        WildSearcherState3 state(0, test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                                 Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
-                                                 info);
+                        WildSearcherState3 state(pidRollCount, test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level,
+                                                 nature, Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(),
+                                                 slot.getForm(), info);
                         if (filter.compareState(state))
                         {
                             states.emplace_back(state);
