@@ -30,6 +30,7 @@
                         "level": 21,
                         "nature": 17,
                         "pid": 1012584442,
+                        "pidRollCount": 16,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -61,6 +62,7 @@
                         "level": 19,
                         "nature": 15,
                         "pid": 93172815,
+                        "pidRollCount": 50,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -92,6 +94,7 @@
                         "level": 19,
                         "nature": 15,
                         "pid": 978348915,
+                        "pidRollCount": 87,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -123,6 +126,7 @@
                         "level": 19,
                         "nature": 23,
                         "pid": 1360350198,
+                        "pidRollCount": 13,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -154,6 +158,7 @@
                         "level": 20,
                         "nature": 6,
                         "pid": 1447301456,
+                        "pidRollCount": 37,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -185,6 +190,7 @@
                         "level": 21,
                         "nature": 2,
                         "pid": 2209410702,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -216,6 +222,7 @@
                         "level": 21,
                         "nature": 23,
                         "pid": 3437352748,
+                        "pidRollCount": 24,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -247,6 +254,7 @@
                         "level": 20,
                         "nature": 18,
                         "pid": 1885610868,
+                        "pidRollCount": 14,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -278,6 +286,7 @@
                         "level": 21,
                         "nature": 18,
                         "pid": 993664118,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -309,6 +318,7 @@
                         "level": 19,
                         "nature": 11,
                         "pid": 3135628511,
+                        "pidRollCount": 15,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -351,6 +361,7 @@
                         "level": 19,
                         "nature": 11,
                         "pid": 3691093611,
+                        "pidRollCount": 20,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -382,6 +393,7 @@
                         "level": 20,
                         "nature": 23,
                         "pid": 933109623,
+                        "pidRollCount": 5,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -413,6 +425,7 @@
                         "level": 20,
                         "nature": 0,
                         "pid": 950296150,
+                        "pidRollCount": 73,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -444,6 +457,7 @@
                         "level": 20,
                         "nature": 1,
                         "pid": 1017595776,
+                        "pidRollCount": 22,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -475,6 +489,7 @@
                         "level": 22,
                         "nature": 6,
                         "pid": 3310116806,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 331,
                         "stats": [
@@ -506,6 +521,7 @@
                         "level": 20,
                         "nature": 18,
                         "pid": 2841418343,
+                        "pidRollCount": 34,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -537,6 +553,7 @@
                         "level": 21,
                         "nature": 0,
                         "pid": 950296150,
+                        "pidRollCount": 71,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -568,6 +585,7 @@
                         "level": 20,
                         "nature": 0,
                         "pid": 3610582700,
+                        "pidRollCount": 59,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -599,6 +617,7 @@
                         "level": 20,
                         "nature": 0,
                         "pid": 950296150,
+                        "pidRollCount": 70,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -630,6 +649,7 @@
                         "level": 20,
                         "nature": 0,
                         "pid": 3610582700,
+                        "pidRollCount": 58,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -672,6 +692,7 @@
                         "level": 19,
                         "nature": 6,
                         "pid": 2018095781,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -703,6 +724,7 @@
                         "level": 21,
                         "nature": 6,
                         "pid": 2018095781,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -734,6 +756,7 @@
                         "level": 20,
                         "nature": 11,
                         "pid": 531973311,
+                        "pidRollCount": 9,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -765,6 +788,7 @@
                         "level": 21,
                         "nature": 10,
                         "pid": 3657547735,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -796,6 +820,7 @@
                         "level": 21,
                         "nature": 10,
                         "pid": 3657547735,
+                        "pidRollCount": 62,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -827,6 +852,7 @@
                         "level": 20,
                         "nature": 14,
                         "pid": 778674614,
+                        "pidRollCount": 4,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
@@ -858,6 +884,7 @@
                         "level": 20,
                         "nature": 23,
                         "pid": 23124223,
+                        "pidRollCount": 79,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -889,6 +916,7 @@
                         "level": 21,
                         "nature": 23,
                         "pid": 2832860948,
+                        "pidRollCount": 49,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -920,6 +948,7 @@
                         "level": 19,
                         "nature": 3,
                         "pid": 551893228,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 343,
                         "stats": [
@@ -951,6 +980,7 @@
                         "level": 21,
                         "nature": 9,
                         "pid": 3640232884,
+                        "pidRollCount": 35,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
@@ -993,6 +1023,7 @@
                         "level": 14,
                         "nature": 6,
                         "pid": 2018095781,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 218,
                         "stats": [
@@ -1024,6 +1055,7 @@
                         "level": 15,
                         "nature": 21,
                         "pid": 2340319996,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 327,
                         "stats": [
@@ -1055,6 +1087,7 @@
                         "level": 16,
                         "nature": 11,
                         "pid": 531973311,
+                        "pidRollCount": 9,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1086,6 +1119,7 @@
                         "level": 16,
                         "nature": 10,
                         "pid": 3657547735,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1117,6 +1151,7 @@
                         "level": 15,
                         "nature": 21,
                         "pid": 2864952071,
+                        "pidRollCount": 13,
                         "shiny": 0,
                         "specie": 327,
                         "stats": [
@@ -1148,6 +1183,7 @@
                         "level": 16,
                         "nature": 14,
                         "pid": 778674614,
+                        "pidRollCount": 4,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1179,6 +1215,7 @@
                         "level": 16,
                         "nature": 23,
                         "pid": 2832860948,
+                        "pidRollCount": 16,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1210,6 +1247,7 @@
                         "level": 14,
                         "nature": 3,
                         "pid": 551893228,
+                        "pidRollCount": 49,
                         "shiny": 0,
                         "specie": 327,
                         "stats": [
@@ -1241,6 +1279,7 @@
                         "level": 16,
                         "nature": 11,
                         "pid": 531973311,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1272,6 +1311,7 @@
                         "level": 16,
                         "nature": 9,
                         "pid": 1126473809,
+                        "pidRollCount": 33,
                         "shiny": 0,
                         "specie": 227,
                         "stats": [
@@ -1314,6 +1354,7 @@
                         "level": 8,
                         "nature": 10,
                         "pid": 3783075935,
+                        "pidRollCount": 10,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -1356,6 +1397,7 @@
                         "level": 29,
                         "nature": 2,
                         "pid": 3366223302,
+                        "pidRollCount": 2,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1387,6 +1429,7 @@
                         "level": 21,
                         "nature": 21,
                         "pid": 2530158921,
+                        "pidRollCount": 19,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1418,6 +1461,7 @@
                         "level": 20,
                         "nature": 15,
                         "pid": 2413663315,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1449,6 +1493,7 @@
                         "level": 23,
                         "nature": 23,
                         "pid": 2943259348,
+                        "pidRollCount": 103,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1480,6 +1525,7 @@
                         "level": 21,
                         "nature": 14,
                         "pid": 3547804814,
+                        "pidRollCount": 46,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1511,6 +1557,7 @@
                         "level": 9,
                         "nature": 1,
                         "pid": 1186296526,
+                        "pidRollCount": 54,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1542,6 +1589,7 @@
                         "level": 13,
                         "nature": 6,
                         "pid": 34937281,
+                        "pidRollCount": 73,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1573,6 +1621,7 @@
                         "level": 21,
                         "nature": 3,
                         "pid": 1280839903,
+                        "pidRollCount": 8,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1604,6 +1653,7 @@
                         "level": 29,
                         "nature": 24,
                         "pid": 1679940374,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1635,6 +1685,7 @@
                         "level": 20,
                         "nature": 24,
                         "pid": 2240581124,
+                        "pidRollCount": 11,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1677,6 +1728,7 @@
                         "level": 30,
                         "nature": 21,
                         "pid": 2530158921,
+                        "pidRollCount": 19,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1708,6 +1760,7 @@
                         "level": 30,
                         "nature": 15,
                         "pid": 2413663315,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1739,6 +1792,7 @@
                         "level": 20,
                         "nature": 23,
                         "pid": 2943259348,
+                        "pidRollCount": 103,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1770,6 +1824,7 @@
                         "level": 30,
                         "nature": 14,
                         "pid": 3547804814,
+                        "pidRollCount": 46,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1801,6 +1856,7 @@
                         "level": 30,
                         "nature": 1,
                         "pid": 1186296526,
+                        "pidRollCount": 54,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1832,6 +1888,7 @@
                         "level": 8,
                         "nature": 6,
                         "pid": 34937281,
+                        "pidRollCount": 73,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1863,6 +1920,7 @@
                         "level": 20,
                         "nature": 3,
                         "pid": 1280839903,
+                        "pidRollCount": 8,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1894,6 +1952,7 @@
                         "level": 30,
                         "nature": 24,
                         "pid": 1679940374,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1925,6 +1984,7 @@
                         "level": 28,
                         "nature": 24,
                         "pid": 2240581124,
+                        "pidRollCount": 11,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1956,6 +2016,7 @@
                         "level": 20,
                         "nature": 19,
                         "pid": 1391552719,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 183,
                         "stats": [
@@ -1998,6 +2059,7 @@
                         "level": 21,
                         "nature": 21,
                         "pid": 2530158921,
+                        "pidRollCount": 19,
                         "shiny": 0,
                         "specie": 366,
                         "stats": [
@@ -2029,6 +2091,7 @@
                         "level": 20,
                         "nature": 15,
                         "pid": 2413663315,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2060,6 +2123,7 @@
                         "level": 23,
                         "nature": 23,
                         "pid": 2943259348,
+                        "pidRollCount": 103,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2091,6 +2155,7 @@
                         "level": 21,
                         "nature": 14,
                         "pid": 3547804814,
+                        "pidRollCount": 46,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2122,6 +2187,7 @@
                         "level": 34,
                         "nature": 1,
                         "pid": 1186296526,
+                        "pidRollCount": 54,
                         "shiny": 0,
                         "specie": 369,
                         "stats": [
@@ -2153,6 +2219,7 @@
                         "level": 23,
                         "nature": 6,
                         "pid": 34937281,
+                        "pidRollCount": 73,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2184,6 +2251,7 @@
                         "level": 21,
                         "nature": 3,
                         "pid": 1280839903,
+                        "pidRollCount": 8,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2215,6 +2283,7 @@
                         "level": 29,
                         "nature": 24,
                         "pid": 1679940374,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 366,
                         "stats": [
@@ -2246,6 +2315,7 @@
                         "level": 20,
                         "nature": 24,
                         "pid": 2240581124,
+                        "pidRollCount": 11,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2277,6 +2347,7 @@
                         "level": 20,
                         "nature": 19,
                         "pid": 1391552719,
+                        "pidRollCount": 1,
                         "shiny": 0,
                         "specie": 170,
                         "stats": [
@@ -2319,6 +2390,7 @@
                         "level": 8,
                         "nature": 15,
                         "pid": 979572590,
+                        "pidRollCount": 19,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2350,6 +2422,7 @@
                         "level": 8,
                         "nature": 16,
                         "pid": 1167298066,
+                        "pidRollCount": 16,
                         "shiny": 0,
                         "specie": 118,
                         "stats": [
@@ -2381,6 +2454,7 @@
                         "level": 6,
                         "nature": 24,
                         "pid": 1377934299,
+                        "pidRollCount": 9,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2412,6 +2486,7 @@
                         "level": 7,
                         "nature": 11,
                         "pid": 1420744111,
+                        "pidRollCount": 13,
                         "shiny": 0,
                         "specie": 118,
                         "stats": [
@@ -2443,6 +2518,7 @@
                         "level": 6,
                         "nature": 23,
                         "pid": 3225623398,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2474,6 +2550,7 @@
                         "level": 10,
                         "nature": 6,
                         "pid": 459734781,
+                        "pidRollCount": 5,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2505,6 +2582,7 @@
                         "level": 5,
                         "nature": 15,
                         "pid": 979572590,
+                        "pidRollCount": 16,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2536,6 +2614,7 @@
                         "level": 10,
                         "nature": 17,
                         "pid": 255180867,
+                        "pidRollCount": 5,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2567,6 +2646,7 @@
                         "level": 8,
                         "nature": 11,
                         "pid": 4072231611,
+                        "pidRollCount": 163,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2598,6 +2678,7 @@
                         "level": 9,
                         "nature": 12,
                         "pid": 250171937,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2640,6 +2721,7 @@
                         "level": 30,
                         "nature": 2,
                         "pid": 3188155877,
+                        "pidRollCount": 14,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2671,6 +2753,7 @@
                         "level": 28,
                         "nature": 11,
                         "pid": 2129224586,
+                        "pidRollCount": 18,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -2702,6 +2785,7 @@
                         "level": 19,
                         "nature": 21,
                         "pid": 3438734971,
+                        "pidRollCount": 50,
                         "shiny": 0,
                         "specie": 118,
                         "stats": [
@@ -2733,6 +2817,7 @@
                         "level": 20,
                         "nature": 10,
                         "pid": 1884809635,
+                        "pidRollCount": 99,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2764,6 +2849,7 @@
                         "level": 26,
                         "nature": 7,
                         "pid": 1192943032,
+                        "pidRollCount": 40,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -2795,6 +2881,7 @@
                         "level": 22,
                         "nature": 21,
                         "pid": 4083559946,
+                        "pidRollCount": 29,
                         "shiny": 0,
                         "specie": 118,
                         "stats": [
@@ -2826,6 +2913,7 @@
                         "level": 22,
                         "nature": 11,
                         "pid": 1504948836,
+                        "pidRollCount": 5,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -2857,6 +2945,7 @@
                         "level": 20,
                         "nature": 7,
                         "pid": 343216082,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -2888,6 +2977,7 @@
                         "level": 29,
                         "nature": 9,
                         "pid": 215697784,
+                        "pidRollCount": 40,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2919,6 +3009,7 @@
                         "level": 14,
                         "nature": 13,
                         "pid": 1456560563,
+                        "pidRollCount": 4,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -2961,6 +3052,7 @@
                         "level": 34,
                         "nature": 14,
                         "pid": 3948417264,
+                        "pidRollCount": 60,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -2992,6 +3084,7 @@
                         "level": 28,
                         "nature": 6,
                         "pid": 394086131,
+                        "pidRollCount": 25,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3023,6 +3116,7 @@
                         "level": 30,
                         "nature": 18,
                         "pid": 3512313418,
+                        "pidRollCount": 69,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3054,6 +3148,7 @@
                         "level": 20,
                         "nature": 24,
                         "pid": 1202424449,
+                        "pidRollCount": 2,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3085,6 +3180,7 @@
                         "level": 34,
                         "nature": 2,
                         "pid": 2791355602,
+                        "pidRollCount": 12,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3116,6 +3212,7 @@
                         "level": 35,
                         "nature": 11,
                         "pid": 1981046061,
+                        "pidRollCount": 29,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3147,6 +3244,7 @@
                         "level": 30,
                         "nature": 7,
                         "pid": 1170757932,
+                        "pidRollCount": 26,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3178,6 +3276,7 @@
                         "level": 28,
                         "nature": 22,
                         "pid": 3031466747,
+                        "pidRollCount": 32,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3209,6 +3308,7 @@
                         "level": 35,
                         "nature": 20,
                         "pid": 1704519670,
+                        "pidRollCount": 8,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3240,6 +3340,7 @@
                         "level": 35,
                         "nature": 0,
                         "pid": 641589750,
+                        "pidRollCount": 12,
                         "shiny": 0,
                         "specie": 339,
                         "stats": [
@@ -3283,6 +3384,7 @@
                         "level": 8,
                         "nature": 6,
                         "pid": 394086131,
+                        "pidRollCount": 25,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -3314,6 +3416,7 @@
                         "level": 23,
                         "nature": 6,
                         "pid": 394086131,
+                        "pidRollCount": 25,
                         "shiny": 0,
                         "specie": 349,
                         "stats": [
@@ -3345,6 +3448,7 @@
                         "level": 25,
                         "nature": 18,
                         "pid": 3512313418,
+                        "pidRollCount": 69,
                         "shiny": 0,
                         "specie": 349,
                         "stats": [
@@ -3376,6 +3480,7 @@
                         "level": 9,
                         "nature": 2,
                         "pid": 2791355602,
+                        "pidRollCount": 12,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -3407,6 +3512,7 @@
                         "level": 10,
                         "nature": 11,
                         "pid": 1981046061,
+                        "pidRollCount": 29,
                         "shiny": 0,
                         "specie": 72,
                         "stats": [
@@ -3438,6 +3544,7 @@
                         "level": 5,
                         "nature": 7,
                         "pid": 1170757932,
+                        "pidRollCount": 26,
                         "shiny": 0,
                         "specie": 72,
                         "stats": [
@@ -3469,6 +3576,7 @@
                         "level": 8,
                         "nature": 22,
                         "pid": 3031466747,
+                        "pidRollCount": 32,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -3500,6 +3608,7 @@
                         "level": 23,
                         "nature": 22,
                         "pid": 3031466747,
+                        "pidRollCount": 32,
                         "shiny": 0,
                         "specie": 349,
                         "stats": [
@@ -3531,6 +3640,7 @@
                         "level": 10,
                         "nature": 0,
                         "pid": 641589750,
+                        "pidRollCount": 12,
                         "shiny": 0,
                         "specie": 129,
                         "stats": [
@@ -3562,6 +3672,7 @@
                         "level": 25,
                         "nature": 0,
                         "pid": 641589750,
+                        "pidRollCount": 12,
                         "shiny": 0,
                         "specie": 349,
                         "stats": [
@@ -3604,6 +3715,7 @@
                         "level": 38,
                         "nature": 2,
                         "pid": 2977555977,
+                        "pidRollCount": 9,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3635,6 +3747,7 @@
                         "level": 50,
                         "nature": 1,
                         "pid": 677659376,
+                        "pidRollCount": 2,
                         "shiny": 0,
                         "specie": 75,
                         "stats": [
@@ -3666,6 +3779,7 @@
                         "level": 37,
                         "nature": 2,
                         "pid": 2977555977,
+                        "pidRollCount": 8,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3697,6 +3811,7 @@
                         "level": 30,
                         "nature": 23,
                         "pid": 2313494798,
+                        "pidRollCount": 21,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3728,6 +3843,7 @@
                         "level": 44,
                         "nature": 11,
                         "pid": 3870015711,
+                        "pidRollCount": 28,
                         "shiny": 0,
                         "specie": 75,
                         "stats": [
@@ -3759,6 +3875,7 @@
                         "level": 39,
                         "nature": 15,
                         "pid": 3859385490,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3790,6 +3907,7 @@
                         "level": 30,
                         "nature": 3,
                         "pid": 1556715153,
+                        "pidRollCount": 14,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3821,6 +3939,7 @@
                         "level": 31,
                         "nature": 12,
                         "pid": 2204916937,
+                        "pidRollCount": 14,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3852,6 +3971,7 @@
                         "level": 37,
                         "nature": 18,
                         "pid": 1602355693,
+                        "pidRollCount": 6,
                         "shiny": 0,
                         "specie": 74,
                         "stats": [
@@ -3883,6 +4003,7 @@
                         "level": 44,
                         "nature": 13,
                         "pid": 3403369388,
+                        "pidRollCount": 22,
                         "shiny": 0,
                         "specie": 75,
                         "stats": [
@@ -3925,6 +4046,7 @@
                         "level": 25,
                         "nature": 17,
                         "pid": 265752342,
+                        "pidRollCount": 38,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -3956,6 +4078,7 @@
                         "level": 25,
                         "nature": 18,
                         "pid": 677690443,
+                        "pidRollCount": 3,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -3987,6 +4110,7 @@
                         "level": 25,
                         "nature": 17,
                         "pid": 265752342,
+                        "pidRollCount": 37,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4018,6 +4142,7 @@
                         "level": 25,
                         "nature": 3,
                         "pid": 339479578,
+                        "pidRollCount": 64,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4049,6 +4174,7 @@
                         "level": 25,
                         "nature": 20,
                         "pid": 3159044795,
+                        "pidRollCount": 2,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4080,6 +4206,7 @@
                         "level": 25,
                         "nature": 3,
                         "pid": 339479578,
+                        "pidRollCount": 63,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4111,6 +4238,7 @@
                         "level": 25,
                         "nature": 17,
                         "pid": 265752342,
+                        "pidRollCount": 35,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4142,6 +4270,7 @@
                         "level": 25,
                         "nature": 3,
                         "pid": 339479578,
+                        "pidRollCount": 62,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4173,6 +4302,7 @@
                         "level": 25,
                         "nature": 17,
                         "pid": 265752342,
+                        "pidRollCount": 34,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
@@ -4204,6 +4334,7 @@
                         "level": 25,
                         "nature": 2,
                         "pid": 4173539227,
+                        "pidRollCount": 28,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
