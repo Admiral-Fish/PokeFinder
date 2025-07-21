@@ -26,7 +26,7 @@ WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel(parent), 
 
 int WildGeneratorModel3::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
@@ -40,34 +40,36 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
+            return state.getPidRollCount();
+        case 2:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 2:
-            return state.getLevel();
         case 3:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 4:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
+            return state.getHiddenPowerStrength();
+        case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
@@ -86,7 +88,7 @@ QVariant WildGeneratorModel3::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
 }
 
 WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), showStats(false)
@@ -95,7 +97,7 @@ WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), sh
 
 int WildSearcherModel3::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
@@ -109,34 +111,36 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
+            return state.getPidRollCount();
+        case 2:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 2:
-            return state.getLevel();
         case 3:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 4:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
+            return state.getHiddenPowerStrength();
+        case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
@@ -167,56 +171,61 @@ void WildSearcherModel3::sort(int column, Qt::SortOrder order)
             break;
         case 1:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getEncounterSlot() < state2.getEncounterSlot() : state1.getEncounterSlot() > state2.getEncounterSlot();
+                return flag ? state1.getPidRollCount() < state2.getPidRollCount() : state1.getPidRollCount() > state2.getPidRollCount();
             });
             break;
         case 2:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getLevel() < state2.getLevel() : state1.getLevel() > state2.getLevel();
+                return flag ? state1.getEncounterSlot() < state2.getEncounterSlot() : state1.getEncounterSlot() > state2.getEncounterSlot();
             });
             break;
         case 3:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getPID() < state2.getPID() : state1.getPID() > state2.getPID();
+                return flag ? state1.getLevel() < state2.getLevel() : state1.getLevel() > state2.getLevel();
             });
             break;
         case 4:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getShiny() < state2.getShiny() : state1.getShiny() > state2.getShiny();
+                return flag ? state1.getPID() < state2.getPID() : state1.getPID() > state2.getPID();
             });
             break;
         case 5:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getNature() < state2.getNature() : state1.getNature() > state2.getNature();
+                return flag ? state1.getShiny() < state2.getShiny() : state1.getShiny() > state2.getShiny();
             });
             break;
         case 6:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getAbility() < state2.getAbility() : state1.getAbility() > state2.getAbility();
+                return flag ? state1.getNature() < state2.getNature() : state1.getNature() > state2.getNature();
             });
             break;
         case 7:
+            std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
+                return flag ? state1.getAbility() < state2.getAbility() : state1.getAbility() > state2.getAbility();
+            });
+            break;
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
+        case 13:
             std::sort(model.begin(), model.end(), [flag, column](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
-                return flag ? state1.getIV(column - 7) < state2.getIV(column - 7) : state1.getIV(column - 7) > state2.getIV(column - 7);
+                return flag ? state1.getIV(column - 8) < state2.getIV(column - 8) : state1.getIV(column - 8) > state2.getIV(column - 8);
             });
             break;
-        case 13:
+        case 14:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
                 return flag ? state1.getHiddenPower() < state2.getHiddenPower() : state1.getHiddenPower() > state2.getHiddenPower();
             });
             break;
-        case 14:
+        case 15:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
                 return flag ? state1.getHiddenPowerStrength() < state2.getHiddenPowerStrength()
                             : state1.getHiddenPowerStrength() > state2.getHiddenPowerStrength();
             });
             break;
-        case 15:
+        case 16:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState3 &state1, const WildSearcherState3 &state2) {
                 return flag ? state1.getGender() < state2.getGender() : state1.getGender() > state2.getGender();
             });
@@ -230,5 +239,5 @@ void WildSearcherModel3::sort(int column, Qt::SortOrder order)
 void WildSearcherModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
 }
