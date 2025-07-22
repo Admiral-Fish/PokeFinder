@@ -33,8 +33,6 @@ add_library(PokeFinderCore STATIC
     Enum/DSType.hpp
     Enum/Encounter.hpp
     Enum/Game.hpp
-    Enum/Gender.hpp
-    Enum/Item.hpp
     Enum/Language.hpp
     Enum/Lead.hpp
     Enum/Method.hpp

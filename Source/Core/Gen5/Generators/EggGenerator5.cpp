@@ -106,7 +106,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
             }
             else
             {
-                u8 parent = daycare.getParentItem(0) == Item::Everstone ? 0 : 1;
+                u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
                 nature = daycare.getParentNature(parent);
             }
         }
@@ -132,18 +132,18 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
             if (poweritem == 2)
             {
                 u8 parent = go.nextUInt(2);
-                Item item = daycare.getParentItem(parent);
+                u8 item = daycare.getParentItem(parent);
 
-                ivs[toInt(item - Item::PowerItemStart)] = daycare.getParentIV(parent, toInt(item - Item::PowerItemStart));
-                inheritance[toInt(item - Item::PowerItemStart)] = parent + 1;
+                ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+                inheritance[item - 2] = parent + 1;
             }
             else
             {
-                u8 parent = (daycare.getParentItem(0) >= Item::PowerItemStart && daycare.getParentItem(0) <= Item::PowerItemEnd) ? 0 : 1;
-                Item item = daycare.getParentItem(parent);
+                u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(0) <= 7) ? 0 : 1;
+                u8 item = daycare.getParentItem(parent);
 
-                ivs[toInt(item - Item::PowerItemStart)] = daycare.getParentIV(parent, toInt(item - Item::PowerItemStart));
-                inheritance[toInt(item - Item::PowerItemStart)] = parent + 1;
+                ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+                inheritance[item - 2] = parent + 1;
             }
         }
 
@@ -272,7 +272,7 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
     }
     else if (everstone == 1)
     {
-        u8 parent = daycare.getParentItem(0) == Item::Everstone ? 0 : 1;
+        u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
         nature = daycare.getParentNature(parent);
     }
 
@@ -309,18 +309,18 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
         if (poweritem == 2)
         {
             u8 parent = rng.nextUInt(2);
-            Item item = daycare.getParentItem(parent);
+            u8 item = daycare.getParentItem(parent);
 
-            ivs[toInt(item - Item::PowerItemStart)] = daycare.getParentIV(parent, toInt(item - Item::PowerItemStart));
-            inheritance[toInt(item - Item::PowerItemStart)] = parent + 1;
+            ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+            inheritance[item - 2] = parent + 1;
         }
         else
         {
-            u8 parent = (daycare.getParentItem(0) >= Item::PowerItemStart && daycare.getParentItem(0) <= Item::PowerItemEnd) ? 0 : 1;
-            Item item = daycare.getParentItem(parent);
+            u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(0) <= 7) ? 0 : 1;
+            u8 item = daycare.getParentItem(parent);
 
-            ivs[toInt(item - Item::PowerItemStart)] = daycare.getParentIV(parent, toInt(item - Item::PowerItemStart));
-            inheritance[toInt(item - Item::PowerItemStart)] = parent + 1;
+            ivs[item - 2] = daycare.getParentIV(parent, item - 2);
+            inheritance[item - 2] = parent + 1;
         }
     }
 

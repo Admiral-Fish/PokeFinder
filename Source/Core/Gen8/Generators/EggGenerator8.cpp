@@ -69,7 +69,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 
     // Intentionally ignoring power items
     u8 inheritanceCount = 3;
-    if (daycare.getParentItem(0) == Item::DestinyKnot || daycare.getParentItem(1) == Item::DestinyKnot)
+    if (daycare.getParentItem(0) == 8 || daycare.getParentItem(1) == 8)
     {
         inheritanceCount = 5;
     }
@@ -119,17 +119,17 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 nature = daycare.getParentNature(rng.nextUInt(2));
             }
-            else if (daycare.getParentItem(0) == Item::Everstone)
+            else if (daycare.getParentItem(0) == 1)
             {
                 nature = daycare.getParentNature(0);
             }
-            else if (daycare.getParentItem(1) == Item::Everstone)
+            else if (daycare.getParentItem(1) == 1)
             {
                 nature = daycare.getParentNature(1);
             }
 
             // If we have a ditto acting as the female, get the ability from the other parent (this will be slot 0)
-            u8 parentAbility = daycare.getParentAbility(daycare.getParentGender(1) == Gender::Ditto ? 0 : 1);
+            u8 parentAbility = daycare.getParentAbility(daycare.getParentGender(1) == 3 ? 0 : 1);
             u8 ability = rng.nextUInt(100);
             if (parentAbility == 2)
             {

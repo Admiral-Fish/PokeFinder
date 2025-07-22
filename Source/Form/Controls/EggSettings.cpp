@@ -57,15 +57,17 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
     ui->comboBoxParentAGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
     ui->comboBoxParentBGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
 
-    ui->comboBoxParentAGender->setup({ toInt(Gender::Male), toInt(Gender::Female), toInt(Gender::Genderless), toInt(Gender::Ditto) });
-    ui->comboBoxParentBGender->setup({ toInt(Gender::Male), toInt(Gender::Female), toInt(Gender::Genderless), toInt(Gender::Ditto) });
+    ui->comboBoxParentAAbility->addItem("0");
+    ui->comboBoxParentAAbility->addItem("1");
 
-    ui->comboBoxParentAItem->setup({ toInt(Item::None), toInt(Item::Everstone), toInt(Item::PowerWeight), toInt(Item::PowerBracer),
-                                     toInt(Item::PowerBelt), toInt(Item::PowerLens), toInt(Item::PowerBand), toInt(Item::PowerAnklet),
-                                     toInt(Item::DestinyKnot) });
-    ui->comboBoxParentBItem->setup({ toInt(Item::None), toInt(Item::Everstone), toInt(Item::PowerWeight), toInt(Item::PowerBracer),
-                                     toInt(Item::PowerBelt), toInt(Item::PowerLens), toInt(Item::PowerBand), toInt(Item::PowerAnklet),
-                                     toInt(Item::DestinyKnot) });
+    ui->comboBoxParentBAbility->addItem("0");
+    ui->comboBoxParentBAbility->addItem("1");
+
+    ui->comboBoxParentAItem->addItem(tr("None"), 0);
+    ui->comboBoxParentAItem->addItem(tr("Everstone"), 1);
+
+    ui->comboBoxParentBItem->addItem(tr("None"), 0);
+    ui->comboBoxParentBItem->addItem(tr("Everstone"), 1);
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
@@ -79,33 +81,29 @@ EggSettings::~EggSettings()
 
 bool EggSettings::compatibleParents() const
 {
-    auto parent1 = ui->comboBoxParentAGender->getEnum<Gender>();
-    auto parent2 = ui->comboBoxParentBGender->getEnum<Gender>();
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
 
     // Male/Female
-    if ((parent1 == Gender::Male && parent2 == Gender::Female)
-        || (parent1 == Gender::Female && parent2 == Gender::Male))
+    if ((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0))
     {
         return true;
     }
 
     // Ditto/Female
-    if ((parent1 == Gender::Ditto && parent2 == Gender::Female)
-        || (parent1 == Gender::Female && parent2 == Gender::Ditto))
+    if ((parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3))
     {
         return true;
     }
 
     // Male/Ditto
-    if ((parent1 == Gender::Male && parent2 == Gender::Ditto)
-        || (parent1 == Gender::Ditto && parent2 == Gender::Male))
+    if ((parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0))
     {
         return true;
     }
 
     // Genderless/Ditto
-    if ((parent1 == Gender::Genderless && parent2 == Gender::Ditto)
-        || (parent1 == Gender::Ditto && parent2 == Gender::Genderless))
+    if ((parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))
     {
         return true;
     }
@@ -126,11 +124,10 @@ Daycare EggSettings::getDaycare() const
     std::array<u8, 2> parentAbility
         = { static_cast<u8>(ui->comboBoxParentAAbility->currentIndex()), static_cast<u8>(ui->comboBoxParentBAbility->currentIndex()) };
 
-    std::array<Gender, 2> parentGender
-        = { ui->comboBoxParentAGender->getEnum<Gender>(), ui->comboBoxParentBGender->getEnum<Gender>() };
+    std::array<u8, 2> parentGender
+        = { static_cast<u8>(ui->comboBoxParentAGender->currentIndex()), static_cast<u8>(ui->comboBoxParentBGender->currentIndex()) };
 
-    std::array<Item, 2> parentItem
-        = { ui->comboBoxParentAItem->getEnum<Item>(), ui->comboBoxParentBItem->getEnum<Item>() };
+    std::array<u8, 2> parentItem = { ui->comboBoxParentAItem->getCurrentUChar(), ui->comboBoxParentBItem->getCurrentUChar() };
 
     std::array<u8, 2> parentNature
         = { static_cast<u8>(ui->comboBoxParentANature->currentIndex()), static_cast<u8>(ui->comboBoxParentBNature->currentIndex()) };
@@ -143,20 +140,20 @@ Daycare EggSettings::getDaycare() const
 
 bool EggSettings::reorderParents()
 {
-    auto parent1 = ui->comboBoxParentAGender->getEnum<Gender>();
-    auto parent2 = ui->comboBoxParentBGender->getEnum<Gender>();
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
 
     // Female/Male -> Male/Female
-    bool flag = parent1 == Gender::Female && parent2 == Gender::Male;
+    bool flag = parent1 == 1 && parent2 == 0;
 
     // Female/Ditto -> Ditto/Female
-    flag |= parent1 == Gender::Female && parent2 == Gender::Ditto;
+    flag |= parent1 == 1 && parent2 == 3;
 
     // Ditto/Male -> Male/Ditto
-    flag |= parent1 == Gender::Ditto && parent2 == Gender::Male;
+    flag |= parent1 == 3 && parent2 == 0;
 
     // Ditto/Genderless -> Genderless/Ditto
-    flag |= parent1 == Gender::Ditto && parent2 == Gender::Genderless;
+    flag |= parent1 == 3 && parent2 == 2;
 
     if (flag)
     {
@@ -169,8 +166,8 @@ bool EggSettings::reorderParents()
         ui->spinBoxParentASpD->setValue(daycare.getParentIV(1, 4));
         ui->spinBoxParentASpe->setValue(daycare.getParentIV(1, 5));
         ui->comboBoxParentAAbility->setCurrentIndex(daycare.getParentAbility(1));
-        ui->comboBoxParentAGender->setCurrentIndex(toInt(daycare.getParentGender(1)));
-        ui->comboBoxParentAItem->setCurrentIndex(ui->comboBoxParentAItem->findData(toInt(daycare.getParentItem(1))));
+        ui->comboBoxParentAGender->setCurrentIndex(daycare.getParentGender(1));
+        ui->comboBoxParentAItem->setCurrentIndex(ui->comboBoxParentAItem->findData(daycare.getParentItem(1)));
         ui->comboBoxParentANature->setCurrentIndex(daycare.getParentNature(1));
 
         ui->spinBoxParentBHP->setValue(daycare.getParentIV(0, 0));
@@ -180,8 +177,8 @@ bool EggSettings::reorderParents()
         ui->spinBoxParentBSpD->setValue(daycare.getParentIV(0, 4));
         ui->spinBoxParentBSpe->setValue(daycare.getParentIV(0, 5));
         ui->comboBoxParentBAbility->setCurrentIndex(daycare.getParentAbility(0));
-        ui->comboBoxParentBGender->setCurrentIndex(toInt(daycare.getParentGender(0)));
-        ui->comboBoxParentBItem->setCurrentIndex(ui->comboBoxParentBItem->findData(toInt(daycare.getParentItem(0))));
+        ui->comboBoxParentBGender->setCurrentIndex(daycare.getParentGender(0));
+        ui->comboBoxParentBItem->setCurrentIndex(ui->comboBoxParentBItem->findData(daycare.getParentItem(0)));
         ui->comboBoxParentBNature->setCurrentIndex(daycare.getParentNature(0));
     }
 
@@ -206,12 +203,6 @@ void EggSettings::setup(Game game)
         ui->comboBoxParentANature->setVisible(flag);
         ui->comboBoxParentBNature->setVisible(flag);
 
-        for (u8 i = toInt(Item::PowerItemStart); i <= toInt(Item::DestinyKnot); i++)
-        {
-            ui->comboBoxParentAItem->setItemHidden(i, true);
-            ui->comboBoxParentBItem->setItemHidden(i, true);
-        }
-
         max = 386;
         ui->checkBoxMasuda->setVisible(false);
     }
@@ -232,13 +223,33 @@ void EggSettings::setup(Game game)
     }
     else if ((game & Game::Gen5) != Game::None)
     {
-        ui->comboBoxParentAItem->setItemHidden(toInt(Item::DestinyKnot), true);
-        ui->comboBoxParentBItem->setItemHidden(toInt(Item::DestinyKnot), true);
+        ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentAItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentAItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentAItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentAItem->addItem(tr("Power Anklet"), 7);
+
+        ui->comboBoxParentBItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentBItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentBItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentBItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentBItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentBItem->addItem(tr("Power Anklet"), 7);
+
+        ui->comboBoxParentAAbility->addItem("H");
+        ui->comboBoxParentBAbility->addItem("H");
 
         max = 649;
     }
     else if ((game & Game::BDSP) != Game::None)
     {
+        ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
+        ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);
+
+        ui->comboBoxParentAAbility->addItem("H");
+        ui->comboBoxParentBAbility->addItem("H");
+
         max = 493;
     }
 

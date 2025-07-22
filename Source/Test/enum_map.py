@@ -61,7 +61,7 @@ def main():
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
     parent = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
-    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Gender", "Item", "Language", "Lead", "Method", "Shiny"))
+    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method", "Shiny"))
 
 
 if __name__ == "__main__":

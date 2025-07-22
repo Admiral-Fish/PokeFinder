@@ -28,12 +28,12 @@
                 0
             ],
             "parentGender": [
-                "Male",
-                "Female"
+                0,
+                1
             ],
             "parentItem": [
-                "None",
-                "None"
+                0,
+                0
             ],
             "parentNature": [
                 0,
@@ -440,12 +440,12 @@
                 0
             ],
             "parentGender": [
-                "Male",
-                "Female"
+                0,
+                1
             ],
             "parentItem": [
-                "None",
-                "None"
+                0,
+                0
             ],
             "parentNature": [
                 0,
@@ -852,12 +852,12 @@
                 0
             ],
             "parentGender": [
-                "Male",
-                "Female"
+                0,
+                1
             ],
             "parentItem": [
-                "None",
-                "None"
+                0,
+                0
             ],
             "parentNature": [
                 0,

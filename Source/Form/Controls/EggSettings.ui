@@ -240,42 +240,10 @@
     </widget>
    </item>
    <item row="1" column="5">
-    <widget class="QComboBox" name="comboBoxParentAAbility">
-     <item>
-      <property name="text">
-       <string notr="true">0</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">H</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QComboBox" name="comboBoxParentAAbility"/>
    </item>
    <item row="1" column="6">
-    <widget class="QComboBox" name="comboBoxParentBAbility">
-     <item>
-      <property name="text">
-       <string notr="true">0</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">H</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QComboBox" name="comboBoxParentBAbility"/>
    </item>
    <item row="2" column="4">
     <widget class="QLabel" name="labelGender">
@@ -285,10 +253,10 @@
     </widget>
    </item>
    <item row="2" column="5">
-    <widget class="ComboBox" name="comboBoxParentAGender"/>
+    <widget class="QComboBox" name="comboBoxParentAGender"/>
    </item>
    <item row="2" column="6">
-    <widget class="ComboBox" name="comboBoxParentBGender"/>
+    <widget class="QComboBox" name="comboBoxParentBGender"/>
    </item>
    <item row="3" column="4">
     <widget class="QLabel" name="labelItem">
@@ -298,102 +266,10 @@
     </widget>
    </item>
    <item row="3" column="5">
-    <widget class="ComboBox" name="comboBoxParentAItem">
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Everstone</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Weight</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Bracer</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Belt</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Lens</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Band</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Anklet</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Destiny Knot</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="ComboBox" name="comboBoxParentAItem"/>
    </item>
    <item row="3" column="6">
-    <widget class="ComboBox" name="comboBoxParentBItem">
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Everstone</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Weight</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Bracer</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Belt</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Lens</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Band</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Power Anklet</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Destiny Knot</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="ComboBox" name="comboBoxParentBItem"/>
    </item>
    <item row="4" column="4">
     <widget class="QLabel" name="labelNature">

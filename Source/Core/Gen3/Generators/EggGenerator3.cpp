@@ -216,7 +216,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
     u8 parent;
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == Gender::Female)
+        if (daycare.getParentGender(i) == 1)
         {
             parent = i;
         }
@@ -224,13 +224,13 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
 
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == Gender::Ditto)
+        if (daycare.getParentGender(i) == 3)
         {
             parent = i;
         }
     }
 
-    bool everstone = daycare.getParentItem(parent) == Item::Everstone;
+    bool everstone = daycare.getParentItem(parent) == 1;
 
     PokeRNG rng(0, initialAdvances + offset);
     u32 val = initialAdvances + offset + 1;
