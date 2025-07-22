@@ -1,32 +1,23 @@
 project(PokeFinderForm)
 
-if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
-    execute_process(
-        COMMAND git rev-parse --abbrev-ref HEAD
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_BRANCH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
+execute_process(
+    COMMAND git rev-parse --abbrev-ref HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
 
-    execute_process(
-        COMMAND git rev-parse HEAD
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_COMMIT
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
+execute_process(
+    COMMAND git rev-parse HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
 
-    if (NOT "$ENV{APPVEYOR_REPO_BRANCH}" STREQUAL "")
-        set(GIT_BRANCH "$ENV{APPVEYOR_REPO_BRANCH}")
-    endif ()
-
-    add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
-    add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
-
-    configure_file(
-        ${CMAKE_SOURCE_DIR}/Source/Form/version.h.in
-        ${CMAKE_BINARY_DIR}/generated/version.h
-    )
-endif ()
+configure_file(
+    ${CMAKE_SOURCE_DIR}/Source/Form/version.h.in
+    ${CMAKE_BINARY_DIR}/generated/version.h
+)
 
 include_directories(${CMAKE_BINARY_DIR}/generated)
 
