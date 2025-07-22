@@ -17,7 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Restore Git Mtimes
+        uses: ./.github/actions/git-mtime-cache
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -28,14 +32,55 @@ jobs:
           cache: true
           arch: "win64_msvc2022_64"
 
+      - name: Restore CMake build files
+        id: cache
+        uses: actions/cache/restore@v4
+        env:
+          cache-name: windows-cmake-build
+        with:
+          path: |
+            ${{github.workspace}}/build
+            ${{github.workspace}}/Source/Test/*.hpp
+            ${{github.workspace}}/Source/Core/Resources/*.hpp
+          key: ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}-${{github.run_id}}
+          restore-keys: |
+            ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}
+            ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}
+            ${{env.cache-name}}-
+
+      - name: Store File Mtimes
+        uses: ./.github/actions/file-mtime-cache
+        with:
+          mode: save
+          files: |
+            ${{github.workspace}}/Source/Test/*.hpp
+            ${{github.workspace}}/Source/Core/Resources/*.hpp
+
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON
+
+      - name: Restore Unmodified File Mtimes
+        uses: ./.github/actions/file-mtime-cache
+        with:
+          mode: restore
+          files: |
+            ${{github.workspace}}/Source/Test/*.hpp
+            ${{github.workspace}}/Source/Core/Resources/*.hpp
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
 
       - name: Test PokeFinder
         run: ctest --test-dir ${{github.workspace}}/build -C RELEASE -V
+
+      - name: Save CMake build files
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{github.workspace}}/build
+            ${{github.workspace}}/Source/Test/*.hpp
+            ${{github.workspace}}/Source/Core/Resources/*.hpp
+          key: ${{steps.cache.outputs.cache-primary-key}}
 
       - name: Package PokeFinder
         run: |
@@ -46,9 +91,9 @@ jobs:
           mv build/Source/Release/PokeFinder.exe PokeFinder
           windeployqt --no-translations --no-plugins --no-opengl-sw --no-system-d3d-compiler PokeFinder/PokeFinder.exe
           rm PokeFinder/vc_redist*.exe
-          cp "${{ env.QT_ROOT_DIR }}/plugins/platforms/qwindows.dll" PokeFinder/platforms/
-          cp "${{ env.QT_ROOT_DIR }}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
-          cp "${{ env.QT_ROOT_DIR }}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder
+          cp "${{env.QT_ROOT_DIR}}/plugins/platforms/qwindows.dll" PokeFinder/platforms/
+          cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
+          cp "${{env.QT_ROOT_DIR}}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder
           7z a PokeFinder-win.zip PokeFinder
           mv PokeFinder upload
 

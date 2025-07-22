@@ -1,0 +1,9 @@
+name: Git Mtime Cache
+description: Set mtimes of tracked files to match their last commit time.
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        python3 "${{github.action_path}}/git-restore-mtime"
+        git submodule foreach --recursive 'python3 "${{github.action_path}}/git-restore-mtime"'
+      shell: bash
