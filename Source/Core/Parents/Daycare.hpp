@@ -20,6 +20,8 @@
 #ifndef DAYCARE_HPP
 #define DAYCARE_HPP
 
+#include <Core/Enum/Gender.hpp>
+#include <Core/Enum/Item.hpp>
 #include <Core/Global.hpp>
 #include <array>
 
@@ -41,13 +43,13 @@ public:
      * @param masuda Parents form international combination
      */
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
-            const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, u16 specie,
-            bool masuda) :
+            const std::array<Gender, 2> &parentGender, const std::array<Item, 2> &parentItem, const std::array<u8, 2> &parentNature,
+            u16 specie, bool masuda) :
         specie(specie),
-        parentIVs(parentIVs),
-        parentAbility(parentAbility),
         parentGender(parentGender),
         parentItem(parentItem),
+        parentIVs(parentIVs),
+        parentAbility(parentAbility),
         parentNature(parentNature),
         masuda(masuda)
     {
@@ -61,7 +63,7 @@ public:
      */
     bool getDitto() const
     {
-        return parentGender[0] == 3 || parentGender[1] == 3;
+        return parentGender[0] == Gender::Ditto || parentGender[1] == Gender::Ditto;
     }
 
     /**
@@ -81,7 +83,7 @@ public:
      */
     u8 getEverstoneCount() const
     {
-        return (parentItem[0] == 1) + (parentItem[1] == 1);
+        return (parentItem[0] == Item::Everstone) + (parentItem[1] == Item::Everstone);
     }
 
     /**
@@ -114,7 +116,7 @@ public:
      *
      * @return Parent gender
      */
-    u8 getParentGender(u8 parent) const
+    Gender getParentGender(u8 parent) const
     {
         return parentGender[parent];
     }
@@ -126,7 +128,7 @@ public:
      *
      * @return Parent item
      */
-    u8 getParentItem(u8 parent) const
+    Item getParentItem(u8 parent) const
     {
         return parentItem[parent];
     }
@@ -163,15 +165,16 @@ public:
      */
     u8 getPowerItemCount() const
     {
-        return (parentItem[0] >= 2 && parentItem[0] <= 7) + (parentItem[1] >= 2 && parentItem[1] <= 7);
+        return (parentItem[0] >= Item::PowerItemStart && parentItem[0] <= Item::PowerItemEnd)
+            + (parentItem[1] >= Item::PowerItemStart && parentItem[1] <= Item::PowerItemEnd);
     }
 
 private:
     u16 specie;
+    std::array<Gender, 2> parentGender;
+    std::array<Item, 2> parentItem;
     std::array<std::array<u8, 6>, 2> parentIVs;
     std::array<u8, 2> parentAbility;
-    std::array<u8, 2> parentGender; // 0 - Male, 1 - Female, 2 - Genderless, 3 - Ditto
-    std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;
 };

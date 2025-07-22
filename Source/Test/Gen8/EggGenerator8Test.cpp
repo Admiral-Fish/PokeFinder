@@ -24,8 +24,10 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-using IVs = std::array<std::array<u8, 6>, 2>;
 using Attribute = std::array<u8, 2>;
+using IVs = std::array<std::array<u8, 6>, 2>;
+using ParentGender = std::array<Gender, 2>;
+using ParentItem = std::array<Item, 2>;
 
 static bool operator==(const EggState8 &left, const json &right)
 {
@@ -46,8 +48,8 @@ void EggGenerator8Test::generate_data()
     QTest::addColumn<u16>("pokemon");
     QTest::addColumn<IVs>("parentIVs");
     QTest::addColumn<Attribute>("parentAbility");
-    QTest::addColumn<Attribute>("parentGender");
-    QTest::addColumn<Attribute>("parentItem");
+    QTest::addColumn<ParentGender>("parentGender");
+    QTest::addColumn<ParentItem>("parentItem");
     QTest::addColumn<Attribute>("parentNature");
     QTest::addColumn<std::string>("results");
 
@@ -56,7 +58,7 @@ void EggGenerator8Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>()
-            << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>()
+            << d["parentAbility"].get<Attribute>() << d["parentGender"].get<ParentGender>() << d["parentItem"].get<ParentItem>()
             << d["parentNature"].get<Attribute>() << d["results"].get<json>().dump();
     }
 }
@@ -68,8 +70,8 @@ void EggGenerator8Test::generate()
     QFETCH(u16, pokemon);
     QFETCH(IVs, parentIVs);
     QFETCH(Attribute, parentAbility);
-    QFETCH(Attribute, parentGender);
-    QFETCH(Attribute, parentItem);
+    QFETCH(ParentGender, parentGender);
+    QFETCH(ParentItem, parentItem);
     QFETCH(Attribute, parentNature);
     QFETCH(std::string, results);
 

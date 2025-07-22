@@ -34,12 +34,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                1
+                "None",
+                "Everstone"
             ],
             "parentNature": [
                 0,
@@ -1982,12 +1982,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                0
+                "None",
+                "None"
             ],
             "parentNature": [
                 0,
@@ -4310,12 +4310,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                0
+                "None",
+                "None"
             ],
             "parentNature": [
                 0,
@@ -6638,12 +6638,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                0
+                "None",
+                "None"
             ],
             "parentNature": [
                 0,
@@ -8966,12 +8966,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                0
+                "None",
+                "None"
             ],
             "parentNature": [
                 0,
@@ -11294,12 +11294,12 @@
                 1
             ],
             "parentGender": [
-                0,
-                1
+                "Male",
+                "Female"
             ],
             "parentItem": [
-                0,
-                0
+                "None",
+                "None"
             ],
             "parentNature": [
                 0,
