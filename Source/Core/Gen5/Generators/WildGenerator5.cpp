@@ -181,7 +181,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
                 {
                     pressure = flag;
                 }
-                else if (lead <= Lead::Synchronize)
+                else if (lead <= Lead::SynchronizeEnd)
                 {
                     sync = flag;
                 }
@@ -189,7 +189,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         bool doubleBattle = false;
-        if (area.getEncounter() == Encounter::Grass && getPercentRand(go, bw) < 40)
+        if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
         {
             doubleBattle = true;
         }
