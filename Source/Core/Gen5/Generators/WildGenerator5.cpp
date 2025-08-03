@@ -172,7 +172,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             }
             else
             {
-                bool flag = getPercentRand(go, bw) < 50;
+                bool flag = getPercentRand(go, bw) >= 50;
                 if (lead == Lead::MagnetPull || lead == Lead::Static)
                 {
                     magnetStatic = flag;
