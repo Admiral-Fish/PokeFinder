@@ -283,7 +283,8 @@ void Static5::search()
     IVSearcher5<StaticGenerator5, State5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivCache = IVSeedCache::getNormalCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), filter);
+        CacheType type = staticTemplate->getRoamer() ? CacheType::Roamer : CacheType::Normal;
+        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), type, filter);
         searcher = new IVSearcher5<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
     }
     else

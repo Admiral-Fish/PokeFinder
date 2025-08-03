@@ -530,7 +530,7 @@ void HiddenGrotto::pokemonSearch()
     IVSearcher5<HiddenGrottoGenerator, State5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivCache = IVSeedCache::getNormalCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), filter);
+        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         searcher = new IVSearcher5<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
     }
     else

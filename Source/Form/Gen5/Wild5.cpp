@@ -345,7 +345,7 @@ void Wild5::search()
     IVSearcher5<WildGenerator5, WildState5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivCache = IVSeedCache::getNormalCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), filter);
+        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         searcher = new IVSearcher5<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
     }
     else

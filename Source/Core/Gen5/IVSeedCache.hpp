@@ -27,6 +27,13 @@
 class StateFilter;
 enum class Game : u32;
 
+enum class CacheType : u8
+{
+    Entralink,
+    Normal,
+    Roamer
+};
+
 /**
  * @brief Grabs IV caches for the various encounter types
  */
@@ -37,36 +44,14 @@ namespace IVSeedCache
      *
      * @param initialAdvance Initial IV advances
      * @param maxAdvance Maximum IV advances
-     * @param filter IV filter
-     *
-     * @return IV caches
-     */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 initialAdvance, u32 maxAdvance,
-                                                                                const StateFilter &filter);
-
-    /**
-     * @brief Returns the IV caches for most encounter types
-     *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
+     * @param type What cache type to get
      * @param version Game version
      * @param filter IV filter
      *
      * @return IV caches
      */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initialAdvance, u32 maxAdvance, Game version,
-                                                                             const StateFilter &filter);
-
-    /**
-     * @brief Returns the IV caches for roamers
-     *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
-     * @param filter IV filter
-     *
-     * @return IV caches
-     */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter);
+    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
+                                                                       const StateFilter &filter);
 };
 
 #endif // IVSEEDCACHE_HPP
