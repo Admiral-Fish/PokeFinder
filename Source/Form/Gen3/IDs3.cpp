@@ -50,6 +50,9 @@ IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3), model(new IDMod
     connect(ui->checkBoxDeadBatteryRS, &QCheckBox::clicked, this, &IDs3::toggleDeadBatteryRS);
     connect(ui->radioButtonDateTimeRS, &QRadioButton::toggled, this, &IDs3::toggleDateTimeRS);
     connect(ui->radioButtonSeedRS, &QRadioButton::toggled, this, &IDs3::toggleSeedRS);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &IDs3::tabIndexChanged);
+
+    tabIndexChanged(0);
 
     QSettings setting;
     if (setting.contains("ids3/geometry"))
@@ -140,4 +143,16 @@ void IDs3::toggleDateTimeRS(bool checked)
 void IDs3::toggleSeedRS(bool checked)
 {
     ui->textBoxSeedRS->setEnabled(checked);
+}
+
+void IDs3::tabIndexChanged(int index)
+{
+    if (index == 1)
+    {
+        ui->idFilter->disableTIDPID();
+    }
+    else
+    {
+        ui->idFilter->enableTIDPID();
+    }
 }
