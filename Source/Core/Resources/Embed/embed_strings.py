@@ -1,5 +1,7 @@
-import bz2
 import glob
+import zstandard as zstd
+
+from .embed_util import write_data
 
 
 def embed_strings(paths):
@@ -20,17 +22,15 @@ def embed_strings(paths):
                 string_data += bytes(line, encoding="utf-8")
                 string_data += b"\x00"
 
-            size = len(string_data).to_bytes(4, "little")
-            string_data = bz2.compress(string_data, 9)
-            string_data = size + string_data
-
             indexes.append(index)
             index += len(string_data)
 
             strings += string_data
     indexes.append(index)
 
-    string = f"constexpr u8 I18N[{len(strings)}] = {{ "
+    strings = zstd.compress(strings, 22)
+
+    string = f"constexpr std::array<u8, {len(strings)}> I18N = {{ "
     for i, char in enumerate(strings):
         string += str(char)
         if i != len(strings) - 1:
@@ -44,12 +44,4 @@ def embed_strings(paths):
             index_string += ", "
     index_string += " };"
 
-    write_strings((string, index_string))
-
-
-def write_strings(maps):
-    f = open("i18n.hpp", "w", encoding="utf-8")
-
-    f.write("#include <Core/Global.hpp>\n\n")
-    for map in maps:
-        f.write(f"{map}\n\n")
+    write_data((string, index_string), "i18n.hpp", ("Core/Global.hpp", "array"), "utf-8")

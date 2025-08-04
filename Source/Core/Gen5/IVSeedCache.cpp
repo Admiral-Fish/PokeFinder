@@ -97,7 +97,7 @@ std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 
     std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> cache;
 
     u32 size;
-    const auto *data = reinterpret_cast<const SeedCache *>(Utilities::decompress(IVS.data(), IVS.size(), size));
+    auto *data = Utilities::decompress<SeedCache>(IVS.data(), IVS.size(), size);
 
     u32 index = 0;
 
@@ -144,7 +144,7 @@ std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 ini
     bool bw = (version & Game::BW) != Game::None;
 
     u32 size;
-    const auto *data = reinterpret_cast<const SeedCache *>(Utilities::decompress(IVS.data(), IVS.size(), size));
+    auto *data = Utilities::decompress<SeedCache>(IVS.data(), IVS.size(), size);
 
     u32 index = std::accumulate(data->entralinkCount.begin(), data->entralinkCount.end(), 0);
     if (!bw)
@@ -191,7 +191,7 @@ std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 ini
     std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> cache;
 
     u32 size;
-    const auto *data = reinterpret_cast<const SeedCache *>(Utilities::decompress(IVS.data(), IVS.size(), size));
+    auto *data = Utilities::decompress<SeedCache>(IVS.data(), IVS.size(), size);
 
     u32 index = std::accumulate(data->normalCount.begin(), data->normalCount.end(),
                                 std::accumulate(data->entralinkCount.begin(), data->entralinkCount.end(), 0));

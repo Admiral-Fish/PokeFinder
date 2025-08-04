@@ -1,6 +1,6 @@
-[submodule "Source/Core/External/bzip2"]
-	path = Source/Core/External/bzip2
-	url = https://gitlab.com/bzip2/bzip2
+[submodule "Source/Core/External/zstd"]
+	path = Source/Core/External/zstd
+	url = https://github.com/facebook/zstd.git
 [submodule "Source/Core/Resources/EncounterTables"]
 	path = Source/Core/Resources/EncounterTables
 	url = https://github.com/Admiral-Fish/EncounterTableGenerator
