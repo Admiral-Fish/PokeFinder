@@ -90,11 +90,9 @@ static void readFile(const char *data, Translation translation, std::vector<std:
     u32 start = INDICES[index];
     u32 end = INDICES[index + 1];
 
-    u32 length = end - start;
-
-    for (u32 i = 0; i < length;)
+    for (u32 i = start; i < end;)
     {
-        const char *it = std::find(data + i, data + length, 0);
+        const char *it = std::find(data + i, data + end, 0);
         u32 len = it - &data[i];
         strings.emplace_back(data + i, len);
         i += len + 1;
@@ -115,12 +113,10 @@ static std::map<u16, std::string> readFile(const char *data, Translation transla
     u32 start = INDICES[index];
     u32 end = INDICES[index + 1];
 
-    u32 length = end - start;
-
     std::map<u16, std::string> strings;
-    for (u32 i = 0; i < length;)
+    for (u32 i = start; i < end;)
     {
-        const char *it = std::find(data + i, data + length, 0);
+        const char *it = std::find(data + i, data + end, 0);
         u32 len = it - &data[i];
 
         char *word;
