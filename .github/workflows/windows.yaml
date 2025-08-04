@@ -33,7 +33,7 @@ jobs:
           arch: "win64_msvc2022_64"
 
       - name: Install python zstandard pip Package
-        run: python3 -m pip zstandard
+        run: python3 -m pip install zstandard
 
       - name: Restore CMake build files
         id: cache
