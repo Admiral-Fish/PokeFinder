@@ -11,7 +11,7 @@ on:
 jobs:
   ci:
     name: Build
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       - name: Checkout repository
@@ -29,6 +29,9 @@ jobs:
           version: "6.8.3"
           archives: qtbase qtsvg qttools
           cache: true
+
+      - name: Install python zstandard pip Package
+        run: python3 -m pip zstandard
 
       - name: Restore CMake build files
         id: cache

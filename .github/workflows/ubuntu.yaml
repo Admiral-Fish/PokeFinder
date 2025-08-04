@@ -30,6 +30,9 @@ jobs:
           archives: icu qtbase qtsvg qttools
           cache: true
 
+      - name: Install python zstandard pip Package
+        run: python3 -m pip zstandard
+
       - name: Restore CMake build files
         id: cache
         uses: actions/cache/restore@v4

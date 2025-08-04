@@ -108,24 +108,24 @@ namespace Encounters5
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile)
     {
         u32 length;
-        u8 *data;
+        const u8 *data;
 
         Game version = profile->getVersion();
         if (version == Game::Black)
         {
-            data = Utilities::decompress(BLACK.data(), BLACK.size(), length);
+            data = Utilities::decompress<u8>(BLACK.data(), BLACK.size(), length);
         }
         else if (version == Game::Black2)
         {
-            data = Utilities::decompress(BLACK2.data(), BLACK2.size(), length);
+            data = Utilities::decompress<u8>(BLACK2.data(), BLACK2.size(), length);
         }
         else if (version == Game::White)
         {
-            data = Utilities::decompress(WHITE.data(), WHITE.size(), length);
+            data = Utilities::decompress<u8>(WHITE.data(), WHITE.size(), length);
         }
         else
         {
-            data = Utilities::decompress(WHITE2.data(), WHITE2.size(), length);
+            data = Utilities::decompress<u8>(WHITE2.data(), WHITE2.size(), length);
         }
 
         std::vector<EncounterArea5> encounters;
@@ -240,23 +240,21 @@ namespace Encounters5
     std::vector<HiddenGrottoArea> getHiddenGrottoEncounters()
     {
         u32 length;
-        const u8 *data = Utilities::decompress(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
+        auto *data = Utilities::decompress<WildEncounterGrotto>(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
 
         std::vector<HiddenGrottoArea> encounters;
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterGrotto))
+        for (size_t i = 0; i < length; i++)
         {
-            const auto *entry = reinterpret_cast<const WildEncounterGrotto *>(data + offset);
-
             std::array<HiddenGrottoSlot, 12> pokemon;
-            for (size_t i = 0; i < 12; i++)
+            for (size_t j = 0; j < 12; j++)
             {
-                const auto &slot = entry->pokemon[i];
-                pokemon[i] = HiddenGrottoSlot(slot.specie, slot.gender, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                const auto &slot = data[i].pokemon[j];
+                pokemon[j] = HiddenGrottoSlot(slot.specie, slot.gender, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
 
-            encounters.emplace_back(entry->location, pokemon, entry->items, entry->hiddenItems);
+            encounters.emplace_back(data[i].location, pokemon, data[i].items, data[i].hiddenItems);
         }
         delete[] data;
         return encounters;

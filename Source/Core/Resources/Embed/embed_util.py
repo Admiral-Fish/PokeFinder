@@ -1,5 +1,5 @@
-def write_data(arrays, file, includes):
-    f = open(file, "w")
+def write_data(arrays, file, includes, encoding=None):
+    f = open(file, "w", encoding=encoding)
 
     for include in includes:
         f.write(f"#include <{include}>\n")

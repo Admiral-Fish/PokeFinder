@@ -272,4 +272,4 @@ add_library(PokeFinderCore STATIC
 )
 
 target_include_directories(PokeFinderCore PUBLIC "External/fph" "External/nlohmann")
-target_link_libraries(PokeFinderCore bz2_static)
+target_link_libraries(PokeFinderCore libzstd_static)
