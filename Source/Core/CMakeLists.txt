@@ -10,6 +10,10 @@ endif ()
 
 if (MSVC)
     add_compile_options(/Zc:inline)
+
+    if (SIMD)
+        add_compile_options(/arch:AVX2)
+    endif()
 endif ()
 
 if ((MINGW OR UNIX) AND SIMD)
