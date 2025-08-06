@@ -24,6 +24,22 @@
 
 enum class Method : u8;
 
+template <int size>
+struct RecoverySeeds
+{
+    int count;
+    u32 seeds[size];
+
+    RecoverySeeds() : count(0)
+    {
+    }
+
+    u32 &operator[](int i)
+    {
+        return seeds[i];
+    }
+};
+
 /**
  * @brief Provides a way to compute origin seed given IVs or PID.
  *
@@ -43,11 +59,10 @@ namespace LCRNGReverse
      * @param spa SpA iv
      * @param spd SpD iv
      * @param spe Spe iv
-     * @param seeds Array to write results
      *
-     * @return Number of origin seeds (Safe upper bound of 12)
+     * @return Array of origin seeds (Safe upper bound of 12)
      */
-    int recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 *seeds);
+    RecoverySeeds<12> recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap
@@ -60,9 +75,9 @@ namespace LCRNGReverse
      * @param spe Spe iv
      * @param seeds Array to write results
      *
-     * @return Number of origin seeds (Won't be higher than 6)
+     * @return Array of origin seeds (Won't be higher than 6)
      */
-    int recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds, Method method);
+    RecoverySeeds<6> recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, Method method);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls
@@ -70,9 +85,9 @@ namespace LCRNGReverse
      * @param pid PID value
      * @param seeds Array to write results
      *
-     * @return Number of origin seeds (Won't be higher than 3)
+     * @return Array of origin seeds (Won't be higher than 3)
      */
-    int recoverPokeRNGPID(u32 pid, u32 *seeds);
+    RecoverySeeds<3> recoverPokeRNGPID(u32 pid);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls(15 bits known)
@@ -85,9 +100,9 @@ namespace LCRNGReverse
      * @param spe Spe iv
      * @param seeds Array to write results
      *
-     * @return Number of origin seeds (Won't be higher than 6)
+     * @return Array of origin seeds (Won't be higher than 6)
      */
-    int recoverXDRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds);
+    RecoverySeeds<6> recoverXDRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls
@@ -95,9 +110,9 @@ namespace LCRNGReverse
      * @param pid PID value
      * @param seeds Array to write results
      *
-     * @return Number of origin seeds (Won't be higher than 2)
+     * @return Array of origin seeds (Won't be higher than 2)
      */
-    int recoverXDRNGPID(u32 pid, u32 *seeds);
+    RecoverySeeds<2> recoverXDRNGPID(u32 pid);
 };
 
 #endif // LCRNGREVERSE_HPP

@@ -42,11 +42,10 @@ void LCRNGReverseTest::recoverChannelIV()
     QFETCH(IVs, ivs);
     QFETCH(std::vector<u32>, results);
 
-    u32 seeds[12];
-    int size = LCRNGReverse::recoverChannelIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds);
+    auto seeds = LCRNGReverse::recoverChannelIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]);
 
-    QCOMPARE(size, results.size());
-    for (int i = 0; i < size; i++)
+    QCOMPARE(seeds.count, results.size());
+    for (int i = 0; i < seeds.count; i++)
     {
         QCOMPARE(seeds[i], results[i]);
     }
@@ -72,11 +71,10 @@ void LCRNGReverseTest::recoverPokeRNGIV()
     QFETCH(std::vector<u8>, ivs);
     QFETCH(std::vector<u32>, results);
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds, method);
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], method);
 
-    QCOMPARE(size, results.size());
-    for (int i = 0; i < size; i++)
+    QCOMPARE(seeds.count, results.size());
+    for (int i = 0; i < seeds.count; i++)
     {
         QCOMPARE(seeds[i], results[i]);
     }
@@ -102,11 +100,10 @@ void LCRNGReverseTest::recoverPokeRNGPID()
     QFETCH(u32, pid);
     QFETCH(std::vector<u32>, results);
 
-    u32 seeds[3];
-    int size = LCRNGReverse::recoverPokeRNGPID(pid, seeds);
+    auto seeds = LCRNGReverse::recoverPokeRNGPID(pid);
 
-    QCOMPARE(size, results.size());
-    for (int i = 0; i < size; i++)
+    QCOMPARE(seeds.count, results.size());
+    for (int i = 0; i < seeds.count; i++)
     {
         QCOMPARE(seeds[i], results[i]);
     }
@@ -129,11 +126,10 @@ void LCRNGReverseTest::recoverXDRNGIV()
     QFETCH(IVs, ivs);
     QFETCH(std::vector<u32>, results);
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverXDRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds);
+    auto seeds = LCRNGReverse::recoverXDRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]);
 
-    QCOMPARE(size, results.size());
-    for (int i = 0; i < size; i++)
+    QCOMPARE(seeds.count, results.size());
+    for (int i = 0; i < seeds.count; i++)
     {
         QCOMPARE(seeds[i], results[i]);
     }
@@ -156,11 +152,10 @@ void LCRNGReverseTest::recoverXDRNGPID()
     QFETCH(u32, pid);
     QFETCH(std::vector<u32>, results);
 
-    u32 seeds[2];
-    int size = LCRNGReverse::recoverXDRNGPID(pid, seeds);
+    auto seeds = LCRNGReverse::recoverXDRNGPID(pid);
 
-    QCOMPARE(size, results.size());
-    for (int i = 0; i < size; i++)
+    QCOMPARE(seeds.count, results.size());
+    for (int i = 0; i < seeds.count; i++)
     {
         QCOMPARE(seeds[i], results[i]);
     }

@@ -140,9 +140,8 @@ std::vector<SearcherState4> StaticSearcher4::searchMethod1(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
-    for (int i = 0; i < size; i++)
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
 
@@ -199,9 +198,8 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
-    for (int i = 0; i < size; i++)
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
         if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
@@ -296,9 +294,8 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
-    for (int i = 0; i < size; i++)
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
         if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)

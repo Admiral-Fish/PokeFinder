@@ -41,11 +41,10 @@ constexpr u8 genderThreshHolds[5] = { 0, 0x32, 0x4b, 0x96, 0xc8 };
  */
 static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
 
     std::vector<IVToPIDState> states;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
 
@@ -87,7 +86,7 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
         }
     }
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
 
@@ -123,11 +122,10 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
  */
 static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method4);
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method4);
 
     std::vector<IVToPIDState> states;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
 
@@ -160,11 +158,10 @@ static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 s
  */
 static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature)
 {
-    u32 seeds[12];
-    int size = LCRNGReverse::recoverChannelIV(hp, atk, def, spa, spd, spe, seeds);
+    auto seeds = LCRNGReverse::recoverChannelIV(hp, atk, def, spa, spd, spe);
 
     std::vector<IVToPIDState> states;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < seeds.count; i++)
     {
         XDRNGR rng(seeds[i]);
         rng.advance(3);
@@ -205,11 +202,10 @@ static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa
  */
 static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    auto seeds = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe);
 
     std::vector<IVToPIDState> states;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < seeds.count; i++)
     {
         u32 seed = XDRNGR(seeds[i]).next();
 
