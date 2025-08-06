@@ -200,7 +200,6 @@ void GameCubeSearcherModel::sort(int column, Qt::SortOrder order)
             });
             break;
         }
-
         emit layoutChanged();
     }
 }

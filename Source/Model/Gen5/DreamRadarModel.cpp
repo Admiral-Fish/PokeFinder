@@ -275,6 +275,7 @@ void DreamRadarSearcherModel5::sort(int column, Qt::SortOrder order)
                       });
             break;
         }
+        emit layoutChanged();
     }
 }
 

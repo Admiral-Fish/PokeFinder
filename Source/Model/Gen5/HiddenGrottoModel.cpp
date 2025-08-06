@@ -181,6 +181,7 @@ void HiddenGrottoSlotSearcherModel5::sort(int column, Qt::SortOrder order)
                       });
             break;
         }
+        emit layoutChanged();
     }
 }
 
@@ -444,6 +445,7 @@ void HiddenGrottoSearcherModel5::sort(int column, Qt::SortOrder order)
             });
             break;
         }
+        emit layoutChanged();
     }
 }
 

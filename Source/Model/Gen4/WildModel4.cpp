@@ -288,7 +288,6 @@ void WildSearcherModel4::sort(int column, Qt::SortOrder order)
             });
             break;
         }
-
         emit layoutChanged();
     }
 }
