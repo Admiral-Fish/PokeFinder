@@ -242,6 +242,19 @@ void Static5::profileIndexChanged(int index)
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+
+        bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
+
+        // Event
+        ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
+        ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
+
+        // Roamer
+        ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
+        ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
+
+        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
     }
 }
 
