@@ -27,6 +27,7 @@ class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
 class DreamRadarTemplate;
 class Profile5;
+class ProxyModel;
 
 namespace Ui
 {
@@ -77,6 +78,7 @@ private:
     DreamRadarGeneratorModel5 *generatorModel;
     DreamRadarSearcherModel5 *searcherModel;
     Profile5 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile5> profiles;
 
     /**

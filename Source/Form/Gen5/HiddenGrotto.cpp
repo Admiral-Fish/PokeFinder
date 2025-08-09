@@ -35,6 +35,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -49,7 +50,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->tableViewGrottoGenerator->setModel(grottoGeneratorModel);
 
     grottoSearcherModel = new HiddenGrottoSlotSearcherModel5(ui->tableViewGrottoSearcher);
-    ui->tableViewGrottoSearcher->setModel(grottoSearcherModel);
+    grottoProxyModel = new ProxyModel(ui->tableViewGrottoSearcher, grottoSearcherModel);
+    ui->tableViewGrottoSearcher->setModel(grottoProxyModel);
 
     ui->textBoxGrottoGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGrottoGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
@@ -70,7 +72,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->tableViewPokemonGenerator->setModel(pokemonGeneratorModel);
 
     pokemonSearcherModel = new HiddenGrottoSearcherModel5(ui->tableViewPokemonSearcher);
-    ui->tableViewPokemonSearcher->setModel(pokemonSearcherModel);
+    pokemonProxyModel = new ProxyModel(ui->tableViewPokemonSearcher, pokemonSearcherModel);
+    ui->tableViewPokemonSearcher->setModel(pokemonProxyModel);
 
     ui->textBoxPokemonGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxPokemonGeneratorIVAdvances->setValues(InputType::Advance32Bit);

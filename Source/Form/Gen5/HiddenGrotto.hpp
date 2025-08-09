@@ -28,6 +28,7 @@ class HiddenGrottoSearcherModel5;
 class HiddenGrottoSlotGeneratorModel5;
 class HiddenGrottoSlotSearcherModel5;
 class Profile5;
+class ProxyModel;
 
 namespace Ui
 {
@@ -81,6 +82,8 @@ private:
     HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;
     HiddenGrottoSearcherModel5 *pokemonSearcherModel;
     Profile5 *currentProfile;
+    ProxyModel *grottoProxyModel;
+    ProxyModel *pokemonProxyModel;
     std::vector<Profile5> profiles;
 
     /**

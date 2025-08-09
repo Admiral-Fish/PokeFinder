@@ -23,6 +23,7 @@
 #include <QWidget>
 
 class Profile5;
+class ProxyModel;
 class StaticGeneratorModel5;
 class StaticSearcherModel5;
 
@@ -73,6 +74,7 @@ private:
     Ui::Static5 *ui;
 
     Profile5 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile5> profiles;
     StaticGeneratorModel5 *generatorModel;
     StaticSearcherModel5 *searcherModel;

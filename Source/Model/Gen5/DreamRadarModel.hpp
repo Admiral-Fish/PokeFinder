@@ -127,14 +127,6 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    /**
-     * @brief Sorts the displayed data in the \p column by the given \p order
-     *
-     * @param column Column to sort
-     * @param order Order to sort
-     */
-    void sort(int column, Qt::SortOrder order) override;
-
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs

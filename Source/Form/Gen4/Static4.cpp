@@ -33,6 +33,7 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -44,9 +45,10 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator, Method::Method1);
     searcherModel = new StaticSearcherModel4(ui->tableViewSearcher);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);

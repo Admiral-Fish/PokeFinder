@@ -31,6 +31,7 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EventModel4.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
 #include <QThread>
@@ -45,7 +46,8 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new EventSearcherModel4(ui->tableViewSearcher);
-    ui->tableViewSearcher->setModel(searcherModel);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);

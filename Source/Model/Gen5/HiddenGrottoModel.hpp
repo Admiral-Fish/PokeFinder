@@ -117,14 +117,6 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    /**
-     * @brief Sorts the displayed data in the \p column by the given \p order
-     *
-     * @param column Column to sort
-     * @param order Order to sort
-     */
-    void sort(int column, Qt::SortOrder order) override;
-
 private:
     QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
@@ -231,14 +223,6 @@ public:
      * @return Header text at column
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-
-    /**
-     * @brief Sorts the displayed data in the \p column by the given \p order
-     *
-     * @param column Column to sort
-     * @param order Order to sort
-     */
-    void sort(int column, Qt::SortOrder order) override;
 
 public slots:
     /**
