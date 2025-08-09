@@ -112,7 +112,7 @@ WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), sh
 
 int WildSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 22;
+    return 23;
 }
 
 QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
@@ -172,10 +172,12 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         case 18:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 19:
-            return QString::fromStdString(display.getDateTime().toString());
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         case 20:
-            return QString::number(display.getTimer0(), 16).toUpper();
+            return QString::fromStdString(display.getDateTime().toString());
         case 21:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 22:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }

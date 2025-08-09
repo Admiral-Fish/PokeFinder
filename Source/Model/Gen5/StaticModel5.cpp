@@ -104,7 +104,7 @@ StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent)
 
 int StaticSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 19;
+    return 20;
 }
 
 QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
@@ -156,10 +156,12 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
         case 15:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 16:
-            return QString::fromStdString(display.getDateTime().toString());
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         case 17:
-            return QString::number(display.getTimer0(), 16).toUpper();
+            return QString::fromStdString(display.getDateTime().toString());
         case 18:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 19:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }

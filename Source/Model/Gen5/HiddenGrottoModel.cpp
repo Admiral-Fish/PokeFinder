@@ -211,7 +211,7 @@ HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableM
 
 int HiddenGrottoSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 20;
+    return 21;
 }
 
 QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) const
@@ -265,10 +265,12 @@ QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) co
         case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 17:
-            return QString::fromStdString(display.getDateTime().toString());
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         case 18:
-            return QString::number(display.getTimer0(), 16).toUpper();
+            return QString::fromStdString(display.getDateTime().toString());
         case 19:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 20:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }

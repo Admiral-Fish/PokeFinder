@@ -117,7 +117,7 @@ EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel(parent), show
 }
 int EggSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    return 19;
 }
 
 QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
@@ -175,10 +175,12 @@ QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return QString::fromStdString(display.getDateTime().toString());
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         case 16:
-            return QString::number(display.getTimer0(), 16).toUpper();
+            return QString::fromStdString(display.getDateTime().toString());
         case 17:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 18:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
