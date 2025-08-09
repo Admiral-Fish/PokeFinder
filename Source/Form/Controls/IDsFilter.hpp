@@ -60,6 +60,11 @@ public:
     void enableTIDPID();
 
     /**
+     * @brief Disables showing of the TID/PID filter settings
+     */
+    void disableTIDPID();
+
+    /**
      * @brief Gets settings to filter by
      *
      * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
