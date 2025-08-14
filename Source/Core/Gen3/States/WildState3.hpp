@@ -31,7 +31,6 @@ public:
     /**
      * @brief Construct a new WildGeneratorState3 object
      *
-     * @param pidRollCount PID roll count
      * @param advances Advances of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs
@@ -44,10 +43,11 @@ public:
      * @param item Pokemon item
      * @param specie Pokemon specie
      * @param form Pokemon form
+     * @param pidRollCount PID roll count
      * @param info Pokemon information
      */
-    WildGeneratorState3(u32 pidRollCount, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-                        u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+    WildGeneratorState3(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                        u8 encounterSlot, u16 item, u16 specie, u8 form, u32 pidRollCount, const PersonalInfo *info) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         pidRollCount(pidRollCount)
     {
@@ -76,7 +76,6 @@ public:
     /**
      * @brief Construct a new WildSearcherState3 object
      *
-     * @param pidRollCount PID roll count
      * @param seed Seed of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs
@@ -89,10 +88,11 @@ public:
      * @param item Pokemon item
      * @param specie Pokemon specie
      * @param form Pokemon form
+     * @param pidRollCount PID roll count
      * @param info Pokemon information
      */
-    WildSearcherState3(u32 pidRollCount, u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-                       u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+    WildSearcherState3(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, u32 pidRollCount, const PersonalInfo *info) :
         WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         pidRollCount(pidRollCount)
     {
