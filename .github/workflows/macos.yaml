@@ -33,7 +33,14 @@ jobs:
       - name: Install python zstandard pip Package
         run: python3 -m pip install zstandard
 
+      - name: Poll commit message
+        id: commit_message
+        run: |
+          echo "::set-output name=result::$(git log -1 --pretty=format:"%s" 2>&1)"
+        shell: bash
+
       - name: Restore CMake build files
+        if: ! contains(steps.commit_message.outputs.result, 'no-cache')
         id: cache
         uses: actions/cache/restore@v4
         env:
