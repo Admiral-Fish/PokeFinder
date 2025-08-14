@@ -399,9 +399,9 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                             level = area.EncounterArea::calculateLevel(encounterSlot[i], levelRand[i >> 1]);
                         }
 
-                        WildSearcherState3 state(pidRollCount, test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level,
-                                                 nature, Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(),
-                                                 slot.getForm(), info);
+                        WildSearcherState3 state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                                 Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
+                                                 pidRollCount, info);
                         if (filter.compareState(state))
                         {
                             states.emplace_back(state);

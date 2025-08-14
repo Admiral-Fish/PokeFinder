@@ -184,8 +184,9 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed) const
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        WildGeneratorState3 state(pidRollCount, initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                  Utilities::getShiny<true>(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
+        WildGeneratorState3 state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                  Utilities::getShiny<true>(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), pidRollCount,
+                                  info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
