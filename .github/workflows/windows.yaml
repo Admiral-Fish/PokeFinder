@@ -38,7 +38,7 @@ jobs:
       - name: Poll commit message
         id: commit_message
         run: |
-          echo "::set-output name=result::$(git log -1 --pretty=format:"%s" 2>&1)"
+          echo "{result}={$(git log -1 --pretty=format:"%s" 2>&1)}" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Restore CMake build files
