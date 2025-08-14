@@ -24,6 +24,7 @@
 
 class EncounterArea3;
 class Profile3;
+class ProxyModel;
 class WildGeneratorModel3;
 class WildSearcherModel3;
 
@@ -66,6 +67,7 @@ private:
     Ui::Wild3 *ui;
 
     Profile3 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<EncounterArea3> encounterGenerator;
     std::vector<EncounterArea3> encounterSearcher;
     std::vector<Profile3> profiles;

@@ -33,6 +33,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -45,9 +46,10 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
 
     generatorModel = new StaticGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel5(ui->tableViewSearcher);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorIVAdvances->setValues(InputType::Advance32Bit);
@@ -240,6 +242,19 @@ void Static5::profileIndexChanged(int index)
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+
+        bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
+
+        // Event
+        ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
+        ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
+
+        // Roamer
+        ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
+        ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
+
+        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
     }
 }
 
@@ -283,7 +298,8 @@ void Static5::search()
     IVSearcher5<StaticGenerator5, State5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivCache = IVSeedCache::getNormalCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), filter);
+        CacheType type = staticTemplate->getRoamer() ? CacheType::Roamer : CacheType::Normal;
+        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), type, filter);
         searcher = new IVSearcher5<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
     }
     else

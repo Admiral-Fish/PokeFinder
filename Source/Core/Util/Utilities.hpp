@@ -42,19 +42,26 @@ namespace Utilities
      *
      * @return Uncompressed data
      */
-    char *decompress(const char *compressedData, u32 compressedSize, u32 &size);
+    void *decompress(const u8 *compressedData, u32 compressedSize, u32 &size);
 
     /**
-     * @brief Decompress provided data
+     * @brief Decompress provided data and cast to specified \p Type
      * The caller of this function is responsible for cleaning up the memory.
      *
+     * @tparam Type Data type to cast too
      * @param compressedData Compressed data
      * @param compressedSize Size of compressed data
      * @param size Size of uncompressed data
      *
      * @return Uncompressed data
      */
-    u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size);
+    template <typename Type>
+    const Type *decompress(const u8 *compressedData, u32 compressedSize, u32 &size)
+    {
+        auto *data = reinterpret_cast<const Type *>(decompress(compressedData, compressedSize, size));
+        size /= sizeof(Type);
+        return data;
+    }
 
     /**
      * @brief Determines the gender of the \p pid based on the gender ratio of the \p info

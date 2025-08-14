@@ -25,7 +25,7 @@
 class EggGeneratorModel4;
 class EggSearcherModel4;
 class Profile4;
-class QMenu;
+class ProxyModel;
 
 namespace Ui
 {
@@ -69,6 +69,7 @@ private:
     EggGeneratorModel4 *generatorModel;
     EggSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile4> profiles;
 
 private slots:

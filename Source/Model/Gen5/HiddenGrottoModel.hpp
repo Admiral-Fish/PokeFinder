@@ -117,14 +117,6 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    /**
-     * @brief Sorts the displayed data in the \p column by the given \p order
-     *
-     * @param column Column to sort
-     * @param order Order to sort
-     */
-    void sort(int column, Qt::SortOrder order) override;
-
 private:
     QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
@@ -232,14 +224,6 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    /**
-     * @brief Sorts the displayed data in the \p column by the given \p order
-     *
-     * @param column Column to sort
-     * @param order Order to sort
-     */
-    void sort(int column, Qt::SortOrder order) override;
-
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
@@ -249,9 +233,10 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Seed"),    tr("Advances"), tr("IV Advances"), tr("Level"),     tr("PID"),    tr("Shiny"),  tr("Nature"),
-                           tr("Ability"), tr("HP"),       tr("Atk"),         tr("Def"),       tr("SpA"),    tr("SpD"),    tr("Spe"),
-                           tr("Hidden"),  tr("Power"),    tr("Gender"),      tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    QStringList header = { tr("Seed"),      tr("Advances"), tr("IV Advances"), tr("Level"), tr("PID"),    tr("Shiny"),
+                           tr("Nature"),    tr("Ability"),  tr("HP"),          tr("Atk"),   tr("Def"),    tr("SpA"),
+                           tr("SpD"),       tr("Spe"),      tr("Hidden"),      tr("Power"), tr("Gender"), tr("Characteristic"),
+                           tr("Date/Time"), tr("Timer0"),   tr("Buttons") };
     bool showStats;
 };
 

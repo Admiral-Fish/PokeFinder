@@ -30,11 +30,10 @@
  * @param spa SpA iv
  * @param spd SpD iv
  * @param spe Spe iv
- * @param seeds Array to write results
  *
- * @return Number of origin seeds (Won't be higher than 6)
+ * @return Array of origin seeds (Won't be higher than 6)
  */
-static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
+static RecoverySeeds<6> recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     constexpr u32 add = 0x6073;
     constexpr u32 mult = 0x41c64e6d;
@@ -42,7 +41,7 @@ static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 sp
     constexpr u32 pat = 0xd3e;
     constexpr u32 inc = 0x4034;
 
-    int size = 0;
+    RecoverySeeds<6> seeds;
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -56,8 +55,8 @@ static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 sp
         u32 seed = first | low;
         if (((seed * mult + add) & 0x7fff0000) == second)
         {
-            seeds[size++] = seed;
-            seeds[size++] = seed ^ 0x80000000;
+            seeds[seeds.count++] = seed;
+            seeds[seeds.count++] = seed ^ 0x80000000;
         }
     }
 
@@ -66,12 +65,12 @@ static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 sp
         u32 seed = first | low;
         if (((seed * mult + add) & 0x7fff0000) == second)
         {
-            seeds[size++] = seed;
-            seeds[size++] = seed ^ 0x80000000;
+            seeds[seeds.count++] = seed;
+            seeds[seeds.count++] = seed ^ 0x80000000;
         }
     }
 
-    return size;
+    return seeds;
 }
 
 /**
@@ -85,9 +84,9 @@ static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 sp
  * @param spe Spe iv
  * @param seeds Array to write results
  *
- * @return Number of origin seeds (Won't be higher than 6)
+ * @return Array of origin seeds (Won't be higher than 6)
  */
-static int recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
+static RecoverySeeds<6> recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     constexpr u32 add = 0xe97e7b6a;
     constexpr u32 mult = 0xc2a29a69;
@@ -95,7 +94,7 @@ static int recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe
     constexpr u32 pat = 0x2e4c;
     constexpr u32 inc = 0x5831;
 
-    int size = 0;
+    RecoverySeeds<6> seeds;
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -109,8 +108,8 @@ static int recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe
         u32 seed = first | low;
         if (((seed * mult + add) & 0x7fff0000) == second)
         {
-            seeds[size++] = seed;
-            seeds[size++] = seed ^ 0x80000000;
+            seeds[seeds.count++] = seed;
+            seeds[seeds.count++] = seed ^ 0x80000000;
         }
     }
 
@@ -119,20 +118,18 @@ static int recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe
         u32 seed = first | low;
         if (((seed * mult + add) & 0x7fff0000) == second)
         {
-            seeds[size++] = seed;
-            seeds[size++] = seed ^ 0x80000000;
+            seeds[seeds.count++] = seed;
+            seeds[seeds.count++] = seed ^ 0x80000000;
         }
     }
 
-    return size;
+    return seeds;
 }
 
 namespace LCRNGReverse
 {
-    int recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 *seeds)
+    RecoverySeeds<12> recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
     {
-        int size = 0;
-
         // Mult(j) = Mult^j
         // Add(j) = Add * (Mult^0 + Mult^1 + ... + Mult^(j-1))
         // Using j = 3 and XDRNG gives Mult = 0x45c82be5 and Add = 0xd2f65b55
@@ -144,6 +141,8 @@ namespace LCRNGReverse
         constexpr u64 add = 0x300000000; // prime * 0x100000000
         constexpr u32 rmax = 0x18000000; // prime * 0x8000000
         constexpr u64 skip = 0x661D29; // prime * 2^32 % mult
+
+        RecoverySeeds<12> seeds;
 
         u32 first = hp << 27;
 
@@ -176,7 +175,7 @@ namespace LCRNGReverse
                         {
                             if ((rng.next() >> 27) == spd)
                             {
-                                seeds[size++] = seed;
+                                seeds[seeds.count++] = seed;
                             }
                         }
                     }
@@ -191,19 +190,19 @@ namespace LCRNGReverse
             k += ((mult - r) + skip - 1) / skip;
         }
 
-        return size;
+        return seeds;
     }
 
-    int recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds, Method method)
+    RecoverySeeds<6> recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, Method method)
     {
         if (method == Method::Method4)
         {
-            return recoverPokeRNGIVMethod4(hp, atk, def, spa, spd, spe, seeds);
+            return recoverPokeRNGIVMethod4(hp, atk, def, spa, spd, spe);
         }
-        return recoverPokeRNGIVMethod12(hp, atk, def, spa, spd, spe, seeds);
+        return recoverPokeRNGIVMethod12(hp, atk, def, spa, spd, spe);
     }
 
-    int recoverPokeRNGPID(u32 pid, u32 *seeds)
+    RecoverySeeds<3> recoverPokeRNGPID(u32 pid)
     {
         constexpr u32 add = 0x6073;
         constexpr u32 mult = 0x41c64e6d;
@@ -211,8 +210,8 @@ namespace LCRNGReverse
         constexpr u32 pat = 0xd3e;
         constexpr u32 inc = 0x4034;
 
-        int size = 0;
-
+        RecoverySeeds<3> seeds;
+        
         u32 first = pid << 16;
         u32 second = pid & 0xffff0000;
 
@@ -224,20 +223,20 @@ namespace LCRNGReverse
             u32 seed = first | low;
             if (((seed * mult + add) & 0xffff0000) == second)
             {
-                seeds[size++] = seed;
+                seeds[seeds.count++] = seed;
             }
         }
 
-        return size;
+        return seeds;
     }
 
-    int recoverXDRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
+    RecoverySeeds<6> recoverXDRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     {
-        int size = 0;
-
         constexpr u32 mult = 0x343fd; // XDRNG mult
         constexpr u32 sub = 0x259ec4; // XDRNG add - 0xffff
         constexpr u64 base = 0x343fabc02; // (XDRNG mult + 1) * 0xffff
+
+        RecoverySeeds<6> seeds;
 
         u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
         u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -250,21 +249,21 @@ namespace LCRNGReverse
             if ((t % mult) < 0x10000)
             {
                 u32 seed = first | static_cast<u32>(t / mult);
-                seeds[size++] = seed;
-                seeds[size++] = seed ^ 0x80000000;
+                seeds[seeds.count++] = seed;
+                seeds[seeds.count++] = seed ^ 0x80000000;
             }
         }
 
-        return size;
+        return seeds;
     }
 
-    int recoverXDRNGPID(u32 pid, u32 *seeds)
+    RecoverySeeds<2> recoverXDRNGPID(u32 pid)
     {
-        int size = 0;
-
         constexpr u32 mult = 0x343fd; // XDRNG mult
         constexpr u32 sub = 0x259ec4; // XDRNG add - 0xffff
         constexpr u64 base = 0x343fabc02; // (XDRNG mult + 1) * 0xffff
+
+        RecoverySeeds<2> seeds;
 
         u32 first = pid & 0xffff0000;
         u32 second = pid << 16;
@@ -277,10 +276,10 @@ namespace LCRNGReverse
             if ((t % mult) < 0x10000)
             {
                 u32 seed = first | static_cast<u32>(t / mult);
-                seeds[size++] = seed;
+                seeds[seeds.count++] = seed;
             }
         }
 
-        return size;
+        return seeds;
     }
 }

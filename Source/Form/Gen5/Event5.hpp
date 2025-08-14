@@ -26,6 +26,7 @@ class EventGeneratorModel5;
 class EventSearcherModel5;
 class PGF;
 class Profile5;
+class ProxyModel;
 
 namespace Ui
 {
@@ -76,6 +77,7 @@ private:
     EventGeneratorModel5 *generatorModel;
     EventSearcherModel5 *searcherModel;
     Profile5 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile5> profiles;
 
     /**

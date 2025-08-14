@@ -25,6 +25,7 @@
 class GameCubeGeneratorModel;
 class GameCubeSearcherModel;
 class Profile3;
+class ProxyModel;
 
 namespace Ui
 {
@@ -67,6 +68,7 @@ private:
     GameCubeGeneratorModel *generatorModel;
     GameCubeSearcherModel *searcherModel;
     Profile3 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile3> profiles;
 
 private slots:

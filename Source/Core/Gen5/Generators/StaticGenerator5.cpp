@@ -137,7 +137,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
             else
             {
-                bool flag = getPercentRand(go, bw) < 50;
+                bool flag = getPercentRand(go, bw) >= 50;
                 if (lead <= Lead::SynchronizeEnd)
                 {
                     sync = flag;
@@ -172,7 +172,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
         }
 
-        u8 ability = (pid >> 16) & 1;
+        u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
         u8 gender = Utilities::getGender(pid, info);
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
 

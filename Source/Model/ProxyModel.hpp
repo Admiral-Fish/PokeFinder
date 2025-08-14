@@ -17,41 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IVSEEDCACHE_HPP
-#define IVSEEDCACHE_HPP
+#ifndef PROXYMODEL_HPP
+#define PROXYMODEL_HPP
 
-#include <Core/Global.hpp>
-#include <array>
-#include <dynamic_fph_table.h>
-
-class StateFilter;
-enum class Game : u32;
-
-enum class CacheType : u8
-{
-    Entralink,
-    Normal,
-    Roamer
-};
+#include <QSortFilterProxyModel>
 
 /**
- * @brief Grabs IV caches for the various encounter types
+ * @brief Provides a proxy to sort/filter data from a table model
  */
-namespace IVSeedCache
+class ProxyModel : public QSortFilterProxyModel
 {
+public:
     /**
-     * @brief Returns the IV caches for entralink
+     * @brief Construct a new ProxyModel object
      *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
-     * @param type What cache type to get
-     * @param version Game version
-     * @param filter IV filter
-     *
-     * @return IV caches
+     * @param parent Parent object, which takes memory ownership
+     * @param model Source model to be processed by proxy
      */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
-                                                                       const StateFilter &filter);
+    ProxyModel(QObject *parent, QAbstractItemModel *model) : QSortFilterProxyModel(parent)
+    {
+        setSourceModel(model);
+    }
 };
 
-#endif // IVSEEDCACHE_HPP
+#endif // TABLEMODEL_HPP

@@ -32,6 +32,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EventModel5.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -47,7 +48,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new EventSearcherModel5(ui->tableViewSearcher);
-    ui->tableViewSearcher->setModel(searcherModel);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);

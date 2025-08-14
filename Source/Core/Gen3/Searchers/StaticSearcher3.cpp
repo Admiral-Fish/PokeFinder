@@ -81,9 +81,8 @@ std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa
     }
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, method);
-    for (int i = 0; i < size; i++)
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, method);
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
         if (ivAdvance)
