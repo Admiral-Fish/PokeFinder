@@ -40,15 +40,15 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return state.getPidRollCount();
-        case 2:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 3:
+        case 2:
             return state.getLevel();
-        case 4:
+        case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 4:
+            return state.getPidRollCount();
         case 5:
         {
             u8 shiny = state.getShiny();
@@ -111,15 +111,15 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return state.getPidRollCount();
-        case 2:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 3:
+        case 2:
             return state.getLevel();
-        case 4:
+        case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 4:
+            return state.getPidRollCount();
         case 5:
         {
             u8 shiny = state.getShiny();

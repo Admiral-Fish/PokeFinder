@@ -76,8 +76,10 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("PID Roll Count"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"),  tr("SpA"),   tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Slot"),   tr("Level"),   tr("PID"), tr("PID Roll Count"),
+                           tr("Shiny"),    tr("Nature"), tr("Ability"), tr("HP"),  tr("Atk"),
+                           tr("Def"),      tr("SpA"),    tr("SpD"),     tr("Spe"), tr("Hidden"),
+                           tr("Power"),    tr("Gender") };
     bool showStats;
 };
 
@@ -134,8 +136,10 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Seed"), tr("PID Roll Count"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),  tr("Def"),  tr("SpA"),   tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Seed"),  tr("Slot"),   tr("Level"),   tr("PID"), tr("PID Roll Count"),
+                           tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),  tr("Atk"),
+                           tr("Def"),   tr("SpA"),    tr("SpD"),     tr("Spe"), tr("Hidden"),
+                           tr("Power"), tr("Gender") };
     bool showStats;
 };
 
