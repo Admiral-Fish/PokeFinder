@@ -122,11 +122,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: PokeFinder-linux
-          path: ./build/Source/PokeFinder
-
-      - uses: actions/upload-artifact@v4
-        with:
           name: PokeFinder-linux-AppImage
           path: PokeFinder-x86_64.AppImage
 
