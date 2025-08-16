@@ -173,7 +173,7 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
         weight += rngList.next(128);
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }
