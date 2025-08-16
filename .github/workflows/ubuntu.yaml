@@ -33,7 +33,14 @@ jobs:
       - name: Install python zstandard pip Package
         run: python3 -m pip install zstandard
 
+      - name: Poll commit message
+        id: commit_message
+        run: |
+          echo "{result}={$(git log -1 --pretty=format:"%s" 2>&1)}" >> $GITHUB_OUTPUT
+        shell: bash
+
       - name: Restore CMake build files
+        if: ! contains(steps.commit_message.outputs.result, 'no-cache')
         id: cache
         uses: actions/cache/restore@v4
         env:
@@ -112,11 +119,6 @@ jobs:
         run: |
           tar czf PokeFinder-linux.tar.gz -C ./build/Source/ PokeFinder
           tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: PokeFinder-linux
-          path: ./build/Source/PokeFinder
 
       - uses: actions/upload-artifact@v4
         with:
