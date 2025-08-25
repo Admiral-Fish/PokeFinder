@@ -22,7 +22,8 @@
 
 #include <Core/Global.hpp>
 #include <array>
-#include <dynamic_fph_table.h>
+#include <meta_fph_table.h>
+#include <vector>
 
 class StateFilter;
 enum class Game : u32;
@@ -40,18 +41,28 @@ enum class CacheType : u8
 namespace IVSeedCache
 {
     /**
-     * @brief Returns the IV caches for entralink
+     * @brief Returns the IV caches for the \p type
      *
      * @param initialAdvance Initial IV advances
      * @param maxAdvance Maximum IV advances
-     * @param type What cache type to get
      * @param version Game version
+     * @param type What cache type to get
      * @param filter IV filter
      *
      * @return IV caches
      */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
-                                                                       const StateFilter &filter);
+    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
+                                                                    const StateFilter &filter);
+
+    /**
+     * @brief Returns the IV cache seeds for the \p type
+     * 
+     * @param version Game version
+     * @param type What cache type to get
+     *
+     * @return Vector of IV cache seeds
+     */
+    std::vector<u32> getSeeds(Game version, CacheType type);
 };
 
 #endif // IVSEEDCACHE_HPP

@@ -143,6 +143,18 @@ private slots:
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Prompts user to select SHA1 cache file
+     */
+    void searcherSelectSHA1Cache();
+
+    /**
+     * @brief Updates enabled controls for SHA1 cache
+     *
+     * @param state Checked state
+     */
+    void searcherSHA1CacheStateChanged(Qt::CheckState state);
 };
 
 #endif // STATIC5_HPP

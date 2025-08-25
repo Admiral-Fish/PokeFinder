@@ -271,6 +271,11 @@ private slots:
      */
     void openProfileManager5() const;
 
+    /**
+     * @brief Opens the Gen 5 SHA1 Cache Finder window
+     */
+    void openSHA1CacheFinder() const;
+
     // Gen 8
     /**
      * @brief Opens the Den Map window

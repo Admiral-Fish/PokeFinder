@@ -28,6 +28,7 @@
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
 #include <Core/Gen5/IVSeedCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -36,6 +37,7 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/ProxyModel.hpp>
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -118,6 +120,9 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
+    connect(ui->checkBoxSearcherSHA1Cache, &QCheckBox::checkStateChanged, this, &Wild5::searcherSHA1CacheStateChanged);
+    connect(ui->pushButtonSearcherSHA1CacheSelect, &QPushButton::clicked, this, &Wild5::searcherSelectSHA1Cache);
+    connect(ui->pushButtonSearcherSHA1CacheClear, &QPushButton::clicked, this, [=]() { ui->lineEditSearcherSHA1Cache->clear(); });
 
     updateProfiles();
     if (hasProfiles())
@@ -344,11 +349,23 @@ void Wild5::search()
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], *currentProfile, filter);
 
-    IVSearcher5<WildGenerator5, WildState5> *searcher;
+    SearcherBase5<WildGenerator5, WildState5> *searcher;
     if (fastSearchEnabled())
     {
+        auto sha1Cache = SHA1Cache(ui->lineEditSearcherSHA1Cache->text().toStdString(), true);
         auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
-        searcher = new IVSearcher5<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
+
+        if (sha1Cache.valid(*currentProfile))
+        {
+            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances,
+                                                                            sha1Cache.getCache(start, end, ivCache, CacheType::Normal),
+                                                                            ivCache, generator, *currentProfile);
+        }
+        else
+        {
+            searcher
+                = new IVSearcher5Fast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
+        }
     }
     else
     {
@@ -417,12 +434,23 @@ void Wild5::searcherFastSearchChanged()
     if (fastSearchEnabled())
     {
         ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching."));
+
+        ui->checkBoxSearcherSHA1Cache->setVisible(true);
+        ui->lineEditSearcherSHA1Cache->setVisible(true);
+        ui->pushButtonSearcherSHA1CacheSelect->setVisible(true);
+        ui->pushButtonSearcherSHA1CacheClear->setVisible(true);
     }
     else
     {
         QStringList text = { tr("Settings are not configured for fast searching."), tr("Keep initial/max advances below 6."),
                              tr("Ensure IV filters are set to common spreads.") };
         ui->labelIVFastSearch->setText(text.join('\n'));
+
+        ui->checkBoxSearcherSHA1Cache->setCheckState(Qt::Unchecked);
+        ui->checkBoxSearcherSHA1Cache->setVisible(false);
+        ui->lineEditSearcherSHA1Cache->setVisible(false);
+        ui->pushButtonSearcherSHA1CacheSelect->setVisible(false);
+        ui->pushButtonSearcherSHA1CacheClear->setVisible(false);
     }
 }
 
@@ -470,5 +498,41 @@ void Wild5::searcherSeasonIndexChanged(int index)
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         encounterSearcher = Encounters5::getEncounters(encounter, index, currentProfile);
         searcherLocationIndexChanged(0);
+    }
+}
+
+void Wild5::searcherSelectSHA1Cache()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
+
+    SHA1Cache cache(file.toStdString(), false);
+    if (cache.valid(*currentProfile))
+    {
+        ui->lineEditSearcherSHA1Cache->setText(file);
+        ui->dateEditSearcherStartDate->setDate(QDate::fromJulianDay(cache.getStartDate().getJD()));
+        ui->dateEditSearcherEndDate->setDate(QDate::fromJulianDay(cache.getEndDate().getJD()));
+    }
+    else
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid cache file"),
+                        tr("The selected cache file does not match the currently selected profile."));
+        msg.exec();
+    }
+}
+
+void Wild5::searcherSHA1CacheStateChanged(Qt::CheckState state)
+{
+    if (state == Qt::Checked)
+    {
+        ui->lineEditSearcherSHA1Cache->setEnabled(true);
+        ui->pushButtonSearcherSHA1CacheSelect->setEnabled(true);
+        ui->pushButtonSearcherSHA1CacheClear->setEnabled(true);
+    }
+    else
+    {
+        ui->lineEditSearcherSHA1Cache->clear();
+        ui->lineEditSearcherSHA1Cache->setEnabled(false);
+        ui->pushButtonSearcherSHA1CacheSelect->setEnabled(false);
+        ui->pushButtonSearcherSHA1CacheClear->setEnabled(false);
     }
 }

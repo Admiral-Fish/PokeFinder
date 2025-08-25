@@ -20,8 +20,10 @@
 #ifndef IVSEARCHER5_HPP
 #define IVSEARCHER5_HPP
 
+#include <Core/Enum/Buttons.hpp>
+#include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/SearcherBase5.hpp>
-#include <dynamic_fph_table.h>
+#include <meta_fph_table.h>
 
 /**
  * @brief Parent searcher class for Static/Wild Gen 5 generators
@@ -42,38 +44,13 @@ public:
      * @param profile Profile information
      */
     IVSearcher5(u32 initialAdvances, u32 maxAdvances, const Generator &generator, const Profile5 &profile) :
-        SearcherBase5<Generator, State>(generator, profile),
-        ivCache {},
-        initialAdvances(initialAdvances),
-        maxAdvances(maxAdvances),
-        useCache(false)
-    {
-    }
-
-    /**
-     * @brief Construct a new IVSearcher5 object
-     *
-     * @param initialAdvances Minimum IV advances
-     * @param maxAdvances Maximum IV advances
-     * @param ivCache Fast search IV cache
-     * @param generator State generator
-     * @param profile Profile information
-     */
-    IVSearcher5(u32 initialAdvances, u32 maxAdvances, const std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> &ivCache,
-                const Generator &generator, const Profile5 &profile) :
-        SearcherBase5<Generator, State>(generator, profile),
-        ivCache(ivCache),
-        initialAdvances(initialAdvances),
-        maxAdvances(maxAdvances),
-        useCache(true)
+        SearcherBase5<Generator, State>(generator, profile), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
     {
     }
 
 private:
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> ivCache;
     u32 initialAdvances;
     u32 maxAdvances;
-    bool useCache;
 
     /**
      * @brief Searches between the \p start and \p end dates
@@ -97,7 +74,6 @@ private:
                     for (const auto &keypress : this->keypresses)
                     {
                         sha.setButton(keypress.value);
-
                         for (u32 time = 0; time < 86400; time += 8)
                         {
                             if (!this->searching)
@@ -108,40 +84,148 @@ private:
                             sha.setTime(time, this->profile.getDSType());
                             auto seeds = sha.hashSeed(alpha);
 
-                            if (useCache)
+                            for (u32 i = 0; i < seeds.size(); i++)
                             {
-                                for (u32 i = 0; i < seeds.size(); i++)
+                                auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
+                                if (!states.empty())
                                 {
-                                    for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                                    DateTime dt(date, time + i);
+
+                                    std::lock_guard<std::mutex> lock(this->mutex);
+                                    this->results.reserve(this->results.capacity() + states.size());
+                                    for (const auto &state : states)
                                     {
-                                        const auto entry = ivCache[j].find(seeds[i] >> 32);
-                                        if (entry == ivCache[j].end())
-                                        {
-                                            continue;
-                                        }
-
-                                        auto states = this->generator.generate(seeds[i], { { j, entry->second } });
-                                        if (!states.empty())
-                                        {
-                                            DateTime dt(date, time + i);
-
-                                            std::lock_guard<std::mutex> lock(this->mutex);
-                                            this->results.reserve(this->results.capacity() + states.size());
-                                            for (const auto &state : states)
-                                            {
-                                                this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                            }
-                                        }
-
-                                        break;
+                                        this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
                                     }
                                 }
                             }
-                            else
+                        }
+                        this->progress++;
+                    }
+                }
+            }
+        }
+        else
+#endif
+        {
+            SHA1SSE sha(this->profile);
+            for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+            {
+                sha.setTimer0(timer0, this->profile.getVCount());
+                for (Date date = start; date <= end; ++date)
+                {
+                    sha.setDate(date);
+                    auto alpha = sha.precompute();
+                    for (const auto &keypress : this->keypresses)
+                    {
+                        sha.setButton(keypress.value);
+                        for (u32 time = 0; time < 86400; time += 4)
+                        {
+                            if (!this->searching)
                             {
-                                for (u32 i = 0; i < seeds.size(); i++)
+                                return;
+                            }
+
+                            sha.setTime(time, this->profile.getDSType());
+                            auto seeds = sha.hashSeed(alpha);
+
+                            for (u32 i = 0; i < seeds.size(); i++)
+                            {
+                                auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
+                                if (!states.empty())
                                 {
-                                    auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
+                                    DateTime dt(date, time + i);
+
+                                    std::lock_guard<std::mutex> lock(this->mutex);
+                                    this->results.reserve(this->results.capacity() + states.size());
+                                    for (const auto &state : states)
+                                    {
+                                        this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
+                                    }
+                                }
+                            }
+                        }
+                        this->progress++;
+                    }
+                }
+            }
+        }
+    }
+};
+
+/**
+ * @brief Parent searcher class for Static/Wild Gen 5 generators
+ *
+ * @tparam Generator Generator class to use
+ * @tparam State State class to use
+ */
+template <class Generator, class State>
+class IVSearcher5Fast final : public SearcherBase5<Generator, State>
+{
+public:
+    /**
+     * @brief Construct a new IVSearcher5Fast object
+     *
+     * @param initialAdvances Minimum IV advances
+     * @param maxAdvances Maximum IV advances
+     * @param ivCache Fast search IV cache
+     * @param generator State generator
+     * @param profile Profile information
+     */
+    IVSearcher5Fast(u32 initialAdvances, u32 maxAdvances, const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache,
+                    const Generator &generator, const Profile5 &profile) :
+        SearcherBase5<Generator, State>(generator, profile), ivCache(ivCache), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
+    {
+    }
+
+private:
+    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> ivCache;
+    u32 initialAdvances;
+    u32 maxAdvances;
+
+    /**
+     * @brief Searches between the \p start and \p end dates
+     *
+     * @param start Start date
+     * @param end End date
+     */
+    void search(const Date &start, const Date &end) override
+    {
+#ifdef SIMD_X86
+        if (hasAVX2())
+        {
+            SHA1AVX2 sha(this->profile);
+            for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+            {
+                sha.setTimer0(timer0, this->profile.getVCount());
+                for (Date date = start; date <= end; ++date)
+                {
+                    sha.setDate(date);
+                    auto alpha = sha.precompute();
+                    for (const auto &keypress : this->keypresses)
+                    {
+                        sha.setButton(keypress.value);
+                        for (u32 time = 0; time < 86400; time += 8)
+                        {
+                            if (!this->searching)
+                            {
+                                return;
+                            }
+
+                            sha.setTime(time, this->profile.getDSType());
+                            auto seeds = sha.hashSeed(alpha);
+
+                            for (u32 i = 0; i < seeds.size(); i++)
+                            {
+                                for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                                {
+                                    const auto entry = ivCache[j].find(seeds[i] >> 32);
+                                    if (entry == ivCache[j].end())
+                                    {
+                                        continue;
+                                    }
+
+                                    auto states = this->generator.generate(seeds[i], { { j, entry->second } });
                                     if (!states.empty())
                                     {
                                         DateTime dt(date, time + i);
@@ -175,7 +259,6 @@ private:
                     for (const auto &keypress : this->keypresses)
                     {
                         sha.setButton(keypress.value);
-
                         for (u32 time = 0; time < 86400; time += 4)
                         {
                             if (!this->searching)
@@ -186,40 +269,17 @@ private:
                             sha.setTime(time, this->profile.getDSType());
                             auto seeds = sha.hashSeed(alpha);
 
-                            if (useCache)
+                            for (u32 i = 0; i < seeds.size(); i++)
                             {
-                                for (u32 i = 0; i < seeds.size(); i++)
+                                for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
                                 {
-                                    for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                                    const auto entry = ivCache[j].find(seeds[i] >> 32);
+                                    if (entry == ivCache[j].end())
                                     {
-                                        const auto entry = ivCache[j].find(seeds[i] >> 32);
-                                        if (entry == ivCache[j].end())
-                                        {
-                                            continue;
-                                        }
-
-                                        auto states = this->generator.generate(seeds[i], { { j, entry->second } });
-                                        if (!states.empty())
-                                        {
-                                            DateTime dt(date, time + i);
-
-                                            std::lock_guard<std::mutex> lock(this->mutex);
-                                            this->results.reserve(this->results.capacity() + states.size());
-                                            for (const auto &state : states)
-                                            {
-                                                this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                            }
-                                        }
-
-                                        break;
+                                        continue;
                                     }
-                                }
-                            }
-                            else
-                            {
-                                for (u32 i = 0; i < seeds.size(); i++)
-                                {
-                                    auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
+
+                                    auto states = this->generator.generate(seeds[i], { { j, entry->second } });
                                     if (!states.empty())
                                     {
                                         DateTime dt(date, time + i);
@@ -236,6 +296,106 @@ private:
                         }
                         this->progress++;
                     }
+                }
+            }
+        }
+    }
+};
+
+/**
+ * @brief Parent searcher class for Static/Wild Gen 5 generators
+ *
+ * @tparam Generator Generator class to use
+ * @tparam State State class to use
+ */
+template <class Generator, class State>
+class IVSearcher5CacheFast final : public SearcherBase5<Generator, State>
+{
+public:
+    /**
+     * @brief Construct a new IVSearcher5CacheFast object
+     *
+     * @param initialAdvances Minimum IV advances
+     * @param maxAdvances Maximum IV advances
+     * @param sha1Cache Fast search SHA1 cache
+     * @param ivCache Fast search IV cache
+     * @param generator State generator
+     * @param profile Profile information
+     */
+    IVSearcher5CacheFast(u32 initialAdvances, u32 maxAdvances, const fph::MetaFphMap<u64, u64> &sha1Cache,
+                         const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache, const Generator &generator,
+                         const Profile5 &profile) :
+        SearcherBase5<Generator, State>(generator, profile),
+        sha1Cache(sha1Cache),
+        ivCache(ivCache),
+        initialAdvances(initialAdvances),
+        maxAdvances(maxAdvances)
+    {
+    }
+
+private:
+    fph::MetaFphMap<u64, u64> sha1Cache;
+    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> ivCache;
+    u32 initialAdvances;
+    u32 maxAdvances;
+
+    /**
+     * @brief Searches between the \p start and \p end dates
+     *
+     * @param start Start date
+     * @param end End date
+     */
+    void search(const Date &start, const Date &end) override
+    {
+        SHA1Key key;
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            key.timer0 = timer0;
+            for (Date date = start; date <= end; ++date)
+            {
+                key.date = date.getJD() - Date().getJD();
+                for (const auto &keypress : this->keypresses)
+                {
+                    key.button = toInt(keypress.button);
+                    for (u32 time = 0; time < 86400; time++)
+                    {
+                        if (!this->searching)
+                        {
+                            return;
+                        }
+
+                        key.time = time;
+
+                        const auto sha1Entry = sha1Cache.find(key.key);
+                        if (sha1Entry == sha1Cache.end())
+                        {
+                            continue;
+                        }
+
+                        u64 seed = sha1Entry->second;
+                        for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                        {
+                            const auto ivEntry = ivCache[j].find(seed >> 32);
+                            if (ivEntry == ivCache[j].end())
+                            {
+                                continue;
+                            }
+
+                            auto states = this->generator.generate(seed, { { j, ivEntry->second } });
+                            if (!states.empty())
+                            {
+                                DateTime dt(date, time);
+
+                                std::lock_guard<std::mutex> lock(this->mutex);
+                                this->results.reserve(this->results.capacity() + states.size());
+                                for (const auto &state : states)
+                                {
+                                    this->results.emplace_back(dt, seed, keypress.button, timer0, state);
+                                }
+                            }
+                        }
+                    }
+                    this->progress++;
                 }
             }
         }

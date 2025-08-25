@@ -1,5 +1,5 @@
 # CMake
-build
+build*
 CMakeLists.txt.user*
 
 # VS Code

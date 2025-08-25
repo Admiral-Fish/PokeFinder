@@ -48,6 +48,7 @@
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
+#include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
@@ -112,6 +113,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
+    connect(ui->actionSHA1Cache, &QAction::triggered, this, &MainWindow::openSHA1CacheFinder);
 
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
@@ -555,6 +557,23 @@ void MainWindow::openProfileManager5() const
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, &MainWindow::updateProfiles);
     manager->show();
+}
+
+void MainWindow::openSHA1CacheFinder() const
+{
+    auto *window = new SHA1CacheFinder();
+    if (!window->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
+        window->close();
+    }
+    else
+    {
+        window->show();
+        window->raise();
+    }
 }
 
 void MainWindow::openDenMap()
