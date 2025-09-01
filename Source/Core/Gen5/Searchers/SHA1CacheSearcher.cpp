@@ -26,6 +26,7 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
+#include <thread>
 
 template <typename Type>
 static void write(std::ofstream &file, Type val)
