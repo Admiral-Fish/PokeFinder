@@ -48,6 +48,11 @@ void IDsFilter::enableTIDPID()
     ui->radioButtonTIDPID->setVisible(true);
 }
 
+void IDsFilter::disableTIDPID()
+{
+    ui->radioButtonTIDPID->setVisible(false);
+}
+
 IDFilter IDsFilter::getFilter(bool pastGen) const
 {
     std::vector<u16> tidFilter;
