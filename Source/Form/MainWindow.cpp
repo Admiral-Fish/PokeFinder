@@ -229,6 +229,7 @@ void MainWindow::openEgg3()
     {
         egg3 = new Eggs3();
         connect(egg3, &Eggs3::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified3, egg3, &Eggs3::updateProfiles);
     }
     egg3->show();
     egg3->raise();
@@ -250,6 +251,7 @@ void MainWindow::openGameCube()
     {
         gamecube = new GameCube();
         connect(gamecube, &GameCube::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified3, gamecube, &GameCube::updateProfiles);
     }
     gamecube->show();
     gamecube->raise();
@@ -304,6 +306,7 @@ void MainWindow::openStatic3()
     {
         static3 = new Static3();
         connect(static3, &Static3::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified3, static3, &Static3::updateProfiles);
     }
     static3->show();
     static3->raise();
@@ -315,6 +318,7 @@ void MainWindow::openWild3()
     {
         wild3 = new Wild3();
         connect(wild3, &Wild3::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified3, wild3, &Wild3::updateProfiles);
     }
     wild3->show();
     wild3->raise();
@@ -326,6 +330,7 @@ void MainWindow::openEgg4()
     {
         egg4 = new Eggs4();
         connect(egg4, &Eggs4::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified4, egg4, &Eggs4::updateProfiles);
     }
     egg4->show();
 }
@@ -336,6 +341,7 @@ void MainWindow::openEvent4()
     {
         event4 = new Event4();
         connect(event4, &Event4::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified4, event4, &Event4::updateProfiles);
     }
     event4->show();
 }
@@ -363,6 +369,7 @@ void MainWindow::openStatic4()
     {
         static4 = new Static4();
         connect(static4, &Static4::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified4, static4, &Static4::updateProfiles);
     }
     static4->show();
     static4->raise();
@@ -374,6 +381,7 @@ void MainWindow::openWild4()
     {
         wild4 = new Wild4();
         connect(wild4, &Wild4::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified4, wild4, &Wild4::updateProfiles);
     }
     wild4->show();
     wild4->raise();
@@ -397,6 +405,7 @@ void MainWindow::openDreamRadar()
     {
         dreamRadar = new DreamRadar();
         connect(dreamRadar, &DreamRadar::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, dreamRadar, &DreamRadar::updateProfiles);
     }
 
     if (!dreamRadar->hasProfiles())
@@ -419,6 +428,7 @@ void MainWindow::openEgg5()
     {
         egg5 = new Eggs5();
         connect(egg5, &Eggs5::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, egg5, &Eggs5::updateProfiles);
     }
 
     if (!egg5->hasProfiles())
@@ -441,6 +451,7 @@ void MainWindow::openEvent5()
     {
         event5 = new Event5();
         connect(event5, &Event5::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, event5, &Event5::updateProfiles);
     }
 
     if (!event5->hasProfiles())
@@ -463,6 +474,7 @@ void MainWindow::openHiddenGrotto()
     {
         hiddenGrotto = new HiddenGrotto();
         connect(hiddenGrotto, &HiddenGrotto::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, hiddenGrotto, &HiddenGrotto::updateProfiles);
     }
 
     if (!hiddenGrotto->hasProfiles())
@@ -485,6 +497,7 @@ void MainWindow::openIDs5()
     {
         ids5 = new IDs5();
         connect(ids5, &IDs5::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, ids5, &IDs5::updateProfiles);
     }
 
     if (!ids5->hasProfiles())
@@ -507,6 +520,7 @@ void MainWindow::openStatic5()
     {
         static5 = new Static5();
         connect(static5, &Static5::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, static5, &Static5::updateProfiles);
     }
 
     if (!static5->hasProfiles())
@@ -529,6 +543,7 @@ void MainWindow::openWild5()
     {
         wild5 = new Wild5();
         connect(wild5, &Wild5::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, wild5, &Wild5::updateProfiles);
     }
 
     if (!wild5->hasProfiles())
@@ -570,7 +585,9 @@ void MainWindow::openSHA1CacheFinder() const
         window->close();
     }
     else
-    {
+    {  
+        connect(window, &SHA1CacheFinder::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, window, &SHA1CacheFinder::updateProfiles);
         window->show();
         window->raise();
     }
@@ -588,6 +605,7 @@ void MainWindow::openEgg8()
     {
         egg8 = new Eggs8();
         connect(egg8, &Eggs8::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, egg8, &Eggs8::updateProfiles);
     }
     egg8->show();
     egg8->raise();
@@ -599,6 +617,7 @@ void MainWindow::openEvent8()
     {
         event8 = new Event8();
         connect(event8, &Event8::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, event8, &Event8::updateProfiles);
     }
     event8->show();
     event8->raise();
@@ -627,6 +646,7 @@ void MainWindow::openRaids()
     {
         raids = new Raids();
         connect(raids, &Raids::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, raids, &Raids::updateProfiles);
     }
     raids->show();
     raids->show();
@@ -638,6 +658,7 @@ void MainWindow::openStatic8()
     {
         static8 = new Static8();
         connect(static8, &Static8::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, static8, &Static8::updateProfiles);
     }
     static8->show();
     static8->show();
@@ -649,6 +670,7 @@ void MainWindow::openUnderground()
     {
         underground = new Underground();
         connect(underground, &Underground::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, underground, &Underground::updateProfiles);
     }
     underground->show();
     underground->raise();
@@ -660,6 +682,7 @@ void MainWindow::openWild8()
     {
         wild8 = new Wild8();
         connect(wild8, &Wild8::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified8, wild8, &Wild8::updateProfiles);
     }
     wild8->show();
     wild8->raise();
@@ -712,90 +735,18 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        if (egg3)
-        {
-            egg3->updateProfiles();
-        }
-        if (gamecube)
-        {
-            gamecube->updateProfiles();
-        }
-        if (static3)
-        {
-            static3->updateProfiles();
-        }
-        if (wild3)
-        {
-            wild3->updateProfiles();
-        }
+        emit profilesModified3();
     }
     else if (num == 4)
     {
-        if (egg4)
-        {
-            egg4->updateProfiles();
-        }
-        if (static4)
-        {
-            static4->updateProfiles();
-        }
-        if (wild4)
-        {
-            wild4->updateProfiles();
-        }
+        emit profilesModified4();
     }
     else if (num == 5)
     {
-        if (dreamRadar)
-        {
-            dreamRadar->updateProfiles();
-        }
-        if (egg5)
-        {
-            egg5->updateProfiles();
-        }
-        if (event5)
-        {
-            event5->updateProfiles();
-        }
-        if (hiddenGrotto)
-        {
-            hiddenGrotto->updateProfiles();
-        }
-        if (ids5)
-        {
-            ids5->updateProfiles();
-        }
-        if (static5)
-        {
-            static5->updateProfiles();
-        }
-        if (wild5)
-        {
-            wild5->updateProfiles();
-        }
+        emit profilesModified5();
     }
     else if (num == 8)
     {
-        if (egg8)
-        {
-            egg8->updateProfiles();
-        }
-        if (event8)
-        {
-            event8->updateProfiles();
-        }
-        if (raids)
-        {
-            raids->updateProfiles();
-        }
-        if (static8)
-        {
-            static8->updateProfiles();
-        }
-        if (wild8)
-        {
-            wild8->updateProfiles();
-        }
+        emit profilesModified8();
     }
 }

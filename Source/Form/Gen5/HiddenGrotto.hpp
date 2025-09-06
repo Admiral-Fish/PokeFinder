@@ -68,6 +68,7 @@ public:
      */
     bool hasProfiles() const;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
