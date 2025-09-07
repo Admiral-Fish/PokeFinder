@@ -281,7 +281,7 @@ void ProfileCalibrator5::search()
     }
 
     int maxProgress = (maxTimer0 - minTimer0 + 1) * (maxGxStat - minGxStat + 1) * (maxVFrame - minVFrame + 1);
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

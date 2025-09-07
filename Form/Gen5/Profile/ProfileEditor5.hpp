@@ -86,6 +86,16 @@ private:
 
 private slots:
     /**
+     * @brief Clears the selected IV cache
+     */
+    void clearIVCache();
+
+    /**
+     * @brief Clears the selected SHA cache
+     */
+    void clearSHACache();
+
+    /**
      * @brief Opens window to calibrate a new profile
      */
     void findParameters();
@@ -94,6 +104,16 @@ private slots:
      * @brief Validates that a profile name exists before allowing the dialog to be closed
      */
     void okay();
+
+    /**
+     * @brief Prompts user to select IV cache
+     */
+    void selectIVCache();
+
+    /**
+     * @brief Prompts user to select SHA cache
+     */
+    void selectSHACache();
 
     /**
      * @brief Toggles whether memory link, and shiny charm is enabled based on selected Game

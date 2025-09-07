@@ -254,7 +254,7 @@ void GameCube::search()
         maxProgress *= max[4] - min[4] + 1;
         maxProgress *= 0x7ffffff;
     }
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QThread *thread;
     if (shadowLock)

@@ -203,7 +203,7 @@ void Event4::search()
     {
         maxProgress *= max[i] - min[i] + 1;
     }
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     auto *thread = QThread::create([=] {
         searcher->startSearch(min, max, ui->comboBoxGeneratorSpecies->currentIndex() + 1, ui->comboBoxSearcherNature->currentIndex(),

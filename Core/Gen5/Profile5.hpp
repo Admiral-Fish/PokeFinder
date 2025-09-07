@@ -39,6 +39,8 @@ public:
      * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
+     * @param ivCache Profile IV cache path
+     * @param shaCache Profile SHA cache path
      * @param mac MAC address
      * @param keypresses Array of keypress values
      * @param vcount VCount value
@@ -53,10 +55,12 @@ public:
      * @param dsType DS type for the profile
      * @param language Language type of the profile
      */
-    Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 9> &keypresses, u8 vcount, u8 gxstat,
-             u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
-             Language language) :
+    Profile5(const std::string &name, Game version, u16 tid, u16 sid, const std::string &ivCache, const std::string &shaCache, u64 mac,
+             const std::array<bool, 9> &keypresses, u8 vcount, u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max,
+             bool softReset, bool memoryLink, bool shinyCharm, DSType dsType, Language language) :
         Profile(name, version, tid, sid),
+        ivCache(ivCache),
+        shaCache(shaCache),
         mac(mac),
         timer0Max(timer0Max),
         timer0Min(timer0Min),
@@ -98,6 +102,16 @@ public:
     u8 getGxStat() const
     {
         return gxstat;
+    }
+
+    /**
+     * @brief Returns the profile IV cache path
+     *
+     * @return Profile IV cache path
+     */
+    std::string getIVCache() const
+    {
+        return ivCache;
     }
 
     /**
@@ -153,6 +167,16 @@ public:
     bool getMemoryLink() const
     {
         return memoryLink;
+    }
+
+    /**
+     * @brief Returns the profile SHA cache path
+     *
+     * @return Profile SHA cache path
+     */
+    std::string getSHACache() const
+    {
+        return shaCache;
     }
 
     /**
@@ -249,6 +273,8 @@ public:
     bool operator!=(const Profile5 &other) const;
 
 private:
+    std::string ivCache;
+    std::string shaCache;
     u64 mac;
     u16 timer0Max;
     u16 timer0Min;

@@ -20,7 +20,7 @@
 #ifndef SHA1CACHE_HPP
 #define SHA1CACHE_HPP
 
-#include <Core/Gen5/IVSeedCache.hpp>
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fph/meta_fph_table.h>
@@ -68,14 +68,8 @@ public:
      * @brief Construct a new SHA1Cache object
      *
      * @param file Path to file to read the cache from
-     * @param readData Whether or not to read the seed cache data
      */
-    SHA1Cache(const std::string &file, bool readData);
-
-    /**
-     * @brief Destroy the MainWindow object
-     */
-    ~SHA1Cache();
+    SHA1Cache(const std::string &file);
 
     /**
      * @brief Returns the SHA1 cache for the \p type
@@ -103,6 +97,26 @@ public:
     }
 
     /**
+     * @brief Returns the initial advance supported by the cache
+     *
+     * @return Initial supported advance
+     */
+    u32 getInitialAdvances() const
+    {
+        return initialAdvances;
+    }
+
+    /**
+     * @brief Returns the max advance supported by the cache
+     *
+     * @return Max supported advance
+     */
+    u32 getMaxAdvances() const
+    {
+        return maxAdvances;
+    }
+
+    /**
      * @brief Returns the start date
      *
      * @return start date
@@ -113,27 +127,41 @@ public:
     }
 
     /**
+     * @brief Determines if cache is valid
+     */
+    bool isValid() const;
+
+    /**
      * @brief Determines cache was created from the given \p profile
      *
      * @param profile Profile information
      */
-    bool valid(const Profile5 &profile);
+    bool isValid(const Profile5 &profile) const;
+
+    /**
+     * @brief Determines if cache is valid
+     * 
+     * @param file Path to file to validate the cache from
+     */
+    static bool isValid(const std::string &file, const std::string &ivFile);
 
 private:
-    SHA1Seed *data;
+    std::vector<SHA1Seed> entralink;
+    std::vector<SHA1Seed> normal;
+    std::vector<SHA1Seed> roamer;
     u64 mac;
     Date end;
     Date start;
     Game version;
-    u32 countEntralink;
-    u32 countNormal;
-    u32 countRoamer;
+    u32 initialAdvances;
+    u32 maxAdvances;
     u16 timer0max;
     u16 timer0min;
     bool softReset;
     DSType type;
     Language language;
     std::array<bool, 9> keypresses;
+    bool valid;
     u8 gxstat;
     u8 vcount;
     u8 vframe;

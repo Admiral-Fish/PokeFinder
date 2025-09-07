@@ -733,7 +733,7 @@ void Wild4::search()
     {
         maxProgress *= max[i] - min[i] + 1;
     }
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     auto *thread = QThread::create([=] { searcher->startSearch(min, max, fixedSlot); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

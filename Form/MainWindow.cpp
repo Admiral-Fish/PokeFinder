@@ -48,6 +48,7 @@
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
+#include <Form/Gen5/Tools/IVCacheFinder.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
 #include <Form/Gen8/Eggs8.hpp>
@@ -111,6 +112,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
+    connect(ui->actionIVCache, &QAction::triggered, this, &MainWindow::openIVCacheFinder);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionSHA1Cache, &QAction::triggered, this, &MainWindow::openSHA1CacheFinder);
@@ -141,7 +143,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
         if (!profile)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Unable to locate profiles"),
-                            tr("Please update path to your profiles file to restore existing profiles."));
+                            tr("Please update path to your profiles file to restore existing profiles"));
             msg.exec();
         }
 
@@ -411,7 +413,7 @@ void MainWindow::openDreamRadar()
     if (!dreamRadar->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         dreamRadar->close();
     }
@@ -434,7 +436,7 @@ void MainWindow::openEgg5()
     if (!egg5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         egg5->close();
     }
@@ -457,7 +459,7 @@ void MainWindow::openEvent5()
     if (!event5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         event5->close();
     }
@@ -480,7 +482,7 @@ void MainWindow::openHiddenGrotto()
     if (!hiddenGrotto->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         hiddenGrotto->close();
     }
@@ -503,7 +505,7 @@ void MainWindow::openIDs5()
     if (!ids5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         ids5->close();
     }
@@ -526,7 +528,7 @@ void MainWindow::openStatic5()
     if (!static5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         static5->close();
     }
@@ -549,7 +551,7 @@ void MainWindow::openWild5()
     if (!wild5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         wild5->close();
     }
@@ -558,6 +560,12 @@ void MainWindow::openWild5()
         wild5->show();
         wild5->raise();
     }
+}
+
+void MainWindow::openIVCacheFinder() const
+{
+    auto *window = new IVCacheFinder();
+    window->show();
 }
 
 void MainWindow::openProfileCalibrator() const
@@ -580,7 +588,7 @@ void MainWindow::openSHA1CacheFinder() const
     if (!window->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
         msg.exec();
         window->close();
     }

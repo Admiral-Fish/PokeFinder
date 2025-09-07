@@ -22,7 +22,7 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
-#include <Core/Gen5/IVSeedCache.hpp>
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
@@ -34,16 +34,12 @@ static void write(std::ofstream &file, Type val)
     file.write(reinterpret_cast<char *>(&val), sizeof(val));
 }
 
-SHA1CacheSearcher::SHA1CacheSearcher(const Profile5 &profile, const Date &start, const Date &end) :
-    SearcherBase<SHA1Seed>(),
-    profile(profile),
-    keypresses(Keypresses::getKeypresses(profile)),
-    entralinkSeeds(IVSeedCache::getSeeds(profile.getVersion(), CacheType::Entralink)),
-    normalSeeds(IVSeedCache::getSeeds(profile.getVersion(), CacheType::Normal)),
-    roamerSeeds(IVSeedCache::getSeeds(profile.getVersion(), CacheType::Roamer)),
-    end(end),
-    start(start)
+SHA1CacheSearcher::SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &profile, const Date &start, const Date &end) :
+    SearcherBase<SHA1Seed>(), profile(profile), keypresses(Keypresses::getKeypresses(profile)), end(end), start(start), initialAdvances(ivCache.getInitialAdvances()), maxAdvances(ivCache.getMaxAdvances())
 {
+    entralinkSeeds = ivCache.getSeeds(profile.getVersion(), CacheType::Entralink);
+    normalSeeds = ivCache.getSeeds(profile.getVersion(), CacheType::Normal);
+    roamerSeeds = ivCache.getSeeds(profile.getVersion(), CacheType::Roamer);
 }
 
 void SHA1CacheSearcher::startSearch(int threads)
@@ -88,13 +84,18 @@ void SHA1CacheSearcher::writeResults(const std::string &file)
     std::ofstream stream(file.data(), std::ios_base::out | std::ios_base::binary | std::ios_base::trunc);
     if (stream.is_open())
     {
+        // Write magic identifier: CRC32 of "SHA1Cache"
+        write(stream, 0x3c50a97e);
+
+        // Write cache advances
+        write(stream, initialAdvances);
+        write(stream, maxAdvances);
+
+        // Write profile data
         write(stream, profile.getMac());
         write(stream, end);
         write(stream, start);
         write(stream, profile.getVersion());
-        write<u32>(stream, results.size());
-        write<u32>(stream, normalResults.size());
-        write<u32>(stream, roamerResults.size());
         write(stream, profile.getTimer0Max());
         write(stream, profile.getTimer0Min());
         write(stream, profile.getSoftReset());
@@ -105,10 +106,16 @@ void SHA1CacheSearcher::writeResults(const std::string &file)
         write(stream, profile.getVCount());
         write(stream, profile.getVFrame());
 
+        // Write seed sizes
         std::sort(results.begin(), results.end(), sort);
         std::sort(normalResults.begin(), normalResults.end(), sort);
         std::sort(roamerResults.begin(), roamerResults.end(), sort);
 
+        write<u32>(stream, results.size());
+        write<u32>(stream, normalResults.size());
+        write<u32>(stream, roamerResults.size());
+
+        // Write seed data
         stream.write(reinterpret_cast<char *>(results.data()), results.size() * sizeof(SHA1Seed));
         stream.write(reinterpret_cast<char *>(normalResults.data()), normalResults.size() * sizeof(SHA1Seed));
         stream.write(reinterpret_cast<char *>(roamerResults.data()), roamerResults.size() * sizeof(SHA1Seed));

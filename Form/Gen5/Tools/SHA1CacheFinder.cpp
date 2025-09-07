@@ -19,6 +19,7 @@
 
 #include "SHA1CacheFinder.hpp"
 #include "ui_SHA1CacheFinder.h"
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/SHA1CacheSearcher.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -42,6 +43,18 @@ SHA1CacheFinder::SHA1CacheFinder(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &SHA1CacheFinder::search);
 
     updateProfiles();
+
+    QSettings setting;
+    setting.beginGroup("sha1cachefinder");
+    if (setting.contains("startDate"))
+    {
+        ui->dateEditStartDate->setDate(setting.value("startDate").toDate());
+    }
+    if (setting.contains("endDate"))
+    {
+        ui->dateEditEndDate->setDate(setting.value("endDate").toDate());
+    }
+    setting.endGroup();
 }
 
 SHA1CacheFinder::~SHA1CacheFinder()
@@ -49,6 +62,8 @@ SHA1CacheFinder::~SHA1CacheFinder()
     QSettings setting;
     setting.beginGroup("sha1cachefinder");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("startDate", ui->dateEditStartDate->date());
+    setting.setValue("endDate", ui->dateEditEndDate->date());
     setting.endGroup();
 
     delete ui;
@@ -106,6 +121,13 @@ void SHA1CacheFinder::profileManager()
 
 void SHA1CacheFinder::search()
 {
+    if (ui->lineEditOutputFile->text().isEmpty())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing output file"), tr("Please select a file to save the results to"));
+        msg.exec();
+        return;
+    }
+
     Date start = ui->dateEditStartDate->getDate();
     Date end = ui->dateEditEndDate->getDate();
     if (start > end)
@@ -115,9 +137,10 @@ void SHA1CacheFinder::search()
         return;
     }
 
-    if (ui->lineEditOutputFile->text().isEmpty())
+    IVCache ivCache(currentProfile->getIVCache());
+    if (!ivCache.isValid())
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Missing output file"), tr("Please select a file to save the results to"));
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid IV Cache"), tr("Profile does not have a valid IV Cache"));
         msg.exec();
         return;
     }
@@ -125,12 +148,12 @@ void SHA1CacheFinder::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    auto *searcher = new SHA1CacheSearcher(*currentProfile, start, end);
+    auto *searcher = new SHA1CacheSearcher(ivCache, *currentProfile, start, end);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

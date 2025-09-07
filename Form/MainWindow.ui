@@ -263,6 +263,7 @@
     <property name="title">
      <string>Gen 5 Tools</string>
     </property>
+    <addaction name="actionIVCache"/>
     <addaction name="actionProfileCalibrator"/>
     <addaction name="actionProfileManager5"/>
     <addaction name="actionSHA1Cache"/>
@@ -388,6 +389,11 @@
   <action name="actionSHA1Cache">
    <property name="text">
     <string>SHA1 Cache</string>
+   </property>
+  </action>
+  <action name="actionIVCache">
+   <property name="text">
+    <string>IV Cache</string>
    </property>
   </action>
  </widget>

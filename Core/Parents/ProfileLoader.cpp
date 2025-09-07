@@ -292,6 +292,8 @@ namespace ProfileLoader5
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
+            j["ivCache"] = profile.getIVCache();
+            j["shaCache"] = profile.getSHACache();
             j["mac"] = profile.getMac();
             j["keypresses"] = profile.getKeypresses();
             j["vcount"] = profile.getVCount();
@@ -321,6 +323,8 @@ namespace ProfileLoader5
             Game version = j.value("version", Game::Black);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
+            std::string ivCache = j.value("ivCache", "");
+            std::string shaCache = j.value("shaCache", "");
             u64 mac;
             try
             {
@@ -348,8 +352,8 @@ namespace ProfileLoader5
             bool shinyCharm = j.value("shinyCharm", false);
             DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("language", Language::English);
-            return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
-                            memoryLink, shinyCharm, dsType, language);
+            return Profile5(name, version, tid, sid, ivCache, shaCache, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
+                            timer0Max, softReset, memoryLink, shinyCharm, dsType, language);
         }
 
     }

@@ -23,7 +23,9 @@
 #include <QWidget>
 
 class EncounterArea5;
+class IVCache;
 class Profile5;
+class SHA1Cache;
 class SortFilterProxyModel;
 class WildGeneratorModel5;
 class WildSearcherModel5;
@@ -75,7 +77,9 @@ public slots:
 private:
     Ui::Wild5 *ui;
 
+    IVCache *ivCache;
     Profile5 *currentProfile;
+    SHA1Cache *shaCache;
     SortFilterProxyModel *proxyModel;
     std::vector<EncounterArea5> encounterGenerator;
     std::vector<EncounterArea5> encounterSearcher;
@@ -175,18 +179,6 @@ private slots:
      * @param index Season index
      */
     void searcherSeasonIndexChanged(int index);
-
-    /**
-     * @brief Prompts user to select SHA1 cache file
-     */
-    void searcherSelectSHA1Cache();
-
-    /**
-     * @brief Updates enabled controls for SHA1 cache
-     *
-     * @param state Checked state
-     */
-    void searcherSHA1CacheStateChanged(Qt::CheckState state);
 };
 
 #endif // WILD5_HPP

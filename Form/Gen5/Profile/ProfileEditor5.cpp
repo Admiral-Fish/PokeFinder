@@ -22,9 +22,12 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <QFileDialog>
 #include <QMessageBox>
 
 ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
@@ -52,6 +55,10 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor5::reject);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor5::versionIndexChanged);
+    connect(ui->pushButtonSelectIVCache, &QPushButton::clicked, this, &ProfileEditor5::selectIVCache);
+    connect(ui->pushButtonSelectSHACache, &QPushButton::clicked, this, &ProfileEditor5::selectSHACache);
+    connect(ui->pushButtonClearIVCache, &QPushButton::clicked, this, &ProfileEditor5::clearIVCache);
+    connect(ui->pushButtonClearSHACache, &QPushButton::clicked, this, &ProfileEditor5::clearSHACache);
 
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
@@ -61,6 +68,8 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : Profi
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
+    ui->lineEditIVCache->setText(QString::fromStdString(profile.getIVCache()));
+    ui->lineEditSHACache->setText(QString::fromStdString(profile.getSHACache()));
     ui->textBoxMAC->setText(QString::number(profile.getMac(), 16));
     ui->textBoxVCount->setText(QString::number(profile.getVCount(), 16));
     ui->textBoxGxStat->setText(QString::number(profile.getGxStat(), 16));
@@ -103,11 +112,31 @@ ProfileEditor5::~ProfileEditor5()
 Profile5 ProfileEditor5::getProfile()
 {
     return Profile5(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
-                    ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(),
-                    ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(),
-                    ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(),
-                    ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(), ui->checkBoxShinyCharm->isChecked(),
-                    ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>());
+                    ui->textBoxSID->getUShort(), ui->lineEditIVCache->text().toStdString(), ui->lineEditSHACache->text().toStdString(),
+                    ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(), ui->textBoxVCount->getUChar(),
+                    ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(),
+                    ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
+                    ui->checkBoxMemoryLink->isChecked(), ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(),
+                    ui->comboBoxLanguage->getEnum<Language>());
+}
+
+void ProfileEditor5::clearIVCache()
+{
+    ui->lineEditIVCache->clear();
+    ui->lineEditSHACache->clear();
+}
+
+void ProfileEditor5::clearSHACache()
+{
+    ui->lineEditSHACache->clear();
+}
+
+void ProfileEditor5::findParameters()
+{
+    auto *calibrator = new ProfileCalibrator5();
+    calibrator->show();
+
+    done(QDialog::Rejected);
 }
 
 void ProfileEditor5::okay()
@@ -123,12 +152,35 @@ void ProfileEditor5::okay()
     done(QDialog::Accepted);
 }
 
-void ProfileEditor5::findParameters()
+void ProfileEditor5::selectIVCache()
 {
-    auto *calibrator = new ProfileCalibrator5();
-    calibrator->show();
+    QString file = QFileDialog::getOpenFileName(this, tr("Open IV Cache"), QDir::currentPath(), "ivcache (*.ivcache)");
+    if (IVCache::isValid(file.toStdString()))
+    {
+        ui->lineEditIVCache->setText(file);
+        ui->lineEditSHACache->clear();
+    }
+    else
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid IV Cache"), tr("Provided file is not a valid IV Cache"));
+        msg.exec();
+        return;
+    }
+}
 
-    done(QDialog::Rejected);
+void ProfileEditor5::selectSHACache()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
+    if (SHA1Cache::isValid(file.toStdString(), ui->lineEditIVCache->text().toStdString()))
+    {
+        ui->lineEditSHACache->setText(file);
+    }
+    else
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid SHA Cache"), tr("Provided file is not a valid SHA Cache or was not created from the IV Cache of the profile"));
+        msg.exec();
+        return;
+    }
 }
 
 void ProfileEditor5::versionIndexChanged(int index)

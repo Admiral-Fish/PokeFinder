@@ -17,35 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHA1CACHESEARCHER_HPP
-#define SHA1CACHESEARCHER_HPP
+#ifndef IVCACHESEARCHER_HPP
+#define IVCACHESEARCHER_HPP
 
-#include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Parents/Searchers/SearcherBase.hpp>
-#include <Core/Util/DateTime.hpp>
-
-class IVCache;
-enum class DSType : u8;
-enum class Game : u32;
-enum class Language : u8;
+#include <string>
 
 /**
  * @brief Searcher class for SHA1 cache
  */
-class SHA1CacheSearcher final : public SearcherBase<SHA1Seed>
+class IVCacheSearcher final : public SearcherBase<std::vector<u32>>
 {
 public:
     /**
-     * @brief Construct a new SHA1CacheSearcher object
+     * @brief Construct a new IVCacheSearcher object
      *
-     * @param ivCache IV cache from \p profile
-     * @param profile Profile information
-     * @param start Start date
-     * @param end End date
+     * @param initialAdvances
+     * @param maxAdvances Maximum number of advances
      */
-    SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &profile, const Date &start, const Date &end);
+    IVCacheSearcher(u32 initialAdvances, u32 maxAdvances);
 
     /**
      * @brief Starts the search
@@ -64,25 +54,18 @@ public:
     void writeResults(const std::string &file);
 
 private:
-    Profile5 profile;
-    std::vector<Keypress> keypresses;
-    std::vector<u32> entralinkSeeds;
-    std::vector<u32> normalSeeds;
-    std::vector<SHA1Seed> normalResults;
-    std::vector<u32> roamerSeeds;
-    std::vector<SHA1Seed> roamerResults;
-    Date end;
-    Date start;
+    std::vector<std::vector<u32>> entralink;
+    std::vector<std::vector<u32>> roamer;
     u32 initialAdvances;
     u32 maxAdvances;
 
     /**
-     * @brief Searches between the \p start and \p end dates
+     * @brief Searches between the \p start and \p end seeds
      *
-     * @param start Start date
-     * @param end End date
+     * @param start Start seed
+     * @param end End seed
      */
-    void search(const Date &start, const Date &end);
+    void search(u32 start, u32 end);
 };
 
-#endif // SHA1CACHESEARCHER_HPP
+#endif // IVCACHESEARCHER_HPP

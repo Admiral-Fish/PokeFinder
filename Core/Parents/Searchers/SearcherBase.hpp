@@ -60,9 +60,9 @@ public:
      *
      * @return Progress
      */
-    virtual int getProgress() const
+    int getProgress() const
     {
-        return progress;
+        return (progress * 100) / maxProgress;
     }
 
     /**
@@ -77,10 +77,21 @@ public:
         return data;
     }
 
+    /**
+     * @brief Sets the max progress of the searcher
+     *
+     * @param max Max progress
+     */
+    void setMaxProgress(u64 max)
+    {
+        maxProgress = max;
+    }
+
 protected:
     std::mutex mutex;
     std::vector<Result> results;
-    std::atomic<u32> progress;
+    std::atomic<u64> progress;
+    u64 maxProgress;
     bool searching;
 };
 
