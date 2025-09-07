@@ -96,6 +96,16 @@ private slots:
     void okay();
 
     /**
+     * @brief Prompts user to select IV cache
+     */
+    void selectIVCache();
+
+    /**
+     * @brief Prompts user to select SHA cache
+     */
+    void selectSHACache();
+
+    /**
      * @brief Toggles whether memory link, and shiny charm is enabled based on selected Game
      *
      * @param index Current index of combo box

@@ -283,6 +283,11 @@ private slots:
     void openWild5();
 
     /**
+     * @brief Opens the Gen 5 IV Cache Finder window
+     */
+    void openIVCacheFinder() const;
+
+    /**
      * @brief Opens the Gen 5 Profile Calibrator window
      */
     void openProfileCalibrator() const;

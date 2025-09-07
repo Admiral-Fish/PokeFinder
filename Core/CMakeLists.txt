@@ -143,8 +143,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/WildGenerator5.hpp
     Gen5/HiddenGrottoArea.cpp
     Gen5/HiddenGrottoArea.hpp
-    Gen5/IVSeedCache.cpp
-    Gen5/IVSeedCache.hpp
+    Gen5/IVCache.cpp
+    Gen5/IVCache.hpp
     Gen5/Nazos.cpp
     Gen5/Nazos.hpp
     Gen5/PGF.hpp
@@ -152,6 +152,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Profile5.hpp
     Gen5/Searchers/IDSearcher5.cpp
     Gen5/Searchers/IDSearcher5.hpp
+    Gen5/Searchers/IVCacheSearcher.cpp
+    Gen5/Searchers/IVCacheSearcher.hpp
     Gen5/Searchers/IVSearcher5.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp

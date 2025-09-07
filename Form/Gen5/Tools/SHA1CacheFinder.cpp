@@ -19,6 +19,7 @@
 
 #include "SHA1CacheFinder.hpp"
 #include "ui_SHA1CacheFinder.h"
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/SHA1CacheSearcher.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -106,6 +107,14 @@ void SHA1CacheFinder::profileManager()
 
 void SHA1CacheFinder::search()
 {
+    IVCache ivCache(currentProfile->getIVCache());
+    if (!ivCache.isValid())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid IV Cache"), tr("Profile does not have a valid IV Cache"));
+        msg.exec();
+        return;
+    }
+
     Date start = ui->dateEditStartDate->getDate();
     Date end = ui->dateEditEndDate->getDate();
     if (start > end)
@@ -125,12 +134,12 @@ void SHA1CacheFinder::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    auto *searcher = new SHA1CacheSearcher(*currentProfile, start, end);
+    auto *searcher = new SHA1CacheSearcher(ivCache, *currentProfile, start, end);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

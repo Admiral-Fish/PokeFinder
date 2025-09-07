@@ -174,7 +174,7 @@ void IDs5::search()
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= (start.daysTo(end) + 1);
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

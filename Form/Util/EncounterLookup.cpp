@@ -241,8 +241,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
 std::set<std::pair<u16, QString>> EncounterLookup::getEncounters5(Game version, u16 specie)
 {
     std::set<std::pair<u16, QString>> encounters;
-    Profile5 profile("", version, 0, 0, 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0, false,
-                     false, false, DSType::DS, Language::English);
+    Profile5 profile("", version, 0, 0, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0,
+                     false, false, false, DSType::DS, Language::English);
 
     // Encounter variables to iterate through
     auto types

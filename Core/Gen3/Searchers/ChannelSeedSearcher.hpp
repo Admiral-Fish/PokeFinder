@@ -37,13 +37,6 @@ public:
     ChannelSeedSearcher(const std::vector<u8> &criteria);
 
     /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const final;
-
-    /**
      * @brief Starts the search
      *
      * @param threads Number of threads to search with

@@ -23,7 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
-#include <Core/Gen5/IVSeedCache.hpp>
+#include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
@@ -41,7 +41,7 @@
 #include <QThread>
 #include <QTimer>
 
-Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
+Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -90,16 +90,13 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static5::searcherCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static5::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static5::searcherPokemonIndexChanged);
-    connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel5::setShowStats);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
-    connect(ui->checkBoxSearcherSHA1Cache, &QCheckBox::checkStateChanged, this, &Static5::searcherSHA1CacheStateChanged);
-    connect(ui->pushButtonSearcherSHA1CacheSelect, &QPushButton::clicked, this, &Static5::searcherSelectSHA1Cache);
-    connect(ui->pushButtonSearcherSHA1CacheClear, &QPushButton::clicked, this, [=]() { ui->lineEditSearcherSHA1Cache->clear(); });
 
     updateProfiles();
     if (hasProfiles())
@@ -136,6 +133,8 @@ Static5::~Static5()
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
     setting.endGroup();
 
+    delete ivCache;
+    delete shaCache;
     delete ui;
 }
 
@@ -164,10 +163,16 @@ void Static5::updateProfiles()
 
 bool Static5::fastSearchEnabled() const
 {
+    if (ivCache == nullptr)
+    {
+        return false;
+    }
+
     u32 initialAdvances = ui->textBoxSearcherInitialIVAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxIVAdvances->getUInt();
 
-    if (initialAdvances + maxAdvances > 5)
+    if (initialAdvances < ivCache->getInitialAdvances()
+        || (initialAdvances + maxAdvances) > (ivCache->getInitialAdvances() + ivCache->getMaxAdvances()))
     {
         return false;
     }
@@ -175,7 +180,16 @@ bool Static5::fastSearchEnabled() const
     auto min = ui->filterSearcher->getMinIVs();
     auto max = ui->filterSearcher->getMaxIVs();
 
-    return min[0] >= 30 && min[2] >= 30 && min[4] >= 30 && (min[1] >= 30 || min[3] >= 30) && (min[5] >= 30 || max[5] <= 1);
+    const StaticTemplate5 *staticTemplate
+        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
+    if (staticTemplate->getRoamer())
+    {
+        return min[0] >= 30 && min[2] >= 30 && min[4] >= 30 && min[5] >= 30 && (min[1] >= 30 || min[3] >= 30);
+    }
+    else
+    {
+        return min[0] >= 30 && min[2] >= 30 && min[4] >= 30 && (min[1] >= 30 || min[3] >= 30) && (min[5] >= 30 || max[5] <= 1);
+    }
 }
 
 void Static5::generate()
@@ -258,6 +272,30 @@ void Static5::profileIndexChanged(int index)
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
+        if (ivCache)
+        {
+            delete ivCache;
+            ivCache = nullptr;
+        }
+
+        if (shaCache)
+        {
+            delete shaCache;
+            shaCache = nullptr;
+        }
+
+        auto ivCachePath = currentProfile->getIVCache();
+        if (!ivCachePath.empty())
+        {
+            ivCache = new IVCache(ivCachePath);
+        }
+
+        auto shaCachePath = currentProfile->getSHACache();
+        if (!shaCachePath.empty())
+        {
+            shaCache = new SHA1Cache(shaCachePath);
+        }
+
         bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
 
         // Event
@@ -314,18 +352,16 @@ void Static5::search()
     if (fastSearchEnabled())
     {
         CacheType type = staticTemplate->getRoamer() ? CacheType::Roamer : CacheType::Normal;
-        auto sha1Cache = SHA1Cache(ui->lineEditSearcherSHA1Cache->text().toStdString(), true);
-        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), type, filter);
-
-        if (sha1Cache.valid(*currentProfile))
+        auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), type, filter);
+        if (shaCache && shaCache->isValid(*currentProfile))
         {
             searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(
-                initialIVAdvances, maxIVAdvances, sha1Cache.getCache(initialIVAdvances, maxIVAdvances, start, end, ivCache, type), ivCache,
+                initialIVAdvances, maxIVAdvances, shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, type), ivMap,
                 generator, *currentProfile);
         }
         else
         {
-            searcher = new IVSearcher5Fast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
+            searcher = new IVSearcher5Fast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
@@ -336,7 +372,7 @@ void Static5::search()
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    ui->progressBar->setRange(0, maxProgress);
+    searcher->setMaxProgress(maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
@@ -392,24 +428,22 @@ void Static5::searcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
-        ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching."));
-
-        ui->checkBoxSearcherSHA1Cache->setVisible(true);
-        ui->lineEditSearcherSHA1Cache->setVisible(true);
-        ui->pushButtonSearcherSHA1CacheSelect->setVisible(true);
-        ui->pushButtonSearcherSHA1CacheClear->setVisible(true);
+        ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching"));
     }
     else
     {
-        QStringList text = { tr("Settings are not configured for fast searching."), tr("Keep initial/max advances below 6."),
-                             tr("Ensure IV filters are set to common spreads.") };
-        ui->labelIVFastSearch->setText(text.join('\n'));
-
-        ui->checkBoxSearcherSHA1Cache->setCheckState(Qt::Unchecked);
-        ui->checkBoxSearcherSHA1Cache->setVisible(false);
-        ui->lineEditSearcherSHA1Cache->setVisible(false);
-        ui->pushButtonSearcherSHA1CacheSelect->setVisible(false);
-        ui->pushButtonSearcherSHA1CacheClear->setVisible(false);
+        if (ivCache == nullptr)
+        {
+            ui->labelIVFastSearch->setText(tr("Profile does not have a IV cache file configured"));
+        }
+        else
+        {
+            QStringList text
+                = { tr("Settings are not configured for fast searching"),
+                    tr("Keep initial/max advances below %1/%2").arg(ivCache->getInitialAdvances()).arg(ivCache->getMaxAdvances()),
+                    tr("Ensure IV filters are set to common spreads") };
+            ui->labelIVFastSearch->setText(text.join('\n'));
+        }
     }
 }
 
@@ -425,41 +459,5 @@ void Static5::searcherPokemonIndexChanged(int index)
         bool flag = staticTemplate->getInfo()->getFixedGender();
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmM), flag);
-    }
-}
-
-void Static5::searcherSelectSHA1Cache()
-{
-    QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
-
-    SHA1Cache cache(file.toStdString(), false);
-    if (cache.valid(*currentProfile))
-    {
-        ui->lineEditSearcherSHA1Cache->setText(file);
-        ui->dateEditSearcherStartDate->setDate(QDate::fromJulianDay(cache.getStartDate().getJD()));
-        ui->dateEditSearcherEndDate->setDate(QDate::fromJulianDay(cache.getEndDate().getJD()));
-    }
-    else
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid cache file"),
-                        tr("The selected cache file does not match the currently selected profile."));
-        msg.exec();
-    }
-}
-
-void Static5::searcherSHA1CacheStateChanged(Qt::CheckState state)
-{
-    if (state == Qt::Checked)
-    {
-        ui->lineEditSearcherSHA1Cache->setEnabled(true);
-        ui->pushButtonSearcherSHA1CacheSelect->setEnabled(true);
-        ui->pushButtonSearcherSHA1CacheClear->setEnabled(true);
-    }
-    else
-    {
-        ui->lineEditSearcherSHA1Cache->clear();
-        ui->lineEditSearcherSHA1Cache->setEnabled(false);
-        ui->pushButtonSearcherSHA1CacheSelect->setEnabled(false);
-        ui->pushButtonSearcherSHA1CacheClear->setEnabled(false);
     }
 }

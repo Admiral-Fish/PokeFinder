@@ -25,18 +25,13 @@ ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : crit
 {
 }
 
-int ChannelSeedSearcher::getProgress() const
-{
-    return progress >> 1;
-}
-
 void ChannelSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
     auto *threadContainer = new std::thread[threads];
 
-    u32 split = 0xBFFFFFFE / threads;
+    u32 split = 0xbffffffe / threads;
     u32 start = 0x40000001;
     for (int i = 0; i < threads; i++, start += split)
     {

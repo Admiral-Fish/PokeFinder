@@ -22,7 +22,9 @@
 
 #include <QWidget>
 
+class IVCache;
 class Profile5;
+class SHA1Cache;
 class SortFilterProxyModel;
 class StaticGeneratorModel5;
 class StaticSearcherModel5;
@@ -73,7 +75,9 @@ public:
 private:
     Ui::Static5 *ui;
 
+    IVCache *ivCache;
     Profile5 *currentProfile;
+    SHA1Cache *shaCache;
     SortFilterProxyModel *proxyModel;
     std::vector<Profile5> profiles;
     StaticGeneratorModel5 *generatorModel;
@@ -143,18 +147,6 @@ private slots:
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);
-
-    /**
-     * @brief Prompts user to select SHA1 cache file
-     */
-    void searcherSelectSHA1Cache();
-
-    /**
-     * @brief Updates enabled controls for SHA1 cache
-     *
-     * @param state Checked state
-     */
-    void searcherSHA1CacheStateChanged(Qt::CheckState state);
 };
 
 #endif // STATIC5_HPP

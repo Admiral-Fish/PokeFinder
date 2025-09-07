@@ -730,43 +730,6 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QCheckBox" name="checkBoxSearcherSHA1Cache">
-            <property name="text">
-             <string>CheckBox</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditSearcherSHA1Cache">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QPushButton" name="pushButtonSearcherSHA1CacheSelect">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Select File</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="2">
-           <widget class="QPushButton" name="pushButtonSearcherSHA1CacheClear">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Clear</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -868,10 +831,6 @@
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>spinBoxSearcherLevel</tabstop>
   <tabstop>comboBoxSearcherShiny</tabstop>
-  <tabstop>checkBoxSearcherSHA1Cache</tabstop>
-  <tabstop>lineEditSearcherSHA1Cache</tabstop>
-  <tabstop>pushButtonSearcherSHA1CacheSelect</tabstop>
-  <tabstop>pushButtonSearcherSHA1CacheClear</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

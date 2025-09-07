@@ -205,9 +205,9 @@ void GameCubeSeedFinder::channelSearch()
 
     ui->pushButtonChannelSearch->setEnabled(false);
     ui->pushButtonChannelCancel->setEnabled(true);
-    ui->progressBarChannel->setRange(0, 0x60000000);
 
     auto *searcher = new ChannelSeedSearcher(criteria);
+    searcher->setMaxProgress(0xbffffffe);
 
     QSettings setting;
     int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
@@ -324,12 +324,12 @@ void GameCubeSeedFinder::coloSearch()
         QSettings setting;
         int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-        ui->progressBarColo->setRange(0, 0x10000);
+        searcher->setMaxProgress(0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
-        ui->progressBarColo->setRange(0, coloSeeds.size());
+        searcher->setMaxProgress(coloSeeds.size());
         thread = QThread::create([=] { searcher->startSearch(coloSeeds); });
     }
     connect(ui->pushButtonColoCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
@@ -448,12 +448,12 @@ void GameCubeSeedFinder::galesSearch()
         QSettings setting;
         int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-        ui->progressBarGales->setRange(0, 0x10000);
+        searcher->setMaxProgress(0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
-        ui->progressBarGales->setRange(0, galeSeeds.size());
+        searcher->setMaxProgress(galeSeeds.size());
         thread = QThread::create([=] { searcher->startSearch(galeSeeds); });
     }
     connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });

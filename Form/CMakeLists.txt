@@ -73,6 +73,7 @@ set(PROJECT_UI
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
     Gen5/Static5.ui
+    Gen5/Tools/IVCacheFinder.ui
     Gen5/Tools/SHA1CacheFinder.ui
     Gen5/Wild5.ui
     Gen8/Eggs8.ui
@@ -187,6 +188,8 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileManager5.hpp
     Gen5/Static5.cpp
     Gen5/Static5.hpp
+    Gen5/Tools/IVCacheFinder.cpp
+    Gen5/Tools/IVCacheFinder.hpp
     Gen5/Tools/SHA1CacheFinder.cpp
     Gen5/Tools/SHA1CacheFinder.hpp
     Gen5/Wild5.cpp

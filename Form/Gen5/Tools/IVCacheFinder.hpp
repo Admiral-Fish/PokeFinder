@@ -17,76 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHA1CACHEFINDER_HPP
-#define SHA1CACHEFINDER_HPP
+#ifndef IVCACHEFINDER_HPP
+#define IVCACHEFINDER_HPP
 
 #include <QWidget>
 
-class Profile5;
-
 namespace Ui
 {
-    class SHA1CacheFinder;
+    class IVCacheFinder;
 }
 
 /**
- * @brief Provides settings to generate a SHA1 seed cache
+ * @brief Provides settings to generate a IV seed cache
  */
-class SHA1CacheFinder: public QWidget
+class IVCacheFinder: public QWidget
 {
     Q_OBJECT
-signals:
-    /**
-     * @brief Emits that the profiles have been modified
-     */
-    void profilesModified(int);
-
 public:
     /**
-     * @brief Construct a new SHA1CacheFinder object
+     * @brief Construct a new IVCacheFinder object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    SHA1CacheFinder(QWidget *parent = nullptr);
+    IVCacheFinder(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the SHA1CacheFinder object
+     * @brief Destroy the IVCacheFinder object
      */
-    ~SHA1CacheFinder() override;
-
-    /**
-     * @brief Determines if any profiles exist
-     *
-     * @return true At least 1 profile exists
-     * @return false 0 profiles exist
-     */
-    bool hasProfiles() const;
-
-public slots:
-    /**
-     * @brief Reloads profiles
-     */
-    void updateProfiles();
+    ~IVCacheFinder() override;
 
 private:
-    Ui::SHA1CacheFinder *ui;
-
-    Profile5 *currentProfile;
-    std::vector<Profile5> profiles;
+    Ui::IVCacheFinder *ui;
 
 private slots:
-    /**
-     * @brief Updates displayed information for a profile.
-     *
-     * @param index Profile index
-     */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
-
     /**
      * @brief Generates the cache file for the selected profile
      */
@@ -98,4 +61,4 @@ private slots:
     void updateOutputFile();
 };
 
-#endif // SHA1CACHEFINDER_HPP
+#endif // IVCACHEFINDER_HPP
