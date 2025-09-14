@@ -80,6 +80,8 @@ public:
     /**
      * @brief Returns the SHA1 cache for the \p type
      *
+     * @param initialAdvance Initial IV advances
+     * @param maxAdvance Maximum IV advances
      * @param start Start date
      * @param end End date
      * @param ivCache Fast search IV cache
@@ -87,8 +89,8 @@ public:
      *
      * @return IV caches
      */
-    fph::MetaFphMap<u64, u64> getCache(const Date &start, const Date &end,
-                                       const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache, CacheType type);
+    fph::MetaFphMap<u64, u64> getCache(u32 initialAdvance, u32 maxAdvance, const Date &start, const Date &end,
+                                       const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type);
 
     /**
      * @brief Returns the end date

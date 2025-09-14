@@ -92,20 +92,18 @@ static std::array<u8, 6> computeIVs(u32 seed, u8 advance, CacheType type)
  *
  * @return IV caches
  */
-std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter)
+static fph::MetaFphMap<u64, std::array<u8, 6>> getEntralinkCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter)
 {
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> cache;
+    fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
     u32 size;
     auto *data = Utilities::decompress<SeedCache>(IVS.data(), IVS.size(), size);
 
     u32 index = 0;
 
-    for (u32 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < cache.size(); i++)
+    for (u64 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < 6; i++)
     {
         u16 count = data->entralinkCount[i];
-
-        cache[i].reserve(count);
 
         for (u16 j = 0; j < count; j++)
         {
@@ -113,14 +111,15 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 ini
             auto ivs = computeIVs(seed, i, CacheType::Entralink);
             if (compareIVs(ivs, filter))
             {
-                cache[i].emplace(seed, ivs);
+                cache.emplace((i << 32) | seed, ivs);
             }
         }
-        cache[i].max_load_factor(cache[i].max_load_factor_upper_limit());
-        cache[i].rehash(cache[i].size());
 
         index += count;
     }
+
+    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.rehash(cache.size());
 
     delete[] data;
     return cache;
@@ -136,10 +135,9 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 ini
  *
  * @return IV caches
  */
-std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initialAdvance, u32 maxAdvance, Game version,
-                                                                      const StateFilter &filter)
+static fph::MetaFphMap<u64, std::array<u8, 6>> getNormalCache(u32 initialAdvance, u32 maxAdvance, Game version, const StateFilter &filter)
 {
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> cache;
+    fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
     bool bw = (version & Game::BW) != Game::None;
 
@@ -152,11 +150,9 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initia
         index += data->normalCount[0] + data->normalCount[1];
     }
 
-    for (u32 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < cache.size(); i++)
+    for (u64 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < 6; i++)
     {
         u16 count = data->normalCount[i + (bw ? 0 : 2)];
-
-        cache[i].reserve(count);
 
         for (u16 j = 0; j < count; j++)
         {
@@ -164,14 +160,15 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initia
             auto ivs = computeIVs(seed, i + (bw ? 0 : 2), CacheType::Normal);
             if (compareIVs(ivs, filter))
             {
-                cache[i].emplace(seed, ivs);
+                cache.emplace((i << 32) | seed, ivs);
             }
         }
-        cache[i].max_load_factor(cache[i].max_load_factor_upper_limit());
-        cache[i].rehash(cache[i].size());
 
         index += count;
     }
+
+    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.rehash(cache.size());
 
     delete[] data;
     return cache;
@@ -186,9 +183,9 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initia
  *
  * @return IV caches
  */
-std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter)
+static fph::MetaFphMap<u64, std::array<u8, 6>> getRoamerCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter)
 {
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> cache;
+    fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
     u32 size;
     auto *data = Utilities::decompress<SeedCache>(IVS.data(), IVS.size(), size);
@@ -196,11 +193,9 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initia
     u32 index = std::accumulate(data->normalCount.begin(), data->normalCount.end(),
                                 std::accumulate(data->entralinkCount.begin(), data->entralinkCount.end(), 0));
 
-    for (u32 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < cache.size(); i++)
+    for (u64 i = initialAdvance; i <= (initialAdvance + maxAdvance) && i < 6; i++)
     {
         u16 count = data->roamerCount[i];
-
-        cache[i].reserve(count);
 
         for (u16 j = 0; j < count; j++)
         {
@@ -208,14 +203,15 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initia
             auto ivs = computeIVs(seed, i, CacheType::Roamer);
             if (compareIVs(ivs, filter))
             {
-                cache[i].emplace(seed, ivs);
+                cache.emplace((i << 32) | seed, ivs);
             }
         }
-        cache[i].max_load_factor(cache[i].max_load_factor_upper_limit());
-        cache[i].rehash(cache[i].size());
 
         index += count;
     }
+
+    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.rehash(cache.size());
 
     delete[] data;
     return cache;
@@ -223,8 +219,8 @@ std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initia
 
 namespace IVSeedCache
 {
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
-                                                                    const StateFilter &filter)
+    fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
+                                                     const StateFilter &filter)
     {
         if (type == CacheType::Entralink)
         {

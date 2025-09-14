@@ -310,7 +310,8 @@ void Static5::search()
         if (sha1Cache.valid(*currentProfile))
         {
             searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(
-                initialIVAdvances, maxIVAdvances, sha1Cache.getCache(start, end, ivCache, type), ivCache, generator, *currentProfile);
+                initialIVAdvances, maxIVAdvances, sha1Cache.getCache(initialIVAdvances, maxIVAdvances, start, end, ivCache, type), ivCache,
+                generator, *currentProfile);
         }
         else
         {

@@ -51,12 +51,12 @@ namespace IVSeedCache
      *
      * @return IV caches
      */
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
-                                                                    const StateFilter &filter);
+    fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
+                                                     const StateFilter &filter);
 
     /**
      * @brief Returns the IV cache seeds for the \p type
-     * 
+     *
      * @param version Game version
      * @param type What cache type to get
      *

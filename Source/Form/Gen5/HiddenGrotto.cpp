@@ -544,9 +544,10 @@ void HiddenGrotto::pokemonSearch()
 
         if (sha1Cache.valid(*currentProfile))
         {
-            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances,
-                                                                               sha1Cache.getCache(start, end, ivCache, CacheType::Normal),
-                                                                               ivCache, generator, *currentProfile);
+            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(
+                initialIVAdvances, maxIVAdvances,
+                sha1Cache.getCache(initialIVAdvances, maxIVAdvances, start, end, ivCache, CacheType::Normal), ivCache, generator,
+                *currentProfile);
         }
         else
         {

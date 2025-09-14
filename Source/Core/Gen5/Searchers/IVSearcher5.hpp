@@ -172,14 +172,14 @@ public:
      * @param generator State generator
      * @param profile Profile information
      */
-    IVSearcher5Fast(u32 initialAdvances, u32 maxAdvances, const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache,
+    IVSearcher5Fast(u32 initialAdvances, u32 maxAdvances, const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache,
                     const Generator &generator, const Profile5 &profile) :
         SearcherBase5<Generator, State>(generator, profile), ivCache(ivCache), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
     {
     }
 
 private:
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> ivCache;
+    fph::MetaFphMap<u64, std::array<u8, 6>> ivCache;
     u32 initialAdvances;
     u32 maxAdvances;
 
@@ -217,10 +217,10 @@ private:
 
                             for (u32 i = 0; i < seeds.size(); i++)
                             {
-                                for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                                for (u64 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
                                 {
-                                    const auto entry = ivCache[j].find(seeds[i] >> 32);
-                                    if (entry == ivCache[j].end())
+                                    const auto entry = ivCache.find((j << 32) | (seeds[i] >> 32));
+                                    if (entry == ivCache.end())
                                     {
                                         continue;
                                     }
@@ -271,10 +271,10 @@ private:
 
                             for (u32 i = 0; i < seeds.size(); i++)
                             {
-                                for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                                for (u64 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
                                 {
-                                    const auto entry = ivCache[j].find(seeds[i] >> 32);
-                                    if (entry == ivCache[j].end())
+                                    const auto entry = ivCache.find((j << 32) | (seeds[i] >> 32));
+                                    if (entry == ivCache.end())
                                     {
                                         continue;
                                     }
@@ -323,8 +323,7 @@ public:
      * @param profile Profile information
      */
     IVSearcher5CacheFast(u32 initialAdvances, u32 maxAdvances, const fph::MetaFphMap<u64, u64> &sha1Cache,
-                         const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache, const Generator &generator,
-                         const Profile5 &profile) :
+                         const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, const Generator &generator, const Profile5 &profile) :
         SearcherBase5<Generator, State>(generator, profile),
         sha1Cache(sha1Cache),
         ivCache(ivCache),
@@ -335,7 +334,7 @@ public:
 
 private:
     fph::MetaFphMap<u64, u64> sha1Cache;
-    std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> ivCache;
+    fph::MetaFphMap<u64, std::array<u8, 6>> ivCache;
     u32 initialAdvances;
     u32 maxAdvances;
 
@@ -373,10 +372,10 @@ private:
                         }
 
                         u64 seed = sha1Entry->second;
-                        for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances) && j < ivCache.size(); j++)
+                        for (u64 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
                         {
-                            const auto ivEntry = ivCache[j].find(seed >> 32);
-                            if (ivEntry == ivCache[j].end())
+                            const auto ivEntry = ivCache.find((j << 32) | (seed >> 32));
+                            if (ivEntry == ivCache.end())
                             {
                                 continue;
                             }

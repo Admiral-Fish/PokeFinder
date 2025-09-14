@@ -357,9 +357,10 @@ void Wild5::search()
 
         if (sha1Cache.valid(*currentProfile))
         {
-            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances,
-                                                                            sha1Cache.getCache(start, end, ivCache, CacheType::Normal),
-                                                                            ivCache, generator, *currentProfile);
+            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(
+                initialIVAdvances, maxIVAdvances,
+                sha1Cache.getCache(initialIVAdvances, maxIVAdvances, start, end, ivCache, CacheType::Normal), ivCache, generator,
+                *currentProfile);
         }
         else
         {

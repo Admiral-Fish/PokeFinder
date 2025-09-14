@@ -61,8 +61,8 @@ SHA1Cache::~SHA1Cache()
     }
 }
 
-fph::MetaFphMap<u64, u64> SHA1Cache::getCache(const Date &start, const Date &end,
-                                              const std::array<fph::MetaFphMap<u32, std::array<u8, 6>>, 6> &ivCache, CacheType type)
+fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance, const Date &start, const Date &end,
+                                              const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type)
 {
     fph::MetaFphMap<u64, u64> cache;
 
@@ -87,12 +87,15 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(const Date &start, const Date &end
     for (u32 i = 0; i < count; i++)
     {
         const auto &entry = &data[index + i];
-        if (entry->key.date >= (start.getJD() - Date().getJD()) && entry->key.date <= (end.getJD() - Date().getJD())
-            && std::any_of(ivCache.begin(), ivCache.end(), [entry](const fph::MetaFphMap<u32, std::array<u8, 6>> &map) {
-                   return map.find(entry->seed >> 32) != map.end();
-               }))
+        if (entry->key.date >= (start.getJD() - Date().getJD()) && entry->key.date <= (end.getJD() - Date().getJD()))
         {
-            cache.emplace(entry->key.key, entry->seed);
+            for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance) && j < 6; j++)
+            {
+                if (ivCache.contains((j << 32) | (entry->seed >> 32)))
+                {
+                    cache.emplace(entry->key.key, entry->seed);
+                }
+            }
         }
     }
 
