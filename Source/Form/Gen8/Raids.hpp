@@ -55,6 +55,7 @@ public:
      */
     ~Raids() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

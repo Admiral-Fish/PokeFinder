@@ -57,6 +57,7 @@ public:
      */
     ~Eggs4() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

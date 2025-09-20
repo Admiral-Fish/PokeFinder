@@ -558,16 +558,16 @@
  <tabstops>
   <tabstop>tabWidgetType</tabstop>
   <tabstop>spinBoxMinHP</tabstop>
-  <tabstop>spinBoxMinAtk</tabstop>
-  <tabstop>spinBoxMinDef</tabstop>
-  <tabstop>spinBoxMinSpA</tabstop>
-  <tabstop>spinBoxMinSpD</tabstop>
-  <tabstop>spinBoxMinSpe</tabstop>
   <tabstop>spinBoxMaxHP</tabstop>
+  <tabstop>spinBoxMinAtk</tabstop>
   <tabstop>spinBoxMaxAtk</tabstop>
+  <tabstop>spinBoxMinDef</tabstop>
   <tabstop>spinBoxMaxDef</tabstop>
+  <tabstop>spinBoxMinSpA</tabstop>
   <tabstop>spinBoxMaxSpA</tabstop>
+  <tabstop>spinBoxMinSpD</tabstop>
   <tabstop>spinBoxMaxSpD</tabstop>
+  <tabstop>spinBoxMinSpe</tabstop>
   <tabstop>spinBoxMaxSpe</tabstop>
   <tabstop>pushButtonIVCalculator</tabstop>
   <tabstop>pushButtonUpLeft</tabstop>

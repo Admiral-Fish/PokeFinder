@@ -1160,8 +1160,8 @@
                 "pokemon": 10,
                 "results": [
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 0,
                         "gender": 0,
                         "hiddenPower": 5,
@@ -1216,8 +1216,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 2,
                         "gender": 0,
                         "hiddenPower": 5,
@@ -1272,8 +1272,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 4,
                         "gender": 0,
                         "hiddenPower": 5,
@@ -1300,8 +1300,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 5,
                         "gender": 1,
                         "hiddenPower": 4,
@@ -1328,8 +1328,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 6,
                         "gender": 0,
                         "hiddenPower": 5,
@@ -1356,8 +1356,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 7,
                         "gender": 1,
                         "hiddenPower": 4,
@@ -1384,8 +1384,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 8,
                         "gender": 0,
                         "hiddenPower": 5,
@@ -1412,8 +1412,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 115,
+                        "ability": 0,
+                        "abilityIndex": 47,
                         "advances": 9,
                         "gender": 1,
                         "hiddenPower": 4,
@@ -3466,8 +3466,8 @@
                 "pokemon": 5,
                 "results": [
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 0,
                         "gender": 0,
                         "hiddenPower": 9,
@@ -3494,8 +3494,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 1,
                         "gender": 0,
                         "hiddenPower": 6,
@@ -3578,8 +3578,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 4,
                         "gender": 0,
                         "hiddenPower": 7,
@@ -3662,8 +3662,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 7,
                         "gender": 0,
                         "hiddenPower": 12,
@@ -3690,8 +3690,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 8,
                         "gender": 0,
                         "hiddenPower": 3,
@@ -3718,8 +3718,8 @@
                         ]
                     },
                     {
-                        "ability": 1,
-                        "abilityIndex": 91,
+                        "ability": 0,
+                        "abilityIndex": 50,
                         "advances": 9,
                         "gender": 0,
                         "hiddenPower": 5,

@@ -57,6 +57,7 @@ public:
      */
     ~GameCube() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

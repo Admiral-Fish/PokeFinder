@@ -68,6 +68,7 @@ public:
      */
     bool hasProfiles() const;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
@@ -185,6 +186,18 @@ private slots:
      * @param index Pokemon index
      */
     void pokemonSearcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Prompts user to select SHA1 cache file
+     */
+    void pokemonSearcherSelectSHA1Cache();
+
+    /**
+     * @brief Updates enabled controls for SHA1 cache
+     *
+     * @param state Checked state
+     */
+    void pokemonSearcherSHA1CacheStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates displayed information for a profile

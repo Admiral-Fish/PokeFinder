@@ -57,6 +57,7 @@ public:
      */
     ~Underground() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

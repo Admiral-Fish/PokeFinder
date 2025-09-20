@@ -1141,7 +1141,7 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonSearcherLocation"/>
               </item>
               <item row="1" column="0">
@@ -1151,7 +1151,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="1" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxPokemonSearcherGroup">
                 <item>
                  <property name="text">
@@ -1182,7 +1182,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="2" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonSearcherPokemon"/>
               </item>
               <item row="3" column="0">
@@ -1192,13 +1192,57 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="3" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonSearcherGender"/>
               </item>
-              <item row="4" column="0" colspan="2">
+              <item row="4" column="0" colspan="3">
+               <widget class="Line" name="line_5">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0" colspan="3">
                <widget class="QLabel" name="labelPokemonSearcherIVFastSearch">
                 <property name="text">
                  <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QCheckBox" name="checkBoxPokemonSearcherSHA1Cache">
+                <property name="text">
+                 <string>SHA1 Cache</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditPokemonSearcherSHA1Cache">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QPushButton" name="pushButtonPokemonSearcherSHA1CacheSelect">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>Select File</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QPushButton" name="pushButtonPokemonSearcherSHA1CacheClear">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>Clear</string>
                 </property>
                </widget>
               </item>
@@ -1339,6 +1383,10 @@
   <tabstop>comboBoxPokemonSearcherGroup</tabstop>
   <tabstop>comboBoxPokemonSearcherPokemon</tabstop>
   <tabstop>comboBoxPokemonSearcherGender</tabstop>
+  <tabstop>checkBoxPokemonSearcherSHA1Cache</tabstop>
+  <tabstop>lineEditPokemonSearcherSHA1Cache</tabstop>
+  <tabstop>pushButtonPokemonSearcherSHA1CacheSelect</tabstop>
+  <tabstop>pushButtonPokemonSearcherSHA1CacheClear</tabstop>
   <tabstop>tableViewPokemonSearcher</tabstop>
  </tabstops>
  <resources/>

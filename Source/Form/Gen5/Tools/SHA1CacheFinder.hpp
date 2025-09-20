@@ -17,23 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDS5_HPP
-#define IDS5_HPP
+#ifndef SHA1CACHEFINDER_HPP
+#define SHA1CACHEFINDER_HPP
 
 #include <QWidget>
 
-class IDModel5;
 class Profile5;
 
 namespace Ui
 {
-    class IDs5;
+    class SHA1CacheFinder;
 }
 
 /**
- * @brief Provides settings and filters to RNG TID/SID in Gen 5 games
+ * @brief Provides settings to generate a SHA1 seed cache
  */
-class IDs5 : public QWidget
+class SHA1CacheFinder: public QWidget
 {
     Q_OBJECT
 signals:
@@ -44,16 +43,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new IDs5 object
+     * @brief Construct a new SHA1CacheFinder object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    IDs5(QWidget *parent = nullptr);
+    SHA1CacheFinder(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the IDs5 object
+     * @brief Destroy the SHA1CacheFinder object
      */
-    ~IDs5() override;
+    ~SHA1CacheFinder() override;
 
     /**
      * @brief Determines if any profiles exist
@@ -70,32 +69,14 @@ public slots:
     void updateProfiles();
 
 private:
-    Ui::IDs5 *ui;
+    Ui::SHA1CacheFinder *ui;
 
-    IDModel5 *model;
     Profile5 *currentProfile;
     std::vector<Profile5> profiles;
 
 private slots:
     /**
-     * @brief Lists possible candidates for the TID obtained
-     */
-    void find();
-
-    /**
-     * @brief Searches and displays results
-     */
-    void search();
-
-    /**
-     * @brief Toggles whether or not the XOR check controls are enabled
-     *
-     * @param checked Whether or not to enable
-     */
-    void setXOR(bool checked);
-
-    /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates displayed information for a profile.
      *
      * @param index Profile index
      */
@@ -105,6 +86,17 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
+
+    /**
+     * @brief Generates the cache file for the selected profile
+     */
+    void search();
+
+    /**
+     * @brief Prompts user to select a file to output the cache to
+     */
+    void updateOutputFile();
 };
 
-#endif // IDS5_HPP
+#endif // SHA1CACHEFINDER_HPP
+

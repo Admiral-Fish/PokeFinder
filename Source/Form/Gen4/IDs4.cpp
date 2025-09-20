@@ -47,7 +47,7 @@ IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
     ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
-    ui->idFilter->enableTIDPID();
+    ui->idFilter->toggleTIDPID(true);
 
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &IDs4::seedToTime);

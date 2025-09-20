@@ -54,7 +54,7 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
 
     if (state.getHeight() < heightMin || state.getHeight() > heightMax)
     {
-    return false;
+        return false;
     }
 
     if (state.getWeight() < weightMin || state.getWeight() > weightMax)

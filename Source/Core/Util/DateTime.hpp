@@ -344,7 +344,7 @@ public:
     }
 
 private:
-    int md;
+    u32 md;
 
     friend class DateTime;
 };

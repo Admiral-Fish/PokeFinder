@@ -39,4 +39,4 @@ else ()
     )
 endif ()
 
-target_link_libraries(PokeFinder PRIVATE PokeFinderForm Qt6::Core Qt6::Widgets)
+target_link_libraries(PokeFinder PRIVATE PokeFinderCore PokeFinderForm Qt6::Core Qt6::Widgets)
