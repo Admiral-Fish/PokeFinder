@@ -55,14 +55,9 @@ public:
     void enableDisplayTID();
 
     /**
-     * @brief Enables showing of the TID/PID filter settings
+     * @brief Enables showing/hiding of the TID/PID filter settings
      */
-    void enableTIDPID();
-
-    /**
-     * @brief Disables showing of the TID/PID filter settings
-     */
-    void disableTIDPID();
+    void toggleTIDPID(bool enable);
 
     /**
      * @brief Gets settings to filter by

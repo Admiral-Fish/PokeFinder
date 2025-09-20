@@ -70,6 +70,13 @@ private slots:
     void generateRS();
 
     /**
+     * @brief Hides/Shows TID/PID filter setting
+     *
+     * @param index Tab index
+     */
+    void tabIndexChanged(int index);
+
+    /**
      * @brief Toggles whether controls related to dead battery are enabled or not
      *
      * @param checked True if dead battery is enabled, false otherwise
@@ -89,13 +96,6 @@ private slots:
      * @param checked True if seed is enabled, false otherwise
      */
     void toggleSeedRS(bool checked);
-
-    /**
-     * @brief Hides/Shows TID/PID filter setting
-     *
-     * @param index Tab index
-     */
-    void tabIndexChanged(int index);
 };
 
 #endif // IDS3_HPP

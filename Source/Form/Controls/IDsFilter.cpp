@@ -43,14 +43,9 @@ void IDsFilter::enableDisplayTID()
     ui->radioButtonDisplayTID->setVisible(true);
 }
 
-void IDsFilter::enableTIDPID()
+void IDsFilter::toggleTIDPID(bool flag)
 {
-    ui->radioButtonTIDPID->setVisible(true);
-}
-
-void IDsFilter::disableTIDPID()
-{
-    ui->radioButtonTIDPID->setVisible(false);
+    ui->radioButtonTIDPID->setVisible(flag);
 }
 
 IDFilter IDsFilter::getFilter(bool pastGen) const

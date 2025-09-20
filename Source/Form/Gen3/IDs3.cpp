@@ -127,6 +127,11 @@ void IDs3::generateRS()
     model->addItems(states);
 }
 
+void IDs3::tabIndexChanged(int index)
+{
+    ui->idFilter->toggleTIDPID(index != 1);
+}
+
 void IDs3::toggleDeadBatteryRS(bool checked)
 {
     ui->radioButtonDateTimeRS->setEnabled(!checked);
@@ -143,16 +148,4 @@ void IDs3::toggleDateTimeRS(bool checked)
 void IDs3::toggleSeedRS(bool checked)
 {
     ui->textBoxSeedRS->setEnabled(checked);
-}
-
-void IDs3::tabIndexChanged(int index)
-{
-    if (index == 1)
-    {
-        ui->idFilter->disableTIDPID();
-    }
-    else
-    {
-        ui->idFilter->enableTIDPID();
-    }
 }
