@@ -22,22 +22,22 @@
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
+#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const WildSearcherState &left, const WildGeneratorState &right)
+static bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
 {
-    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
-        && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny()
-        && left.getSpecie() == right.getSpecie() && left.getEncounterSlot() == right.getEncounterSlot()
-        && left.getForm() == right.getForm();
+    return left.getPidRollCount() == right.getPidRollCount() && left.getPID() == right.getPID() && left.getStats() == right.getStats()
+        && left.getAbilityIndex() == right.getAbilityIndex() && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility()
+        && left.getGender() == right.getGender() && left.getHiddenPower() == right.getHiddenPower()
+        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength() && left.getLevel() == right.getLevel()
+        && left.getNature() == right.getNature() && left.getShiny() == right.getShiny() && left.getSpecie() == right.getSpecie()
+        && left.getEncounterSlot() == right.getEncounterSlot() && left.getForm() == right.getForm();
 }
 
 static constexpr Lead operator+(Lead lead, u8 val)

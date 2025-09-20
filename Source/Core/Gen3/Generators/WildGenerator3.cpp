@@ -22,9 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -40,9 +40,9 @@ WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset,
 {
 }
 
-std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
+std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed) const
 {
-    std::vector<WildGeneratorState> states;
+    std::vector<WildGeneratorState3> states;
 
     auto modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
@@ -122,10 +122,12 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
         u8 nature;
         u32 pid;
+        u32 pidRollCount = 0;
         if (tanoby)
         {
             do
             {
+                pidRollCount++;
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (low << 16) | high;
@@ -155,6 +157,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
             do
             {
+                pidRollCount++;
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
@@ -181,8 +184,9 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        WildGeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                 Utilities::getShiny<true>(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
+        WildGeneratorState3 state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                  Utilities::getShiny<true>(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), pidRollCount,
+                                  info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
