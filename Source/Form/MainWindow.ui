@@ -224,7 +224,7 @@
      <x>0</x>
      <y>0</y>
      <width>358</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
@@ -265,6 +265,7 @@
     </property>
     <addaction name="actionProfileCalibrator"/>
     <addaction name="actionProfileManager5"/>
+    <addaction name="actionSHA1Cache"/>
    </widget>
    <widget class="QMenu" name="menuGen8Tools">
     <property name="title">
@@ -382,6 +383,11 @@
   <action name="actionJirachiAdvancer">
    <property name="text">
     <string>Jirachi Advancer</string>
+   </property>
+  </action>
+  <action name="actionSHA1Cache">
+   <property name="text">
+    <string>SHA1 Cache</string>
    </property>
   </action>
  </widget>

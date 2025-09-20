@@ -72,130 +72,128 @@ namespace Encounters3
     std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version)
     {
         u32 length;
-        u8 *data;
+        const WildEncounter3 *data;
 
         if (version == Game::Emerald)
         {
-            data = Utilities::decompress(EMERALD.data(), EMERALD.size(), length);
+            data = Utilities::decompress<WildEncounter3>(EMERALD.data(), EMERALD.size(), length);
         }
         else if (version == Game::FireRed)
         {
-            data = Utilities::decompress(FIRERED.data(), FIRERED.size(), length);
+            data = Utilities::decompress<WildEncounter3>(FIRERED.data(), FIRERED.size(), length);
         }
         else if (version == Game::LeafGreen)
         {
-            data = Utilities::decompress(LEAFGREEN.data(), LEAFGREEN.size(), length);
+            data = Utilities::decompress<WildEncounter3>(LEAFGREEN.data(), LEAFGREEN.size(), length);
         }
         else if (version == Game::Ruby)
         {
-            data = Utilities::decompress(RUBY.data(), RUBY.size(), length);
+            data = Utilities::decompress<WildEncounter3>(RUBY.data(), RUBY.size(), length);
         }
         else
         {
-            data = Utilities::decompress(SAPPHIRE.data(), SAPPHIRE.size(), length);
+            data = Utilities::decompress<WildEncounter3>(SAPPHIRE.data(), SAPPHIRE.size(), length);
         }
 
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea3> encounters;
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter3))
+        for (size_t i = 0; i < length; i++)
         {
-            const auto *entry = reinterpret_cast<const WildEncounter3 *>(data + offset);
-
             std::array<Slot, 12> slots;
             switch (encounter)
             {
             case Encounter::Grass:
-                if (entry->grassRate != 0)
+                if (data[i].grassRate != 0)
                 {
-                    for (size_t i = 0; i < 12; i++)
+                    for (size_t j = 0; j < 12; j++)
                     {
-                        const auto &slot = entry->grass[i];
-                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level, &info[slot.specie & 0x7ff]);
+                        const auto &slot = data[i].grass[j];
+                        slots[j] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level, &info[slot.specie & 0x7ff]);
                     }
-                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].grassRate, encounter, slots);
                 }
                 break;
             case Encounter::Surfing:
-                if (entry->surfRate != 0)
+                if (data[i].surfRate != 0)
                 {
-                    for (size_t i = 0; i < 5; i++)
+                    for (size_t j = 0; j < 5; j++)
                     {
-                        const auto &slot = entry->surf[i];
-                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = data[i].surf[j];
+                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
-                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].surfRate, encounter, slots);
                 }
                 break;
             case Encounter::RockSmash:
-                if (entry->rockRate != 0)
+                if (data[i].rockRate != 0)
                 {
-                    for (size_t i = 0; i < 5; i++)
+                    for (size_t j = 0; j < 5; j++)
                     {
-                        const auto &slot = entry->rock[i];
-                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = data[i].rock[j];
+                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
-                    encounters.emplace_back(entry->location, entry->rockRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].rockRate, encounter, slots);
                 }
                 break;
             case Encounter::OldRod:
-                if (entry->fishRate != 0)
+                if (data[i].fishRate != 0)
                 {
-                    for (size_t i = 0; i < 2; i++)
+                    for (size_t j = 0; j < 2; j++)
                     {
-                        const auto &slot = entry->old[i];
-                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = data[i].old[j];
+                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Route 119
                     if (settings.feebasTile
-                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
-                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                        && (((version & Game::Emerald) != Game::None && data[i].location == 33)
+                            || ((version & Game::RS) != Game::None && data[i].location == 73)))
                     {
                         slots[2] = Slot(349, 20, 25, &info[349]);
                     }
 
-                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].fishRate, encounter, slots);
                 }
                 break;
             case Encounter::GoodRod:
-                if (entry->fishRate != 0)
+                if (data[i].fishRate != 0)
                 {
-                    for (size_t i = 0; i < 3; i++)
+                    for (size_t j = 0; j < 3; j++)
                     {
-                        const auto &slot = entry->good[i];
-                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = data[i].good[j];
+                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Route 119
                     if (settings.feebasTile
-                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
-                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                        && (((version & Game::Emerald) != Game::None && data[i].location == 33)
+                            || ((version & Game::RS) != Game::None && data[i].location == 73)))
                     {
                         slots[3] = Slot(349, 20, 25, &info[349]);
                     }
 
-                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].fishRate, encounter, slots);
                 }
                 break;
             case Encounter::SuperRod:
-                if (entry->fishRate != 0)
+                if (data[i].fishRate != 0)
                 {
-                    for (size_t i = 0; i < 5; i++)
+                    for (size_t j = 0; j < 5; j++)
                     {
-                        const auto &slot = entry->super[i];
-                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = data[i].super[j];
+                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Route 119
                     if (settings.feebasTile
-                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
-                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                        && (((version & Game::Emerald) != Game::None && data[i].location == 33)
+                            || ((version & Game::RS) != Game::None && data[i].location == 73)))
                     {
                         slots[5] = Slot(349, 20, 25, &info[349]);
                     }
 
-                    encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
+                    encounters.emplace_back(data[i].location, data[i].fishRate, encounter, slots);
                 }
                 break;
             default:
@@ -209,22 +207,20 @@ namespace Encounters3
     std::vector<EncounterArea> getPokeSpotEncounters()
     {
         u32 length;
-        u8 *data = Utilities::decompress(XD.data(), XD.size(), length);
+        auto *data = Utilities::decompress<WildEncounterPokeSpot>(XD.data(), XD.size(), length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::Gen3);
 
         std::vector<EncounterArea> encounters;
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterPokeSpot))
+        for (size_t i = 0; i < length; i++)
         {
-            const auto *entry = reinterpret_cast<const WildEncounterPokeSpot *>(data + offset);
-
             std::array<Slot, 12> slots;
-            for (size_t i = 0; i < 3; i++)
+            for (size_t j = 0; j < 3; j++)
             {
-                const auto &slot = entry->spot[i];
-                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                const auto &slot = data[i].spot[j];
+                slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
-            encounters.emplace_back(entry->location, 0, Encounter::Grass, slots);
+            encounters.emplace_back(data[i].location, 0, Encounter::Grass, slots);
         }
         delete[] data;
         return encounters;

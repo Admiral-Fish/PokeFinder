@@ -36,9 +36,8 @@ void ChainedSIDCalc::addEntry(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u16
 {
     std::vector<std::pair<u32, u32>> pids;
 
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
-    for (int i = 0; i < size; i++)
+    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
+    for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
 

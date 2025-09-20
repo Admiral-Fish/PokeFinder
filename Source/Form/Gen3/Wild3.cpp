@@ -34,6 +34,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
 #include <QThread>
@@ -46,9 +47,10 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 
     generatorModel = new WildGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel3(ui->tableViewSearcher);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);

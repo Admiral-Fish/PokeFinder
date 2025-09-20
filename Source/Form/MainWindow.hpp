@@ -59,6 +59,27 @@ namespace Ui
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+signals:
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified3();
+
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified4();
+
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified5();
+
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified8();
+
 public:
     /**
      * @brief Construct a new MainWindow object
@@ -270,6 +291,11 @@ private slots:
      * @brief Opens the Gen 5 Profile Manager window
      */
     void openProfileManager5() const;
+
+    /**
+     * @brief Opens the Gen 5 SHA1 Cache Finder window
+     */
+    void openSHA1CacheFinder() const;
 
     // Gen 8
     /**

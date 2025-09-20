@@ -35,6 +35,7 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
+#include <Model/ProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -47,9 +48,10 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
+    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);

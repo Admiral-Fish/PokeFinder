@@ -24,6 +24,7 @@
 
 class EncounterArea5;
 class Profile5;
+class ProxyModel;
 class WildGeneratorModel5;
 class WildSearcherModel5;
 
@@ -65,6 +66,7 @@ public:
      */
     bool hasProfiles() const;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
@@ -74,6 +76,7 @@ private:
     Ui::Wild5 *ui;
 
     Profile5 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<EncounterArea5> encounterGenerator;
     std::vector<EncounterArea5> encounterSearcher;
     std::vector<Profile5> profiles;
@@ -172,6 +175,18 @@ private slots:
      * @param index Season index
      */
     void searcherSeasonIndexChanged(int index);
+
+    /**
+     * @brief Prompts user to select SHA1 cache file
+     */
+    void searcherSelectSHA1Cache();
+
+    /**
+     * @brief Updates enabled controls for SHA1 cache
+     *
+     * @param state Checked state
+     */
+    void searcherSHA1CacheStateChanged(Qt::CheckState state);
 };
 
 #endif // WILD5_HPP

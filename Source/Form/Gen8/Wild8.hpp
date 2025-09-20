@@ -56,6 +56,7 @@ public:
      */
     ~Wild8() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

@@ -25,6 +25,7 @@
 class EventGeneratorModel4;
 class EventSearcherModel4;
 class Profile4;
+class ProxyModel;
 
 namespace Ui
 {
@@ -56,6 +57,7 @@ public:
      */
     ~Event4() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
@@ -67,6 +69,7 @@ private:
     EventGeneratorModel4 *generatorModel;
     EventSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
+    ProxyModel *proxyModel;
     std::vector<Profile4> profiles;
 
 private slots:

@@ -28,6 +28,7 @@ class HiddenGrottoSearcherModel5;
 class HiddenGrottoSlotGeneratorModel5;
 class HiddenGrottoSlotSearcherModel5;
 class Profile5;
+class ProxyModel;
 
 namespace Ui
 {
@@ -67,6 +68,7 @@ public:
      */
     bool hasProfiles() const;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
@@ -81,6 +83,8 @@ private:
     HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;
     HiddenGrottoSearcherModel5 *pokemonSearcherModel;
     Profile5 *currentProfile;
+    ProxyModel *grottoProxyModel;
+    ProxyModel *pokemonProxyModel;
     std::vector<Profile5> profiles;
 
     /**
@@ -182,6 +186,18 @@ private slots:
      * @param index Pokemon index
      */
     void pokemonSearcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Prompts user to select SHA1 cache file
+     */
+    void pokemonSearcherSelectSHA1Cache();
+
+    /**
+     * @brief Updates enabled controls for SHA1 cache
+     *
+     * @param state Checked state
+     */
+    void pokemonSearcherSHA1CacheStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates displayed information for a profile

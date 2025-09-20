@@ -70,6 +70,7 @@ add_library(PokeFinderModel STATIC
     Gen8/UndergroundModel.hpp
     Gen8/WildModel8.cpp
     Gen8/WildModel8.hpp
+    ProxyModel.hpp
     TableModel.hpp
     Util/IVToPIDModel.cpp
     Util/IVToPIDModel.hpp

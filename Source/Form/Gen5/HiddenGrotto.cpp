@@ -27,6 +27,7 @@
 #include <Core/Gen5/IVSeedCache.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
 #include <Core/Gen5/Searchers/Searcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
@@ -35,6 +36,8 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
+#include <Model/ProxyModel.hpp>
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -49,7 +52,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->tableViewGrottoGenerator->setModel(grottoGeneratorModel);
 
     grottoSearcherModel = new HiddenGrottoSlotSearcherModel5(ui->tableViewGrottoSearcher);
-    ui->tableViewGrottoSearcher->setModel(grottoSearcherModel);
+    grottoProxyModel = new ProxyModel(ui->tableViewGrottoSearcher, grottoSearcherModel);
+    ui->tableViewGrottoSearcher->setModel(grottoProxyModel);
 
     ui->textBoxGrottoGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGrottoGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
@@ -70,7 +74,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->tableViewPokemonGenerator->setModel(pokemonGeneratorModel);
 
     pokemonSearcherModel = new HiddenGrottoSearcherModel5(ui->tableViewPokemonSearcher);
-    ui->tableViewPokemonSearcher->setModel(pokemonSearcherModel);
+    pokemonProxyModel = new ProxyModel(ui->tableViewPokemonSearcher, pokemonSearcherModel);
+    ui->tableViewPokemonSearcher->setModel(pokemonProxyModel);
 
     ui->textBoxPokemonGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxPokemonGeneratorIVAdvances->setValues(InputType::Advance32Bit);
@@ -119,6 +124,10 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     connect(ui->filterPokemonSearcher, &Filter::ivsChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->textBoxPokemonSearcherInitialIVAdvances, &TextBox::textChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->textBoxPokemonSearcherMaxIVAdvances, &TextBox::textChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
+    connect(ui->checkBoxPokemonSearcherSHA1Cache, &QCheckBox::checkStateChanged, this, &HiddenGrotto::pokemonSearcherSHA1CacheStateChanged);
+    connect(ui->pushButtonPokemonSearcherSHA1CacheSelect, &QPushButton::clicked, this, &HiddenGrotto::pokemonSearcherSelectSHA1Cache);
+    connect(ui->pushButtonPokemonSearcherSHA1CacheClear, &QPushButton::clicked, this,
+            [=]() { ui->lineEditPokemonSearcherSHA1Cache->clear(); });
 
     std::vector<u16> locs;
     std::transform(encounter.begin(), encounter.end(), std::back_inserter(locs),
@@ -527,11 +536,24 @@ void HiddenGrotto::pokemonSearch()
     auto filter = ui->filterPokemonSearcher->getFilter<StateFilter>();
     HiddenGrottoGenerator generator(initialAdvances, maxAdvances, 0, lead, gender, slot, *currentProfile, filter);
 
-    IVSearcher5<HiddenGrottoGenerator, State5> *searcher;
+    SearcherBase5<HiddenGrottoGenerator, State5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivCache = IVSeedCache::getNormalCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), filter);
-        searcher = new IVSearcher5<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
+        auto sha1Cache = SHA1Cache(ui->lineEditPokemonSearcherSHA1Cache->text().toStdString(), true);
+        auto ivCache = IVSeedCache::getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
+
+        if (sha1Cache.valid(*currentProfile))
+        {
+            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(
+                initialIVAdvances, maxIVAdvances,
+                sha1Cache.getCache(initialIVAdvances, maxIVAdvances, start, end, ivCache, CacheType::Normal), ivCache, generator,
+                *currentProfile);
+        }
+        else
+        {
+            searcher
+                = new IVSearcher5Fast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, ivCache, generator, *currentProfile);
+        }
     }
     else
     {
@@ -574,12 +596,23 @@ void HiddenGrotto::pokemonSearcherFastSearchChanged()
     if (fastSearchEnabled())
     {
         ui->labelPokemonSearcherIVFastSearch->setText(tr("Settings are configured for fast searching."));
+
+        ui->checkBoxPokemonSearcherSHA1Cache->setVisible(true);
+        ui->lineEditPokemonSearcherSHA1Cache->setVisible(true);
+        ui->pushButtonPokemonSearcherSHA1CacheSelect->setVisible(true);
+        ui->pushButtonPokemonSearcherSHA1CacheClear->setVisible(true);
     }
     else
     {
         QStringList text = { tr("Settings are not configured for fast searching."), tr("Keep initial/max advances below 6."),
                              tr("Ensure IV filters are set to common spreads.") };
         ui->labelPokemonSearcherIVFastSearch->setText(text.join('\n'));
+
+        ui->checkBoxPokemonSearcherSHA1Cache->setCheckState(Qt::Unchecked);
+        ui->checkBoxPokemonSearcherSHA1Cache->setVisible(false);
+        ui->lineEditPokemonSearcherSHA1Cache->setVisible(false);
+        ui->pushButtonPokemonSearcherSHA1CacheSelect->setVisible(false);
+        ui->pushButtonPokemonSearcherSHA1CacheClear->setVisible(false);
     }
 }
 
@@ -632,6 +665,42 @@ void HiddenGrotto::pokemonSearcherPokemonIndexChanged(int index)
             ui->comboBoxPokemonSearcherGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         }
+    }
+}
+
+void HiddenGrotto::pokemonSearcherSelectSHA1Cache()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
+
+    SHA1Cache cache(file.toStdString(), false);
+    if (cache.valid(*currentProfile))
+    {
+        ui->lineEditPokemonSearcherSHA1Cache->setText(file);
+        ui->dateEditPokemonSearcherStartDate->setDate(QDate::fromJulianDay(cache.getStartDate().getJD()));
+        ui->dateEditPokemonSearcherEndDate->setDate(QDate::fromJulianDay(cache.getEndDate().getJD()));
+    }
+    else
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid cache file"),
+                        tr("The selected cache file does not match the currently selected profile."));
+        msg.exec();
+    }
+}
+
+void HiddenGrotto::pokemonSearcherSHA1CacheStateChanged(Qt::CheckState state)
+{
+    if (state == Qt::Checked)
+    {
+        ui->lineEditPokemonSearcherSHA1Cache->setEnabled(true);
+        ui->pushButtonPokemonSearcherSHA1CacheSelect->setEnabled(true);
+        ui->pushButtonPokemonSearcherSHA1CacheClear->setEnabled(true);
+    }
+    else
+    {
+        ui->lineEditPokemonSearcherSHA1Cache->clear();
+        ui->lineEditPokemonSearcherSHA1Cache->setEnabled(false);
+        ui->pushButtonPokemonSearcherSHA1CacheSelect->setEnabled(false);
+        ui->pushButtonPokemonSearcherSHA1CacheClear->setEnabled(false);
     }
 }
 

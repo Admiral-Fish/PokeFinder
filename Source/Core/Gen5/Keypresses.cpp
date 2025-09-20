@@ -54,11 +54,6 @@ static bool valid(Buttons button, int count, bool skipLR)
         return false;
     }
 
-    if (count >= 7 && (button & Buttons::SelectStart) == Buttons::SelectStart)
-    {
-        return false;
-    }
-
     return true;
 }
 

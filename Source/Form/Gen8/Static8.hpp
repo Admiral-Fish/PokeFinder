@@ -55,6 +55,7 @@ public:
      */
     ~Static8() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

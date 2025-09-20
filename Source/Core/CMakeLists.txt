@@ -157,8 +157,12 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/IVSearcher5.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
+    Gen5/Searchers/SHA1CacheSearcher.cpp
+    Gen5/Searchers/SHA1CacheSearcher.hpp
     Gen5/Searchers/SearcherBase5.hpp
     Gen5/Searchers/Searcher5.hpp
+    Gen5/SHA1Cache.cpp
+    Gen5/SHA1Cache.hpp
     Gen5/States/DreamRadarState.hpp
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp
@@ -272,4 +276,4 @@ add_library(PokeFinderCore STATIC
 )
 
 target_include_directories(PokeFinderCore PUBLIC "External/fph" "External/nlohmann")
-target_link_libraries(PokeFinderCore bz2_static)
+target_link_libraries(PokeFinderCore libzstd_static)

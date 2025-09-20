@@ -151,49 +151,6 @@ QVariant EventSearcherModel4::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
-void EventSearcherModel4::sort(int column, Qt::SortOrder order)
-{
-    if (!model.empty())
-    {
-        emit layoutAboutToBeChanged();
-        bool flag = order == Qt::AscendingOrder;
-        switch (column)
-        {
-        case 0:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState4 &state1, const SearcherState4 &state2) {
-                return flag ? state1.getSeed() < state2.getSeed() : state1.getSeed() > state2.getSeed();
-            });
-            break;
-        case 1:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState4 &state1, const SearcherState4 &state2) {
-                return flag ? state1.getAdvances() < state2.getAdvances() : state1.getAdvances() > state2.getAdvances();
-            });
-            break;
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-            std::sort(model.begin(), model.end(), [flag, column](const SearcherState4 &state1, const SearcherState4 &state2) {
-                return flag ? state1.getIV(column - 6) < state2.getIV(column - 6) : state1.getIV(column - 6) > state2.getIV(column - 6);
-            });
-            break;
-        case 8:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState4 &state1, const SearcherState4 &state2) {
-                return flag ? state1.getHiddenPower() < state2.getHiddenPower() : state1.getHiddenPower() > state2.getHiddenPower();
-            });
-            break;
-        case 9:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState4 &state1, const SearcherState4 &state2) {
-                return flag ? state1.getHiddenPowerStrength() < state2.getHiddenPowerStrength()
-                            : state1.getHiddenPowerStrength() > state2.getHiddenPowerStrength();
-            });
-            break;
-        }
-    }
-}
-
 void EventSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;

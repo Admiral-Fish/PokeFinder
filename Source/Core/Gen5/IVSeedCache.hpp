@@ -22,10 +22,18 @@
 
 #include <Core/Global.hpp>
 #include <array>
-#include <dynamic_fph_table.h>
+#include <meta_fph_table.h>
+#include <vector>
 
 class StateFilter;
 enum class Game : u32;
+
+enum class CacheType : u8
+{
+    Entralink,
+    Normal,
+    Roamer
+};
 
 /**
  * @brief Grabs IV caches for the various encounter types
@@ -33,40 +41,28 @@ enum class Game : u32;
 namespace IVSeedCache
 {
     /**
-     * @brief Returns the IV caches for entralink
-     *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
-     * @param filter IV filter
-     *
-     * @return IV caches
-     */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 initialAdvance, u32 maxAdvance,
-                                                                                const StateFilter &filter);
-
-    /**
-     * @brief Returns the IV caches for most encounter types
+     * @brief Returns the IV caches for the \p type
      *
      * @param initialAdvance Initial IV advances
      * @param maxAdvance Maximum IV advances
      * @param version Game version
+     * @param type What cache type to get
      * @param filter IV filter
      *
      * @return IV caches
      */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getNormalCache(u32 initialAdvance, u32 maxAdvance, Game version,
-                                                                             const StateFilter &filter);
+    fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvance, u32 maxAdvance, Game version, CacheType type,
+                                                     const StateFilter &filter);
 
     /**
-     * @brief Returns the IV caches for roamers
+     * @brief Returns the IV cache seeds for the \p type
      *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
-     * @param filter IV filter
+     * @param version Game version
+     * @param type What cache type to get
      *
-     * @return IV caches
+     * @return Vector of IV cache seeds
      */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter);
+    std::vector<u32> getSeeds(Game version, CacheType type);
 };
 
 #endif // IVSEEDCACHE_HPP

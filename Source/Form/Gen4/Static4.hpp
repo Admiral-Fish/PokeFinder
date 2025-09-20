@@ -23,6 +23,7 @@
 #include <QWidget>
 
 class Profile4;
+class ProxyModel;
 class StaticGeneratorModel4;
 class StaticSearcherModel4;
 
@@ -56,6 +57,7 @@ public:
      */
     ~Static4() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */
@@ -64,10 +66,11 @@ public:
 private:
     Ui::Static4 *ui;
 
+    Profile4 *currentProfile;
+    ProxyModel *proxyModel;
     StaticGeneratorModel4 *generatorModel;
     StaticSearcherModel4 *searcherModel;
     std::vector<Profile4> profiles;
-    Profile4 *currentProfile;
 
 private slots:
     /**

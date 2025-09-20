@@ -56,6 +56,7 @@ public:
      */
     ~Event8() override;
 
+public slots:
     /**
      * @brief Reloads profiles
      */

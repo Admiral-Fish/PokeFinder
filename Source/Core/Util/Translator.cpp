@@ -80,55 +80,43 @@ const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B
 /**
  * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
  *
+ * @param data Text to read from
  * @param translation String category to read from
  * @param strings Vector to write strings out to
  */
-static void readFile(Translation translation, std::vector<std::string> &strings)
+static void readFile(const char *data, Translation translation, std::vector<std::string> &strings)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
     u32 start = INDICES[index];
     u32 end = INDICES[index + 1];
 
-    const char *compressedData = reinterpret_cast<const char *>(I18N + start);
-    u32 compressedLength = end - start;
-
-    u32 length;
-    char *data = Utilities::decompress(compressedData, compressedLength, length);
-
-    for (u32 i = 0; i < length;)
+    for (u32 i = start; i < end;)
     {
-        char *it = std::find(data + i, data + length, 0);
+        const char *it = std::find(data + i, data + end, 0);
         u32 len = it - &data[i];
         strings.emplace_back(data + i, len);
         i += len + 1;
     }
-
-    delete[] data;
 }
 
 /**
  * @brief Reads string mapping from the \p translation in the languaged specified by Translator::init()
  *
+ * @param data Text to read from
  * @param translation String category to read from
  *
  * @return Map of translated strings
  */
-static std::map<u16, std::string> readFile(Translation translation)
+static std::map<u16, std::string> readFile(const char *data, Translation translation)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
     u32 start = INDICES[index];
     u32 end = INDICES[index + 1];
 
-    const char *compressedData = reinterpret_cast<const char *>(I18N + start);
-    u32 compressedLength = end - start;
-
-    u32 length;
-    char *data = Utilities::decompress(compressedData, compressedLength, length);
-
     std::map<u16, std::string> strings;
-    for (u32 i = 0; i < length;)
+    for (u32 i = start; i < end;)
     {
-        char *it = std::find(data + i, data + length, 0);
+        const char *it = std::find(data + i, data + end, 0);
         u32 len = it - &data[i];
 
         char *word;
@@ -138,7 +126,6 @@ static std::map<u16, std::string> readFile(Translation translation)
         i += len + 1;
     }
 
-    delete[] data;
     return strings;
 }
 
@@ -282,10 +269,16 @@ namespace Translator
             translation = Translation::BDSP;
         }
 
-        std::map<u16, std::string> map = readFile(translation);
+        u32 size;
+        auto *data = Utilities::decompress<char>(I18N.data(), I18N.size(), size);
+
+        std::map<u16, std::string> map = readFile(data, translation);
         std::vector<std::string> locations;
         locations.reserve(nums.size());
         std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
+
+        delete[] data;
+
         return locations;
     }
 
@@ -365,14 +358,19 @@ namespace Translator
             language = Language::Chinese;
         }
 
-        readFile(Translation::Ability, abilities);
-        readFile(Translation::Characteristic, characteristics);
-        forms = readFile(Translation::Form);
-        readFile(Translation::Game, games);
-        readFile(Translation::Power, hiddenPowers);
-        items = readFile(Translation::Item);
-        readFile(Translation::Move, moves);
-        readFile(Translation::Nature, natures);
-        readFile(Translation::Specie, species);
+        u32 size;
+        auto *data = Utilities::decompress<char>(I18N.data(), I18N.size(), size);
+
+        readFile(data, Translation::Ability, abilities);
+        readFile(data, Translation::Characteristic, characteristics);
+        forms = readFile(data, Translation::Form);
+        readFile(data, Translation::Game, games);
+        readFile(data, Translation::Power, hiddenPowers);
+        items = readFile(data, Translation::Item);
+        readFile(data, Translation::Move, moves);
+        readFile(data, Translation::Nature, natures);
+        readFile(data, Translation::Specie, species);
+
+        delete[] data;
     }
 }
