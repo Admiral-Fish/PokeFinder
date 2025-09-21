@@ -65,6 +65,14 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    if (setting.contains("startDate"))
+    {
+        ui->dateEditStart->setDate(setting.value("startDate").toDate());
+    }
+    if (setting.contains("endDate"))
+    {
+        ui->dateEditEnd->setDate(setting.value("endDate").toDate());
+    }
     setting.endGroup();
 }
 
@@ -74,6 +82,8 @@ IDs5::~IDs5()
     setting.beginGroup("ids5");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
+    setting.setValue("startDate", ui->dateEditStart->date());
+    setting.setValue("endDate", ui->dateEditEnd->date());
     setting.endGroup();
 
     delete ui;

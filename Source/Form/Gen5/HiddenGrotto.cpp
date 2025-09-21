@@ -156,6 +156,22 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    if (setting.contains("startDateGrotto"))
+    {
+        ui->dateEditGrottoSearcherStartDate->setDate(setting.value("startDate").toDate());
+    }
+    if (setting.contains("endDateGrotto"))
+    {
+        ui->dateEditGrottoSearcherEndDate->setDate(setting.value("endDate").toDate());
+    }
+    if (setting.contains("startDatePokemon"))
+    {
+        ui->dateEditPokemonSearcherStartDate->setDate(setting.value("startDate").toDate());
+    }
+    if (setting.contains("endDatePokemon"))
+    {
+        ui->dateEditPokemonSearcherEndDate->setDate(setting.value("endDate").toDate());
+    }
     setting.endGroup();
 }
 
@@ -165,6 +181,10 @@ HiddenGrotto::~HiddenGrotto()
     setting.beginGroup("hiddenGrotto");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
+    setting.setValue("startDateGrotto", ui->dateEditGrottoSearcherStartDate->date());
+    setting.setValue("endDateGrotto", ui->dateEditGrottoSearcherEndDate->date());
+    setting.setValue("startDatePokemon", ui->dateEditPokemonSearcherStartDate->date());
+    setting.setValue("endDatePokemon", ui->dateEditPokemonSearcherEndDate->date());
     setting.endGroup();
 
     delete ui;

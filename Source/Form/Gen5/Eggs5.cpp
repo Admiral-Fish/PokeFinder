@@ -82,6 +82,14 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    if (setting.contains("startDate"))
+    {
+        ui->dateEditSearcherStartDate->setDate(setting.value("startDate").toDate());
+    }
+    if (setting.contains("endDate"))
+    {
+        ui->dateEditSearcherStartDate->setDate(setting.value("endDate").toDate());
+    }
     setting.endGroup();
 }
 
@@ -91,6 +99,8 @@ Eggs5::~Eggs5()
     setting.beginGroup("egg5");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
+    setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
+    setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
     setting.endGroup();
 
     delete ui;
