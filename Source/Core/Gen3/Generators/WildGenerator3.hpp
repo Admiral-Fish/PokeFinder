@@ -25,6 +25,8 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
+class WildGeneratorState3;
+
 /**
  * @brief Wild encounter generator for Gen3
  */
@@ -54,7 +56,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState> generate(u32 seed) const;
+    std::vector<WildGeneratorState3> generate(u32 seed) const;
 
 private:
     bool feebasTile;

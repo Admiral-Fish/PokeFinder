@@ -26,7 +26,7 @@ WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel(parent), 
 
 int WildGeneratorModel3::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
@@ -48,26 +48,28 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:
+            return state.getPidRollCount();
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
+            return state.getHiddenPowerStrength();
+        case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
@@ -86,7 +88,7 @@ QVariant WildGeneratorModel3::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
 }
 
 WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), showStats(false)
@@ -95,7 +97,7 @@ WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), sh
 
 int WildSearcherModel3::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
@@ -117,26 +119,28 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:
+            return state.getPidRollCount();
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
+            return state.getHiddenPowerStrength();
+        case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
@@ -155,5 +159,5 @@ QVariant WildSearcherModel3::headerData(int section, Qt::Orientation orientation
 void WildSearcherModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
 }

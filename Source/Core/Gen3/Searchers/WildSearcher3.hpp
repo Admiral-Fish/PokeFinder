@@ -25,12 +25,12 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 
-class WildSearcherState;
+class WildSearcherState3;
 
 /**
  * @brief Wild encounter searcher for Gen3
  */
-class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter, WildSearcherState>
+class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter, WildSearcherState3>
 {
 public:
     /**
@@ -75,7 +75,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari, bool tanoby) const;
+    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari, bool tanoby) const;
 };
 
 #endif // WILDSEARCHER3_HPP

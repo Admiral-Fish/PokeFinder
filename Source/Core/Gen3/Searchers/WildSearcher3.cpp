@@ -22,9 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
@@ -109,10 +109,10 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari,
-                                                     bool tanoby) const
+std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari,
+                                                      bool tanoby) const
 {
-    std::vector<WildSearcherState> states;
+    std::vector<WildSearcherState3> states;
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, method);
@@ -125,6 +125,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
         }
 
         u32 pid;
+        u32 pidRollCount = 0;
 
         u8 letter;
         if (tanoby)
@@ -150,6 +151,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
 
         do
         {
+            pidRollCount++;
             bool cuteCharmFlag = false;
             u8 encounterSlot[4];
             bool force = false;
@@ -397,9 +399,9 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                             level = area.EncounterArea::calculateLevel(encounterSlot[i], levelRand[i >> 1]);
                         }
 
-                        WildSearcherState state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                                Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
-                                                info);
+                        WildSearcherState3 state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                                 Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(),
+                                                 pidRollCount, info);
                         if (filter.compareState(state))
                         {
                             states.emplace_back(state);
