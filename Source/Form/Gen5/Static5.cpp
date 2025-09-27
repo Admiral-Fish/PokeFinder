@@ -34,7 +34,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -48,7 +48,7 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
 
     generatorModel = new StaticGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel5(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);
@@ -68,13 +68,13 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
+                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
-    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
+                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 3, 3 });

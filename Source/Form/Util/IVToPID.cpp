@@ -35,10 +35,7 @@ IVToPID::IVToPID(QWidget *parent) : QWidget(parent), ui(new Ui::IVToPID)
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxNature->addItems(Translator::getNatures());
 
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IVToPID::find);
 

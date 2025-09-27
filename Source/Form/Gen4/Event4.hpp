@@ -25,7 +25,7 @@
 class EventGeneratorModel4;
 class EventSearcherModel4;
 class Profile4;
-class ProxyModel;
+class SortFilterProxyModel;
 
 namespace Ui
 {
@@ -69,7 +69,7 @@ private:
     EventGeneratorModel4 *generatorModel;
     EventSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
-    ProxyModel *proxyModel;
+    SortFilterProxyModel *proxyModel;
     std::vector<Profile4> profiles;
 
 private slots:

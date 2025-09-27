@@ -35,7 +35,7 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -48,7 +48,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);
@@ -68,28 +68,38 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuGeneratorLead->addMenu(
-        tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
-        { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
+                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Encounter Modifier"),
+                                        { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                          { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                          { tr("No Guard"), toInt(Lead::NoGuard) },
+                                          { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                          { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
+                                        { { tr("Hustle"), toInt(Lead::Hustle) },
+                                          { tr("Pressure"), toInt(Lead::Pressure) },
+                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"),
+                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuSearcherLead->addMenu(
-        tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
-        { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
-    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                                       { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
+                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Encounter Modifier"),
+                                       { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                         { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                         { tr("No Guard"), toInt(Lead::NoGuard) },
+                                         { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                         { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
+                                       { { tr("Hustle"), toInt(Lead::Hustle) },
+                                         { tr("Pressure"), toInt(Lead::Pressure) },
+                                         { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
+                                       { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
@@ -385,7 +395,7 @@ void Wild4::generate()
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator4 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, chained, unownRadio, happiness,
-                             encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
+                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, fixedSlot);
     generatorModel->addItems(states);
@@ -448,20 +458,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
         std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                        [](const EncounterArea4 &area) { return area.getLocation(); });
 
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        std::vector<int> indices(locations.size());
-        std::iota(indices.begin(), indices.end(), 0);
-
-        if (!bug)
-        {
-            std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-        }
-
         ui->comboBoxGeneratorLocation->clear();
-        for (int i : indices)
-        {
-            ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[i]), i);
-        }
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
     }
 }
 
@@ -481,7 +479,7 @@ void Wild4::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
+        auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
         bool feebas = area.feebasLocation(currentProfile->getVersion());
@@ -585,7 +583,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
@@ -698,7 +696,7 @@ void Wild4::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
+    auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
     if (encounter == Encounter::BugCatchingContest || area.safariZone(currentProfile->getVersion()))
     {
         bool flag = std::any_of(min.begin(), min.end(), [](u8 iv) { return iv == 31; });
@@ -817,20 +815,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
         std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                        [](const EncounterArea4 &area) { return area.getLocation(); });
 
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        std::vector<int> indices(locations.size());
-        std::iota(indices.begin(), indices.end(), 0);
-
-        if (!bug)
-        {
-            std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-        }
-
         ui->comboBoxSearcherLocation->clear();
-        for (int i : indices)
-        {
-            ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[i]), i);
-        }
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
     }
 }
 
@@ -850,7 +836,7 @@ void Wild4::searcherLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
+        auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
         bool feebas = area.feebasLocation(currentProfile->getVersion());
@@ -951,7 +937,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
 }

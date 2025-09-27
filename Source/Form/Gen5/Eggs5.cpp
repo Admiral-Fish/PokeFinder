@@ -30,7 +30,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EggModel5.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -45,7 +45,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new EggSearcherModel5(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
     ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);

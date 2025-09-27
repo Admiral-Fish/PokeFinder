@@ -33,7 +33,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/GameCubeModel.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -45,7 +45,7 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 
     generatorModel = new GameCubeGeneratorModel(ui->tableViewGenerator);
     searcherModel = new GameCubeSearcherModel(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);

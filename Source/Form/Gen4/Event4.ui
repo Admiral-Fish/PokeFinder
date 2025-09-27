@@ -68,7 +68,7 @@
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -213,7 +213,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorNature"/>
+           <widget class="ComboBoxProxy" name="comboBoxGeneratorNature"/>
           </item>
          </layout>
         </widget>
@@ -385,7 +385,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherNature"/>
+           <widget class="ComboBoxProxy" name="comboBoxSearcherNature"/>
           </item>
          </layout>
         </widget>
@@ -440,6 +440,11 @@
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

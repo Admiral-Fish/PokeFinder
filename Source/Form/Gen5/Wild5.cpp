@@ -36,7 +36,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/WildModel5.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -50,7 +50,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
 
     generatorModel = new WildGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel5(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);
@@ -78,22 +78,26 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
+                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
+                                        { { tr("Hustle"), toInt(Lead::Hustle) },
+                                          { tr("Pressure"), toInt(Lead::Pressure) },
+                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"),
+                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                                       { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
+                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
+                                       { { tr("Hustle"), toInt(Lead::Hustle) },
+                                         { tr("Pressure"), toInt(Lead::Pressure) },
+                                         { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
+                                       { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
@@ -215,7 +219,7 @@ void Wild5::generate()
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
-                             encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
+                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
     generatorModel->addItems(states);
@@ -234,16 +238,8 @@ void Wild5::generatorEncounterIndexChanged(int index)
         std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                        [](const EncounterArea5 &area) { return area.getLocation(); });
 
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        std::vector<int> indices(locations.size());
-        std::iota(indices.begin(), indices.end(), 0);
-        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
         ui->comboBoxGeneratorLocation->clear();
-        for (int i : indices)
-        {
-            ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[i]), i);
-        }
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
     }
 }
 
@@ -251,7 +247,7 @@ void Wild5::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
+        auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -279,7 +275,7 @@ void Wild5::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
@@ -357,7 +353,7 @@ void Wild5::search()
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
-                             encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], *currentProfile, filter);
+                             encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;
     if (fastSearchEnabled())
@@ -427,16 +423,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
         std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                        [](const EncounterArea5 &area) { return area.getLocation(); });
 
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        std::vector<int> indices(locations.size());
-        std::iota(indices.begin(), indices.end(), 0);
-        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
         ui->comboBoxSearcherLocation->clear();
-        for (int i : indices)
-        {
-            ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[i]), i);
-        }
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
     }
 }
 
@@ -469,7 +457,7 @@ void Wild5::searcherLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
+        auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -497,7 +485,7 @@ void Wild5::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
 }

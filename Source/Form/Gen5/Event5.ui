@@ -440,7 +440,7 @@
            </widget>
           </item>
           <item row="3" column="3">
-           <widget class="QComboBox" name="comboBoxGeneratorNature"/>
+           <widget class="ComboBoxProxy" name="comboBoxGeneratorNature"/>
           </item>
           <item row="4" column="2">
            <widget class="QLabel" name="labelGeneratorShiny">
@@ -805,7 +805,7 @@
            </widget>
           </item>
           <item row="3" column="3">
-           <widget class="QComboBox" name="comboBoxSearcherNature"/>
+           <widget class="ComboBoxProxy" name="comboBoxSearcherNature"/>
           </item>
           <item row="4" column="2">
            <widget class="QLabel" name="labelSearcherShiny">
@@ -923,6 +923,11 @@
    <class>DateEdit</class>
    <extends>QDateEdit</extends>
    <header>Form/Controls/DateEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

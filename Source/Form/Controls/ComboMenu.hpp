@@ -52,18 +52,16 @@ public:
      *
      * @param menuText Display text for the menu
      * @param actions Collection of actions to add
-     * @param data Collection of data for the added actions
      */
-    void addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data = {});
+    void addMenu(const QString &menuText, const std::vector<std::string> &actions);
 
     /**
      * @brief Adds a new sub menu and set of actions
      *
      * @param menuText Display text for the menu
      * @param actions Collection of actions to add
-     * @param data Collection of data for the added actions
      */
-    void addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data = {});
+    void addMenu(const QString &menuText, const std::vector<std::pair<QString, int>> &actions);
 
     /**
      * @brief Defaults selected action to first one of the menu

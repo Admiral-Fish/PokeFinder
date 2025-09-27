@@ -43,11 +43,8 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 {
     ui->setupUi(this);
 
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxParentANature->addItem(QString::fromStdString(nature));
-        ui->comboBoxParentBNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxParentANature->addItems(Translator::getNatures());
+    ui->comboBoxParentBNature->addItems(Translator::getNatures());
 
     for (const std::string &gender : Translator::getGenders())
     {

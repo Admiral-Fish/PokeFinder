@@ -60,10 +60,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }
 
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxNature->addItems(Translator::getNatures());
 
     ui->comboBoxSpecies->enableAutoComplete();
 

@@ -31,7 +31,7 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EventModel4.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
 #include <QThread>
@@ -46,7 +46,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new EventSearcherModel4(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
     ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
@@ -59,11 +59,8 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
-        ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
+    ui->comboBoxSearcherNature->addItems(Translator::getNatures());
 
     ui->filterGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
                                          | Controls::Natures | Controls::Shiny | Controls::Weight);

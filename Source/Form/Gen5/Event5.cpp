@@ -32,7 +32,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EventModel5.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -48,7 +48,7 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new EventSearcherModel5(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
     ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
@@ -63,11 +63,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
-        ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
+    ui->comboBoxSearcherNature->addItems(Translator::getNatures());
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);

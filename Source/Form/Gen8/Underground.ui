@@ -68,7 +68,7 @@
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -284,7 +284,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="ComboBox" name="comboBoxLocation"/>
+       <widget class="ComboBoxProxy" name="comboBoxLocation"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelPokemon">
@@ -336,11 +336,6 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
@@ -360,6 +355,11 @@
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/CheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

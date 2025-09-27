@@ -113,7 +113,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QComboBox" name="comboBoxNature"/>
+    <widget class="ComboBoxProxy" name="comboBoxNature"/>
    </item>
    <item row="3" column="1">
     <widget class="TextBox" name="textBoxTID">
@@ -147,6 +147,11 @@
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

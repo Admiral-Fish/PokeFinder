@@ -23,7 +23,9 @@
 #include <Core/Global.hpp>
 #include <QComboBox>
 
-class QListWidget;
+class CheckListProxyModel;
+class QListView;
+class QStandardItemModel;
 
 class CheckList : public QComboBox
 {
@@ -128,17 +130,10 @@ public:
         setChecks(checked);
     }
 
-    /**
-     * @brief Sets text for a combo box item
-     *
-     * @param index Item to update
-     * @param text Text to update with
-     */
-    void setItemText(int index, const QString &text);
-
 private:
     QLineEdit *lineEdit;
-    QListWidget *listWidget;
+    QStandardItemModel *model;
+    CheckListProxyModel *proxyModel;
 
     /**
      * @brief Determines the check state of the check boxes
@@ -173,13 +168,6 @@ private:
     void wheelEvent(QWheelEvent *event) override;
 
 private slots:
-    /**
-     * @brief Updates the checked status of the check box that is selected
-     *
-     * @param index Index of the check box
-     */
-    void itemPressed(int index);
-
     /**
      * @brief Updates the text displayed of the combo box based upon which check boxes are checked
      */

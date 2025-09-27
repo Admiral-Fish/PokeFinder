@@ -32,7 +32,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
 #include <QThread>
@@ -45,7 +45,7 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
 
     generatorModel = new StaticGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel3(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);

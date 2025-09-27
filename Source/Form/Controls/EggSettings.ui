@@ -279,10 +279,10 @@
     </widget>
    </item>
    <item row="4" column="5">
-    <widget class="QComboBox" name="comboBoxParentANature"/>
+    <widget class="ComboBoxProxy" name="comboBoxParentANature"/>
    </item>
    <item row="4" column="6">
-    <widget class="QComboBox" name="comboBoxParentBNature"/>
+    <widget class="ComboBoxProxy" name="comboBoxParentBNature"/>
    </item>
    <item row="5" column="4">
     <widget class="QLabel" name="labelEggSpecie">
@@ -315,6 +315,11 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

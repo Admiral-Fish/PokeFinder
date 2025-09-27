@@ -51,14 +51,19 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
-    ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
-                               { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
-    ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                               { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuLead->addMenu(
-        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
-        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
+    ui->comboMenuLead->addMenu(tr("Cute Charm"), { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuLead->addMenu(tr("Item Modifier"),
+                               { { tr("Compound Eyes"), toInt(Lead::CompoundEyes) }, { tr("Super Luck"), toInt(Lead::SuperLuck) } });
+    ui->comboMenuLead->addMenu(tr("Level Modifier"),
+                               { { tr("Hustle"), toInt(Lead::Hustle) },
+                                 { tr("Pressure"), toInt(Lead::Pressure) },
+                                 { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    ui->comboMenuLead->addMenu(tr("Slot Modifier"),
+                               { { tr("Harvest"), toInt(Lead::Harvest) },
+                                 { tr("Flash Fire"), toInt(Lead::FlashFire) },
+                                 { tr("Magnet Pull"), toInt(Lead::MagnetPull) },
+                                 { tr("Static"), toInt(Lead::Static) },
+                                 { tr("Storm Drain"), toInt(Lead::StormDrain) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::Surfing),
@@ -182,16 +187,8 @@ void Wild8::encounterIndexChanged(int index)
         std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                        [](const EncounterArea8 &area) { return area.getLocation(); });
 
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        std::vector<int> indices(locations.size());
-        std::iota(indices.begin(), indices.end(), 0);
-        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
         ui->comboBoxLocation->clear();
-        for (int i : indices)
-        {
-            ui->comboBoxLocation->addItem(QString::fromStdString(locations[i]), i);
-        }
+        ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
     }
 }
 
@@ -234,7 +231,7 @@ void Wild8::generate()
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->getCurrentInt()],
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->currentIndex()],
                              *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, fixedSlot);
@@ -245,7 +242,7 @@ void Wild8::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
+        auto &area = encounters[ui->comboBoxLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
         bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
@@ -311,7 +308,7 @@ void Wild8::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        auto flags = encounters[ui->comboBoxLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->currentIndex()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }

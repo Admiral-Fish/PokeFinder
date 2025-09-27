@@ -31,7 +31,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/DreamRadarModel.hpp>
-#include <Model/ProxyModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -83,7 +83,7 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->tableViewGenerator->setModel(generatorModel);
 
     searcherModel = new DreamRadarSearcherModel5(ui->tableViewSearcher);
-    proxyModel = new ProxyModel(ui->tableViewSearcher, searcherModel);
+    proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
     ui->tableViewSearcher->setModel(proxyModel);
 
     ui->comboBoxGeneratorSpecie1->addItem(tr("None"), -1);

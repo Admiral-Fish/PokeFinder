@@ -107,6 +107,8 @@ set(PROJECT_SOURCES
     Controls/CheckList.hpp
     Controls/ComboBox.cpp
     Controls/ComboBox.hpp
+    Controls/ComboBoxProxy.cpp
+    Controls/ComboBoxProxy.hpp
     Controls/ComboMenu.cpp
     Controls/ComboMenu.hpp
     Controls/Controls.hpp

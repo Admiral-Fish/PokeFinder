@@ -39,10 +39,7 @@ ChainedSID::ChainedSID(QWidget *parent) : QWidget(parent), ui(new Ui::ChainedSID
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxNature->addItem(QString::fromStdString(nature));
-    }
+    ui->comboBoxNature->addItems(Translator::getNatures());
 
     for (u16 i = 1; i < 493; i++)
     {

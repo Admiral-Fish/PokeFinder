@@ -308,7 +308,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="ComboBox" name="comboBoxGrottoGeneratorLocation"/>
+               <widget class="ComboBoxProxy" name="comboBoxGrottoGeneratorLocation"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="labelGrottoGeneratorPokemon">
@@ -616,7 +616,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="ComboBox" name="comboBoxGrottoSearcherLocation"/>
+               <widget class="ComboBoxProxy" name="comboBoxGrottoSearcherLocation"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="labelGrottoSearcherPokemon">
@@ -916,7 +916,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="ComboBox" name="comboBoxPokemonGeneratorLocation"/>
+               <widget class="ComboBoxProxy" name="comboBoxPokemonGeneratorLocation"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="labelPokemonGeneratorGroup">
@@ -1142,7 +1142,7 @@
                </widget>
               </item>
               <item row="0" column="1" colspan="2">
-               <widget class="ComboBox" name="comboBoxPokemonSearcherLocation"/>
+               <widget class="ComboBoxProxy" name="comboBoxPokemonSearcherLocation"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="labelPokemonSearcherGroup">
@@ -1323,6 +1323,11 @@
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/CheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

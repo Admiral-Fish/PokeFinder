@@ -255,7 +255,7 @@
            </widget>
           </item>
           <item row="1" column="2" colspan="2">
-           <widget class="ComboBox" name="comboBoxGeneratorLocation"/>
+           <widget class="ComboBoxProxy" name="comboBoxGeneratorLocation"/>
           </item>
           <item row="2" column="0" colspan="2">
            <widget class="QLabel" name="labelGeneratorPokemon">
@@ -694,7 +694,7 @@
            </widget>
           </item>
           <item row="1" column="2" colspan="2">
-           <widget class="ComboBox" name="comboBoxSearcherLocation"/>
+           <widget class="ComboBoxProxy" name="comboBoxSearcherLocation"/>
           </item>
           <item row="2" column="0" colspan="2">
            <widget class="QLabel" name="labelSearcherPokemon">
@@ -983,6 +983,11 @@
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -1047,12 +1052,12 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupGenerator">
+  <buttongroup name="buttonGroupSearcher">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="buttonGroupSearcher">
+  <buttongroup name="buttonGroupGenerator">
    <property name="exclusive">
     <bool>false</bool>
    </property>

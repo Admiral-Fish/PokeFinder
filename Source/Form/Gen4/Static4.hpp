@@ -23,7 +23,7 @@
 #include <QWidget>
 
 class Profile4;
-class ProxyModel;
+class SortFilterProxyModel;
 class StaticGeneratorModel4;
 class StaticSearcherModel4;
 
@@ -67,7 +67,7 @@ private:
     Ui::Static4 *ui;
 
     Profile4 *currentProfile;
-    ProxyModel *proxyModel;
+    SortFilterProxyModel *proxyModel;
     StaticGeneratorModel4 *generatorModel;
     StaticSearcherModel4 *searcherModel;
     std::vector<Profile4> profiles;

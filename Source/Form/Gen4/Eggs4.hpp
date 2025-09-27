@@ -25,7 +25,7 @@
 class EggGeneratorModel4;
 class EggSearcherModel4;
 class Profile4;
-class ProxyModel;
+class SortFilterProxyModel;
 
 namespace Ui
 {
@@ -70,7 +70,7 @@ private:
     EggGeneratorModel4 *generatorModel;
     EggSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
-    ProxyModel *proxyModel;
+    SortFilterProxyModel *proxyModel;
     std::vector<Profile4> profiles;
 
 private slots:

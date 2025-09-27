@@ -25,16 +25,16 @@
 /**
  * @brief Provides a proxy to sort/filter data from a table model
  */
-class ProxyModel : public QSortFilterProxyModel
+class SortFilterProxyModel : public QSortFilterProxyModel
 {
 public:
     /**
-     * @brief Construct a new ProxyModel object
+     * @brief Construct a new SortFilterProxyModel object
      *
      * @param parent Parent object, which takes memory ownership
      * @param model Source model to be processed by proxy
      */
-    ProxyModel(QObject *parent, QAbstractItemModel *model) : QSortFilterProxyModel(parent)
+    SortFilterProxyModel(QObject *parent, QAbstractItemModel *model) : QSortFilterProxyModel(parent)
     {
         setSourceModel(model);
     }

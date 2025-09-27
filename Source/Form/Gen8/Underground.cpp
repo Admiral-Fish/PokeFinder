@@ -50,11 +50,13 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
-    ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
-                               { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
-    ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
-                               { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuLead->addMenu(tr("Cute Charm"), { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuLead->addMenu(tr("Item Modifier"),
+                               { { tr("Compound Eyes"), toInt(Lead::CompoundEyes) }, { tr("Super Luck"), toInt(Lead::SuperLuck) } });
+    ui->comboMenuLead->addMenu(tr("Level Modifier"),
+                               { { tr("Hustle"), toInt(Lead::Hustle) },
+                                 { tr("Pressure"), toInt(Lead::Pressure) },
+                                 { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->filter->disableControls(Controls::EncounterSlots);
@@ -75,15 +77,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const UndergroundArea &area) { return area.getLocation() + 181; });
 
-    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-    std::vector<int> indices(locations.size());
-    std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
-    for (int i : indices)
-    {
-        ui->comboBoxLocation->addItem(QString::fromStdString(locations[i]), i);
-    }
+    ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
 
     QSettings setting;
     setting.beginGroup("underground");
@@ -171,7 +165,7 @@ void Underground::generate()
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, lead, bonus, levelFlag,
-                                   encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile, filter);
+                                   encounters[ui->comboBoxLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);
@@ -181,7 +175,7 @@ void Underground::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
+        const auto &area = encounters[ui->comboBoxLocation->currentIndex()];
         auto species = area.getSpecies();
         auto names = area.getSpecieNames();
         ui->checkListPokemon->addItems(names, species);

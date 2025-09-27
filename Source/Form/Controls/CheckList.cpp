@@ -22,27 +22,78 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMouseEvent>
+#include <QStandardItemModel>
+#include <Model/SortFilterProxyModel.hpp>
 
-CheckList::CheckList(QWidget *parent) : QComboBox(parent), lineEdit(new QLineEdit(this)), listWidget(new QListWidget(this))
+/**
+ * @brief Provides a proxy to sort strings but sorting numbers numerically
+ */
+class CheckListProxyModel : public SortFilterProxyModel
 {
-    setModel(listWidget->model());
-    setView(listWidget);
-    setLineEdit(lineEdit);
+public:
+    /**
+     * @brief Construct a new ComboBoxProxyModel object
+     *
+     * @param parent Parent object, which takes memory ownership
+     * @param model Source model to be processed by proxy
+     */
+    CheckListProxyModel(QObject *parent, QAbstractItemModel *model) : SortFilterProxyModel(parent, model)
+    {
+    }
 
+    /**
+     * @brief Compares two items in the model
+     * 
+     * @param source_left First item to compare
+     * @param source_right Second item to compare
+     * 
+     * @return true First item is less than second item
+     * @return false First item is not less than second item
+     */
+    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override
+    {
+        QString left = source_left.data().toString();
+        QString right = source_right.data().toString();
+
+        bool valid;
+        int leftNum = left.toInt(&valid);
+        if (valid)
+        {
+            int rightNum = right.toInt(&valid);
+            if (valid)
+            {
+                return leftNum < rightNum;
+            }
+        }
+
+        return left < right;
+    }
+};
+
+CheckList::CheckList(QWidget *parent) : QComboBox(parent)
+{
+    lineEdit = new QLineEdit(this);
     lineEdit->setReadOnly(true);
     lineEdit->installEventFilter(this);
 
-    connect(this, &QComboBox::activated, this, &CheckList::itemPressed);
+    model = new QStandardItemModel(this);
+    proxyModel = new CheckListProxyModel(this, model);
+
+    setModel(proxyModel);
+    setLineEdit(lineEdit);
+
+    connect(model, &QStandardItemModel::itemChanged, this, &CheckList::modelDataChanged);
 }
 
 void CheckList::addItem(const QString &string, const QVariant &data)
 {
-    auto *checkBox = new QCheckBox(string, this);
-    connect(checkBox, &QCheckBox::checkStateChanged, this, &CheckList::modelDataChanged);
+    auto *item = new QStandardItem(string);
+    item->setData(data);
+    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+    item->setCheckable(true);
+    item->setCheckState(Qt::Unchecked);
 
-    auto *item = new QListWidgetItem(listWidget);
-    item->setData(Qt::UserRole, data);
-    listWidget->setItemWidget(item, checkBox);
+    model->appendRow(item);
 
     // Adding items seems to empty the line edit. Reset to the text we want everytime.
     lineEdit->setText(tr("Any"));
@@ -62,6 +113,8 @@ void CheckList::addItems(const std::vector<std::string> &strings)
         {
             addItem(string, 0);
         }
+
+        proxyModel->sort(0);
     }
 }
 
@@ -74,6 +127,8 @@ void CheckList::addItems(const std::vector<std::string> &strings, std::vector<u1
         {
             addItem(strings[i], data[i]);
         }
+
+        proxyModel->sort(0);
     }
 }
 
@@ -82,16 +137,15 @@ std::vector<bool> CheckList::getChecked() const
     std::vector<bool> result;
     if (checkState() == Qt::PartiallyChecked)
     {
-        for (int i = 0; i < listWidget->count(); i++)
+        for (int i = 0; i < model->rowCount(); i++)
         {
-            auto *item = listWidget->item(i);
-            auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-            result.emplace_back(checkBox->checkState() == Qt::Checked);
+            auto *item = model->item(i);
+            result.emplace_back(item->checkState() == Qt::Checked);
         }
     }
     else
     {
-        result = std::vector<bool>(listWidget->count(), true);
+        result = std::vector<bool>(model->rowCount(), true);
     }
     return result;
 }
@@ -104,7 +158,7 @@ std::vector<u16> CheckList::getCheckedData() const
     {
         if (checked[i])
         {
-            data.emplace_back(itemData(i).toUInt());
+            data.emplace_back(model->item(i)->data().toUInt());
         }
     }
     return data;
@@ -113,7 +167,7 @@ std::vector<u16> CheckList::getCheckedData() const
 void CheckList::hidePopup()
 {
     int width = this->width();
-    int height = listWidget->height();
+    int height = this->view()->height();
     int x = QCursor::pos().x() - mapToGlobal(geometry().topLeft()).x() + geometry().x();
     int y = QCursor::pos().y() - mapToGlobal(geometry().topLeft()).y() + geometry().y();
     if (x < 0 || x > width || y < this->height() || y > height + this->height())
@@ -124,42 +178,32 @@ void CheckList::hidePopup()
 
 void CheckList::resetChecks()
 {
-    for (int i = 0; i < listWidget->count(); ++i)
+    for (int i = 0; i < model->rowCount(); i++)
     {
-        auto *item = listWidget->item(i);
-        auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-        checkBox->setChecked(false);
+        auto *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
     }
 }
 
 void CheckList::setChecks(const std::vector<bool> &flags)
 {
-    for (int i = 0; i < flags.size() && i < listWidget->count(); i++)
+    for (int i = 0; i < flags.size() && i < model->rowCount(); i++)
     {
-        auto *item = listWidget->item(i);
-        auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-        checkBox->setChecked(flags[i]);
+        auto *item = model->item(i);
+        item->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
     }
-}
-
-void CheckList::setItemText(int index, const QString &text)
-{
-    auto *item = listWidget->item(index);
-    auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-    checkBox->setText(text);
 }
 
 Qt::CheckState CheckList::checkState() const
 {
-    int total = listWidget->count();
+    int total = model->rowCount();
     int checked = 0;
     int unchecked = 0;
 
     for (int i = 0; i < total; i++)
     {
-        auto *item = listWidget->item(i);
-        auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-        if (checkBox->isChecked())
+        auto *item = model->item(i);
+        if (item->checkState() == Qt::Checked)
         {
             checked++;
         }
@@ -211,13 +255,6 @@ void CheckList::wheelEvent(QWheelEvent *event)
     // Do not handle wheel event
 }
 
-void CheckList::itemPressed(int index)
-{
-    auto *item = listWidget->item(index);
-    auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-    checkBox->setChecked(!checkBox->isChecked());
-}
-
 void CheckList::modelDataChanged()
 {
     QString text;
@@ -229,19 +266,18 @@ void CheckList::modelDataChanged()
         text = tr("Any");
         break;
     case Qt::PartiallyChecked:
-        for (int i = 0; i < listWidget->count(); i++)
+        for (int i = 0; i < proxyModel->rowCount(); i++)
         {
-            auto *item = listWidget->item(i);
-            auto *checkBox = qobject_cast<QCheckBox *>(listWidget->itemWidget(item));
-
-            if (checkBox->isChecked())
+            QModelIndex index = proxyModel->mapToSource(proxyModel->index(i, 0));
+            auto *item = model->item(index.row());
+            if (item->checkState() == Qt::Checked)
             {
                 if (!text.isEmpty())
                 {
                     text += ", ";
                 }
 
-                text += checkBox->text();
+                text += item->text();
             }
         }
         break;

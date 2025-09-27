@@ -45,23 +45,25 @@ void ComboMenu::addAction(const QString &actionText, int data, QMenu *menu)
     }
 }
 
-void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data)
+void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions)
 {
+    std::vector<int> indices(actions.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&actions](int i, int j) { return actions[i] < actions[j]; });
+
     QMenu *menu = topMenu->addMenu(menuText);
-    for (size_t i = 0; i < actions.size(); i++)
+    for (int i : indices)
     {
-        int value = data.empty() ? i : data[i];
-        addAction(QString::fromStdString(actions[i]), value, menu);
+        addAction(QString::fromStdString(actions[i]), i, menu);
     }
 }
 
-void ComboMenu::addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data)
+void ComboMenu::addMenu(const QString &menuText, const std::vector<std::pair<QString, int>> &actions)
 {
     QMenu *menu = topMenu->addMenu(menuText);
-    for (size_t i = 0; i < actions.size(); i++)
+    for (const auto &action : actions)
     {
-        int value = data.empty() ? i : data[i];
-        addAction(actions[i], value, menu);
+        addAction(action.first, action.second, menu);
     }
 }
 

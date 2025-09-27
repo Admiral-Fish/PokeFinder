@@ -33,21 +33,9 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->comboBoxNature->addItem(tr("None"));
-    for (const std::string &nature : Translator::getNatures())
-    {
-        ui->comboBoxNature->addItem(QString::fromStdString(nature));
-    }
-
-    for (const std::string &hiddenPower : Translator::getHiddenPowers())
-    {
-        ui->comboBoxHiddenPower->addItem(QString::fromStdString(hiddenPower));
-    }
-
-    for (const std::string &characteristic : Translator::getCharacteristics())
-    {
-        ui->comboBoxCharacteristic->addItem(QString::fromStdString(characteristic));
-    }
+    ui->comboBoxNature->addItems(Translator::getNatures());
+    ui->comboBoxHiddenPower->addItems(Translator::getHiddenPowers());
+    ui->comboBoxCharacteristic->addItems(Translator::getCharacteristics());
 
     ui->comboBoxPokemon->enableAutoComplete();
 

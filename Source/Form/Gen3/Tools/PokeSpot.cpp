@@ -56,16 +56,8 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const EncounterArea &area) { return area.getLocation(); });
 
-    auto locations = Translator::getLocations(locs, Game::Gales);
-    std::vector<int> indices(locations.size());
-    std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
     ui->comboBoxLocation->clear();
-    for (int i : indices)
-    {
-        ui->comboBoxLocation->addItem(QString::fromStdString(locations[i]), i);
-    }
+    ui->comboBoxLocation->addItems(Translator::getLocations(locs, Game::Gales));
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &PokeSpot::profileManager);
@@ -135,7 +127,7 @@ void PokeSpot::generate()
     PokeSpotGenerator generator(initialAdvancesFood, maxAdvancesFood, offsetFood, initialAdvancesEncounter, maxAdvancesEncounter,
                                 offsetEncounter, *currentProfile, filter);
 
-    auto states = generator.generate(seedFood, seedEncounter, encounters[ui->comboBoxLocation->getCurrentInt()]);
+    auto states = generator.generate(seedFood, seedEncounter, encounters[ui->comboBoxLocation->currentIndex()]);
     model->addItems(states);
 }
 
@@ -143,7 +135,7 @@ void PokeSpot::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
+        auto &area = encounters[ui->comboBoxLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -167,7 +159,7 @@ void PokeSpot::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        auto flags = encounters[ui->comboBoxLocation->getCurrentInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->currentIndex()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }
