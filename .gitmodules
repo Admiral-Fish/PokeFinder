@@ -1,6 +1,6 @@
-[submodule "Source/Core/External/zstd"]
-	path = Source/Core/External/zstd
+[submodule "Core/External/zstd"]
+	path = Core/External/zstd
 	url = https://github.com/facebook/zstd.git
-[submodule "Source/Core/Resources/EncounterTables"]
-	path = Source/Core/Resources/EncounterTables
+[submodule "Core/Resources/EncounterTables"]
+	path = Core/Resources/EncounterTables
 	url = https://github.com/Admiral-Fish/EncounterTableGenerator

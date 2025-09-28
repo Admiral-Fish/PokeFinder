@@ -23,7 +23,7 @@
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/SearcherBase5.hpp>
-#include <meta_fph_table.h>
+#include <fph/meta_fph_table.h>
 
 /**
  * @brief Parent searcher class for Static/Wild Gen 5 generators

@@ -23,7 +23,7 @@
 #include <Core/Gen5/IVSeedCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/DateTime.hpp>
-#include <meta_fph_table.h>
+#include <fph/meta_fph_table.h>
 
 enum class DSType : u8;
 enum class Game : u32;

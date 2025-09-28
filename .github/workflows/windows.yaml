@@ -44,8 +44,8 @@ jobs:
         with:
           path: |
             ${{github.workspace}}/build
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
           key: ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}-${{github.run_id}}
           restore-keys: |
             ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}
@@ -57,8 +57,8 @@ jobs:
         with:
           mode: save
           files: |
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
 
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON
@@ -68,8 +68,8 @@ jobs:
         with:
           mode: restore
           files: |
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
@@ -82,8 +82,8 @@ jobs:
         with:
           path: |
             ${{github.workspace}}/build
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
           key: ${{steps.cache.outputs.cache-primary-key}}
 
       - name: Package PokeFinder
@@ -92,7 +92,7 @@ jobs:
           mkdir PokeFinder
           mkdir PokeFinder/platforms
           mkdir PokeFinder/styles
-          mv build/Source/Release/PokeFinder.exe PokeFinder
+          mv build/Release/PokeFinder.exe PokeFinder
           windeployqt --no-translations --no-plugins --no-opengl-sw --no-system-d3d-compiler PokeFinder/PokeFinder.exe
           rm PokeFinder/vc_redist*.exe
           cp "${{env.QT_ROOT_DIR}}/plugins/platforms/qwindows.dll" PokeFinder/platforms/

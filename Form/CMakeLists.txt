@@ -15,18 +15,9 @@ execute_process(
 )
 
 configure_file(
-    ${CMAKE_SOURCE_DIR}/Source/Form/version.h.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
     ${CMAKE_BINARY_DIR}/generated/version.h
 )
-
-include_directories(${CMAKE_BINARY_DIR}/generated)
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Network Widgets)
 
@@ -245,4 +236,5 @@ add_library(PokeFinderForm STATIC
     ${PROJECT_SOURCES}
 )
 
+target_include_directories(PokeFinderForm PRIVATE ${CMAKE_BINARY_DIR}/generated)
 target_link_libraries(PokeFinderForm PRIVATE PokeFinderCore PokeFinderModel Qt6::Core Qt6::Network Qt6::Widgets)

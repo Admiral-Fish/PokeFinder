@@ -42,8 +42,8 @@ jobs:
         with:
           path: |
             ${{github.workspace}}/build
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
           key: ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}-${{github.run_id}}
           restore-keys: |
             ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}
@@ -55,8 +55,8 @@ jobs:
         with:
           mode: save
           files: |
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
 
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON
@@ -66,8 +66,8 @@ jobs:
         with:
           mode: restore
           files: |
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
@@ -80,8 +80,8 @@ jobs:
         with:
           path: |
             ${{github.workspace}}/build
-            ${{github.workspace}}/Source/Test/*.hpp
-            ${{github.workspace}}/Source/Core/Resources/*.hpp
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
           key: ${{steps.cache.outputs.cache-primary-key}}
 
       - name: Fetch AppImage tools
@@ -96,28 +96,28 @@ jobs:
         run: |
           export QMAKE=$QT_ROOT_DIR/bin/qmake
           ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt \
-            -e build/Source/PokeFinder \
-            -d Source/Form/io.github.admiral_fish.pokefinder.desktop \
-            -i Source/Form/Images/Icon/pokefinder_16x16.png \
-            -i Source/Form/Images/Icon/pokefinder_24x24.png \
-            -i Source/Form/Images/Icon/pokefinder_32x32.png \
-            -i Source/Form/Images/Icon/pokefinder_48x48.png \
-            -i Source/Form/Images/Icon/pokefinder_256x256.png \
+            -e build/PokeFinder \
+            -d Form/io.github.admiral_fish.pokefinder.desktop \
+            -i Form/Images/Icon/pokefinder_16x16.png \
+            -i Form/Images/Icon/pokefinder_24x24.png \
+            -i Form/Images/Icon/pokefinder_32x32.png \
+            -i Form/Images/Icon/pokefinder_48x48.png \
+            -i Form/Images/Icon/pokefinder_256x256.png \
             --icon-filename io.github.admiral_fish.pokefinder
           mkdir AppDir/usr/share/metainfo
-          cp Source/Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
+          cp Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
           ./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
           mv PokéFinder-x86_64.AppImage PokeFinder-x86_64.AppImage
 
       - name: Package PokeFinder
         run: |
-          tar czf PokeFinder-linux.tar.gz -C ./build/Source/ PokeFinder
+          tar czf PokeFinder-linux.tar.gz -C ./build/ PokeFinder
           tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
 
       - uses: actions/upload-artifact@v4
         with:
           name: PokeFinder-linux
-          path: ./build/Source/PokeFinder
+          path: ./build/PokeFinder
 
       - uses: actions/upload-artifact@v4
         with:

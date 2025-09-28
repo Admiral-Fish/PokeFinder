@@ -1,9 +1,5 @@
 project(PokeFinderCore)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-option(SIMD "Enable SIMD" ON)
-
 if (MSVC)
     add_compile_options(/Zc:inline)
 endif ()
@@ -24,11 +20,11 @@ if (SIMD)
     endif ()
 endif()
 
-add_subdirectory(External)
-
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
+
+add_subdirectory(External)
 
 add_library(PokeFinderCore STATIC
     Enum/Buttons.hpp
@@ -277,5 +273,5 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC "External/fph" "External/nlohmann")
+target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External)
 target_link_libraries(PokeFinderCore libzstd_static)

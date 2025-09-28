@@ -1,10 +1,5 @@
 project(PokeFinderModel)
 
-set(CMAKE_AUTOMOC ON)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_library(PokeFinderModel STATIC

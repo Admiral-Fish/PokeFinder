@@ -22,7 +22,7 @@
 
 #include <Core/Global.hpp>
 #include <array>
-#include <meta_fph_table.h>
+#include <fph/meta_fph_table.h>
 #include <vector>
 
 class StateFilter;

@@ -1,13 +1,7 @@
-project(PokeFinderTest LANGUAGES CXX)
+project(PokeFinderTest)
 
-find_package(Qt6 COMPONENTS Core Test REQUIRED)
+find_package(Qt6 COMPONENTS Test REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/enum_map.py)
 
