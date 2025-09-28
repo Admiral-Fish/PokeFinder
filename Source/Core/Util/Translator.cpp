@@ -315,6 +315,17 @@ namespace Translator
         }
     }
 
+    std::vector<std::string> getSpecies(u16 max)
+    {
+        std::vector<std::string> s;
+        s.reserve(max);
+        for (u16 i = 0; i < max; i++)
+        {
+            s.emplace_back(species[max - 1]);
+        }
+        return s;
+    }
+
     std::vector<std::string> getSpecies(const std::vector<u16> &specie)
     {
         std::vector<std::string> s;

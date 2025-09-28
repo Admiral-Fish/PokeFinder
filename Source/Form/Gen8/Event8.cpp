@@ -53,9 +53,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
 
     ui->filter->enableHiddenAbility();
 
-    std::vector<u16> species(493);
-    std::iota(species.begin(), species.end(), 1);
-    for (const std::string &specie : Translator::getSpecies(species))
+    for (const std::string &specie : Translator::getSpecies(493))
     {
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }

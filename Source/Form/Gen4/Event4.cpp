@@ -70,9 +70,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
 
-    std::vector<u16> species(493);
-    std::iota(species.begin(), species.end(), 1);
-    for (const std::string &specie : Translator::getSpecies(species))
+    for (const std::string &specie : Translator::getSpecies(493))
     {
         ui->comboBoxGeneratorSpecies->addItem(QString::fromStdString(specie));
         ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));

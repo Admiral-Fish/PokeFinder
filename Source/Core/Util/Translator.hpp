@@ -200,6 +200,15 @@ namespace Translator
     std::string getSpecie(u16 specie, u8 form);
 
     /**
+     * @brief Gets the the strings up until the \p max specie
+     *
+     * @param max Specie number to stop at
+     *
+     * @return Vector of specie strings
+     */
+    std::vector<std::string> getSpecies(u16 max);
+
+    /**
      * @brief Gets the the strings for the \p species
      *
      * @param specie Vector of specie numbers
