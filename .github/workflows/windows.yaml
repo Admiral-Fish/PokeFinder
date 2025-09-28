@@ -7,6 +7,13 @@ on:
     tags:
       - "v[0-9]+\\.[0-9]+\\.[0-9]+"
   pull_request:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
 
 jobs:
   ci:
@@ -69,6 +76,10 @@ jobs:
           files: |
             ${{github.workspace}}/Source/Test/*.hpp
             ${{github.workspace}}/Source/Core/Resources/*.hpp
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
 
       - name: Build PokeFinder
         run: cmake --build ${{github.workspace}}/build --config RELEASE
