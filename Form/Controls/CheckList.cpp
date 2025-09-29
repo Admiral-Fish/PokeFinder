@@ -18,12 +18,12 @@
  */
 
 #include "CheckList.hpp"
+#include <Model/SortFilterProxyModel.hpp>
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMouseEvent>
 #include <QStandardItemModel>
-#include <Model/SortFilterProxyModel.hpp>
 
 /**
  * @brief Provides a proxy to sort strings but sorting numbers numerically
@@ -43,10 +43,10 @@ public:
 
     /**
      * @brief Compares two items in the model
-     * 
+     *
      * @param source_left First item to compare
      * @param source_right Second item to compare
-     * 
+     *
      * @return true First item is less than second item
      * @return false First item is not less than second item
      */
@@ -82,6 +82,7 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     setModel(proxyModel);
     setLineEdit(lineEdit);
 
+    connect(view(), &QAbstractItemView::clicked, this, &CheckList::onItemClicked);
     connect(model, &QStandardItemModel::itemChanged, this, &CheckList::modelDataChanged);
 }
 
@@ -253,6 +254,22 @@ void CheckList::keyPressEvent(QKeyEvent *event)
 void CheckList::wheelEvent(QWheelEvent *event)
 {
     // Do not handle wheel event
+}
+
+void CheckList::onItemClicked(const QModelIndex &index)
+{
+    QStandardItem *item = model->itemFromIndex(proxyModel->mapToSource(index));
+    if (item && item->isCheckable())
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item->setCheckState(Qt::Unchecked);
+        }
+        else
+        {
+            item->setCheckState(Qt::Checked);
+        }
+    }
 }
 
 void CheckList::modelDataChanged()

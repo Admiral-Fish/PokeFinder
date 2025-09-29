@@ -169,6 +169,11 @@ private:
 
 private slots:
     /**
+     * @brief Allows the text of an item to toggle the checkbox state
+     */
+    void onItemClicked(const QModelIndex &index);
+
+    /**
      * @brief Updates the text displayed of the combo box based upon which check boxes are checked
      */
     void modelDataChanged();
