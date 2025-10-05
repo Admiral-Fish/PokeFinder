@@ -151,19 +151,19 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     }
     if (setting.contains("startDateGrotto"))
     {
-        ui->dateEditGrottoSearcherStartDate->setDate(setting.value("startDate").toDate());
+        ui->dateEditGrottoSearcherStartDate->setDate(setting.value("startDateGrotto").toDate());
     }
     if (setting.contains("endDateGrotto"))
     {
-        ui->dateEditGrottoSearcherEndDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditGrottoSearcherEndDate->setDate(setting.value("endDateGrotto").toDate());
     }
     if (setting.contains("startDatePokemon"))
     {
-        ui->dateEditPokemonSearcherStartDate->setDate(setting.value("startDate").toDate());
+        ui->dateEditPokemonSearcherStartDate->setDate(setting.value("startDatePokemon").toDate());
     }
     if (setting.contains("endDatePokemon"))
     {
-        ui->dateEditPokemonSearcherEndDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditPokemonSearcherEndDate->setDate(setting.value("endDatePokemon").toDate());
     }
     setting.endGroup();
 }

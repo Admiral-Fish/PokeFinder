@@ -88,7 +88,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     }
     if (setting.contains("endDate"))
     {
-        ui->dateEditSearcherStartDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
     setting.endGroup();
 }

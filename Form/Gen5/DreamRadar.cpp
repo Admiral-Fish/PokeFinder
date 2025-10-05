@@ -203,7 +203,7 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     }
     if (setting.contains("endDate"))
     {
-        ui->dateEditSearcherStartDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
     setting.endGroup();
 }

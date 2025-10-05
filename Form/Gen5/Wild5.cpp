@@ -148,7 +148,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5)
     }
     if (setting.contains("endDate"))
     {
-        ui->dateEditSearcherStartDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
     setting.endGroup();
 }

@@ -121,7 +121,7 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     }
     if (setting.contains("endDate"))
     {
-        ui->dateEditSearcherStartDate->setDate(setting.value("endDate").toDate());
+        ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
     setting.endGroup();
 }
