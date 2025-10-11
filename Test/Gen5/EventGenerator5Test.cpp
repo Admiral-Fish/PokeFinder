@@ -106,8 +106,8 @@ void EventGenerator5Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile5 profile("-", version, 12345, 54321, 0, { false, false, false, false }, 0, 0, 0, false, 0, 0, false, false, false, DSType::DS,
-                     Language::English);
+    Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
+                     false, 0, 0, false, false, false, DSType::DS, Language::English);
 
     PGF pgf(tid, sid, specie, nature, gender, ability, shiny, level, hp, atk, def, spa, spd, spe, egg);
 

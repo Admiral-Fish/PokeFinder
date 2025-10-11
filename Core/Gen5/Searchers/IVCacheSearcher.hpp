@@ -21,6 +21,7 @@
 #define IVCACHESEARCHER_HPP
 
 #include <Core/Parents/Searchers/SearcherBase.hpp>
+#include <string>
 
 /**
  * @brief Searcher class for SHA1 cache
