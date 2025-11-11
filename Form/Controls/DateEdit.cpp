@@ -22,20 +22,16 @@
 
 DateEdit::DateEdit(QWidget *parent) : QDateEdit(parent)
 {
-    QDateEdit::setMinimumDate(QDate(2000, 1, 1));
-    QDateEdit::setMaximumDate(QDate(2099, 12, 31));
+    setMinimumDate(QDate(2000, 1, 1));
+    setMaximumDate(QDate(2099, 12, 31));
     setCalendarPopup(true);
     setDisplayFormat("yyyy-MM-dd");
 }
 
-void DateEdit::clearMaximumDate()
+void DateEdit::clearDateRange()
 {
-    QDateEdit::setMaximumDate(QDate(2099, 12, 31));
-}
-
-void DateEdit::clearMinimumDate()
-{    
-    QDateEdit::setMinimumDate(QDate(2000, 1, 1));
+    setMinimumDate(QDate(2000, 1, 1));
+    setMaximumDate(QDate(2099, 12, 31));
 }
 
 Date DateEdit::getDate() const
@@ -43,12 +39,8 @@ Date DateEdit::getDate() const
     return Date(date().toJulianDay());
 }
 
-void DateEdit::setMaximumDate(Date date)
+void DateEdit::setDateRange(Date min, Date max)
 {
-    QDateEdit::setMaximumDate(QDate::fromJulianDay(date.getJD()));
-}
-
-void DateEdit::setMinimumDate(Date date)
-{
-    QDateEdit::setMinimumDate(QDate::fromJulianDay(date.getJD()));
+    setMinimumDate(QDate::fromJulianDay(min.getJD()));
+    setMaximumDate(QDate::fromJulianDay(max.getJD()));
 }

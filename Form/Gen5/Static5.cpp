@@ -294,13 +294,13 @@ void Static5::profileIndexChanged(int index)
         if (!shaCachePath.empty())
         {
             shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditSearcherStartDate->setMinimumDate(shaCache->getStartDate());
-            ui->dateEditSearcherEndDate->setMaximumDate(shaCache->getEndDate());
+            ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+            ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
         }
         else
         {
-            ui->dateEditSearcherStartDate->clearMinimumDate();
-            ui->dateEditSearcherEndDate->clearMaximumDate();
+            ui->dateEditSearcherStartDate->clearDateRange();
+            ui->dateEditSearcherEndDate->clearDateRange();
         }
 
         bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
