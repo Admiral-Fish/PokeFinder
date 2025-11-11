@@ -723,6 +723,13 @@ void HiddenGrotto::profileIndexChanged(int index)
         if (!shaCachePath.empty())
         {
             shaCache = new SHA1Cache(shaCachePath);
+            ui->dateEditPokemonSearcherStartDate->setMinimumDate(shaCache->getStartDate());
+            ui->dateEditPokemonSearcherEndDate->setMaximumDate(shaCache->getEndDate());
+        }
+        else
+        {
+            ui->dateEditPokemonSearcherStartDate->clearMinimumDate();
+            ui->dateEditPokemonSearcherEndDate->clearMaximumDate();
         }
     }
 }

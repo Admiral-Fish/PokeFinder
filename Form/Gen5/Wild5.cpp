@@ -335,6 +335,13 @@ void Wild5::profileIndexChanged(int index)
         if (!shaCachePath.empty())
         {
             shaCache = new SHA1Cache(shaCachePath);
+            ui->dateEditSearcherStartDate->setMinimumDate(shaCache->getStartDate());
+            ui->dateEditSearcherEndDate->setMaximumDate(shaCache->getEndDate());
+        }
+        else
+        {
+            ui->dateEditSearcherStartDate->clearMinimumDate();
+            ui->dateEditSearcherEndDate->clearMaximumDate();
         }
 
         bool flag = (currentProfile->getVersion() & Game::BW2) != Game::None;

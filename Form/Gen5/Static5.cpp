@@ -294,6 +294,13 @@ void Static5::profileIndexChanged(int index)
         if (!shaCachePath.empty())
         {
             shaCache = new SHA1Cache(shaCachePath);
+            ui->dateEditSearcherStartDate->setMinimumDate(shaCache->getStartDate());
+            ui->dateEditSearcherEndDate->setMaximumDate(shaCache->getEndDate());
+        }
+        else
+        {
+            ui->dateEditSearcherStartDate->clearMinimumDate();
+            ui->dateEditSearcherEndDate->clearMaximumDate();
         }
 
         bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;

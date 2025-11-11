@@ -39,11 +39,35 @@ public:
     DateEdit(QWidget *parent = nullptr);
 
     /**
+     * @brief Resets maximum date to the default value
+     */
+    void clearMaximumDate();
+
+    /**
+     * @brief Resets minimum date to the default value
+     */
+    void clearMinimumDate();
+
+    /**
      * @brief Converts QDate to \ref Date
      *
      * @return Date information
      */
     Date getDate() const;
+
+    /**
+     * @brief Sets the maximum date
+     * 
+     * @param date Maximum date
+     */
+    void setMaximumDate(Date date);
+
+    /**
+     * @brief Sets the minimum date
+     * 
+     * @param date Minimum date
+     */
+    void setMinimumDate(Date date);
 };
 
 #endif // DATEEDIT_HPP
