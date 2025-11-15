@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>793</width>
+    <width>779</width>
     <height>481</height>
    </rect>
   </property>
@@ -14,6 +14,12 @@
    <string>Profile Calibrator</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="2">
+    <widget class="QProgressBar" name="progressBar"/>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="TableView" name="tableView"/>
+   </item>
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
@@ -275,132 +281,135 @@
      <property name="title">
       <string>Variables</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0" rowspan="12">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="1">
-         <widget class="QLabel" name="labelMin">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Min</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelMax">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Max</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelSeconds">
-          <property name="text">
-           <string>Seconds</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QSpinBox" name="spinBoxMinSeconds">
-          <property name="maximum">
-           <number>59</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QSpinBox" name="spinBoxMaxSeconds">
-          <property name="maximum">
-           <number>59</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="labelVCount">
-          <property name="text">
-           <string>VCount</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="TextBox" name="textBoxMinVCount"/>
-        </item>
-        <item row="2" column="2">
-         <widget class="TextBox" name="textBoxMaxVCount"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="labelTimer0">
-          <property name="text">
-           <string>Timer0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="TextBox" name="textBoxMinTimer0"/>
-        </item>
-        <item row="3" column="2">
-         <widget class="TextBox" name="textBoxMaxTimer0"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="labelGxStat">
-          <property name="text">
-           <string>GxStat</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="TextBox" name="textBoxMinGxStat"/>
-        </item>
-        <item row="4" column="2">
-         <widget class="TextBox" name="textBoxMaxGxStat"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="labelVFrame">
-          <property name="text">
-           <string>VFrame</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="TextBox" name="textBoxMinVFrame"/>
-        </item>
-        <item row="5" column="2">
-         <widget class="TextBox" name="textBoxMaxVFrame"/>
-        </item>
-        <item row="6" column="1">
-         <widget class="QCheckBox" name="checkBoxSoftReset">
-          <property name="text">
-           <string>Soft Reset</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="2">
-         <widget class="QCheckBox" name="checkBoxMemoryLink">
-          <property name="text">
-           <string>Memory Link</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
+     <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="1">
+       <widget class="QLabel" name="labelMin">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Min</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelMax">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Max</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSeconds">
+        <property name="text">
+         <string>Seconds</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxMinSeconds">
+        <property name="maximum">
+         <number>59</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QSpinBox" name="spinBoxMaxSeconds">
+        <property name="maximum">
+         <number>59</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelVCount">
+        <property name="text">
+         <string>VCount</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="TextBox" name="textBoxMinVCount"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="TextBox" name="textBoxMaxVCount"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelTimer0">
+        <property name="text">
+         <string>Timer0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="TextBox" name="textBoxMinTimer0"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="TextBox" name="textBoxMaxTimer0"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelGxStat">
+        <property name="text">
+         <string>GxStat</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="TextBox" name="textBoxMinGxStat"/>
+      </item>
+      <item row="4" column="2">
+       <widget class="TextBox" name="textBoxMaxGxStat"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelVFrame">
+        <property name="text">
+         <string>VFrame</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="TextBox" name="textBoxMinVFrame"/>
+      </item>
+      <item row="5" column="2">
+       <widget class="TextBox" name="textBoxMaxVFrame"/>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="checkBoxSoftReset">
+        <property name="text">
+         <string>Soft Reset</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QCheckBox" name="checkBoxMemoryLink">
+        <property name="text">
+         <string>Memory Link</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="7">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
        <widget class="QLabel" name="labelVersion">
         <property name="text">
          <string>Version</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="1" column="5">
        <widget class="ComboBox" name="comboBoxVersion">
         <item>
          <property name="text">
@@ -424,14 +433,14 @@
         </item>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="2" column="4">
        <widget class="QLabel" name="labelLanguage">
         <property name="text">
          <string>Language</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="2" column="5">
        <widget class="ComboBox" name="comboBoxLanguage">
         <item>
          <property name="text">
@@ -470,14 +479,14 @@
         </item>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="3" column="4">
        <widget class="QLabel" name="labelDSType">
         <property name="text">
          <string>DS Type</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="3" column="5">
        <widget class="ComboBox" name="comboBoxDSType">
         <item>
          <property name="text">
@@ -496,40 +505,43 @@
         </item>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="4" column="4">
        <widget class="QLabel" name="labelMACAddress">
         <property name="text">
          <string>MAC Address</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
+      <item row="4" column="5">
        <widget class="TextBox" name="textBoxMACAddress"/>
       </item>
-      <item row="8" column="1">
+      <item row="5" column="4">
        <widget class="QLabel" name="labelKeypresses">
         <property name="text">
          <string>Keypresses</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
-       <widget class="ComboBox" name="comboBoxKeypress1"/>
-      </item>
-      <item row="10" column="1">
-       <widget class="ComboBox" name="comboBoxKeypress2"/>
-      </item>
-      <item row="11" column="1">
-       <widget class="ComboBox" name="comboBoxKeypress3"/>
+      <item row="5" column="5" rowspan="2">
+       <widget class="QScrollArea" name="scrollAreaKeypresses">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>97</width>
+           <height>77</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayoutKeypresses"/>
+        </widget>
+       </widget>
       </item>
      </layout>
     </widget>
-   </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QProgressBar" name="progressBar"/>
-   </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="TableView" name="tableView"/>
    </item>
   </layout>
  </widget>
@@ -603,9 +615,7 @@
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>comboBoxDSType</tabstop>
   <tabstop>textBoxMACAddress</tabstop>
-  <tabstop>comboBoxKeypress1</tabstop>
-  <tabstop>comboBoxKeypress2</tabstop>
-  <tabstop>comboBoxKeypress3</tabstop>
+  <tabstop>scrollAreaKeypresses</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

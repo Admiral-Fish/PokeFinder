@@ -19,6 +19,7 @@
 
 #include "ProfileCalibrator5.hpp"
 #include "ui_ProfileCalibrator5.h"
+#include <Core/Enum/Buttons.hpp>
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
@@ -63,14 +64,10 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
                                   toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
     ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), toInt(DSType::DS3) });
 
-    ui->comboBoxKeypress1->addItem(tr("None"), 0);
-    ui->comboBoxKeypress2->addItem(tr("None"), 0);
-    ui->comboBoxKeypress3->addItem(tr("None"), 0);
     for (int i = 0; i < 12; i++)
     {
-        ui->comboBoxKeypress1->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress2->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress3->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        QCheckBox *check = new QCheckBox(QString::fromStdString(Translator::getKeypress(i)));
+        ui->verticalLayoutKeypresses->addWidget(check);
     }
 
     ui->listWidgetNeedles->setFlow(QListView::LeftToRight);
@@ -229,8 +226,16 @@ void ProfileCalibrator5::search()
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-    auto buttons = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
-                                        | ui->comboBoxKeypress3->getCurrentUShort());
+
+    Buttons buttons = Buttons::None;
+    for (int i = 0; i < 12; i++)
+    {
+        auto *check = qobject_cast<QCheckBox *>(ui->verticalLayoutKeypresses->itemAt(i)->widget());
+        if (check->isChecked())
+        {
+            buttons = buttons | static_cast<Buttons>(1 << i);
+        }
+    }
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
