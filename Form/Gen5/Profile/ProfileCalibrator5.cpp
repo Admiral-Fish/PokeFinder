@@ -66,7 +66,7 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
 
     for (int i = 0; i < 12; i++)
     {
-        QCheckBox *check = new QCheckBox(QString::fromStdString(Translator::getKeypress(i)));
+        QCheckBox *check = new QCheckBox(QString::fromStdString(Translator::getKeypress(i)), ui->scrollAreaKeypresses);
         ui->verticalLayoutKeypresses->addWidget(check);
     }
 
