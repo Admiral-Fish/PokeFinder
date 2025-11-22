@@ -5313,34 +5313,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="66"/>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="67"/>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="68"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="78"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="75"/>
         <source>Create profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="173"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="170"/>
         <source>No row selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="173"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="170"/>
         <source>Please select a row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
         <source>Some min values are greater then max values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="237"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
         <source>Invalid Input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7794,37 +7787,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="327"/>
+        <location filename="../Gen5/Static5.cpp" line="334"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="327"/>
+        <location filename="../Gen5/Static5.cpp" line="334"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="431"/>
+        <location filename="../Gen5/Static5.cpp" line="438"/>
         <source>Settings are configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="437"/>
+        <location filename="../Gen5/Static5.cpp" line="444"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="442"/>
+        <location filename="../Gen5/Static5.cpp" line="449"/>
         <source>Settings are not configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="443"/>
+        <location filename="../Gen5/Static5.cpp" line="450"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="444"/>
+        <location filename="../Gen5/Static5.cpp" line="451"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9459,7 +9452,7 @@
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="706"/>
-        <source>Bug Catching Contest Searcher needs at least one IV at 31</source>
+        <source>This search needs at least one IV at 31</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9943,37 +9936,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="366"/>
+        <location filename="../Gen5/Wild5.cpp" line="373"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="366"/>
+        <location filename="../Gen5/Wild5.cpp" line="373"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="461"/>
+        <location filename="../Gen5/Wild5.cpp" line="468"/>
         <source>Settings are configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="467"/>
+        <location filename="../Gen5/Wild5.cpp" line="474"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="471"/>
+        <location filename="../Gen5/Wild5.cpp" line="478"/>
         <source>Settings are not configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="472"/>
+        <location filename="../Gen5/Wild5.cpp" line="479"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="473"/>
+        <location filename="../Gen5/Wild5.cpp" line="480"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation type="unfinished"></translation>
     </message>

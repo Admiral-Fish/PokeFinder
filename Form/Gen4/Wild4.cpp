@@ -703,7 +703,7 @@ void Wild4::search()
         if (!flag)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Missing Flawless IV"),
-                            tr("Bug Catching Contest Searcher needs at least one IV at 31"));
+                            tr("This search needs at least one IV at 31"));
             msg.exec();
             return;
         }
