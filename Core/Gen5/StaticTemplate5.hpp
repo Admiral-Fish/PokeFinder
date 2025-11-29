@@ -38,15 +38,35 @@ public:
      * @param ability Ability of the template
      * @param gender Gender of the template
      * @param level Level of the template
+     * @param curtis Whether the template is a Curtis trade
      * @param egg Whether the template is an egg
      * @param event Whether the template is an event
      * @param legend Whether the template is a legend
      * @param roamer Whether the template is a roamer
      * @param stationary Whether the template is stationary
+     * @param yancy Whether the template is a Yancy trade
      */
-    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool egg, bool event, bool legend, bool roamer, bool stationary) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), egg(egg), event(event), legend(legend), roamer(roamer), stationary(stationary)
+    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool curtis, bool egg,
+                              bool event, bool legend, bool roamer, bool stationary, bool yancy) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level),
+        curtis(curtis),
+        egg(egg),
+        event(event),
+        legend(legend),
+        roamer(roamer),
+        stationary(stationary),
+        yancy(yancy)
     {
+    }
+
+    /**
+     * @brief Determines if the template is a Curtis trade
+     *
+     * @return Template Curtis status
+     */
+    bool getCurtis() const
+    {
+        return curtis;
     }
 
     /**
@@ -99,12 +119,24 @@ public:
         return stationary;
     }
 
+    /**
+     * @brief Determines if the template is a Yancy trade
+     *
+     * @return Template Yancy status
+     */
+    bool getYancy() const
+    {
+        return curtis;
+    }
+
 private:
+    bool curtis;
     bool egg;
     bool event;
     bool legend;
     bool roamer;
     bool stationary;
+    bool yancy;
 };
 
 #endif // STATICTEMPLATE5_HPP

@@ -79,6 +79,8 @@ namespace Encounters5
      * 4: legends
      * 5: mythics
      * 6: roamers
+     * 7: curtis
+     * 8: yancy
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
@@ -96,6 +98,8 @@ namespace Encounters5
      * 4: legends
      * 5: mythics
      * 6: roamers
+     * 7: curtis
+     * 8: yancy
      * @param index Pokemon index
      *
      * @return Pointer to static encounter

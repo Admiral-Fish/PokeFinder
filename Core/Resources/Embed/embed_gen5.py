@@ -20,7 +20,7 @@ def embed_encounters5():
                 if "dreamRadar" in type:
                     string += f"DreamRadarTemplate({encounter['specie']}, {encounter.get('form', 0)}, {encounter['ability']})"
                 else:
-                    string += f"StaticTemplate5({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter['level']}, {int(encounter.get('egg', False))}, {int(encounter.get('event', False))}, {int(encounter.get('legend', False))}, {int(encounter.get('roamer', False))}, {int(encounter.get('stationary', False))})"
+                    string += f"StaticTemplate5({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter['level']}, {int(encounter.get('curtis', False))}, {int(encounter.get('egg', False))}, {int(encounter.get('event', False))}, {int(encounter.get('legend', False))}, {int(encounter.get('roamer', False))}, {int(encounter.get('stationary', False))}, {int(encounter.get('yancy', False))})"
 
                 if i != len(encounters) - 1:
                     string += ", "

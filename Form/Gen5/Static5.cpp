@@ -313,6 +313,14 @@ void Static5::profileIndexChanged(int index)
         ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
         ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
 
+        // Curtis
+        ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
+        ui->comboBoxSearcherCategory->setItemHidden(7, bw);
+
+        // Yancy
+        ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
+        ui->comboBoxSearcherCategory->setItemHidden(8, bw);
+
         generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
         searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
     }

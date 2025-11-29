@@ -310,13 +310,29 @@ namespace Encounters5
             }
             return EVENTS.data();
         }
-        else
+        else if (index == 6)
         {
             if (size)
             {
                 *size = ROAMERS.size();
             }
             return ROAMERS.data();
+        }
+        else if (index == 7)
+        {
+            if (size)
+            {
+                *size = CURTIS.size();
+            }
+            return CURTIS.data();
+        }
+        else
+        {
+            if (size)
+            {
+                *size = YANCY.size();
+            }
+            return YANCY.data();
         }
     }
 

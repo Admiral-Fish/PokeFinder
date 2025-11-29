@@ -50,7 +50,7 @@ public:
                      const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
      * @param initialAdvances Initial number of IV advances
@@ -61,7 +61,7 @@ public:
     std::vector<State5> generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const;
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
      * @param iv Vector of IV advances and IVs
@@ -72,6 +72,36 @@ public:
 
 private:
     u8 luckyPower;
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     * @param iv Vector of IV advances and IVs
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generateNonWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     * @param iv Vector of IV advances and IVs
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generateTrade(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     * @param iv Vector of IV advances and IVs
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generateWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
 };
 
 #endif // STATICGENERATOR5_HPP
