@@ -50,6 +50,7 @@ public:
         formStatIndex(formStatIndex),
         hatchSpecie(hatchSpecie),
         stats(stats),
+        fixedGender(gender == 0 || gender == 254 || gender == 255),
         present(present),
         gender(gender),
         types(types)
@@ -88,7 +89,7 @@ public:
      */
     bool getFixedGender() const
     {
-        return gender == 0 || gender == 254 || gender == 255;
+        return fixedGender;
     }
 
     /**
@@ -190,6 +191,7 @@ private:
     u16 formStatIndex : 11;
     u16 hatchSpecie;
     std::array<u8, 6> stats;
+    bool fixedGender;
     bool present;
     u8 gender;
     std::array<u8, 2> types;

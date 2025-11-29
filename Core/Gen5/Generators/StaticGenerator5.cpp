@@ -154,12 +154,18 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::
             }
             else
             {
-                u8 gender = staticTemplate.getGender();
+                u8 gender = 255;
 
-                // Only override the gender with cutecharm if the template doesn't have a forced gender
-                if (cuteCharm && gender == 255)
+                // If the pokemon has a fixed gender ratio don't let anything override it
+                if (!info->getFixedGender())
                 {
-                    gender = lead == Lead::CuteCharmF ? 0 : 1;
+                    gender = staticTemplate.getGender();
+
+                    // Only override the gender with cutecharm if the template doesn't have a forced gender
+                    if (cuteCharm && gender == 255)
+                    {
+                        gender = lead == Lead::CuteCharmF ? 0 : 1;
+                    }
                 }
 
                 pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), gender, staticTemplate.getShiny(), wild,
