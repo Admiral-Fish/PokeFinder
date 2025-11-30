@@ -95,21 +95,17 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
 
 std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
-    if (staticTemplate.getEgg() || staticTemplate.getRoamer())
-    {
-        return generateNonWild(seed, ivs);
-    }
-    else if (staticTemplate.getCurtis() || staticTemplate.getYancy())
+    if (staticTemplate.getCurtis() || staticTemplate.getYancy())
     {
         return generateTrade(seed, ivs);
     }
-    else if (staticTemplate.getEvent() || staticTemplate.getLegend() || staticTemplate.getStationary())
+    else if (staticTemplate.getWild())
     {
         return generateWild(seed, ivs);
     }
     else
     {
-        return std::vector<State5>();
+        return generateNonWild(seed, ivs);
     }
 }
 
@@ -178,7 +174,6 @@ std::vector<State5> StaticGenerator5::generateTrade(u64 seed, const std::vector<
 
     return states;
 }
-
 
 std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {

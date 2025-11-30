@@ -39,23 +39,12 @@ public:
      * @param gender Gender of the template
      * @param level Level of the template
      * @param curtis Whether the template is a Curtis trade
-     * @param egg Whether the template is an egg
-     * @param event Whether the template is an event
-     * @param legend Whether the template is a legend
-     * @param roamer Whether the template is a roamer
-     * @param stationary Whether the template is stationary
+     * @param wild Whether the template is a wild encounter
      * @param yancy Whether the template is a Yancy trade
      */
-    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool curtis, bool egg,
-                              bool event, bool legend, bool roamer, bool stationary, bool yancy) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level),
-        curtis(curtis),
-        egg(egg),
-        event(event),
-        legend(legend),
-        roamer(roamer),
-        stationary(stationary),
-        yancy(yancy)
+    constexpr StaticTemplate5(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 level, bool curtis, bool wild,
+                              bool yancy) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, 0, level), curtis(curtis), wild(wild), yancy(yancy)
     {
     }
 
@@ -70,53 +59,24 @@ public:
     }
 
     /**
-     * @brief Determines if the template is an egg
-     *
-     * @return Template egg status
-     */
-    bool getEgg() const
-    {
-        return egg;
-    }
-
-    /**
-     * @brief Determines if the template is an event
-     *
-     * @return Template event status
-     */
-    bool getEvent() const
-    {
-        return event;
-    }
-
-    /**
-     * @brief Determines if the template is a legend
-     *
-     * @return Template legend status
-     */
-    bool getLegend() const
-    {
-        return legend;
-    }
-
-    /**
      * @brief Determines if the template is a roamer
      *
      * @return Template roamer status
      */
     bool getRoamer() const
     {
-        return roamer;
+        // Tornadus and Thundurus
+        return specie == 641 || specie == 642;
     }
 
     /**
-     * @brief Determines if the template is stationary
+     * @brief Determines if the template is a wild encounter
      *
-     * @return Template stationary status
+     * @return Template wild status
      */
-    bool getStationary() const
+    bool getWild() const
     {
-        return stationary;
+        return wild;
     }
 
     /**
@@ -131,11 +91,7 @@ public:
 
 private:
     bool curtis;
-    bool egg;
-    bool event;
-    bool legend;
-    bool roamer;
-    bool stationary;
+    bool wild;
     bool yancy;
 };
 
