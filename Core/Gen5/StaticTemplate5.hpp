@@ -59,6 +59,17 @@ public:
     }
 
     /**
+     * @brief Determines if the template is an egg
+     *
+     * @return Template egg status
+     */
+    bool getEgg() const
+    {
+        // Larvesta and Happiny
+        return specie == 636 || specie == 440;
+    }
+
+    /**
      * @brief Determines if the template is a roamer
      *
      * @return Template roamer status

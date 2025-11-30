@@ -121,7 +121,16 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
     {
         BWRNG go(rng, jump);
 
-        u32 pid = go.nextUInt();
+        u32 pid;
+        if (staticTemplate.getEgg())
+        {
+            pid = go.nextUInt();
+        }
+        else
+        {
+            pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false, info->getGender(), go);
+        }
+
         u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
         u8 gender = Utilities::getGender(pid, info);
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
