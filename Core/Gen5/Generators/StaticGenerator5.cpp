@@ -95,11 +95,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
 
 std::vector<State5> StaticGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
-    if (staticTemplate.getCurtis() || staticTemplate.getYancy())
-    {
-        return generateTrade(seed, ivs);
-    }
-    else if (staticTemplate.getWild())
+    if (staticTemplate.getWild())
     {
         return generateWild(seed, ivs);
     }
@@ -131,39 +127,6 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
             pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false, info->getGender(), go);
         }
 
-        u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
-        u8 gender = Utilities::getGender(pid, info);
-        u8 shiny = Utilities::getShiny<true>(pid, tsv);
-        u8 nature = go.nextUInt(25);
-
-        u16 chatot = rng.nextUInt(0x1fff);
-        for (const auto &iv : ivs)
-        {
-            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
-            if (filter.compareState(static_cast<const State &>(state)))
-            {
-                states.emplace_back(state);
-            }
-        }
-    }
-
-    return states;
-}
-
-std::vector<State5> StaticGenerator5::generateTrade(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
-{
-    u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances);
-    auto jump = rng.getJump(offset);
-    const PersonalInfo *info = staticTemplate.getInfo();
-
-    std::vector<State5> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
-    {
-        BWRNG go(rng, jump);
-
-        u32 pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), 255, Shiny::Never, false, info->getGender(), go);
         u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
         u8 gender = Utilities::getGender(pid, info);
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
