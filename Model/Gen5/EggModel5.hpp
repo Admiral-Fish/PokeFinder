@@ -152,7 +152,7 @@ public slots:
 
 private:
     QStringList header
-        = { tr("Seed"),      tr("Advances"), tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),
+        = { tr("Seed"),      tr("Target Advance"), tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),
             tr("Def"),       tr("SpA"),      tr("SpD"),    tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender"), tr("Characteristic"),
             tr("Date/Time"), tr("Timer0"),   tr("Buttons") };
     bool showInheritance;
