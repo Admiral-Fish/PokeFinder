@@ -3938,12 +3938,12 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
-        <source>Initial Advances</source>
+        <source>Starting Advance</source>
         <translation type="unfinished">Avanzamenti Iniziali</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
-        <source>Advances</source>
+        <source>Advance</source>
         <translation type="unfinished">Avanzamenti</translation>
     </message>
     <message>
