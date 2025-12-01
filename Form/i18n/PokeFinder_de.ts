@@ -3539,7 +3539,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="615"/>
         <source>Settings are configured for fast searching</source>
-        <translation>IV Advances & IV Filter ermöglichen Schnellsuche</translation>
+        <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="621"/>
@@ -3549,7 +3549,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="626"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances & IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="627"/>
@@ -7799,7 +7799,7 @@
     <message>
         <location filename="../Gen5/Static5.cpp" line="438"/>
         <source>Settings are configured for fast searching</source>
-        <translation>IV Advances & IV Filter ermöglichen Schnellsuche</translation>
+        <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="444"/>
@@ -7809,7 +7809,7 @@
     <message>
         <location filename="../Gen5/Static5.cpp" line="449"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances & IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="450"/>
@@ -9948,7 +9948,7 @@
     <message>
         <location filename="../Gen5/Wild5.cpp" line="468"/>
         <source>Settings are configured for fast searching</source>
-        <translation>IV Advances & IV Filter ermöglichen Schnellsuche</translation>
+        <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="474"/>
@@ -9958,7 +9958,7 @@
     <message>
         <location filename="../Gen5/Wild5.cpp" line="478"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances & IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="479"/>
