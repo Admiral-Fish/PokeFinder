@@ -5012,7 +5012,7 @@
     </message>
     <message>
         <source>Encounter Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5024,11 +5024,11 @@
     </message>
     <message>
         <source>Pokémon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Offset (Food / Encounter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset (Pokesnack / Encounter)</translation>
     </message>
 </context>
 <context>
@@ -5036,102 +5036,102 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="79"/>
         <source>Food Advances</source>
-        <translation type="unfinished">Pokesnack Advances</translation>
+        <translation>Pokesnack Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="80"/>
         <source>Encounter Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="81"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="82"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="83"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="84"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="85"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="86"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="87"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="88"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="89"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="90"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="91"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="92"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="95"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
@@ -5150,11 +5150,11 @@
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seconds</source>
@@ -5162,23 +5162,23 @@
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Max</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Min</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Memory Link</source>
@@ -5186,15 +5186,15 @@
     </message>
     <message>
         <source>DS Original/Lite</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DSi/DSi XL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>3DS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Language</source>
@@ -5206,7 +5206,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC  Adresse</translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <source>Version</source>
@@ -5230,31 +5230,31 @@
     </message>
     <message>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>KOR</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5278,11 +5278,11 @@
     </message>
     <message>
         <source>Min IVs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Max IVs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Needle Search</source>
@@ -5382,11 +5382,11 @@
     </message>
     <message>
         <source>XD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Colosseum</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -5402,7 +5402,7 @@
     </message>
     <message>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="79"/>
@@ -5451,11 +5451,11 @@
     </message>
     <message>
         <source>Heart Gold</source>
-        <translation type="unfinished"></translation>
+        <translation>HeartGold</translation>
     </message>
     <message>
         <source>Soul Silver</source>
-        <translation type="unfinished"></translation>
+        <translation>SoulSilver</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -5473,7 +5473,7 @@
     </message>
     <message>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>National Dex</source>
@@ -5481,27 +5481,27 @@
     </message>
     <message>
         <source>Unown Puzzles</source>
-        <translation type="unfinished"></translation>
+        <translation>Icognito Puzzles</translation>
     </message>
     <message>
         <source>A-J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>R-V</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>K-Q</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>W-Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Unown Discovered</source>
-        <translation type="unfinished"></translation>
+        <translation>Gefundene Icognito</translation>
     </message>
 </context>
 <context>
@@ -5516,11 +5516,11 @@
     </message>
     <message>
         <source>MAC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID</source>
@@ -5560,7 +5560,7 @@
     </message>
     <message>
         <source>Timer0 Min</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -5576,39 +5576,39 @@
     </message>
     <message>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>KOR</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Timer0 Max</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -5616,19 +5616,19 @@
     </message>
     <message>
         <source>DS Original/Lite</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DSi/DSi XL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>3DS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Find Parameters</source>
@@ -5636,7 +5636,7 @@
     </message>
     <message>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Skip L/R</source>
@@ -5663,48 +5663,48 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="157"/>
         <source>Open IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Cache öffnen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="165"/>
         <source>Invalid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="165"/>
         <source>Provided file is not a valid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei ist kein gültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="173"/>
         <source>Open SHA1 Cache</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges SHA Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Provided file is not a valid SHA Cache or was not created from the IV Cache of the profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei ist kein gültiges SHA Cache oder wurde nicht mit hilfe des im Profil angegebenen IV Caches erstellt</translation>
     </message>
     <message>
         <source>IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Select File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei auswählen</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">Zurücksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>SHA Cache</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -5759,7 +5759,7 @@
     </message>
     <message>
         <source>Okay</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>National Dex</source>
@@ -5961,37 +5961,37 @@
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.cpp" line="51"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.cpp" line="51"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">Profilname</translation>
+        <translation>Profilname</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Dead Battery</source>
-        <translation type="unfinished">Tote Batterie</translation>
+        <translation>Leere Batterie</translation>
     </message>
 </context>
 <context>
@@ -5999,37 +5999,37 @@
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.cpp" line="48"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.cpp" line="48"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">Profilname</translation>
+        <translation>Profilname</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>National Dex</source>
-        <translation type="unfinished">Nationaler Pokedex</translation>
+        <translation>Nationaler Pokedex</translation>
     </message>
 </context>
 <context>
@@ -6040,7 +6040,7 @@
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
@@ -6048,87 +6048,87 @@
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">Profilname</translation>
+        <translation>Profilname</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>DS Type</source>
-        <translation type="unfinished">DS Typ</translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Skip L/R</source>
-        <translation type="unfinished">L/R weglassen</translation>
+        <translation>L/R weglassen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Memory Link</source>
-        <translation type="unfinished">Mementolink</translation>
+        <translation>Mementolink</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished">Schillerpin</translation>
+        <translation>Schillerpin</translation>
     </message>
 </context>
 <context>
@@ -6137,43 +6137,43 @@
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="50"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="50"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">Profilname</translation>
+        <translation>Profilname</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished">Schillerpin</translation>
+        <translation>Schillerpin</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Oval Charm</source>
-        <translation type="unfinished">Ovalpin</translation>
+        <translation>Ovalpin</translation>
     </message>
 </context>
 <context>
@@ -6181,39 +6181,39 @@
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>Seconds</source>
-        <translation type="unfinished">Sekunden</translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>Raids</name>
     <message>
         <source>Gen 8 Raids</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>RNG Info</source>
@@ -6245,7 +6245,7 @@
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">Minimale Advances</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <source>Max Advances</source>
@@ -6265,7 +6265,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Rare</source>
@@ -6351,11 +6351,11 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Event</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.cpp" line="223"/>
@@ -6370,54 +6370,54 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>Researcher</name>
     <message>
         <source>LCRNG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>LCRNG[R]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>XDRNG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>XDRNG[R]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ARNG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ARNG[R]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Mersenne Twister</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>BWRNG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>BWRNG[R]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SFMT</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>64Bit</source>
@@ -6433,19 +6433,19 @@
     </message>
     <message>
         <source>32Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>32Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>16Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>16Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>None</source>
@@ -6485,7 +6485,7 @@
     </message>
     <message>
         <source>TinyMT</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Custom 1</source>
@@ -6565,19 +6565,19 @@
     </message>
     <message>
         <source>Xoroshiro (BDSP)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Xorshift</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Value (Hex)</source>
@@ -6631,7 +6631,7 @@
     </message>
     <message>
         <source>Xoroshiro</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -6639,87 +6639,87 @@
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>64Bit</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>32Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>32Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>32Bit</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="154"/>
         <source>16Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>16Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>Custom 1</source>
-        <translation type="unfinished">Nummer 1</translation>
+        <translation>Nummer 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>Custom 2</source>
-        <translation type="unfinished">Nummer 2</translation>
+        <translation>Nummer 2</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>Custom 3</source>
-        <translation type="unfinished">Nummer 3</translation>
+        <translation>Nummer 3</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>Custom 4</source>
-        <translation type="unfinished">Nummer 4</translation>
+        <translation>Nummer 4</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="155"/>
         <source>Custom 5</source>
-        <translation type="unfinished">Nummer 5</translation>
+        <translation>Nummer 5</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="156"/>
         <source>Custom 6</source>
-        <translation type="unfinished">Nummer 6</translation>
+        <translation>Nummer 6</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="156"/>
         <source>Custom 7</source>
-        <translation type="unfinished">Nummer 7</translation>
+        <translation>Nummer 7</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="156"/>
         <source>Custom 8</source>
-        <translation type="unfinished">Nummer 8</translation>
+        <translation>Nummer 8</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="156"/>
         <source>Custom 9</source>
-        <translation type="unfinished">Nummer 9</translation>
+        <translation>Nummer 9</translation>
     </message>
     <message>
         <location filename="../../Model/Util/ResearcherModel.hpp" line="156"/>
         <source>Custom 10</source>
-        <translation type="unfinished">Nummer 10</translation>
+        <translation>Nummer 10</translation>
     </message>
 </context>
 <context>
@@ -6733,67 +6733,67 @@
     <name>SHA1CacheFinder</name>
     <message>
         <source>SHA1 Cache Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA1 Cache-Finder</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profil</translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <source>DS Type</source>
-        <translation type="unfinished">DS Typ</translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Knopfdrücke</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Spiel</translation>
+        <translation>Spiel</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Suchen</translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <source>Start Date</source>
-        <translation type="unfinished">Startdatum</translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <source>End Date</source>
-        <translation type="unfinished">Enddatum</translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <source>Output File</source>
@@ -7586,7 +7586,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Addresse</translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <source>DS Type</source>
