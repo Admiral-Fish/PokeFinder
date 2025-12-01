@@ -2014,7 +2014,7 @@
     <name>Event5</name>
     <message>
         <source>Gen 5 Event</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 5 Event</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -4694,7 +4694,7 @@
     <name>MainWindow</name>
     <message>
         <source>Gen 3</source>
-        <translation>Generation III</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Egg</source>
@@ -4702,7 +4702,7 @@
     </message>
     <message>
         <source>Gen 4</source>
-        <translation>Generation IV</translation>
+        <translation>Gen 4</translation>
     </message>
     <message>
         <source>Gen 3 Tools</source>
@@ -4770,7 +4770,7 @@
         <location filename="../MainWindow.cpp" line="554"/>
         <location filename="../MainWindow.cpp" line="591"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte den Profilkalibrierer unter Gen 5 Tools nutzen, um ein Profil zu erstellen</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="701"/>
@@ -4822,7 +4822,7 @@
     </message>
     <message>
         <source>Gen 5</source>
-        <translation>Generation V</translation>
+        <translation>Gen 5</translation>
     </message>
     <message>
         <source>Event</source>
@@ -4854,7 +4854,7 @@
     </message>
     <message>
         <source>Gen 8</source>
-        <translation>Generation VIII</translation>
+        <translation>Gen 8</translation>
     </message>
     <message>
         <source>Raid</source>
@@ -5780,7 +5780,7 @@
     <name>ProfileManager3</name>
     <message>
         <source>Profile Manager Gen 3</source>
-        <translation>Profil-Manager (3. Generation)</translation>
+        <translation>Profilmanager (3. Generation)</translation>
     </message>
     <message>
         <source>New</source>
@@ -5825,7 +5825,7 @@
     <name>ProfileManager4</name>
     <message>
         <source>Profile Manager Gen 4</source>
-        <translation>Profil-Manager (4. Generation)</translation>
+        <translation>Profilmanager (4. Generation)</translation>
     </message>
     <message>
         <source>New</source>
@@ -5870,7 +5870,7 @@
     <name>ProfileManager5</name>
     <message>
         <source>Profile Manager Gen 5</source>
-        <translation>Profil-Manager (5. Generation)</translation>
+        <translation>Profilmanager (5. Generation)</translation>
     </message>
     <message>
         <source>New</source>
@@ -5915,7 +5915,7 @@
     <name>ProfileManager8</name>
     <message>
         <source>Profile Manager Gen 8</source>
-        <translation>Profil-Manager (8. Generation)</translation>
+        <translation>Profilmanager (8. Generation)</translation>
     </message>
     <message>
         <source>New</source>
@@ -7531,7 +7531,7 @@
     </message>
     <message>
         <source>Events</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Roamers</source>
@@ -7539,287 +7539,287 @@
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Niemals</translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished">Zufällig</translation>
+        <translation>Zufällig</translation>
     </message>
 </context>
 <context>
     <name>Static5</name>
     <message>
         <source>Gen 5 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 5 Stationär</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profil</translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Addresse</translation>
     </message>
     <message>
         <source>DS Type</source>
-        <translation type="unfinished">DS Typ</translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Spiel</translation>
+        <translation>Spiel</translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation type="unfinished">Generator</translation>
+        <translation>Generator</translation>
     </message>
     <message>
         <source>RNG Info</source>
-        <translation type="unfinished">RNG Info</translation>
+        <translation>RNG Info</translation>
     </message>
     <message>
         <source>Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">Minimale Advances</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschwörungskraft</translation>
     </message>
     <message>
         <source>S/MAX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generate</source>
-        <translation type="unfinished">Generieren</translation>
+        <translation>Generieren</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation">Einstellungen</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished">Kategorie</translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <source>Starters</source>
-        <translation type="unfinished">Starter</translation>
+        <translation>Starter</translation>
     </message>
     <message>
         <source>Fossils</source>
-        <translation type="unfinished">Fossilien</translation>
+        <translation>Fossilien</translation>
     </message>
     <message>
         <source>Gifts</source>
-        <translation type="unfinished">Geschenke</translation>
+        <translation>Geschenke</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation type="unfinished">Stationär</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation type="unfinished">Legendäre</translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <source>Events</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation type="unfinished">Wander-Pokémon</translation>
+        <translation>Wander-Pokémon</translation>
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Niemals</translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished">Zufällig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Immer</translation>
     </message>
     <message>
         <source>Filters</source>
-        <translation type="unfinished">Filter</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Searcher</source>
-        <translation type="unfinished">Sucher</translation>
+        <translation>Sucher</translation>
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Start Date</source>
-        <translation type="unfinished">Startdatum</translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <source>End Date</source>
-        <translation type="unfinished">Enddatum</translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Suchen</translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="70"/>
         <location filename="../Gen5/Static5.cpp" line="75"/>
         <source>None</source>
-        <translation type="unfinished">Nicht vorhanden</translation>
+        <translation>Nicht vorhanden</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="71"/>
         <location filename="../Gen5/Static5.cpp" line="76"/>
         <source>Cute Charm</source>
-        <translation type="unfinished">Charmebolzen</translation>
+        <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="72"/>
         <location filename="../Gen5/Static5.cpp" line="77"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="72"/>
         <location filename="../Gen5/Static5.cpp" line="77"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="73"/>
         <location filename="../Gen5/Static5.cpp" line="78"/>
         <source>Synchronize</source>
-        <translation type="unfinished">Synchro</translation>
+        <translation>Synchro</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="334"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Datumsbereich</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="334"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished">Startdatum ist nach Enddatum</translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="438"/>
         <source>Settings are configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="444"/>
         <source>Profile does not have a IV cache file configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="449"/>
         <source>Settings are not configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Schnellsuche ist aufgrund der IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="450"/>
         <source>Keep initial/max advances below %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="451"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
 </context>
 <context>
@@ -9663,7 +9663,7 @@
     <name>Wild5</name>
     <message>
         <source>Gen 5 Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 5 Wild</translation>
     </message>
     <message>
         <source>Profile</source>
