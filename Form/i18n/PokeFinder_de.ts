@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Possible Results:</source>
@@ -97,7 +97,7 @@
         <location filename="../Controls/ComboBoxProxy.cpp" line="55"/>
         <location filename="../Controls/ComboBoxProxy.cpp" line="59"/>
         <source>None</source>
-        <translation type="unfinished">Nicht vorhanden</translation>
+        <translation>Nicht vorhanden</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -147,7 +147,7 @@
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
@@ -155,7 +155,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>MAC Address</source>
@@ -163,7 +163,7 @@
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -171,7 +171,7 @@
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generator</source>
@@ -203,27 +203,27 @@
     </message>
     <message>
         <source>Slot 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Slot 2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Slot 3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Slot 4</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Slot 5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Slot 6</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Filters</source>
@@ -297,97 +297,97 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Needle</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeiger</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -395,107 +395,107 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
@@ -508,107 +508,107 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="95"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="96"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="97"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Anruf</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="98"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="99"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="100"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="101"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="102"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="103"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="104"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="105"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="106"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="107"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="108"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="109"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="110"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="111"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="112"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -616,97 +616,97 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -714,17 +714,17 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
@@ -744,67 +744,67 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="90"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="90"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="91"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="91"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="92"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="92"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="93"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
@@ -812,92 +812,92 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Egg Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei Seed</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>EC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -905,22 +905,22 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="187"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="188"/>
@@ -935,72 +935,72 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="190"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="191"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="192"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="193"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="194"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="195"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="196"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="197"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="203"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -1008,112 +1008,112 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1164,7 +1164,7 @@
     </message>
     <message>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Nature</source>
@@ -1226,7 +1226,7 @@
     </message>
     <message>
         <source>Masuda</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Egg Specie</source>
@@ -1269,7 +1269,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Profile</source>
@@ -1305,7 +1305,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Split</source>
@@ -1380,7 +1380,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -1498,7 +1498,7 @@
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <source>MAC Address</source>
@@ -1506,11 +1506,11 @@
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
@@ -1518,7 +1518,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -1530,11 +1530,11 @@
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Game</source>
@@ -1628,7 +1628,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1671,11 +1671,11 @@
     </message>
     <message>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generate</source>
@@ -1709,7 +1709,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -1757,7 +1757,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1823,11 +1823,11 @@
     </message>
     <message>
         <source>Heart Gold</source>
-        <translation type="unfinished"></translation>
+        <translation>HeartGold</translation>
     </message>
     <message>
         <source>Soul Silver</source>
-        <translation type="unfinished"></translation>
+        <translation>SoulSilver</translation>
     </message>
     <message>
         <source>Brilliant Diamond</source>
@@ -1879,23 +1879,23 @@
     </message>
     <message>
         <source>Pokémon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Black</source>
-        <translation type="unfinished">Schwarz</translation>
+        <translation>Schwarz</translation>
     </message>
     <message>
         <source>White</source>
-        <translation type="unfinished">Weiß</translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <source>Black 2</source>
-        <translation type="unfinished">Schwarz 2</translation>
+        <translation>Schwarz 2</translation>
     </message>
     <message>
         <source>White 2</source>
-        <translation type="unfinished">Weiß 2</translation>
+        <translation>Weiß 2</translation>
     </message>
 </context>
 <context>
@@ -1910,7 +1910,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID</source>
@@ -1962,7 +1962,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Nature</source>
@@ -2007,7 +2007,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2030,11 +2030,11 @@
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
@@ -2042,7 +2042,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -2054,11 +2054,11 @@
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Game</source>
@@ -2150,11 +2150,11 @@
     </message>
     <message>
         <source>Event TID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Event SID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Egg</source>
@@ -2190,7 +2190,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="207"/>
@@ -2228,22 +2228,22 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Niemals</translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Immer</translation>
     </message>
 </context>
 <context>
     <name>Event8</name>
     <message>
         <source>Gen 8 Event</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>RNG Info</source>
@@ -2259,7 +2259,7 @@
     </message>
     <message>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Initial Advances</source>
@@ -2267,7 +2267,7 @@
     </message>
     <message>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Profile</source>
@@ -2283,7 +2283,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Game</source>
@@ -2303,11 +2303,11 @@
     </message>
     <message>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>EC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Egg</source>
@@ -2327,11 +2327,11 @@
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Static</source>
@@ -2359,7 +2359,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="134"/>
@@ -2393,7 +2393,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2401,57 +2401,57 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Anruf</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
 </context>
 <context>
@@ -2459,97 +2459,97 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -2557,52 +2557,52 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
 </context>
 <context>
@@ -2610,112 +2610,112 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2734,7 +2734,7 @@
     </message>
     <message>
         <source>Encounter Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Hidden Power</source>
@@ -2750,15 +2750,15 @@
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Star/Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Disable Filters</source>
@@ -2825,18 +2825,18 @@
     </message>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <source>Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewicht</translation>
     </message>
 </context>
 <context>
     <name>GameCube</name>
     <message>
         <source>GameCube RNG</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Profile</source>
@@ -2852,7 +2852,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -2892,7 +2892,7 @@
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Initial Advances</source>
@@ -2924,15 +2924,15 @@
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2940,87 +2940,87 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
@@ -3028,98 +3028,98 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
     <name>GameCubeSeedFinder</name>
     <message>
         <source>GameCube Seed Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>GameCube Seed-Finder</translation>
     </message>
     <message>
         <source>Gales</source>
-        <translation type="unfinished"></translation>
+        <translation>dunkle Sturm</translation>
     </message>
     <message>
         <source>Search</source>
@@ -3151,15 +3151,15 @@
     </message>
     <message>
         <source>Colo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Wes</source>
-        <translation type="unfinished"></translation>
+        <translation>Seth</translation>
     </message>
     <message>
         <source>Seth</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Thomas</source>
@@ -3194,7 +3194,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="369"/>
         <source>Gales Precalc</source>
-        <translation type="unfinished"></translation>
+        <translation>dunkle Sturm Precalc</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="370"/>
@@ -3252,7 +3252,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
         <source>Colo Precalc</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="251"/>
@@ -3283,7 +3283,7 @@
     </message>
     <message>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Result:</source>
@@ -3367,7 +3367,7 @@
     </message>
     <message>
         <source>Trainer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3394,7 +3394,7 @@
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -3402,7 +3402,7 @@
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Keypresses</source>
@@ -3410,7 +3410,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>MAC Address</source>
@@ -3418,7 +3418,7 @@
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -3426,7 +3426,7 @@
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generator</source>
@@ -3458,7 +3458,7 @@
     </message>
     <message>
         <source>S/MAX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -3466,7 +3466,7 @@
     </message>
     <message>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Group</source>
@@ -3502,11 +3502,11 @@
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Items</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Filters</source>
@@ -3516,13 +3516,13 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="98"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="101"/>
         <source>None</source>
-        <translation type="unfinished">Nicht vorhanden</translation>
+        <translation>Nicht vorhanden</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="99"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="102"/>
         <source>Synchronize</source>
-        <translation type="unfinished">Synchro</translation>
+        <translation>Synchro</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="331"/>
@@ -3539,51 +3539,51 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="615"/>
         <source>Settings are configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="621"/>
         <source>Profile does not have a IV cache file configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="626"/>
         <source>Settings are not configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Schnellsuche ist aufgrund der IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="627"/>
         <source>Keep initial/max advances below %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="628"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>Lichtung</translation>
     </message>
     <message>
         <source>Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale IV Advances</translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale IV Advances</translation>
     </message>
 </context>
 <context>
@@ -3591,102 +3591,102 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -3694,122 +3694,122 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Characteristic</source>
-        <translation type="unfinished">Persönlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3817,22 +3817,22 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Chatot</source>
-        <translation type="unfinished"></translation>
+        <translation>Plaudagei</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Group</source>
-        <translation type="unfinished">Gruppe</translation>
+        <translation>Gruppe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3840,37 +3840,37 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Group</source>
-        <translation type="unfinished">Gruppe</translation>
+        <translation>Gruppe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3878,22 +3878,22 @@
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/IDModel3.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3901,32 +3901,32 @@
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>Delay</source>
-        <translation type="unfinished">Delay</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/IDModel4.hpp" line="71"/>
         <source>Seconds</source>
-        <translation type="unfinished">Sekunden</translation>
+        <translation>Sekunden</translation>
     </message>
 </context>
 <context>
@@ -3934,47 +3934,47 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Initial Advances</source>
-        <translation type="unfinished">Minimale Advances</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Datum/Uhrzeit</translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3982,27 +3982,27 @@
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>Display TID</source>
-        <translation type="unfinished">TID anzeigen</translation>
+        <translation>TID anzeigen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/IDModel8.hpp" line="71"/>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -4049,7 +4049,7 @@
     </message>
     <message>
         <source>RS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Date/Time</source>
@@ -4121,7 +4121,7 @@
     <message>
         <location filename="../Gen4/IDs4.cpp" line="52"/>
         <source>Generate times for seed</source>
-        <translation type="unfinished">Generiere Zeiten für Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
 </context>
 <context>
@@ -4144,23 +4144,23 @@
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Timer0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Game</source>
@@ -4196,7 +4196,7 @@
     </message>
     <message>
         <source>Minute</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Find</source>
@@ -4208,7 +4208,7 @@
     </message>
     <message>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -4265,11 +4265,11 @@
     </message>
     <message>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Filters</source>
@@ -4294,7 +4294,7 @@
     </message>
     <message>
         <source>TID/SID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SID</source>
@@ -4302,7 +4302,7 @@
     </message>
     <message>
         <source>TSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Display TID</source>
@@ -4310,53 +4310,53 @@
     </message>
     <message>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID/PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>IVCacheFinder</name>
     <message>
         <source>IV Cache Finder</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Suchen</translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">Minimale Advances</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <source>Output File</source>
-        <translation type="unfinished"></translation>
+        <translation>Output Datei</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="52"/>
         <source>Missing output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende output Datei</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="52"/>
         <source>Please select a file to save the results to</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Datei zum speichern auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="88"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei speichern</translation>
     </message>
 </context>
 <context>
@@ -4371,7 +4371,7 @@
     </message>
     <message>
         <source>Pokémon</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Nature</source>
@@ -4419,11 +4419,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Base HP</source>
@@ -4452,7 +4452,7 @@
     <message>
         <location filename="../Util/IVCalculator.cpp" line="45"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächstes Level möglicherweise nicht akkurat ohne Angabe des Wesens</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="78"/>
@@ -4465,7 +4465,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Speed</source>
@@ -4485,7 +4485,7 @@
     </message>
     <message>
         <source>Heartgold/Soulsilver</source>
-        <translation type="unfinished"></translation>
+        <translation>HeartGold/SoulSilver</translation>
     </message>
     <message>
         <source>Sword/Shield</source>
@@ -4560,74 +4560,74 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="48"/>
         <source>Method 1</source>
-        <translation type="unfinished">Methode 1</translation>
+        <translation>Methode 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="50"/>
         <source>Reverse Method 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverse Methode 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="52"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Methode 2</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="54"/>
         <source>Method 4</source>
-        <translation type="unfinished">Methode 4</translation>
+        <translation>Methode 4</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
         <source>Cute Charm (DPPt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Charmebolzen (DPPt)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="58"/>
         <source>Cute Charm (HGSS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Charmebolzen (HGSS)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="60"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="62"/>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Method</source>
-        <translation type="unfinished">Methode</translation>
+        <translation>Methode</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
 </context>
 <context>
     <name>JirachiAdvancer</name>
     <message>
         <source>Jirachi Advancer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Starting Seed</source>
@@ -4758,7 +4758,7 @@
     <message>
         <location filename="../MainWindow.cpp" line="146"/>
         <source>Please update path to your profiles file to restore existing profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte den Pfad zur Profildatei updaten um existierende Profile wiederherzustellen</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="416"/>
@@ -4775,17 +4775,17 @@
     <message>
         <location filename="../MainWindow.cpp" line="701"/>
         <source>Version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="701"/>
         <source>Branch: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="701"/>
         <source>Commit: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="704"/>
@@ -4794,7 +4794,7 @@
     </message>
     <message>
         <source>GameCube</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4818,7 +4818,7 @@
     </message>
     <message>
         <source>GameCube Seed Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>GameCube Seed-Finder</translation>
     </message>
     <message>
         <source>Gen 5</source>
@@ -4826,7 +4826,7 @@
     </message>
     <message>
         <source>Event</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Dream Radar</source>
@@ -4834,7 +4834,7 @@
     </message>
     <message>
         <source>Gen 5 Tools</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Profile Calibrator</source>
@@ -4858,11 +4858,11 @@
     </message>
     <message>
         <source>Raid</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Gen 8 Tools</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="703"/>
@@ -4875,7 +4875,7 @@
     </message>
     <message>
         <source>IDs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Underground</source>
@@ -4895,15 +4895,15 @@
     </message>
     <message>
         <source>Jirachi Advancer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SHA1 Cache</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -4914,7 +4914,7 @@
     </message>
     <message>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generate</source>
@@ -4926,42 +4926,42 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="45"/>
         <source>Method 1</source>
-        <translation type="unfinished">Methode 1</translation>
+        <translation>Methode 1</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="47"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Methode 2</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="49"/>
         <source>Method 4</source>
-        <translation type="unfinished">Methode 4</translation>
+        <translation>Methode 4</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="51"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="53"/>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>Method</source>
-        <translation type="unfinished">Methode</translation>
+        <translation>Methode</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>IVs</source>
-        <translation type="unfinished">IVs</translation>
+        <translation>IVs</translation>
     </message>
 </context>
 <context>
@@ -5000,7 +5000,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Food Advances</source>
@@ -7842,7 +7842,7 @@
     </message>
     <message>
         <source>Seed 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Max Advances</source>
@@ -7850,7 +7850,7 @@
     </message>
     <message>
         <source>Seed 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Generate</source>
@@ -7870,7 +7870,7 @@
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>TID</source>
@@ -7898,12 +7898,12 @@
     <message>
         <location filename="../Gen8/Static8.cpp" line="50"/>
         <source>♂ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="50"/>
         <source>♀ Lead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="137"/>
@@ -7957,7 +7957,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ability</source>
@@ -7989,7 +7989,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -7997,87 +7997,87 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Advances</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">Schillernd</translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Nature</source>
-        <translation type="unfinished">Wesen</translation>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Ability</source>
-        <translation type="unfinished">Fähigkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>HP</source>
-        <translation type="unfinished">KP</translation>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Atk</source>
-        <translation type="unfinished">Angr</translation>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Def</source>
-        <translation type="unfinished">Vert</translation>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>SpA</source>
-        <translation type="unfinished">SpAng</translation>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>SpD</source>
-        <translation type="unfinished">SpVer</translation>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Spe</source>
-        <translation type="unfinished">Init</translation>
+        <translation>Init</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Gender</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
@@ -8165,12 +8165,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
@@ -8263,12 +8263,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
@@ -8454,12 +8454,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
@@ -8547,12 +8547,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
@@ -8650,12 +8650,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="152"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="153"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="154"/>
@@ -10301,12 +10301,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
@@ -10419,12 +10419,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
@@ -10532,12 +10532,12 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
