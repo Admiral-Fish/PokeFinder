@@ -7666,7 +7666,7 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Category</source>
