@@ -1027,7 +1027,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2630,7 +2630,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3714,7 +3714,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3845,7 +3845,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8596,7 +8596,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="140"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10910,7 +10910,7 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
-        <source>Advances</source>
+        <source>Target Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
