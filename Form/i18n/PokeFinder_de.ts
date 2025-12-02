@@ -523,12 +523,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="95"/>
         <source>Held Advances</source>
-        <translation></translation>
+        <translation>Halten Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="96"/>
         <source>Pickup Advances</source>
-        <translation></translation>
+        <translation>Aufnahme Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="97"/>
@@ -734,12 +734,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Halten Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
         <source>Redraws</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnahme Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
@@ -925,12 +925,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="188"/>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Halten Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="189"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnahme Advances</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="190"/>
@@ -1317,7 +1317,7 @@
     </message>
     <message>
         <source>Seed (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed (Halten / Aufnahme)</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.cpp" line="129"/>
@@ -1337,11 +1337,11 @@
     </message>
     <message>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Halten Advances</translation>
     </message>
     <message>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnahme Advances</translation>
     </message>
     <message>
         <source>Mixed</source>
@@ -1353,7 +1353,7 @@
     </message>
     <message>
         <source>Offset (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset (Halten / Aufnahme)</translation>
     </message>
 </context>
 <context>
@@ -1471,19 +1471,19 @@
     </message>
     <message>
         <source>Seed (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed (Halten / Aufnahme)</translation>
     </message>
     <message>
         <source>Held Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Halten Advances</translation>
     </message>
     <message>
         <source>Pickup Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnahme Advances</translation>
     </message>
     <message>
         <source>Offset (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset (Halten / Aufnahme)</translation>
     </message>
 </context>
 <context>
