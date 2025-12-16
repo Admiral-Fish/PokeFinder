@@ -118,7 +118,7 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         BWRNG go(rng, jump);
 
         u32 pid;
-        if (staticTemplate.getEgg())
+        if (staticTemplate.getEgg() || staticTemplate.getRoamer())
         {
             pid = go.nextUInt();
         }
