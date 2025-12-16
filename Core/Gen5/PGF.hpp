@@ -43,12 +43,20 @@ public:
         species(*reinterpret_cast<const u16 *>(data + 0x1a)),
         tid(*reinterpret_cast<const u16 *>(data + 0x0)),
         egg(data[0x5C] == 1),
-        ability(data[0x36]),
         gender(data[0x35]),
         ivs { data[0x43], data[0x44], data[0x45], data[0x47], data[0x48], data[0x46] },
         level(data[0x5b]),
         nature(data[0x34])
     {
+        if (data[0x36] <= 2)
+        {
+            ability = data[0x36];
+        }
+        else // data[0x36] == 3
+        {
+            ability = 255;
+        }
+
         if (data[0x37] == 0)
         {
             shiny = Shiny::Never;
@@ -57,7 +65,7 @@ public:
         {
             shiny = Shiny::Random;
         }
-        else
+        else // data[0x37] == 2
         {
             shiny = Shiny::Always;
         }

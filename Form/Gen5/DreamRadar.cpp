@@ -266,7 +266,10 @@ std::vector<DreamRadarTemplate> DreamRadar::getGeneratorSettings() const
 
         const DreamRadarTemplate *radarTemplate = Encounters5::getDreamRadarEncounters(index);
         radarTemplates.emplace_back(*radarTemplate);
-        radarTemplates[i].setGender(genders[i]->getCurrentUChar());
+        if (radarTemplate->getGender() == 255)
+        {
+            radarTemplates[i].setGender(genders[i]->getCurrentUChar());
+        }
     }
 
     return radarTemplates;
@@ -291,7 +294,10 @@ std::vector<DreamRadarTemplate> DreamRadar::getSearcherSettings() const
 
         const DreamRadarTemplate *radarTemplate = Encounters5::getDreamRadarEncounters(index);
         radarTemplates.emplace_back(*radarTemplate);
-        radarTemplates[i].setGender(genders[i]->getCurrentUChar());
+        if (radarTemplate->getGender() == 255)
+        {
+            radarTemplates[i].setGender(genders[i]->getCurrentUChar());
+        }
     }
 
     return radarTemplates;

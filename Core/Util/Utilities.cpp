@@ -203,24 +203,26 @@ namespace Utilities5
 
         if (gender < 2)
         {
-            u8 low;
-            switch (ratio)
+            u8 low = 8;
+            if (ratio > 0 && ratio < 254)
             {
-            case 0: // Male only
-                low = rng.nextUInt(0xf6) + 8;
-                break;
-            case 254: // Female only
-                low = rng.nextUInt(8) + 1;
-                break;
-            default:
-                if (gender == 0) // Male
+                if (gender == 0)
                 {
-                    low = rng.nextUInt(0xfe - ratio) + ratio;
+                    low = ratio;
                 }
-                else if (gender == 1) // Female
+                else if (ratio)
                 {
-                    low = rng.nextUInt(ratio - 1) + 1;
+                    low = ratio - 1;
                 }
+            }
+
+            if (gender == 0)
+            {
+                low = rng.nextUInt(0xfe - low) + low;
+            }
+            else if (gender == 1)
+            {
+                low = rng.nextUInt(low) + 1;
             }
 
             pid = (pid & 0xffffff00) | low;
@@ -236,9 +238,15 @@ namespace Utilities5
             pid ^= 0x10000000;
         }
 
-        // 0: force ability 0
-        // 1: force ability 1
-        // 2/255: force ability flip
+        // 0: Force ability bit low
+        // 1: Force ability bit high
+        // 2: Force abliity bit low
+        // 255: Flip ability bit
+        if (ability == 2)
+        {
+            ability = 0;
+        }
+
         if (((pid >> 16) & 1) != ability)
         {
             pid ^= 0x10000;
