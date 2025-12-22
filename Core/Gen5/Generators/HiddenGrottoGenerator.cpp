@@ -150,6 +150,14 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
 
     u8 range = slot.getMaxLevel() - slot.getMinLevel();
 
+    // Even though hidden grotto can't be shiny it still respects the extra rolls from shiny charm
+    // It also respects the extra roll from lucky power but since that choice isn't selectable in the UI we will ignore it
+    u8 shinyRolls = 1;
+    if (profile.getShinyCharm())
+    {
+        shinyRolls += 2;
+    }
+
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
@@ -164,14 +172,17 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
 
         const PersonalInfo *info = slot.getInfo();
 
-        u32 pid = Utilities5::createPID(tsv, 2, !info->getFixedGender() ? gender : 255, Shiny::Never, true, info->getGender(), go);
+        u32 pid;
+        for (u8 i = 0; i < shinyRolls; i++)
+        {
+            pid = Utilities5::createPID(tsv, 2, !info->getFixedGender() ? gender : 255, Shiny::Never, true, info->getGender(), go);
+        }
 
         u8 ability = 2;
         if (info->getAbility(2) == 0)
         {
             ability = (pid >> 16) & 1;
         }
-        u8 shiny = Utilities::getShiny<true>(pid, tsv);
 
         u8 nature = go.nextUInt(25);
         if (sync)
@@ -182,7 +193,7 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
         u16 chatot = rng.nextUInt(0x1fff);
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny, info);
+            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, 0, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
