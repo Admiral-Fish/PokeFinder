@@ -157,7 +157,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
     u8 shinyRolls = 1;
-    if (staticTemplate.getShiny() == Shiny::Random && (profile.getVersion() & Game::BW2) != Game::None)
+    if ((profile.getVersion() & Game::BW2) != Game::None)
     {
         if (profile.getShinyCharm())
         {
