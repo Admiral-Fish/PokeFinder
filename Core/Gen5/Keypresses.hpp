@@ -38,6 +38,13 @@ struct Keypress
 namespace Keypresses
 {
     /**
+     * @brief Computes all possible keypress combinations
+     *
+     * @return Vector of keypress inputs
+     */
+    std::vector<Keypress> getKeypresses();
+
+    /**
      * @brief Computes possible keypress combinations
      *
      * @param profile Profile information

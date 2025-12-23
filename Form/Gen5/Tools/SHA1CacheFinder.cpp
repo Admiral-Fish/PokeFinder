@@ -149,11 +149,7 @@ void SHA1CacheFinder::search()
     ui->pushButtonCancel->setEnabled(true);
 
     auto *searcher = new SHA1CacheSearcher(ivCache, *currentProfile, start, end);
-
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress());
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

@@ -35,7 +35,7 @@ static void write(std::ofstream &file, Type val)
 }
 
 SHA1CacheSearcher::SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &profile, const Date &start, const Date &end) :
-    SearcherBase<SHA1Seed>(), profile(profile), keypresses(Keypresses::getKeypresses(profile)), end(end), start(start), initialAdvances(ivCache.getInitialAdvances()), maxAdvances(ivCache.getMaxAdvances())
+    SearcherBase<SHA1Seed>(), profile(profile), keypresses(Keypresses::getKeypresses()), end(end), start(start), initialAdvances(ivCache.getInitialAdvances()), maxAdvances(ivCache.getMaxAdvances())
 {
     entralinkSeeds = ivCache.getSeeds(profile.getVersion(), CacheType::Entralink);
     normalSeeds = ivCache.getSeeds(profile.getVersion(), CacheType::Normal);
@@ -101,7 +101,6 @@ void SHA1CacheSearcher::writeResults(const std::string &file)
         write(stream, profile.getSoftReset());
         write(stream, profile.getDSType());
         write(stream, profile.getLanguage());
-        write(stream, profile.getKeypresses());
         write(stream, profile.getGxStat());
         write(stream, profile.getVCount());
         write(stream, profile.getVFrame());

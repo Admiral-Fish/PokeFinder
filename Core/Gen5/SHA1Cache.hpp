@@ -80,11 +80,12 @@ public:
      * @param end End date
      * @param ivCache Fast search IV cache
      * @param type What cache type to get
+     * @param profile Profile information to filter keypresses by
      *
      * @return IV caches
      */
     fph::MetaFphMap<u64, u64> getCache(u32 initialAdvance, u32 maxAdvance, const Date &start, const Date &end,
-                                       const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type);
+                                       const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type, const Profile5 &profile);
 
     /**
      * @brief Returns the end date
@@ -140,7 +141,7 @@ public:
 
     /**
      * @brief Determines if cache is valid
-     * 
+     *
      * @param file Path to file to validate the cache from
      */
     static bool isValid(const std::string &file, const std::string &ivFile);
@@ -160,7 +161,6 @@ private:
     bool softReset;
     DSType type;
     Language language;
-    std::array<bool, 9> keypresses;
     bool valid;
     u8 gxstat;
     u8 vcount;

@@ -561,10 +561,9 @@ void HiddenGrotto::pokemonSearch()
         auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
         {
-            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(
-                initialIVAdvances, maxIVAdvances,
-                shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal), ivMap, generator,
-                *currentProfile);
+            auto shaMap = shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal, *currentProfile);
+            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
+                                                                               *currentProfile);
         }
         else
         {
@@ -577,10 +576,7 @@ void HiddenGrotto::pokemonSearch()
         searcher = new IVSearcher5<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

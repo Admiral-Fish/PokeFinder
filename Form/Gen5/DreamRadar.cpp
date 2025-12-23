@@ -358,11 +358,7 @@ void DreamRadar::search()
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
     auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);
-
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1;
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

@@ -59,6 +59,24 @@ static bool valid(Buttons button, int count, bool skipLR)
 
 namespace Keypresses
 {
+    std::vector<Keypress> getKeypresses()
+    {
+        std::vector<Keypress> keypress;
+
+        for (u16 bits = 0; bits < 0x1000; bits++)
+        {
+            auto combo = static_cast<Buttons>(bits);
+            int count = std::popcount(bits);
+            if (count <= 8 && valid(combo, count, false))
+            {
+                Keypress k = { getValue(combo), combo };
+                keypress.emplace_back(k);
+            }
+        }
+
+        return keypress;
+    }
+
     std::vector<Keypress> getKeypresses(const Profile5 &profile)
     {
         std::vector<Keypress> keypress;

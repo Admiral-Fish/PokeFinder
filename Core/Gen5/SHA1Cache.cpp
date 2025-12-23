@@ -20,6 +20,7 @@
 #include "SHA1Cache.hpp"
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Keypresses.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
 
@@ -48,7 +49,6 @@ SHA1Cache::SHA1Cache(const std::string &file) : valid(false)
         stream.read(reinterpret_cast<char *>(&softReset), sizeof(softReset));
         stream.read(reinterpret_cast<char *>(&type), sizeof(type));
         stream.read(reinterpret_cast<char *>(&language), sizeof(language));
-        stream.read(reinterpret_cast<char *>(&keypresses), sizeof(keypresses));
         stream.read(reinterpret_cast<char *>(&gxstat), sizeof(gxstat));
         stream.read(reinterpret_cast<char *>(&vcount), sizeof(vcount));
         stream.read(reinterpret_cast<char *>(&vframe), sizeof(vframe));
@@ -71,9 +71,11 @@ SHA1Cache::SHA1Cache(const std::string &file) : valid(false)
 }
 
 fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance, const Date &start, const Date &end,
-                                              const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type)
+                                              const fph::MetaFphMap<u64, std::array<u8, 6>> &ivCache, CacheType type,
+                                              const Profile5 &profile)
 {
     fph::MetaFphMap<u64, u64> cache;
+    auto keypresses = Keypresses::getKeypresses(profile);
 
     SHA1Seed *data;
     u32 count;
@@ -97,7 +99,10 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance
     for (u32 i = 0; i < count; i++)
     {
         const auto &entry = &data[i];
-        if (entry->key.date >= (start.getJD() - Date().getJD()) && entry->key.date <= (end.getJD() - Date().getJD()))
+        if (entry->key.date >= (start.getJD() - Date().getJD()) && entry->key.date <= (end.getJD() - Date().getJD())
+            && std::find_if(keypresses.begin(), keypresses.end(),
+                            [&entry](const Keypress keypress) { return entry->key.button == toInt(keypress.button); })
+                != keypresses.end())
         {
             for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance) && j < 6; j++)
             {
@@ -124,8 +129,8 @@ bool SHA1Cache::isValid(const Profile5 &profile) const
 {
     return valid && mac == profile.getMac() && version == profile.getVersion() && timer0max == profile.getTimer0Max()
         && timer0min == profile.getTimer0Min() && softReset == profile.getSoftReset() && type == profile.getDSType()
-        && language == profile.getLanguage() && keypresses == profile.getKeypresses() && gxstat == profile.getGxStat()
-        && vcount == profile.getVCount() && vframe == profile.getVFrame();
+        && language == profile.getLanguage() && gxstat == profile.getGxStat() && vcount == profile.getVCount()
+        && vframe == profile.getVFrame();
 }
 
 bool SHA1Cache::isValid(const std::string &file, const std::string &ivFile)
