@@ -17,19 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "DreamRadarGeneratorTest.hpp"
+#include "WildGenerator5Test.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
-#include <Core/Gen5/DreamRadarTemplate.hpp>
+#include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Gen5/Encounters5.hpp>
-#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
+#include <Core/Gen5/Generators/WildGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/WildState5.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const DreamRadarState &left, const json &right)
+static bool operator==(const WildState5 &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
@@ -37,29 +37,36 @@ static bool operator==(const DreamRadarState &left, const json &right)
         && left.getGender() == right["gender"].get<u8>() && left.getHiddenPower() == right["hiddenPower"].get<u8>()
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>() && left.getNeedle() == right["needle"].get<u8>();
+        && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
+        && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
+        && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
 }
 
-void DreamRadarGeneratorTest::generate_data()
+void WildGenerator5Test::generate_data()
 {
     QTest::addColumn<u64>("seed");
-    QTest::addColumn<std::vector<int>>("pokemon");
-    QTest::addColumn<std::vector<u8>>("gender");
+    QTest::addColumn<Encounter>("encounter");
+    QTest::addColumn<Lead>("lead");
+    QTest::addColumn<Game>("version");
+    QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("dreamradar", "generate");
+    json data = readData("wild5", "generate");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u64>() << d["pokemon"].get<std::vector<int>>()
-                                                           << d["gender"].get<std::vector<u8>>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u64>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["version"].get<Game>()
+            << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
-void DreamRadarGeneratorTest::generate()
+void WildGenerator5Test::generate()
 {
     QFETCH(u64, seed);
-    QFETCH(std::vector<int>, pokemon);
-    QFETCH(std::vector<u8>, gender);
+    QFETCH(Encounter, encounter);
+    QFETCH(Lead, lead);
+    QFETCH(Game, version);
+    QFETCH(int, location);
     QFETCH(std::string, results);
 
     json j = json::parse(results);
@@ -76,25 +83,20 @@ void DreamRadarGeneratorTest::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
+
+    Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
                      false, 0, 0, false, false, false, DSType::DS, Language::English);
 
-    const DreamRadarTemplate *dreamRadarTemplates = Encounters5::getDreamRadarEncounters();
+    std::vector<EncounterArea5> encounterAreas = Encounters5::getEncounters(encounter, 0, &profile);
+    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
+                                      [location](const EncounterArea5 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    std::vector<DreamRadarTemplate> radarTemplates;
-    for (int i = 0; i < pokemon.size(); i++)
-    {
-        radarTemplates.emplace_back(dreamRadarTemplates[pokemon[i]]);
-        if (radarTemplates[i].getGender() == 255)
-        {
-            radarTemplates[i].setGender(gender[i]);
-        }
-    }
+    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, *encounterArea, profile, filter);
 
-    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
-    DreamRadarGenerator generator(0, 9, 0, radarTemplates, profile, filter);
-
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
