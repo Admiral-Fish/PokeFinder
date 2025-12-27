@@ -34,7 +34,7 @@
  */
 static bool valid(Buttons button, int count, bool skipLR)
 {
-    if (skipLR && (button & Buttons::LR) == Buttons::LR)
+    if (skipLR && (button & Buttons::LR) != Buttons::None)
     {
         return false;
     }
