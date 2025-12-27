@@ -23,6 +23,7 @@
         <file alias="hiddengrotto.json">Gen5/hiddengrotto.json</file>
         <file alias="id5.json">Gen5/id5.json</file>
         <file alias="profilesearcher5.json">Gen5/profilesearcher5.json</file>
+        <file alias="static5.json">Gen5/static5.json</file>
         <file alias="wild5.json">Gen5/wild5.json</file>
 
         <file alias="egg8.json">Gen8/egg8.json</file>
