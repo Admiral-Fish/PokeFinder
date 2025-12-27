@@ -370,9 +370,9 @@ void Static5::search()
         auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), type, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
         {
-            searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(
-                initialIVAdvances, maxIVAdvances, shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, type), ivMap,
-                generator, *currentProfile);
+            auto shaMap = shaCache->getCache(initialAdvances, maxIVAdvances, start, end, ivMap, type, *currentProfile);
+            searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
+                                                                          *currentProfile);
         }
         else
         {
@@ -384,10 +384,7 @@ void Static5::search()
         searcher = new IVSearcher5<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

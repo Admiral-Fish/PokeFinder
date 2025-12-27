@@ -55,6 +55,19 @@ public:
     }
 
     /**
+     * @brief Computes max progress
+     *
+     * @param start Start date
+     * @param end End date
+     * 
+     * @return Max progress
+     */
+    u64 getMaxProgress(const Date &start, const Date &end) const
+    {
+        return keypresses.size() * (start.daysTo(end) + 1) * (profile.getTimer0Max() - profile.getTimer0Min() + 1);
+    }
+
+    /**
      * @brief Starts the search
      *
      * @param threads Numbers of threads to search with

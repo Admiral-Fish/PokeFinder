@@ -193,11 +193,7 @@ void Eggs5::search()
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
     auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
-
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();

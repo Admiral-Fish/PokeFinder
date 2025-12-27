@@ -266,24 +266,24 @@
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="305"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="338"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="344"/>
         <source>Missing settings</source>
         <translation>Fehlende Einstellungen</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="305"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="338"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="344"/>
         <source>Enter information for at least 1 slot</source>
         <translation>Informationen für mindestens einen Slot ausfüllen</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="330"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="336"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="330"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="336"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
@@ -2194,25 +2194,25 @@
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="207"/>
-        <location filename="../Gen5/Event5.cpp" line="356"/>
+        <location filename="../Gen5/Event5.cpp" line="352"/>
         <source>Invalid format</source>
         <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="207"/>
-        <location filename="../Gen5/Event5.cpp" line="356"/>
+        <location filename="../Gen5/Event5.cpp" line="352"/>
         <source>Wondercard is not the correct size</source>
         <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="257"/>
-        <location filename="../Gen5/Event5.cpp" line="406"/>
+        <location filename="../Gen5/Event5.cpp" line="402"/>
         <source>File error</source>
         <translation>Dateifehler</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="257"/>
-        <location filename="../Gen5/Event5.cpp" line="406"/>
+        <location filename="../Gen5/Event5.cpp" line="402"/>
         <source>There was a problem opening the wondercard</source>
         <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
@@ -3537,27 +3537,27 @@
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="615"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="611"/>
         <source>Settings are configured for fast searching</source>
         <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="621"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="617"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="626"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="622"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="627"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="623"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="628"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="624"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
@@ -6834,7 +6834,7 @@
         <translation>Profil hat kein gültiges IV Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="183"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="179"/>
         <source>Save File</source>
         <translation>Datei speichern</translation>
     </message>
@@ -7787,39 +7787,47 @@
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="334"/>
+        <location filename="../Gen5/Static5.cpp" line="342"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="334"/>
+        <location filename="../Gen5/Static5.cpp" line="342"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="438"/>
+        <location filename="../Gen5/Static5.cpp" line="443"/>
         <source>Settings are configured for fast searching</source>
         <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="444"/>
+        <location filename="../Gen5/Static5.cpp" line="449"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="449"/>
+        <location filename="../Gen5/Static5.cpp" line="454"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="450"/>
+        <location filename="../Gen5/Static5.cpp" line="455"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="451"/>
+        <location filename="../Gen5/Static5.cpp" line="456"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
+    </message>
+    <message>
+        <source>Curtis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yancy</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9946,27 +9954,27 @@
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="468"/>
+        <location filename="../Gen5/Wild5.cpp" line="464"/>
         <source>Settings are configured for fast searching</source>
         <translation>IV Advances und IV Filter ermöglichen Schnellsuche</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="474"/>
+        <location filename="../Gen5/Wild5.cpp" line="470"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="478"/>
+        <location filename="../Gen5/Wild5.cpp" line="475"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="479"/>
+        <location filename="../Gen5/Wild5.cpp" line="476"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="480"/>
+        <location filename="../Gen5/Wild5.cpp" line="477"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>

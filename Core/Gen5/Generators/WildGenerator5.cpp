@@ -227,7 +227,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             // Only allow cute charm if the target isn't fixed gender
             u8 gender = cuteCharm && !info->getFixedGender() ? (lead == Lead::CuteCharmF ? 0 : 1) : 255;
 
-            pid = Utilities5::createPID(tsv, 2, gender, Shiny::Random, true, info->getGender(), go);
+            pid = Utilities5::createPID(tsv, 255, gender, Shiny::Random, true, info->getGender(), go);
             if (Utilities::isShiny<true>(pid, tsv))
             {
                 break;

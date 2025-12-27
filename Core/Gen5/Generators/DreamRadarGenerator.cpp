@@ -86,15 +86,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 
         go.next();
 
-        u32 pid;
-        if (radarTemplate.getLegend()) // All dream radar legends are treated as 100% male
-        {
-            pid = Utilities5::createPID(tsv, 2, 0, radarTemplate.getShiny(), false, 0, go);
-        }
-        else
-        {
-            pid = Utilities5::createPID(tsv, 2, radarTemplate.getGender(), radarTemplate.getShiny(), false, info->getGender(), go);
-        }
+        u32 pid = Utilities5::createPID(tsv, 255, radarTemplate.getGender(), Shiny::Never, false, info->getGender(), go);
 
         u8 ability = 2;
         if (radarTemplate.getAbility() == 255)

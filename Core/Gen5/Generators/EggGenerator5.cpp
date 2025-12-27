@@ -24,6 +24,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
+#include <Core/Enum/Shiny.hpp>
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
@@ -203,19 +204,10 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
         {
             BWRNG go(rng, jump);
 
-            u32 pid = go.nextUInt();
-            if (((pid >> 16) & 1) != state.getAbility())
-            {
-                pid ^= 0x10000;
-            }
-
+            u32 pid = Utilities5::createPID(tsv, state.getAbility(), 255, Shiny::Random, false, info->getGender(), go);
             for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
             {
-                pid = go.nextUInt();
-                if (((pid >> 16) & 1) != state.getAbility())
-                {
-                    pid ^= 0x10000;
-                }
+                pid = Utilities5::createPID(tsv, state.getAbility(), 255, Shiny::Random, false, info->getGender(), go);
             }
 
             state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),

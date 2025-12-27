@@ -48,6 +48,16 @@ public:
     SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &profile, const Date &start, const Date &end);
 
     /**
+     * @brief Computes max progress
+     * 
+     * @return Max progress
+     */
+    u64 getMaxProgress() const
+    {
+        return keypresses.size() * (start.daysTo(end) + 1) * (profile.getTimer0Max() - profile.getTimer0Min() + 1);
+    }
+
+    /**
      * @brief Starts the search
      *
      * @param threads Numbers of threads to search with

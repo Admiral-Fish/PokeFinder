@@ -62,18 +62,24 @@ public:
         u8 level = min + (prng % range);
         if (force)
         {
+            bool diff = false;
             u8 max = level;
             for (u8 i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
             {
+                if (pokemon[i].getMinLevel() != pokemon[i].getMaxLevel())
+                {
+                    diff = true;
+                }
+
                 if (slot.getSpecie() == pokemon[i].getSpecie())
                 {
                     max = std::max(max, pokemon[i].getMaxLevel());
                 }
             }
 
-            if (range > 1 && (level + 5) <= max)
+            if (diff)
             {
-                return level + 5;
+                return std::min((u8)(level + 5), max);
             }
             else
             {

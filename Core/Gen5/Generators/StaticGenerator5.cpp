@@ -47,6 +47,14 @@ StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 off
     StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
     luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
 {
+    if (staticTemplate.getCurtis())
+    {
+        tsv = 54118;
+    }
+    else if (staticTemplate.getYancy())
+    {
+        tsv = 10303;
+    }
 }
 
 std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
@@ -118,18 +126,26 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         BWRNG go(rng, jump);
 
         u32 pid;
+        u16 realTSV = tsv;
         if (staticTemplate.getEgg())
+        {
+            pid = go.nextUInt();
+            u32 id = go.nextUInt();
+            realTSV = (id >> 16) ^ (id & 0xffff);
+        }
+        else if (staticTemplate.getRoamer())
         {
             pid = go.nextUInt();
         }
         else
         {
-            pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false, info->getGender(), go);
+            pid = Utilities5::createPID(realTSV, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false,
+                                        info->getGender(), go);
         }
 
         u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
         u8 gender = Utilities::getGender(pid, info);
-        u8 shiny = Utilities::getShiny<true>(pid, tsv);
+        u8 shiny = Utilities::getShiny<true>(pid, realTSV);
         u8 nature = go.nextUInt(25);
 
         u16 chatot = rng.nextUInt(0x1fff);
@@ -157,7 +173,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
     u8 shinyRolls = 1;
-    if (staticTemplate.getShiny() == Shiny::Random && (profile.getVersion() & Game::BW2) != Game::None)
+    if ((profile.getVersion() & Game::BW2) != Game::None)
     {
         if (profile.getShinyCharm())
         {
@@ -192,23 +208,22 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             }
         }
 
+        // If the pokemon has a fixed gender ratio don't let anything override it
+        u8 gender = 255;
+        if (!info->getFixedGender())
+        {
+            gender = staticTemplate.getGender();
+
+            // Only override the gender with cutecharm if the template doesn't have a forced gender
+            if (cuteCharm && gender == 255)
+            {
+                gender = lead == Lead::CuteCharmF ? 0 : 1;
+            }
+        }
+
         u32 pid;
         for (u8 i = 0; i < shinyRolls; i++)
         {
-            u8 gender = 255;
-
-            // If the pokemon has a fixed gender ratio don't let anything override it
-            if (!info->getFixedGender())
-            {
-                gender = staticTemplate.getGender();
-
-                // Only override the gender with cutecharm if the template doesn't have a forced gender
-                if (cuteCharm && gender == 255)
-                {
-                    gender = lead == Lead::CuteCharmF ? 0 : 1;
-                }
-            }
-
             pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), gender, staticTemplate.getShiny(), true, info->getGender(), go);
             if (Utilities::isShiny<true>(pid, tsv))
             {
@@ -217,7 +232,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         }
 
         u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
-        u8 gender = Utilities::getGender(pid, info);
+        gender = Utilities::getGender(pid, info);
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
 
         u8 nature = go.nextUInt(25);

@@ -397,10 +397,9 @@ void Wild5::search()
         auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
         {
-            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(
-                initialIVAdvances, maxIVAdvances,
-                shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal), ivMap, generator,
-                *currentProfile);
+            auto shaMap = shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal, *currentProfile);
+            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
+                                                                            *currentProfile);
         }
         else
         {
@@ -412,10 +411,7 @@ void Wild5::search()
         searcher = new IVSearcher5<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
@@ -475,9 +471,10 @@ void Wild5::searcherFastSearchChanged()
         }
         else
         {
-            QStringList text = { tr("Settings are not configured for fast searching"),
-                                 tr("Keep initial/max advances below %1/%2").arg(ivCache->getInitialAdvances()).arg(ivCache->getMaxAdvances()),
-                                 tr("Ensure IV filters are set to common spreads") };
+            QStringList text
+                = { tr("Settings are not configured for fast searching"),
+                    tr("Keep initial/max advances below %1/%2").arg(ivCache->getInitialAdvances()).arg(ivCache->getMaxAdvances()),
+                    tr("Ensure IV filters are set to common spreads") };
             ui->labelIVFastSearch->setText(text.join('\n'));
         }
     }

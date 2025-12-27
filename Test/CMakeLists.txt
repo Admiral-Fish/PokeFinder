@@ -64,6 +64,10 @@ add_executable(PokeFinderTest
     Gen5/IDGenerator5Test.hpp
     Gen5/ProfileSearcher5Test.cpp
     Gen5/ProfileSearcher5Test.hpp
+    Gen5/StaticGenerator5Test.cpp
+    Gen5/StaticGenerator5Test.hpp
+    Gen5/WildGenerator5Test.cpp
+    Gen5/WildGenerator5Test.hpp
     Gen8/EggGenerator8Test.cpp
     Gen8/EggGenerator8Test.hpp
     Gen8/EventGenerator8Test.cpp
