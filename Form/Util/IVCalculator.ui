@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IVCalculator</class>
+ <widget class="QWidget" name="IVCalculator">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>630</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IV Calculator</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0" rowspan="2">
+    <widget class="QGroupBox" name="groupBoxSettings">
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelGame">
+        <property name="text">
+         <string>Game</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelSpecies">
+        <property name="text">
+         <string>Pokémon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelAltForm">
+        <property name="text">
+         <string>Altform</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="ComboBox" name="comboBoxGame">
+        <item>
+         <property name="text">
+          <string>Emerald/RS/FRLG</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Diamond/Pearl/Platinum</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Heartgold/Soulsilver</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Black/White/Black 2/White 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sword/Shield</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Brilliant Diamond/Shining Pearl</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="ComboBox" name="comboBoxPokemon"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="comboBoxAltForm"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelCharacteristic">
+        <property name="text">
+         <string>Characteristic</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelHiddenPower">
+        <property name="text">
+         <string>Hidden Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="labelNature">
+        <property name="text">
+         <string>Nature</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="ComboBoxProxy" name="comboBoxCharacteristic">
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="ComboBoxProxy" name="comboBoxHiddenPower">
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="ComboBoxProxy" name="comboBoxNature">
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="pushButtonAddRow">
+        <property name="text">
+         <string>Add row</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="pushButtonRemoveRow">
+        <property name="text">
+         <string>Remove row</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="pushButtonFindIVs">
+        <property name="text">
+         <string>Find IVs</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="3">
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>351</width>
+           <height>234</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutEntry">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelLevel">
+            <property name="text">
+             <string>Level</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelHP">
+            <property name="text">
+             <string>HP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelAtk">
+            <property name="text">
+             <string>Atk</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelDef">
+            <property name="text">
+             <string>Def</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelSpA">
+            <property name="text">
+             <string>SpA</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="labelSpD">
+            <property name="text">
+             <string>SpD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QLabel" name="labelSpe">
+            <property name="text">
+             <string>Speed</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBoxInformation">
+     <property name="title">
+      <string>Information</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelBaseHP">
+        <property name="text">
+         <string>Base HP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelBaseHPValue"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelBaseAtk">
+        <property name="text">
+         <string>Base Atk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelBaseAtkValue"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelBaseDef">
+        <property name="text">
+         <string>Base Def</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelBaseDefValue"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelBaseSpA">
+        <property name="text">
+         <string>Base SpA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="labelBaseSpAValue"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelBaseSpD">
+        <property name="text">
+         <string>Base SpD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="labelBaseSpDValue"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelBaseSpe">
+        <property name="text">
+         <string>Base Spe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="labelBaseSpeValue"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBoxResults">
+     <property name="title">
+      <string>Results</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelHPIV">
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelHPIVValue"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelAtkIV">
+        <property name="text">
+         <string>Atk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelAtkIVValue"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelDefIV">
+        <property name="text">
+         <string>Def</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelDefIVValue"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelSpAIV">
+        <property name="text">
+         <string>SpA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="labelSpAIVValue"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelSpDIV">
+        <property name="text">
+         <string>SpD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="labelSpDIVValue"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelSpeIV">
+        <property name="text">
+         <string>Spe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="labelSpeIVValue"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="labelNextLevel">
+        <property name="text">
+         <string>Next level</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="labelNextLevelValue"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

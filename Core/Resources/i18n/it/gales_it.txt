@@ -1,0 +1,3 @@
+0,Riserva Rocciosa
+1,Riserva Tropicale
+2,Riserva Sotterranea

@@ -1,0 +1,85 @@
+0,Levantopoli
+1,Libecciopoli
+2,Mistralopoli
+3,Cantiere dei Sogni (Rovine)
+4,Cantiere dei Sogni (Sotterranei)
+5,Bosco Girandola (Esterno)
+6,Bosco Girandola (Interno)
+7,Deserto della Quiete (Ingresso)
+8,Deserto della Quiete (Deserto)
+9,Castello Sepolto P1-P1S
+11,Castello Sepolto P2S-P6S
+15,Castello Sepolto (Piano Più Basso)
+30,Castello Sepolto (Volcarona)
+40,Deposito Frigo
+41,Cava Pietrelettrica P1
+42,Cava Pietrelettrica P1S
+43,Cava Pietrelettrica P2S
+44,Monte Vite (Levello Superiore)
+45,Monte Vite (Levello Centrale)
+46,Monte Vite (Levello Inferiore)
+47,Monte Vite (Levello Più Basso)
+48,Torre Dragospira (Ingresso)
+49,Torre Dragospira (Esterno)
+50,Torre Dragospira P1
+51,Torre Dragospira P2
+52,Via Vittoria
+53,Via Vittoria P1 (Centrale)
+54,Via Vittoria P2 (Sinistra)
+55,Via Vittoria P3 (Centrale)
+56,Via Vittoria P4 (Centrale)
+57,Via Vittoria P2 (Destra)
+58,Via Vittoria P1 (Destra)
+59,Via Vittoria P3 (Destra)
+60,Via Vittoria P1 (Sinistra)
+61,Via Vittoria P3 (Sinistra)
+62,Via Vittoria P4 (Sinistra)
+63,Via Vittoria P5
+64,Via Vittoria P6
+65,Via Vittoria P4 (Destra)
+66,Via Vittoria P7
+67,Sala del Cimento
+68,Fossa Gigante (Ingresso)
+69,Fossa Gigante (Grotta)
+70,Fossa Gigante (Foresta Cratere)
+71,Fossa Gigante (Profondità della Grotta)
+72,Laboratorio P&P
+73,Baia Spiraria
+74,Ponte Libecciopoli
+75,Ponte Villaggio
+76,Ponte Meraviglie
+77,Percorso 1
+78,Percorso 2
+79,Percorso 3
+80,Falda Sotterranea P1
+81,Falda Sotterranea P1S
+82,Percorso 4
+83,Percorso 5
+84,Percorso 6
+85,Cava Ponentopoli P1
+86,Cava Ponentopoli P2
+87,Sala della Guida
+88,Percorso 7
+89,Torre Cielo P2
+90,Torre Cielo P3
+91,Torre Cielo P4
+92,Torre Cielo P5
+93,Percorso 8
+94,Palude Mistralopoli
+95,Percorso 9
+96,Caverna Ascesi P1
+97,Caverna Ascesi P1S
+98,Caverna Ascesi P2S
+99,Percorso 10
+100,Percorso 10 (Ponte Medaglia Base)
+101,Percorso 11
+102,Percorso 12
+103,Percorso 13
+104,Percorso 14
+105,Tempio Abbondanza
+106,Percorso 15
+107,Percorso 16
+108,Bosco Smarrimento
+109,Percorso 18
+110,Spiraria
+111,Percorso 17

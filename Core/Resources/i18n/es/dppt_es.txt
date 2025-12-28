@@ -1,0 +1,123 @@
+0,Ciudad Canal
+1,Ciudad Vetusta
+2,Ciudad Pradera
+3,Ciudad Marina
+4,Liga Pokémon
+5,Mina Pirita Sótano
+6,Oreburgh Mine B2F
+7,Valle Eólico
+8,Bosque Vetusto
+9,Forja Fuego
+10,Mt. Coronet 1F 1
+11,Monte Corona Primer piso
+12,Monte Corona Segundo piso
+13,Mt. Coronet Summit
+15,Mt. Coronet 4F 1-2
+16,Mt. Coronet 4F 3
+17,Monte Corona Cuarto piso
+18,Monte Corona Quinto piso
+19,Mt. Coronet 1F 2
+20,Mt. Coronet Upper 1F 2
+21,Mt. Coronet Upper 1F 1
+22,Mt. Coronet Upper B1F
+23,Gran Pantano Zona 1
+24,Gran Pantano Zona 2
+25,Gran Pantano Zona 3
+26,Gran Pantano Zona 4
+27,Gran Pantano Zona 5
+28,Gran Pantano Zona 6
+29,Ruinas Sosiego 2F
+30,Ruinas Sosiego
+32,Ruinas Sosiego B1F (4 Stairs)
+34,Ruinas Sosiego B2F (4 Stairs)
+40,Ruinas Sosiego B3F (3 Stairs)
+41,Ruinas Sosiego B3F (4 Stairs)
+42,Ruinas Sosiego B4F (4 Stairs)
+43,Ruinas Sosiego B4F (Chamber)
+47,Calle Victoria Entrada
+48,Calle Victoria Piso 1
+49,Calle Victoria Sótano
+50,Victory Road 1F Back 2
+51,Victory Road 1F Back 1
+52,Victory Road 1F Back 3
+53,Senda Desolada
+54,Puerta Pirita Primer piso
+55,Puerta Pirita Sótano
+56,Montaña Dura
+57,Stark Mountain Interior 1
+58,Stark Mountain Interior 2
+59,Fuente Despedida
+63,Cueva Retorno Entrada
+69,Turnback 1st Pillar
+75,Turnback 2nd Pillar
+106,Templo Puntaneva Sala 1
+107,Templo Puntaneva Sótano 1
+108,Templo Puntaneva Sótano 2
+109,Templo Puntaneva Sótano 3
+110,Templo Puntaneva Sótano 4
+111,Templo Puntaneva Sala de Regigigas
+112,Wayward Cave 1F
+113,Wayward Cave B1F
+114,Mina Ruinamaníaco (menos de 10 Unown Atrapados)
+115,Mina Ruinamaníaco (más de 10 Unown Atrapados)
+116,Túnel Maníaco
+117,Jardín Trofeo
+118,Isla Hierro Zona exterior
+119,Isla Hierro Planta baja
+120,Iron Island B1F 1
+121,Iron Island B1F 2
+122,Iron Island B2F 1
+123,Iron Island B2F 2
+124,Iron Island B3F 1
+125,Vieja Mansión
+132,Old Chateau 2F (Eye Room)
+134,Lake Verity (Pre Team Galatic Event)
+135,Lake Verity (Post Team Galatic Event)
+136,Lago Valor
+137,Lago Agudeza
+138,Orilla Valor
+139,Orilla Agudeza
+140,Ruta 201
+141,Ruta 202
+142,Ruta 203
+143,Ruta 204 (Sur)
+144,Ruta 204 (Norte)
+145,Ruta 205 (Sur)
+146,Route 205 (North)
+147,Ruta 206
+148,Ruta 207
+149,Ruta 208
+150,Ruta 209
+151,Lost Tower 1F
+152,Lost Tower 2F
+153,Lost Tower 3F
+154,Lost Tower 4F
+155,Lost Tower 5F
+156,Ruta 210 (Sur)
+157,Ruta 210 (Norte)
+158,Ruta 211 (Oeste)
+159,Ruta 211 (Este)
+160,Ruta 212 (Norte)
+161,Ruta 212 (Sur)
+162,Ruta 213
+163,Ruta 214
+164,Ruta 215
+165,Ruta 216
+166,Ruta 217
+167,Ruta 218
+168,Ruta 219
+169,Ruta 221
+170,Ruta 222
+171,Ruta 224
+172,Ruta 225
+173,Ruta 227
+174,Ruta 228
+175,Ruta 229
+176,Pueblo Hojaverde
+177,Pueblo Caelestis
+178,Zona Descanso
+179,Ruta 220
+180,Ruta 223
+181,Ruta 226
+182,Route 230
+183,Floaroma Meadow

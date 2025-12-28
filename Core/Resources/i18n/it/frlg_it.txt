@@ -1,0 +1,105 @@
+0,Settimisola Rovine Florabeto Sala A-loe
+1,Settimisola Rovine Florabeto Sala B-etulla
+2,Settimisola Rovine Florabeto Sala C-iclamino
+3,Settimisola Rovine Florabeto Sala D-afne
+4,Settimisola Rovine Florabeto Sala E-dera
+5,Settimisola Rovine Florabeto Sala F-elce
+6,Settimisola Rovine Florabeto Sala G-ardenia
+7,Bosco Smeraldo
+8,Monte Luna P1
+9,Monte Luna P1S
+10,Monte Luna P2S
+11,M/N Anna Esterno
+12,Grotta Diglett P1S
+13,Via Vittoria P1/P3
+14,Via Vittoria P2
+16,Villa Pokemon P1-P3
+19,Villa Pokemon P1S
+20,Zona Safari Centro
+21,Zona Safari Est
+22,Zona Safari Nord
+23,Zona Safari Ovest
+24,Grotta Celeste P1
+25,Grotta Celeste P2
+26,Grotta Celeste P1S
+27,Tunnel Roccioso P1
+28,Tunnel Roccioso P1S
+29,Isole Spumarine P1
+30,Isole Spumarine P1S
+31,Isole Spumarine P2S
+32,Isole Spumarine P3S
+33,Isole Spumarine P4S
+34,Torre Pokemon P3
+35,Torre Pokemon P4-P5
+37,Torre Pokemon P6
+38,Torre Pokemon P7
+39,Centrale Elettrica
+40,Monte Brace Esterno
+41,Monte Brace Percorso della Cima P1/P3
+42,Monte Brace Percorso della Cima P2
+44,Monte Brace Percorso del Rubino P1
+45,Monte Brace Percorso del Rubino P1S
+46,Monte Brace Percorso del Rubino P2S
+47,Monte Brace Percorso del Rubino P3S
+48,Monte Brace Percorso del Rubino P1S Scale
+49,Monte Brace Percorso del Rubino P2S Scale
+50,Terzisola Bosco Baccoso
+51,Quartisola Grotta Gelata Ingresso
+52,Quartisola Grotta Gelata P1/P1S
+54,Quartisola Grotta Gelata Retro
+55,Sestisola Bosco Disegnato
+56,Quintisola Grotta Sperduta
+66,Quintisola Grotta Sperduta Stanza dell'Oggetto
+70,Primisola Via Vulcanica
+71,Primisola Riva del Tesoro
+72,Secondisola Capo Estremo
+73,Terzisola Ponte Abbraccio
+74,Porto Terzisola
+75,Quintisola Perla dei Mari
+76,Quintisola Labirinto Marino
+77,Prato Quintisola
+78,Quintisola Colonna Rocciosa
+79,Sestisola Isola Solitaria
+80,Sestisola Via Verde
+81,Sestisola Via Marina
+82,Sestisola Valle Antica
+83,Settimisola Torre Allenatori
+84,Settimisola Canyon Seption Ingresso
+85,Settimisola Canyon Seption
+86,Settimisola Rovine Florabeto
+87,Percorso 1
+88,Percorso 2
+89,Percorso 3
+90,Percorso 4
+91,Percorso 5
+92,Percorso 6
+93,Percorso 7
+94,Percorso 8
+95,Percorso 9
+96,Percorso 10
+97,Percorso 11
+98,Percorso 12
+99,Percorso 13
+100,Percorso 14
+101,Percorso 15
+102,Percorso 16
+103,Percorso 17
+104,Percorso 18
+105,Percorso 19
+106,Percorso 20
+107,Percorso 21
+109,Percorso 22
+110,Percorso 23
+111,Percorso 24
+112,Percorso 25
+113,Biancavilla
+114,Smeraldopoli
+115,Celestopoli
+116,Aranciopoli
+117,Azzurropoli
+118,Fucsiapoli
+119,Isola Cannella
+120,Primisola
+121,Quartisola
+122,Quintisola
+123,Sestisola Grotta Mutevole

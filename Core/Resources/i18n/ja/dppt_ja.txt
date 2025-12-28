@@ -1,0 +1,123 @@
+0,Canalave City
+1,Eterna City
+2,Pastoria City
+3,Sunyshore City
+4,Pokémon League
+5,Oreburgh Mine B1F
+6,Oreburgh Mine B2F
+7,Valley Windworks
+8,Eterna Forest
+9,Fuego Ironworks
+10,Mt. Coronet 1F 1
+11,Mt. Coronet 2F
+12,Mt. Coronet 3F
+13,Mt. Coronet Summit
+15,Mt. Coronet 4F 1-2
+16,Mt. Coronet 4F 3
+17,Mt. Coronet 5F
+18,Mt. Coronet 6F
+19,Mt. Coronet 1F 2
+20,Mt. Coronet Upper 1F 2
+21,Mt. Coronet Upper 1F 1
+22,Mt. Coronet Upper B1F
+23,Great Marsh Area 1
+24,Great Marsh Area 2
+25,Great Marsh Area 3
+26,Great Marsh Area 4
+27,Great Marsh Area 5
+28,Great Marsh Area 6
+29,Solaceon Ruins 2F
+30,Solaceon Ruins
+32,Solaceon Ruins B1F (4 Stairs)
+34,Solaceon Ruins B2F (4 Stairs)
+40,Solaceon Ruins B3F (3 Stairs)
+41,Solaceon Ruins B3F (4 Stairs)
+42,Solaceon Ruins B4F (4 Stairs)
+43,Solaceon Ruins B4F (Chamber)
+47,Victory Road 1F
+48,Victory Road 2F
+49,Victory Road B1F
+50,Victory Road 1F Back 2
+51,Victory Road 1F Back 1
+52,Victory Road 1F Back 3
+53,Ravaged Path
+54,Oreburgh Gate 1F
+55,Oreburgh Gate B1F
+56,Stark Mountain
+57,Stark Mountain Interior 1
+58,Stark Mountain Interior 2
+59,Sendoff Spring
+63,Turnback Cave Entrance
+69,Turnback 1st Pillar
+75,Turnback 2nd Pillar
+106,Snowpoint Temple 1F
+107,Snowpoint Temple B1F
+108,Snowpoint Temple B2F
+109,Snowpoint Temple B3F
+110,Snowpoint Temple B4F
+111,Snowpoint Temple B5F
+112,Wayward Cave 1F
+113,Wayward Cave B1F
+114,Ruin Maniac Cave (< 10 Unown)
+115,Ruin Maniac Cave (> 10 Unown)
+116,Maniac Tunnel
+117,Trophy Garden
+118,Iron Island
+119,Iron Island 1F
+120,Iron Island B1F 1
+121,Iron Island B1F 2
+122,Iron Island B2F 1
+123,Iron Island B2F 2
+124,Iron Island B3F 1
+125,Old Chateau
+132,Old Chateau 2F (Eye Room)
+134,Lake Verity (Pre Team Galatic Event)
+135,Lake Verity (Post Team Galatic Event)
+136,Lake Valor
+137,Lake Acuity
+138,Valor Lakefront
+139,Acuity Lakefront
+140,Route 201
+141,Route 202
+142,Route 203
+143,Route 204 (South)
+144,Route 204 (North)
+145,Route 205 (South)
+146,Route 205 (North)
+147,Route 206
+148,Route 207
+149,Route 208
+150,Route 209
+151,Lost Tower 1F
+152,Lost Tower 2F
+153,Lost Tower 3F
+154,Lost Tower 4F
+155,Lost Tower 5F
+156,Route 210 (South)
+157,Route 210 (North)
+158,Route 211 (West)
+159,Route 211 (East)
+160,Route 212 (North)
+161,Route 212 (South)
+162,Route 213
+163,Route 214
+164,Route 215
+165,Route 216
+166,Route 217
+167,Route 218
+168,Route 219
+169,Route 221
+170,Route 222
+171,Route 224
+172,Route 225
+173,Route 227
+174,Route 228
+175,Route 229
+176,Twinleaf Town
+177,Celestic Town
+178,Resort Area
+179,Route 220
+180,Route 223
+181,Route 226
+182,Route 230
+183,Floaroma Meadow
