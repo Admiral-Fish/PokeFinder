@@ -27,6 +27,7 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QMessageBox>
+#include <QRegularExpression>
 
 constexpr u16 allowed[]
     = { 1,   4,   7,   10,  13,  16,  19,  21,  23,  27,  29,  32,  37,  41,  43,  46,  48,  50,  52,  54,  56,  58,  60,  63,  66,  69,
@@ -283,68 +284,47 @@ void EggSettings::setup(Game game)
 void EggSettings::setIVsToClipBoard()
 {
     QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
-                      .arg(ui->spinBoxParentAHP->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentAAtk->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentADef->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentASpA->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentASpD->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentASpe->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBHP->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBAtk->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBDef->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBSpA->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBSpD->value(), 2, 10, QChar('0'))
-                      .arg(ui->spinBoxParentBSpe->value(), 2, 10, QChar('0'));
+                      .arg(ui->spinBoxParentAHP->value())
+                      .arg(ui->spinBoxParentAAtk->value())
+                      .arg(ui->spinBoxParentADef->value())
+                      .arg(ui->spinBoxParentASpA->value())
+                      .arg(ui->spinBoxParentASpD->value())
+                      .arg(ui->spinBoxParentASpe->value())
+                      .arg(ui->spinBoxParentBHP->value())
+                      .arg(ui->spinBoxParentBAtk->value())
+                      .arg(ui->spinBoxParentBDef->value())
+                      .arg(ui->spinBoxParentBSpA->value())
+                      .arg(ui->spinBoxParentBSpD->value())
+                      .arg(ui->spinBoxParentBSpe->value());
 
     QApplication::clipboard()->setText(ivs);
 }
 
 void EggSettings::setIVsFromClipBoard()
 {
-    QString text = QApplication::clipboard()->text();
-    if (text.length() != 35)
-    {
-        QMessageBox box(QMessageBox::Warning, tr("Invalid Clipboard Length"),
-                        tr("Pasting IVs expects a string that is 35 characters in length."));
-        box.exec();
-        return;
-    }
+    QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
+                          "(\\d{1,2})/(\\d{1,2})");
 
-    QStringList halves = text.split("-");
-    if (halves.length() != 2)
+    QString text = QApplication::clipboard()->text();
+    QRegularExpressionMatch match = re.match(text);
+    if (!match.hasMatch())
     {
         QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
         box.exec();
         return;
     }
 
-    QStringList parentA = halves[0].split("/");
-    if (parentA.length() != 6)
-    {
-        QMessageBox box(QMessageBox::Warning, tr("Parent A IVs"), tr("The clipboard text did not contain exactly 6 Parent A IVs."));
-        box.exec();
-        return;
-    }
+    ui->spinBoxParentAHP->setValue(match.captured(1).toInt());
+    ui->spinBoxParentAAtk->setValue(match.captured(2).toInt());
+    ui->spinBoxParentADef->setValue(match.captured(3).toInt());
+    ui->spinBoxParentASpA->setValue(match.captured(4).toInt());
+    ui->spinBoxParentASpD->setValue(match.captured(5).toInt());
+    ui->spinBoxParentASpe->setValue(match.captured(6).toInt());
 
-    QStringList parentB = halves[1].split("/");
-    if (parentB.length() != 6)
-    {
-        QMessageBox box(QMessageBox::Warning, tr("Parent B IVs"), tr("The clipboard text did not contain exactly 6 Parent B IVs."));
-        box.exec();
-        return;
-    }
-
-    ui->spinBoxParentAHP->setValue(parentA[0].toInt());
-    ui->spinBoxParentAAtk->setValue(parentA[1].toInt());
-    ui->spinBoxParentADef->setValue(parentA[2].toInt());
-    ui->spinBoxParentASpA->setValue(parentA[3].toInt());
-    ui->spinBoxParentASpD->setValue(parentA[4].toInt());
-    ui->spinBoxParentASpe->setValue(parentA[5].toInt());
-
-    ui->spinBoxParentBHP->setValue(parentB[0].toInt());
-    ui->spinBoxParentBAtk->setValue(parentB[1].toInt());
-    ui->spinBoxParentBDef->setValue(parentB[2].toInt());
-    ui->spinBoxParentBSpA->setValue(parentB[3].toInt());
-    ui->spinBoxParentBSpD->setValue(parentB[4].toInt());
-    ui->spinBoxParentBSpe->setValue(parentB[5].toInt());
+    ui->spinBoxParentBHP->setValue(match.captured(7).toInt());
+    ui->spinBoxParentBAtk->setValue(match.captured(8).toInt());
+    ui->spinBoxParentBDef->setValue(match.captured(9).toInt());
+    ui->spinBoxParentBSpA->setValue(match.captured(10).toInt());
+    ui->spinBoxParentBSpD->setValue(match.captured(11).toInt());
+    ui->spinBoxParentBSpe->setValue(match.captured(12).toInt());
 }
