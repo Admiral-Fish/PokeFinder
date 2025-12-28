@@ -1,3 +1,0 @@
-0,Rock Poke Spot
-1,Oasis Poke Spot
-2,Cave Poke Spot

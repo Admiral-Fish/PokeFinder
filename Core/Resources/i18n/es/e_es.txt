@@ -1,0 +1,87 @@
+0,Ruta 101
+1,Ruta 102
+2,Ruta 103
+3,Ruta 104
+4,Ruta 105
+5,Ruta 110
+6,Ruta 111
+7,Ruta 112
+8,Ruta 113
+9,Ruta 114
+10,Ruta 116
+11,Ruta 117
+12,Ruta 118
+13,Ruta 124
+14,Bosque Petalia
+15,Túnel Fervergal
+16,Cueva Granito Planta baja (zona 1)
+17,Cueva Granito Sótano 1
+18,Mt Pyre 1F-3F
+19,Calle Victoria Planta baja
+20,Safari Zone South
+21,Ruta 126 Underwater
+22,Abandoned Ship
+23,Cueva Granito Sótano 2
+24,Senda Ígnea
+25,Cascada Meteoro Sótano 2 Cuarto trasero (zona 2)
+26,Desfiladero
+27,Ruta 106
+28,Ruta 107
+29,Ruta 108
+30,Ruta 109
+31,Ruta 115
+32,New Mauville Inside
+33,Ruta 119
+34,Ruta 120
+35,Ruta 121
+36,Ruta 122
+37,Ruta 123
+40,Mt Pyre 4F-6F
+43,Mt Pyre Exterior
+44,Mt Pyre Summit
+45,Granite Cave Stevens Room
+46,Ruta 125
+47,Ruta 126
+48,Ruta 127
+49,Ruta 128
+50,Ruta 129
+51,Ruta 130
+52,Ruta 131
+53,Ruta 132
+54,Ruta 133
+55,Ruta 134
+62,Seafloor Cavern
+65,Seafloor Cavern Entrance
+66,Cave Of Origin Entrance
+67,Cave Of Origin 1F
+71,New Mauville Entrance
+72,Safari Zone Southwest
+73,Safari Zone North
+74,Safari Zone Northwest
+75,Calle Victoria Sótano 1
+76,Victory Road B2F
+77,Cascada Meteoro Entrada (zona 1)
+78,Cascada Meteoro Interior de la cueva (zona 2)
+79,Cascada Meteoro Sótano 1 Interior de la cueva (zona 1)
+82,Shoal Cave
+84,Ciudad Calagua
+85,Pueblo Azuliza
+86,Ciudad Portual
+87,Ciudad Algaria
+88,Pueblo Oromar
+89,Ciudad Colosalia
+90,Ciudad Petalia
+91,Ruta 124 Underwater
+92,Shoal Cave Ice Room
+93,Pilar Celeste Planta baja
+94,Arrecípolis
+95,Pilar Celeste Pisos 1 y 2
+96,Pilar Celeste Pisos 3 y 4
+97,Safari Zone Southeast
+98,Safari Zone Northeast
+99,Magma Hideout
+107,Mirage Tower
+111,Gruta Desértica
+112,Artisan Cave
+114,Altering Cave
+123,Meteor Falls Stevens Cave

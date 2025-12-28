@@ -1,0 +1,15 @@
+name: Mtime Cache
+description: Save or restore mtimes of files that have not changed.
+inputs:
+  mode:
+    description: "Mode: save or restore"
+    required: true
+  files:
+    description: "Newline-separated list of files or glob patterns"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        python3 "${{github.action_path}}/mtime.py" "${{inputs.mode}}" "${{inputs.files}}"
+      shell: bash

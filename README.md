@@ -4,39 +4,44 @@ Join the PokéFinder Discord server to talk about development and contribute.
 
 [![PokéFinder](https://discordapp.com/assets/07dca80a102d4149e9736d4b162cff6f.ico)](https://discord.gg/XmgQF9X)
 
-This will be a RNG Tool for all main Pokémon games generations 3-7. It currently supports generations 3/4 and parts of generation 5/8.
+This will be a RNG Tool for all main Pokémon games generations 3-8. It currently supports generations 3/4 and parts of generation 5/8.
 
 # Download
 
 [Latest Official Release](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 
-[Latest Nightly Build](https://ci.appveyor.com/project/Admiral-Fish/pokefinder)
+[Latest Nightly Build](https://github.com/Admiral-Fish/PokeFinder/actions)
 
 # Features
 Gen 3
+- Egg
+- GameCube
+- IDs
 - Static
 - Wild
-- Egg
-- IDs
-- Gales/Colo/Channel
 
 Gen 4
+- Egg
+- Event
+- IDs
 - Static
 - Wild
-- Egg
-- IDs
 
 Gen 5
-- Events
 - Dream Radar
 - Egg
+- Event
+- Hidden Grotto
 - IDs
 
 Gen 8
-- Raids
-- Wild
 - Egg
+- Event
 - IDs
+- Raid
+- Static
+- Underground
+- Wild
 
 # Supported Platforms
 
@@ -45,18 +50,21 @@ Windows
 - Windows 11
 
 MacOS
-- MacOS Catalina
-- MacOS Big Sur
-- MacOS Monterey
+- MacOS Ventura
+- MacOS Sonoma
+- MacOS Sequoia
 
 Linux
-- Ubuntu 20.04
 - Ubuntu 22.04
+- Ubuntu 24.04
+
+Qt
+- 6.8 or newer
 
 # Installing
 
 Windows
-- Install the [Microsoft Visual C++ Redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)
+- Install the [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
 - Download the win zip folder from the [releases page](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 - Extract PokéFinder from the zip folder
 
@@ -97,7 +105,7 @@ MacOS
   - git submodule update
   - mkdir build
   - cd build
-  - PATH="PATH=$PATH:$HOME/Qt/6.2/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - PATH="PATH=$PATH:$HOME/Qt/6.8/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
     - Replace Qt path/version as necessary
   - cmake --build .
 - Bundle
@@ -113,7 +121,7 @@ Linux
   - git submodule update
   - mkdir build
   - cd build
-  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.2/gcc_64 ../
+  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.8/gcc_64 ../
     - Replace Qt path/version as necessary
   - cmake --build .
 

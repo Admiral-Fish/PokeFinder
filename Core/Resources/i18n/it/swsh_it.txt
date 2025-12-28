@@ -1,0 +1,44 @@
+0,Occhio del Lago Axew
+1,Piana dei Ponti
+2,Boschetto Ombraluce
+3,Conca delle Sabbie
+4,Lago Axew (est)
+5,Berretto del Gigante
+6,Specchio del Gigante
+7,Sedia del Gigante
+8,Colle Knuckleburgh
+9,Lago Dragofuria
+10,Fiume di Steamington
+11,Lago Milotic (nord)
+12,Pianura Serena
+13,Lago Milotic (sud)
+14,Landa delle Pietre
+15,Torre Diroccata
+16,Lago Axew (ovest)
+17,Pianura Inchino
+18,Acquitrino Fresco
+19,Bosco Concentrazione
+20,Spiaggia Sfida
+21,Antro Scontro
+22,Cammino Sfida
+23,Grotta Grinta
+24,Baia Circolare
+25,Piana Addestramento
+26,Deserto Paiolo
+27,Mar Ginnico
+28,Mar Lineapelago
+29,Mar Sperdipelago
+30,Mar Quietarnia
+31,Isola Quietarnia
+32,Nevi Primoscivolo
+33,Piana Sottozero
+34,Letto del Gigante
+35,Cimitero Antico
+36,Valle Innevata
+37,Sentiero Biancacima
+38,Tempio Corona
+39,Suola del Gigante
+40,Mar Gelido
+41,Campo Trivio
+42,Riva del Lago Ball
+43,Collina Dynalbero

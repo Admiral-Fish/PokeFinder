@@ -1,0 +1,246 @@
+{
+    "hash": [
+        {
+            "name": "Black 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1544,
+            "vCount": 46,
+            "dsType": "DS",
+            "seed": [
+                6812116909077463616,
+                15830591760182640887,
+                5751095276202612194,
+                13711887537935978710
+            ]
+        },
+        {
+            "name": "White 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1569,
+            "vCount": 47,
+            "dsType": "DS",
+            "seed": [
+                12718926928427950449,
+                595648112864263475,
+                8323807535653178969,
+                10774168732975729702
+            ]
+        },
+        {
+            "name": "Black 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2418,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": [
+                5264333967543063602,
+                10872705466257611392,
+                4553279520582873334,
+                15133472960368575891
+            ]
+        },
+        {
+            "name": "White 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2415,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": [
+                16328266460923798414,
+                12221687627537516402,
+                9504504776058349829,
+                138934422137771887
+            ]
+        }
+    ],
+    "hashTime": [
+        {
+            "name": "Black 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1544,
+            "vCount": 46,
+            "dsType": "DS",
+            "seed": [
+                12618516553663214562,
+                8364781815703065830,
+                10721404614877360195,
+                17794237992676391163
+            ]
+        },
+        {
+            "name": "White 1",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 1569,
+            "vCount": 47,
+            "dsType": "DS",
+            "seed": [
+                8449681635637948927,
+                6806194277957922964,
+                1458353645301333305,
+                17620301403463006183
+            ]
+        },
+        {
+            "name": "Black 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "Black2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2418,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": [
+                4152701230797758160,
+                17278765330921349569,
+                14509308591296681485,
+                1864210592599605508
+            ]
+        },
+        {
+            "name": "White 2",
+            "keypresses": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "skipLR": false,
+            "version": "White2",
+            "language": "English",
+            "mac": 41860346966,
+            "softReset": false,
+            "vFrame": 5,
+            "gxStat": 6,
+            "timer0": 2415,
+            "vCount": 72,
+            "dsType": "DS",
+            "seed": [
+                17309290041713254307,
+                16656206275382542420,
+                9839255764055164824,
+                2690507646878928200
+            ]
+        }
+    ]
+}

@@ -1,0 +1,139 @@
+0,None
+2,Ultra Ball
+3,Great Ball
+4,Poké Ball
+17,Potion
+25,Hyper Potion
+26,Super Potion
+28,Revive
+29,Max Revive
+33,Moomoo Milk
+43,Berry Juice
+44,Sacred Ash
+50,Rare Candy
+51,PP Up
+53,PP Max
+72,Red Shard
+73,Blue Shard
+74,Yellow Shard
+75,Green Shard
+76,Super Repel
+77,Max Repel
+79,Repel
+80,Sun Stone
+81,Moon Stone
+82,Fire Stone
+83,Thunder Stone
+84,Water Stone
+85,Leaf Stone
+86,Tiny Mushroom
+87,Big Mushroom
+88,Pearl
+89,Big Pearl
+90,Stardust
+91,Star Piece
+92,Nugget
+93,Heart Scale
+94,Honey
+95,Growth Mulch
+96,Damp Mulch
+97,Stable Mulch
+98,Gooey Mulch
+106,Rare Bone
+107,Shiny Stone
+108,Dusk Stone
+109,Dawn Stone
+110,Oval Stone
+149,Cheri Berry
+150,Chesto Berry
+151,Pecha Berry
+152,Rawst Berry
+153,Aspear Berry
+154,Leppa Berry
+155,Oran Berry
+156,Persim Berry
+157,Lum Berry
+158,Sitrus Berry
+184,Occa Berry
+185,Passho Berry
+186,Wacan Berry
+187,Rindo Berry
+188,Yache Berry
+189,Chople Berry
+190,Kebia Berry
+191,Shuca Berry
+192,Coba Berry
+193,Payapa Berry
+194,Tanga Berry
+195,Charti Berry
+196,Kasib Berry
+197,Haban Berry
+198,Colbur Berry
+199,Babiri Berry
+200,Chilan Berry
+213,Bright Powder
+217,Quick Claw
+219,Mental Herb
+221,King’s Rock
+222,Silver Powder
+224,Cleanse Tag
+226,Deep Sea Tooth
+227,Deep Sea Scale
+228,Smoke Ball
+229,Everstone
+230,Focus Band
+231,Lucky Egg
+233,Metal Coat
+234,Leftovers
+235,Dragon Scale
+236,Light Ball
+237,Soft Sand
+238,Hard Stone
+239,Miracle Seed
+240,Black Glasses
+241,Black Belt
+242,Magnet
+243,Mystic Water
+244,Sharp Beak
+245,Poison Barb
+246,Never-Melt Ice
+247,Spell Tag
+248,Twisted Spoon
+249,Charcoal
+250,Dragon Fang
+251,Silk Scarf
+256,Lucky Punch
+257,Metal Powder
+258,Thick Club
+259,Leek
+265,Wide Lens
+268,Expert Belt
+269,Light Clay
+271,Power Herb
+272,Toxic Orb
+273,Flame Orb
+274,Quick Powder
+277,Metronome
+278,Iron Ball
+279,Lagging Tail
+281,Black Sludge
+286,Grip Claw
+288,Sticky Barb
+295,Shed Shell
+296,Big Root
+322,Electirizer
+323,Magmarizer
+326,Razor Claw
+541,Air Balloon
+545,Absorb Bulb
+546,Cell Battery
+571,Pretty Feather
+580,Balm Mushroom
+581,Big Nugget
+583,Comet Shard
+648,Luminous Moss
+649,Snowball
+881,Electric Seed
+882,Psychic Seed
+883,Misty Seed
+884,Grassy Seed

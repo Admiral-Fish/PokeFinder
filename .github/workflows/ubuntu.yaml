@@ -1,0 +1,133 @@
+name: CI - Ubuntu
+
+on:
+  push:
+    branches:
+      - "master"
+      - "feature/**"
+    tags:
+      - "v[0-9]+\\.[0-9]+\\.[0-9]+"
+  pull_request:
+
+jobs:
+  ci:
+    name: Build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Restore Git Mtimes
+        uses: ./.github/actions/git-mtime-cache
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.8.3"
+          archives: icu qtbase qtsvg qttools
+          cache: true
+
+      - name: Install python zstandard pip Package
+        run: python3 -m pip install zstandard
+
+      - name: Restore CMake build files
+        id: cache
+        uses: actions/cache/restore@v4
+        env:
+          cache-name: ubuntu-cmake-build
+        with:
+          path: |
+            ${{github.workspace}}/build
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
+          key: ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}-${{github.run_id}}
+          restore-keys: |
+            ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}-${{github.head_ref}}
+            ${{env.cache-name}}-${{hashFiles('**/CMakeLists.txt')}}
+            ${{env.cache-name}}-
+
+      - name: Store File Mtimes
+        uses: ./.github/actions/file-mtime-cache
+        with:
+          mode: save
+          files: |
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
+
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON
+
+      - name: Restore Unmodified File Mtimes
+        uses: ./.github/actions/file-mtime-cache
+        with:
+          mode: restore
+          files: |
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
+
+      - name: Build PokeFinder
+        run: cmake --build ${{github.workspace}}/build --config RELEASE
+
+      - name: Test PokeFinder
+        run: ctest --test-dir ${{github.workspace}}/build -V
+
+      - name: Save CMake build files
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{github.workspace}}/build
+            ${{github.workspace}}/Test/*.hpp
+            ${{github.workspace}}/Core/Resources/*.hpp
+          key: ${{steps.cache.outputs.cache-primary-key}}
+
+      - name: Fetch AppImage tools
+        run: |
+          sudo apt install appstream
+          sudo apt install libfuse2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod a+x linuxdeploy-*.AppImage
+
+      - name: Build AppImage
+        run: |
+          export QMAKE=$QT_ROOT_DIR/bin/qmake
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt \
+            -e build/PokeFinder \
+            -d Form/io.github.admiral_fish.pokefinder.desktop \
+            -i Form/Images/Icon/pokefinder_16x16.png \
+            -i Form/Images/Icon/pokefinder_24x24.png \
+            -i Form/Images/Icon/pokefinder_32x32.png \
+            -i Form/Images/Icon/pokefinder_48x48.png \
+            -i Form/Images/Icon/pokefinder_256x256.png \
+            --icon-filename io.github.admiral_fish.pokefinder
+          mkdir AppDir/usr/share/metainfo
+          cp Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
+          mv PokéFinder-x86_64.AppImage PokeFinder-x86_64.AppImage
+
+      - name: Package PokeFinder
+        run: |
+          tar czf PokeFinder-linux.tar.gz -C ./build/ PokeFinder
+          tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-linux
+          path: ./build/PokeFinder
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-linux-AppImage
+          path: PokeFinder-x86_64.AppImage
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            PokeFinder-linux.tar.gz
+            PokeFinder-linux-AppImage.tar.gz

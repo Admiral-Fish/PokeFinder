@@ -1,0 +1,105 @@
+0,Levantopoli
+1,Austropoli
+2,Mistralopoli
+3,Alisopoli
+4,Zondopoli
+5,Grecalopoli
+6,Cantiere dei Sogni (Rovine)
+7,Cantiere dei Sogni (Sotterranei)
+8,Bosco Girandola (Esterno)
+9,Bosco Girandola (Interno)
+10,Deserto della Quiete (Ingresso)
+11,Deserto della Quiete (Deserto)
+12,Castello Sepolto P1
+13,Castello Sepolto P1S
+14,Castello Sepolto (Piano Più Basso)
+18,Castello Sepolto (Volcarona)
+20,Cava Pietrelettrica P1
+21,Cava Pietrelettrica P1S
+22,Cava Pietrelettrica P2S
+23,Monte Vite (Levello Superiore)
+24,Monte Vite (Levello Centrale)
+25,Monte Vite (Levello Inferiore)
+26,Monte Vite (Levello Più Basso)
+27,Torre Dragospira (Ingresso)
+28,Torre Dragospira (Esterno)
+29,Torre Dragospira P1
+30,Torre Dragospira P2
+31,Via Vittoria P4
+32,Fossa Gigante (Ingresso)
+33,Fossa Gigante (Grotta)
+34,Fossa Gigante (Foresta Cratere)
+36,Fossa Gigante (Profondità della Grotta)
+37,Fogne di Austropoli
+42,Laboratorio P&P
+43,Baia Spiraria
+45,Fattoria di Venturia
+46,Cantiere di Zondopoli (Ingresso)
+47,Cantiere di Zondopoli (Interno)
+48,Monte Antipodi
+49,Monte Antipodi P1
+50,Monte Antipodi P1S
+52,Monte Antipodi P1S (Sala)
+61,Casa Bizzarra
+65,Casa Bizzarra (Stanze)
+71,Via Vittoria P1
+72,Via Vittoria (Boschetto)
+73,Via Vittoria (Esterno 1)
+74,Via Vittoria P2
+75,Via Vittoria P2 (Retro)
+76,Via Vittoria (Esterno 2)
+77,Via Vittoria P3
+80,Via Vittoria P3 (Retro)
+81,Antico Sentiero (Uscita Austropoli)
+82,Antico Sentiero (Centrale)
+83,Antico Sentiero (Uscita Libecciopoli)
+85,Passo di Rafan
+87,Rovine Sotterranee
+90,Sala Picco
+91,Sala Iceberg
+92,Sala Ferro
+93,Grotta Costiera P1
+94,Grotta Costiera P1S
+95,Riserva Naturale
+96,Ponte Libecciopoli
+97,Ponte Villaggio
+98,Ponte Meraviglie
+99,Percorso 1
+100,Percorso 2
+101,Percorso 3
+102,Falda Sotterranea P1
+103,Falda Sotterranea P1S
+104,Percorso 4
+106,Percorso 5
+107,Percorso 6
+108,Cava Ponentopoli P1
+109,Cava Ponentopoli P2
+110,Sala della Guida
+111,Percorso 7
+112,Torre Cielo P2
+113,Torre Cielo P3
+114,Torre Cielo P4
+115,Torre Cielo P5
+116,Percorso 8
+117,Palude Mistralopoli
+118,Percorso 9
+119,Percorso 11
+120,Percorso 12
+121,Percorso 13
+122,Percorso 14
+123,Tempio Abbondanza
+124,Percorso 15
+125,Percorso 16
+126,Bosco Smarrimento
+127,Percorso 18
+128,Percorso 19
+129,Percorso 20
+130,Percorso 22
+131,Percorso 23
+132,Spiraria
+133,Percorso 17
+134,Percorso 21
+135,Percorso 6 (Grotta)
+136,Percorso 13 (Fossa Gigante)
+137,Tempio Abbondanza (Stagno)
+138,Percorso 3 (Stagno)

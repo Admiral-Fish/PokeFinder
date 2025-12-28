@@ -1,0 +1,3 @@
+0,Wüsten-Platz
+1,Oasen-Platz
+2,Höhlen-Platz

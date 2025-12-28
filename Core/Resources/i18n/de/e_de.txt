@@ -1,0 +1,86 @@
+0,Route 101
+1,Route 102
+2,Route 103
+3,Route 104
+4,Route 105
+5,Route 110
+6,Route 111
+7,Route 112
+8,Route 113
+9,Route 114
+10,Route 116
+11,Route 117
+12,Route 118
+13,Route 124
+14,Blütenburgwald
+15,Metaflurtunnel
+16,Granithöhle EG
+17,Granithöhle 1.UG
+18,Pyroberg EG-2.OG
+19,Siegesstraße EG
+20,Safari-Zone Süden
+21,Route 126 Unterwasser
+22,Schiffswrack
+23,Granithöhle 2.UG
+24,Feuriger Pfad
+25,Meteorfälle UG Raum von Kindwurm
+26,Steilpass
+27,Route 106
+28,Route 107
+29,Route 108
+30,Route 109
+31,Route 115
+32,Neu Malvenfroh Gebäudeinneres
+33,Route 119
+34,Route 120
+35,Route 121
+36,Route 122
+37,Route 123
+40,Pyroberg 3.OG-5.OG
+43,Pyroberg Südhang
+44,Pyroberg Gipfel
+45,Granithöhle EG Troys Raum
+46,Route 125
+47,Route 126
+48,Route 127
+49,Route 128
+50,Route 129
+51,Route 130
+52,Route 131
+53,Route 132
+54,Route 133
+55,Route 134
+62,Tiefseehöhle
+66,Urzeithöhle Eingangsbereich
+67,Urzeithöhle EG
+71,Neu Malvenfroh Eingangsbereich
+72,Safari-Zone Südwesten
+73,Safari-Zone Norden
+74,Safari-Zone Nordwesten
+75,Siegesstraße 1.UG
+76,Siegesstraße 2.UG
+77,Meteorfälle EG Wasserfälle
+78,Meteorfälle EG oberhalb des Wasserfalls
+79,Meteorfälle UG unterhalb des Wasserfalls
+82,Küstenhöhle (außer Eisraum)
+84,Seegrasulb City
+85,Faustauhaven
+86,Graphitport City
+87,Moosbach City
+88,Floßbrunn
+89,Prachtpolis City
+90,Blütenburg City
+91,Route 124 Unterwasser
+92,Küstenhöhle Eisraum
+93,Himmelturm EG
+94,Xeneroville
+95,Himmelturm 2.OG
+96,Himmelturm 4.OG
+97,Safari-Zone Südosten
+98,Safari-Zone Nordosten
+99,Team Magmas Versteck
+107,Wunderturm
+111,Wüstentunnel
+112,Höhlenatelier
+114,Wandelhöhle
+123,Meteorfälle Raum von Troy
