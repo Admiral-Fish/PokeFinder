@@ -169,11 +169,16 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="RNGTabWidget" name="tabRNGSelector">
+    <widget class="RNGTabWidget" name="tabRNGSelector" native="true">
      <widget class="QWidget" name="tabGenerator">
-      <attribute name="title">
-       <string>Generator</string>
-      </attribute>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>496</width>
+        <height>450</height>
+       </rect>
+      </property>
       <layout class="QGridLayout" name="gridLayout_12">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
@@ -195,7 +200,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="ComboMenu" name="comboMenuGeneratorLead"/>
+           <widget class="ComboMenu" name="comboMenuGeneratorLead" native="true"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorSeed">
@@ -441,9 +446,14 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabSearcher">
-      <attribute name="title">
-       <string>Searcher</string>
-      </attribute>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>509</width>
+        <height>510</height>
+       </rect>
+      </property>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
@@ -465,7 +475,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="ComboMenu" name="comboMenuSearcherLead"/>
+           <widget class="ComboMenu" name="comboMenuSearcherLead" native="true"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherInitialIVAdvances">
@@ -781,15 +791,21 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>RNGTabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>Form/Controls/RNGTabWidget.hpp</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RNGTabWidget</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/RNGTabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -803,9 +819,9 @@
    <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBoxProxy.hpp</header>
+   <class>ComboMenu</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
