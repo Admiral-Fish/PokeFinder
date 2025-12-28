@@ -243,14 +243,14 @@ private slots:
     void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 
     /**
-     * @brief Sets the current IVs to the clipboard
-     */
-    void setIVsToClipBoard();
-
-    /**
      * @brief Sets the current IVs from the clipboard
      */
     void setIVsFromClipBoard();
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
 };
 
 #endif // FILTER_HPP

@@ -390,25 +390,6 @@ void Filter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
     }
 }
 
-void Filter::setIVsToClipBoard()
-{
-    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
-                      .arg(ui->spinBoxHPMin->value())
-                      .arg(ui->spinBoxAtkMin->value())
-                      .arg(ui->spinBoxDefMin->value())
-                      .arg(ui->spinBoxSpAMin->value())
-                      .arg(ui->spinBoxSpDMin->value())
-                      .arg(ui->spinBoxSpeMin->value())
-                      .arg(ui->spinBoxHPMax->value())
-                      .arg(ui->spinBoxAtkMax->value())
-                      .arg(ui->spinBoxDefMax->value())
-                      .arg(ui->spinBoxSpAMax->value())
-                      .arg(ui->spinBoxSpDMax->value())
-                      .arg(ui->spinBoxSpeMax->value());
-
-    QApplication::clipboard()->setText(ivs);
-}
-
 void Filter::setIVsFromClipBoard()
 {
     QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
@@ -436,4 +417,23 @@ void Filter::setIVsFromClipBoard()
     ui->spinBoxSpAMax->setValue(match.captured(10).toInt());
     ui->spinBoxSpDMax->setValue(match.captured(11).toInt());
     ui->spinBoxSpeMax->setValue(match.captured(12).toInt());
+}
+
+void Filter::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxHPMin->value())
+                      .arg(ui->spinBoxAtkMin->value())
+                      .arg(ui->spinBoxDefMin->value())
+                      .arg(ui->spinBoxSpAMin->value())
+                      .arg(ui->spinBoxSpDMin->value())
+                      .arg(ui->spinBoxSpeMin->value())
+                      .arg(ui->spinBoxHPMax->value())
+                      .arg(ui->spinBoxAtkMax->value())
+                      .arg(ui->spinBoxDefMax->value())
+                      .arg(ui->spinBoxSpAMax->value())
+                      .arg(ui->spinBoxSpDMax->value())
+                      .arg(ui->spinBoxSpeMax->value());
+
+    QApplication::clipboard()->setText(ivs);
 }

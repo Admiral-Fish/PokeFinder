@@ -98,14 +98,14 @@ private:
 
 private slots:
     /**
-     * @brief Sets the current IVs to the clipboard
-     */
-    void setIVsToClipBoard();
-
-    /**
      * @brief Sets the current IVs from the clipboard
      */
     void setIVsFromClipBoard();
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
 };
 
 #endif // EGGSETTINGS_HPP

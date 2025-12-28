@@ -281,25 +281,6 @@ void EggSettings::setup(Game game)
     }
 }
 
-void EggSettings::setIVsToClipBoard()
-{
-    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
-                      .arg(ui->spinBoxParentAHP->value())
-                      .arg(ui->spinBoxParentAAtk->value())
-                      .arg(ui->spinBoxParentADef->value())
-                      .arg(ui->spinBoxParentASpA->value())
-                      .arg(ui->spinBoxParentASpD->value())
-                      .arg(ui->spinBoxParentASpe->value())
-                      .arg(ui->spinBoxParentBHP->value())
-                      .arg(ui->spinBoxParentBAtk->value())
-                      .arg(ui->spinBoxParentBDef->value())
-                      .arg(ui->spinBoxParentBSpA->value())
-                      .arg(ui->spinBoxParentBSpD->value())
-                      .arg(ui->spinBoxParentBSpe->value());
-
-    QApplication::clipboard()->setText(ivs);
-}
-
 void EggSettings::setIVsFromClipBoard()
 {
     QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
@@ -327,4 +308,23 @@ void EggSettings::setIVsFromClipBoard()
     ui->spinBoxParentBSpA->setValue(match.captured(10).toInt());
     ui->spinBoxParentBSpD->setValue(match.captured(11).toInt());
     ui->spinBoxParentBSpe->setValue(match.captured(12).toInt());
+}
+
+void EggSettings::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxParentAHP->value())
+                      .arg(ui->spinBoxParentAAtk->value())
+                      .arg(ui->spinBoxParentADef->value())
+                      .arg(ui->spinBoxParentASpA->value())
+                      .arg(ui->spinBoxParentASpD->value())
+                      .arg(ui->spinBoxParentASpe->value())
+                      .arg(ui->spinBoxParentBHP->value())
+                      .arg(ui->spinBoxParentBAtk->value())
+                      .arg(ui->spinBoxParentBDef->value())
+                      .arg(ui->spinBoxParentBSpA->value())
+                      .arg(ui->spinBoxParentBSpD->value())
+                      .arg(ui->spinBoxParentBSpe->value());
+
+    QApplication::clipboard()->setText(ivs);
 }
