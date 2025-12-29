@@ -97,7 +97,7 @@
         <location filename="../Controls/ComboBoxProxy.cpp" line="55"/>
         <location filename="../Controls/ComboBoxProxy.cpp" line="59"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
 </context>
 <context>
@@ -317,7 +317,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Needle</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancetta</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -372,12 +372,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
@@ -470,12 +470,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
@@ -500,7 +500,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="97"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamata</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="98"/>
@@ -593,12 +593,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="109"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="110"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="111"/>
@@ -691,12 +691,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
@@ -794,12 +794,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
@@ -832,7 +832,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Egg Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Uovo</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
@@ -985,12 +985,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
@@ -1083,12 +1083,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
@@ -1113,7 +1113,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -2236,7 +2236,7 @@
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Sempre</translation>
     </message>
 </context>
 <context>
@@ -2406,7 +2406,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamata</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
@@ -2446,12 +2446,12 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
 </context>
 <context>
@@ -2534,12 +2534,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
@@ -2597,12 +2597,12 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
 </context>
 <context>
@@ -2685,12 +2685,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
@@ -2715,7 +2715,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -3010,12 +3010,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
@@ -3098,12 +3098,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
@@ -3516,7 +3516,7 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="98"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="101"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="99"/>
@@ -3539,27 +3539,27 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="611"/>
         <source>Settings are configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="617"/>
         <source>Profile does not have a IV cache file configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="622"/>
         <source>Settings are not configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="623"/>
         <source>Keep initial/max advances below %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="624"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -3567,7 +3567,7 @@
     </message>
     <message>
         <source>Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>Meandro</translation>
     </message>
     <message>
         <source>Lead</source>
@@ -3575,15 +3575,15 @@
     </message>
     <message>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Iniziali</translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Massimi</translation>
     </message>
 </context>
 <context>
@@ -3671,12 +3671,12 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
@@ -3719,7 +3719,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
@@ -3779,12 +3779,12 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
@@ -3809,7 +3809,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -3870,7 +3870,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -3974,7 +3974,7 @@
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -4321,7 +4321,7 @@
     <name>IVCacheFinder</name>
     <message>
         <source>IV Cache Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Cache IV</translation>
     </message>
     <message>
         <source>Search</source>
@@ -4337,7 +4337,7 @@
     </message>
     <message>
         <source>Output File</source>
-        <translation type="unfinished"></translation>
+        <translation>File Output</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -4346,17 +4346,17 @@
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="52"/>
         <source>Missing output file</source>
-        <translation type="unfinished"></translation>
+        <translation>File output mancante</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="52"/>
         <source>Please select a file to save the results to</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore seleziona un file in cui salvare i risultati</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="88"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva File</translation>
     </message>
 </context>
 <context>
@@ -4452,7 +4452,7 @@
     <message>
         <location filename="../Util/IVCalculator.cpp" line="45"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
-        <translation type="unfinished"></translation>
+        <translation>Il prossimo livello potrebbe non essere del tutto accurato se non si specifica la natura</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="78"/>
@@ -4565,12 +4565,12 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="50"/>
         <source>Reverse Method 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Metodo 1 Inverso</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="52"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Metodo 2</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="54"/>
@@ -4580,12 +4580,12 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
         <source>Cute Charm (DPPt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incantevole (DPPt)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="58"/>
         <source>Cute Charm (HGSS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incantevole (HGSS)</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="60"/>
@@ -4758,7 +4758,7 @@
     <message>
         <location filename="../MainWindow.cpp" line="146"/>
         <source>Please update path to your profiles file to restore existing profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore aggiorna il percorso del tuo file dei profili per importare dei profili esistenti</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="416"/>
@@ -4770,7 +4770,7 @@
         <location filename="../MainWindow.cpp" line="554"/>
         <location filename="../MainWindow.cpp" line="591"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore usa il Calibratore Profilo sotto Strumenti Gen 5 per crearne uno</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="701"/>
@@ -4899,11 +4899,11 @@
     </message>
     <message>
         <source>SHA1 Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache SHA1</translation>
     </message>
     <message>
         <source>IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache IV</translation>
     </message>
 </context>
 <context>
@@ -4931,7 +4931,7 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="47"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Metodo 2</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="49"/>
@@ -5121,12 +5121,12 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="93"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="94"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="95"/>
@@ -5663,40 +5663,40 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="157"/>
         <source>Open IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri Cache IV</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="165"/>
         <source>Invalid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache IV non valide</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="165"/>
         <source>Provided file is not a valid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file fornito non è una valida Cache IV</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="173"/>
         <source>Open SHA1 Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri Cache SHA1</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache SHA non valida</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Provided file is not a valid SHA Cache or was not created from the IV Cache of the profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file fornito non è una Cache SHA valida o non è stato creato dalla Cache IV del profilo</translation>
     </message>
     <message>
         <source>IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache IV</translation>
     </message>
     <message>
         <source>Select File</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona File</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -5704,7 +5704,7 @@
     </message>
     <message>
         <source>SHA Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache SHA</translation>
     </message>
 </context>
 <context>
@@ -6733,7 +6733,7 @@
     <name>SHA1CacheFinder</name>
     <message>
         <source>SHA1 Cache Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Cache SHA1</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -6797,7 +6797,7 @@
     </message>
     <message>
         <source>Output File</source>
-        <translation type="unfinished"></translation>
+        <translation>File Output</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -6806,12 +6806,12 @@
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="126"/>
         <source>Missing output file</source>
-        <translation type="unfinished"></translation>
+        <translation>File output mancante</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="126"/>
         <source>Please select a file to save the results to</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore seleziona un file in cui salvare i risultati</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="135"/>
@@ -6826,17 +6826,17 @@
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="143"/>
         <source>Invalid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache IV non valide</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="143"/>
         <source>Profile does not have a valid IV Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Il profilo non ha una Cache IV valida</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="179"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva File</translation>
     </message>
 </context>
 <context>
@@ -7086,17 +7086,17 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Coin flips</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanci moneta</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamate</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Roamer locations</source>
-        <translation type="unfinished"></translation>
+        <translation>Zone erranti</translation>
     </message>
 </context>
 <context>
@@ -7566,7 +7566,7 @@
     <name>Static5</name>
     <message>
         <source>Gen 5 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Statici Gen 5</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -7634,7 +7634,7 @@
     </message>
     <message>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <source>0</source>
@@ -7654,7 +7654,7 @@
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Potere fortuna</translation>
     </message>
     <message>
         <source>S/MAX</source>
@@ -7722,7 +7722,7 @@
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Sempre</translation>
     </message>
     <message>
         <source>Filters</source>
@@ -7734,11 +7734,11 @@
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Iniziali</translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Massimi</translation>
     </message>
     <message>
         <source>Start Date</source>
@@ -7760,7 +7760,7 @@
         <location filename="../Gen5/Static5.cpp" line="70"/>
         <location filename="../Gen5/Static5.cpp" line="75"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="71"/>
@@ -7799,35 +7799,35 @@
     <message>
         <location filename="../Gen5/Static5.cpp" line="443"/>
         <source>Settings are configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="449"/>
         <source>Profile does not have a IV cache file configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="454"/>
         <source>Settings are not configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="455"/>
         <source>Keep initial/max advances below %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="456"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
     <message>
         <source>Curtis</source>
-        <translation type="unfinished"></translation>
+        <translation>Dadì</translation>
     </message>
     <message>
         <source>Yancy</source>
-        <translation type="unfinished"></translation>
+        <translation>Lilì</translation>
     </message>
 </context>
 <context>
@@ -8075,12 +8075,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
@@ -8113,7 +8113,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamata</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
@@ -8173,12 +8173,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
@@ -8271,12 +8271,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
@@ -8462,12 +8462,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
@@ -8555,12 +8555,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
@@ -8603,7 +8603,7 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="141"/>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="142"/>
@@ -8658,12 +8658,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="152"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="153"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="154"/>
@@ -8688,7 +8688,7 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="158"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
@@ -8942,7 +8942,7 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>Egg Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Mossa Uovo</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
@@ -9445,13 +9445,13 @@
         <location filename="../Gen4/Wild4.cpp" line="348"/>
         <location filename="../Gen4/Wild4.cpp" line="661"/>
         <source>Please select a single encounter slot for Poke Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore seleziona un unico slot incotro per il RAdar Pokémon</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="364"/>
         <location filename="../Gen4/Wild4.cpp" line="677"/>
         <source>Please select a single encounter slot for Honey Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore seleziona un unico slot incontro per l'Albero del Miele</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="705"/>
@@ -9461,7 +9461,7 @@
     <message>
         <location filename="../Gen4/Wild4.cpp" line="706"/>
         <source>This search needs at least one IV at 31</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa ricerca necessita di almeno una IV a 31</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="69"/>
@@ -9540,7 +9540,7 @@
     </message>
     <message>
         <source>Poke Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>RAdar Pokémon</translation>
     </message>
     <message>
         <source>Max Advances</source>
@@ -9664,14 +9664,14 @@
     </message>
     <message>
         <source>Honey Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Albero del Miele</translation>
     </message>
 </context>
 <context>
     <name>Wild5</name>
     <message>
         <source>Gen 5 Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>Selvatici Gen 5</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -9739,7 +9739,7 @@
     </message>
     <message>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <source>0</source>
@@ -9759,7 +9759,7 @@
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Potere fortuna</translation>
     </message>
     <message>
         <source>S/MAX</source>
@@ -9783,11 +9783,11 @@
     </message>
     <message>
         <source>Dark Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>Erba Scura</translation>
     </message>
     <message>
         <source>Rustling Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>Erba Frusciante</translation>
     </message>
     <message>
         <source>Surfing</source>
@@ -9795,15 +9795,15 @@
     </message>
     <message>
         <source>Rippling Surfing</source>
-        <translation type="unfinished"></translation>
+        <translation>Surf Increspato</translation>
     </message>
     <message>
         <source>Fishing</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesca</translation>
     </message>
     <message>
         <source>Rippling Fishing</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesca Increspata</translation>
     </message>
     <message>
         <source>Location</source>
@@ -9815,23 +9815,23 @@
     </message>
     <message>
         <source>Season</source>
-        <translation type="unfinished"></translation>
+        <translation>Stagione</translation>
     </message>
     <message>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>Primavera</translation>
     </message>
     <message>
         <source>Summer</source>
-        <translation type="unfinished"></translation>
+        <translation>Estate</translation>
     </message>
     <message>
         <source>Autumn</source>
-        <translation type="unfinished"></translation>
+        <translation>Autunno</translation>
     </message>
     <message>
         <source>Winter</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverno</translation>
     </message>
     <message>
         <source>Filters</source>
@@ -9843,11 +9843,11 @@
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Iniziali</translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV Massimi</translation>
     </message>
     <message>
         <source>Start Date</source>
@@ -9869,7 +9869,7 @@
         <location filename="../Gen5/Wild5.cpp" line="79"/>
         <location filename="../Gen5/Wild5.cpp" line="91"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="80"/>
@@ -9935,7 +9935,7 @@
         <location filename="../Gen5/Wild5.cpp" line="88"/>
         <location filename="../Gen5/Wild5.cpp" line="100"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Statico</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="89"/>
@@ -9956,27 +9956,27 @@
     <message>
         <location filename="../Gen5/Wild5.cpp" line="464"/>
         <source>Settings are configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="470"/>
         <source>Profile does not have a IV cache file configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="475"/>
         <source>Settings are not configured for fast searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="476"/>
         <source>Keep initial/max advances below %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="477"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
 </context>
 <context>
@@ -10158,7 +10158,7 @@
     <message>
         <location filename="../Gen8/Wild8.cpp" line="215"/>
         <source>Please select a single encounter slot for Honey Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore seleziona un unico slot di incontro per l'Albero del Miele</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
@@ -10221,7 +10221,7 @@
     </message>
     <message>
         <source>Honey Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Albero del Miele</translation>
     </message>
 </context>
 <context>
@@ -10309,12 +10309,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
@@ -10347,12 +10347,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Battle Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti Battaglia</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
         <source>Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamata</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="89"/>
@@ -10427,12 +10427,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
@@ -10540,12 +10540,12 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
@@ -10653,7 +10653,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
@@ -10761,12 +10761,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="138"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="138"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="138"/>
@@ -10869,12 +10869,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
@@ -10917,7 +10917,7 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
         <source>IV Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamenti IV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
@@ -10987,12 +10987,12 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Intro</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
@@ -11017,7 +11017,7 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 </TS>
