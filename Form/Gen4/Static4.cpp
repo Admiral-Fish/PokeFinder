@@ -30,7 +30,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
@@ -81,6 +80,8 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
 
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Static4::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Static4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
@@ -91,8 +92,6 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static4::searcherPokemonIndexChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel4::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel4::setShowStats);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Static4::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Static4::transferFiltersToGenerator);
 
     updateProfiles();
     generatorCategoryIndexChanged(0);
@@ -362,14 +361,28 @@ void Static4::seedToTime()
     time->show();
 }
 
-void Static4::transferFiltersToGenerator()
+void Static4::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Static4::transferSettingsToGenerator()
+void Static4::transferSettings(int index)
 {
-    ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
-    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
-    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherCategory->setCurrentIndex(ui->comboBoxGeneratorCategory->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    }
 }

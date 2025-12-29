@@ -90,16 +90,11 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="RNGTabWidget" name="tabRNGSelector" native="true">
+    <widget class="RNGTabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>440</width>
-        <height>372</height>
-       </rect>
-      </property>
+      <attribute name="title">
+       <string>Generator</string>
+      </attribute>
       <layout class="QGridLayout" name="gridLayout_12">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
@@ -247,14 +242,9 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabSearcher">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>644</width>
-        <height>348</height>
-       </rect>
-      </property>
+      <attribute name="title">
+       <string>Searcher</string>
+      </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
@@ -455,12 +445,12 @@
    <class>ComboBoxProxy</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBoxProxy.hpp</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>RNGTabWidget</class>
-   <extends>QWidget</extends>
+   <extends>QTabWidget</extends>
    <header>Form/Controls/RNGTabWidget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -28,7 +28,6 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EggModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -66,10 +65,9 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Eggs5::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Eggs5::transferFiltersToGenerator);
-
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Eggs5::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Eggs5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
@@ -252,12 +250,26 @@ void Eggs5::profileManager()
     manager->show();
 }
 
-void Eggs5::transferFiltersToGenerator()
+void Eggs5::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Eggs5::transferSettingsToGenerator()
+void Eggs5::transferSettings(int index)
 {
-    ui->eggSettingsGenerator->copyFrom(ui->eggSettingsGenerator);
+    if (index == 0)
+    {
+        ui->eggSettingsSearcher->copyFrom(ui->eggSettingsGenerator);
+    }
+    else
+    {
+        ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
+    }
 }

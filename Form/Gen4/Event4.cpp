@@ -28,7 +28,6 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EventModel4.hpp>
@@ -80,9 +79,8 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Event4::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Event4::transferFiltersToGenerator);
-
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Event4::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Event4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event4::profileManager);
@@ -244,14 +242,30 @@ void Event4::seedToTime()
     time->show();
 }
 
-void Event4::transferFiltersToGenerator()
+void Event4::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Event4::transferSettingsToGenerator()
+void Event4::transferSettings(int index)
 {
-    ui->comboBoxGeneratorSpecies->setCurrentIndex(ui->comboBoxSearcherSpecies->currentIndex());
-    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
-    ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherSpecies->setCurrentIndex(ui->comboBoxGeneratorSpecies->currentIndex());
+        ui->spinBoxSearcherLevel->setValue(ui->spinBoxGeneratorLevel->value());
+        ui->comboBoxSearcherNature->setCurrentIndex(ui->comboBoxGeneratorNature->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorSpecies->setCurrentIndex(ui->comboBoxSearcherSpecies->currentIndex());
+        ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
+        ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
+    }
 }

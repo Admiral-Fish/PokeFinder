@@ -26,7 +26,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EggModel4.hpp>
@@ -80,9 +79,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->tabEggSelection, &RNGTabWidget::transferSettingsTriggered, this, &Eggs4::transferSettingsToGenerator);
-    connect(ui->tabEggSelection, &RNGTabWidget::transferFiltersTriggered, this, &Eggs4::transferFiltersToGenerator);
-
+    connect(ui->tabEggSelection, &RNGTabWidget::transferFilters, this, &Eggs4::transferFilters);
+    connect(ui->tabEggSelection, &RNGTabWidget::transferSettings, this, &Eggs4::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);
@@ -289,12 +287,26 @@ void Eggs4::seedToTime()
     time->show();
 }
 
-void Eggs4::transferFiltersToGenerator()
+void Eggs4::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Eggs4::transferSettingsToGenerator()
+void Eggs4::transferSettings(int index)
 {
-    ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
+    if (index == 0)
+    {
+        ui->eggSettingsSearcher->copyFrom(ui->eggSettingsGenerator);
+    }
+    else
+    {
+        ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
+    }
 }

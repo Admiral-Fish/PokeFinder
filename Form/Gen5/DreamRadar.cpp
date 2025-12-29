@@ -29,7 +29,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/DreamRadarModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -128,10 +127,9 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->comboBoxSearcherSpecie5->enableAutoComplete();
     ui->comboBoxSearcherSpecie6->enableAutoComplete();
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &DreamRadar::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &DreamRadar::transferFiltersToGenerator);
-
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &DreamRadar::profileIndexChanged);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &DreamRadar::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &DreamRadar::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &DreamRadar::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &DreamRadar::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &DreamRadar::profileManager);
@@ -417,26 +415,54 @@ void DreamRadar::profileManager()
     manager->show();
 }
 
-void DreamRadar::transferFiltersToGenerator()
+void DreamRadar::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void DreamRadar::transferSettingsToGenerator()
+void DreamRadar::transferSettings(int index)
 {
-    ui->comboBoxGeneratorSpecie1->setCurrentIndex(ui->comboBoxGeneratorSpecie1->currentIndex());
-    ui->comboBoxGeneratorSpecie2->setCurrentIndex(ui->comboBoxGeneratorSpecie2->currentIndex());
-    ui->comboBoxGeneratorSpecie3->setCurrentIndex(ui->comboBoxGeneratorSpecie3->currentIndex());
-    ui->comboBoxGeneratorSpecie4->setCurrentIndex(ui->comboBoxGeneratorSpecie4->currentIndex());
-    ui->comboBoxGeneratorSpecie5->setCurrentIndex(ui->comboBoxGeneratorSpecie5->currentIndex());
-    ui->comboBoxGeneratorSpecie6->setCurrentIndex(ui->comboBoxGeneratorSpecie6->currentIndex());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherSpecie1->setCurrentIndex(ui->comboBoxGeneratorSpecie1->currentIndex());
+        ui->comboBoxSearcherSpecie2->setCurrentIndex(ui->comboBoxGeneratorSpecie2->currentIndex());
+        ui->comboBoxSearcherSpecie3->setCurrentIndex(ui->comboBoxGeneratorSpecie3->currentIndex());
+        ui->comboBoxSearcherSpecie4->setCurrentIndex(ui->comboBoxGeneratorSpecie4->currentIndex());
+        ui->comboBoxSearcherSpecie5->setCurrentIndex(ui->comboBoxGeneratorSpecie5->currentIndex());
+        ui->comboBoxSearcherSpecie6->setCurrentIndex(ui->comboBoxGeneratorSpecie6->currentIndex());
 
-    ui->comboBoxGeneratorGender1->setCurrentIndex(ui->comboBoxSearcherGender1->currentIndex());
-    ui->comboBoxGeneratorGender2->setCurrentIndex(ui->comboBoxSearcherGender2->currentIndex());
-    ui->comboBoxGeneratorGender3->setCurrentIndex(ui->comboBoxSearcherGender3->currentIndex());
-    ui->comboBoxGeneratorGender4->setCurrentIndex(ui->comboBoxSearcherGender4->currentIndex());
-    ui->comboBoxGeneratorGender5->setCurrentIndex(ui->comboBoxSearcherGender5->currentIndex());
-    ui->comboBoxGeneratorGender6->setCurrentIndex(ui->comboBoxSearcherGender6->currentIndex());
+        ui->comboBoxSearcherGender1->setCurrentIndex(ui->comboBoxGeneratorGender1->currentIndex());
+        ui->comboBoxSearcherGender2->setCurrentIndex(ui->comboBoxGeneratorGender2->currentIndex());
+        ui->comboBoxSearcherGender3->setCurrentIndex(ui->comboBoxGeneratorGender3->currentIndex());
+        ui->comboBoxSearcherGender4->setCurrentIndex(ui->comboBoxGeneratorGender4->currentIndex());
+        ui->comboBoxSearcherGender5->setCurrentIndex(ui->comboBoxGeneratorGender5->currentIndex());
+        ui->comboBoxSearcherGender6->setCurrentIndex(ui->comboBoxGeneratorGender6->currentIndex());
 
-    ui->spinBoxGeneratorBadges->setValue(ui->spinBoxSearcherBadges->value());
+        ui->spinBoxSearcherBadges->setValue(ui->spinBoxGeneratorBadges->value());
+    }
+    else
+    {
+        ui->comboBoxGeneratorSpecie1->setCurrentIndex(ui->comboBoxGeneratorSpecie1->currentIndex());
+        ui->comboBoxGeneratorSpecie2->setCurrentIndex(ui->comboBoxGeneratorSpecie2->currentIndex());
+        ui->comboBoxGeneratorSpecie3->setCurrentIndex(ui->comboBoxGeneratorSpecie3->currentIndex());
+        ui->comboBoxGeneratorSpecie4->setCurrentIndex(ui->comboBoxGeneratorSpecie4->currentIndex());
+        ui->comboBoxGeneratorSpecie5->setCurrentIndex(ui->comboBoxGeneratorSpecie5->currentIndex());
+        ui->comboBoxGeneratorSpecie6->setCurrentIndex(ui->comboBoxGeneratorSpecie6->currentIndex());
+
+        ui->comboBoxGeneratorGender1->setCurrentIndex(ui->comboBoxSearcherGender1->currentIndex());
+        ui->comboBoxGeneratorGender2->setCurrentIndex(ui->comboBoxSearcherGender2->currentIndex());
+        ui->comboBoxGeneratorGender3->setCurrentIndex(ui->comboBoxSearcherGender3->currentIndex());
+        ui->comboBoxGeneratorGender4->setCurrentIndex(ui->comboBoxSearcherGender4->currentIndex());
+        ui->comboBoxGeneratorGender5->setCurrentIndex(ui->comboBoxSearcherGender5->currentIndex());
+        ui->comboBoxGeneratorGender6->setCurrentIndex(ui->comboBoxSearcherGender6->currentIndex());
+
+        ui->spinBoxGeneratorBadges->setValue(ui->spinBoxSearcherBadges->value());
+    }
 }

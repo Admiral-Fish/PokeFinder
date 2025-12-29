@@ -84,6 +84,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Static5::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Static5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static5::search);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static5::generatorCategoryIndexChanged);
@@ -471,5 +473,31 @@ void Static5::searcherPokemonIndexChanged(int index)
         bool flag = staticTemplate->getInfo()->getFixedGender();
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmM), flag);
+    }
+}
+
+void Static5::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Static5::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxSearcherCategory->setCurrentIndex(ui->comboBoxGeneratorCategory->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
 }

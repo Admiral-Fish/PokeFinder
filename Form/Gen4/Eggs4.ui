@@ -68,7 +68,7 @@
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -91,9 +91,6 @@
    </item>
    <item row="1" column="0">
     <widget class="RNGTabWidget" name="tabEggSelection">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>

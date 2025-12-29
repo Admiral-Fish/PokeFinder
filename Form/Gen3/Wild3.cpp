@@ -31,7 +31,6 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
@@ -98,9 +97,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Wild3::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Wild3::transferFiltersToGenerator);
-
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Wild3::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Wild3::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
@@ -447,14 +445,32 @@ void Wild3::seedToTime()
     time->show();
 }
 
-void Wild3::transferFiltersToGenerator()
+void Wild3::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Wild3::transferSettingsToGenerator()
+void Wild3::transferSettings(int index)
 {
-    ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
-    ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
-    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherEncounter->setCurrentIndex(ui->comboBoxGeneratorEncounter->currentIndex());
+        ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+        ui->checkBoxSearcherFeebasTile->setChecked(ui->checkBoxGeneratorFeebasTile->isChecked());
+    }
+    else
+    {
+        ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+        ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+        ui->checkBoxGeneratorFeebasTile->setChecked(ui->checkBoxSearcherFeebasTile->isChecked());
+    }
 }

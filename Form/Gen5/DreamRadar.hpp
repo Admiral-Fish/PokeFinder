@@ -120,14 +120,18 @@ private slots:
     void profileManager();
 
     /**
-     * @brief Transfers the current Searcher filters to the Generator.
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
      */
-    void transferFiltersToGenerator();
+    void transferFilters(int index);
 
     /**
-     * @brief Transfers the current Searcher settings to the Generator.
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
      */
-    void transferSettingsToGenerator();
+    void transferSettings(int index);
 };
 
 #endif // DREAMRADAR_HPP

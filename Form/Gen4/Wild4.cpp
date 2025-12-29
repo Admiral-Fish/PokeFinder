@@ -132,6 +132,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profileIndexChanged);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Wild4::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Wild4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild4::generatorEncounterIndexChanged);
@@ -702,8 +704,7 @@ void Wild4::search()
         bool flag = std::any_of(min.begin(), min.end(), [](u8 iv) { return iv == 31; });
         if (!flag)
         {
-            QMessageBox msg(QMessageBox::Warning, tr("Missing Flawless IV"),
-                            tr("This search needs at least one IV at 31"));
+            QMessageBox msg(QMessageBox::Warning, tr("Missing Flawless IV"), tr("This search needs at least one IV at 31"));
             msg.exec();
             return;
         }
@@ -963,34 +964,76 @@ void Wild4::seedToTime()
     time->show();
 }
 
-void Wild4::transferFiltersToGenerator()
+void Wild4::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void Wild4::transferSettingsToGenerator()
+void Wild4::transferSettings(int index)
 {
-    ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
-    ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
-    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
-    ui->comboBoxGeneratorTime->setCurrentIndex(ui->comboBoxSearcherTime->currentIndex());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherEncounter->setCurrentIndex(ui->comboBoxGeneratorEncounter->currentIndex());
+        ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+        ui->comboBoxSearcherTime->setCurrentIndex(ui->comboBoxGeneratorTime->currentIndex());
+        ui->comboBoxSearcherHappiness->setCurrentIndex(ui->comboBoxGeneratorHappiness->currentIndex());
 
-    ui->checkBoxGeneratorDualSlot->setCheckState(ui->checkBoxSearcherDualSlot->checkState());
-    ui->comboBoxGeneratorDualSlot->setCurrentIndex(ui->comboBoxSearcherDualSlot->currentIndex());
+        ui->checkBoxSearcherDualSlot->setCheckState(ui->checkBoxGeneratorDualSlot->checkState());
+        ui->comboBoxSearcherDualSlot->setCurrentIndex(ui->comboBoxGeneratorDualSlot->currentIndex());
 
-    ui->checkBoxGeneratorPokeRadar->setCheckState(ui->checkBoxSearcherPokeRadar->checkState());
+        ui->checkBoxSearcherFeebasTile->setChecked(ui->checkBoxGeneratorFeebasTile->isChecked());
 
-    ui->checkBoxGeneratorRadio->setCheckState(ui->checkBoxSearcherRadio->checkState());
-    ui->comboBoxGeneratorRadio->setCurrentIndex(ui->comboBoxSearcherRadio->currentIndex());
+        ui->checkBoxSearcherPokeRadar->setCheckState(ui->checkBoxGeneratorPokeRadar->checkState());
 
-    ui->checkBoxGeneratorSwarm->setCheckState(ui->checkBoxSearcherSwarm->checkState());
+        ui->checkBoxSearcherRadio->setCheckState(ui->checkBoxGeneratorRadio->checkState());
+        ui->comboBoxSearcherRadio->setCurrentIndex(ui->comboBoxGeneratorRadio->currentIndex());
 
-    ui->checkBoxGeneratorReplacement->setCheckState(ui->checkBoxSearcherReplacement->checkState());
-    ui->comboBoxGeneratorReplacement0->setCurrentIndex(ui->comboBoxSearcherReplacement0->currentIndex());
-    ui->comboBoxGeneratorReplacement1->setCurrentIndex(ui->comboBoxSearcherReplacement1->currentIndex());
+        ui->checkBoxSearcherSwarm->setCheckState(ui->checkBoxGeneratorSwarm->checkState());
 
-    ui->spinBoxGeneratorPlainsBlock->setValue(ui->spinBoxSearcherPlainsBlock->value());
-    ui->spinBoxGeneratorForestBlock->setValue(ui->spinBoxSearcherForestBlock->value());
-    ui->spinBoxGeneratorPeakBlock->setValue(ui->spinBoxSearcherPeakBlock->value());
-    ui->spinBoxGeneratorWaterBlock->setValue(ui->spinBoxGeneratorWaterBlock->value());
+        ui->checkBoxSearcherReplacement->setCheckState(ui->checkBoxGeneratorReplacement->checkState());
+        ui->comboBoxSearcherReplacement0->setCurrentIndex(ui->comboBoxGeneratorReplacement0->currentIndex());
+        ui->comboBoxSearcherReplacement1->setCurrentIndex(ui->comboBoxGeneratorReplacement1->currentIndex());
+
+        ui->spinBoxSearcherPlainsBlock->setValue(ui->spinBoxGeneratorPlainsBlock->value());
+        ui->spinBoxSearcherForestBlock->setValue(ui->spinBoxGeneratorForestBlock->value());
+        ui->spinBoxSearcherPeakBlock->setValue(ui->spinBoxGeneratorPeakBlock->value());
+        ui->spinBoxSearcherWaterBlock->setValue(ui->spinBoxGeneratorWaterBlock->value());
+    }
+    else
+    {
+        ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+        ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+        ui->comboBoxGeneratorTime->setCurrentIndex(ui->comboBoxSearcherTime->currentIndex());
+        ui->comboBoxGeneratorHappiness->setCurrentIndex(ui->comboBoxSearcherHappiness->currentIndex());
+
+        ui->checkBoxGeneratorDualSlot->setCheckState(ui->checkBoxSearcherDualSlot->checkState());
+        ui->comboBoxGeneratorDualSlot->setCurrentIndex(ui->comboBoxSearcherDualSlot->currentIndex());
+
+        ui->checkBoxGeneratorFeebasTile->setChecked(ui->checkBoxSearcherFeebasTile->isChecked());
+
+        ui->checkBoxGeneratorPokeRadar->setCheckState(ui->checkBoxSearcherPokeRadar->checkState());
+
+        ui->checkBoxGeneratorRadio->setCheckState(ui->checkBoxSearcherRadio->checkState());
+        ui->comboBoxGeneratorRadio->setCurrentIndex(ui->comboBoxSearcherRadio->currentIndex());
+
+        ui->checkBoxGeneratorSwarm->setCheckState(ui->checkBoxSearcherSwarm->checkState());
+
+        ui->checkBoxGeneratorReplacement->setCheckState(ui->checkBoxSearcherReplacement->checkState());
+        ui->comboBoxGeneratorReplacement0->setCurrentIndex(ui->comboBoxSearcherReplacement0->currentIndex());
+        ui->comboBoxGeneratorReplacement1->setCurrentIndex(ui->comboBoxSearcherReplacement1->currentIndex());
+
+        ui->spinBoxGeneratorPlainsBlock->setValue(ui->spinBoxSearcherPlainsBlock->value());
+        ui->spinBoxGeneratorForestBlock->setValue(ui->spinBoxSearcherForestBlock->value());
+        ui->spinBoxGeneratorPeakBlock->setValue(ui->spinBoxSearcherPeakBlock->value());
+        ui->spinBoxGeneratorWaterBlock->setValue(ui->spinBoxSearcherWaterBlock->value());
+    }
 }

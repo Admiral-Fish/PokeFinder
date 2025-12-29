@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2024 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #include "RNGTabWidget.hpp"
 #include <QAction>
 #include <QContextMenuEvent>
@@ -5,19 +24,14 @@
 
 RNGTabWidget::RNGTabWidget(QWidget *parent) : QTabWidget(parent)
 {
-    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
-    connect(transferSettings, &QAction::triggered, this, [=] { emit transferSettingsTriggered(); });
-    addAction(transferSettings);
+    auto *filters = addAction(tr("Transfer Filters"));
+    connect(filters, &QAction::triggered, this, [=] { emit transferFilters(currentIndex()); });
 
-    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
-    connect(transferFilters, &QAction::triggered, this, [=] { emit transferFiltersTriggered(); });
-    addAction(transferFilters);
+    auto *settings = addAction(tr("Transfer Settings"));
+    connect(settings, &QAction::triggered, this, [=] { emit transferSettings(currentIndex()); });
 }
 
 void RNGTabWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    if (currentIndex() == 1)
-    {
-        QMenu::exec(actions(), event->globalPos(), nullptr, this);
-    }
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }

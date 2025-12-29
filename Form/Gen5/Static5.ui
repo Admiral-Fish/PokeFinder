@@ -169,7 +169,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
+    <widget class="RNGTabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -818,6 +818,12 @@
    <class>ComboMenu</class>
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>RNGTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/RNGTabWidget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

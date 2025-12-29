@@ -22,8 +22,6 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Util/IVCalculator.hpp>
-#include <QContextMenuEvent>
-#include <QMenu>
 #include <QMouseEvent>
 
 /**
@@ -93,7 +91,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->labelHP->installEventFilter(this);
     ui->labelAtk->installEventFilter(this);
     ui->labelDef->installEventFilter(this);
-    ui->labelSpA->installEventFilter(this);
     ui->labelSpA->installEventFilter(this);
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);

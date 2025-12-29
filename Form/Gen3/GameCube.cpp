@@ -31,7 +31,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/GameCubeModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -56,15 +55,14 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots  | Controls::Height | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &GameCube::transferSettingsToGenerator);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &GameCube::transferFiltersToGenerator);
-
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &GameCube::transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &GameCube::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
@@ -351,14 +349,28 @@ void GameCube::searcherPokemonIndexChanged(int index)
     }
 }
 
-void GameCube::transferFiltersToGenerator()
+void GameCube::transferFilters(int index)
 {
-    ui->filterGenerator->copyFrom(ui->filterSearcher);
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
 }
 
-void GameCube::transferSettingsToGenerator()
+void GameCube::transferSettings(int index)
 {
-    ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
-    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
-    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
+    if (index == 0)
+    {
+        ui->comboBoxSearcherCategory->setCurrentIndex(ui->comboBoxGeneratorCategory->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    }
 }

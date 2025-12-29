@@ -101,6 +101,11 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
+    connect(ui->tabGrottoRNGSelector, &RNGTabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
+    connect(ui->tabGrottoRNGSelector, &RNGTabWidget::transferSettings, this, &HiddenGrotto::transferSettingsGrotto);
+    connect(ui->tabPokemonRNGSelector, &RNGTabWidget::transferFilters, this, &HiddenGrotto::transferFiltersPokemon);
+    connect(ui->tabPokemonRNGSelector, &RNGTabWidget::transferSettings, this, &HiddenGrotto::transferSettingsPokemon);
     connect(ui->comboBoxGrottoGeneratorLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorLocationIndexChanged);
     connect(ui->comboBoxGrottoSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoSearcherLocationIndexChanged);
     connect(ui->comboBoxGrottoGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorUpdateFilter);
@@ -114,7 +119,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     connect(ui->comboBoxPokemonSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonSearcherLocationIndexChanged);
     connect(ui->comboBoxPokemonGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonGeneratorPokemonIndexChanged);
     connect(ui->comboBoxPokemonSearcherPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonSearcherPokemonIndexChanged);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
     connect(ui->pushButtonGrottoGenerate, &QPushButton::clicked, this, &HiddenGrotto::grottoGenerate);
     connect(ui->pushButtonGrottoSearch, &QPushButton::clicked, this, &HiddenGrotto::grottoSearch);
     connect(ui->pushButtonPokemonGenerate, &QPushButton::clicked, this, &HiddenGrotto::pokemonGenerate);
@@ -735,4 +739,66 @@ void HiddenGrotto::profileManager()
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
+}
+
+void HiddenGrotto::transferFiltersGrotto(int index)
+{
+    if (index == 0)
+    {
+        ui->checkListGrottoSearcherSlot->setChecks(ui->checkListGrottoGeneratorSlot->getChecked());
+        ui->checkListGrottoSearcherGroup->setChecks(ui->checkListGrottoGeneratorGroup->getChecked());
+        ui->checkListGrottoSearcherGender->setChecks(ui->checkListGrottoGeneratorGender->getChecked());
+    }
+    else
+    {
+        ui->checkListGrottoGeneratorSlot->setChecks(ui->checkListGrottoSearcherSlot->getChecked());
+        ui->checkListGrottoGeneratorGroup->setChecks(ui->checkListGrottoSearcherGroup->getChecked());
+        ui->checkListGrottoGeneratorGender->setChecks(ui->checkListGrottoSearcherGender->getChecked());
+    }
+}
+
+void HiddenGrotto::transferSettingsGrotto(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxGrottoSearcherLocation->setCurrentIndex(ui->comboBoxGrottoGeneratorLocation->currentIndex());
+        ui->comboBoxGrottoSearcherPokemon->setCurrentIndex(ui->comboBoxGrottoGeneratorPokemon->currentIndex());
+        ui->comboBoxGrottoSearcherItems->setCurrentIndex(ui->comboBoxGrottoGeneratorItems->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGrottoGeneratorLocation->setCurrentIndex(ui->comboBoxGrottoSearcherLocation->currentIndex());
+        ui->comboBoxGrottoGeneratorPokemon->setCurrentIndex(ui->comboBoxGrottoSearcherPokemon->currentIndex());
+        ui->comboBoxGrottoGeneratorItems->setCurrentIndex(ui->comboBoxGrottoSearcherItems->currentIndex());
+    }
+}
+
+void HiddenGrotto::transferFiltersPokemon(int index)
+{
+    if (index == 0)
+    {
+        ui->filterPokemonSearcher->copyFrom(ui->filterPokemonGenerator);
+    }
+    else
+    {
+        ui->filterPokemonGenerator->copyFrom(ui->filterPokemonSearcher);
+    }
+}
+
+void HiddenGrotto::transferSettingsPokemon(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxPokemonSearcherLocation->setCurrentIndex(ui->comboBoxPokemonGeneratorLocation->currentIndex());
+        ui->comboBoxPokemonSearcherGroup->setCurrentIndex(ui->comboBoxPokemonGeneratorGroup->currentIndex());
+        ui->comboBoxPokemonSearcherPokemon->setCurrentIndex(ui->comboBoxPokemonGeneratorPokemon->currentIndex());
+        ui->comboBoxPokemonSearcherGender->setCurrentIndex(ui->comboBoxPokemonGeneratorGender->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxPokemonGeneratorLocation->setCurrentIndex(ui->comboBoxPokemonSearcherLocation->currentIndex());
+        ui->comboBoxPokemonGeneratorGroup->setCurrentIndex(ui->comboBoxPokemonSearcherGroup->currentIndex());
+        ui->comboBoxPokemonGeneratorPokemon->setCurrentIndex(ui->comboBoxPokemonSearcherPokemon->currentIndex());
+        ui->comboBoxPokemonGeneratorGender->setCurrentIndex(ui->comboBoxPokemonSearcherGender->currentIndex());
+    }
 }
