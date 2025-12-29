@@ -66,8 +66,8 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->filterSearcher->enableHiddenAbility();
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Eggs5::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Eggs5::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Eggs5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Eggs5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);

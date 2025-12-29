@@ -128,8 +128,8 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->comboBoxSearcherSpecie6->enableAutoComplete();
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &DreamRadar::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &DreamRadar::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &DreamRadar::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &DreamRadar::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &DreamRadar::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &DreamRadar::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &DreamRadar::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &DreamRadar::profileManager);

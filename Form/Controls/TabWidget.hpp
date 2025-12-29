@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef RNGTABWIDGET_HPP
-#define RNGTABWIDGET_HPP
+#ifndef TABWIDGET_HPP
+#define TABWIDGET_HPP
 
 #include <QTabWidget>
 
-class RNGTabWidget : public QTabWidget
+class TabWidget : public QTabWidget
 {
     Q_OBJECT
 signals:
@@ -38,11 +38,11 @@ signals:
 
 public:
     /**
-     * @brief Construct a new RNGTabWidget object
+     * @brief Construct a new TabWidget object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    RNGTabWidget(QWidget *parent = nullptr);
+    TabWidget(QWidget *parent = nullptr);
 
     /**
      * @brief Handles when the context menu is requested
@@ -52,4 +52,4 @@ public:
     void contextMenuEvent(QContextMenuEvent *event) override;
 };
 
-#endif // RNGTABWIDGET_HPP
+#endif // TABWIDGET_HPP

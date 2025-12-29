@@ -82,8 +82,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->comboBoxSearcherSpecies->enableAutoComplete();
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Event5::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Event5::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
     connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);

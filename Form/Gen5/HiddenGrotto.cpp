@@ -102,10 +102,10 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
-    connect(ui->tabGrottoRNGSelector, &RNGTabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
-    connect(ui->tabGrottoRNGSelector, &RNGTabWidget::transferSettings, this, &HiddenGrotto::transferSettingsGrotto);
-    connect(ui->tabPokemonRNGSelector, &RNGTabWidget::transferFilters, this, &HiddenGrotto::transferFiltersPokemon);
-    connect(ui->tabPokemonRNGSelector, &RNGTabWidget::transferSettings, this, &HiddenGrotto::transferSettingsPokemon);
+    connect(ui->tabGrottoRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
+    connect(ui->tabGrottoRNGSelector, &TabWidget::transferSettings, this, &HiddenGrotto::transferSettingsGrotto);
+    connect(ui->tabPokemonRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersPokemon);
+    connect(ui->tabPokemonRNGSelector, &TabWidget::transferSettings, this, &HiddenGrotto::transferSettingsPokemon);
     connect(ui->comboBoxGrottoGeneratorLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorLocationIndexChanged);
     connect(ui->comboBoxGrottoSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoSearcherLocationIndexChanged);
     connect(ui->comboBoxGrottoGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorUpdateFilter);

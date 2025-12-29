@@ -84,8 +84,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Static5::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Static5::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static5::search);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static5::generatorCategoryIndexChanged);

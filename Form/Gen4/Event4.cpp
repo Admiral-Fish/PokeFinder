@@ -79,8 +79,8 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Event4::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Event4::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event4::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event4::profileManager);

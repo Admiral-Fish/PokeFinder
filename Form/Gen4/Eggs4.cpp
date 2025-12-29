@@ -79,8 +79,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->tabEggSelection, &RNGTabWidget::transferFilters, this, &Eggs4::transferFilters);
-    connect(ui->tabEggSelection, &RNGTabWidget::transferSettings, this, &Eggs4::transferSettings);
+    connect(ui->tabEggSelection, &TabWidget::transferFilters, this, &Eggs4::transferFilters);
+    connect(ui->tabEggSelection, &TabWidget::transferSettings, this, &Eggs4::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);

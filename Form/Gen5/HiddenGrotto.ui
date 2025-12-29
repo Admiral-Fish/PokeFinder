@@ -176,7 +176,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="RNGTabWidget" name="tabGrottoRNGSelector">
+        <widget class="TabWidget" name="tabGrottoRNGSelector">
          <widget class="QWidget" name="tabGrottoGenerator">
           <attribute name="title">
            <string>Generator</string>
@@ -796,7 +796,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_18">
        <item row="0" column="0">
-        <widget class="RNGTabWidget" name="tabPokemonRNGSelector">
+        <widget class="TabWidget" name="tabPokemonRNGSelector">
          <widget class="QWidget" name="tabPokemonGenerator">
           <attribute name="title">
            <string>Generator</string>
@@ -1288,9 +1288,9 @@
    <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
   <customwidget>
-   <class>RNGTabWidget</class>
+   <class>TabWidget</class>
    <extends>QTabWidget</extends>
-   <header>Form/Controls/RNGTabWidget.hpp</header>
+   <header>Form/Controls/TabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

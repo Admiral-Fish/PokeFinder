@@ -61,8 +61,8 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &GameCube::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &GameCube::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &GameCube::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &GameCube::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);

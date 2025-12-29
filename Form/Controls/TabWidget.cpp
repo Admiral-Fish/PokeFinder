@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "RNGTabWidget.hpp"
+#include "TabWidget.hpp"
 #include <QAction>
 #include <QContextMenuEvent>
 #include <QMenu>
 
-RNGTabWidget::RNGTabWidget(QWidget *parent) : QTabWidget(parent)
+TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
 {
     auto *filters = addAction(tr("Transfer Filters"));
     connect(filters, &QAction::triggered, this, [=] { emit transferFilters(currentIndex()); });
@@ -31,7 +31,7 @@ RNGTabWidget::RNGTabWidget(QWidget *parent) : QTabWidget(parent)
     connect(settings, &QAction::triggered, this, [=] { emit transferSettings(currentIndex()); });
 }
 
-void RNGTabWidget::contextMenuEvent(QContextMenuEvent *event)
+void TabWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }

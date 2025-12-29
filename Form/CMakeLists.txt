@@ -116,10 +116,10 @@ set(PROJECT_SOURCES
     Controls/GraphicsPixmapItem.hpp
     Controls/IDsFilter.cpp
     Controls/IDsFilter.hpp
-    Controls/RNGTabWidget.hpp
-    Controls/RNGTabWidget.cpp
     Controls/TableView.cpp
     Controls/TableView.hpp
+    Controls/TabWidget.hpp
+    Controls/TabWidget.cpp
     Controls/TextBox.cpp
     Controls/TextBox.hpp
     Gen3/Eggs3.cpp

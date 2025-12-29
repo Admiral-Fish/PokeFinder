@@ -132,8 +132,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Wild4::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Wild4::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild4::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild4::generatorEncounterIndexChanged);

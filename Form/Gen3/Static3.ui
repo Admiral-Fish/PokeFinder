@@ -82,7 +82,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="RNGTabWidget" name="tabRNGSelector">
+    <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabStatic">
       <attribute name="title">
        <string>Generator</string>
@@ -492,9 +492,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>RNGTabWidget</class>
+   <class>TabWidget</class>
    <extends>QTabWidget</extends>
-   <header>Form/Controls/RNGTabWidget.hpp</header>
+   <header>Form/Controls/TabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

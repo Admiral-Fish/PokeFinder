@@ -80,8 +80,8 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Static4::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Static4::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static4::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);

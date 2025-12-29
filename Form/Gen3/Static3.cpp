@@ -65,8 +65,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Static3::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Static3::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static3::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static3::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);

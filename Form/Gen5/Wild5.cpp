@@ -107,8 +107,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3, 3 });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Wild5::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Wild5::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild5::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild5::generatorEncounterIndexChanged);

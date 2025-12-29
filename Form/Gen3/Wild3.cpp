@@ -97,8 +97,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferFilters, this, &Wild3::transferFilters);
-    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettings, this, &Wild3::transferSettings);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild3::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild3::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
