@@ -450,23 +450,7 @@
            </widget>
           </item>
           <item row="4" column="3">
-           <widget class="ComboBox" name="comboBoxGeneratorShiny">
-            <item>
-             <property name="text">
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Random</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="ComboBox" name="comboBoxGeneratorShiny"/>
           </item>
           <item row="5" column="2">
            <widget class="QLabel" name="labelGeneratorEventTID">
@@ -815,23 +799,7 @@
            </widget>
           </item>
           <item row="4" column="3">
-           <widget class="ComboBox" name="comboBoxSearcherShiny">
-            <item>
-             <property name="text">
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Random</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="ComboBox" name="comboBoxSearcherShiny"/>
           </item>
           <item row="5" column="2">
            <widget class="QLabel" name="labelSearcherEventTID">

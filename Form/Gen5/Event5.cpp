@@ -65,6 +65,12 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
     ui->comboBoxSearcherNature->addItems(Translator::getNatures());
+    ui->comboBoxGeneratorShiny->addItem(tr("Never"), QVariant::fromValue(toInt(Shiny::Never)));
+    ui->comboBoxSearcherShiny->addItem(tr("Never"), QVariant::fromValue(toInt(Shiny::Never)));
+    ui->comboBoxGeneratorShiny->addItem(tr("Random"), QVariant::fromValue(toInt(Shiny::Random)));
+    ui->comboBoxSearcherShiny->addItem(tr("Random"), QVariant::fromValue(toInt(Shiny::Random)));
+    ui->comboBoxGeneratorShiny->addItem(tr("Always"), QVariant::fromValue(toInt(Shiny::Always)));
+    ui->comboBoxSearcherShiny->addItem(tr("Always"), QVariant::fromValue(toInt(Shiny::Always)));
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
