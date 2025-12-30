@@ -321,7 +321,7 @@ namespace Translator
         s.reserve(max);
         for (u16 i = 0; i < max; i++)
         {
-            s.emplace_back(species[max - 1]);
+            s.emplace_back(species[i]);
         }
         return s;
     }
