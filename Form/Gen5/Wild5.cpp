@@ -73,6 +73,14 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                            toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
                                            toInt(Encounter::SuperRodRippling) });
 
+    // Temporary until implemented
+    ui->comboBoxGeneratorEncounter->setItemHidden(2, true);
+    ui->comboBoxGeneratorEncounter->setItemHidden(4, true);
+    ui->comboBoxGeneratorEncounter->setItemHidden(6, true);    
+    ui->comboBoxSearcherEncounter->setItemHidden(2, true);
+    ui->comboBoxSearcherEncounter->setItemHidden(4, true);
+    ui->comboBoxSearcherEncounter->setItemHidden(6, true);
+
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
 
