@@ -75,7 +75,10 @@ void IVCacheFinder::search()
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         ui->progressBar->setValue(searcher->getProgress());
-        searcher->writeResults(ui->lineEditOutputFile->text().toStdString());
+        if (!searcher->cancelled())
+        {
+            searcher->writeResults(ui->lineEditOutputFile->text().toStdString());            
+        }
         delete searcher;
     });
 
