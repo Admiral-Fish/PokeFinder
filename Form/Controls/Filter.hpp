@@ -75,7 +75,7 @@ public:
 
 
     /**
-     * @brief Disables showing the shiny filter
+     * @brief Hide the shiny filter
      */
     void disableShinyFilter();
 
