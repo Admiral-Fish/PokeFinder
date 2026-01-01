@@ -115,13 +115,13 @@ jobs:
           tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
 
       - name: Upload Artifact
-      - uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-linux
           path: ./build/PokeFinder
 
       - name: Upload AppImage Artifact
-      - uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-linux-AppImage
           path: PokeFinder-x86_64.AppImage
