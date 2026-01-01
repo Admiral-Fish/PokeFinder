@@ -102,8 +102,6 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
-    ui->filterGenerator->disableShinyFilter();
-    ui->filterSearcher->disableShinyFilter();
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
