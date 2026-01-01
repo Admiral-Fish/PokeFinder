@@ -118,6 +118,8 @@ set(PROJECT_SOURCES
     Controls/IDsFilter.hpp
     Controls/TableView.cpp
     Controls/TableView.hpp
+    Controls/TabWidget.hpp
+    Controls/TabWidget.cpp
     Controls/TextBox.cpp
     Controls/TextBox.hpp
     Gen3/Eggs3.cpp

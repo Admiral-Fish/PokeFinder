@@ -97,6 +97,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild3::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild3::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
@@ -441,4 +443,34 @@ void Wild3::seedToTime()
 
     auto *time = new SeedToTime3(state.getSeed());
     time->show();
+}
+
+void Wild3::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Wild3::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxSearcherEncounter->setCurrentIndex(ui->comboBoxGeneratorEncounter->currentIndex());
+        ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+        ui->checkBoxSearcherFeebasTile->setChecked(ui->checkBoxGeneratorFeebasTile->isChecked());
+    }
+    else
+    {
+        ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+        ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+        ui->checkBoxGeneratorFeebasTile->setChecked(ui->checkBoxSearcherFeebasTile->isChecked());
+    }
 }
