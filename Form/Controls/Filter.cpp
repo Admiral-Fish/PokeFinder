@@ -211,6 +211,12 @@ void Filter::enableHiddenAbility()
     ui->comboBoxAbility->addItem("H", 2);
 }
 
+void Filter::disableShinyFilter()
+{
+    ui->labelShiny->setVisible(false);
+    ui->comboBoxShiny->setVisible(false);
+}
+
 u8 Filter::getAbility() const
 {
     return ui->comboBoxAbility->getCurrentUChar();

@@ -73,6 +73,12 @@ public:
      */
     void enableHiddenAbility();
 
+
+    /**
+     * @brief Hide the shiny filter
+     */
+    void disableShinyFilter();
+
     /**
      * @brief Gets ability to filter by
      *
