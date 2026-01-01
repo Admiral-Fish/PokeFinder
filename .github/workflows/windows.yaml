@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
@@ -38,7 +38,7 @@ jobs:
 
       - name: Restore CMake build files
         id: cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         env:
           cache-name: windows-cmake-build
         with:
@@ -78,7 +78,7 @@ jobs:
         run: ctest --test-dir ${{github.workspace}}/build -C RELEASE -V
 
       - name: Save CMake build files
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: |
             ${{github.workspace}}/build
@@ -88,7 +88,6 @@ jobs:
 
       - name: Package PokeFinder
         run: |
-          mkdir upload
           mkdir PokeFinder
           mkdir PokeFinder/platforms
           mkdir PokeFinder/styles
@@ -99,13 +98,12 @@ jobs:
           cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
           cp "${{env.QT_ROOT_DIR}}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder
           7z a PokeFinder-win.zip PokeFinder
-          mv PokeFinder upload
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-windows
-          path: upload
+          path: PokeFinder-win.zip
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
