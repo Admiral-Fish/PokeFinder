@@ -76,6 +76,44 @@ namespace ProfileLoader
             json << "{}";
             json.close();
         }
+        else
+        {
+            // Validate IV/SHA cache files still exist
+            json j = readJson();
+            auto &gen5 = j["gen5"];
+            bool flag = false;
+            for (auto &profile : gen5)
+            {
+                std::string ivCache = profile.value("ivCache", "");
+                std::string shaCache = profile.value("shaCache", "");
+
+                // If the IV Cache isn't valid then automatically invalidate the SHA cache
+                if (!ivCache.empty() && !std::filesystem::exists(ivCache))
+                {
+                    profile["ivCache"] = "";
+                    profile["shaCache"] = "";
+                    flag = true;
+                }
+                
+                if (!shaCache.empty() && !std::filesystem::exists(shaCache))
+                {
+                    profile["shaCache"] = "";
+                    flag = true;
+                }
+
+                // This edge case shouldn't be possible by UI flow and would require a user to manually edit the profiles file
+                if (ivCache.empty() && !shaCache.empty())
+                {
+                    profile["shaCache"] = "";
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                writeJson(j);
+            }
+        }
 
         return exists;
     }
