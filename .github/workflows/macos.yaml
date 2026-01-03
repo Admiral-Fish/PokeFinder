@@ -94,7 +94,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-macOS
-          path: PokeFinder-macOS.tar.gz
+          path: PokeFinder.app
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2

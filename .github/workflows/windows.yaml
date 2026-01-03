@@ -103,7 +103,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-windows
-          path: PokeFinder-win.zip
+          path: PokeFinder
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
