@@ -285,12 +285,7 @@
             </item>
             <item>
              <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+              <string notr="true">3/S</string>
              </property>
             </item>
            </widget>
@@ -549,12 +544,7 @@
             </item>
             <item>
              <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+              <string notr="true">3/S</string>
              </property>
             </item>
            </widget>

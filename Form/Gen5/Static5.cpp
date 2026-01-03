@@ -77,8 +77,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 3, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3 });
+    ui->comboBoxSearcherLuckyPower->setup({ 0, 3 });
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });

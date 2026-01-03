@@ -111,8 +111,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
+    ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild5::generate);
