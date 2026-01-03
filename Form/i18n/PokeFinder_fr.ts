@@ -266,24 +266,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="344"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="312"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="345"/>
         <source>Missing settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="344"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="312"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="345"/>
         <source>Enter information for at least 1 slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="336"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="337"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="336"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="337"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2193,36 +2193,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="207"/>
-        <location filename="../Gen5/Event5.cpp" line="352"/>
+        <location filename="../Gen5/Event5.cpp" line="210"/>
+        <location filename="../Gen5/Event5.cpp" line="355"/>
         <source>Invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="207"/>
-        <location filename="../Gen5/Event5.cpp" line="352"/>
+        <location filename="../Gen5/Event5.cpp" line="210"/>
+        <location filename="../Gen5/Event5.cpp" line="355"/>
         <source>Wondercard is not the correct size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="257"/>
-        <location filename="../Gen5/Event5.cpp" line="402"/>
+        <location filename="../Gen5/Event5.cpp" line="260"/>
+        <location filename="../Gen5/Event5.cpp" line="405"/>
         <source>File error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="257"/>
-        <location filename="../Gen5/Event5.cpp" line="402"/>
+        <location filename="../Gen5/Event5.cpp" line="260"/>
+        <location filename="../Gen5/Event5.cpp" line="405"/>
         <source>There was a problem opening the wondercard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="297"/>
+        <location filename="../Gen5/Event5.cpp" line="300"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="297"/>
+        <location filename="../Gen5/Event5.cpp" line="300"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3513,51 +3513,51 @@
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="98"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="101"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="99"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="102"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="99"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="102"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="100"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="103"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="331"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="535"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="332"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="536"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="331"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="535"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="332"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="536"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="611"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="612"/>
         <source>Settings are configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="617"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="618"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="622"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="623"/>
         <source>Settings are not configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="623"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="624"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="624"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="625"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7653,10 +7653,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>S/MAX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generate</source>
         <translation type="unfinished">Générer</translation>
     </message>
@@ -7783,37 +7779,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="342"/>
+        <location filename="../Gen5/Static5.cpp" line="351"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="342"/>
+        <location filename="../Gen5/Static5.cpp" line="351"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="443"/>
+        <location filename="../Gen5/Static5.cpp" line="452"/>
         <source>Settings are configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="449"/>
+        <location filename="../Gen5/Static5.cpp" line="458"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="454"/>
+        <location filename="../Gen5/Static5.cpp" line="463"/>
         <source>Settings are not configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="455"/>
+        <location filename="../Gen5/Static5.cpp" line="464"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="456"/>
+        <location filename="../Gen5/Static5.cpp" line="465"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9755,10 +9751,6 @@
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>S/MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
