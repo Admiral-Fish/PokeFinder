@@ -7815,11 +7815,11 @@
     </message>
     <message>
         <source>Curtis</source>
-        <translation type="unfinished"></translation>
+        <translation>Markus</translation>
     </message>
     <message>
         <source>Yancy</source>
-        <translation type="unfinished"></translation>
+        <translation>Sabine</translation>
     </message>
 </context>
 <context>
