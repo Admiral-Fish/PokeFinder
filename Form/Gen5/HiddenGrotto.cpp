@@ -609,7 +609,15 @@ void HiddenGrotto::pokemonSearcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
-        ui->labelPokemonSearcherIVFastSearch->setText(tr("Settings are configured for fast searching"));
+        if (shaCache && shaCache->isValid(*currentProfile))
+        {
+            ui->labelPokemonSearcherIVFastSearch->setText(tr("Settings are configured for fast IV/SHA searching"));
+        }
+        else
+        {
+            ui->labelPokemonSearcherIVFastSearch->setText(
+                tr("Settings are configured for fast IV searching.\nProfile is missing or has an incompatible SHA cache."));
+        }
     }
     else
     {

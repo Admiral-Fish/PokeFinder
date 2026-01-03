@@ -76,7 +76,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     // Temporary until implemented
     ui->comboBoxGeneratorEncounter->setItemHidden(2, true);
     ui->comboBoxGeneratorEncounter->setItemHidden(4, true);
-    ui->comboBoxGeneratorEncounter->setItemHidden(6, true);    
+    ui->comboBoxGeneratorEncounter->setItemHidden(6, true);
     ui->comboBoxSearcherEncounter->setItemHidden(2, true);
     ui->comboBoxSearcherEncounter->setItemHidden(4, true);
     ui->comboBoxSearcherEncounter->setItemHidden(6, true);
@@ -469,7 +469,15 @@ void Wild5::searcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
-        ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching"));
+        if (shaCache && shaCache->isValid(*currentProfile))
+        {
+            ui->labelIVFastSearch->setText(tr("Settings are configured for fast IV/SHA searching"));
+        }
+        else
+        {
+            ui->labelIVFastSearch->setText(
+                tr("Settings are configured for fast IV searching.\nProfile is missing or has an incompatible SHA cache."));
+        }
     }
     else
     {

@@ -155,7 +155,8 @@ void ProfileEditor5::okay()
 void ProfileEditor5::selectIVCache()
 {
     QString file = QFileDialog::getOpenFileName(this, tr("Open IV Cache"), QDir::currentPath(), "ivcache (*.ivcache)");
-    if (IVCache::isValid(file.toStdString()))
+    IVCache cache(file.toStdString(), false);
+    if (cache.isValid())
     {
         ui->lineEditIVCache->setText(file);
         ui->lineEditSHACache->clear();
@@ -171,13 +172,14 @@ void ProfileEditor5::selectIVCache()
 void ProfileEditor5::selectSHACache()
 {
     QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
-    if (SHA1Cache::isValid(file.toStdString(), ui->lineEditIVCache->text().toStdString()))
+    SHA1Cache cache(file.toStdString(), false);
+    if (cache.isValid(getProfile()))
     {
         ui->lineEditSHACache->setText(file);
     }
     else
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid SHA Cache"), tr("Provided file is not a valid SHA Cache or was not created from the IV Cache of the profile"));
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid SHA Cache"), tr("Provided file is not a valid SHA Cache or was not created from the profile"));
         msg.exec();
         return;
     }

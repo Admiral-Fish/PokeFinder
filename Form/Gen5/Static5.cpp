@@ -449,7 +449,15 @@ void Static5::searcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
-        ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching"));
+        if (shaCache && shaCache->isValid(*currentProfile))
+        {
+            ui->labelIVFastSearch->setText(tr("Settings are configured for fast IV/SHA searching"));
+        }
+        else
+        {
+            ui->labelIVFastSearch->setText(
+                tr("Settings are configured for fast IV searching.\nProfile is missing or has an incompatible SHA cache."));
+        }
     }
     else
     {

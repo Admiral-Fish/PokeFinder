@@ -68,8 +68,9 @@ public:
      * @brief Construct a new SHA1Cache object
      *
      * @param file Path to file to read the cache from
+     * @param read Whether to read full cache data
      */
-    SHA1Cache(const std::string &file);
+    SHA1Cache(const std::string &file, bool read = true);
 
     /**
      * @brief Returns the SHA1 cache for the \p type
@@ -140,11 +141,12 @@ public:
     bool isValid(const Profile5 &profile) const;
 
     /**
-     * @brief Determines if cache is valid
+     * @brief Determines if cache was created the the given \p profile and \p ivFile
      *
-     * @param file Path to file to validate the cache from
+     * @param profile Profile information
+     * @param ivFile Path to IV cache file to validate from
      */
-    static bool isValid(const std::string &file, const std::string &ivFile);
+    bool isValid(const Profile5 &profile, const std::string &ivFile) const;
 
 private:
     std::vector<SHA1Seed> entralink;
