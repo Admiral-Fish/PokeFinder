@@ -89,7 +89,7 @@ jobs:
           mv build/PokeFinder.app .
           macdeployqt PokeFinder.app -verbose=3
           tar czf PokeFinder-macOS.tar.gz PokeFinder.app
-          mkdir upload && cp PokeFinder.app upload
+          mkdir upload && mv PokeFinder.app upload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
