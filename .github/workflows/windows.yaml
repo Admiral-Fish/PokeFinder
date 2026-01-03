@@ -98,12 +98,13 @@ jobs:
           cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
           cp "${{env.QT_ROOT_DIR}}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder
           7z a PokeFinder-win.zip PokeFinder
+          mkdir upload && mv PokeFinder upload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-windows
-          path: PokeFinder
+          path: upload
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
