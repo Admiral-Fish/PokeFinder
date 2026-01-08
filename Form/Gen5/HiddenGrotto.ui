@@ -176,7 +176,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QTabWidget" name="tabSlotRNGSelector">
+        <widget class="TabWidget" name="tabGrottoRNGSelector">
          <widget class="QWidget" name="tabGrottoGenerator">
           <attribute name="title">
            <string>Generator</string>
@@ -796,7 +796,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_18">
        <item row="0" column="0">
-        <widget class="QTabWidget" name="tabRNGSelector_2">
+        <widget class="TabWidget" name="tabPokemonRNGSelector">
          <widget class="QWidget" name="tabPokemonGenerator">
           <attribute name="title">
            <string>Generator</string>
@@ -1283,21 +1283,27 @@
    <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
   <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/CheckList.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboBoxProxy</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBoxProxy.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>tabSlotRNGSelector</tabstop>
+  <tabstop>tabGrottoRNGSelector</tabstop>
   <tabstop>textBoxGrottoGeneratorSeed</tabstop>
   <tabstop>textBoxGrottoGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGrottoGeneratorMaxAdvances</tabstop>
@@ -1325,7 +1331,7 @@
   <tabstop>checkListGrottoSearcherGroup</tabstop>
   <tabstop>checkListGrottoSearcherGender</tabstop>
   <tabstop>tableViewGrottoSearcher</tabstop>
-  <tabstop>tabRNGSelector_2</tabstop>
+  <tabstop>tabPokemonRNGSelector</tabstop>
   <tabstop>comboMenuPokemonGeneratorLead</tabstop>
   <tabstop>textBoxPokemonGeneratorSeed</tabstop>
   <tabstop>textBoxPokemonGeneratorIVAdvances</tabstop>
