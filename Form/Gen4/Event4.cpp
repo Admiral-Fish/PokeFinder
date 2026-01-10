@@ -233,7 +233,7 @@ void Event4::search()
 
 void Event4::seedToTime()
 {
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
 
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());

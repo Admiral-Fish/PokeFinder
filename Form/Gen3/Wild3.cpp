@@ -436,7 +436,7 @@ void Wild3::searcherPokemonIndexChanged(int index)
 
 void Wild3::seedToTime()
 {
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
 
     auto *time = new SeedToTime3(state.getSeed());
