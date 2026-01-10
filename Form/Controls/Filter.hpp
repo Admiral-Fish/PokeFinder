@@ -62,6 +62,13 @@ public:
     ~Filter() override;
 
     /**
+     * @brief Copies the values from another Filter
+     *
+     * @param other The Filter to copy values from
+     */
+    void copyFrom(const Filter *other);
+
+    /**
      * @brief Disables specified controls
      *
      * @param control Controls value
