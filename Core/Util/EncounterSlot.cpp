@@ -158,8 +158,10 @@ namespace EncounterSlot
         switch (encounter)
         {
         case Encounter::SuperRod:
+        case Encounter::SuperRodRippling:
             return fishBW[luckyPower][rand];
         case Encounter::Surfing:
+        case Encounter::SurfingRippling:
             return surfBW[luckyPower][rand];
         default:
             return grassBW[luckyPower][rand];
