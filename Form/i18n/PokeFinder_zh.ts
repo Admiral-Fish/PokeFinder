@@ -97,7 +97,7 @@
         <location filename="../Controls/ComboBoxProxy.cpp" line="55"/>
         <location filename="../Controls/ComboBoxProxy.cpp" line="59"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
 </context>
 <context>
@@ -297,22 +297,22 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="51"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished">帧数</translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -327,17 +327,17 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Ability</source>
-        <translation type="unfinished">特性</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation type="unfinished">个性</translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -395,17 +395,17 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.cpp" line="128"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
@@ -415,7 +415,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Advances</source>
-        <translation type="unfinished">帧数</translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
@@ -425,17 +425,17 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Ability</source>
-        <translation type="unfinished">特性</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
@@ -480,12 +480,12 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Characteristic</source>
-        <translation type="unfinished">个性</translation>
+        <translation>个性</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
@@ -508,12 +508,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="63"/>
@@ -523,12 +523,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="95"/>
         <source>Held Advances</source>
-        <translation type="unfinished">蛋生成帧</translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="96"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished">蛋领取帧</translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="97"/>
@@ -548,17 +548,17 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="100"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="101"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="102"/>
         <source>Ability</source>
-        <translation type="unfinished">特性</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="103"/>
@@ -616,22 +616,22 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="50"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Advances</source>
-        <translation type="unfinished">帧数</translation>
+        <translation>帧数</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -646,7 +646,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -714,12 +714,12 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.cpp" line="59"/>
@@ -729,17 +729,17 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
         <source>Held Advances</source>
-        <translation type="unfinished">蛋生成帧</translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="87"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished">蛋领取帧</translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
         <source>Redraws</source>
-        <translation type="unfinished">查看图鉴</translation>
+        <translation>查看图鉴</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="88"/>
@@ -749,7 +749,7 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="89"/>
@@ -812,12 +812,12 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
@@ -847,7 +847,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
@@ -905,12 +905,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
@@ -940,7 +940,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="191"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="192"/>
@@ -1008,12 +1008,12 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="141"/>
@@ -1038,7 +1038,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
@@ -2232,11 +2232,11 @@
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>不能</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>必定</translation>
     </message>
 </context>
 <context>
@@ -2459,12 +2459,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="50"/>
@@ -2489,7 +2489,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
@@ -2610,12 +2610,12 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.cpp" line="128"/>
@@ -2640,7 +2640,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
@@ -2825,11 +2825,11 @@
     </message>
     <message>
         <source>Height</source>
-        <translation type="unfinished">身高</translation>
+        <translation>身高</translation>
     </message>
     <message>
         <source>Weight</source>
-        <translation type="unfinished">体重</translation>
+        <translation>体重</translation>
     </message>
 </context>
 <context>
@@ -2940,12 +2940,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="47"/>
@@ -2965,7 +2965,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
@@ -3028,12 +3028,12 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.cpp" line="110"/>
@@ -3053,7 +3053,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
@@ -3591,12 +3591,12 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="157"/>
@@ -3626,7 +3626,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
@@ -3694,12 +3694,12 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="239"/>
@@ -3734,7 +3734,7 @@
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="236"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
@@ -4560,7 +4560,7 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="48"/>
         <source>Method 1</source>
-        <translation type="unfinished">Method 1</translation>
+        <translation>Method 1</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="50"/>
@@ -4570,12 +4570,12 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="52"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="54"/>
         <source>Method 4</source>
-        <translation type="unfinished">Method 4</translation>
+        <translation>Method 4</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="56"/>
@@ -4610,17 +4610,17 @@
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Method</source>
-        <translation type="unfinished">算法</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Ability</source>
-        <translation type="unfinished">特性</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
 </context>
 <context>
@@ -4926,37 +4926,37 @@
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="45"/>
         <source>Method 1</source>
-        <translation type="unfinished">Method 1</translation>
+        <translation>Method 1</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="47"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Method 2</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="49"/>
         <source>Method 4</source>
-        <translation type="unfinished">Method 4</translation>
+        <translation>Method 4</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="51"/>
         <source>XD/Colo</source>
-        <translation type="unfinished">XD/竞技场</translation>
+        <translation>XD/竞技场</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.cpp" line="53"/>
         <source>Channel</source>
-        <translation type="unfinished">频道</translation>
+        <translation>频道</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>Method</source>
-        <translation type="unfinished">算法</translation>
+        <translation>算法</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
@@ -5036,12 +5036,12 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.cpp" line="53"/>
@@ -5076,7 +5076,7 @@
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="84"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="85"/>
@@ -5987,7 +5987,7 @@
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Dead Battery</source>
-        <translation type="unfinished">无电池</translation>
+        <translation>无电池</translation>
     </message>
 </context>
 <context>
@@ -7072,7 +7072,7 @@
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Date/Time</source>
-        <translation type="unfinished">日期/时间</translation>
+        <translation>日期/时间</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7100,7 +7100,7 @@
     <message>
         <location filename="../../Model/Gen3/SeedToTimeModel3.hpp" line="71"/>
         <source>Time</source>
-        <translation type="unfinished">时间</translation>
+        <translation>时间</translation>
     </message>
 </context>
 <context>
@@ -7547,30 +7547,30 @@
     </message>
     <message>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>不能</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished">随机</translation>
+        <translation>随机</translation>
     </message>
 </context>
 <context>
     <name>Static5</name>
     <message>
         <source>Gen 5 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>第五世代定点乱数</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">存档信息</translation>
+        <translation>存档信息</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished">存档信息管理</translation>
+        <translation>存档信息管理</translation>
     </message>
     <message>
         <source>TID</source>
@@ -7586,7 +7586,7 @@
     </message>
     <message>
         <source>DS Type</source>
-        <translation type="unfinished">机型</translation>
+        <translation>机型</translation>
     </message>
     <message>
         <source>VCount</source>
@@ -7606,23 +7606,23 @@
     </message>
     <message>
         <source>Keypresses</source>
-        <translation type="unfinished">按键</translation>
+        <translation>按键</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">游戏</translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation type="unfinished">生成器</translation>
+        <translation>生成器</translation>
     </message>
     <message>
         <source>RNG Info</source>
-        <translation type="unfinished">乱数信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <source>Lead</source>
-        <translation type="unfinished">队首</translation>
+        <translation>队首</translation>
     </message>
     <message>
         <source>Seed</source>
@@ -7638,11 +7638,11 @@
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">初始帧</translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <source>Max Advances</source>
-        <translation type="unfinished">最大帧数</translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -7654,75 +7654,75 @@
     </message>
     <message>
         <source>Generate</source>
-        <translation type="unfinished">生成</translation>
+        <translation>生成</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished">分类</translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Starters</source>
-        <translation type="unfinished">御三家</translation>
+        <translation>御三家</translation>
     </message>
     <message>
         <source>Fossils</source>
-        <translation type="unfinished">化石</translation>
+        <translation>化石</translation>
     </message>
     <message>
         <source>Gifts</source>
-        <translation type="unfinished">礼物</translation>
+        <translation>礼物</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation type="unfinished">定点</translation>
+        <translation>定点</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation type="unfinished">传说</translation>
+        <translation>传说</translation>
     </message>
     <message>
         <source>Events</source>
-        <translation type="unfinished">配信</translation>
+        <translation>配信</translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation type="unfinished">游走</translation>
+        <translation>游走</translation>
     </message>
     <message>
         <source>Pokemon</source>
-        <translation type="unfinished">宝可梦</translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished">等级</translation>
+        <translation>等级</translation>
     </message>
     <message>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>不能</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished">随机</translation>
+        <translation>随机</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>必定</translation>
     </message>
     <message>
         <source>Filters</source>
-        <translation type="unfinished">筛选项</translation>
+        <translation>筛选项</translation>
     </message>
     <message>
         <source>Searcher</source>
-        <translation type="unfinished">检索器</translation>
+        <translation>检索器</translation>
     </message>
     <message>
         <source>Initial IV Advances</source>
@@ -7734,49 +7734,49 @@
     </message>
     <message>
         <source>Start Date</source>
-        <translation type="unfinished">起始日期</translation>
+        <translation>起始日期</translation>
     </message>
     <message>
         <source>End Date</source>
-        <translation type="unfinished">最后日期</translation>
+        <translation>最后日期</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">检索</translation>
+        <translation>检索</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="70"/>
         <location filename="../Gen5/Static5.cpp" line="75"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="71"/>
         <location filename="../Gen5/Static5.cpp" line="76"/>
         <source>Cute Charm</source>
-        <translation type="unfinished">迷人身躯</translation>
+        <translation>迷人身躯</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="72"/>
         <location filename="../Gen5/Static5.cpp" line="77"/>
         <source>♂ Lead</source>
-        <translation type="unfinished">♂ 队首</translation>
+        <translation>♂ 队首</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="72"/>
         <location filename="../Gen5/Static5.cpp" line="77"/>
         <source>♀ Lead</source>
-        <translation type="unfinished">♀ 队首</translation>
+        <translation>♀ 队首</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="73"/>
         <location filename="../Gen5/Static5.cpp" line="78"/>
         <source>Synchronize</source>
-        <translation type="unfinished">同步</translation>
+        <translation>同步</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="351"/>
@@ -7815,11 +7815,11 @@
     </message>
     <message>
         <source>Curtis</source>
-        <translation type="unfinished"></translation>
+        <translation>阿铁</translation>
     </message>
     <message>
         <source>Yancy</source>
-        <translation type="unfinished"></translation>
+        <translation>琉璃</translation>
     </message>
 </context>
 <context>
@@ -7969,7 +7969,7 @@
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>不能</translation>
     </message>
     <message>
         <source>Random</source>
@@ -7997,12 +7997,12 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="47"/>
@@ -8022,7 +8022,7 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
@@ -8085,12 +8085,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
@@ -8120,7 +8120,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="89"/>
@@ -8188,12 +8188,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="50"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="50"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="50"/>
@@ -8218,7 +8218,7 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
@@ -8286,12 +8286,12 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.cpp" line="49"/>
@@ -8316,7 +8316,7 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
@@ -8361,22 +8361,22 @@
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Height</source>
-        <translation type="unfinished">身高</translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Weight</source>
-        <translation type="unfinished">体重</translation>
+        <translation>体重</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation type="unfinished">个性</translation>
+        <translation>个性</translation>
     </message>
 </context>
 <context>
@@ -8384,17 +8384,17 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.cpp" line="110"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
@@ -8409,17 +8409,17 @@
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
         <source>Ability</source>
-        <translation type="unfinished">特性</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
@@ -8472,12 +8472,12 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
@@ -8502,7 +8502,7 @@
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
@@ -8570,12 +8570,12 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="130"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="130"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.cpp" line="130"/>
@@ -8605,7 +8605,7 @@
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="143"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="144"/>
@@ -8914,12 +8914,12 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.cpp" line="58"/>
@@ -8964,7 +8964,7 @@
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="81"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="81"/>
@@ -9719,7 +9719,7 @@
     </message>
     <message>
         <source>RNG Info</source>
-        <translation type="unfinished">乱数信息</translation>
+        <translation>乱数信息</translation>
     </message>
     <message>
         <source>Lead</source>
@@ -9727,7 +9727,7 @@
     </message>
     <message>
         <source>Seed</source>
-        <translation type="unfinished">Seed</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <source>IV Advances</source>
@@ -9739,11 +9739,11 @@
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">初始帧</translation>
+        <translation>初始帧</translation>
     </message>
     <message>
         <source>Max Advances</source>
-        <translation type="unfinished">最大帧数</translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -9755,11 +9755,11 @@
     </message>
     <message>
         <source>Generate</source>
-        <translation type="unfinished">生成</translation>
+        <translation>生成</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Encounter</source>
@@ -9779,7 +9779,7 @@
     </message>
     <message>
         <source>Surfing</source>
-        <translation type="unfinished">冲浪</translation>
+        <translation>冲浪</translation>
     </message>
     <message>
         <source>Rippling Surfing</source>
@@ -9795,31 +9795,31 @@
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">地点</translation>
+        <translation>地点</translation>
     </message>
     <message>
         <source>Pokémon</source>
-        <translation type="unfinished">宝可梦</translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <source>Season</source>
-        <translation type="unfinished"></translation>
+        <translation>季节</translation>
     </message>
     <message>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>春天</translation>
     </message>
     <message>
         <source>Summer</source>
-        <translation type="unfinished"></translation>
+        <translation>夏天</translation>
     </message>
     <message>
         <source>Autumn</source>
-        <translation type="unfinished"></translation>
+        <translation>秋天</translation>
     </message>
     <message>
         <source>Winter</source>
-        <translation type="unfinished"></translation>
+        <translation>冬天</translation>
     </message>
     <message>
         <source>Filters</source>
@@ -9851,13 +9851,13 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="87"/>
         <location filename="../Gen5/Wild5.cpp" line="99"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="88"/>
@@ -9869,7 +9869,7 @@
         <location filename="../Gen5/Wild5.cpp" line="89"/>
         <location filename="../Gen5/Wild5.cpp" line="101"/>
         <source>Cute Charm</source>
-        <translation type="unfinished">迷人身躯</translation>
+        <translation>迷人身躯</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="90"/>
@@ -10217,12 +10217,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="53"/>
@@ -10252,7 +10252,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
@@ -10315,12 +10315,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
@@ -10370,7 +10370,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
@@ -10438,12 +10438,12 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
@@ -10483,7 +10483,7 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
@@ -10551,12 +10551,12 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
@@ -10596,7 +10596,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="79"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="80"/>
@@ -10656,7 +10656,7 @@
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Weight</source>
-        <translation type="unfinished">体重</translation>
+        <translation>体重</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
@@ -10669,12 +10669,12 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.cpp" line="122"/>
@@ -10704,7 +10704,7 @@
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="137"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="137"/>
@@ -10767,12 +10767,12 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
@@ -10812,7 +10812,7 @@
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
@@ -10880,12 +10880,12 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>Square</source>
-        <translation type="unfinished">Square</translation>
+        <translation>方块</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>Star</source>
-        <translation type="unfinished">Star</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
@@ -10930,7 +10930,7 @@
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="140"/>
         <source>Shiny</source>
-        <translation type="unfinished">异色</translation>
+        <translation>异色</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="140"/>
