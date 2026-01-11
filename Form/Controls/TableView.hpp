@@ -40,6 +40,14 @@ public:
     TableView(QWidget *parent = nullptr);
 
     /**
+     * @brief Sets the model and connects signal to auto resize when rows are added
+     *
+     * @param model Model for the table view to present
+     */
+    void setModel(QAbstractItemModel *model) override;
+
+private:
+    /**
      * @brief Handles when the context menu is requested. Only displays if the model isn't empty.
      *
      * @param event Contains context menu event information
@@ -61,26 +69,18 @@ public:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 
     /**
-     * @brief Handles window resize event to resize the header
-     *
-     * @param event Contains resize event information
-     */
-    void resizeEvent(QResizeEvent *event) override;
-
-    /**
-     * @brief Sets the model and connects signal to auto resize when rows are added
-     *
-     * @param model Model for the table view to present
-     */
-    void setModel(QAbstractItemModel *model) override;
-
-private:
-    /**
      * @brief Outputs model data to file
      *
      * @param csv Whether the output format is txt or csv
      */
     void outputModel(bool csv = false) const;
+
+    /**
+     * @brief Handles window resize event to resize the header
+     *
+     * @param event Contains resize event information
+     */
+    void resizeEvent(QResizeEvent *event) override;
 
     /**
      * @brief Sets the current selected tableview region to the clipboard

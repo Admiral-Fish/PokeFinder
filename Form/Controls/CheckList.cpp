@@ -72,32 +72,31 @@ public:
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
-    lineEdit = new QLineEdit(this);
-    lineEdit->setReadOnly(true);
-    lineEdit->installEventFilter(this);
+    setEditable(true);
+    lineEdit()->setReadOnly(true);
+    lineEdit()->installEventFilter(this);
 
     model = new QStandardItemModel(this);
     proxyModel = new CheckListProxyModel(this, model);
 
     setModel(proxyModel);
-    setLineEdit(lineEdit);
 
-    connect(view(), &QAbstractItemView::clicked, this, &CheckList::onItemClicked);
-    connect(model, &QStandardItemModel::itemChanged, this, &CheckList::modelDataChanged);
+    connect(view(), &QAbstractItemView::pressed, this, &CheckList::onItemClicked);
+    connect(model, &QStandardItemModel::dataChanged, this, &CheckList::updateText);
 }
 
 void CheckList::addItem(const QString &string, const QVariant &data)
 {
     auto *item = new QStandardItem(string);
     item->setData(data);
-    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
     item->setCheckable(true);
+    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
     item->setCheckState(Qt::Unchecked);
 
     model->appendRow(item);
 
     // Adding items seems to empty the line edit. Reset to the text we want everytime.
-    lineEdit->setText(tr("Any"));
+    updateText();
 }
 
 void CheckList::addItem(const std::string &string, u16 data)
@@ -165,18 +164,6 @@ std::vector<u16> CheckList::getCheckedData() const
     return data;
 }
 
-void CheckList::hidePopup()
-{
-    int width = this->width();
-    int height = this->view()->height();
-    int x = QCursor::pos().x() - mapToGlobal(geometry().topLeft()).x() + geometry().x();
-    int y = QCursor::pos().y() - mapToGlobal(geometry().topLeft()).y() + geometry().y();
-    if (x < 0 || x > width || y < this->height() || y > height + this->height())
-    {
-        QComboBox::hidePopup();
-    }
-}
-
 void CheckList::resetChecks()
 {
     for (int i = 0; i < model->rowCount(); i++)
@@ -230,20 +217,30 @@ Qt::CheckState CheckList::checkState() const
 
 bool CheckList::eventFilter(QObject *object, QEvent *event)
 {
-    if (object == lineEdit && event->type() == QEvent::MouseButtonRelease)
+    if (object == lineEdit())
     {
-        auto *mouse = reinterpret_cast<QMouseEvent *>(event);
-        if (mouse->modifiers() == Qt::ControlModifier)
+        if (event->type() == QEvent::Resize)
         {
-            resetChecks();
+            updateText();
         }
-        else
+        else if (event->type() == QEvent::MouseButtonPress)
         {
-            showPopup();
+            auto *mouse = reinterpret_cast<QMouseEvent *>(event);
+            if (mouse->modifiers() == Qt::ControlModifier)
+            {
+                resetChecks();
+                return true;
+            }
+            else
+            {
+                showPopup();
+                return true;
+            }
+            return false;
         }
-        return false;
     }
-    return false;
+    
+    return QComboBox::eventFilter(object, event);
 }
 
 void CheckList::keyPressEvent(QKeyEvent *event)
@@ -272,7 +269,7 @@ void CheckList::onItemClicked(const QModelIndex &index)
     }
 }
 
-void CheckList::modelDataChanged()
+void CheckList::updateText()
 {
     QString text;
 
@@ -300,5 +297,7 @@ void CheckList::modelDataChanged()
         break;
     }
 
-    lineEdit->setText(text);
+    QFontMetrics metric(lineEdit()->font());
+    QString elidedText = metric.elidedText(text, Qt::ElideRight, lineEdit()->width());
+    lineEdit()->setText(elidedText);
 }

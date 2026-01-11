@@ -40,18 +40,18 @@ public:
      */
     GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY);
 
+private:
+    u16 maxX;
+    u16 maxY;
+    u16 minX;
+    u16 minY;
+
     /**
      * @brief Handles bounding the item with the min/max X/Y position when it is moved
      *
      * @param event Contains mouse event information
      */
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-
-private:
-    u16 maxX;
-    u16 maxY;
-    u16 minX;
-    u16 minY;
 };
 
 #endif // GRAPHICSPIXMAPITEM_HPP
