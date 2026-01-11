@@ -223,7 +223,7 @@ bool CheckList::eventFilter(QObject *object, QEvent *event)
         {
             updateText();
         }
-        else if (event->type() == QEvent::MouseButtonPress)
+        else if (event->type() == QEvent::MouseButtonRelease)
         {
             auto *mouse = reinterpret_cast<QMouseEvent *>(event);
             if (mouse->modifiers() == Qt::ControlModifier)
