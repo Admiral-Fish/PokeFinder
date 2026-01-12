@@ -48,6 +48,15 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     });
 }
 
+void TableView::setModel(QAbstractItemModel *model)
+{
+    QTableView::setModel(model);
+    connect(this->model(), &QAbstractItemModel::rowsInserted, this, [=] {
+        QSettings setting;
+        this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
+    });
+}
+
 void TableView::contextMenuEvent(QContextMenuEvent *event)
 {
     if (model()->rowCount() != 0)
@@ -74,22 +83,6 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
     {
         setSelectionToClipBoard();
     }
-}
-
-void TableView::resizeEvent(QResizeEvent *event)
-{
-    QSettings setting;
-    this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
-    QTableView::resizeEvent(event);
-}
-
-void TableView::setModel(QAbstractItemModel *model)
-{
-    QTableView::setModel(model);
-    connect(this->model(), &QAbstractItemModel::rowsInserted, this, [=] {
-        QSettings setting;
-        this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
-    });
 }
 
 void TableView::outputModel(bool csv) const
@@ -141,6 +134,13 @@ void TableView::outputModel(bool csv) const
             }
         }
     }
+}
+
+void TableView::resizeEvent(QResizeEvent *event)
+{
+    QSettings setting;
+    this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
+    QTableView::resizeEvent(event);
 }
 
 void TableView::setSelectionToClipBoard()
