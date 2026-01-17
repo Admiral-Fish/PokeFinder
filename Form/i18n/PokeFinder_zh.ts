@@ -158,7 +158,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>Timer0</source>
@@ -1501,7 +1501,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>VCount</source>
@@ -2025,7 +2025,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>VCount</source>
@@ -3413,7 +3413,7 @@
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>Timer0</source>
@@ -4141,7 +4141,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -5211,7 +5211,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation>MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>Version</source>
@@ -6079,12 +6079,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>MAC Address</source>
-        <translation type="unfinished">MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>DS Type</source>
-        <translation type="unfinished">机型</translation>
+        <translation>机型</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
@@ -6754,11 +6754,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished">MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>DS Type</source>
-        <translation type="unfinished">机型</translation>
+        <translation>机型</translation>
     </message>
     <message>
         <source>VCount</source>
@@ -7587,7 +7587,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished">MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -8873,7 +8873,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>复眼</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
@@ -8888,17 +8888,17 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen8/Underground.cpp" line="57"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>活力</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="58"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>压迫感</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="59"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>干劲</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="60"/>
@@ -9096,19 +9096,19 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen3/Wild3.cpp" line="75"/>
         <location filename="../Gen3/Wild3.cpp" line="86"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>活力</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="76"/>
         <location filename="../Gen3/Wild3.cpp" line="87"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>压迫感</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="77"/>
         <location filename="../Gen3/Wild3.cpp" line="88"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>干劲</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="96"/>
@@ -9400,7 +9400,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>复眼</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
@@ -9430,19 +9430,19 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen4/Wild4.cpp" line="80"/>
         <location filename="../Gen4/Wild4.cpp" line="98"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>活力</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="81"/>
         <location filename="../Gen4/Wild4.cpp" line="99"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>压迫感</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="82"/>
         <location filename="../Gen4/Wild4.cpp" line="100"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>干劲</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="348"/>
@@ -9694,7 +9694,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished">MAC Address</translation>
+        <translation>MAC地址</translation>
     </message>
     <message>
         <source>DS Type</source>
@@ -9774,7 +9774,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Encounter</source>
-        <translation type="unfinished">遇敌种类</translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <source>Grass</source>
@@ -9782,11 +9782,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Dark Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>深色草丛</translation>
     </message>
     <message>
         <source>Rustling Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>摇动草丛</translation>
     </message>
     <message>
         <source>Surfing</source>
@@ -9794,7 +9794,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Rippling Surfing</source>
-        <translation type="unfinished"></translation>
+        <translation>水纹冲浪</translation>
     </message>
     <message>
         <source>Fishing</source>
@@ -9802,7 +9802,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Rippling Fishing</source>
-        <translation type="unfinished"></translation>
+        <translation>水纹钓鱼</translation>
     </message>
     <message>
         <source>Location</source>
@@ -9874,7 +9874,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen5/Wild5.cpp" line="80"/>
         <location filename="../Gen5/Wild5.cpp" line="92"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>复眼</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="81"/>
@@ -9904,19 +9904,19 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen5/Wild5.cpp" line="84"/>
         <location filename="../Gen5/Wild5.cpp" line="96"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>活力</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="85"/>
         <location filename="../Gen5/Wild5.cpp" line="97"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>压迫感</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="86"/>
         <location filename="../Gen5/Wild5.cpp" line="98"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>干劲</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="87"/>
@@ -10083,17 +10083,17 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="62"/>
         <source>Harvest</source>
-        <translation type="unfinished"></translation>
+        <translation>收获</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="63"/>
         <source>Flash Fire</source>
-        <translation type="unfinished"></translation>
+        <translation>引火</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="64"/>
         <source>Magnet Pull</source>
-        <translation type="unfinished"></translation>
+        <translation>磁力</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="65"/>
@@ -10113,7 +10113,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="56"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>复眼</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="56"/>
@@ -10128,17 +10128,17 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>活力</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="59"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>压迫感</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="60"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>干劲</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="67"/>
