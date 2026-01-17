@@ -3576,7 +3576,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Lead</source>
-        <translation队首</translation>
+        <translation>队首</translation>
     </message>
     <message>
         <source>IV Advances</source>
