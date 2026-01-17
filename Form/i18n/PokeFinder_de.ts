@@ -3538,13 +3538,14 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="614"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="619"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
+Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="626"/>
@@ -3554,7 +3555,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="631"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="632"/>
@@ -3959,7 +3960,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Advances</source>
-        <translation type="unfinished">Ziel Advance</translation>
+        <translation>Ziel Advance</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
@@ -5689,7 +5690,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei ist kein gültiges SHA Cache oder wurde nicht aus dem Profil erstellt</translation>
     </message>
     <message>
         <source>IV Cache</source>
@@ -7796,13 +7797,14 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/Static5.cpp" line="454"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="459"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
+Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="466"/>
@@ -7812,7 +7814,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/Static5.cpp" line="471"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="472"/>
@@ -9955,13 +9957,14 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="466"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="471"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
+Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="478"/>
@@ -9971,7 +9974,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="483"/>
         <source>Settings are not configured for fast searching</source>
-        <translation>Schnellsuche ist aufgrund der IV Advances und IV Filter deaktiviert</translation>
+        <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="484"/>
