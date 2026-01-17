@@ -1627,7 +1627,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -1756,7 +1756,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -2006,7 +2006,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -2227,7 +2227,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Never</source>
@@ -2392,7 +2392,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -2931,7 +2931,7 @@
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -3568,7 +3568,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Grotto</source>
@@ -6375,7 +6375,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -7374,7 +7374,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -7548,7 +7548,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Shiny</source>
@@ -7651,7 +7651,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Lucky Power</source>
@@ -8000,7 +8000,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -8723,31 +8723,31 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Underground Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>解锁地下大洞窟</translation>
     </message>
     <message>
         <source>Strength Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>获得怪力秘传</translation>
     </message>
     <message>
         <source>Defog Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>获得清除浓雾秘传</translation>
     </message>
     <message>
         <source>7 Badges</source>
-        <translation type="unfinished">7枚徽章</translation>
+        <translation>获得7枚徽章</translation>
     </message>
     <message>
         <source>Waterfall Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>获得攀瀑秘传</translation>
     </message>
     <message>
         <source>National Dex</source>
-        <translation>全国图鉴</translation>
+        <translation>获得全国图鉴</translation>
     </message>
     <message>
         <source>Story Flag</source>
-        <translation type="unfinished"></translation>
+        <translation>剧情进度</translation>
     </message>
     <message>
         <source>Pokémon</source>
@@ -8755,11 +8755,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Diglett Bonus</source>
-        <translation type="unfinished"></translation>
+        <translation>地鼠光石加成</translation>
     </message>
     <message>
         <source>Level Flag</source>
-        <translation type="unfinished"></translation>
+        <translation>等级标记</translation>
     </message>
     <message>
         <source>0/1 Badges</source>
@@ -8917,7 +8917,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -8955,7 +8955,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>Species</source>
-        <translation type="unfinished">种类</translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
@@ -8965,7 +8965,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="80"/>
         <source>EC</source>
-        <translation type="unfinished"></translation>
+        <translation>EC</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="81"/>
@@ -9237,7 +9237,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
 </context>
 <context>
@@ -9615,19 +9615,19 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Forest Block</source>
-        <translation type="unfinished"></translation>
+        <translation>森林模块</translation>
     </message>
     <message>
         <source>Peak Block</source>
-        <translation type="unfinished"></translation>
+        <translation>岩场模块</translation>
     </message>
     <message>
         <source>Plains Block</source>
-        <translation type="unfinished"></translation>
+        <translation>草原模块</translation>
     </message>
     <message>
         <source>Water Block</source>
-        <translation type="unfinished"></translation>
+        <translation>水边模块</translation>
     </message>
     <message>
         <source>Mysterious Transmission</source>
@@ -9635,27 +9635,27 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Happiness</source>
-        <translation type="unfinished"></translation>
+        <translation>跟随亲密度</translation>
     </message>
     <message>
         <source>+0%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>+20%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>+30%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>+40%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>+50%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Feebas Tile</source>
@@ -9663,7 +9663,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Honey Tree</source>
@@ -9758,7 +9758,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Lucky Power</source>
@@ -10222,7 +10222,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset</translation>
     </message>
     <message>
         <source>Honey Tree</source>
