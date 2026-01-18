@@ -924,12 +924,12 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="188"/>
         <source>Held Advances</source>
-        <translation type="unfinished">蛋生成帧</translation>
+        <translation>蛋生成帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="189"/>
         <source>Pickup Advances</source>
-        <translation type="unfinished">蛋领取帧</translation>
+        <translation>蛋领取帧</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="190"/>
@@ -1882,19 +1882,19 @@
     </message>
     <message>
         <source>Black</source>
-        <translation type="unfinished">黑</translation>
+        <translation>黑</translation>
     </message>
     <message>
         <source>White</source>
-        <translation type="unfinished">白</translation>
+        <translation>白</translation>
     </message>
     <message>
         <source>Black 2</source>
-        <translation type="unfinished">黑2</translation>
+        <translation>黑2</translation>
     </message>
     <message>
         <source>White 2</source>
-        <translation type="unfinished">白2</translation>
+        <translation>白2</translation>
     </message>
 </context>
 <context>
@@ -2129,11 +2129,11 @@
     </message>
     <message>
         <source>♂ Only</source>
-        <translation type="unfinished"></translation>
+        <translation>仅 ♂</translation>
     </message>
     <message>
         <source>♀ Only</source>
-        <translation type="unfinished"></translation>
+        <translation>仅 ♀</translation>
     </message>
     <message>
         <source>Random</source>
@@ -3453,11 +3453,11 @@
     </message>
     <message>
         <source>Grotto Power</source>
-        <translation type="unfinished"></translation>
+        <translation>释出之力等级</translation>
     </message>
     <message>
         <source>S/MAX</source>
-        <translation type="unfinished"></translation>
+        <translation>S/MAX</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4181,7 +4181,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Second Range</source>
-        <translation type="unfinished"></translation>
+        <translation>秒数范围</translation>
     </message>
     <message>
         <source>Max Advances</source>
@@ -4233,7 +4233,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Static/Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>定点/野生</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.cpp" line="142"/>
@@ -5486,7 +5486,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Unown Puzzles</source>
-        <translation type="unfinished"></translation>
+        <translation>未知图腾拼图谜题</translation>
     </message>
     <message>
         <source>A-J</source>
@@ -5506,7 +5506,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Unown Discovered</source>
-        <translation type="unfinished"></translation>
+        <translation>已捕捉未知图腾</translation>
     </message>
 </context>
 <context>
@@ -5533,7 +5533,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Version</source>
@@ -5697,11 +5697,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Select File</source>
-        <translation type="unfinished"></translation>
+        <translation>选择文件</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">清空</translation>
+        <translation>清空</translation>
     </message>
     <message>
         <source>SHA Cache</source>
@@ -5962,7 +5962,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.cpp" line="51"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.cpp" line="51"/>
@@ -5972,12 +5972,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">存档名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">版本</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/ProfileModel3.hpp" line="71"/>
@@ -6000,7 +6000,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.cpp" line="48"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.cpp" line="48"/>
@@ -6010,12 +6010,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">存档名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">版本</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
@@ -6030,7 +6030,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen4/ProfileModel4.hpp" line="71"/>
         <source>National Dex</source>
-        <translation type="unfinished">全国图鉴</translation>
+        <translation>全国图鉴</translation>
     </message>
 </context>
 <context>
@@ -6041,7 +6041,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
@@ -6054,17 +6054,17 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">存档名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">版本</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
@@ -6089,7 +6089,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VCount</source>
-        <translation type="unfinished">VCount</translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
@@ -6099,12 +6099,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>GxStat</source>
-        <translation type="unfinished">GxStat</translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>VFrame</source>
-        <translation type="unfinished">VFrame</translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
@@ -6119,17 +6119,17 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Soft Reset</source>
-        <translation type="unfinished">软复位</translation>
+        <translation>软复位</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Memory Link</source>
-        <translation type="unfinished">记忆连接</translation>
+        <translation>记忆连接</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished">闪耀护符</translation>
+        <translation>闪耀护符</translation>
     </message>
 </context>
 <context>
@@ -6138,7 +6138,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="50"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
@@ -6149,12 +6149,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Profile Name</source>
-        <translation type="unfinished">存档名</translation>
+        <translation>存档名</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Version</source>
-        <translation type="unfinished">版本</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
@@ -6169,12 +6169,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished">闪耀护符</translation>
+        <translation>闪耀护符</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="71"/>
         <source>Oval Charm</source>
-        <translation type="unfinished">圆形护符</translation>
+        <translation>圆形护符</translation>
     </message>
 </context>
 <context>
@@ -6294,11 +6294,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Only ♂</source>
-        <translation type="unfinished"></translation>
+        <translation>仅 ♂</translation>
     </message>
     <message>
         <source>Only ♀</source>
-        <translation type="unfinished"></translation>
+        <translation>仅 ♀</translation>
     </message>
     <message>
         <source>IV Count</source>
@@ -6306,7 +6306,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Shiny Type</source>
-        <translation type="unfinished"></translation>
+        <translation>异色类型</translation>
     </message>
     <message>
         <source>Force non-shiny</source>
@@ -7227,7 +7227,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自适应</translation>
     </message>
 </context>
 <context>
@@ -8763,31 +8763,31 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>0/1 Badges</source>
-        <translation>0/1枚徽章</translation>
+        <translation>获得0/1枚徽章</translation>
     </message>
     <message>
         <source>2 Badges</source>
-        <translation>2枚徽章</translation>
+        <translation>获得2枚徽章</translation>
     </message>
     <message>
         <source>3 Badges</source>
-        <translation>3枚徽章</translation>
+        <translation>获得3枚徽章</translation>
     </message>
     <message>
         <source>4 Badges</source>
-        <translation>4枚徽章</translation>
+        <translation>获得4枚徽章</translation>
     </message>
     <message>
         <source>5 Badges</source>
-        <translation>5枚徽章</translation>
+        <translation>获得5枚徽章</translation>
     </message>
     <message>
         <source>6 Badges</source>
-        <translation>6枚徽章</translation>
+        <translation>获得6枚徽章</translation>
     </message>
     <message>
         <source>8 Badges</source>
-        <translation>8枚徽章</translation>
+        <translation>获得8枚徽章</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -9149,7 +9149,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Encounter</source>
-        <translation>遇敌种类</translation>
+        <translation>遭遇类型</translation>
     </message>
     <message>
         <source>Rock Smash</source>
@@ -9308,7 +9308,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Encounter</source>
-        <translation>遇敌种类</translation>
+        <translation>遭遇类型</translation>
     </message>
     <message>
         <source>Surfing</source>
@@ -9571,15 +9571,15 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Headbutt</source>
-        <translation>撞树</translation>
+        <translation>撞树A组</translation>
     </message>
     <message>
         <source>Headbutt Alt</source>
-        <translation type="unfinished"></translation>
+        <translation>撞树B组</translation>
     </message>
     <message>
         <source>Headbutt Special</source>
-        <translation type="unfinished"></translation>
+        <translation>撞树C组</translation>
     </message>
     <message>
         <source>Ruby</source>
@@ -9774,7 +9774,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Encounter</source>
-        <translation>遇敌种类</translation>
+        <translation>遭遇类型</translation>
     </message>
     <message>
         <source>Grass</source>
@@ -10028,7 +10028,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Encounter</source>
-        <translation>遇敌种类</translation>
+        <translation>遭遇类型</translation>
     </message>
     <message>
         <source>Time</source>
