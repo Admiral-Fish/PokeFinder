@@ -82,7 +82,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
+    <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -496,6 +496,17 @@
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>ComboMenu</class>

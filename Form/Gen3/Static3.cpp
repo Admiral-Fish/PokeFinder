@@ -65,6 +65,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static3::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static3::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
@@ -292,4 +294,30 @@ void Static3::seedToTime()
 
     auto *time = new SeedToTime3(state.getSeed());
     time->show();
+}
+
+void Static3::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Static3::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxSearcherCategory->setCurrentIndex(ui->comboBoxGeneratorCategory->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    }
 }

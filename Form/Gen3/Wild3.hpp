@@ -168,6 +168,20 @@ private slots:
      * @brief Opens seed to time.
      */
     void seedToTime();
+
+    /**
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferFilters(int index);
+
+    /**
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferSettings(int index);
 };
 
 #endif // WILD3_HPP

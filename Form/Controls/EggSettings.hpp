@@ -65,6 +65,13 @@ public:
     bool compatibleParents() const;
 
     /**
+     * @brief Copies the values from another EggSettings
+     *
+     * @param other The EggSettings to copy values from
+     */
+    void copyFrom(const EggSettings *other);
+
+    /**
      * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
      *
      * @return Parent information

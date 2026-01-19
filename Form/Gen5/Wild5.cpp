@@ -107,6 +107,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild5::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild5::generatorEncounterIndexChanged);
@@ -532,5 +534,35 @@ void Wild5::searcherSeasonIndexChanged(int index)
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         encounterSearcher = Encounters5::getEncounters(encounter, index, currentProfile);
         searcherLocationIndexChanged(0);
+    }
+}
+
+void Wild5::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Wild5::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxSearcherEncounter->setCurrentIndex(ui->comboBoxGeneratorEncounter->currentIndex());
+        ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+        ui->comboBoxSearcherSeason->setCurrentIndex(ui->comboBoxGeneratorSeason->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+        ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+        ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
     }
 }
