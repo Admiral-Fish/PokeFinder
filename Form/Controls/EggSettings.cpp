@@ -22,6 +22,12 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Daycare.hpp>
 #include <Core/Util/Translator.hpp>
+#include <QAction>
+#include <QClipboard>
+#include <QContextMenuEvent>
+#include <QMenu>
+#include <QMessageBox>
+#include <QRegularExpression>
 
 constexpr u16 allowed[]
     = { 1,   4,   7,   10,  13,  16,  19,  21,  23,  27,  29,  32,  37,  41,  43,  46,  48,  50,  52,  54,  56,  58,  60,  63,  66,  69,
@@ -68,12 +74,26 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
+    auto *copyAction = new QAction(tr("Copy to clipboard"), this);
+    addAction(copyAction);
+
+    auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
+    addAction(pasteAction);
+
+    connect(copyAction, &QAction::triggered, this, &EggSettings::setIVsToClipBoard);
+    connect(pasteAction, &QAction::triggered, this, &EggSettings::setIVsFromClipBoard);
+
     connect(ui->checkBoxShowInheritance, &QCheckBox::toggled, this, &EggSettings::showInheritanceChanged);
 }
 
 EggSettings::~EggSettings()
 {
     delete ui;
+}
+
+void EggSettings::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
 bool EggSettings::compatibleParents() const
@@ -293,4 +313,52 @@ void EggSettings::setup(Game game)
         }
         ui->comboBoxEggSpecie->addItem(QString::fromStdString(Translator::getSpecie(i)), i);
     }
+}
+
+void EggSettings::setIVsFromClipBoard()
+{
+    QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
+                          "(\\d{1,2})/(\\d{1,2})");
+
+    QString text = QApplication::clipboard()->text();
+    QRegularExpressionMatch match = re.match(text);
+    if (!match.hasMatch())
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        box.exec();
+        return;
+    }
+
+    ui->spinBoxParentAHP->setValue(match.captured(1).toInt());
+    ui->spinBoxParentAAtk->setValue(match.captured(2).toInt());
+    ui->spinBoxParentADef->setValue(match.captured(3).toInt());
+    ui->spinBoxParentASpA->setValue(match.captured(4).toInt());
+    ui->spinBoxParentASpD->setValue(match.captured(5).toInt());
+    ui->spinBoxParentASpe->setValue(match.captured(6).toInt());
+
+    ui->spinBoxParentBHP->setValue(match.captured(7).toInt());
+    ui->spinBoxParentBAtk->setValue(match.captured(8).toInt());
+    ui->spinBoxParentBDef->setValue(match.captured(9).toInt());
+    ui->spinBoxParentBSpA->setValue(match.captured(10).toInt());
+    ui->spinBoxParentBSpD->setValue(match.captured(11).toInt());
+    ui->spinBoxParentBSpe->setValue(match.captured(12).toInt());
+}
+
+void EggSettings::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxParentAHP->value())
+                      .arg(ui->spinBoxParentAAtk->value())
+                      .arg(ui->spinBoxParentADef->value())
+                      .arg(ui->spinBoxParentASpA->value())
+                      .arg(ui->spinBoxParentASpD->value())
+                      .arg(ui->spinBoxParentASpe->value())
+                      .arg(ui->spinBoxParentBHP->value())
+                      .arg(ui->spinBoxParentBAtk->value())
+                      .arg(ui->spinBoxParentBDef->value())
+                      .arg(ui->spinBoxParentBSpA->value())
+                      .arg(ui->spinBoxParentBSpD->value())
+                      .arg(ui->spinBoxParentBSpe->value());
+
+    QApplication::clipboard()->setText(ivs);
 }

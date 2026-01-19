@@ -22,7 +22,11 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Util/IVCalculator.hpp>
+#include <QClipboard>
+#include <QMenu>
+#include <QMessageBox>
 #include <QMouseEvent>
+#include <QRegularExpression>
 
 /**
  * @brief Updates min/max values based on control keys selected
@@ -95,6 +99,16 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);
 
+    auto *copyAction = new QAction(tr("Copy to clipboard"), this);
+    addAction(copyAction);
+
+    auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
+    addAction(pasteAction);
+
+    connect(copyAction, &QAction::triggered, this, &Filter::setIVsToClipBoard);
+    connect(pasteAction, &QAction::triggered, this, &Filter::setIVsFromClipBoard);
+
+    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
@@ -115,6 +129,11 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 Filter::~Filter()
 {
     delete ui;
+}
+
+void Filter::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
 void Filter::copyFrom(const Filter *other)
@@ -400,4 +419,52 @@ void Filter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
         minIVs[i]->setValue(min);
         maxIVs[i]->setValue(max);
     }
+}
+
+void Filter::setIVsFromClipBoard()
+{
+    QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
+                          "(\\d{1,2})/(\\d{1,2})");
+
+    QString text = QApplication::clipboard()->text();
+    QRegularExpressionMatch match = re.match(text);
+    if (!match.hasMatch())
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        box.exec();
+        return;
+    }
+
+    ui->spinBoxHPMin->setValue(match.captured(1).toInt());
+    ui->spinBoxAtkMin->setValue(match.captured(2).toInt());
+    ui->spinBoxDefMin->setValue(match.captured(3).toInt());
+    ui->spinBoxSpAMin->setValue(match.captured(4).toInt());
+    ui->spinBoxSpDMin->setValue(match.captured(5).toInt());
+    ui->spinBoxSpeMin->setValue(match.captured(6).toInt());
+
+    ui->spinBoxHPMax->setValue(match.captured(7).toInt());
+    ui->spinBoxAtkMax->setValue(match.captured(8).toInt());
+    ui->spinBoxDefMax->setValue(match.captured(9).toInt());
+    ui->spinBoxSpAMax->setValue(match.captured(10).toInt());
+    ui->spinBoxSpDMax->setValue(match.captured(11).toInt());
+    ui->spinBoxSpeMax->setValue(match.captured(12).toInt());
+}
+
+void Filter::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxHPMin->value())
+                      .arg(ui->spinBoxAtkMin->value())
+                      .arg(ui->spinBoxDefMin->value())
+                      .arg(ui->spinBoxSpAMin->value())
+                      .arg(ui->spinBoxSpDMin->value())
+                      .arg(ui->spinBoxSpeMin->value())
+                      .arg(ui->spinBoxHPMax->value())
+                      .arg(ui->spinBoxAtkMax->value())
+                      .arg(ui->spinBoxDefMax->value())
+                      .arg(ui->spinBoxSpAMax->value())
+                      .arg(ui->spinBoxSpDMax->value())
+                      .arg(ui->spinBoxSpeMax->value());
+
+    QApplication::clipboard()->setText(ivs);
 }
