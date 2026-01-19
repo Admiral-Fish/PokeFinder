@@ -79,6 +79,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    connect(ui->tabEggSelection, &TabWidget::transferFilters, this, &Eggs4::transferFilters);
+    connect(ui->tabEggSelection, &TabWidget::transferSettings, this, &Eggs4::transferSettings);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);
@@ -278,9 +280,33 @@ void Eggs4::profileManager()
 
 void Eggs4::seedToTime()
 {
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
 
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
     time->show();
+}
+
+void Eggs4::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Eggs4::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->eggSettingsSearcher->copyFrom(ui->eggSettingsGenerator);
+    }
+    else
+    {
+        ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
+    }
 }

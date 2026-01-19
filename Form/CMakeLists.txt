@@ -118,6 +118,8 @@ set(PROJECT_SOURCES
     Controls/IDsFilter.hpp
     Controls/TableView.cpp
     Controls/TableView.hpp
+    Controls/TabWidget.hpp
+    Controls/TabWidget.cpp
     Controls/TextBox.cpp
     Controls/TextBox.hpp
     Gen3/Eggs3.cpp
@@ -228,12 +230,14 @@ set(PROJECT_SOURCES
     Util/Settings.hpp
 )
 
-qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
-include(EmbedTranslations)
-embed_translations(PROJECT_I18N ${PROJECT_QM})
+qt_add_translations(PokeFinderForm
+    MERGE_QT_TRANSLATIONS
+    TS_FILES i18n/PokeFinder_fr.ts i18n/PokeFinder_es.ts i18n/PokeFinder_de.ts i18n/PokeFinder_it.ts i18n/PokeFinder_ja.ts i18n/PokeFinder_ko.ts i18n/PokeFinder_zh.ts
+    NO_GENERATE_PLURALS_TS_FILE
+    LRELEASE_OPTIONS -nounfinished -removeidentical
+)
 
 add_library(PokeFinderForm STATIC
-    ${PROJECT_I18N}
     ${PROJECT_QRC}
     ${PROJECT_UI}
     ${PROJECT_SOURCES}

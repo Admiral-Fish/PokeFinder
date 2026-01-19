@@ -105,6 +105,20 @@ private slots:
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.
      */
     void seedToTime();
+
+    /**
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferFilters(int index);
+
+    /**
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferSettings(int index);
 };
 
 #endif // EGGS4_HPP

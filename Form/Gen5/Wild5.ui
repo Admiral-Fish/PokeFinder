@@ -169,7 +169,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
+    <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -285,12 +285,7 @@
             </item>
             <item>
              <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+              <string notr="true">3/S</string>
              </property>
             </item>
            </widget>
@@ -549,12 +544,7 @@
             </item>
             <item>
              <property name="text">
-              <string notr="true">3</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S/MAX</string>
+              <string notr="true">3/S</string>
              </property>
             </item>
            </widget>
@@ -805,6 +795,12 @@
    <class>ComboBoxProxy</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBoxProxy.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

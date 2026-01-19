@@ -45,6 +45,9 @@ public:
     {
     }
 
+    /**
+     * @brief Destroy the SearcherBase object
+     */
     virtual ~SearcherBase() = default;
 
     /**
@@ -63,6 +66,17 @@ public:
     int getProgress() const
     {
         return (progress * 100) / maxProgress;
+    }
+
+    /**
+     * @brief Returns if the search was cancelled
+     * 
+     * @return true Search was cancelled
+     * @return false Search was not cancelled
+     */
+    bool cancelled() const
+    {
+        return !searching;
     }
 
     /**

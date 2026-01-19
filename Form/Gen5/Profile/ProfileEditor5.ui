@@ -148,7 +148,7 @@
     <widget class="CheckList" name="comboBoxKeypresses">
      <item>
       <property name="text">
-       <string>None</string>
+       <string notr="true">0</string>
       </property>
      </item>
      <item>

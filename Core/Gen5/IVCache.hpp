@@ -45,9 +45,9 @@ public:
      * @brief Construct a new IVCache object
      *
      * @param file Path to file to read the cache from
-     * @param readData Whether or not to read the seed cache data
+     * @param read Whether or not to read the seed cache data
      */
-    IVCache(const std::string &file);
+    IVCache(const std::string &file, bool read = true);
 
     /**
      * @brief Returns the IV caches for the \p type
@@ -97,14 +97,6 @@ public:
      * @brief Determines if cache is valid
      */
     bool isValid() const;
-
-    /**
-     * @brief Determines if cache is valid
-     * 
-     * @param file Path to file to validate the cache from
-     */
-    static bool isValid(const std::string &file);
-
 
 private:
     std::vector<std::vector<u32>> entralinkSeeds;

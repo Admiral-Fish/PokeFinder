@@ -77,13 +77,15 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 3, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3 });
+    ui->comboBoxSearcherLuckyPower->setup({ 0, 3 });
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static5::search);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static5::generatorCategoryIndexChanged);
@@ -202,7 +204,7 @@ void Static5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    u8 luckyPower = 0;
+    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
@@ -251,6 +253,10 @@ void Static5::generatorPokemonIndexChanged(int index)
         bool flag = staticTemplate->getInfo()->getFixedGender();
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmF), flag);
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmM), flag);
+
+        flag = (currentProfile->getVersion() & Game::BW2) != Game::None && staticTemplate->getWild();
+        ui->labelGeneratorLuckyPower->setHidden(!flag);
+        ui->comboBoxGeneratorLuckyPower->setHidden(!flag);
     }
 }
 
@@ -305,6 +311,11 @@ void Static5::profileIndexChanged(int index)
 
         bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
 
+        ui->labelGeneratorLuckyPower->setHidden(!bw);
+        ui->labelSearcherLuckyPower->setHidden(!bw);
+        ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
+        ui->comboBoxSearcherLuckyPower->setHidden(!bw);
+
         // Event
         ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
         ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
@@ -354,7 +365,7 @@ void Static5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = 0;
+    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
@@ -440,7 +451,15 @@ void Static5::searcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
-        ui->labelIVFastSearch->setText(tr("Settings are configured for fast searching"));
+        if (shaCache && shaCache->isValid(*currentProfile))
+        {
+            ui->labelIVFastSearch->setText(tr("Settings are configured for fast IV/SHA searching"));
+        }
+        else
+        {
+            ui->labelIVFastSearch->setText(
+                tr("Settings are configured for fast IV searching.\nProfile is missing or has an incompatible SHA cache."));
+        }
     }
     else
     {
@@ -471,5 +490,35 @@ void Static5::searcherPokemonIndexChanged(int index)
         bool flag = staticTemplate->getInfo()->getFixedGender();
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmM), flag);
+
+        flag = (currentProfile->getVersion() & Game::BW2) != Game::None && staticTemplate->getWild();
+        ui->labelSearcherLuckyPower->setHidden(!flag);
+        ui->comboBoxSearcherLuckyPower->setHidden(!flag);
+    }
+}
+
+void Static5::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Static5::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->comboBoxSearcherCategory->setCurrentIndex(ui->comboBoxGeneratorCategory->currentIndex());
+        ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    }
+    else
+    {
+        ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+        ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
 }

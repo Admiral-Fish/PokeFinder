@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
@@ -27,7 +27,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.8.3"
+          version: "6.10.1"
           archives: qtbase qtsvg qttools
           cache: true
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Restore CMake build files
         id: cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         env:
           cache-name: macos-cmake-build
         with:
@@ -76,7 +76,7 @@ jobs:
         run: ctest --test-dir ${{github.workspace}}/build -V
 
       - name: Save CMake build files
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: |
             ${{github.workspace}}/build
@@ -86,14 +86,13 @@ jobs:
 
       - name: Package PokeFinder
         run: |
-          mkdir upload
           mv build/PokeFinder.app .
           macdeployqt PokeFinder.app -verbose=3
           tar czf PokeFinder-macOS.tar.gz PokeFinder.app
-          mv PokeFinder-macOS.tar.gz upload
+          mkdir upload && mv PokeFinder.app upload
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-macOS
           path: upload

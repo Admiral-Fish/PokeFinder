@@ -83,7 +83,7 @@ static std::array<u8, 6> computeIVs(u32 seed, u8 advance, CacheType type)
     return ivs;
 }
 
-IVCache::IVCache(const std::string &file) : valid(false)
+IVCache::IVCache(const std::string &file, bool read) : valid(false)
 {
     std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
     if (stream.is_open())
@@ -100,33 +100,36 @@ IVCache::IVCache(const std::string &file) : valid(false)
         stream.read(reinterpret_cast<char *>(&initialAdvances), sizeof(initialAdvances));
         stream.read(reinterpret_cast<char *>(&maxAdvances), sizeof(maxAdvances));
 
-        std::vector<u32> entralinkCount(maxAdvances + 5);
-        std::vector<u32> normalCount(maxAdvances + 3);
-        std::vector<u32> roamerCount(maxAdvances + 1);
-
-        stream.read(reinterpret_cast<char *>(entralinkCount.data()), entralinkCount.size() * sizeof(u32));
-        stream.read(reinterpret_cast<char *>(normalCount.data()), normalCount.size() * sizeof(u32));
-        stream.read(reinterpret_cast<char *>(roamerCount.data()), roamerCount.size() * sizeof(u32));
-
-        entralinkSeeds.resize(entralinkCount.size());
-        for (int i = 0; i < entralinkCount.size(); i++)
+        if (read)
         {
-            entralinkSeeds[i].resize(entralinkCount[i]);
-            stream.read(reinterpret_cast<char *>(entralinkSeeds[i].data()), entralinkCount[i] * sizeof(u32));
-        }
+            std::vector<u32> entralinkCount(maxAdvances + 5);
+            std::vector<u32> normalCount(maxAdvances + 3);
+            std::vector<u32> roamerCount(maxAdvances + 1);
 
-        normalSeeds.resize(normalCount.size());
-        for (int i = 0; i < normalCount.size(); i++)
-        {
-            normalSeeds[i].resize(normalCount[i]);
-            stream.read(reinterpret_cast<char *>(normalSeeds[i].data()), normalCount[i] * sizeof(u32));
-        }
+            stream.read(reinterpret_cast<char *>(entralinkCount.data()), entralinkCount.size() * sizeof(u32));
+            stream.read(reinterpret_cast<char *>(normalCount.data()), normalCount.size() * sizeof(u32));
+            stream.read(reinterpret_cast<char *>(roamerCount.data()), roamerCount.size() * sizeof(u32));
 
-        roamerSeeds.resize(roamerCount.size());
-        for (int i = 0; i < roamerCount.size(); i++)
-        {
-            roamerSeeds[i].resize(roamerCount[i]);
-            stream.read(reinterpret_cast<char *>(roamerSeeds[i].data()), roamerCount[i] * sizeof(u32));
+            entralinkSeeds.resize(entralinkCount.size());
+            for (int i = 0; i < entralinkCount.size(); i++)
+            {
+                entralinkSeeds[i].resize(entralinkCount[i]);
+                stream.read(reinterpret_cast<char *>(entralinkSeeds[i].data()), entralinkCount[i] * sizeof(u32));
+            }
+
+            normalSeeds.resize(normalCount.size());
+            for (int i = 0; i < normalCount.size(); i++)
+            {
+                normalSeeds[i].resize(normalCount[i]);
+                stream.read(reinterpret_cast<char *>(normalSeeds[i].data()), normalCount[i] * sizeof(u32));
+            }
+
+            roamerSeeds.resize(roamerCount.size());
+            for (int i = 0; i < roamerCount.size(); i++)
+            {
+                roamerSeeds[i].resize(roamerCount[i]);
+                stream.read(reinterpret_cast<char *>(roamerSeeds[i].data()), roamerCount[i] * sizeof(u32));
+            }
         }
 
         valid = true;
@@ -186,21 +189,6 @@ std::vector<u32> IVCache::getSeeds(Game version, CacheType type) const
 bool IVCache::isValid() const
 {
     return valid;
-}
-
-bool IVCache::isValid(const std::string &file)
-{
-    std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
-    if (stream.is_open())
-    {
-        u32 magic;
-
-        // Expected magic word is CRC32 of "IVCache"
-        stream.read(reinterpret_cast<char *>(&magic), sizeof(magic));
-        return magic == 0xd08cb7c0;
-    }
-
-    return false;
 }
 
 fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAdvances, u32 maxAdvances, const StateFilter &filter) const

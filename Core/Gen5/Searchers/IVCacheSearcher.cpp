@@ -124,8 +124,13 @@ void IVCacheSearcher::search(u32 start, u32 end)
 {
     for (u32 seed = start;; seed++)
     {
+        if (!searching)
+        {
+            return;
+        }
+
         RNGList<u8, MT, 32, gen> rngList(seed, initialAdvances);
-        for (u8 i = 0; i <= maxAdvances + 4; i++, rngList.advanceState())
+        for (u32 i = 0; i <= maxAdvances + 4; i++, rngList.advanceState())
         {
             // Entralink
             rngList.advance(22);

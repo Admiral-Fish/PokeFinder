@@ -100,11 +100,6 @@ public:
     std::vector<u16> getCheckedData() const;
 
     /**
-     * @brief Hides popup window if we aren't clicked on the combobox
-     */
-    void hidePopup() override;
-
-    /**
      * @brief Sets all check boxes to be unchecked
      */
     void resetChecks();
@@ -131,7 +126,6 @@ public:
     }
 
 private:
-    QLineEdit *lineEdit;
     QStandardItemModel *model;
     CheckListProxyModel *proxyModel;
 
@@ -176,7 +170,7 @@ private slots:
     /**
      * @brief Updates the text displayed of the combo box based upon which check boxes are checked
      */
-    void modelDataChanged();
+    void updateText();
 };
 
 #endif // CHECKLIST

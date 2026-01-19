@@ -24,7 +24,7 @@
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
 
-SHA1Cache::SHA1Cache(const std::string &file) : valid(false)
+SHA1Cache::SHA1Cache(const std::string &file, bool read) : valid(false)
 {
     std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
     if (stream.is_open())
@@ -53,18 +53,21 @@ SHA1Cache::SHA1Cache(const std::string &file) : valid(false)
         stream.read(reinterpret_cast<char *>(&vcount), sizeof(vcount));
         stream.read(reinterpret_cast<char *>(&vframe), sizeof(vframe));
 
-        u32 countEntralink, countNormal, countRoamer;
-        stream.read(reinterpret_cast<char *>(&countEntralink), sizeof(countEntralink));
-        stream.read(reinterpret_cast<char *>(&countNormal), sizeof(countNormal));
-        stream.read(reinterpret_cast<char *>(&countRoamer), sizeof(countRoamer));
+        if (read)
+        {
+            u32 countEntralink, countNormal, countRoamer;
+            stream.read(reinterpret_cast<char *>(&countEntralink), sizeof(countEntralink));
+            stream.read(reinterpret_cast<char *>(&countNormal), sizeof(countNormal));
+            stream.read(reinterpret_cast<char *>(&countRoamer), sizeof(countRoamer));
 
-        entralink.resize(countEntralink);
-        normal.resize(countNormal);
-        roamer.resize(countRoamer);
+            entralink.resize(countEntralink);
+            normal.resize(countNormal);
+            roamer.resize(countRoamer);
 
-        stream.read(reinterpret_cast<char *>(entralink.data()), countEntralink * sizeof(SHA1Seed));
-        stream.read(reinterpret_cast<char *>(normal.data()), countNormal * sizeof(SHA1Seed));
-        stream.read(reinterpret_cast<char *>(roamer.data()), countRoamer * sizeof(SHA1Seed));
+            stream.read(reinterpret_cast<char *>(entralink.data()), countEntralink * sizeof(SHA1Seed));
+            stream.read(reinterpret_cast<char *>(normal.data()), countNormal * sizeof(SHA1Seed));
+            stream.read(reinterpret_cast<char *>(roamer.data()), countRoamer * sizeof(SHA1Seed));
+        }
 
         valid = true;
     }
@@ -127,43 +130,25 @@ bool SHA1Cache::isValid() const
 
 bool SHA1Cache::isValid(const Profile5 &profile) const
 {
-    return valid && mac == profile.getMac() && version == profile.getVersion() && timer0max == profile.getTimer0Max()
-        && timer0min == profile.getTimer0Min() && softReset == profile.getSoftReset() && type == profile.getDSType()
-        && language == profile.getLanguage() && gxstat == profile.getGxStat() && vcount == profile.getVCount()
-        && vframe == profile.getVFrame();
-}
-
-bool SHA1Cache::isValid(const std::string &file, const std::string &ivFile)
-{
-    std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
-    std::ifstream ivStream(ivFile.data(), std::ios_base::in | std::ios_base::binary);
-
-    if (stream.is_open() && ivStream.is_open())
+    std::ifstream stream(profile.getIVCache().data(), std::ios_base::in | std::ios_base::binary);
+    if (stream.is_open())
     {
-        u32 magic;
-        u32 initialAdvance, initialAdvanceIV, maxAdvance, maxAdvanceIV;
-
         // Expected magic word is CRC32 of "IVCache"
-        ivStream.read(reinterpret_cast<char *>(&magic), sizeof(magic));
+        u32 magic;
+        stream.read(reinterpret_cast<char *>(&magic), sizeof(magic));
         if (magic != 0xd08cb7c0)
         {
             return false;
         }
 
-        ivStream.read(reinterpret_cast<char *>(&initialAdvanceIV), sizeof(initialAdvanceIV));
-        ivStream.read(reinterpret_cast<char *>(&maxAdvanceIV), sizeof(maxAdvanceIV));
+        u32 initialAdvanceIV, maxAdvanceIV;
+        stream.read(reinterpret_cast<char *>(&initialAdvanceIV), sizeof(initialAdvanceIV));
+        stream.read(reinterpret_cast<char *>(&maxAdvanceIV), sizeof(maxAdvanceIV));
 
-        // Expected magic word is CRC32 of "SHA1Cache"
-        stream.read(reinterpret_cast<char *>(&magic), sizeof(magic));
-        if (magic != 0x3c50a97e)
-        {
-            return false;
-        }
-
-        stream.read(reinterpret_cast<char *>(&initialAdvance), sizeof(initialAdvance));
-        stream.read(reinterpret_cast<char *>(&maxAdvance), sizeof(maxAdvance));
-
-        return initialAdvance == initialAdvanceIV && maxAdvance == maxAdvanceIV;
+        return valid && initialAdvances == initialAdvanceIV && maxAdvances == maxAdvanceIV && mac == profile.getMac()
+            && version == profile.getVersion() && timer0max == profile.getTimer0Max() && timer0min == profile.getTimer0Min()
+            && softReset == profile.getSoftReset() && type == profile.getDSType() && language == profile.getLanguage()
+            && gxstat == profile.getGxStat() && vcount == profile.getVCount() && vframe == profile.getVFrame();
     }
 
     return false;

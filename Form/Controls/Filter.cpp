@@ -136,6 +136,37 @@ void Filter::contextMenuEvent(QContextMenuEvent *event)
     QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
+void Filter::copyFrom(const Filter *other)
+{
+    ui->spinBoxHPMin->setValue(other->ui->spinBoxHPMin->value());
+    ui->spinBoxAtkMin->setValue(other->ui->spinBoxAtkMin->value());
+    ui->spinBoxDefMin->setValue(other->ui->spinBoxDefMin->value());
+    ui->spinBoxSpAMin->setValue(other->ui->spinBoxSpAMin->value());
+    ui->spinBoxSpDMin->setValue(other->ui->spinBoxSpDMin->value());
+    ui->spinBoxSpeMin->setValue(other->ui->spinBoxSpeMin->value());
+
+    ui->spinBoxHPMax->setValue(other->ui->spinBoxHPMax->value());
+    ui->spinBoxAtkMax->setValue(other->ui->spinBoxAtkMax->value());
+    ui->spinBoxDefMax->setValue(other->ui->spinBoxDefMax->value());
+    ui->spinBoxSpAMax->setValue(other->ui->spinBoxSpAMax->value());
+    ui->spinBoxSpDMax->setValue(other->ui->spinBoxSpDMax->value());
+    ui->spinBoxSpeMax->setValue(other->ui->spinBoxSpeMax->value());
+
+    ui->checkBoxShowStats->setChecked(other->ui->checkBoxShowStats->isChecked());
+
+    ui->comboBoxAbility->setCurrentIndex(other->ui->comboBoxAbility->currentIndex());
+    ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
+    ui->comboBoxGender->setCurrentIndex(other->ui->comboBoxGender->currentIndex());
+    ui->spinBoxHeightMin->setValue(other->ui->spinBoxHeightMin->value());
+    ui->spinBoxHeightMax->setValue(other->ui->spinBoxHeightMax->value());
+    ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
+    ui->checkListNature->setChecks(other->ui->checkListNature->getChecked());
+    ui->comboBoxShiny->setCurrentIndex(other->ui->comboBoxShiny->currentIndex());
+    ui->spinBoxWeightMin->setValue(other->ui->spinBoxWeightMin->value());
+    ui->spinBoxWeightMax->setValue(other->ui->spinBoxWeightMax->value());
+    ui->checkBoxDisableFilters->setChecked(other->ui->checkBoxDisableFilters->isChecked());
+}
+
 void Filter::disableControls(Controls control)
 {
     if ((control & Controls::Ability) != Controls::None)

@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
@@ -27,7 +27,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.8.3"
+          version: "6.10.1"
           archives: icu qtbase qtsvg qttools
           cache: true
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Restore CMake build files
         id: cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         env:
           cache-name: ubuntu-cmake-build
         with:
@@ -76,7 +76,7 @@ jobs:
         run: ctest --test-dir ${{github.workspace}}/build -V
 
       - name: Save CMake build files
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: |
             ${{github.workspace}}/build
@@ -114,12 +114,14 @@ jobs:
           tar czf PokeFinder-linux.tar.gz -C ./build/ PokeFinder
           tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-linux
           path: ./build/PokeFinder
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload AppImage Artifact
+        uses: actions/upload-artifact@v6
         with:
           name: PokeFinder-linux-AppImage
           path: PokeFinder-x86_64.AppImage
