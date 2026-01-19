@@ -142,7 +142,6 @@ void EggSettings::copyFrom(const EggSettings *other)
     ui->checkBoxShowInheritance->setCheckState(other->ui->checkBoxShowInheritance->checkState());
 }
 
-
 Daycare EggSettings::getDaycare() const
 {
     std::array<std::array<u8, 6>, 2> parentIVs
