@@ -66,6 +66,8 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->filterSearcher->enableHiddenAbility();
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Eggs5::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Eggs5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
@@ -246,4 +248,28 @@ void Eggs5::profileManager()
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
+}
+
+void Eggs5::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        ui->filterSearcher->copyFrom(ui->filterGenerator);
+    }
+    else
+    {
+        ui->filterGenerator->copyFrom(ui->filterSearcher);
+    }
+}
+
+void Eggs5::transferSettings(int index)
+{
+    if (index == 0)
+    {
+        ui->eggSettingsSearcher->copyFrom(ui->eggSettingsGenerator);
+    }
+    else
+    {
+        ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
+    }
 }

@@ -202,6 +202,34 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
+
+    /**
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferFiltersGrotto(int index);
+
+    /**
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferSettingsGrotto(int index);
+
+    /**
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferFiltersPokemon(int index);
+
+    /**
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferSettingsPokemon(int index);
 };
 
 #endif // HIDDENGROTTO_HPP

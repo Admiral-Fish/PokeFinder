@@ -102,6 +102,20 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
+
+    /**
+     * @brief Transfers the filters from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferFilters(int index);
+
+    /**
+     * @brief Transfers the settings from the active tab to the inactive tab
+     * 
+     * @param index Which tab widget to copy from
+     */
+    void transferSettings(int index);
 };
 
 #endif // EGGS5_HPP

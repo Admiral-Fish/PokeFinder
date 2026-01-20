@@ -108,6 +108,40 @@ bool EggSettings::compatibleParents() const
     return false;
 }
 
+void EggSettings::copyFrom(const EggSettings *other)
+{
+    ui->spinBoxParentAHP->setValue(other->ui->spinBoxParentAHP->value());
+    ui->spinBoxParentAAtk->setValue(other->ui->spinBoxParentAAtk->value());
+    ui->spinBoxParentADef->setValue(other->ui->spinBoxParentADef->value());
+    ui->spinBoxParentASpA->setValue(other->ui->spinBoxParentASpA->value());
+    ui->spinBoxParentASpD->setValue(other->ui->spinBoxParentASpD->value());
+    ui->spinBoxParentASpe->setValue(other->ui->spinBoxParentASpe->value());
+
+    ui->spinBoxParentBHP->setValue(other->ui->spinBoxParentBHP->value());
+    ui->spinBoxParentBAtk->setValue(other->ui->spinBoxParentBAtk->value());
+    ui->spinBoxParentBDef->setValue(other->ui->spinBoxParentBDef->value());
+    ui->spinBoxParentBSpA->setValue(other->ui->spinBoxParentBSpA->value());
+    ui->spinBoxParentBSpD->setValue(other->ui->spinBoxParentBSpD->value());
+    ui->spinBoxParentBSpe->setValue(other->ui->spinBoxParentBSpe->value());
+
+    ui->comboBoxParentAAbility->setCurrentIndex(other->ui->comboBoxParentAAbility->currentIndex());
+    ui->comboBoxParentBAbility->setCurrentIndex(other->ui->comboBoxParentBAbility->currentIndex());
+
+    ui->comboBoxParentAGender->setCurrentIndex(other->ui->comboBoxParentAGender->currentIndex());
+    ui->comboBoxParentBGender->setCurrentIndex(other->ui->comboBoxParentBGender->currentIndex());
+
+    ui->comboBoxParentAItem->setCurrentIndex(other->ui->comboBoxParentAItem->currentIndex());
+    ui->comboBoxParentBItem->setCurrentIndex(other->ui->comboBoxParentBItem->currentIndex());
+
+    ui->comboBoxParentANature->setCurrentIndex(other->ui->comboBoxParentANature->currentIndex());
+    ui->comboBoxParentBNature->setCurrentIndex(other->ui->comboBoxParentBNature->currentIndex());
+
+    ui->comboBoxEggSpecie->setCurrentIndex(other->ui->comboBoxEggSpecie->currentIndex());
+
+    ui->checkBoxMasuda->setCheckState(other->ui->checkBoxMasuda->checkState());
+    ui->checkBoxShowInheritance->setCheckState(other->ui->checkBoxShowInheritance->checkState());
+}
+
 Daycare EggSettings::getDaycare() const
 {
     std::array<std::array<u8, 6>, 2> parentIVs
