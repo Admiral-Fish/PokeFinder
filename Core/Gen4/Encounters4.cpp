@@ -658,7 +658,7 @@ static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHG
 static void modifyTimeHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                            int time)
 {
-    if (time != 0 && time != 1)
+    if (time == 0 || time == 1)
     {
         return;
     }
