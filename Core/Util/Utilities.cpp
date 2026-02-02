@@ -242,12 +242,7 @@ namespace Utilities5
         // 1: Force ability bit high
         // 2: Force abliity bit low
         // 255: Flip ability bit
-        if (ability == 2)
-        {
-            ability = 0;
-        }
-
-        if (((pid >> 16) & 1) != ability)
+        if (ability == 2 || ((pid >> 16) & 1) != ability)
         {
             pid ^= 0x10000;
         }
