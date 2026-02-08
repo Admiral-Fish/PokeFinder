@@ -24,6 +24,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fph/meta_fph_table.h>
+#include <fstream>
 
 enum class DSType : u8;
 enum class Game : u32;
@@ -67,10 +68,14 @@ public:
     /**
      * @brief Construct a new SHA1Cache object
      *
-     * @param file Path to file to read the cache from
-     * @param read Whether to read full cache data
+     * @param path Path to file to read the cache from
      */
-    SHA1Cache(const std::string &file, bool read = true);
+    SHA1Cache(const std::string &path);
+
+    /**
+     * @brief Destroy the SHA1Cache object
+     */
+    ~SHA1Cache();
 
     /**
      * @brief Returns the SHA1 cache for the \p type
@@ -149,9 +154,7 @@ public:
     bool isValid(const Profile5 &profile, const std::string &ivFile) const;
 
 private:
-    std::vector<SHA1Seed> entralink;
-    std::vector<SHA1Seed> normal;
-    std::vector<SHA1Seed> roamer;
+    std::ifstream file;
     u64 mac;
     Date end;
     Date start;

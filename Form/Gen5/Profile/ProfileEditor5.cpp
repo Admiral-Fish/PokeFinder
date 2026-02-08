@@ -172,7 +172,7 @@ void ProfileEditor5::selectIVCache()
 void ProfileEditor5::selectSHACache()
 {
     QString file = QFileDialog::getOpenFileName(this, tr("Open SHA1 Cache"), QDir::currentPath(), "sha1cache (*.sha1cache)");
-    SHA1Cache cache(file.toStdString(), false);
+    SHA1Cache cache(file.toStdString());
     if (cache.isValid(getProfile()))
     {
         ui->lineEditSHACache->setText(file);
