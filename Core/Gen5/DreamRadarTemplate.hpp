@@ -34,9 +34,10 @@ public:
      * @param specie Template specie
      * @param form Template form
      * @param ability Template ability
+     * @param gender Template gender
      */
-    constexpr DreamRadarTemplate(u16 specie, u8 form, u8 ability) :
-        StaticTemplate(Game::BW2, specie, form, Shiny::Never, ability, 255, 0, 0),
+    constexpr DreamRadarTemplate(u16 specie, u8 form, u8 ability, u8 gender) :
+        StaticTemplate(Game::BW2, specie, form, Shiny::Never, ability, gender, 0, 0),
         genie(specie == 641 || specie == 642 || specie == 645),
         legend(genie || specie == 249 || specie == 250 || specie == 483 || specie == 484 || specie == 487)
     {
