@@ -86,7 +86,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 
         go.next();
 
-        u32 pid = Utilities5::createPID(tsv, 255, radarTemplate.getGender(), Shiny::Never, false, info->getGender(), go);
+        u32 pid = Utilities5::createPID(tsv, 255, radarTemplate.getLegend() ? 0 : radarTemplate.getGender(), Shiny::Never, false, info->getGender(), go);
 
         u8 ability = 2;
         if (radarTemplate.getAbility() == 255)
