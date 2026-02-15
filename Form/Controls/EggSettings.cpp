@@ -74,11 +74,8 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
-    auto *copyAction = new QAction(tr("Copy to clipboard"), this);
-    addAction(copyAction);
-
-    auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
-    addAction(pasteAction);
+    auto *copyAction = addAction(tr("Copy IVs to clipboard"));
+    auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
 
     connect(copyAction, &QAction::triggered, this, &EggSettings::setIVsToClipBoard);
     connect(pasteAction, &QAction::triggered, this, &EggSettings::setIVsFromClipBoard);
