@@ -430,8 +430,8 @@ void Filter::setIVsFromClipBoard()
     QRegularExpressionMatch match = re.match(text);
     if (!match.hasMatch())
     {
-        QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
-        box.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        msg.exec();
         return;
     }
 
