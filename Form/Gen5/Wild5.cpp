@@ -266,10 +266,6 @@ void Wild5::generatorLocationIndexChanged(int index)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-
-        bool flag = area.getSeason();
-        ui->labelGeneratorSeason->setVisible(flag);
-        ui->comboBoxGeneratorSeason->setVisible(flag);
     }
 }
 
@@ -291,9 +287,7 @@ void Wild5::generatorSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        encounterGenerator = Encounters5::getEncounters(encounter, index, currentProfile);
-        generatorLocationIndexChanged(0);
+        generatorEncounterIndexChanged(0);
     }
 }
 
@@ -506,10 +500,6 @@ void Wild5::searcherLocationIndexChanged(int index)
         {
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-
-        bool flag = area.getSeason();
-        ui->labelSearcherSeason->setVisible(flag);
-        ui->comboBoxSearcherSeason->setVisible(flag);
     }
 }
 
@@ -531,9 +521,7 @@ void Wild5::searcherSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        encounterSearcher = Encounters5::getEncounters(encounter, index, currentProfile);
-        searcherLocationIndexChanged(0);
+        searcherEncounterIndexChanged(0);
     }
 }
 
