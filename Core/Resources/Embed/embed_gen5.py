@@ -18,7 +18,7 @@ def embed_encounters5():
 
             for i, encounter in enumerate(encounters):
                 if "dreamRadar" in type:
-                    string += f"DreamRadarTemplate({encounter['specie']}, {encounter.get('form', 0)}, {encounter['ability']})"
+                    string += f"DreamRadarTemplate({encounter['specie']}, {encounter.get('form', 0)}, {encounter['ability']}, {encounter.get('gender', 255)})"
                 else:
                     string += f"StaticTemplate5({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter['level']}, {int(encounter.get('curtis', False))}, {int(encounter.get('wild', False))}, {int(encounter.get('yancy', False))})"
 
