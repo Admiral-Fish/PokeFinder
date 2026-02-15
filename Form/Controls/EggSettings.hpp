@@ -57,6 +57,13 @@ public:
     ~EggSettings() override;
 
     /**
+     * @brief Handles when the context menu is requested.
+     *
+     * @param event Contains context menu event information
+     */
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
+    /**
      * @brief Determines if selected settings for valid for parents in the daycare
      *
      * @return true Parents are compatible
@@ -95,6 +102,17 @@ public:
 
 private:
     Ui::EggSettings *ui;
+
+private slots:
+    /**
+     * @brief Sets the current IVs from the clipboard
+     */
+    void setIVsFromClipBoard();
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
 };
 
 #endif // EGGSETTINGS_HPP

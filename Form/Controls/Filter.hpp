@@ -62,6 +62,13 @@ public:
     ~Filter() override;
 
     /**
+     * @brief Handles when the context menu is requested.
+     *
+     * @param event Contains context menu event information
+     */
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
+    /**
      * @brief Copies the values from another Filter
      *
      * @param other The Filter to copy values from
@@ -241,6 +248,16 @@ private slots:
      * @param ivs Possible IV ranges
      */
     void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
+
+    /**
+     * @brief Sets the current IVs from the clipboard
+     */
+    void setIVsFromClipBoard();
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
 };
 
 #endif // FILTER_HPP
