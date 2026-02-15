@@ -355,35 +355,38 @@ bool Filter::eventFilter(QObject *object, QEvent *event)
     if (event->type() == QEvent::MouseButtonPress)
     {
         auto *mouse = reinterpret_cast<QMouseEvent *>(event);
-        if (object == ui->labelHP)
+        if (mouse->button() == Qt::LeftButton)
         {
-            changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelAtk)
-        {
-            changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelDef)
-        {
-            changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpA)
-        {
-            changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpD)
-        {
-            changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpe)
-        {
-            changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
-            return true;
+            if (object == ui->labelHP)
+            {
+                changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelAtk)
+            {
+                changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelDef)
+            {
+                changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpA)
+            {
+                changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpD)
+            {
+                changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpe)
+            {
+                changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
+                return true;
+            }
         }
     }
     return false;
