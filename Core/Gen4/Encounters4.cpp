@@ -118,7 +118,10 @@ struct WildEncounterHGSS
     DynamicSlot old[5];
     DynamicSlot good[5];
     DynamicSlot super[5];
-    u16 swarm[4];
+    u16 grassSwarm;
+    u16 waterSwarm;
+    u16 fishNight;
+    u16 fishSwarm;
 };
 static_assert(sizeof(WildEncounterHGSS) == 196);
 
@@ -396,8 +399,8 @@ static std::vector<EncounterArea4> getDPPtHoney(Game version, const Profile4 *pr
 
     u16 tid = profile->getTID();
     u16 sid = profile->getSID();
-    std::array<u8, 4> munchlaxTreeIDs = { static_cast<u8>((sid & 0xff) % 21), static_cast<u8>((sid >> 8) % 21),
-                                          static_cast<u8>((tid & 0xff) % 21), static_cast<u8>((tid >> 8) % 21) };
+    std::array<u8, 4> munchlaxTreeIDs = { static_cast<u8>((sid >> 8) % 21), static_cast<u8>((sid & 0xff) % 21),
+                                          static_cast<u8>((tid >> 8) % 21), static_cast<u8>((tid & 0xff) % 21) };
     for (size_t i = 1; i < 4; i++)
     {
         for (size_t j = 0; j < i; j++)
@@ -622,23 +625,23 @@ static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHG
         u16 specie;
         if (encounter == Encounter::Grass)
         {
-            specie = entry->swarm[0];
+            specie = entry->grassSwarm;
             pokemon[0].setSpecie(specie, &info[specie]);
             pokemon[1].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::Surfing)
         {
-            specie = entry->swarm[1];
+            specie = entry->waterSwarm;
             pokemon[0].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::OldRod)
         {
-            specie = entry->swarm[3];
+            specie = entry->fishSwarm;
             pokemon[2].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::GoodRod)
         {
-            specie = entry->swarm[3];
+            specie = entry->fishSwarm;
             for (int i : { 0, 2, 3 })
             {
                 pokemon[i].setSpecie(specie, &info[specie]);
@@ -646,7 +649,7 @@ static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHG
         }
         else if (encounter == Encounter::SuperRod)
         {
-            specie = entry->swarm[3];
+            specie = entry->fishSwarm;
             for (size_t i = 0; i < 5; i++)
             {
                 pokemon[i].setSpecie(specie, &info[specie]);
@@ -658,18 +661,18 @@ static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHG
 static void modifyTimeHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                            int time)
 {
-    if (time != 0 && time != 1)
+    if (time == 0 || time == 1)
     {
         return;
     }
 
     if (encounter == Encounter::GoodRod)
     {
-        pokemon[3].setSpecie(entry->swarm[2], &info[entry->swarm[2]]);
+        pokemon[3].setSpecie(entry->fishNight, &info[entry->fishNight]);
     }
     else if (encounter == Encounter::SuperRod)
     {
-        pokemon[1].setSpecie(entry->swarm[2], &info[entry->swarm[2]]);
+        pokemon[1].setSpecie(entry->fishNight, &info[entry->fishNight]);
     }
 }
 

@@ -26,8 +26,11 @@ class HiddenGrottoGeneratorTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void generate_data();
-    void generate();
+    void pokemon_data();
+    void pokemon();
+
+    void slot_data();
+    void slot();
 };
 
 #endif // HIDDENGROTTOGENERATORTEST_HPP
