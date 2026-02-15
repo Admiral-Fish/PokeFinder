@@ -320,6 +320,72 @@ u8 Filter::getShiny() const
     return ui->comboBoxShiny->getCurrentUChar();
 }
 
+bool Filter::isValid() const
+{
+    if (ui->checkBoxDisableFilters->isChecked())
+    {
+        return true;
+    }
+
+    if (ui->spinBoxHeightMin->value() > ui->spinBoxHeightMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Height minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxHPMin->value() > ui->spinBoxHPMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("HP minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxAtkMin->value() > ui->spinBoxAtkMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Atk minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxDefMin->value() > ui->spinBoxDefMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Def minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpAMin->value() > ui->spinBoxSpAMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpA minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpDMin->value() > ui->spinBoxSpDMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpD minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpeMin->value() > ui->spinBoxSpeMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Spe minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxWeightMin->value() > ui->spinBoxWeightMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Weight minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void Filter::resetEncounterSlots() const
 {
     ui->checkListEncounterSlot->resetChecks();

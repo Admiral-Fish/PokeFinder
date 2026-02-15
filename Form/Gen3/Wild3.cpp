@@ -179,6 +179,11 @@ void Wild3::updateEncounterSearcher()
 
 void Wild3::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
@@ -318,6 +323,11 @@ void Wild3::profileManager()
 
 void Wild3::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);

@@ -131,6 +131,11 @@ void Eggs3::emeraldGenerate()
         return;
     }
 
+    if (!ui->filterEmerald->isValid())
+    {
+        return;
+    }
+
     emerald->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxEmeraldInitialAdvancesHeld->getUInt();
@@ -146,6 +151,7 @@ void Eggs3::emeraldGenerate()
     auto method = ui->comboBoxEmeraldMethod->getEnum<Method>();
 
     auto filter = ui->filterEmerald->getFilter<StateFilter>();
+
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup,
                             calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(), *currentProfile,
                             filter);
@@ -160,6 +166,11 @@ void Eggs3::rsfrlgGenerate()
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
+        return;
+    }
+
+    if (!ui->filterRSFRLG->isValid())
+    {
         return;
     }
 

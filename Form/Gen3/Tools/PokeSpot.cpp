@@ -112,6 +112,11 @@ void PokeSpot::updateProfiles()
 
 void PokeSpot::generate()
 {
+    if (!ui->filter->isValid())
+    {
+        return;
+    }
+
     model->clearModel();
 
     u32 seedFood = ui->textBoxFoodSeed->getUInt();

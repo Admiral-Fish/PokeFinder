@@ -123,6 +123,11 @@ void Static3::updateProfiles()
 
 void Static3::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
@@ -211,6 +216,11 @@ void Static3::profileManager()
 
 void Static3::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);

@@ -189,6 +189,11 @@ public:
     u8 getShiny() const;
 
     /**
+     * @brief Determines if Filter is valid based on current selections
+     */
+    bool isValid() const;
+
+    /**
      * @brief Unchecks all encounter slots
      */
     void resetEncounterSlots() const;

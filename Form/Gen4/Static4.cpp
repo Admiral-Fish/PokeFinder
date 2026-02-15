@@ -158,6 +158,11 @@ void Static4::updateProfiles()
 
 void Static4::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     const StaticTemplate4 *staticTemplate
@@ -255,6 +260,11 @@ void Static4::profileManager()
 
 void Static4::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);

@@ -151,6 +151,11 @@ void Event4::updateProfiles()
 
 void Event4::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
     generatorModel->setGame(currentProfile->getVersion());
 
@@ -184,6 +189,11 @@ void Event4::profileManager()
 
 void Event4::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);

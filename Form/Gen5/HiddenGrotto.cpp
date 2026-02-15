@@ -460,6 +460,11 @@ void HiddenGrotto::grottoSearcherUpdateFilter()
 
 void HiddenGrotto::pokemonGenerate()
 {
+    if (!ui->filterPokemonGenerator->isValid())
+    {
+        return;
+    }
+
     pokemonGeneratorModel->clearModel();
 
     u64 seed = ui->textBoxPokemonGeneratorSeed->getULong();
@@ -540,6 +545,11 @@ void HiddenGrotto::pokemonSearch()
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
         msg.exec();
+        return;
+    }
+
+    if (!ui->filterPokemonSearcher->isValid())
+    {
         return;
     }
 

@@ -214,6 +214,11 @@ bool Wild5::fastSearchEnabled() const
 
 void Wild5::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
@@ -368,6 +373,11 @@ void Wild5::search()
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
         msg.exec();
+        return;
+    }
+
+    if (!ui->filterSearcher->isValid())
+    {
         return;
     }
 
