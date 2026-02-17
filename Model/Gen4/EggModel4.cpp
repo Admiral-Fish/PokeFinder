@@ -115,13 +115,13 @@ void EggGeneratorModel4::setVersion(Game version)
 void EggGeneratorModel4::setShowInheritance(bool flag)
 {
     showInheritance = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 void EggGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 int EggGeneratorModel4::getColumn(int column) const
@@ -211,11 +211,11 @@ QVariant EggSearcherModel4::headerData(int section, Qt::Orientation orientation,
 void EggSearcherModel4::setShowInheritance(bool flag)
 {
     showInheritance = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 void EggSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }

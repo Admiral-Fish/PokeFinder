@@ -89,7 +89,7 @@ void EventGeneratorModel4::setGame(Game version)
 void EventGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 1), index(rowCount(), 6), { Qt::DisplayRole });
+    emit dataChanged(index(0, 1), index(rowCount() - 1, 6), { Qt::DisplayRole });
 }
 
 int EventGeneratorModel4::getColumn(int column) const
@@ -154,5 +154,5 @@ QVariant EventSearcherModel4::headerData(int section, Qt::Orientation orientatio
 void EventSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 2), index(rowCount(), 7), { Qt::DisplayRole });
+    emit dataChanged(index(0, 2), index(rowCount() - 1, 7), { Qt::DisplayRole });
 }

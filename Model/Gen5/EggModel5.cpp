@@ -103,13 +103,13 @@ QVariant EggGeneratorModel5::headerData(int section, Qt::Orientation orientation
 void EggGeneratorModel5::setShowInheritance(bool flag)
 {
     showInheritance = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 void EggGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel(parent), showInheritance(false), showStats(false)
@@ -200,11 +200,11 @@ QVariant EggSearcherModel5::headerData(int section, Qt::Orientation orientation,
 void EggSearcherModel5::setShowInheritance(bool flag)
 {
     showInheritance = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 void EggSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }

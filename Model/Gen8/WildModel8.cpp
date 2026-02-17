@@ -104,5 +104,5 @@ QVariant WildModel8::headerData(int section, Qt::Orientation orientation, int ro
 void WildModel8::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
 }

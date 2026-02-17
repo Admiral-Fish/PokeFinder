@@ -80,7 +80,7 @@ QVariant GameCubeGeneratorModel::headerData(int section, Qt::Orientation orienta
 void GameCubeGeneratorModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 5), index(rowCount(), 10), { Qt::DisplayRole });
+    emit dataChanged(index(0, 5), index(rowCount() - 1, 10), { Qt::DisplayRole });
 }
 
 GameCubeSearcherModel::GameCubeSearcherModel(QObject *parent) : TableModel(parent), showStats(false)
@@ -143,5 +143,5 @@ QVariant GameCubeSearcherModel::headerData(int section, Qt::Orientation orientat
 void GameCubeSearcherModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 5), index(rowCount(), 10), { Qt::DisplayRole });
+    emit dataChanged(index(0, 5), index(rowCount() - 1, 10), { Qt::DisplayRole });
 }

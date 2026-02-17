@@ -102,13 +102,13 @@ QVariant EggModel3::headerData(int section, Qt::Orientation orientation, int rol
 void EggModel3::setShowInheritance(bool flag)
 {
     showInheritance = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 void EggModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 int EggModel3::getColumn(int column) const

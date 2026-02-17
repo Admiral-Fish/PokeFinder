@@ -86,7 +86,7 @@ QVariant WildGeneratorModel3::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), showStats(false)
@@ -155,5 +155,5 @@ QVariant WildSearcherModel3::headerData(int section, Qt::Orientation orientation
 void WildSearcherModel3::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }

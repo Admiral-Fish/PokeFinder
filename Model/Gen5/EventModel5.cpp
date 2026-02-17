@@ -95,7 +95,7 @@ QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientati
 void EventGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 EventSearcherModel5::EventSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -179,5 +179,5 @@ QVariant EventSearcherModel5::headerData(int section, Qt::Orientation orientatio
 void EventSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }

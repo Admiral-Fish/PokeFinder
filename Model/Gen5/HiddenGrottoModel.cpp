@@ -202,7 +202,7 @@ QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation or
 void HiddenGrottoGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -290,5 +290,5 @@ QVariant HiddenGrottoSearcherModel5::headerData(int section, Qt::Orientation ori
 void HiddenGrottoSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount() - 1, 13), { Qt::DisplayRole });
 }
