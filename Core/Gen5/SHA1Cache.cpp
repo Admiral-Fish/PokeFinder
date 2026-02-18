@@ -114,7 +114,7 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance
         }
     }
 
-    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.max_load_factor(0.9);
     cache.rehash(cache.size());
 
     return cache;
