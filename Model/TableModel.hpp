@@ -138,7 +138,7 @@ public:
     void updateItem(const Item &item, int row)
     {
         model[row] = item;
-        emit dataChanged(index(row, 0), index(row, columnCount()));
+        emit dataChanged(index(row, 0), index(row, columnCount() - 1));
     }
 
 protected:

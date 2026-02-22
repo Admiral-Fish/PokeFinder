@@ -86,5 +86,5 @@ QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int
 void PokeSpotModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount() - 1, 13), { Qt::DisplayRole });
 }

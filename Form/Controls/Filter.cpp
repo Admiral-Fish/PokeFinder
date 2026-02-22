@@ -22,7 +22,11 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Util/IVCalculator.hpp>
+#include <QClipboard>
+#include <QMenu>
+#include <QMessageBox>
 #include <QMouseEvent>
+#include <QRegularExpression>
 
 /**
  * @brief Updates min/max values based on control keys selected
@@ -95,6 +99,13 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);
 
+    auto *copyAction = addAction(tr("Copy IVs to clipboard"));
+    auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
+
+    connect(copyAction, &QAction::triggered, this, &Filter::setIVsToClipBoard);
+    connect(pasteAction, &QAction::triggered, this, &Filter::setIVsFromClipBoard);
+
+    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
@@ -115,6 +126,11 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 Filter::~Filter()
 {
     delete ui;
+}
+
+void Filter::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
 void Filter::copyFrom(const Filter *other)
@@ -304,6 +320,72 @@ u8 Filter::getShiny() const
     return ui->comboBoxShiny->getCurrentUChar();
 }
 
+bool Filter::isValid() const
+{
+    if (ui->checkBoxDisableFilters->isChecked())
+    {
+        return true;
+    }
+
+    if (ui->spinBoxHeightMin->value() > ui->spinBoxHeightMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Height minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxHPMin->value() > ui->spinBoxHPMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("HP minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxAtkMin->value() > ui->spinBoxAtkMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Atk minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxDefMin->value() > ui->spinBoxDefMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Def minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpAMin->value() > ui->spinBoxSpAMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpA minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpDMin->value() > ui->spinBoxSpDMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpD minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxSpeMin->value() > ui->spinBoxSpeMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Spe minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxWeightMin->value() > ui->spinBoxWeightMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Weight minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void Filter::resetEncounterSlots() const
 {
     ui->checkListEncounterSlot->resetChecks();
@@ -339,35 +421,38 @@ bool Filter::eventFilter(QObject *object, QEvent *event)
     if (event->type() == QEvent::MouseButtonPress)
     {
         auto *mouse = reinterpret_cast<QMouseEvent *>(event);
-        if (object == ui->labelHP)
+        if (mouse->button() == Qt::LeftButton)
         {
-            changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelAtk)
-        {
-            changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelDef)
-        {
-            changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpA)
-        {
-            changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpD)
-        {
-            changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
-            return true;
-        }
-        else if (object == ui->labelSpe)
-        {
-            changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
-            return true;
+            if (object == ui->labelHP)
+            {
+                changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelAtk)
+            {
+                changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelDef)
+            {
+                changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpA)
+            {
+                changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpD)
+            {
+                changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
+                return true;
+            }
+            else if (object == ui->labelSpe)
+            {
+                changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
+                return true;
+            }
         }
     }
     return false;
@@ -400,4 +485,52 @@ void Filter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
         minIVs[i]->setValue(min);
         maxIVs[i]->setValue(max);
     }
+}
+
+void Filter::setIVsFromClipBoard()
+{
+    QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
+                          "(\\d{1,2})/(\\d{1,2})");
+
+    QString text = QApplication::clipboard()->text();
+    QRegularExpressionMatch match = re.match(text);
+    if (!match.hasMatch())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        msg.exec();
+        return;
+    }
+
+    ui->spinBoxHPMin->setValue(match.captured(1).toInt());
+    ui->spinBoxAtkMin->setValue(match.captured(2).toInt());
+    ui->spinBoxDefMin->setValue(match.captured(3).toInt());
+    ui->spinBoxSpAMin->setValue(match.captured(4).toInt());
+    ui->spinBoxSpDMin->setValue(match.captured(5).toInt());
+    ui->spinBoxSpeMin->setValue(match.captured(6).toInt());
+
+    ui->spinBoxHPMax->setValue(match.captured(7).toInt());
+    ui->spinBoxAtkMax->setValue(match.captured(8).toInt());
+    ui->spinBoxDefMax->setValue(match.captured(9).toInt());
+    ui->spinBoxSpAMax->setValue(match.captured(10).toInt());
+    ui->spinBoxSpDMax->setValue(match.captured(11).toInt());
+    ui->spinBoxSpeMax->setValue(match.captured(12).toInt());
+}
+
+void Filter::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxHPMin->value())
+                      .arg(ui->spinBoxAtkMin->value())
+                      .arg(ui->spinBoxDefMin->value())
+                      .arg(ui->spinBoxSpAMin->value())
+                      .arg(ui->spinBoxSpDMin->value())
+                      .arg(ui->spinBoxSpeMin->value())
+                      .arg(ui->spinBoxHPMax->value())
+                      .arg(ui->spinBoxAtkMax->value())
+                      .arg(ui->spinBoxDefMax->value())
+                      .arg(ui->spinBoxSpAMax->value())
+                      .arg(ui->spinBoxSpDMax->value())
+                      .arg(ui->spinBoxSpeMax->value());
+
+    QApplication::clipboard()->setText(ivs);
 }

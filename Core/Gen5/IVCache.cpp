@@ -207,7 +207,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAd
         }
     }
 
-    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.max_load_factor(0.9);
     cache.rehash(cache.size());
 
     return cache;
@@ -231,7 +231,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvan
         }
     }
 
-    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.max_load_factor(0.9);
     cache.rehash(cache.size());
 
     return cache;
@@ -253,7 +253,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getRoamerCache(u32 initialAdvan
         }
     }
 
-    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.max_load_factor(0.9);
     cache.rehash(cache.size());
 
     return cache;

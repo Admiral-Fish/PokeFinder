@@ -99,5 +99,5 @@ QVariant UndergroundModel::headerData(int section, Qt::Orientation orientation, 
 void UndergroundModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 10), index(rowCount(), 15), { Qt::DisplayRole });
+    emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
 }

@@ -203,6 +203,11 @@ void Wild8::generate()
         return;
     }
 
+    if (!ui->filter->isValid())
+    {
+        return;
+    }
+
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     Method method = Method::None;
     u8 fixedSlot = 0;

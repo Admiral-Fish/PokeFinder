@@ -116,7 +116,7 @@ void WildGeneratorModel4::setMethod(Method method)
 void WildGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 11), index(rowCount(), 16), { Qt::DisplayRole });
+    emit dataChanged(index(0, 11), index(rowCount() - 1, 16), { Qt::DisplayRole });
 }
 
 int WildGeneratorModel4::getColumn(int column) const
@@ -205,5 +205,5 @@ QVariant WildSearcherModel4::headerData(int section, Qt::Orientation orientation
 void WildSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
 }

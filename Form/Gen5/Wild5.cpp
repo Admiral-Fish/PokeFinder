@@ -214,6 +214,11 @@ bool Wild5::fastSearchEnabled() const
 
 void Wild5::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
@@ -266,10 +271,6 @@ void Wild5::generatorLocationIndexChanged(int index)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-
-        bool flag = area.getSeason();
-        ui->labelGeneratorSeason->setVisible(flag);
-        ui->comboBoxGeneratorSeason->setVisible(flag);
     }
 }
 
@@ -291,9 +292,7 @@ void Wild5::generatorSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        encounterGenerator = Encounters5::getEncounters(encounter, index, currentProfile);
-        generatorLocationIndexChanged(0);
+        generatorEncounterIndexChanged(0);
     }
 }
 
@@ -374,6 +373,11 @@ void Wild5::search()
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
         msg.exec();
+        return;
+    }
+
+    if (!ui->filterSearcher->isValid())
+    {
         return;
     }
 
@@ -506,10 +510,6 @@ void Wild5::searcherLocationIndexChanged(int index)
         {
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-
-        bool flag = area.getSeason();
-        ui->labelSearcherSeason->setVisible(flag);
-        ui->comboBoxSearcherSeason->setVisible(flag);
     }
 }
 
@@ -531,9 +531,7 @@ void Wild5::searcherSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        encounterSearcher = Encounters5::getEncounters(encounter, index, currentProfile);
-        searcherLocationIndexChanged(0);
+        searcherEncounterIndexChanged(0);
     }
 }
 

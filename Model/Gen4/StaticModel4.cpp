@@ -105,7 +105,7 @@ void StaticGeneratorModel4::setMethod(Method method)
 void StaticGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, getColumn(7)), index(rowCount(), getColumn(12)), { Qt::DisplayRole });
+    emit dataChanged(index(0, getColumn(7)), index(rowCount() - 1, getColumn(12)), { Qt::DisplayRole });
 }
 
 int StaticGeneratorModel4::getColumn(int column) const
@@ -185,5 +185,5 @@ QVariant StaticSearcherModel4::headerData(int section, Qt::Orientation orientati
 void StaticSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }

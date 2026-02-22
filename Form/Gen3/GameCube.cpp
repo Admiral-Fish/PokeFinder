@@ -119,6 +119,11 @@ void GameCube::updateProfiles()
 
 void GameCube::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     Method method = ui->comboBoxGeneratorCategory->currentIndex() == 1 ? Method::Channel : Method::None;
@@ -229,6 +234,11 @@ void GameCube::profileManager()
 
 void GameCube::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     searcherModel->clearModel();
 
     Method method = ui->comboBoxSearcherCategory->currentIndex() == 1 ? Method::Channel : Method::None;

@@ -139,6 +139,11 @@ void Static8::generate()
         return;
     }
 
+    if (!ui->filter->isValid())
+    {
+        return;
+    }
+
     model->clearModel();
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();

@@ -95,7 +95,7 @@ QVariant DreamRadarGeneratorModel5::headerData(int section, Qt::Orientation orie
 void DreamRadarGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 DreamRadarSearcherModel5::DreamRadarSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -178,5 +178,5 @@ QVariant DreamRadarSearcherModel5::headerData(int section, Qt::Orientation orien
 void DreamRadarSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }

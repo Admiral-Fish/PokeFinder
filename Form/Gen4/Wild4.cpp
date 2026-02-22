@@ -335,6 +335,11 @@ void Wild4::updateEncounterSearcher()
 
 void Wild4::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     Method method;
     u8 fixedSlot = 0;
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
@@ -648,6 +653,11 @@ void Wild4::profileManager()
 
 void Wild4::search()
 {
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
+    }
+
     Method method;
     u8 fixedSlot = 0;
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();

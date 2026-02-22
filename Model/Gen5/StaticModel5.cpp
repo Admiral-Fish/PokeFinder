@@ -95,7 +95,7 @@ QVariant StaticGeneratorModel5::headerData(int section, Qt::Orientation orientat
 void StaticGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
 StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -181,5 +181,5 @@ QVariant StaticSearcherModel5::headerData(int section, Qt::Orientation orientati
 void StaticSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }

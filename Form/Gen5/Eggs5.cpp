@@ -139,10 +139,16 @@ void Eggs5::generate()
         box.exec();
         return;
     }
+
     if (ui->eggSettingsGenerator->reorderParents())
     {
         QMessageBox box(QMessageBox::Information, tr("Parents Reordered"), tr("Parent were swapped to match the game"));
         box.exec();
+    }
+
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
     }
 
     generatorModel->clearModel();
@@ -177,10 +183,16 @@ void Eggs5::search()
         box.exec();
         return;
     }
+
     if (ui->eggSettingsSearcher->reorderParents())
     {
         QMessageBox box(QMessageBox::Information, tr("Parents Reordered"), tr("Parent were swapped to match the game"));
         box.exec();
+    }
+
+    if (!ui->filterSearcher->isValid())
+    {
+        return;
     }
 
     searcherModel->clearModel();

@@ -184,6 +184,11 @@ PGF Event5::getSearcherParameters() const
 
 void Event5::generate()
 {
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
@@ -301,6 +306,11 @@ void Event5::search()
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
         msg.exec();
+        return;
+    }
+
+    if (!ui->filterSearcher->isValid())
+    {
         return;
     }
 

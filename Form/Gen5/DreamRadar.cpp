@@ -317,6 +317,11 @@ void DreamRadar::generate()
         return;
     }
 
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
+
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
@@ -347,6 +352,11 @@ void DreamRadar::search()
     {
         QMessageBox msg(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
         msg.exec();
+        return;
+    }
+
+    if (!ui->filterSearcher->isValid())
+    {
         return;
     }
 

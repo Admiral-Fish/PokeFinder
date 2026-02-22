@@ -22,55 +22,44 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Util/DateTime.hpp>
-#include <fstream>
 
-SHA1Cache::SHA1Cache(const std::string &file, bool read) : valid(false)
+constexpr u32 DATA_OFFSET = 42;
+
+SHA1Cache::SHA1Cache(const std::string &path) : file(path.data(), std::ios_base::in | std::ios_base::binary), valid(false)
 {
-    std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
-    if (stream.is_open())
+    if (file.is_open())
     {
         u32 magic;
 
         // Expected magic word is CRC32 of "SHA1Cache"
-        stream.read(reinterpret_cast<char *>(&magic), sizeof(magic));
+        file.read(reinterpret_cast<char *>(&magic), sizeof(magic));
         if (magic != 0x3c50a97e)
         {
             return;
         }
 
-        stream.read(reinterpret_cast<char *>(&initialAdvances), sizeof(initialAdvances));
-        stream.read(reinterpret_cast<char *>(&maxAdvances), sizeof(maxAdvances));
-        stream.read(reinterpret_cast<char *>(&mac), sizeof(mac));
-        stream.read(reinterpret_cast<char *>(&end), sizeof(end));
-        stream.read(reinterpret_cast<char *>(&start), sizeof(start));
-        stream.read(reinterpret_cast<char *>(&version), sizeof(version));
-        stream.read(reinterpret_cast<char *>(&timer0max), sizeof(timer0max));
-        stream.read(reinterpret_cast<char *>(&timer0min), sizeof(timer0min));
-        stream.read(reinterpret_cast<char *>(&softReset), sizeof(softReset));
-        stream.read(reinterpret_cast<char *>(&type), sizeof(type));
-        stream.read(reinterpret_cast<char *>(&language), sizeof(language));
-        stream.read(reinterpret_cast<char *>(&gxstat), sizeof(gxstat));
-        stream.read(reinterpret_cast<char *>(&vcount), sizeof(vcount));
-        stream.read(reinterpret_cast<char *>(&vframe), sizeof(vframe));
-
-        if (read)
-        {
-            u32 countEntralink, countNormal, countRoamer;
-            stream.read(reinterpret_cast<char *>(&countEntralink), sizeof(countEntralink));
-            stream.read(reinterpret_cast<char *>(&countNormal), sizeof(countNormal));
-            stream.read(reinterpret_cast<char *>(&countRoamer), sizeof(countRoamer));
-
-            entralink.resize(countEntralink);
-            normal.resize(countNormal);
-            roamer.resize(countRoamer);
-
-            stream.read(reinterpret_cast<char *>(entralink.data()), countEntralink * sizeof(SHA1Seed));
-            stream.read(reinterpret_cast<char *>(normal.data()), countNormal * sizeof(SHA1Seed));
-            stream.read(reinterpret_cast<char *>(roamer.data()), countRoamer * sizeof(SHA1Seed));
-        }
+        file.read(reinterpret_cast<char *>(&initialAdvances), sizeof(initialAdvances));
+        file.read(reinterpret_cast<char *>(&maxAdvances), sizeof(maxAdvances));
+        file.read(reinterpret_cast<char *>(&mac), sizeof(mac));
+        file.read(reinterpret_cast<char *>(&end), sizeof(end));
+        file.read(reinterpret_cast<char *>(&start), sizeof(start));
+        file.read(reinterpret_cast<char *>(&version), sizeof(version));
+        file.read(reinterpret_cast<char *>(&timer0max), sizeof(timer0max));
+        file.read(reinterpret_cast<char *>(&timer0min), sizeof(timer0min));
+        file.read(reinterpret_cast<char *>(&softReset), sizeof(softReset));
+        file.read(reinterpret_cast<char *>(&type), sizeof(type));
+        file.read(reinterpret_cast<char *>(&language), sizeof(language));
+        file.read(reinterpret_cast<char *>(&gxstat), sizeof(gxstat));
+        file.read(reinterpret_cast<char *>(&vcount), sizeof(vcount));
+        file.read(reinterpret_cast<char *>(&vframe), sizeof(vframe));
 
         valid = true;
     }
+}
+
+SHA1Cache::~SHA1Cache()
+{
+    file.close();
 }
 
 fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance, const Date &start, const Date &end,
@@ -80,44 +69,52 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance
     fph::MetaFphMap<u64, u64> cache;
     auto keypresses = Keypresses::getKeypresses(profile);
 
-    SHA1Seed *data;
-    u32 count;
+    u32 countEntralink;
+    u32 countNormal;
+    u32 countRoamer;
 
+    file.seekg(DATA_OFFSET);
+    file.read(reinterpret_cast<char *>(&countEntralink), sizeof(countEntralink));
+    file.read(reinterpret_cast<char *>(&countNormal), sizeof(countNormal));
+    file.read(reinterpret_cast<char *>(&countRoamer), sizeof(countRoamer));
+
+    u32 count;
     if (type == CacheType::Entralink)
     {
-        data = entralink.data();
-        count = entralink.size();
+        count = countEntralink;
     }
     else if (type == CacheType::Normal)
     {
-        data = normal.data();
-        count = normal.size();
+        file.seekg(countEntralink * sizeof(SHA1Seed), std::ios_base::cur);
+        count = countNormal;
     }
     else
     {
-        data = roamer.data();
-        count = roamer.size();
+        file.seekg((countEntralink + countNormal) * sizeof(SHA1Seed), std::ios_base::cur);
+        count = countRoamer;
     }
 
     for (u32 i = 0; i < count; i++)
     {
-        const auto &entry = &data[i];
-        if (entry->key.date >= (start.getJD() - Date().getJD()) && entry->key.date <= (end.getJD() - Date().getJD())
+        SHA1Seed entry;
+        file.read(reinterpret_cast<char *>(&entry), sizeof(entry));
+
+        if (entry.key.date >= (start.getJD() - Date().getJD()) && entry.key.date <= (end.getJD() - Date().getJD())
             && std::find_if(keypresses.begin(), keypresses.end(),
-                            [&entry](const Keypress keypress) { return entry->key.button == toInt(keypress.button); })
+                            [&entry](const Keypress keypress) { return entry.key.button == toInt(keypress.button); })
                 != keypresses.end())
         {
             for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance) && j < 6; j++)
             {
-                if (ivCache.contains((j << 32) | (entry->seed >> 32)))
+                if (ivCache.contains((j << 32) | (entry.seed >> 32)))
                 {
-                    cache.emplace(entry->key.key, entry->seed);
+                    cache.emplace(entry.key.key, entry.seed);
                 }
             }
         }
     }
 
-    cache.max_load_factor(cache.max_load_factor_upper_limit());
+    cache.max_load_factor(0.9);
     cache.rehash(cache.size());
 
     return cache;

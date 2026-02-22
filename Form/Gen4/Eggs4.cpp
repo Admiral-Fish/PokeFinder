@@ -176,6 +176,11 @@ void Eggs4::generate()
         box.exec();
         return;
     }
+    
+    if (!ui->filterGenerator->isValid())
+    {
+        return;
+    }
 
     generatorModel->clearModel();
     generatorModel->setVersion(currentProfile->getVersion());
@@ -212,6 +217,11 @@ void Eggs4::search()
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
+        return;
+    }
+    
+    if (!ui->filterSearcher->isValid())
+    {
         return;
     }
 

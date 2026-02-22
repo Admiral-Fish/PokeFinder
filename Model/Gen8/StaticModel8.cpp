@@ -94,5 +94,5 @@ QVariant StaticModel8::headerData(int section, Qt::Orientation orientation, int 
 void StaticModel8::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
