@@ -107,7 +107,7 @@ void EventGenerator5Test::generate()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     PGF pgf(tid, sid, specie, nature, gender, ability, shiny, level, hp, atk, def, spa, spd, spe, egg);
 

@@ -50,7 +50,6 @@ public:
      * @param maxTimer0 Maximum Timer0
      * @param minGxStat Minimum GxStat
      * @param maxGxStat Maximum GxStat
-     * @param softReset Whether game was soft reset
      * @param version Game version
      * @param language Game language
      * @param dsType DS type
@@ -58,8 +57,7 @@ public:
      * @param buttons Keypresses selected
      */
     ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                     u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                     Buttons buttons);
+                     u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType, u64 mac, Buttons buttons);
 
     /**
      * @brief Starts the search
@@ -78,7 +76,6 @@ private:
     Time time;
     u16 maxTimer0;
     u16 minTimer0;
-    bool softReset;
     DSType dsType;
     Language language;
     u8 maxGxStat;
@@ -127,7 +124,6 @@ public:
      * @param maxTimer0 Maximum Timer0
      * @param minGxStat Minimum GxStat
      * @param maxGxStat Maximum GxStat
-     * @param softReset Whether game was soft reset
      * @param version Game version
      * @param language Game language
      * @param dsType DS type
@@ -137,8 +133,8 @@ public:
      * @param maxIVs Maximum IVs
      */
     ProfileIVSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                       u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                       Buttons buttons, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs);
+                       u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType, u64 mac, Buttons buttons,
+                       const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs);
 
 private:
     std::array<u8, 6> maxIVs;
@@ -175,7 +171,6 @@ public:
      * @param maxTimer0 Maximum Timer0
      * @param minGxStat Minimum GxStat
      * @param maxGxStat Maximum GxStat
-     * @param softReset Whether game was soft reset
      * @param version Game version
      * @param language Game language
      * @param dsType DS type
@@ -186,8 +181,8 @@ public:
      * @param Whether memory link is enabled
      */
     ProfileNeedleSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                           u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType,
-                           u64 mac, Buttons buttons, const std::vector<u8> &needles, bool unovaLink, bool memoryLink);
+                           u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType, u64 mac,
+                           Buttons buttons, const std::vector<u8> &needles, bool unovaLink, bool memoryLink);
 
 private:
     std::vector<u8> needles;
@@ -225,7 +220,6 @@ public:
      * @param maxTimer0 Maximum Timer0
      * @param minGxStat Minimum GxStat
      * @param maxGxStat Maximum GxStat
-     * @param softReset Whether game was soft reset
      * @param version Game version
      * @param language Game language
      * @param dsType DS type
@@ -234,7 +228,7 @@ public:
      * @param seed PRNG state
      */
     ProfileSeedSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                         u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                         u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType, u64 mac,
                          Buttons buttons, u64 seed);
 
 private:

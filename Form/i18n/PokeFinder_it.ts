@@ -5275,10 +5275,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Minimo</translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Memory Link</source>
         <translation>Asse dei Ricordi</translation>
     </message>
@@ -5426,12 +5422,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Per favore seleziona una riga</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Some min values are greater then max values</source>
         <translation>Alcuni valori minimi sono più grandi dei valori massimi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Invalid Input</source>
         <translation>Inserimento non valido</translation>
     </message>
@@ -5729,10 +5725,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Trova Parametri</translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Skip L/R</source>
         <translation>Salta L/R</translation>
     </message>
@@ -5745,42 +5737,42 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Cromamuleto</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Enter a profile name</source>
         <translation>Inserisci un nome profilo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Missing name</source>
         <translation>Nome mancante</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="157"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="155"/>
         <source>Open IV Cache</source>
         <translation>Apri Cache IV</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Invalid IV Cache</source>
         <translation>Cache IV non valide</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation>Il file fornito non è una valida Cache IV</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="174"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="172"/>
         <source>Open SHA1 Cache</source>
         <translation>Apri Cache SHA1</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
         <translation>Cache SHA non valida</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="181"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation>Il file fornito non è una Cache SHA valida o non è stato creato dal profilo corrente</translation>
     </message>
@@ -6132,7 +6124,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
@@ -6140,7 +6131,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6170,7 +6160,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>MAC Address</source>
         <translation>Indirizzo MAC</translation>
     </message>
@@ -6195,12 +6185,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>VFrame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Keypresses</source>
         <translation>Pressione Tasti</translation>
     </message>
@@ -6208,11 +6198,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Skip L/R</source>
         <translation>Salta L/R</translation>
-    </message>
-    <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>

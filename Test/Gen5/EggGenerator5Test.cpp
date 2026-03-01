@@ -89,7 +89,7 @@ void EggGenerator5Test::generate()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
     StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);

@@ -170,21 +170,16 @@ constexpr std::array<u32, 36525> dateValues = computeDateValues();
 constexpr std::array<u32, 86400> timeValues = computeTimeValues();
 
 SHA1::SHA1(const Profile5 &profile) :
-    SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),
-         profile.getGxStat())
+    SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getVFrame(), profile.getGxStat())
 {
 }
 
-SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+SHA1::SHA1(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat)
 {
     auto nazos = Nazos::getNazo(version, language, type);
     std::copy(nazos.begin(), nazos.end(), data);
 
     data[6] = mac & 0xffff;
-    if (softReset)
-    {
-        data[6] ^= 0x01000000;
-    }
     data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);
 
     // Set values
@@ -368,12 +363,11 @@ void SHA1::setTime(u32 time, DSType dsType)
 }
 
 SHA1SSE::SHA1SSE(const Profile5 &profile) :
-    SHA1SSE(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(),
-              profile.getVFrame(), profile.getGxStat())
+    SHA1SSE(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getVFrame(), profile.getGxStat())
 {
 }
 
-SHA1SSE::SHA1SSE(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+SHA1SSE::SHA1SSE(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat)
 {
     auto nazos = Nazos::getNazo(version, language, type);
     for (int i = 0; i < nazos.size(); i++)
@@ -382,10 +376,6 @@ SHA1SSE::SHA1SSE(Game version, Language language, DSType type, u64 mac, bool sof
     }
 
     data[6] = vuint128(mac & 0xffff);
-    if (softReset)
-    {
-        data[6] = data[6] ^ vuint128(0x01000000);
-    }
     data[7] = vuint128(static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat));
 
     // Set values
@@ -595,12 +585,11 @@ static inline void section4CalcAVX2(vuint256 a, vuint256 &b, vuint256 c, vuint25
 };
 
 SHA1AVX2::SHA1AVX2(const Profile5 &profile) :
-    SHA1AVX2(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(),
-              profile.getVFrame(), profile.getGxStat())
+    SHA1AVX2(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getVFrame(), profile.getGxStat())
 {
 }
 
-SHA1AVX2::SHA1AVX2(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+SHA1AVX2::SHA1AVX2(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat)
 {
     auto nazos = Nazos::getNazo(version, language, type);
     for (int i = 0; i < nazos.size(); i++)
@@ -609,10 +598,6 @@ SHA1AVX2::SHA1AVX2(Game version, Language language, DSType type, u64 mac, bool s
     }
 
     data[6] = vuint256(mac & 0xffff);
-    if (softReset)
-    {
-        data[6] = data[6] ^ vuint256(0x01000000);
-    }
     data[7] = vuint256(static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat));
 
     // Set values

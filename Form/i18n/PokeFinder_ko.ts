@@ -5274,10 +5274,6 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Memory Link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5425,12 +5421,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Some min values are greater then max values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Invalid Input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5728,10 +5724,6 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Skip L/R</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5744,42 +5736,42 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Enter a profile name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Missing name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="157"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="155"/>
         <source>Open IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Invalid IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="174"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="172"/>
         <source>Open SHA1 Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="181"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6131,7 +6123,6 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6139,7 +6130,6 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6169,7 +6159,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>MAC Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6194,23 +6184,18 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>VFrame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Keypresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Skip L/R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
-        <source>Soft Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

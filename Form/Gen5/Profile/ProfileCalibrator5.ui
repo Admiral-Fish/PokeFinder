@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
+    <width>788</width>
     <height>481</height>
    </rect>
   </property>
@@ -381,13 +381,6 @@
       <item row="5" column="2">
        <widget class="TextBox" name="textBoxMaxVFrame"/>
       </item>
-      <item row="6" column="1">
-       <widget class="QCheckBox" name="checkBoxSoftReset">
-        <property name="text">
-         <string>Soft Reset</string>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="2">
        <widget class="QCheckBox" name="checkBoxMemoryLink">
         <property name="text">
@@ -532,7 +525,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>97</width>
+           <width>106</width>
            <height>77</height>
           </rect>
          </property>
@@ -609,7 +602,6 @@
   <tabstop>textBoxMaxGxStat</tabstop>
   <tabstop>textBoxMinVFrame</tabstop>
   <tabstop>textBoxMaxVFrame</tabstop>
-  <tabstop>checkBoxSoftReset</tabstop>
   <tabstop>checkBoxMemoryLink</tabstop>
   <tabstop>comboBoxVersion</tabstop>
   <tabstop>comboBoxLanguage</tabstop>
@@ -621,11 +613,11 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

@@ -87,7 +87,7 @@ void WildGenerator5Test::generate()
     encounterSlots.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     std::vector<EncounterArea5> encounterAreas = Encounters5::getEncounters(encounter, 0, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),

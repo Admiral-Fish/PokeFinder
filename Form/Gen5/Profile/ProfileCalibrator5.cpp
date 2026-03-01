@@ -221,7 +221,6 @@ void ProfileCalibrator5::search()
     u8 maxGxStat = ui->textBoxMaxGxStat->getUChar();
     u8 minVFrame = ui->textBoxMinVFrame->getUChar();
     u8 maxVFrame = ui->textBoxMaxVFrame->getUChar();
-    bool softReset = ui->checkBoxSoftReset->isChecked();
     auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentUInt());
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
@@ -260,7 +259,7 @@ void ProfileCalibrator5::search()
                                      static_cast<u8>(ui->spinBoxMaxSpD->value()), static_cast<u8>(ui->spinBoxMaxSpe->value()) };
 
         searcher = new ProfileIVSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
-                                          minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, minIVs, maxIVs);
+                                          minGxStat, maxGxStat, version, language, dsType, mac, buttons, minIVs, maxIVs);
     }
     else if (ui->tabWidgetType->currentIndex() == 1) // Needle Search
     {
@@ -274,15 +273,15 @@ void ProfileCalibrator5::search()
             needles.emplace_back(needleMap[item->text()]);
         }
 
-        searcher = new ProfileNeedleSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0,
-                                              maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, needles,
-                                              unovaLink, memoryLink);
+        searcher
+            = new ProfileNeedleSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
+                                         minGxStat, maxGxStat, version, language, dsType, mac, buttons, needles, unovaLink, memoryLink);
     }
     else // Seed search
     {
         u64 seed = ui->textBoxSeed->getULong();
         searcher = new ProfileSeedSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
-                                            minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, seed);
+                                            minGxStat, maxGxStat, version, language, dsType, mac, buttons, seed);
     }
 
     int maxProgress = (maxTimer0 - minTimer0 + 1) * (maxGxStat - minGxStat + 1) * (maxVFrame - minVFrame + 1);

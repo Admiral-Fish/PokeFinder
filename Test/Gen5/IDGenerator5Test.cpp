@@ -55,7 +55,7 @@ void IDGenerator5Test::generate()
     json j = json::parse(results);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator5 generator(0, 9, 0, false, false, profile, filter);
