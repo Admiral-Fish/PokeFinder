@@ -108,6 +108,15 @@ void ChainedSID::calculate()
     {
         ui->labelPossibleResults->setText(tr("SID Found: %1").arg(sids[0]));
     }
+    else if (sids.size() <= 5)
+    {
+        QStringList sidList;
+        for (auto sid : sids)
+        {
+            sidList << QString::number(sid);
+        }
+        ui->labelPossibleResults->setText(tr("%1 Possible SIDs: %2").arg(sids.size()).arg(sidList.join(", ")));
+    }
     else
     {
         ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(sids.size()));
