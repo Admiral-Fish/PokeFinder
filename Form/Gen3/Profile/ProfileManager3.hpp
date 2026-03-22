@@ -66,6 +66,11 @@ private slots:
     void create();
 
     /**
+     * @brief Duplicates existing profile
+     */
+    void duplicate();
+
+    /**
      * @brief Opens dialog to edit an existing profile
      */
     void edit();
