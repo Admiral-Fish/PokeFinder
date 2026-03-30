@@ -1172,12 +1172,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="77"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia le IVs negli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Incolla le IVs dagli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="274"/>
@@ -1224,12 +1224,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato non valido</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="69"/>
@@ -2813,12 +2813,12 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="102"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia le IVs negli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="103"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Incolla le IVs dagli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
@@ -2830,57 +2830,57 @@
         <location filename="../Controls/Filter.cpp" line="374"/>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Invalid filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni del filtro non valide</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
         <source>Height minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'altezza minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="339"/>
         <source>HP minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>I PS minimi sono maggiori dei massimi</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="346"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'Att minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="353"/>
         <source>Def minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La Dif minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="360"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'AttSp minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="367"/>
         <source>SpD minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La DifSp minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="374"/>
         <source>Spe minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La Vel minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Weight minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Il peso minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato non valido</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
     <message>
         <source>HP</source>
@@ -8778,12 +8778,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="27"/>
         <source>Transfer Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferisci Filtri</translation>
     </message>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="30"/>
         <source>Transfer Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferisci Impostazioni</translation>
     </message>
 </context>
 <context>
