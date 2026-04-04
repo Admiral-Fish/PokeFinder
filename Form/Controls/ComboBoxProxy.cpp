@@ -18,54 +18,8 @@
  */
 
 #include "ComboBoxProxy.hpp"
-#include <Model/SortFilterProxyModel.hpp>
 #include <QCompleter>
 #include <QStandardItemModel>
-
-/**
- * @brief Provides a proxy to sort strings placing "None" at the top
- */
-class ComboBoxProxyModel : public SortFilterProxyModel
-{
-public:
-    /**
-     * @brief Construct a new ComboBoxProxyModel object
-     *
-     * @param parent Parent object, which takes memory ownership
-     * @param model Source model to be processed by proxy
-     */
-    ComboBoxProxyModel(QObject *parent, QAbstractItemModel *model) : SortFilterProxyModel(parent, model)
-    {
-    }
-
-    /**
-     * @brief Compares two items in the model
-     *
-     * @param source_left First item to compare
-     * @param source_right Second item to compare
-     *
-     * @return true First item is less than second item
-     * @return false First item is not less than second item
-     */
-    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override
-    {
-        QString left = source_left.data().toString();
-        QString right = source_right.data().toString();
-
-        if (left == tr("None"))
-        {
-            return true;
-        }
-        else if (right == tr("None"))
-        {
-            return false;
-        }
-        else
-        {
-            return left < right;
-        }
-    }
-};
 
 ComboBoxProxy::ComboBoxProxy(QWidget *parent) : QComboBox(parent)
 {

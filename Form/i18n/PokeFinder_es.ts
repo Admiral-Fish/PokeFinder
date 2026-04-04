@@ -93,8 +93,7 @@
 <context>
     <name>ComboBoxProxyModel</name>
     <message>
-        <location filename="../Controls/ComboBoxProxy.cpp" line="55"/>
-        <location filename="../Controls/ComboBoxProxy.cpp" line="59"/>
+        <location filename="../Controls/ComboBoxProxy.hpp" line="109"/>
         <source>None</source>
         <translation type="unfinished">Ninguno</translation>
     </message>
@@ -5885,26 +5884,32 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
         <source>No profile selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
         <source>Please select a profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
         <source>Delete profile</source>
         <translation>Eliminar perfil</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>¿Está seguro de que desea eliminar este perfil?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5930,26 +5935,32 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
         <source>No profile selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Eliminar perfil</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>¿Está seguro de que desea eliminar este perfil?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5975,26 +5986,32 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
         <source>No profile selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Eliminar perfil</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>¿Está seguro de que desea eliminar este perfil?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6020,26 +6037,32 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
         <source>No profile selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Eliminar perfil</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>¿Está seguro de que desea eliminar este perfil?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

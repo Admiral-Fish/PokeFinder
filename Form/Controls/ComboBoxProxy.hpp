@@ -21,6 +21,7 @@
 #define COMBOBOXPROXY_HPP
 
 #include <Core/Global.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QComboBox>
 
 class ComboBoxProxyModel;
@@ -67,7 +68,7 @@ public:
 
     /**
      * @brief Sets the current index. Maps the index from the model to the proxy model
-     * 
+     *
      * @param index Index to set
      */
     void setCurrentIndex(int index);
@@ -75,6 +76,53 @@ public:
 private:
     QStandardItemModel *model;
     ComboBoxProxyModel *proxyModel;
+};
+
+/**
+ * @brief Provides a proxy to sort strings placing "None" at the top
+ */
+class ComboBoxProxyModel : public SortFilterProxyModel
+{
+    Q_OBJECT
+public:
+    /**
+     * @brief Construct a new ComboBoxProxyModel object
+     *
+     * @param parent Parent object, which takes memory ownership
+     * @param model Source model to be processed by proxy
+     */
+    ComboBoxProxyModel(QObject *parent, QAbstractItemModel *model) : SortFilterProxyModel(parent, model)
+    {
+    }
+
+    /**
+     * @brief Compares two items in the model
+     *
+     * @param source_left First item to compare
+     * @param source_right Second item to compare
+     *
+     * @return true First item is less than second item
+     * @return false First item is not less than second item
+     */
+    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override
+    {
+        static const QString NONE = tr("None");
+        QString left = source_left.data().toString();
+        QString right = source_right.data().toString();
+
+        if (left == NONE)
+        {
+            return true;
+        }
+        else if (right == NONE)
+        {
+            return false;
+        }
+        else
+        {
+            return left < right;
+        }
+    }
 };
 
 #endif // COMBOBOXPROXY_HPP

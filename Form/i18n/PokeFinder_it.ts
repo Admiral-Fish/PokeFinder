@@ -93,8 +93,7 @@
 <context>
     <name>ComboBoxProxyModel</name>
     <message>
-        <location filename="../Controls/ComboBoxProxy.cpp" line="55"/>
-        <location filename="../Controls/ComboBoxProxy.cpp" line="59"/>
+        <location filename="../Controls/ComboBoxProxy.hpp" line="109"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
@@ -2835,7 +2834,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
         <source>Height minimum is greater than maximum</source>
-        <translation>L'altezza minima è maggiore della massima</translation>
+        <translation>L&apos;altezza minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="339"/>
@@ -2845,7 +2844,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="346"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation>L'Att minimo è maggiore del massimo</translation>
+        <translation>L&apos;Att minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="353"/>
@@ -2855,7 +2854,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="360"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation>L'AttSp minimo è maggiore del massimo</translation>
+        <translation>L&apos;AttSp minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="367"/>
@@ -5885,26 +5884,32 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
         <source>No profile selected</source>
         <translation>Nessun profilo selezionato</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
         <source>Please select a profile</source>
         <translation>Per favore seleziona un profilo</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
         <source>Delete profile</source>
         <translation>Cancella profilo</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Sei siuro di voler eliminare questo profilo?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5930,26 +5935,32 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
         <source>No profile selected</source>
         <translation>Nessun profilo selezionato</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation>Per favore seleziona un profilo</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Cancella profilo</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Sei siuro di voler eliminare questo profilo?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5975,26 +5986,32 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
         <source>No profile selected</source>
         <translation>Nessun profilo selezionato</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation>Per favore seleziona un profilo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Cancella profilo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Sei siuro di voler eliminare questo profilo?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6020,26 +6037,32 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
         <source>No profile selected</source>
         <translation>Nessun profilo selezionato</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation>Per favore seleziona un profilo</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Cancella profilo</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Sei siuro di voler eliminare questo profilo?</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
