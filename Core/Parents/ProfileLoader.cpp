@@ -94,7 +94,7 @@ namespace ProfileLoader
                     profile["shaCache"] = "";
                     flag = true;
                 }
-                
+
                 if (!shaCache.empty() && !std::filesystem::exists(shaCache))
                 {
                     profile["shaCache"] = "";
@@ -340,7 +340,6 @@ namespace ProfileLoader5
             j["skipLR"] = profile.getSkipLR();
             j["timer0Min"] = profile.getTimer0Min();
             j["timer0Max"] = profile.getTimer0Max();
-            j["softReset"] = profile.getSoftReset();
             j["memoryLink"] = profile.getMemoryLink();
             j["shinyCharm"] = profile.getShinyCharm();
             j["dsType"] = profile.getDSType();
@@ -385,13 +384,12 @@ namespace ProfileLoader5
             bool skipLR = j.value("skipLR", false);
             u16 timer0Min = j.value("timer0Min", 0);
             u16 timer0Max = j.value("timer0Max", 0);
-            bool softReset = j.value("softReset", false);
             bool memoryLink = j.value("memoryLink", false);
             bool shinyCharm = j.value("shinyCharm", false);
             DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, ivCache, shaCache, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
-                            timer0Max, softReset, memoryLink, shinyCharm, dsType, language);
+                            timer0Max, memoryLink, shinyCharm, dsType, language);
         }
 
     }

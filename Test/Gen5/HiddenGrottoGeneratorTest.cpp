@@ -93,7 +93,7 @@ void HiddenGrottoGeneratorTest::pokemon()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(), [location](const HiddenGrottoArea &encounterArea) {
@@ -145,7 +145,7 @@ void HiddenGrottoGeneratorTest::slot()
     groups.fill(true);
 
     Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(), [location](const HiddenGrottoArea &encounterArea) {

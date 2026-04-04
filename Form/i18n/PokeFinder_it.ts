@@ -1172,12 +1172,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="77"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia le IVs negli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Incolla le IVs dagli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="274"/>
@@ -1224,12 +1224,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato non valido</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="69"/>
@@ -2813,12 +2813,12 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="102"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia le IVs negli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="103"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Incolla le IVs dagli appunti</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
@@ -2830,57 +2830,57 @@
         <location filename="../Controls/Filter.cpp" line="374"/>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Invalid filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni del filtro non valide</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
         <source>Height minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'altezza minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="339"/>
         <source>HP minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>I PS minimi sono maggiori dei massimi</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="346"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'Att minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="353"/>
         <source>Def minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La Dif minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="360"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>L'AttSp minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="367"/>
         <source>SpD minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La DifSp minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="374"/>
         <source>Spe minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>La Vel minima è maggiore della massima</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Weight minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Il peso minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato non valido</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
     <message>
         <source>HP</source>
@@ -5275,10 +5275,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Minimo</translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Memory Link</source>
         <translation>Asse dei Ricordi</translation>
     </message>
@@ -5426,12 +5422,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Per favore seleziona una riga</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Some min values are greater then max values</source>
         <translation>Alcuni valori minimi sono più grandi dei valori massimi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="242"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
         <source>Invalid Input</source>
         <translation>Inserimento non valido</translation>
     </message>
@@ -5729,10 +5725,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Trova Parametri</translation>
     </message>
     <message>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Skip L/R</source>
         <translation>Salta L/R</translation>
     </message>
@@ -5745,42 +5737,42 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Cromamuleto</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Enter a profile name</source>
         <translation>Inserisci un nome profilo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="147"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
         <source>Missing name</source>
         <translation>Nome mancante</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="157"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="155"/>
         <source>Open IV Cache</source>
         <translation>Apri Cache IV</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Invalid IV Cache</source>
         <translation>Cache IV non valide</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="166"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation>Il file fornito non è una valida Cache IV</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="174"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="172"/>
         <source>Open SHA1 Cache</source>
         <translation>Apri Cache SHA1</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
         <translation>Cache SHA non valida</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="182"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="181"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation>Il file fornito non è una Cache SHA valida o non è stato creato dal profilo corrente</translation>
     </message>
@@ -6132,7 +6124,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
@@ -6140,7 +6131,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
-        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6170,7 +6160,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="71"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
         <source>MAC Address</source>
         <translation>Indirizzo MAC</translation>
     </message>
@@ -6195,12 +6185,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>VFrame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="72"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Keypresses</source>
         <translation>Pressione Tasti</translation>
     </message>
@@ -6208,11 +6198,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Skip L/R</source>
         <translation>Salta L/R</translation>
-    </message>
-    <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
-        <source>Soft Reset</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -8793,12 +8778,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="27"/>
         <source>Transfer Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferisci Filtri</translation>
     </message>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="30"/>
         <source>Transfer Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferisci Impostazioni</translation>
     </message>
 </context>
 <context>

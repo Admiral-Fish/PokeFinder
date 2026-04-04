@@ -84,7 +84,6 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : Profi
     ui->comboBoxKeypresses->setChecks(profile.getKeypresses());
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
-    ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
     ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
 }
@@ -115,9 +114,8 @@ Profile5 ProfileEditor5::getProfile()
                     ui->textBoxSID->getUShort(), ui->lineEditIVCache->text().toStdString(), ui->lineEditSHACache->text().toStdString(),
                     ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(), ui->textBoxVCount->getUChar(),
                     ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(),
-                    ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
-                    ui->checkBoxMemoryLink->isChecked(), ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(),
-                    ui->comboBoxLanguage->getEnum<Language>());
+                    ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxMemoryLink->isChecked(),
+                    ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>());
 }
 
 void ProfileEditor5::clearIVCache()
@@ -179,7 +177,8 @@ void ProfileEditor5::selectSHACache()
     }
     else
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid SHA Cache"), tr("Provided file is not a valid SHA Cache or was not created from the profile"));
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid SHA Cache"),
+                        tr("Provided file is not a valid SHA Cache or was not created from the profile"));
         msg.exec();
         return;
     }

@@ -46,7 +46,7 @@ SHA1Cache::SHA1Cache(const std::string &path) : file(path.data(), std::ios_base:
         file.read(reinterpret_cast<char *>(&version), sizeof(version));
         file.read(reinterpret_cast<char *>(&timer0max), sizeof(timer0max));
         file.read(reinterpret_cast<char *>(&timer0min), sizeof(timer0min));
-        file.read(reinterpret_cast<char *>(&softReset), sizeof(softReset));
+        file.seekg(1, std::ios_base::cur);
         file.read(reinterpret_cast<char *>(&type), sizeof(type));
         file.read(reinterpret_cast<char *>(&language), sizeof(language));
         file.read(reinterpret_cast<char *>(&gxstat), sizeof(gxstat));
@@ -144,8 +144,8 @@ bool SHA1Cache::isValid(const Profile5 &profile) const
 
         return valid && initialAdvances == initialAdvanceIV && maxAdvances == maxAdvanceIV && mac == profile.getMac()
             && version == profile.getVersion() && timer0max == profile.getTimer0Max() && timer0min == profile.getTimer0Min()
-            && softReset == profile.getSoftReset() && type == profile.getDSType() && language == profile.getLanguage()
-            && gxstat == profile.getGxStat() && vcount == profile.getVCount() && vframe == profile.getVFrame();
+            && type == profile.getDSType() && language == profile.getLanguage() && gxstat == profile.getGxStat()
+            && vcount == profile.getVCount() && vframe == profile.getVFrame();
     }
 
     return false;

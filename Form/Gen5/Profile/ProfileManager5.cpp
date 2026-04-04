@@ -37,6 +37,7 @@ ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager5::create);
     connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager5::edit);
+    connect(ui->pushButtonDuplicate, &QPushButton::clicked, this, &ProfileManager5::duplicate);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager5::remove);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager5::close);
 
@@ -65,6 +66,22 @@ void ProfileManager5::create()
         model->addItem(profile);
         emit profilesModified(5);
     }
+}
+
+void ProfileManager5::duplicate()
+{
+    int row = ui->tableView->currentIndex().row();
+    if (row < 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profile selected"), tr("Please select a profile"));
+        msg.exec();
+        return;
+    }
+
+    const Profile5 &profile = model->getItem(row);
+    ProfileLoader5::addProfile(profile);
+    model->addItem(profile);
+    emit profilesModified(5);
 }
 
 void ProfileManager5::edit()

@@ -77,7 +77,7 @@ void DreamRadarGeneratorTest::generate()
     powers.fill(true);
 
     Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, DSType::DS, Language::English);
 
     const DreamRadarTemplate *dreamRadarTemplates = Encounters5::getDreamRadarEncounters();
 

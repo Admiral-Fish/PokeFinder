@@ -26,7 +26,7 @@ ProfileModel5::ProfileModel5(QObject *parent) : TableModel(parent)
 
 int ProfileModel5::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 15;
 }
 
 QVariant ProfileModel5::data(const QModelIndex &index, int role) const
@@ -63,10 +63,8 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 12:
             return profile.getSkipLR() ? tr("Yes") : tr("No");
         case 13:
-            return profile.getSoftReset() ? tr("Yes") : tr("No");
-        case 14:
             return profile.getMemoryLink() ? tr("Yes") : tr("No");
-        case 15:
+        case 14:
             return profile.getShinyCharm() ? tr("Yes") : tr("No");
         }
     }
