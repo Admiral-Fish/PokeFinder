@@ -102,11 +102,10 @@ void IDs4::search()
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt() + year - 2000;
     bool infinite = ui->checkBoxInfiniteSearch->isChecked();
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
-
     IDFilter filter = ui->idFilter->getFilter(true);
     auto *searcher = new IDSearcher4(filter);
+
+    searcher->setMaxProgress(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1)));
 
     auto *thread = QThread::create([=] { searcher->startSearch(infinite, year, minDelay, maxDelay); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

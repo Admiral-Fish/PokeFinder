@@ -241,10 +241,8 @@ void Eggs4::search()
     EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, 0, initialAdvancesPickup, maxAdvancesPickup, 0,
                             ui->eggSettingsSearcher->getDaycare(), *currentProfile, filter);
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
-
     auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile);
+    searcher->setMaxProgress(256 * 24 * (maxDelay - minDelay + 1));
 
     auto *thread = QThread::create([=] { searcher->startSearch(generator); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
