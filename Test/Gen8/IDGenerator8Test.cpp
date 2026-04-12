@@ -52,7 +52,7 @@ void IDGenerator8Test::generate()
 
     json j = json::parse(results);
 
-    IDFilter filter({}, {}, {}, {});
+    IDFilter filter({ }, { }, { }, { }, { }, { });
     IDGenerator8 generator(0, 9, filter);
 
     auto states = generator.generate(seed0, seed1);

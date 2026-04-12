@@ -65,7 +65,7 @@ void IDGenerator4Test::generate()
 
     json j = json::parse(results);
 
-    IDFilter filter({ tid }, {}, {}, {});
+    IDFilter filter({ tid }, { }, { }, { }, { }, { });
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);
 
     auto states = generator.generate();

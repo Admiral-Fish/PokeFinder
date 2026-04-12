@@ -83,7 +83,7 @@ void IDs4::find()
     u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt() + year - 2000;
     u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt() + year - 2000;
 
-    IDFilter filter({ ui->textBoxTID->getUShort() }, {}, {}, {});
+    IDFilter filter({ ui->textBoxTID->getUShort() }, { }, { }, { }, { }, { });
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);
 
     auto states = generator.generate();

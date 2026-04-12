@@ -52,7 +52,9 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
 {
     std::vector<u16> tidFilter;
     std::vector<u16> sidFilter;
+    std::vector<std::pair<u16, u16>> tidSIDFilter;
     std::vector<u16> tsvFilter;
+    std::vector<std::pair<u16, u16>> tidTSVFilter;
     std::vector<u32> displayFilter;
 
     QStringList inputs = ui->plainTextEdit->toPlainText().split('\n');
@@ -74,8 +76,7 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
         else if (ui->radioButtonTIDSID->isChecked())
         {
             QStringList ids = input.split('/');
-            tidFilter.emplace_back(ids[0].toUShort());
-            sidFilter.emplace_back(ids[1].toUShort());
+            tidSIDFilter.emplace_back(ids[0].toUShort(), ids[1].toUShort());
         }
         else if (ui->radioButtonPID->isChecked())
         {
@@ -86,10 +87,9 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
         else if (ui->radioButtonTIDPID->isChecked())
         {
             QStringList tidpid = input.split('/');
-            tidFilter.emplace_back(tidpid[0].toUShort());
             u32 pid = tidpid[1].toUInt(nullptr, 16);
             u16 psv = (pid >> 16) ^ (pid & 0xffff);
-            tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
+            tidTSVFilter.emplace_back(tidpid[0].toUShort(), psv >> (pastGen ? 3 : 4));
         }
         else if (ui->radioButtonTSV->isChecked())
         {
@@ -101,7 +101,7 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
         }
     }
 
-    return IDFilter(tidFilter, sidFilter, tsvFilter, displayFilter);
+    return IDFilter(tidFilter, sidFilter, tidSIDFilter, tsvFilter, tidTSVFilter, displayFilter);
 }
 
 void IDsFilter::textEditIDsTextChanged()

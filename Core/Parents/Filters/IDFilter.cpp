@@ -21,9 +21,15 @@
 #include <Core/Gen8/States/IDState8.hpp>
 #include <algorithm>
 
-IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
-                   const std::vector<u32> &displayFilter) :
-    tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter), displayFilter(displayFilter)
+IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter,
+                   const std::vector<std::pair<u16, u16>> &tidSIDFilter, const std::vector<u16> &tsvFilter,
+                   const std::vector<std::pair<u16, u16>> &tidTSVFilter, const std::vector<u32> &displayFilter) :
+    displayFilter(displayFilter),
+    tidSIDFilter(tidSIDFilter),
+    tidTSVFilter(tidTSVFilter),
+    sidFilter(sidFilter),
+    tidFilter(tidFilter),
+    tsvFilter(tsvFilter)
 {
 }
 
@@ -39,7 +45,25 @@ bool IDFilter::compareState(const IDState &state) const
         return false;
     }
 
+    if (!tidSIDFilter.empty()
+        && std::find_if(
+               tidSIDFilter.begin(), tidSIDFilter.end(),
+               [&state](const std::pair<u16, u16> &entry) { return entry.first == state.getTID() && entry.second == state.getSID(); })
+            == tidSIDFilter.end())
+    {
+        return false;
+    }
+
     if (!tsvFilter.empty() && std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
+    {
+        return false;
+    }
+
+    if (!tidTSVFilter.empty()
+        && std::find_if(
+               tidTSVFilter.begin(), tidTSVFilter.end(),
+               [&state](const std::pair<u16, u16> &entry) { return entry.first == state.getTID() && entry.second == state.getTSV(); })
+            == tidTSVFilter.end())
     {
         return false;
     }
@@ -49,17 +73,7 @@ bool IDFilter::compareState(const IDState &state) const
 
 bool IDFilter::compareState(const IDState8 &state) const
 {
-    if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
-    {
-        return false;
-    }
-
-    if (!sidFilter.empty() && std::find(sidFilter.begin(), sidFilter.end(), state.getSID()) == sidFilter.end())
-    {
-        return false;
-    }
-
-    if (!tsvFilter.empty() && std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
+    if (!compareState(static_cast<const IDState &>(state)))
     {
         return false;
     }

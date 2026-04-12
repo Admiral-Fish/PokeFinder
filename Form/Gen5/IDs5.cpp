@@ -125,7 +125,7 @@ void IDs5::find()
     u8 maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
 
-    IDFilter filter({ tid }, {}, {}, {});
+    IDFilter filter({ tid }, { }, { }, { }, { }, { });
     IDGenerator5 generator(0, maxAdvance, 0, false, false, *currentProfile, filter);
     IDSearcher5 searcher(generator, *currentProfile);
 
@@ -167,7 +167,7 @@ void IDs5::search()
         sid.emplace_back(ui->textBoxSID->getUShort());
     }
 
-    IDFilter filter(tid, sid, {}, {});
+    IDFilter filter(tid, sid, { }, { }, { }, { });
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), pid, usePID, useXOR, *currentProfile, filter);
 
     auto *searcher = new IDSearcher5(generator, *currentProfile);

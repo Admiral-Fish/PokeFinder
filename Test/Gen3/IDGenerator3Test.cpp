@@ -48,7 +48,7 @@ void IDGenerator3Test::xdcolo()
 
     json j = json::parse(results);
 
-    IDFilter filter({}, {}, {}, {});
+    IDFilter filter({ }, { }, { }, { }, { }, { });
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateXDColo(seed);
@@ -80,7 +80,7 @@ void IDGenerator3Test::frgle()
 
     json j = json::parse(results);
 
-    IDFilter filter({}, {}, {}, {});
+    IDFilter filter({ }, { }, { }, { }, { }, { });
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateFRLGE(tid);
@@ -112,7 +112,7 @@ void IDGenerator3Test::rs()
 
     json j = json::parse(results);
 
-    IDFilter filter({}, {}, {}, {});
+    IDFilter filter({ }, { }, { }, { }, { }, { });
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateRS(seed);

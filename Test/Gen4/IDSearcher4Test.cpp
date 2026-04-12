@@ -55,7 +55,7 @@ void IDSearcher4Test::search()
 
     json j = json::parse(results);
 
-    IDFilter filter({ tid }, {}, {}, {});
+    IDFilter filter({ tid }, { }, { }, { }, { }, { });
     IDSearcher4 searcher(filter);
 
     searcher.startSearch(false, year, minDelay, maxDelay);

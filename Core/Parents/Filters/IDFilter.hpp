@@ -37,10 +37,13 @@ public:
      *
      * @param tidFilter TID filter list
      * @param sidFilter SID filter list
+     * @param tidSIDFilter TID/SID filter list
      * @param tsvFilter TSV filter list
+     * @param tidTSVFilter TID/TSV filter list
      * @param displayFilter Display ID filter list
      */
-    IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
+    IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<std::pair<u16, u16>> &tidSIDFilter,
+             const std::vector<u16> &tsvFilter, const std::vector<std::pair<u16, u16>> &tidTSVFilter,
              const std::vector<u32> &displayFilter);
 
     /**
@@ -65,6 +68,8 @@ public:
 
 protected:
     std::vector<u32> displayFilter;
+    std::vector<std::pair<u16, u16>> tidSIDFilter;
+    std::vector<std::pair<u16, u16>> tidTSVFilter;
     std::vector<u16> sidFilter;
     std::vector<u16> tidFilter;
     std::vector<u16> tsvFilter;
