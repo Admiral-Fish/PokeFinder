@@ -47,7 +47,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
     auto modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
     bool rock = (profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash;
-    bool feebas = area.feebasLocation(profile.getVersion());
+    bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 
@@ -71,7 +71,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
 
         u8 encounterSlot;
-        if (feebas && go.nextUShort(100) < 50 && feebasTile)
+        if (feebas && go.nextUShort(100) < 50)
         {
             if (area.getEncounter() == Encounter::OldRod)
             {
