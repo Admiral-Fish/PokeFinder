@@ -195,7 +195,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAd
 {
     fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
-    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances); i++)
+    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && i < entralinkSeeds.size(); i++)
     {
         for (u32 seed : entralinkSeeds[i])
         {
@@ -219,7 +219,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvan
     fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
     bool bw = (version & Game::BW) != Game::None;
-    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances); i++)
+    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && (i + (bw ? 0 : 2)) < normalSeeds.size(); i++)
     {
         for (u32 seed : normalSeeds[i + (bw ? 0 : 2)])
         {
@@ -241,7 +241,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getRoamerCache(u32 initialAdvan
 {
     fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
-    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && i < 6; i++)
+    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && i < roamerSeeds.size(); i++)
     {
         for (u32 seed : roamerSeeds[i])
         {

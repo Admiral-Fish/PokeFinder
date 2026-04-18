@@ -104,7 +104,7 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance
                             [&entry](const Keypress keypress) { return entry.key.button == toInt(keypress.button); })
                 != keypresses.end())
         {
-            for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance) && j < 6; j++)
+            for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance); j++)
             {
                 if (ivCache.contains((j << 32) | (entry.seed >> 32)))
                 {
