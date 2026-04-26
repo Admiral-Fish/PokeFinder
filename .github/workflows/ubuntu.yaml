@@ -21,6 +21,11 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
+      - name: Set Python version
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
       - name: Restore Git Mtimes
         uses: ./.github/actions/git-mtime-cache
 
@@ -30,9 +35,6 @@ jobs:
           version: "6.10.1"
           archives: icu qtbase qtsvg qttools
           cache: true
-
-      - name: Install python zstandard pip Package
-        run: python3 -m pip install zstandard
 
       - name: Restore CMake build files
         id: cache

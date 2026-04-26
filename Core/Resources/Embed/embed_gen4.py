@@ -1,6 +1,6 @@
 import json
 import os
-import zstandard as zstd
+import compression.zstd as zstd
 
 from .embed_util import write_data
 

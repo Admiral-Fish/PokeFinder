@@ -33,6 +33,8 @@ Gen 5
 - Event
 - Hidden Grotto
 - IDs
+- Static
+- Wild
 
 Gen 8
 - Egg
@@ -50,16 +52,16 @@ Windows
 - Windows 11
 
 MacOS
-- MacOS Ventura
 - MacOS Sonoma
 - MacOS Sequoia
+- MacOS Tahoe
 
 Linux
 - Ubuntu 22.04
 - Ubuntu 24.04
 
 Qt
-- 6.8 or newer
+- 6.10 or newer
 
 # Installing
 
@@ -85,6 +87,7 @@ Windows
 - Install the dependencies
   - [Qt 6](https://www.qt.io/download)
   - [Build tools for Visual Studio](https://visualstudio.microsoft.com/downloads/)
+  - [Python 3.14](https://www.python.org/downloads/)
 - Build
   - git submodule update
   - mkdir build
@@ -101,11 +104,12 @@ Windows
 MacOS
 - Install the dependencies
   - Qt 6 ([brew](https://formulae.brew.sh/formula/qt) or the [Qt website](https://www.qt.io/download))
+  - [Python 3.14](https://www.python.org/downloads/)
 - Build
   - git submodule update
   - mkdir build
   - cd build
-  - PATH="PATH=$PATH:$HOME/Qt/6.8/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - PATH="PATH=$PATH:$HOME/Qt/6.10/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
     - Replace Qt path/version as necessary
   - cmake --build .
 - Bundle
@@ -116,12 +120,13 @@ Linux
   - Qt 6
     - [Qt website](https://www.qt.io/download)
     - sudo apt install qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools
+  - [Python 3.14](https://www.python.org/downloads/)
   - sudo apt install build-essential libgl1-mesa-dev
 - Build
   - git submodule update
   - mkdir build
   - cd build
-  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.8/gcc_64 ../
+  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.10/gcc_64 ../
     - Replace Qt path/version as necessary
   - cmake --build .
 

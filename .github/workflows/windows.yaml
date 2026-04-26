@@ -12,7 +12,7 @@ on:
 jobs:
   ci:
     name: Build
-    runs-on: windows-2022
+    runs-on: windows-2025
 
     steps:
       - name: Checkout repository
@@ -20,6 +20,11 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+
+      - name: Set Python version
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
 
       - name: Restore Git Mtimes
         uses: ./.github/actions/git-mtime-cache
@@ -32,9 +37,6 @@ jobs:
           tools: tools_opensslv3_x64
           cache: true
           arch: "win64_msvc2022_64"
-
-      - name: Install python zstandard pip Package
-        run: python3 -m pip install zstandard
 
       - name: Restore CMake build files
         id: cache
