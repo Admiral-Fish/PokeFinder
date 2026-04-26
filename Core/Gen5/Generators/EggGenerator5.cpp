@@ -84,6 +84,9 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     {
         BWRNG go(rng, jump);
 
+        // Temp PID/Nature
+        go.advance(2);
+
         // Nidoran
         // Volbeat / Illumise
         const PersonalInfo *info = base;
@@ -203,6 +206,9 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
         for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
         {
             BWRNG go(rng, jump);
+
+            // Temp PID/Nature
+            go.advance(2);
 
             u32 pid = Utilities5::createPID(tsv, state.getAbility(), 255, Shiny::Random, false, info->getGender(), go);
             for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
