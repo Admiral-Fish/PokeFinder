@@ -66,8 +66,9 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
                                  { tr("Storm Drain"), toInt(Lead::StormDrain) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::Surfing),
-                                   toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
+    ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
+                                   toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
+                                   toInt(Encounter::SuperRod) });
 
     ui->comboBoxLocation->enableAutoComplete();
 
@@ -147,7 +148,7 @@ void Wild8::updateEncounters()
 {
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
 
-    EncounterSettings8 settings = {};
+    EncounterSettings8 settings = { };
     settings.time = ui->comboBoxTime->currentIndex();
     if (ui->checkBoxReplacement->isChecked())
     {
