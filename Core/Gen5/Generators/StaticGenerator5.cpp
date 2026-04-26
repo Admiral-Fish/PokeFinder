@@ -126,12 +126,11 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         BWRNG go(rng, jump);
 
         u32 pid;
-        u16 realTSV = tsv;
         if (staticTemplate.getEgg())
         {
             pid = go.nextUInt();
-            u32 id = go.nextUInt();
-            realTSV = (id >> 16) ^ (id & 0xffff);
+            // Temp TID/SID
+            go.nextUInt();
         }
         else if (staticTemplate.getRoamer())
         {
@@ -139,13 +138,13 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         }
         else
         {
-            pid = Utilities5::createPID(realTSV, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false,
+            pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), staticTemplate.getGender(), staticTemplate.getShiny(), false,
                                         info->getGender(), go);
         }
 
         u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
         u8 gender = Utilities::getGender(pid, info);
-        u8 shiny = Utilities::getShiny<true>(pid, realTSV);
+        u8 shiny = Utilities::getShiny<true>(pid, tsv);
         u8 nature = go.nextUInt(25);
 
         u16 chatot = rng.nextUInt(0x1fff);
