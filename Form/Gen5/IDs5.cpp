@@ -171,10 +171,7 @@ void IDs5::search()
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), pid, usePID, useXOR, *currentProfile, filter);
 
     auto *searcher = new IDSearcher5(generator, *currentProfile);
-
-    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
-    maxProgress *= (start.daysTo(end) + 1);
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
