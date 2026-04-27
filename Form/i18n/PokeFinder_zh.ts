@@ -1347,7 +1347,7 @@
         <location filename="../Gen3/Eggs3.cpp" line="129"/>
         <location filename="../Gen3/Eggs3.cpp" line="167"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation>所选亲代的性别不兼容，无法进行繁殖</translation>
+        <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1477,7 +1477,7 @@
         <location filename="../Gen4/Eggs4.cpp" line="175"/>
         <location filename="../Gen4/Eggs4.cpp" line="218"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation>所选亲代的性别不兼容，无法进行繁殖</translation>
+        <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1620,7 +1620,7 @@
         <location filename="../Gen5/Eggs5.cpp" line="138"/>
         <location filename="../Gen5/Eggs5.cpp" line="182"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation>所选亲代的性别不兼容，无法进行繁殖</translation>
+        <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="145"/>
@@ -1745,7 +1745,7 @@
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="109"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation>所选亲代的性别不兼容，无法进行繁殖</translation>
+        <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="115"/>
@@ -4686,12 +4686,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="60"/>
         <source>XD/Colo</source>
-        <translation type="unfinished">XD/竞技场</translation>
+        <translation>XD/竞技场</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.cpp" line="62"/>
         <source>Channel</source>
-        <translation type="unfinished">频道</translation>
+        <translation>频道</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
@@ -6214,7 +6214,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Keypresses</source>
-        <translation type="unfinished">按键</translation>
+        <translation>按键</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -6292,7 +6292,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VCount</source>
-        <translation type="unfinished">VCount</translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
@@ -6302,12 +6302,12 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>GxStat</source>
-        <translation type="unfinished">GxStat</translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileSearcherModel5.hpp" line="71"/>
         <source>VFrame</source>
-        <translation type="unfinished">VFrame</translation>
+        <translation>VFrame</translation>
     </message>
 </context>
 <context>
@@ -7218,7 +7218,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="71"/>
         <source>Delay</source>
-        <translation type="unfinished">Delay</translation>
+        <translation>Delay</translation>
     </message>
 </context>
 <context>
@@ -7695,7 +7695,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>VCount</source>
-        <translation type="unfinished">VCount</translation>
+        <translation>VCount</translation>
     </message>
     <message>
         <source>Timer0</source>
@@ -7703,11 +7703,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>GxStat</source>
-        <translation type="unfinished">GxStat</translation>
+        <translation>GxStat</translation>
     </message>
     <message>
         <source>VFrame</source>
-        <translation type="unfinished">VFrame</translation>
+        <translation>VFrame</translation>
     </message>
     <message>
         <source>Keypresses</source>
