@@ -29,6 +29,15 @@ constexpr std::array<u8, 1> unown5 = { 4 };
 constexpr std::array<u8, 1> unown6 = { 3 };
 constexpr std::array<u8, 2> unown7 = { 26, 27 };
 
+bool EncounterArea8::feebasLocation(Game version) const
+{
+    if ((version & Game::BDSP) != Game::None)
+    {
+        return location == 22;
+    }
+    return false;
+}
+
 bool EncounterArea8::greatMarsh(Game version) const
 {
     if ((version & Game::BDSP) != Game::None)

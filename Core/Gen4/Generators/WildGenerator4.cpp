@@ -117,7 +117,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
     u8 thresh = area.getRate();
     auto modifiedSlots = area.getSlots(lead);
-    bool feebas = area.feebasLocation(profile.getVersion());
+    bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
 
     PokeRNG rng(seed, initialAdvances);
     auto jump = rng.getJump(offset);
@@ -139,7 +139,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         }
 
         u8 encounterSlot;
-        if (feebas && go.nextUShort<false>(2, &battleAdvances) && feebasTile)
+        if (feebas && go.nextUShort<false>(2, &battleAdvances))
         {
             encounterSlot = 5;
             go.advance((lead == Lead::MagnetPull || lead == Lead::Static) ? 2 : 1, &battleAdvances);

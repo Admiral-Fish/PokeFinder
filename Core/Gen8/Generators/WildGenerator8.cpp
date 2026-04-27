@@ -58,9 +58,9 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const EncounterArea8 &area,
-                               const Profile8 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter)
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile,
+                               const EncounterArea8 &area, const Profile8 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter), feebasTile(feebasTile)
 {
 }
 
@@ -83,12 +83,18 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
 
     bool encounterForce = lead >= Lead::MagnetPull && lead <= Lead::StormDrain;
     auto modifiedSlots = area.getSlots(lead);
+    bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
 
     std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
-        if (encounterForce && rngList.next(2) == 0 && !modifiedSlots.empty())
+        if (feebas && rngList.next(2))
+        {
+            encounterSlot = 5;
+            rngList.advance(encounterForce ? 2 : 1);
+        }
+        else if (encounterForce && rngList.next(2) == 0 && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[rngList.next(modifiedSlots.count)];
         }

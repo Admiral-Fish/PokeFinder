@@ -660,6 +660,13 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
                         const auto &slot = data[i].old[j];
                         slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.feebasTile && data[i].location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
                     encounters.emplace_back(data[i].location, data[i].oldRate, encounter, slots);
                 }
                 break;
@@ -671,6 +678,13 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
                         const auto &slot = data[i].good[j];
                         slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.feebasTile && data[i].location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
                     encounters.emplace_back(data[i].location, data[i].goodRate, encounter, slots);
                 }
                 break;
@@ -682,6 +696,13 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
                         const auto &slot = data[i].super[j];
                         slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Mt Coronet B1F
+                    if (settings.feebasTile && data[i].location == 22)
+                    {
+                        slots[5] = Slot(349, 10, 20, &info[349]);
+                    }
+
                     encounters.emplace_back(data[i].location, data[i].superRate, Encounter::SuperRod, slots);
                 }
                 break;

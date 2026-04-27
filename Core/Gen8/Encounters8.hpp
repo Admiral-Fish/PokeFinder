@@ -36,6 +36,7 @@ struct EncounterSettings8
 {
     int time;
     std::array<u16, 2> replacement;
+    bool feebasTile;
     bool radar;
     bool swarm;
 };

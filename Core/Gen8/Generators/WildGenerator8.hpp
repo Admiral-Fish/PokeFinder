@@ -41,12 +41,13 @@ public:
      * @param offset Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param feebasTile Whether Feebas tiles are active
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const EncounterArea8 &area, const Profile8 &profile,
-                   const WildStateFilter &filter);
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, const EncounterArea8 &area,
+                   const Profile8 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -79,6 +80,9 @@ public:
      * @return Vector of computed states
      */
     std::vector<WildState8> generateHoneyTree(u64 seed0, u64 seed1, u8 index) const;
+
+private:
+    bool feebasTile;
 };
 
 #endif // WILDGENERATOR8_HPP

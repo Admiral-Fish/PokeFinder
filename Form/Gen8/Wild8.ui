@@ -281,6 +281,13 @@
        <widget class="ComboBox" name="comboBoxPokemon"/>
       </item>
       <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxFeebasTile">
+        <property name="text">
+         <string>Feebas Tile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
        <widget class="QCheckBox" name="checkBoxRadar">
         <property name="text">
          <string>Radar</string>
@@ -290,7 +297,7 @@
         </attribute>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="6" column="0">
        <widget class="QCheckBox" name="checkBoxSwarm">
         <property name="text">
          <string>Swarm</string>
@@ -300,7 +307,7 @@
         </attribute>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="7" column="0">
        <widget class="QCheckBox" name="checkBoxReplacement">
         <property name="text">
          <string>Replacement</string>
@@ -310,10 +317,10 @@
         </attribute>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="7" column="1">
        <widget class="ComboBox" name="comboBoxReplacement0"/>
       </item>
-      <item row="6" column="2">
+      <item row="7" column="2">
        <widget class="ComboBox" name="comboBoxReplacement1"/>
       </item>
      </layout>
@@ -368,6 +375,7 @@
   <tabstop>comboBoxLocation</tabstop>
   <tabstop>comboBoxTime</tabstop>
   <tabstop>comboBoxPokemon</tabstop>
+  <tabstop>checkBoxFeebasTile</tabstop>
   <tabstop>checkBoxRadar</tabstop>
   <tabstop>checkBoxSwarm</tabstop>
   <tabstop>checkBoxReplacement</tabstop>

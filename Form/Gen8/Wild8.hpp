@@ -84,6 +84,13 @@ private slots:
     void encounterIndexChanged(int index);
 
     /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void feebasTileStateChanged(Qt::CheckState state);
+
+    /**
      * @brief Generates wild encounters from a starting seed
      */
     void generate();

@@ -77,6 +77,7 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     connect(ui->comboBoxEncounter, &QComboBox::currentIndexChanged, this, &Wild8::encounterIndexChanged);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Wild8::pokemonIndexChanged);
+    connect(ui->checkBoxFeebasTile, &QCheckBox::checkStateChanged, this, &Wild8::feebasTileStateChanged);
     connect(ui->comboBoxReplacement0, &QComboBox::currentIndexChanged, this, [=] {
         if (ui->checkBoxReplacement->isChecked())
         {
@@ -155,6 +156,7 @@ void Wild8::updateEncounters()
         settings.replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
         settings.replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
     }
+    settings.feebasTile = ui->checkBoxFeebasTile->isChecked();
     settings.radar = ui->checkBoxRadar->isChecked();
     settings.swarm = ui->checkBoxSwarm->isChecked();
 
@@ -191,6 +193,12 @@ void Wild8::encounterIndexChanged(int index)
         ui->comboBoxLocation->clear();
         ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
     }
+}
+
+void Wild8::feebasTileStateChanged(Qt::CheckState state)
+{
+    updateEncounters();
+    locationIndexChanged(0);
 }
 
 void Wild8::generate()
@@ -235,9 +243,10 @@ void Wild8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 offset = ui->textBoxOffset->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
+    bool feebasTile = ui->checkBoxFeebasTile->isChecked();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, encounters[ui->comboBoxLocation->currentIndex()],
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, encounters[ui->comboBoxLocation->currentIndex()],
                              *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, fixedSlot);
@@ -251,8 +260,10 @@ void Wild8::locationIndexChanged(int index)
         auto &area = encounters[ui->comboBoxLocation->currentIndex()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+        bool feebas = area.feebasLocation(currentProfile->getVersion());
         bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
         bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+        auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
 
         ui->filter->setEncounterSlots(area.getCount());
 
@@ -301,6 +312,16 @@ void Wild8::locationIndexChanged(int index)
 
             ui->comboBoxReplacement0->blockSignals(false);
             ui->comboBoxReplacement1->blockSignals(false);
+        }
+
+        if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+        {
+            ui->checkBoxFeebasTile->setVisible(true);
+        }
+        else
+        {
+            ui->checkBoxFeebasTile->setVisible(false);
+            ui->checkBoxFeebasTile->setChecked(false);
         }
     }
 }
