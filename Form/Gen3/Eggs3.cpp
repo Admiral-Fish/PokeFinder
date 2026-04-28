@@ -29,6 +29,8 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/EggModel3.hpp>
+#include <Model/Gen3/EggModelEmeraldIVs.hpp>
+#include <Model/Gen3/EggModelEmeraldPID.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -37,8 +39,11 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    emerald = new EggModel3(ui->tableViewEmerald, true);
-    ui->tableViewEmerald->setModel(emerald);
+    emeraldPID = new EggModelEmeraldPID(ui->tableViewEmeraldPID);
+    ui->tableViewEmeraldPID->setModel(emeraldPID);
+
+    emeraldIVs = new EggModelEmeraldIVs(ui->tableViewEmeraldIVs);
+    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
 
     rsfrlg = new EggModel3(ui->tableViewRSFRLG, false);
     ui->tableViewRSFRLG->setModel(rsfrlg);
@@ -78,9 +83,9 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
     connect(ui->pushButtonRSFRLGGenerate, &QPushButton::clicked, this, &Eggs3::rsfrlgGenerate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs3::profileManager);
-    connect(ui->eggSettingsEmerald, &EggSettings::showInheritanceChanged, emerald, &EggModel3::setShowInheritance);
+    connect(ui->eggSettingsEmerald, &EggSettings::showInheritanceChanged, emeraldIVs, &EggModelEmeraldIVs::setShowInheritance);
     connect(ui->eggSettingsRSFRLG, &EggSettings::showInheritanceChanged, rsfrlg, &EggModel3::setShowInheritance);
-    connect(ui->filterEmerald, &Filter::showStatsChanged, emerald, &EggModel3::setShowStats);
+    connect(ui->filterEmerald, &Filter::showStatsChanged, emeraldIVs, &EggModelEmeraldIVs::setShowStats);
     connect(ui->filterRSFRLG, &Filter::showStatsChanged, rsfrlg, &EggModel3::setShowStats);
 
     updateProfiles();
@@ -136,7 +141,8 @@ void Eggs3::emeraldGenerate()
         return;
     }
 
-    emerald->clearModel();
+    emeraldPID->clearModel();
+    emeraldIVs->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxEmeraldInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxEmeraldMaxAdvancesHeld->getUInt();
@@ -156,8 +162,8 @@ void Eggs3::emeraldGenerate()
                             calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(), *currentProfile,
                             filter);
 
-    auto states = generator.generate();
-    emerald->addItems(states);
+    emeraldPID->addItems(generator.generateEmeraldHeld());
+    emeraldIVs->addItems(generator.generateEmeraldPickup());
 }
 
 void Eggs3::rsfrlgGenerate()
@@ -189,7 +195,7 @@ void Eggs3::rsfrlgGenerate()
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup, 0, 0,
                             0, method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 
-    auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
+    auto states = generator.generateRSFRLG(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
     rsfrlg->addItems(states);
 }
 

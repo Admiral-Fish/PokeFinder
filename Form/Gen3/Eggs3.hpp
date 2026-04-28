@@ -22,6 +22,8 @@
 
 #include <QWidget>
 
+class EggModelEmeraldIVs;
+class EggModelEmeraldPID;
 class EggModel3;
 class Profile3;
 
@@ -64,7 +66,8 @@ public slots:
 private:
     Ui::Eggs3 *ui;
 
-    EggModel3 *emerald;
+    EggModelEmeraldPID *emeraldPID;
+    EggModelEmeraldIVs *emeraldIVs;
     EggModel3 *rsfrlg;
     Profile3 *currentProfile;
     std::vector<Profile3> profiles;
