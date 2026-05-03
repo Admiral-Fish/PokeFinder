@@ -75,6 +75,7 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     setEditable(true);
     lineEdit()->setReadOnly(true);
     lineEdit()->installEventFilter(this);
+    view()->installEventFilter(this);
 
     model = new QStandardItemModel(this);
     proxyModel = new CheckListProxyModel(this, model);
@@ -234,6 +235,19 @@ bool CheckList::eventFilter(QObject *object, QEvent *event)
             else
             {
                 showPopup();
+                return true;
+            }
+            return false;
+        }
+    }
+    else if (object == view())
+    {
+        if (event->type() == QEvent::KeyPress)
+        {
+            auto *press = reinterpret_cast<QKeyEvent *>(event);
+            if (press->key() == Qt::Key_Enter || press->key() == Qt::Key_Return)
+            {
+                onItemClicked(view()->currentIndex());
                 return true;
             }
             return false;
