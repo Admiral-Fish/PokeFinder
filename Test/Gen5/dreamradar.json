@@ -319,7 +319,7 @@
                 8
             ],
             "gender": [
-                2
+                0
             ],
             "results": [
                 {
@@ -327,7 +327,7 @@
                     "abilityIndex": 136,
                     "advances": 0,
                     "characteristic": 18,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 7,
                     "hiddenPowerStrength": 40,
                     "ivs": [
@@ -357,7 +357,7 @@
                     "abilityIndex": 136,
                     "advances": 1,
                     "characteristic": 15,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 8,
                     "hiddenPowerStrength": 36,
                     "ivs": [
@@ -387,7 +387,7 @@
                     "abilityIndex": 136,
                     "advances": 2,
                     "characteristic": 20,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 1,
                     "hiddenPowerStrength": 40,
                     "ivs": [
@@ -417,7 +417,7 @@
                     "abilityIndex": 136,
                     "advances": 3,
                     "characteristic": 5,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 9,
                     "hiddenPowerStrength": 51,
                     "ivs": [
@@ -447,7 +447,7 @@
                     "abilityIndex": 136,
                     "advances": 4,
                     "characteristic": 20,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 12,
                     "hiddenPowerStrength": 32,
                     "ivs": [
@@ -477,7 +477,7 @@
                     "abilityIndex": 136,
                     "advances": 5,
                     "characteristic": 10,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 9,
                     "hiddenPowerStrength": 56,
                     "ivs": [
@@ -507,7 +507,7 @@
                     "abilityIndex": 136,
                     "advances": 6,
                     "characteristic": 19,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 3,
                     "hiddenPowerStrength": 42,
                     "ivs": [
@@ -537,7 +537,7 @@
                     "abilityIndex": 136,
                     "advances": 7,
                     "characteristic": 24,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 4,
                     "hiddenPowerStrength": 57,
                     "ivs": [
@@ -567,7 +567,7 @@
                     "abilityIndex": 136,
                     "advances": 8,
                     "characteristic": 9,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 0,
                     "hiddenPowerStrength": 68,
                     "ivs": [
@@ -597,7 +597,7 @@
                     "abilityIndex": 136,
                     "advances": 9,
                     "characteristic": 1,
-                    "gender": 0,
+                    "gender": 2,
                     "hiddenPower": 0,
                     "hiddenPowerStrength": 44,
                     "ivs": [
