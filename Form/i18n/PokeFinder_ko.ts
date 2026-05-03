@@ -85,7 +85,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="280"/>
+        <location filename="../Controls/CheckList.cpp" line="294"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10259,22 +10259,22 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="219"/>
+        <location filename="../Gen8/Wild8.cpp" line="228"/>
         <source>Too many slots selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="220"/>
+        <location filename="../Gen8/Wild8.cpp" line="229"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10339,6 +10339,10 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Honey Tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feebas Tile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

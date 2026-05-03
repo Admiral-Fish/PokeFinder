@@ -85,7 +85,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="280"/>
+        <location filename="../Controls/CheckList.cpp" line="294"/>
         <source>Any</source>
         <translation>Alle</translation>
     </message>
@@ -10262,22 +10262,22 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="219"/>
+        <location filename="../Gen8/Wild8.cpp" line="228"/>
         <source>Too many slots selected</source>
         <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="220"/>
+        <location filename="../Gen8/Wild8.cpp" line="229"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
@@ -10343,6 +10343,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Honey Tree</source>
         <translation>Honigbaum</translation>
+    </message>
+    <message>
+        <source>Feebas Tile</source>
+        <translation>Barschwa Kachel</translation>
     </message>
 </context>
 <context>

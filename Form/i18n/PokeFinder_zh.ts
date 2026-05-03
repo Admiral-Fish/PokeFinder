@@ -85,7 +85,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="280"/>
+        <location filename="../Controls/CheckList.cpp" line="294"/>
         <source>Any</source>
         <translation>任意</translation>
     </message>
@@ -1323,7 +1323,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">普通</translation>
     </message>
     <message>
         <source>Split</source>
@@ -10259,22 +10259,22 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>同步</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Missing seeds</source>
         <translation>缺失seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="201"/>
+        <location filename="../Gen8/Wild8.cpp" line="210"/>
         <source>Please insert missing seed information</source>
         <translation>请填写缺失的seed信息</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="219"/>
+        <location filename="../Gen8/Wild8.cpp" line="228"/>
         <source>Too many slots selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="220"/>
+        <location filename="../Gen8/Wild8.cpp" line="229"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10340,6 +10340,10 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <source>Honey Tree</source>
         <translation>甜甜蜜树</translation>
+    </message>
+    <message>
+        <source>Feebas Tile</source>
+        <translation>丑丑鱼钓点</translation>
     </message>
 </context>
 <context>
