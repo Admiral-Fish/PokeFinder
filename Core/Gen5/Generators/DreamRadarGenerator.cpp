@@ -96,9 +96,10 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 
         go.advance(2);
 
+        u8 gender = radarTemplate.getLegend() && !radarTemplate.getGenie() ? 2 : radarTemplate.getGender();
         u8 nature = go.nextUInt(25);
 
-        DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, radarTemplate.getGender(), level, nature, 0, info);
+        DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, gender, level, nature, 0, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
