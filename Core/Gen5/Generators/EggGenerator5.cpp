@@ -196,6 +196,8 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 
     const PersonalInfo *info = nullptr;
     EggState5 state = generateBW2Egg(eggSeed, &info);
+    u8 ability = state.getAbility() == 2 ? 0 : state.getAbility();
+
     if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs())
         && filter.compareHiddenPower(state.getHiddenPower()))
     {
@@ -210,10 +212,10 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
             // Temp PID/Nature
             go.advance(2);
 
-            u32 pid = Utilities5::createPID(tsv, state.getAbility(), 255, Shiny::Random, false, info->getGender(), go);
+            u32 pid = Utilities5::createPID(tsv, ability, 255, Shiny::Random, false, info->getGender(), go);
             for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
             {
-                pid = Utilities5::createPID(tsv, state.getAbility(), 255, Shiny::Random, false, info->getGender(), go);
+                pid = Utilities5::createPID(tsv, ability, 255, Shiny::Random, false, info->getGender(), go);
             }
 
             state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),

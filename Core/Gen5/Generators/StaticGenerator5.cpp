@@ -223,7 +223,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         u32 pid;
         for (u8 i = 0; i < shinyRolls; i++)
         {
-            pid = Utilities5::createPID(tsv, staticTemplate.getAbility(), gender, staticTemplate.getShiny(), true, info->getGender(), go);
+            pid = Utilities5::createPID(tsv, 2, gender, staticTemplate.getShiny(), true, info->getGender(), go);
             if (Utilities::isShiny<true>(pid, tsv))
             {
                 break;
