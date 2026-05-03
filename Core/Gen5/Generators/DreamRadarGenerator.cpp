@@ -65,6 +65,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
 std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 {
     const PersonalInfo *info = radarTemplate.getInfo();
+    u8 gender = radarTemplate.getLegend() && !radarTemplate.getGenie() ? 2 : radarTemplate.getGender();
 
     BWRNG rng(seed, (initialAdvances * 2) + Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
     auto jump = rng.getJump(pidAdvances);
@@ -98,7 +99,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 
         u8 nature = go.nextUInt(25);
 
-        DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, radarTemplate.getGender(), level, nature, 0, info);
+        DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, gender, level, nature, 0, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
