@@ -18,6 +18,7 @@
  */
 
 #include "WildSearcher3Test.hpp"
+#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
@@ -98,7 +99,7 @@ void WildSearcher3Test::search()
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher3 searcher(method, lead, settings.feebasTile, *encounterArea, profile, filter);
+    WildSearcher3 searcher(method, lead, settings.feebasTile, false, ItemEffect::None, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();

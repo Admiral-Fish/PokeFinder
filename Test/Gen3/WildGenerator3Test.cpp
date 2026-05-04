@@ -19,6 +19,7 @@
 
 #include "WildGenerator3Test.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
@@ -100,7 +101,7 @@ void WildGenerator3Test::generate()
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, *encounterArea, profile, filter);
+    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, false, ItemEffect::None, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
