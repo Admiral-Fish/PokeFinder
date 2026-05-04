@@ -109,7 +109,7 @@ void WildSearcher3Test::search()
     {
         // Ensure generator agrees
         WildGenerator3 generator(0, 0, 0, method, lead != Lead::Synchronize ? lead : lead + state.getNature(), settings.feebasTile,
-                                 *encounterArea, profile, filter);
+                                 false, ItemEffect::None, *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);

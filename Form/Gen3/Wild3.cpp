@@ -269,6 +269,7 @@ void Wild3::generatorLocationIndexChanged(int index)
         else {
             ui->labelGeneratorItemEffect->setVisible(false);
             ui->comboBoxGeneratorItemEffect->setVisible(false);
+            ui->comboBoxGeneratorItemEffect->setCurrentIndex(toInt(ItemEffect::None));
             ui->checkBoxGeneratorBike->setVisible(false);
             ui->checkBoxGeneratorBike->setChecked(false);
         }
@@ -454,6 +455,7 @@ void Wild3::searcherLocationIndexChanged(int index)
         else {
             ui->labelSearcherItemEffect->setVisible(false);
             ui->comboBoxSearcherItemEffect->setVisible(false);
+            ui->comboBoxSearcherItemEffect->setCurrentIndex(toInt(ItemEffect::None));
             ui->checkBoxSearcherBike->setVisible(false);
             ui->checkBoxSearcherBike->setChecked(false);
         }
