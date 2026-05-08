@@ -59,6 +59,7 @@ struct WildEncounterDPPt
     u16 day[2];
     u16 night[2];
     u16 radar[4];
+    u8 form[2];
     u16 ruby[2];
     u16 sapphire[2];
     u16 emerald[2];
@@ -69,7 +70,7 @@ struct WildEncounterDPPt
     DynamicSlot good[5];
     DynamicSlot super[5];
 };
-static_assert(sizeof(WildEncounterDPPt) == 174);
+static_assert(sizeof(WildEncounterDPPt) == 176);
 
 struct WildEncounterDPPtHoney
 {
@@ -196,7 +197,8 @@ constexpr std::array<u16, 15> greatMarshDPDex = { 46, 55, 102, 115, 193, 285, 31
 constexpr std::array<u16, 15> greatMarshPt = { 114, 193, 194, 195, 357, 451, 453, 455 };
 constexpr std::array<u16, 15> greatMarshPtDex = { 46, 102, 114, 115, 193, 195, 285, 316, 352, 357, 451, 452, 453, 454, 455 };
 
-constexpr std::array<u8, 21> honeyTreeMapIDs = { 145, 146, 147, 148, 149, 150, 156, 157, 159, 160, 161, 162, 163, 164, 167, 169, 170, 7, 8, 9, 183 };
+constexpr std::array<u8, 21> honeyTreeMapIDs
+    = { 145, 146, 147, 148, 149, 150, 156, 157, 159, 160, 161, 162, 163, 164, 167, 169, 170, 7, 8, 9, 183 };
 
 constexpr std::array<u16, 16> trophyGardenDP = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 constexpr std::array<u16, 16> trophyGardenPt = { 35, 39, 52, 113, 132, 133, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
@@ -479,6 +481,19 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
             data = Utilities::decompress<WildEncounterDPPt>(PLATINUM.data(), PLATINUM.size(), length);
         }
 
+        // Form handling for Shellos/Gastrodon
+        auto getForm = [&data](u16 specie) -> u8 {
+            if (specie == 422)
+            {
+                return !data->form[0];
+            }
+            else if (specie == 423)
+            {
+                return !data->form[1];
+            }
+            return 0;
+        };
+
         for (size_t i = 0; i < length; i++)
         {
             std::array<Slot, 12> slots;
@@ -490,7 +505,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     for (size_t j = 0; j < 12; j++)
                     {
                         const auto &slot = data[i].grass[j];
-                        slots[j] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                        slots[j] = Slot(slot.specie, getForm(slot.specie), slot.level, slot.level, &info[slot.specie]);
                     }
                     modifySwarmDPPt(slots, &data[i], info, settings.swarm);
                     modifyTimeDPPt(slots, &data[i], info, settings.time);
@@ -507,7 +522,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     for (size_t j = 0; j < 5; j++)
                     {
                         const auto &slot = data[i].surf[j];
-                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        slots[j] = Slot(slot.specie, getForm(slot.specie), slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(data[i].location, data[i].surfRate, encounter, slots);
                 }
@@ -518,7 +533,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     for (size_t j = 0; j < 5; j++)
                     {
                         const auto &slot = data[i].old[j];
-                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        slots[j] = Slot(slot.specie, getForm(slot.specie), slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Mt Coronet B1F
@@ -536,7 +551,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     for (size_t j = 0; j < 5; j++)
                     {
                         const auto &slot = data[i].good[j];
-                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        slots[j] = Slot(slot.specie, getForm(slot.specie), slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Mt Coronet B1F
@@ -554,7 +569,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     for (size_t j = 0; j < 5; j++)
                     {
                         const auto &slot = data[i].super[j];
-                        slots[j] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        slots[j] = Slot(slot.specie, getForm(slot.specie), slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
 
                     // Insert Feebas for Mt Coronet B1F

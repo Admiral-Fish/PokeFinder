@@ -231,7 +231,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
         u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
 
-        u8 form = 0;
+        u8 form = slot.getForm();
         if (slot.getSpecie() == 201)
         {
             form = area.unownForm(go.nextUShort(&battleAdvances));
