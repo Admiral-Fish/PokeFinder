@@ -1,7 +1,7 @@
 project(PokeFinderTest)
 
 find_package(Qt6 COMPONENTS Test REQUIRED)
-find_package(Python3 COMPONENTS Interpreter REQUIRED)
+find_package(Python3 3.14 COMPONENTS Interpreter REQUIRED)
 
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/enum_map.py)
 
