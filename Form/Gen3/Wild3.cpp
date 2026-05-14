@@ -21,6 +21,7 @@
 #include "ui_Wild3.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Encounters3.hpp>
@@ -64,6 +65,12 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
                                             toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                            toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
+
+    ui->comboBoxGeneratorItemEffect->setup({ toInt(ItemEffect::None), toInt(ItemEffect::BlackFlute), toInt(ItemEffect::CleanseTag),
+                                             toInt(ItemEffect::WhiteFlute) });
+
+    ui->comboBoxSearcherItemEffect->setup({ toInt(ItemEffect::None), toInt(ItemEffect::BlackFlute), toInt(ItemEffect::CleanseTag),
+                                             toInt(ItemEffect::WhiteFlute) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
@@ -193,9 +200,11 @@ void Wild3::generate()
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
+    bool bike = ui->checkBoxGeneratorBike->isChecked();
+    auto effect = ui->comboBoxGeneratorItemEffect->getEnum<ItemEffect>();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator3 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile,
+    WildGenerator3 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, bike, effect,
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -250,6 +259,19 @@ void Wild3::generatorLocationIndexChanged(int index)
         {
             ui->checkBoxGeneratorFeebasTile->setVisible(false);
             ui->checkBoxGeneratorFeebasTile->setChecked(false);
+        }
+
+        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash) {
+            ui->labelGeneratorItemEffect->setVisible(true);
+            ui->comboBoxGeneratorItemEffect->setVisible(true);
+            ui->checkBoxGeneratorBike->setVisible(true);
+        }
+        else {
+            ui->labelGeneratorItemEffect->setVisible(false);
+            ui->comboBoxGeneratorItemEffect->setVisible(false);
+            ui->comboBoxGeneratorItemEffect->setCurrentIndex(toInt(ItemEffect::None));
+            ui->checkBoxGeneratorBike->setVisible(false);
+            ui->checkBoxGeneratorBike->setChecked(false);
         }
 
         ui->comboBoxGeneratorPokemon->clear();
@@ -338,9 +360,11 @@ void Wild3::search()
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
+    bool bike = ui->checkBoxSearcherBike->isChecked();
+    auto effect = ui->comboBoxSearcherItemEffect->getEnum<ItemEffect>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, lead, feebas, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
+    auto *searcher = new WildSearcher3(method, lead, feebas, bike, effect, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
                                        *currentProfile, filter);
 
     int maxProgress = 1;
@@ -421,6 +445,19 @@ void Wild3::searcherLocationIndexChanged(int index)
         {
             ui->checkBoxSearcherFeebasTile->setVisible(false);
             ui->checkBoxSearcherFeebasTile->setChecked(false);
+        }
+
+        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash) {
+            ui->labelSearcherItemEffect->setVisible(true);
+            ui->comboBoxSearcherItemEffect->setVisible(true);
+            ui->checkBoxSearcherBike->setVisible(true);
+        }
+        else {
+            ui->labelSearcherItemEffect->setVisible(false);
+            ui->comboBoxSearcherItemEffect->setVisible(false);
+            ui->comboBoxSearcherItemEffect->setCurrentIndex(toInt(ItemEffect::None));
+            ui->checkBoxSearcherBike->setVisible(false);
+            ui->checkBoxSearcherBike->setChecked(false);
         }
 
         ui->comboBoxSearcherPokemon->clear();

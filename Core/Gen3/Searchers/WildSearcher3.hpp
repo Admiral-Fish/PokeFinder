@@ -20,6 +20,7 @@
 #ifndef WILDSEARCHER3_HPP
 #define WILDSEARCHER3_HPP
 
+#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
@@ -43,8 +44,8 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
-                  const WildStateFilter &filter);
+    WildSearcher3(Method method, Lead lead, bool feebasTile, bool bike, ItemEffect effect, const EncounterArea3 &area,
+                  const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -57,6 +58,8 @@ public:
 private:
     u16 rate;
     bool feebasTile;
+    bool bike;
+    ItemEffect effect;
     bool ivAdvance;
     ModifiedSlots modifiedSlots;
 
