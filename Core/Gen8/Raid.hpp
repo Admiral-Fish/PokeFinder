@@ -94,10 +94,10 @@ public:
 
         if (low == high)
         {
-            return std::to_string(low + 1) + "★";
+            return std::to_string(low + 1) + "*";
         }
 
-        return std::to_string(low + 1) + "-" + std::to_string(high + 1) + "★";
+        return std::to_string(low + 1) + "-" + std::to_string(high + 1) + "*";
     }
 
 private:

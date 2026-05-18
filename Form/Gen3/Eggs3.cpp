@@ -22,14 +22,19 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
+#include <Core/Gen3/Searchers/EggSearcher3.hpp>
+#include <Core/Gen3/States/EggState3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/EggModel3.hpp>
+#include <QGridLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 
 Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
@@ -78,6 +83,18 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
     connect(ui->pushButtonRSFRLGGenerate, &QPushButton::clicked, this, &Eggs3::rsfrlgGenerate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs3::profileManager);
+
+    // Add Search button for RS/FRLG
+    QPushButton *searchButton = new QPushButton(tr("Search"));
+    auto *rsfrlgLayout = qobject_cast<QGridLayout *>(ui->pushButtonRSFRLGGenerate->parentWidget()->layout());
+    if (rsfrlgLayout)
+    {
+        int row, col, rowSpan, colSpan;
+        auto index = rsfrlgLayout->indexOf(ui->pushButtonRSFRLGGenerate);
+        rsfrlgLayout->getItemPosition(index, &row, &col, &rowSpan, &colSpan);
+        rsfrlgLayout->addWidget(searchButton, row + 1, col, 1, 1);
+    }
+    connect(searchButton, &QPushButton::clicked, this, &Eggs3::rsfrlgSearch);
     connect(ui->eggSettingsEmerald, &EggSettings::showInheritanceChanged, emerald, &EggModel3::setShowInheritance);
     connect(ui->eggSettingsRSFRLG, &EggSettings::showInheritanceChanged, rsfrlg, &EggModel3::setShowInheritance);
     connect(ui->filterEmerald, &Filter::showStatsChanged, emerald, &EggModel3::setShowStats);
@@ -175,6 +192,7 @@ void Eggs3::rsfrlgGenerate()
     }
 
     rsfrlg->clearModel();
+    rsfrlg->setShowSeeds(false);
 
     u32 initialAdvancesHeld = ui->textBoxRSFRLGInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxRSFRLGMaxAdvancesHeld->getUInt();
@@ -190,6 +208,59 @@ void Eggs3::rsfrlgGenerate()
                             0, method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 
     auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
+    rsfrlg->addItems(states);
+}
+
+void Eggs3::rsfrlgSearch()
+{
+    if (!ui->eggSettingsRSFRLG->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
+        box.exec();
+        return;
+    }
+
+    if (!ui->filterRSFRLG->isValid())
+    {
+        return;
+    }
+
+    rsfrlg->clearModel();
+    rsfrlg->setShowSeeds(true);
+
+    u32 initialAdvancesHeld = ui->textBoxRSFRLGInitialAdvancesHeld->getUInt();
+    u32 maxAdvancesHeld = ui->textBoxRSFRLGMaxAdvancesHeld->getUInt();
+    u32 offsetHeld = ui->textBoxRSFRLGOffsetHeld->getUInt();
+    u32 initialAdvancesPickup = ui->textBoxRSFRLGInitialAdvancesPickup->getUInt();
+    u32 maxAdvancesPickup = ui->textBoxRSFRLGMaxAdvancesPickup->getUInt();
+    u32 offsetPickup = ui->textBoxRSFRLGOffsetPickup->getUInt();
+
+    if (maxAdvancesHeld > 5000)
+    {
+        auto result = QMessageBox::question(this, tr("Search"),
+                                            tr("Max Held Advances > 5000 may cause high memory usage (%.1f GB). Continue?")
+                                                .arg(maxAdvancesHeld * 65536.0 * 0.5 * 6 / (1024 * 1024 * 1024)),
+                                            QMessageBox::Yes | QMessageBox::No);
+        if (result == QMessageBox::No)
+        {
+            return;
+        }
+    }
+
+    u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentUChar();
+    auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
+
+    auto filter = ui->filterRSFRLG->getFilter<StateFilter>();
+    auto minIVs = ui->filterRSFRLG->getMinIVs();
+    auto maxIVs = ui->filterRSFRLG->getMaxIVs();
+
+    EggSearcher3 searcher(method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter,
+                          initialAdvancesHeld, maxAdvancesHeld, offsetHeld,
+                          initialAdvancesPickup, maxAdvancesPickup, offsetPickup);
+
+    searcher.startSearch(minIVs, maxIVs);
+
+    auto states = searcher.getResults();
     rsfrlg->addItems(states);
 }
 

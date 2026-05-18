@@ -81,6 +81,11 @@ private slots:
     void rsfrlgGenerate();
 
     /**
+     * @brief Searches for matching held seed and pickup seed combinations for RS/FRLG
+     */
+    void rsfrlgSearch();
+
+    /**
      * @brief Updates displayed information for a profile
      *
      * @param index Profile index

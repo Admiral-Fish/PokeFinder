@@ -40,7 +40,7 @@ public:
      */
     EggState3(u32 advances, u8 redraws, u32 pid, u8 gender, u8 shiny, const PersonalInfo *info) :
         EggGeneratorState(advances, pid, { 0, 0, 0, 0, 0, 0 }, pid & 1, gender, 5, pid % 25, shiny, { 0, 0, 0, 0, 0, 0 }, info),
-        redraws(redraws)
+        redraws(redraws), seedHeld(0), seedPickup(0)
     {
     }
 
@@ -54,7 +54,8 @@ public:
      * @param info Pokemon information
      */
     EggState3(u32 advances, u16 low, u8 gender, const PersonalInfo *info) :
-        EggGeneratorState(advances, low, { 0, 0, 0, 0, 0, 0 }, low & 1, gender, 5, 0, 0, { 0, 0, 0, 0, 0, 0 }, info), redraws(0)
+        EggGeneratorState(advances, low, { 0, 0, 0, 0, 0, 0 }, low & 1, gender, 5, 0, 0, { 0, 0, 0, 0, 0, 0 }, info), redraws(0), seedHeld(0),
+        seedPickup(0)
     {
     }
 
@@ -76,6 +77,46 @@ public:
     u8 getRedraws() const
     {
         return redraws;
+    }
+
+    /**
+     * @brief Returns the held seed of the state
+     *
+     * @return Held seed
+     */
+    u16 getSeedHeld() const
+    {
+        return seedHeld;
+    }
+
+    /**
+     * @brief Returns the pickup seed of the state
+     *
+     * @return Pickup seed
+     */
+    u16 getSeedPickup() const
+    {
+        return seedPickup;
+    }
+
+    /**
+     * @brief Sets the held seed
+     *
+     * @param seed Held seed value
+     */
+    void setSeedHeld(u16 seed)
+    {
+        seedHeld = seed;
+    }
+
+    /**
+     * @brief Sets the pickup seed
+     *
+     * @param seed Pickup seed value
+     */
+    void setSeedPickup(u16 seed)
+    {
+        seedPickup = seed;
     }
 
     /**
@@ -119,6 +160,8 @@ public:
 private:
     u32 pickupAdvances;
     u8 redraws;
+    u16 seedHeld;
+    u16 seedPickup;
 };
 
 #endif // EGGSTATE3_HPP

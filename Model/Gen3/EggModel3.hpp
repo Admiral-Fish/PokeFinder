@@ -83,6 +83,13 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays seed columns
+     *
+     * @param flag Whether to show seed columns
+     */
+    void setShowSeeds(bool flag);
+
 private:
     QStringList header = { tr("Held Advances"), tr("Pickup Advances"),
                            tr("Redraws"),       tr("PID"),
@@ -95,6 +102,7 @@ private:
     bool emerald;
     bool showInheritance;
     bool showStats;
+    bool showSeeds;
 
     int getColumn(int column) const;
 };

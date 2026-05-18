@@ -20,13 +20,18 @@
 #include "EggModel3.hpp"
 #include <Core/Util/Translator.hpp>
 
-EggModel3::EggModel3(QObject *parent, bool emerald) : TableModel(parent), emerald(emerald), showInheritance(false), showStats(false)
+EggModel3::EggModel3(QObject *parent, bool emerald) :
+    TableModel(parent), emerald(emerald), showInheritance(false), showStats(false), showSeeds(false)
 {
 }
 
 int EggModel3::columnCount(const QModelIndex &parent) const
 {
-    if (emerald)
+    if (showSeeds)
+    {
+        return 17;
+    }
+    else if (emerald)
     {
         return 16;
     }
@@ -40,9 +45,24 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
+        const auto &state = model[index.row()];
+
+        // 搜索模式下的种子列
+        if (showSeeds)
+        {
+            switch (index.column())
+            {
+            case 0:
+                return QString::number(state.getSeedHeld(), 16).toUpper().rightJustified(4, '0');
+            case 1:
+                return QString::number(state.getSeedPickup(), 16).toUpper().rightJustified(4, '0');
+            default:
+                break;
+            }
+        }
+
         int column = getColumn(index.column());
 
-        const auto &state = model[index.row()];
         switch (column)
         {
         case 0:
@@ -93,6 +113,18 @@ QVariant EggModel3::headerData(int section, Qt::Orientation orientation, int rol
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (showSeeds)
+        {
+            switch (section)
+            {
+            case 0:
+                return tr("Held Seed");
+            case 1:
+                return tr("Pickup Seed");
+            default:
+                break;
+            }
+        }
         section = getColumn(section);
         return header[section];
     }
@@ -111,14 +143,27 @@ void EggModel3::setShowStats(bool flag)
     emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
+void EggModel3::setShowSeeds(bool flag)
+{
+    showSeeds = flag;
+    emit layoutChanged();
+}
+
 int EggModel3::getColumn(int column) const
 {
+    // Search mode: first two columns are seedHeld/seedPickup, rest shift by 2
+    if (showSeeds)
+    {
+        column -= 2;
+    }
+
     if (emerald)
     {
         return column;
     }
     else
     {
+        // Non-Emerald: skip header[2] (Redraws)
         return column > 1 ? column + 1 : column;
     }
 }

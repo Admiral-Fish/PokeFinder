@@ -1,7 +1,7 @@
 project(PokeFinderCore)
 
 if (MSVC)
-    add_compile_options(/Zc:inline)
+    add_compile_options(/Zc:inline /utf-8)
 endif ()
 
 if (SIMD)
@@ -57,6 +57,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Profile3.hpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
     Gen3/Searchers/ChannelSeedSearcher.hpp
+    Gen3/Searchers/EggSearcher3.cpp
+    Gen3/Searchers/EggSearcher3.hpp
     Gen3/Searchers/ColoSeedSearcher.cpp
     Gen3/Searchers/ColoSeedSearcher.hpp
     Gen3/Searchers/GalesSeedSearcher.cpp
