@@ -62,18 +62,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<EggState3> generate(u32 seedHeld = 0, u32 seedPickup = 0) const;
-
-private:
-    u32 initialAdvancesPickup;
-    u32 maxAdvancesPickup;
-    u32 offsetPickup;
-    u8 calibration;
-    u8 inh;
-    u8 iv1;
-    u8 iv2;
-    u8 maxRedraw;
-    u8 minRedraw;
+    std::vector<EggState3> generateRSFRLG(u32 seedHeld = 0, u32 seedPickup = 0) const;
 
     /**
      * @brief Generates states for when the daycare man has the egg
@@ -85,11 +74,20 @@ private:
     /**
      * @brief Generates states for picking up the egg from the daycare man
      *
-     * @param held Vector of held states
-     *
      * @return Vector of computed pickup states
      */
-    std::vector<EggState3> generateEmeraldPickup(const std::vector<EggState3> &held) const;
+    std::vector<EggState3> generateEmeraldPickup() const;
+
+private:
+    u32 initialAdvancesPickup;
+    u32 maxAdvancesPickup;
+    u32 offsetPickup;
+    u8 calibration;
+    u8 inh;
+    u8 iv1;
+    u8 iv2;
+    u8 maxRedraw;
+    u8 minRedraw;
 
     /**
      * @brief Generates states for when the daycare man has the egg

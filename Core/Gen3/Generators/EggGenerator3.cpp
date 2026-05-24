@@ -175,28 +175,10 @@ EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u
     }
 }
 
-std::vector<EggState3> EggGenerator3::generate(u32 seedHeld, u32 seedPickup) const
+std::vector<EggState3> EggGenerator3::generateRSFRLG(u32 seedHeld, u32 seedPickup) const
 {
-    switch (method)
-    {
-    case Method::EBred:
-    case Method::EBredSplit:
-    case Method::EBredAlternate:
-    {
-        auto held = generateEmeraldHeld();
-        return held.empty() ? held : generateEmeraldPickup(held);
-    }
-    case Method::RSFRLGBredSplit:
-    case Method::RSFRLGBred:
-    case Method::RSFRLGBredAlternate:
-    case Method::RSFRLGBredMixed:
-    {
-        auto held = generateRSFRLGHeld(seedHeld);
-        return held.empty() ? held : generateRSFRLGPickup(seedPickup, held);
-    }
-    default:
-        return std::vector<EggState3>();
-    }
+    auto held = generateRSFRLGHeld(seedHeld);
+    return held.empty() ? held : generateRSFRLGPickup(seedPickup, held);
 }
 
 std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
@@ -286,28 +268,20 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
 
             EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info),
                             Utilities::getShiny<true>(pid, tsv), info);
-            if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
+            if (filter.compareNature(state.getNature()) && filter.compareShiny(state.getShiny()) && filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
             {
                 states.emplace_back(state);
             }
         }
     }
 
+    std::sort(states.begin(), states.end(), compare);
     return states;
 }
 
-std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<EggState3> &held) const
+std::vector<EggState3> EggGenerator3::generateEmeraldPickup() const
 {
     const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
-    const PersonalInfo *male = nullptr;
-    if (daycare.getEggSpecie() == 29) // Nidoran
-    {
-        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
-    }
-    else if (daycare.getEggSpecie() == 314) // Illumise
-    {
-        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
-    }
 
     PokeRNG rng(0, initialAdvancesPickup + offsetPickup);
 
@@ -344,24 +318,14 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<Eg
         std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
         setInheritance<true>(daycare, ivs, inheritance, inh, par);
 
-        for (auto state : held)
+        // Empty values since these won't be shown in the Pickup table
+        EggState3 state(0, 0, 0, 0, 0, base);
+        state.update(initialAdvancesPickup + cnt, ivs, inheritance, base);
+        if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareIV(state.getIVs()))
         {
-            const PersonalInfo *info = base;
-            if (male && (state.getPID() & 0x8000))
-            {
-                info = male;
-            }
-
-            state.update(initialAdvancesPickup + cnt, ivs, inheritance, info);
-            if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareNature(state.getNature())
-                && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs()))
-            {
-                states.emplace_back(state);
-            }
+            states.emplace_back(state);
         }
     }
-
-    std::sort(states.begin(), states.end(), compare);
     return states;
 }
 
