@@ -9563,7 +9563,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../Gen4/Wild4.cpp" line="355"/>
         <location filename="../Gen4/Wild4.cpp" line="673"/>
         <source>Please select a single encounter slot for Poke Radar</source>
-        <translation>Per favore seleziona un unico slot incotro per il RAdar Pokémon</translation>
+        <translation>Per favore seleziona un unico slot incotro per il Poke Radar</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="371"/>
@@ -9658,7 +9658,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Poke Radar</source>
-        <translation>RAdar Pokémon</translation>
+        <translation>Poke Radar</translation>
     </message>
     <message>
         <source>Max Advances</source>
