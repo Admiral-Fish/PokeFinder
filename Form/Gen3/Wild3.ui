@@ -201,6 +201,9 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="1">
+           <widget class="ComboBoxProxy" name="comboBoxGeneratorLocation"/>
+          </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorEncounter">
             <item>
@@ -235,15 +238,19 @@
             </item>
            </widget>
           </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxGeneratorFeebasTile">
+            <property name="text">
+             <string>Feebas Tile</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorLocation">
             <property name="text">
              <string>Location</string>
             </property>
            </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBoxProxy" name="comboBoxGeneratorLocation"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorPokemon">
@@ -255,11 +262,42 @@
           <item row="2" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxGeneratorFeebasTile">
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxGeneratorBike">
             <property name="text">
-             <string>Feebas Tile</string>
+             <string>Bike</string>
             </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorItemEffect">
+            <property name="text">
+             <string>Item Effect</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorItemEffect">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Black Flute</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cleanse Tag</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>White Flute</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -365,11 +403,28 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_10">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherEncounter">
-            <property name="text">
-             <string>Encounter</string>
-            </property>
+          <item row="3" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherItemEffect">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Black Flute</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cleanse Tag</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>White Flute</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="0" column="1">
@@ -406,15 +461,22 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherLocation">
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxSearcherFeebasTile">
             <property name="text">
-             <string>Location</string>
+             <string>Feebas Tile</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
            <widget class="ComboBoxProxy" name="comboBoxSearcherLocation"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherItemEffect">
+            <property name="text">
+             <string>Item Effect</string>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherPokemon">
@@ -423,13 +485,27 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherLocation">
+            <property name="text">
+             <string>Location</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxSearcherFeebasTile">
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxSearcherBike">
             <property name="text">
-             <string>Feebas Tile</string>
+             <string>Bike</string>
             </property>
            </widget>
           </item>
@@ -504,11 +580,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboMenu</class>
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
@@ -528,7 +599,9 @@
   <tabstop>comboBoxGeneratorEncounter</tabstop>
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
+  <tabstop>comboBoxGeneratorItemEffect</tabstop>
   <tabstop>checkBoxGeneratorFeebasTile</tabstop>
+  <tabstop>checkBoxGeneratorBike</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
@@ -537,7 +610,9 @@
   <tabstop>comboBoxSearcherEncounter</tabstop>
   <tabstop>comboBoxSearcherLocation</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
+  <tabstop>comboBoxSearcherItemEffect</tabstop>
   <tabstop>checkBoxSearcherFeebasTile</tabstop>
+  <tabstop>checkBoxSearcherBike</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

@@ -20,6 +20,7 @@
 #ifndef WILDGENERATOR3_HPP
 #define WILDGENERATOR3_HPP
 
+#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
@@ -44,8 +45,8 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, const EncounterArea3 &area,
-                   const Profile3 &profile, const WildStateFilter &filter);
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool bike, ItemEffect effect,
+                   const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -58,6 +59,8 @@ public:
 
 private:
     bool feebasTile;
+    bool bike;
+    ItemEffect effect;
 };
 
 #endif // WILDGENERATOR3_HPP
