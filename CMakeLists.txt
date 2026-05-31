@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.31)
 
-if (APPLE)
+if (APPLE AND NOT DEFINED CMAKE_OSX_ARCHITECTURES)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
 endif()
 
