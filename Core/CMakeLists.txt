@@ -4,21 +4,10 @@ if (MSVC)
     add_compile_options(/Zc:inline)
 endif ()
 
-if (SIMD)
-    add_definitions(-DSIMD)
-
-    if (APPLE)
-        add_compile_options(-msse2 -mssse3 -mavx -mavx2 -mfpu=neon)
-    elseif (MINGW OR UNIX)
-        include(GetTargetArch)
-        get_target_arch(ARCH)
-        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-            add_compile_options(-msse2 -mssse3 -mavx -mavx2)
-        elseif (ARCH STREQUAL "arm")
-            add_compile_options(-mfpu=neon)
-        endif ()
-    endif ()
-endif()
+if (MINGW OR UNIX)
+    include(GetTargetArch)
+    get_target_arch(ARCH)
+endif ()
 
 find_package(Python3 3.14 COMPONENTS Interpreter REQUIRED)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
@@ -277,3 +266,29 @@ add_library(PokeFinderCore STATIC
 
 target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External)
 target_link_libraries(PokeFinderCore libzstd_static)
+
+if (SIMD)
+    target_compile_definitions(PokeFinderCore PRIVATE SIMD)
+
+    if (APPLE)
+        if (CMAKE_OSX_ARCHITECTURES MATCHES "x86_64")
+            if (CMAKE_OSX_ARCHITECTURES MATCHES "arm64")
+                # Universal binary: scope x86 SIMD flags to the x86_64 slice only.
+                # arm64 always has NEON; -mfpu= is ARMv7-only and must not be passed.
+                # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
+                target_compile_options(PokeFinderCore PRIVATE
+                    "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
+                    "SHELL:-Xarch_x86_64 -mavx" "SHELL:-Xarch_x86_64 -mavx2")
+            else()
+                target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+            endif()
+        endif()
+        # arm64-only: NEON is always enabled by default, no explicit flag needed.
+    elseif (MINGW OR UNIX)
+        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
+            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+        elseif (ARCH STREQUAL "arm")
+            target_compile_options(PokeFinderCore PRIVATE -mfpu=neon)
+        endif ()
+    endif ()
+endif()
