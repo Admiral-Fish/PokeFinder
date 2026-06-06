@@ -127,6 +127,29 @@
 541,Ballon
 545,Bulbe
 546,Pile
+548,Joyau Feu
+549,Joyau Eau
+550,Joyau Électr
+551,Joyau Plante
+552,Joyau Glace
+553,Joyau Combat
+554,Joyau Poison
+555,Joyau Sol
+556,Joyau Vol
+557,Joyau Psy
+558,Joyau Insect
+559,Joyau Roche
+560,Joyau Spectr
+561,Joyau Dragon
+562,Joyau Ténèbr
+563,Joyau Acier
+564,Joyau Normal
+565,Aile Santé
+566,Aile Force
+567,Aile Armure
+568,Aile Esprit
+569,Aile Mental
+570,Aile Sprint
 571,Jolie Plume
 580,Champi Suave
 581,Maxi Pépite

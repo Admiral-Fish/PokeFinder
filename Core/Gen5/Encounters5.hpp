@@ -26,6 +26,7 @@
 class DreamRadarTemplate;
 class EncounterArea5;
 class HiddenGrottoArea;
+class PhenomenonArea;
 class Profile5;
 class StaticTemplate5;
 enum class Encounter : u8;
@@ -67,6 +68,13 @@ namespace Encounters5
      * @return Vector of grotto encounters
      */
     std::vector<HiddenGrottoArea> getHiddenGrottoEncounters();
+
+    /**
+     * @brief Gets phenomenon encounters
+     *
+     * @return Vector of phenomenon encounters
+     */
+    std::vector<PhenomenonArea> getPhenomenonEncounters();
 
     /**
      * @brief Gets static encounters from the \p type

@@ -57,9 +57,9 @@ static u8 gen(MT &rng)
 }
 
 HiddenGrottoSlotGenerator::HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, PassPower grottoPower,
-                                                     const HiddenGrottoArea &encounterArea, const Profile5 &profile,
+                                                     const HiddenGrottoArea &area, const Profile5 &profile,
                                                      const HiddenGrottoFilter &filter) :
-    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), encounterArea(encounterArea), grottoPower(grottoPower)
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), area(area), grottoPower(grottoPower)
 {
 }
 
@@ -97,7 +97,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
 
         if (slot < 3) // Pokemon
         {
-            const auto &pokemon = encounterArea.getPokemon(group, slot);
+            const auto &pokemon = area.getPokemon(group, slot);
             u8 gender = go.nextUInt(100) < pokemon.getGender();
             HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender, valid);
             if (filter.compareState(state))
@@ -107,7 +107,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
         }
         else if (slot < 7) // Item
         {
-            u16 item = encounterArea.getItem(group, slot - 3);
+            u16 item = area.getItem(group, slot - 3);
             HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item, valid);
             if (filter.compareState(state))
             {
@@ -116,7 +116,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
         }
         else // Hidden item
         {
-            u16 item = encounterArea.getHiddenItem(group, slot - 7);
+            u16 item = area.getHiddenItem(group, slot - 7);
             HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item, valid);
             if (filter.compareState(state))
             {
