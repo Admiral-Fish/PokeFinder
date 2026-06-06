@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>
+#include <Core/Gen5/PhenomenonArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
@@ -255,6 +256,22 @@ namespace Encounters5
             }
 
             encounters.emplace_back(data[i].location, pokemon, data[i].items, data[i].hiddenItems);
+        }
+        delete[] data;
+        return encounters;
+    }
+
+    std::vector<PhenomenonArea> getPhenomenonEncounters()
+    {
+        u32 length;
+        auto *data = Utilities::decompress<WildEncounterGrotto>(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
+
+        std::vector<PhenomenonArea> encounters;
+        for (size_t i = 0; i < length; i++)
+        {
+
         }
         delete[] data;
         return encounters;
