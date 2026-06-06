@@ -101,12 +101,11 @@ void WildGenerator3Test::generate()
     EncounterSettings3 settings;
     settings.feebasTile = feebasTile;
 
-    std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, settings, version);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters3::getEncounters(encounter, settings, version);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, bike, item, *encounterArea, profile, filter);
+    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, bike, item, *area, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());

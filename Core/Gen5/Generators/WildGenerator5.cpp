@@ -152,6 +152,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         rate *= 2;
     }
 
+    u16 phenomenonRate = area.getPhenomenonRate();
+
     u8 shinyRolls = 1;
     if ((profile.getVersion() & Game::BW2) != Game::None)
     {
@@ -168,6 +170,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
     bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased()
         && (area.getEncounter() != Encounter::SuperRod && area.getEncounter() != Encounter::SuperRodRippling);
+    bool phenomenon = area.getPhenomenonType() != PhenomenonType::None;
 
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -179,6 +182,11 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         bool magnetStatic = false;
         bool pressure = false;
         bool sync = false;
+
+        if (phenomenon)
+        {
+            valid = go.nextUInt(1000) < phenomenonRate;
+        }
 
         if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
@@ -227,7 +235,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         {
             encounterSlot = 12;
             // Rand call to determine slot even though there is only one
-            go.advance(1);
+            go.next();
         }
         else if (magnetStatic && !modifiedSlots.empty())
         {

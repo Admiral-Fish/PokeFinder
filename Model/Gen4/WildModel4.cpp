@@ -43,21 +43,23 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    if (!state.isValid())
+    if (role == Qt::FontRole)
     {
-        if (role == Qt::FontRole)
+        if (!state.isValid())
         {
             QFont font;
             font.setItalic(true);
             return font;
         }
-        else if (role == Qt::ForegroundRole)
+    }
+    else if (role == Qt::ForegroundRole)
+    {
+        if (!state.isValid())
         {
             return QColor(128, 128, 128);
         }
     }
-
-    if (role == Qt::DisplayRole)
+    else if (role == Qt::DisplayRole)
     {
         int column = getColumn(index.column());
         if (!state.isValid() && column > 3)

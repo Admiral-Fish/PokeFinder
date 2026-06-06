@@ -98,12 +98,11 @@ void WildGenerator4Test::generateMethodJ()
 
     settings.dppt.feebasTile = feebasTile;
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters4::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50, *area, profile, filter);
 
     auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
@@ -168,12 +167,11 @@ void WildGenerator4Test::generateMethodK()
     Profile4 profile("", version, 12345, 54321, false, unownDiscovered, unownPuzzles);
     EncounterSettings4 settings = { };
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters4::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, *area, profile, filter);
 
     auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
@@ -234,12 +232,11 @@ void WildGenerator4Test::generateHoneyTree()
     Profile4 profile("", version, 12345, 54321, false);
     EncounterSettings4 settings = { };
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters4::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::HoneyTree, lead, false, false, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::HoneyTree, lead, false, false, false, 50, *area, profile, filter);
 
     auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());
@@ -304,12 +301,11 @@ void WildGenerator4Test::generatePokeRadar()
 
     settings.dppt.radar = true;
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters4::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, false, shiny, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, false, shiny, false, 50, *area, profile, filter);
 
     auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());

@@ -77,9 +77,10 @@ struct WildEncounter5
 {
     u8 location;
     u8 seasonCount;
+    PhenomenonType phenomenon;
     WildEncounter5Season seasons[0];
 };
-static_assert(sizeof(WildEncounter5) == 2);
+static_assert(sizeof(WildEncounter5) == 4);
 
 struct WildEncounterGrotto
 {
@@ -178,7 +179,7 @@ namespace Encounters5
                             slots[12] = Slot(it->specie, it->minLevel, it->maxLevel, PersonalLoader::getPersonal(version, it->specie));
                         }
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, PhenomenonType::None, encounter, slots);
                 }
                 break;
             case Encounter::GrassDark:
@@ -190,7 +191,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassHighRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassHighRate, seasons, PhenomenonType::None, encounter, slots);
                 }
                 break;
             case Encounter::GrassRustling:
@@ -202,7 +203,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, seasons, entry->phenomenon, encounter, slots);
                 }
                 break;
             case Encounter::Surfing:
@@ -214,7 +215,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->surfRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfRate, seasons, PhenomenonType::None, encounter, slots);
                 }
                 break;
             case Encounter::SurfingRippling:
@@ -226,7 +227,8 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, seasons, PhenomenonType::Water, encounter,
+                                            slots);
                 }
                 break;
             case Encounter::SuperRod:
@@ -238,7 +240,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->fishRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishRate, seasons, PhenomenonType::None, encounter, slots);
                 }
                 break;
             case Encounter::SuperRodRippling:
@@ -250,7 +252,8 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, seasons, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, seasons, PhenomenonType::Water, encounter,
+                                            slots);
                 }
                 break;
             default:
@@ -282,6 +285,53 @@ namespace Encounters5
             }
 
             encounters.emplace_back(data[i].location, pokemon, data[i].items, data[i].hiddenItems);
+        }
+        delete[] data;
+        return encounters;
+    }
+
+    std::vector<EncounterArea5> getPhenomenonEncounters(const Profile5 *profile)
+    {
+        u32 length;
+        const u8 *data;
+
+        Game version = profile->getVersion();
+        if (version == Game::Black)
+        {
+            data = Utilities::decompress<u8>(BLACK.data(), BLACK.size(), length);
+        }
+        else if (version == Game::Black2)
+        {
+            data = Utilities::decompress<u8>(BLACK2.data(), BLACK2.size(), length);
+        }
+        else if (version == Game::White)
+        {
+            data = Utilities::decompress<u8>(WHITE.data(), WHITE.size(), length);
+        }
+        else
+        {
+            data = Utilities::decompress<u8>(WHITE2.data(), WHITE2.size(), length);
+        }
+
+        std::vector<EncounterArea5> encounters;
+        for (size_t offset = 0; offset < length;)
+        {
+            const auto *entry = reinterpret_cast<const WildEncounter5 *>(data + offset);
+
+            const auto *entrySeason = &entry->seasons[0];
+            if (entrySeason->grassSpecialRate && (entry->phenomenon == PhenomenonType::Bridge || entry->phenomenon == PhenomenonType::Cave))
+            {
+                std::array<Slot, 13> slots;
+                for (size_t i = 0; i < 12; i++)
+                {
+                    const auto &slot = entrySeason->grassSpecial[i];
+                    slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                    PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                }
+                encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, false, entry->phenomenon, Encounter::GrassRustling, slots);
+            }
+
+            offset += sizeof(WildEncounter5) + entry->seasonCount * sizeof(WildEncounter5Season);
         }
         delete[] data;
         return encounters;

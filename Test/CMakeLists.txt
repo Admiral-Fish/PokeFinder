@@ -73,6 +73,8 @@ qt_add_executable(PokeFinderTest
     Gen5/HiddenGrottoGeneratorTest.hpp
     Gen5/IDGenerator5Test.cpp
     Gen5/IDGenerator5Test.hpp
+    Gen5/PhenomenonGeneratorTest.cpp
+    Gen5/PhenomenonGeneratorTest.hpp
     Gen5/ProfileSearcher5Test.cpp
     Gen5/ProfileSearcher5Test.hpp
     Gen5/StaticGenerator5Test.cpp

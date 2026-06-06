@@ -127,6 +127,29 @@
 541,Globo Helio
 545,Tubérculo
 546,Pila
+548,G. Fuego
+549,G. Agua
+550,G. Eléctrica
+551,G. Planta
+552,G. Hielo
+553,G. Lucha
+554,G. Veneno
+555,G. Tierra
+556,G. Voladora
+557,G. Psíquica
+558,G. Bicho
+559,G. Roca
+560,G. Fantasma
+561,G. Dragón
+562,G. Siniestra
+563,G. Acero
+564,G. Normal
+565,P. Vigor
+566,P. Músculo
+567,P. Aguante
+568,P. Intelecto
+569,P. Mente
+570,P. Ímpetu
 571,Pluma Bella
 580,Seta Aroma
 581,Maxipepita

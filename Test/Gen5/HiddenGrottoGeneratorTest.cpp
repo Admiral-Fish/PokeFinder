@@ -95,12 +95,11 @@ void HiddenGrottoGeneratorTest::pokemon()
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
                      false, 0, 0, false, false, false, DSType::DS, Language::English);
 
-    std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const HiddenGrottoArea &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters5::getHiddenGrottoEncounters();
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
-    HiddenGrottoGenerator generator(0, 9, 0, lead, gender, encounterArea->getPokemon(group, index), profile, filter);
+    HiddenGrottoGenerator generator(0, 9, 0, lead, gender, area->getPokemon(group, index), profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());
@@ -148,12 +147,11 @@ void HiddenGrottoGeneratorTest::slot()
     Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
                      false, 0, 0, false, false, false, DSType::DS, Language::English);
 
-    std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const HiddenGrottoArea &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters5::getHiddenGrottoEncounters();
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     HiddenGrottoFilter filter(encounterSlots, genders, groups);
-    HiddenGrottoSlotGenerator generator(0, 99, 0, grottoPower, *encounterArea, profile, filter);
+    HiddenGrottoSlotGenerator generator(0, 99, 0, grottoPower, *area, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());

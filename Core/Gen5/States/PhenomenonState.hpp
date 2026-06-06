@@ -17,39 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATE5_HPP
-#define STATE5_HPP
+#ifndef PHENOMENONSTATE_HPP
+#define PHENOMENONSTATE_HPP
 
-#include <Core/Parents/States/State.hpp>
+#include <Core/Global.hpp>
 
 /**
- * @brief State class for Gen5 static generator encounters
+ * @brief State class for Gen5 phenomenon
  */
-class State5 : public GeneratorState
+class PhenomenonState
 {
 public:
     /**
-     * @brief Construct a new State5 object
+     * @brief Construct a new PhenomenonState object
      *
-     * @param prng PRNG call to determine chatot pitch and needle
+     * @param prng PRNG call to determine Chatot pitch
      * @param advances Advances of the state
-     * @param ivAdvances IV advances of the state
-     * @param pid Pokemon PID
-     * @param ivs Pokemon IVs
-     * @param ability Pokemon ability
-     * @param gender Pokemon gender
-     * @param level Pokemon level
-     * @param nature Pokemon nature
-     * @param shiny Pokemon shininess
-     * @param info Pokemon information
      */
-    State5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-           const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
-        ivAdvances(ivAdvances),
+    PhenomenonState(u32 prng, u32 advances, u16 item, bool valid) :
+        advances(advances),
+        item(item),
+        valid(valid),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
+    }
+
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getAdvances() const
+    {
+        return advances;
     }
 
     /**
@@ -63,13 +64,13 @@ public:
     }
 
     /**
-     * @brief Returns the IV advances of the state
+     * @brief Returns the item of the state
      *
-     * @return State IV advances
+     * @return State item
      */
-    u32 getIVAdvances() const
+    u16 getItem() const
     {
-        return ivAdvances;
+        return item;
     }
 
     /**
@@ -82,10 +83,23 @@ public:
         return needle;
     }
 
+    /**
+     * @brief Determines if the state can be hit
+     *
+     * @return true State can be hit
+     * @return false State cannot be hit
+     */
+    bool isValid() const
+    {
+        return valid;
+    }
+
 private:
-    u32 ivAdvances;
+    u32 advances;
+    u16 item;
+    bool valid;
     u8 chatot;
     u8 needle;
 };
 
-#endif // STATE5_HPP
+#endif // PHENOMENONSTATE_HPP

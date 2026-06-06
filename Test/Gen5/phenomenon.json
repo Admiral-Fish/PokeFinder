@@ -1,0 +1,344 @@
+{
+    "generate": [
+        {
+            "name": "Black Driftveil Drawbridge",
+            "seed": 0,
+            "version": "Black",
+            "location": 74,
+            "results": [
+                {
+                    "advances": 39,
+                    "chatot": 95,
+                    "item": 568,
+                    "valid": true
+                },
+                {
+                    "advances": 40,
+                    "chatot": 41,
+                    "item": 568,
+                    "valid": true
+                },
+                {
+                    "advances": 41,
+                    "chatot": 59,
+                    "item": 570,
+                    "valid": true
+                },
+                {
+                    "advances": 42,
+                    "chatot": 51,
+                    "item": 571,
+                    "valid": true
+                },
+                {
+                    "advances": 43,
+                    "chatot": 94,
+                    "item": 566,
+                    "valid": true
+                },
+                {
+                    "advances": 44,
+                    "chatot": 38,
+                    "item": 567,
+                    "valid": true
+                },
+                {
+                    "advances": 45,
+                    "chatot": 27,
+                    "item": 568,
+                    "valid": true
+                },
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "item": 567,
+                    "valid": true
+                },
+                {
+                    "advances": 47,
+                    "chatot": 55,
+                    "item": 565,
+                    "valid": true
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "item": 567,
+                    "valid": true
+                }
+            ]
+        },
+        {
+            "name": "Black Chargestone Cave 1F",
+            "seed": 0,
+            "version": "Black",
+            "location": 41,
+            "results": [
+                {
+                    "advances": 39,
+                    "chatot": 95,
+                    "item": 558,
+                    "valid": true
+                },
+                {
+                    "advances": 40,
+                    "chatot": 41,
+                    "item": 556,
+                    "valid": true
+                },
+                {
+                    "advances": 41,
+                    "chatot": 59,
+                    "item": 564,
+                    "valid": true
+                },
+                {
+                    "advances": 42,
+                    "chatot": 51,
+                    "item": 554,
+                    "valid": true
+                },
+                {
+                    "advances": 43,
+                    "chatot": 94,
+                    "item": 552,
+                    "valid": true
+                },
+                {
+                    "advances": 44,
+                    "chatot": 38,
+                    "item": 554,
+                    "valid": false
+                },
+                {
+                    "advances": 45,
+                    "chatot": 27,
+                    "item": 557,
+                    "valid": false
+                },
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "item": 554,
+                    "valid": true
+                },
+                {
+                    "advances": 47,
+                    "chatot": 55,
+                    "item": 548,
+                    "valid": true
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "item": 84,
+                    "valid": false
+                }
+            ]
+        },
+        {
+            "name": "Black2 Driftveil Drawbridge",
+            "seed": 0,
+            "version": "Black2",
+            "location": 96,
+            "results": [
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "item": 567,
+                    "valid": true
+                },
+                {
+                    "advances": 47,
+                    "chatot": 55,
+                    "item": 565,
+                    "valid": true
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "item": 567,
+                    "valid": true
+                },
+                {
+                    "advances": 49,
+                    "chatot": 2,
+                    "item": 565,
+                    "valid": false
+                },
+                {
+                    "advances": 50,
+                    "chatot": 43,
+                    "item": 570,
+                    "valid": true
+                },
+                {
+                    "advances": 51,
+                    "chatot": 6,
+                    "item": 571,
+                    "valid": false
+                },
+                {
+                    "advances": 52,
+                    "chatot": 99,
+                    "item": 565,
+                    "valid": true
+                },
+                {
+                    "advances": 53,
+                    "chatot": 59,
+                    "item": 566,
+                    "valid": true
+                },
+                {
+                    "advances": 54,
+                    "chatot": 5,
+                    "item": 565,
+                    "valid": false
+                },
+                {
+                    "advances": 55,
+                    "chatot": 17,
+                    "item": 568,
+                    "valid": false
+                }
+            ]
+        },
+        {
+            "name": "Black2 Chargestone Cave 1F",
+            "seed": 0,
+            "version": "Black2",
+            "location": 20,
+            "results": [
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "item": 554,
+                    "valid": true
+                },
+                {
+                    "advances": 47,
+                    "chatot": 55,
+                    "item": 548,
+                    "valid": true
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "item": 84,
+                    "valid": false
+                },
+                {
+                    "advances": 49,
+                    "chatot": 2,
+                    "item": 549,
+                    "valid": false
+                },
+                {
+                    "advances": 50,
+                    "chatot": 43,
+                    "item": 110,
+                    "valid": true
+                },
+                {
+                    "advances": 51,
+                    "chatot": 6,
+                    "item": 229,
+                    "valid": false
+                },
+                {
+                    "advances": 52,
+                    "chatot": 99,
+                    "item": 548,
+                    "valid": true
+                },
+                {
+                    "advances": 53,
+                    "chatot": 59,
+                    "item": 81,
+                    "valid": true
+                },
+                {
+                    "advances": 54,
+                    "chatot": 5,
+                    "item": 548,
+                    "valid": false
+                },
+                {
+                    "advances": 55,
+                    "chatot": 17,
+                    "item": 107,
+                    "valid": false
+                }
+            ]
+        },
+        {
+            "name": "Black2 Reversal Mountain 1F",
+            "seed": 0,
+            "version": "Black2",
+            "location": 49,
+            "results": [
+                {
+                    "advances": 46,
+                    "chatot": 40,
+                    "item": 74,
+                    "valid": true
+                },
+                {
+                    "advances": 47,
+                    "chatot": 55,
+                    "item": 73,
+                    "valid": true
+                },
+                {
+                    "advances": 48,
+                    "chatot": 39,
+                    "item": 72,
+                    "valid": false
+                },
+                {
+                    "advances": 49,
+                    "chatot": 2,
+                    "item": 73,
+                    "valid": false
+                },
+                {
+                    "advances": 50,
+                    "chatot": 43,
+                    "item": 72,
+                    "valid": true
+                },
+                {
+                    "advances": 51,
+                    "chatot": 6,
+                    "item": 75,
+                    "valid": false
+                },
+                {
+                    "advances": 52,
+                    "chatot": 99,
+                    "item": 74,
+                    "valid": true
+                },
+                {
+                    "advances": 53,
+                    "chatot": 59,
+                    "item": 72,
+                    "valid": true
+                },
+                {
+                    "advances": 54,
+                    "chatot": 5,
+                    "item": 72,
+                    "valid": false
+                },
+                {
+                    "advances": 55,
+                    "chatot": 17,
+                    "item": 72,
+                    "valid": false
+                }
+            ]
+        }
+    ]
+}

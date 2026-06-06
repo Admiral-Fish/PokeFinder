@@ -50,6 +50,7 @@
 #include <Form/Gen5/Static5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Form/Gen5/Tools/IVCacheFinder.hpp>
+#include <Form/Gen5/Tools/Phenomenon.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
 #include <Form/Gen8/Eggs8.hpp>
@@ -115,6 +116,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
     connect(ui->actionAdjacentSeed, &QAction::triggered, this, &MainWindow::openAdjacentSeed);
     connect(ui->actionIVCache, &QAction::triggered, this, &MainWindow::openIVCacheFinder);
+    connect(ui->actionPhenomenon, &QAction::triggered, this, &MainWindow::openPhenomenon);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionSHA1Cache, &QAction::triggered, this, &MainWindow::openSHA1CacheFinder);
@@ -587,6 +589,27 @@ void MainWindow::openIVCacheFinder() const
 {
     auto *window = new IVCacheFinder();
     window->show();
+}
+
+void MainWindow::openPhenomenon()
+{
+    auto phenomenon = new Phenomenon();    
+    if (!phenomenon->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
+        msg.exec();
+        phenomenon->close();
+    }
+    else
+    {
+        connect(phenomenon, &Phenomenon::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged5, phenomenon, &Phenomenon::updateProfiles);
+        phenomenon->show();
+        phenomenon->raise();
+    }
+    connect(phenomenon, &Phenomenon::profilesChanged, this, &MainWindow::updateProfiles);
+    connect(this, &MainWindow::profilesChanged5, phenomenon, &Phenomenon::updateProfiles);
 }
 
 void MainWindow::openProfileCalibrator() const

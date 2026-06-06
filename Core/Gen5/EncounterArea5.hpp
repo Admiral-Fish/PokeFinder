@@ -21,6 +21,16 @@
 #define ENCOUNTERAREA5_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/RNG/LCRNG64.hpp>
+
+enum class PhenomenonType : u8
+{
+    None,
+    Bridge,
+    Cave,
+    Grass,
+    Water
+};
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -34,13 +44,11 @@ public:
      * @param location Location number
      * @param rate Encounter rate of the area
      * @param season Whether encounter area has seasonal encounters
+     * @param phenomenon Phenomenon type of the area
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 13> &pokemon) :
-        EncounterArea(location, rate, encounter, pokemon), season(season)
-    {
-    }
+    EncounterArea5(u8 location, u8 rate, bool season, PhenomenonType phenomenon, Encounter encounter, const std::array<Slot, 13> &pokemon);
 
     /**
      * @brief Calculates the level of a pokemon
@@ -91,6 +99,39 @@ public:
     }
 
     /**
+     * @brief Returns the phenomenon item from the \p rng state
+     *
+     * @param rng PRNG state
+     * @param bw Whether this is for BW or BW2
+     *
+     * @return Item
+     */
+    u16 getItem(BWRNG &rng, bool bw) const;
+
+    /**
+     * @brief Return vector of names of all item slots
+     * 
+     * @param bw Whether this is for BW or BW2
+     *
+     * @return Vector of item name
+     */
+    std::vector<std::string> getItemNames(bool bw) const;
+
+    /**
+     * @brief Return the encounter rate of the phenomenon
+     *
+     * @return Phenomenon rate
+     */
+    u16 getPhenomenonRate() const;
+
+    /**
+     * @brief Return the type of the phenomenon
+     *
+     * @return PhenomenonType
+     */
+    PhenomenonType getPhenomenonType() const;
+
+    /**
      * @brief Returns if the encounter area has multiple seasonal differences
      *
      * @return true Differences based on the season
@@ -101,8 +142,18 @@ public:
         return season;
     }
 
+    /**
+     * @brief Return the item numbers of unique item of the area
+     *
+     * @param bw Whether this is for BW or BW2
+     *
+     * @return Vector of item numbers
+     */
+    std::vector<u16> getUniqueItems(bool bw) const;
+
 private:
     bool season;
+    PhenomenonType phenomenon;
 };
 
 #endif // ENCOUNTERAREA5_HPP

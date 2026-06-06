@@ -3552,17 +3552,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>HiddenGrottoGeneratorModel5</name>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="182"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="184"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="182"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="184"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="182"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="184"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -3660,17 +3660,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>HiddenGrottoSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="264"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="266"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="264"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="266"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="264"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.cpp" line="266"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -4778,68 +4778,70 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>ツール</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="147"/>
+        <location filename="../MainWindow.cpp" line="149"/>
         <source>Unable to locate profiles</source>
         <translation>プロファイルが見つかりません</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="204"/>
+        <location filename="../MainWindow.cpp" line="206"/>
         <source>Update Check</source>
         <translation>更新の確認</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="205"/>
+        <location filename="../MainWindow.cpp" line="207"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation>新しいバージョンがあります。ダウンロードしますか?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="417"/>
-        <location filename="../MainWindow.cpp" line="440"/>
-        <location filename="../MainWindow.cpp" line="463"/>
-        <location filename="../MainWindow.cpp" line="486"/>
-        <location filename="../MainWindow.cpp" line="509"/>
-        <location filename="../MainWindow.cpp" line="532"/>
-        <location filename="../MainWindow.cpp" line="555"/>
-        <location filename="../MainWindow.cpp" line="572"/>
-        <location filename="../MainWindow.cpp" line="611"/>
+        <location filename="../MainWindow.cpp" line="419"/>
+        <location filename="../MainWindow.cpp" line="442"/>
+        <location filename="../MainWindow.cpp" line="465"/>
+        <location filename="../MainWindow.cpp" line="488"/>
+        <location filename="../MainWindow.cpp" line="511"/>
+        <location filename="../MainWindow.cpp" line="534"/>
+        <location filename="../MainWindow.cpp" line="557"/>
+        <location filename="../MainWindow.cpp" line="574"/>
+        <location filename="../MainWindow.cpp" line="599"/>
+        <location filename="../MainWindow.cpp" line="634"/>
         <source>No profiles found</source>
         <translation>プロファイルがありません</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="148"/>
+        <location filename="../MainWindow.cpp" line="150"/>
         <source>Please update path to your profiles file to restore existing profiles</source>
         <translation>既存のプロファイルを復元するには、プロファイルファイルのパスを設定し直してください</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="418"/>
-        <location filename="../MainWindow.cpp" line="441"/>
-        <location filename="../MainWindow.cpp" line="464"/>
-        <location filename="../MainWindow.cpp" line="487"/>
-        <location filename="../MainWindow.cpp" line="510"/>
-        <location filename="../MainWindow.cpp" line="533"/>
-        <location filename="../MainWindow.cpp" line="556"/>
-        <location filename="../MainWindow.cpp" line="573"/>
-        <location filename="../MainWindow.cpp" line="612"/>
+        <location filename="../MainWindow.cpp" line="420"/>
+        <location filename="../MainWindow.cpp" line="443"/>
+        <location filename="../MainWindow.cpp" line="466"/>
+        <location filename="../MainWindow.cpp" line="489"/>
+        <location filename="../MainWindow.cpp" line="512"/>
+        <location filename="../MainWindow.cpp" line="535"/>
+        <location filename="../MainWindow.cpp" line="558"/>
+        <location filename="../MainWindow.cpp" line="575"/>
+        <location filename="../MainWindow.cpp" line="600"/>
+        <location filename="../MainWindow.cpp" line="635"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one</source>
         <translation>第5世代ツールのプロファイル補正から作成してください</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="722"/>
+        <location filename="../MainWindow.cpp" line="745"/>
         <source>Version: %1</source>
         <translation>バージョン: %1</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="722"/>
+        <location filename="../MainWindow.cpp" line="745"/>
         <source>Branch: %1</source>
         <translation>ブランチ: %1</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="722"/>
+        <location filename="../MainWindow.cpp" line="745"/>
         <source>Commit: %1</source>
         <translation>コミット: %1</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="725"/>
+        <location filename="../MainWindow.cpp" line="748"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
@@ -4916,7 +4918,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>第8世代ツール</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="724"/>
+        <location filename="../MainWindow.cpp" line="747"/>
         <source>About</source>
         <translation>バージョン情報</translation>
     </message>
@@ -4959,6 +4961,10 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <source>Adjacent Seeds</source>
         <translation>隣接seed</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5017,6 +5023,143 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen3/PIDToIVModel.hpp" line="71"/>
         <source>IVs</source>
         <translation>個体値</translation>
+    </message>
+</context>
+<context>
+    <name>Phenomenon</name>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation type="unfinished">乱数情報</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation type="unfinished">seed</translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation type="unfinished">初期消費数</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation type="unfinished">最大消費数</translation>
+    </message>
+    <message>
+        <source>Offset</source>
+        <translation type="unfinished">オフセット</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">設定</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">生息地</translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation type="unfinished">絞り込み</translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished">どうぐ</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation type="unfinished">検索</translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation type="unfinished">開始日</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation type="unfinished">終了日</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">検索</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">キャンセル</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Tools/Phenomenon.cpp" line="156"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished">日付の範囲が不正です</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Tools/Phenomenon.cpp" line="156"/>
+        <source>Start date is after end date</source>
+        <translation type="unfinished">開始日が終了日より後になっています</translation>
+    </message>
+</context>
+<context>
+    <name>PhenomenonGeneratorModel5</name>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
+        <source>Advances</source>
+        <translation type="unfinished">消費数</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
+        <source>Chatot</source>
+        <translation type="unfinished">ペラップ</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
+        <source>Needle</source>
+        <translation type="unfinished">針</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
+        <source>Item</source>
+        <translation type="unfinished">どうぐ</translation>
+    </message>
+</context>
+<context>
+    <name>PhenomenonSearcherModel5</name>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Seed</source>
+        <translation type="unfinished">seed</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Advances</source>
+        <translation type="unfinished">消費数</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Item</source>
+        <translation type="unfinished">どうぐ</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Date/Time</source>
+        <translation type="unfinished">日時</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Timer0</source>
+        <translation type="unfinished">Timer0</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
+        <source>Buttons</source>
+        <translation type="unfinished">ボタン</translation>
     </message>
 </context>
 <context>
@@ -10290,17 +10433,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel3</name>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="74"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="76"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="74"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="76"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="74"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="76"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -10388,17 +10531,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="91"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="93"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="91"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="93"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="91"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="93"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -10511,17 +10654,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel5</name>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="81"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="81"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="81"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -10747,17 +10890,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel3</name>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="143"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="145"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="143"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="145"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen3/WildModel3.cpp" line="143"/>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="145"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -10845,17 +10988,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="190"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="190"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="190"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -10968,17 +11111,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="169"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="169"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="169"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>

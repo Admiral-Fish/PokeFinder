@@ -147,6 +147,7 @@ add_library(PokeFinderCore STATIC
     Gen4/Tools/SeedToTimeCalculator4.cpp
     Gen4/Tools/SeedToTimeCalculator4.hpp
     Gen5/DreamRadarTemplate.hpp
+    Gen5/EncounterArea5.cpp
     Gen5/EncounterArea5.hpp
     Gen5/Encounters5.cpp
     Gen5/Encounters5.hpp
@@ -154,6 +155,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Keypresses.hpp
     Gen5/Filters/HiddenGrottoFilter.cpp
     Gen5/Filters/HiddenGrottoFilter.hpp
+    Gen5/Filters/PhenomenonFilter.cpp
+    Gen5/Filters/PhenomenonFilter.hpp
     Gen5/Generators/DreamRadarGenerator.cpp
     Gen5/Generators/DreamRadarGenerator.hpp
     Gen5/Generators/EggGenerator5.cpp
@@ -166,6 +169,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/HiddenGrottoGenerator.hpp
     Gen5/Generators/IDGenerator5.cpp
     Gen5/Generators/IDGenerator5.hpp
+    Gen5/Generators/PhenomenonGenerator.cpp
+    Gen5/Generators/PhenomenonGenerator.hpp
     Gen5/Generators/StaticGenerator5.cpp
     Gen5/Generators/StaticGenerator5.hpp
     Gen5/Generators/WildGenerator5.cpp
@@ -189,6 +194,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/IVCacheSearcher.hpp
     Gen5/Searchers/IVSearcher5.cpp
     Gen5/Searchers/IVSearcher5.hpp
+    Gen5/Searchers/PhenomenonSearcher.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
     Gen5/Searchers/SHA1CacheSearcher.cpp
@@ -206,6 +212,7 @@ add_library(PokeFinderCore STATIC
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp
     Gen5/States/HiddenGrottoState.hpp
+    Gen5/States/PhenomenonState.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp

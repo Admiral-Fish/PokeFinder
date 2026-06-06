@@ -96,12 +96,11 @@ void WildGenerator5Test::generate()
     EncounterSettings5 settings = { };
     settings.swarm = swarm;
 
-    std::vector<EncounterArea5> encounterAreas = Encounters5::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea5 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters5::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, luckyPower, *encounterArea, profile, filter);
+    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, luckyPower, *area, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());

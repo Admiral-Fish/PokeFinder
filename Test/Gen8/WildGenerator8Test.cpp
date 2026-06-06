@@ -94,12 +94,11 @@ void WildGenerator8Test::generateWild()
 
     settings.feebasTile = feebasTile;
 
-    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters8::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator8 generator(0, 9, 0, Method::None, lead, feebasTile, *encounterArea, profile, filter);
+    WildGenerator8 generator(0, 9, 0, Method::None, lead, feebasTile, *area, profile, filter);
 
     auto states = generator.generate(seed0, seed1, 0);
     QCOMPARE(states.size(), j.size());
@@ -160,12 +159,11 @@ void WildGenerator8Test::generateHoneyTree()
     Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
     EncounterSettings8 settings = { };
 
-    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::ranges::find_if(
-        encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters8::getEncounters(encounter, settings, &profile);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator8 generator(0, 9, 0, Method::HoneyTree, lead, false, *encounterArea, profile, filter);
+    WildGenerator8 generator(0, 9, 0, Method::HoneyTree, lead, false, *area, profile, filter);
 
     auto states = generator.generate(seed0, seed1, index);
     QCOMPARE(states.size(), j.size());

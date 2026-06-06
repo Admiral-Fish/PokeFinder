@@ -98,13 +98,11 @@ void WildSearcher3Test::search()
     EncounterSettings3 settings;
     settings.feebasTile = feebasTile;
 
-    std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, settings, version);
-    auto encounterArea
-        = std::ranges::find_if(encounterAreas.begin(), encounterAreas.end(),
-                               [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto areas = Encounters3::getEncounters(encounter, settings, version);
+    auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher3 searcher(method, lead, settings.feebasTile, bike, item, *encounterArea, profile, filter);
+    WildSearcher3 searcher(method, lead, settings.feebasTile, bike, item, *area, profile, filter);
 
     searcher.startSearch(min, max);
     while (searcher.isSearching())
@@ -119,7 +117,7 @@ void WildSearcher3Test::search()
     {
         // Ensure generator agrees
         WildGenerator3 generator(0, 0, 0, method, lead != Lead::Synchronize ? lead : lead + state.getNature(), settings.feebasTile, bike,
-                                 item, *encounterArea, profile, filter);
+                                 item, *area, profile, filter);
         auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
