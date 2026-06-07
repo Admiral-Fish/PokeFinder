@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
+WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showSaveNeedles(false)
 {
 }
 
@@ -41,6 +41,11 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
+            if (showSaveNeedles)
+            {
+                static const QString needles[] = { QStringLiteral("↑"), QStringLiteral("↗"), QStringLiteral("→"), QStringLiteral("↘"), QStringLiteral("↓"), QStringLiteral("↙"), QStringLiteral("←"), QStringLiteral("↖") };
+                return needles[state.getSaveNeedle()];
+            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
             return QString::fromStdString(Translator::getItem(state.getItem()));
@@ -95,6 +100,10 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 1 && showSaveNeedles)
+        {
+            return tr("Needle");
+        }
         return header[section];
     }
     return QVariant();
@@ -103,7 +112,25 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
+    if (rowCount() > 0)
+    {
+        emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
+    }
+}
+
+void WildGeneratorModel5::setShowSaveNeedles(bool flag)
+{
+    if (showSaveNeedles == flag)
+    {
+        return;
+    }
+
+    showSaveNeedles = flag;
+    if (rowCount() > 0)
+    {
+        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
+    }
+    emit headerDataChanged(Qt::Horizontal, 1, 1);
 }
 
 WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

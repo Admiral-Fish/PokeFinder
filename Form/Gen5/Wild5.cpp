@@ -122,6 +122,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
+    connect(ui->checkBoxGeneratorSaveNeedles, &QCheckBox::toggled, generatorModel, &WildGeneratorModel5::setShowSaveNeedles);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
@@ -149,6 +150,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
+    if (setting.contains("showSaveNeedles"))
+    {
+        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
+    }
     setting.endGroup();
 }
 
@@ -160,6 +165,7 @@ Wild5::~Wild5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
+    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ivCache;

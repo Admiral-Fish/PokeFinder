@@ -330,6 +330,13 @@
               <item row="2" column="1">
                <widget class="ComboBox" name="comboBoxGrottoGeneratorItems"/>
               </item>
+              <item row="3" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxGrottoGeneratorSaveNeedles">
+                <property name="text">
+                 <string>Display Save Needles</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -968,6 +975,13 @@
               </item>
               <item row="3" column="1">
                <widget class="ComboBox" name="comboBoxPokemonGeneratorGender"/>
+              </item>
+              <item row="4" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxPokemonGeneratorSaveNeedles">
+                <property name="text">
+                 <string>Display Save Needles</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>

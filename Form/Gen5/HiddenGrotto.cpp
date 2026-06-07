@@ -127,6 +127,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     connect(ui->pushButtonPokemonSearch, &QPushButton::clicked, this, &HiddenGrotto::pokemonSearch);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &HiddenGrotto::profileManager);
     connect(ui->filterPokemonGenerator, &Filter::showStatsChanged, pokemonGeneratorModel, &HiddenGrottoGeneratorModel5::setShowStats);
+    connect(ui->checkBoxGrottoGeneratorSaveNeedles, &QCheckBox::toggled, grottoGeneratorModel, &HiddenGrottoSlotGeneratorModel5::setShowSaveNeedles);
+    connect(ui->checkBoxPokemonGeneratorSaveNeedles, &QCheckBox::toggled, pokemonGeneratorModel, &HiddenGrottoGeneratorModel5::setShowSaveNeedles);
     connect(ui->filterPokemonSearcher, &Filter::showStatsChanged, pokemonSearcherModel, &HiddenGrottoSearcherModel5::setShowStats);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->filterPokemonSearcher, &Filter::ivsChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
@@ -169,6 +171,14 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     {
         ui->dateEditPokemonSearcherEndDate->setDate(setting.value("endDatePokemon").toDate());
     }
+    if (setting.contains("showGrottoGeneratorSaveNeedles"))
+    {
+        ui->checkBoxGrottoGeneratorSaveNeedles->setChecked(setting.value("showGrottoGeneratorSaveNeedles").toBool());
+    }
+    if (setting.contains("showPokemonGeneratorSaveNeedles"))
+    {
+        ui->checkBoxPokemonGeneratorSaveNeedles->setChecked(setting.value("showPokemonGeneratorSaveNeedles").toBool());
+    }
     setting.endGroup();
 }
 
@@ -182,6 +192,8 @@ HiddenGrotto::~HiddenGrotto()
     setting.setValue("endDateGrotto", ui->dateEditGrottoSearcherEndDate->date());
     setting.setValue("startDatePokemon", ui->dateEditPokemonSearcherStartDate->date());
     setting.setValue("endDatePokemon", ui->dateEditPokemonSearcherEndDate->date());
+    setting.setValue("showGrottoGeneratorSaveNeedles", ui->checkBoxGrottoGeneratorSaveNeedles->isChecked());
+    setting.setValue("showPokemonGeneratorSaveNeedles", ui->checkBoxPokemonGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ivCache;

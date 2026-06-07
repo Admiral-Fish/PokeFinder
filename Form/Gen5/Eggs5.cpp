@@ -74,6 +74,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     connect(ui->eggSettingsGenerator, &EggSettings::showInheritanceChanged, generatorModel, &EggGeneratorModel5::setShowInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::showInheritanceChanged, searcherModel, &EggSearcherModel5::setShowInheritance);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &EggGeneratorModel5::setShowStats);
+    connect(ui->checkBoxGeneratorSaveNeedles, &QCheckBox::toggled, generatorModel, &EggGeneratorModel5::setShowSaveNeedles);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &EggSearcherModel5::setShowStats);
 
     updateProfiles();
@@ -92,6 +93,10 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
+    if (setting.contains("showSaveNeedles"))
+    {
+        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
+    }
     setting.endGroup();
 }
 
@@ -103,6 +108,7 @@ Eggs5::~Eggs5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
+    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ui;

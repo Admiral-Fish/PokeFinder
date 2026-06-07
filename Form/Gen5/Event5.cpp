@@ -93,6 +93,7 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     connect(ui->pushButtonSearcherImport, &QPushButton::clicked, this, &Event5::searcherImportEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &EventGeneratorModel5::setShowStats);
+    connect(ui->checkBoxGeneratorSaveNeedles, &QCheckBox::toggled, generatorModel, &EventGeneratorModel5::setShowSaveNeedles);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &EventSearcherModel5::setShowStats);
 
     updateProfiles();
@@ -111,6 +112,10 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
+    if (setting.contains("showSaveNeedles"))
+    {
+        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
+    }
     setting.endGroup();
 }
 
@@ -122,6 +127,7 @@ Event5::~Event5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
+    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ui;

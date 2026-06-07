@@ -495,6 +495,13 @@
             </property>
            </widget>
           </item>
+          <item row="8" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxGeneratorSaveNeedles">
+            <property name="text">
+             <string>Display Save Needles</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>

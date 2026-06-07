@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGeneratorModel5::StaticGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
+StaticGeneratorModel5::StaticGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showSaveNeedles(false)
 {
 }
 
@@ -41,6 +41,10 @@ QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
+            if (showSaveNeedles)
+            {
+                return QString::fromStdString(Utilities5::getSaveNeedle(state.getSaveNeedle()));
+            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
@@ -87,6 +91,10 @@ QVariant StaticGeneratorModel5::headerData(int section, Qt::Orientation orientat
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 1 && showSaveNeedles)
+        {
+            return tr("Needle");
+        }
         return header[section];
     }
     return QVariant();
@@ -96,6 +104,21 @@ void StaticGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
+}
+
+void StaticGeneratorModel5::setShowSaveNeedles(bool flag)
+{
+    if (showSaveNeedles == flag)
+    {
+        return;
+    }
+
+    showSaveNeedles = flag;
+    if (rowCount() > 0)
+    {
+        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
+    }
+    emit headerDataChanged(Qt::Horizontal, 1, 1);
 }
 
 StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

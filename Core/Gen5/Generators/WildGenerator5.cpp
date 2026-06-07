@@ -246,10 +246,12 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
+        BWRNG rngCopy = rng;
+        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
         u16 chatot = rng.nextUInt(0x1fff);
         for (const auto &iv : ivs)
         {
-            WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
+            WildState5 state(chatot, saveNeedle, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
                              encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
             if (filter.compareState(static_cast<const WildState &>(state)))
             {

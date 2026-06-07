@@ -43,10 +43,20 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    State5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
+    State5(u16 prng, u8 saveNeedle, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
            u8 shiny, const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), ivAdvances(ivAdvances), chatot(prng / 82)
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), ivAdvances(ivAdvances), chatot(prng / 82), saveNeedle(saveNeedle)
     {
+    }
+
+    /**
+     * @brief Returns the save needle value
+     *
+     * @return Save needle value
+     */
+    u8 getSaveNeedle() const
+    {
+        return saveNeedle;
     }
 
     /**
@@ -72,6 +82,7 @@ public:
 private:
     u32 ivAdvances;
     u8 chatot;
+    u8 saveNeedle;
 };
 
 #endif // STATE5_HPP

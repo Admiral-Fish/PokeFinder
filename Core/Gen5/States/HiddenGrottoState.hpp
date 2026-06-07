@@ -38,8 +38,8 @@ public:
      * @param specie Pokemon specie
      * @param gender Pokemon gender
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
-        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
+    HiddenGrottoState(u16 prng, u8 saveNeedle, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
+        advances(advances), data(specie), item(false), chatot(prng / 82), saveNeedle(saveNeedle), gender(gender), group(group), slot(slot)
     {
     }
 
@@ -52,9 +52,19 @@ public:
      * @param slot Item slot
      * @param item Item number
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
-        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
+    HiddenGrottoState(u16 prng, u8 saveNeedle, u32 advances, u8 group, u8 slot, u16 item) :
+        advances(advances), data(item), item(true), chatot(prng / 82), saveNeedle(saveNeedle), gender(0), group(group), slot(slot)
     {
+    }
+
+    /**
+     * @brief Returns the save needle value
+     *
+     * @return Save needle value
+     */
+    u8 getSaveNeedle() const
+    {
+        return saveNeedle;
     }
 
     /**
@@ -134,6 +144,7 @@ private:
     u16 data;
     bool item;
     u8 chatot;
+    u8 saveNeedle;
     u8 gender;
     u8 group;
     u8 slot;

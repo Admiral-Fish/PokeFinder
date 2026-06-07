@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent)
+HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent), showSaveNeedles(false)
 {
 }
 
@@ -41,6 +41,10 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
         case 0:
             return state.getAdvances();
         case 1:
+            if (showSaveNeedles)
+            {
+                return QString::fromStdString(Utilities5::getSaveNeedle(state.getSaveNeedle()));
+            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
             return state.getGroup();
@@ -65,9 +69,28 @@ QVariant HiddenGrottoSlotGeneratorModel5::headerData(int section, Qt::Orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 1 && showSaveNeedles)
+        {
+            return tr("Needle");
+        }
         return header[section];
     }
     return QVariant();
+}
+
+void HiddenGrottoSlotGeneratorModel5::setShowSaveNeedles(bool flag)
+{
+    if (showSaveNeedles == flag)
+    {
+        return;
+    }
+
+    showSaveNeedles = flag;
+    if (rowCount() > 0)
+    {
+        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
+    }
+    emit headerDataChanged(Qt::Horizontal, 1, 1);
 }
 
 HiddenGrottoSlotSearcherModel5::HiddenGrottoSlotSearcherModel5(QObject *parent) : TableModel(parent)
@@ -126,7 +149,7 @@ QVariant HiddenGrottoSlotSearcherModel5::headerData(int section, Qt::Orientation
     return QVariant();
 }
 
-HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
+HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showSaveNeedles(false)
 {
 }
 
@@ -146,6 +169,10 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 0:
             return state.getAdvances();
         case 1:
+            if (showSaveNeedles)
+            {
+                return QString::fromStdString(Utilities5::getSaveNeedle(state.getSaveNeedle()));
+            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
             return state.getLevel();
@@ -194,6 +221,10 @@ QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation or
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 1 && showSaveNeedles)
+        {
+            return tr("Needle");
+        }
         return header[section];
     }
     return QVariant();
@@ -203,6 +234,21 @@ void HiddenGrottoGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
+}
+
+void HiddenGrottoGeneratorModel5::setShowSaveNeedles(bool flag)
+{
+    if (showSaveNeedles == flag)
+    {
+        return;
+    }
+
+    showSaveNeedles = flag;
+    if (rowCount() > 0)
+    {
+        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
+    }
+    emit headerDataChanged(Qt::Horizontal, 1, 1);
 }
 
 HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

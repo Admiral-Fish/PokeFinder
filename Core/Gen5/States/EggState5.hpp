@@ -42,9 +42,9 @@ public:
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
+    EggState5(u16 prng, u8 saveNeedle, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
               const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
-        EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info), chatot(prng / 82)
+        EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info), chatot(prng / 82), saveNeedle(saveNeedle)
     {
     }
 
@@ -82,17 +82,29 @@ public:
      * @param gender Pokemon gender
      * @param shiny Pokemon shininess
      */
-    void update(u16 prng, u32 advances, u32 pid, u8 gender, u8 shiny)
+    void update(u16 prng, u8 saveNeedle, u32 advances, u32 pid, u8 gender, u8 shiny)
     {
         chatot = prng / 82;
+        this->saveNeedle = saveNeedle;
         this->advances = advances;
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
     }
 
+    /**
+     * @brief Returns the save needle value
+     *
+     * @return Save needle value
+     */
+    u8 getSaveNeedle() const
+    {
+        return saveNeedle;
+    }
+
 private:
     u8 chatot;
+    u8 saveNeedle;
 };
 
 #endif // EGGSTATE5_HPP

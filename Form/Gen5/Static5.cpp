@@ -94,6 +94,7 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static5::searcherPokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel5::setShowStats);
+    connect(ui->checkBoxGeneratorSaveNeedles, &QCheckBox::toggled, generatorModel, &StaticGeneratorModel5::setShowSaveNeedles);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel5::setShowStats);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Static5::searcherFastSearchChanged);
@@ -122,6 +123,10 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
+    if (setting.contains("showSaveNeedles"))
+    {
+        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
+    }
     setting.endGroup();
 }
 
@@ -133,6 +138,7 @@ Static5::~Static5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
+    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ivCache;
