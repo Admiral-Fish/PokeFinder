@@ -30,14 +30,18 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Gen5/AdvanceFinder.hpp>
 #include <Model/Gen4/EventModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
+Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4), advanceFinder(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -78,6 +82,19 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
+
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
+    if (settingsLayout)
+    {
+        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Event4::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
 
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event4::transferSettings);
@@ -278,4 +295,15 @@ void Event4::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
     }
+}
+
+void Event4::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

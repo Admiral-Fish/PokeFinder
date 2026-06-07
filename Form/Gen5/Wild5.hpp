@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class EncounterArea5;
 class IVCache;
 class Profile5;
@@ -77,6 +78,7 @@ public slots:
 private:
     Ui::Wild5 *ui;
 
+    AdvanceFinder *advanceFinder;
     IVCache *ivCache;
     Profile5 *currentProfile;
     SHA1Cache *shaCache;
@@ -193,6 +195,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // WILD5_HPP

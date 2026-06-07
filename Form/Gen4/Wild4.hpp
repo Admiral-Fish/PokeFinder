@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class EncounterArea4;
 class Profile4;
 class SortFilterProxyModel;
@@ -67,6 +68,7 @@ public slots:
 private:
     Ui::Wild4 *ui;
 
+    AdvanceFinder *advanceFinder;
     Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
     std::vector<EncounterArea4> encounterGenerator;
@@ -207,6 +209,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // WILD4_HPP

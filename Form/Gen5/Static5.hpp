@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class IVCache;
 class Profile5;
 class SHA1Cache;
@@ -75,6 +76,7 @@ public:
 private:
     Ui::Static5 *ui;
 
+    AdvanceFinder *advanceFinder;
     IVCache *ivCache;
     Profile5 *currentProfile;
     SHA1Cache *shaCache;
@@ -161,6 +163,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // STATIC5_HPP

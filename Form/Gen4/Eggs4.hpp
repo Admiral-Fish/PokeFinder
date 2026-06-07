@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class EggGeneratorModel4;
 class EggSearcherModel4;
 class Profile4;
@@ -66,6 +67,7 @@ public slots:
 private:
     Ui::Eggs4 *ui;
 
+    AdvanceFinder *advanceFinder;
     QAction *poketch;
     EggGeneratorModel4 *generatorModel;
     EggSearcherModel4 *searcherModel;
@@ -119,6 +121,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // EGGS4_HPP

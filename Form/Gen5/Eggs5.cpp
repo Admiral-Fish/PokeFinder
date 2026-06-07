@@ -19,6 +19,7 @@
 
 #include "Eggs5.hpp"
 #include "ui_Eggs5.h"
+#include "AdvanceFinder.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -31,12 +32,15 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EggModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
+Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5), advanceFinder(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -64,6 +68,32 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
+
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+
+    auto *parentLayout = qobject_cast<QGridLayout *>(ui->checkBoxGeneratorSaveNeedles->parentWidget()->layout());
+    int index = parentLayout ? parentLayout->indexOf(ui->checkBoxGeneratorSaveNeedles) : -1;
+    if (index != -1)
+    {
+        int row;
+        int column;
+        int rowSpan;
+        int columnSpan;
+        parentLayout->getItemPosition(index, &row, &column, &rowSpan, &columnSpan);
+        parentLayout->removeWidget(ui->checkBoxGeneratorSaveNeedles);
+
+        auto *layout = new QHBoxLayout;
+        layout->addWidget(ui->checkBoxGeneratorSaveNeedles);
+        layout->addWidget(buttonAdvanceFinder);
+        layout->addStretch();
+        parentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Eggs5::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Eggs5::transferFilters);
@@ -93,10 +123,6 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
-    if (setting.contains("showSaveNeedles"))
-    {
-        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
-    }
     setting.endGroup();
 }
 
@@ -108,7 +134,6 @@ Eggs5::~Eggs5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
-    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ui;
@@ -290,4 +315,15 @@ void Eggs5::transferSettings(int index)
     {
         ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
     }
+}
+
+void Eggs5::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

@@ -19,6 +19,7 @@
 
 #include "Event5.hpp"
 #include "ui_Event5.h"
+#include "AdvanceFinder.hpp"
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -34,12 +35,15 @@
 #include <Model/Gen5/EventModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
+Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5), advanceFinder(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -68,6 +72,32 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+
+    auto *parentLayout = qobject_cast<QGridLayout *>(ui->checkBoxGeneratorSaveNeedles->parentWidget()->layout());
+    int index = parentLayout ? parentLayout->indexOf(ui->checkBoxGeneratorSaveNeedles) : -1;
+    if (index != -1)
+    {
+        int row;
+        int column;
+        int rowSpan;
+        int columnSpan;
+        parentLayout->getItemPosition(index, &row, &column, &rowSpan, &columnSpan);
+        parentLayout->removeWidget(ui->checkBoxGeneratorSaveNeedles);
+
+        auto *layout = new QHBoxLayout;
+        layout->addWidget(ui->checkBoxGeneratorSaveNeedles);
+        layout->addWidget(buttonAdvanceFinder);
+        layout->addStretch();
+        parentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Event5::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
@@ -112,10 +142,6 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
-    if (setting.contains("showSaveNeedles"))
-    {
-        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
-    }
     setting.endGroup();
 }
 
@@ -127,7 +153,6 @@ Event5::~Event5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
-    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ui;
@@ -501,4 +526,15 @@ void Event5::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->checkBoxGeneratorEgg->setCheckState(ui->checkBoxSearcherEgg->checkState());
     }
+}
+
+void Event5::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

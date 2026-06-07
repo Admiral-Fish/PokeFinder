@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class Profile4;
 class SortFilterProxyModel;
 class StaticGeneratorModel4;
@@ -66,6 +67,7 @@ public slots:
 private:
     Ui::Static4 *ui;
 
+    AdvanceFinder *advanceFinder;
     Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
     StaticGeneratorModel4 *generatorModel;
@@ -141,6 +143,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // STATIC4_HPP

@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class EventGeneratorModel4;
 class EventSearcherModel4;
 class Profile4;
@@ -66,6 +67,7 @@ public slots:
 private:
     Ui::Event4 *ui;
 
+    AdvanceFinder *advanceFinder;
     EventGeneratorModel4 *generatorModel;
     EventSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
@@ -113,6 +115,11 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
 };
 
 #endif // EVENT4_HPP

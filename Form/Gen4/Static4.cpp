@@ -32,13 +32,17 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Gen5/AdvanceFinder.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
+Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4), advanceFinder(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -79,6 +83,19 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
+    if (settingsLayout)
+    {
+        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Static4::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
 
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static4::transferSettings);
@@ -395,4 +412,15 @@ void Static4::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
+}
+
+void Static4::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

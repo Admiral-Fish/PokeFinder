@@ -28,15 +28,19 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Gen5/AdvanceFinder.hpp>
 #include <Model/Gen4/EggModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
+Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4), advanceFinder(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -78,6 +82,19 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
+    if (settingsLayout)
+    {
+        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Eggs4::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
 
     connect(ui->tabEggSelection, &TabWidget::transferFilters, this, &Eggs4::transferFilters);
     connect(ui->tabEggSelection, &TabWidget::transferSettings, this, &Eggs4::transferSettings);
@@ -317,4 +334,15 @@ void Eggs4::transferSettings(int index)
     {
         ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
     }
+}
+
+void Eggs4::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

@@ -19,6 +19,7 @@
 
 #include "HiddenGrotto.hpp"
 #include "ui_HiddenGrotto.h"
+#include "AdvanceFinder.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -38,13 +39,22 @@
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
-    QWidget(parent), ui(new Ui::HiddenGrotto), ivCache(nullptr), shaCache(nullptr), encounter(Encounters5::getHiddenGrottoEncounters())
+    QWidget(parent),
+    ui(new Ui::HiddenGrotto),
+    grottoAdvanceFinder(nullptr),
+    pokemonAdvanceFinder(nullptr),
+    ivCache(nullptr),
+    shaCache(nullptr),
+    encounter(Encounters5::getHiddenGrottoEncounters())
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -102,6 +112,58 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+
+    QPushButton *buttonGrottoAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonGrottoAdvanceFinder->setMaximumWidth(100);
+
+    auto *grottoParentLayout = qobject_cast<QGridLayout *>(ui->checkBoxGrottoGeneratorSaveNeedles->parentWidget()->layout());
+    int grottoIndex = grottoParentLayout ? grottoParentLayout->indexOf(ui->checkBoxGrottoGeneratorSaveNeedles) : -1;
+    if (grottoIndex != -1)
+    {
+        int row;
+        int column;
+        int rowSpan;
+        int columnSpan;
+        grottoParentLayout->getItemPosition(grottoIndex, &row, &column, &rowSpan, &columnSpan);
+        grottoParentLayout->removeWidget(ui->checkBoxGrottoGeneratorSaveNeedles);
+
+        auto *layout = new QHBoxLayout;
+        layout->addWidget(ui->checkBoxGrottoGeneratorSaveNeedles);
+        layout->addWidget(buttonGrottoAdvanceFinder);
+        layout->addStretch();
+        grottoParentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
+        connect(buttonGrottoAdvanceFinder, &QPushButton::clicked, this, &HiddenGrotto::openGrottoAdvanceFinder);
+    }
+    else
+    {
+        delete buttonGrottoAdvanceFinder;
+    }
+
+    QPushButton *buttonPokemonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonPokemonAdvanceFinder->setMaximumWidth(100);
+
+    auto *pokemonParentLayout = qobject_cast<QGridLayout *>(ui->checkBoxPokemonGeneratorSaveNeedles->parentWidget()->layout());
+    int pokemonIndex = pokemonParentLayout ? pokemonParentLayout->indexOf(ui->checkBoxPokemonGeneratorSaveNeedles) : -1;
+    if (pokemonIndex != -1)
+    {
+        int row;
+        int column;
+        int rowSpan;
+        int columnSpan;
+        pokemonParentLayout->getItemPosition(pokemonIndex, &row, &column, &rowSpan, &columnSpan);
+        pokemonParentLayout->removeWidget(ui->checkBoxPokemonGeneratorSaveNeedles);
+
+        auto *layout = new QHBoxLayout;
+        layout->addWidget(ui->checkBoxPokemonGeneratorSaveNeedles);
+        layout->addWidget(buttonPokemonAdvanceFinder);
+        layout->addStretch();
+        pokemonParentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
+        connect(buttonPokemonAdvanceFinder, &QPushButton::clicked, this, &HiddenGrotto::openPokemonAdvanceFinder);
+    }
+    else
+    {
+        delete buttonPokemonAdvanceFinder;
+    }
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
     connect(ui->tabGrottoRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
@@ -171,14 +233,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     {
         ui->dateEditPokemonSearcherEndDate->setDate(setting.value("endDatePokemon").toDate());
     }
-    if (setting.contains("showGrottoGeneratorSaveNeedles"))
-    {
-        ui->checkBoxGrottoGeneratorSaveNeedles->setChecked(setting.value("showGrottoGeneratorSaveNeedles").toBool());
-    }
-    if (setting.contains("showPokemonGeneratorSaveNeedles"))
-    {
-        ui->checkBoxPokemonGeneratorSaveNeedles->setChecked(setting.value("showPokemonGeneratorSaveNeedles").toBool());
-    }
     setting.endGroup();
 }
 
@@ -192,8 +246,6 @@ HiddenGrotto::~HiddenGrotto()
     setting.setValue("endDateGrotto", ui->dateEditGrottoSearcherEndDate->date());
     setting.setValue("startDatePokemon", ui->dateEditPokemonSearcherStartDate->date());
     setting.setValue("endDatePokemon", ui->dateEditPokemonSearcherEndDate->date());
-    setting.setValue("showGrottoGeneratorSaveNeedles", ui->checkBoxGrottoGeneratorSaveNeedles->isChecked());
-    setting.setValue("showPokemonGeneratorSaveNeedles", ui->checkBoxPokemonGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ivCache;
@@ -833,4 +885,26 @@ void HiddenGrotto::transferSettingsPokemon(int index)
         ui->comboBoxPokemonGeneratorPokemon->setCurrentIndex(ui->comboBoxPokemonSearcherPokemon->currentIndex());
         ui->comboBoxPokemonGeneratorGender->setCurrentIndex(ui->comboBoxPokemonSearcherGender->currentIndex());
     }
+}
+
+void HiddenGrotto::openGrottoAdvanceFinder()
+{
+    if (!grottoAdvanceFinder)
+    {
+        grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
+    }
+    grottoAdvanceFinder->show();
+    grottoAdvanceFinder->raise();
+    grottoAdvanceFinder->activateWindow();
+}
+
+void HiddenGrotto::openPokemonAdvanceFinder()
+{
+    if (!pokemonAdvanceFinder)
+    {
+        pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
+    }
+    pokemonAdvanceFinder->show();
+    pokemonAdvanceFinder->raise();
+    pokemonAdvanceFinder->activateWindow();
 }

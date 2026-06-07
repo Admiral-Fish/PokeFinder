@@ -19,6 +19,7 @@
 
 #include "Wild5.hpp"
 #include "ui_Wild5.h"
+#include "AdvanceFinder.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
@@ -38,12 +39,15 @@
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
-Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
+Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), advanceFinder(nullptr), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -106,6 +110,32 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
+    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
+    buttonAdvanceFinder->setMaximumWidth(100);
+
+    auto *parentLayout = qobject_cast<QGridLayout *>(ui->checkBoxGeneratorSaveNeedles->parentWidget()->layout());
+    int index = parentLayout ? parentLayout->indexOf(ui->checkBoxGeneratorSaveNeedles) : -1;
+    if (index != -1)
+    {
+        int row;
+        int column;
+        int rowSpan;
+        int columnSpan;
+        parentLayout->getItemPosition(index, &row, &column, &rowSpan, &columnSpan);
+        parentLayout->removeWidget(ui->checkBoxGeneratorSaveNeedles);
+
+        auto *layout = new QHBoxLayout;
+        layout->addWidget(ui->checkBoxGeneratorSaveNeedles);
+        layout->addWidget(buttonAdvanceFinder);
+        layout->addStretch();
+        parentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
+        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Wild5::openAdvanceFinder);
+    }
+    else
+    {
+        delete buttonAdvanceFinder;
+    }
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild5::transferSettings);
@@ -150,10 +180,6 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     {
         ui->dateEditSearcherEndDate->setDate(setting.value("endDate").toDate());
     }
-    if (setting.contains("showSaveNeedles"))
-    {
-        ui->checkBoxGeneratorSaveNeedles->setChecked(setting.value("showSaveNeedles").toBool());
-    }
     setting.endGroup();
 }
 
@@ -165,7 +191,6 @@ Wild5::~Wild5()
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
-    setting.setValue("showSaveNeedles", ui->checkBoxGeneratorSaveNeedles->isChecked());
     setting.endGroup();
 
     delete ivCache;
@@ -569,4 +594,15 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
     }
+}
+
+void Wild5::openAdvanceFinder()
+{
+    if (!advanceFinder)
+    {
+        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    }
+    advanceFinder->show();
+    advanceFinder->raise();
+    advanceFinder->activateWindow();
 }

@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class AdvanceFinder;
 class HiddenGrottoArea;
 class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
@@ -79,6 +80,8 @@ public slots:
 private:
     Ui::HiddenGrotto *ui;
 
+    AdvanceFinder *grottoAdvanceFinder;
+    AdvanceFinder *pokemonAdvanceFinder;
     HiddenGrottoSlotGeneratorModel5 *grottoGeneratorModel;
     HiddenGrottoSlotSearcherModel5 *grottoSearcherModel;
     HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;
@@ -230,6 +233,16 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettingsPokemon(int index);
+
+    /**
+     * @brief Opens the grotto advance finder dialog
+     */
+    void openGrottoAdvanceFinder();
+
+    /**
+     * @brief Opens the pokemon advance finder dialog
+     */
+    void openPokemonAdvanceFinder();
 };
 
 #endif // HIDDENGROTTO_HPP

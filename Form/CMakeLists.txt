@@ -176,6 +176,8 @@ set(PROJECT_SOURCES
     Gen5/DreamRadar.hpp
     Gen5/Eggs5.cpp
     Gen5/Eggs5.hpp
+    Gen5/AdvanceFinder.cpp
+    Gen5/AdvanceFinder.hpp
     Gen5/Event5.cpp
     Gen5/Event5.hpp
     Gen5/HiddenGrotto.cpp
