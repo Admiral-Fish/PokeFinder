@@ -2,6 +2,81 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja">
 <context>
+    <name>AdvanceFinder</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chatot Pitches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High / Mid-High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-High / Mid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid / Mid-Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-Low / Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to Advance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Possible Results: Invalid input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Possible Results: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ChainedSID</name>
     <message>
         <source>HP</source>
@@ -1377,6 +1452,10 @@
 <context>
     <name>Eggs4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Eggs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1506,6 +1585,14 @@
 </context>
 <context>
     <name>Eggs5</name>
+    <message>
+        <source>Display Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Eggs</source>
         <translation type="unfinished"></translation>
@@ -1919,6 +2006,10 @@
 <context>
     <name>Event4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Wondercard IVs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2030,6 +2121,14 @@
 </context>
 <context>
     <name>Event5</name>
+    <message>
+        <source>Display Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Event</source>
         <translation type="unfinished"></translation>
@@ -3466,6 +3565,14 @@
 </context>
 <context>
     <name>HiddenGrotto</name>
+    <message>
+        <source>Display Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Hidden Grotto</source>
         <translation type="unfinished"></translation>
@@ -7480,6 +7587,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Static4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Static</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7665,6 +7776,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Static5</name>
+    <message>
+        <source>Display Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Static</source>
         <translation type="unfinished"></translation>
@@ -9356,6 +9475,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Wild</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9785,6 +9908,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Display Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation type="unfinished"></translation>
