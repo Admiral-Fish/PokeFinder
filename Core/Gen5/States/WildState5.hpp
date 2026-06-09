@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new State5 object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
@@ -43,12 +43,12 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    WildState5(u16 prng, u8 saveNeedle, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender,
-               u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+    WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+               u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
-        chatot(prng / 82),
-        saveNeedle(saveNeedle)
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
 

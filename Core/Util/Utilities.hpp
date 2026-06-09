@@ -219,19 +219,6 @@ namespace Utilities5
     std::string getChatot(u8 prng);
 
     /**
-     * @brief Returns the save needle arrow for a Gen5 save needle
-     *
-     * @param needle Save needle value
-     *
-     * @return Save needle arrow
-     */
-    inline std::string getSaveNeedle(u8 needle)
-    {
-        static const char *needles[] = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
-        return needles[needle & 7];
-    }
-
-    /**
      * @brief Calculates the initial set of advances for the \p profile
      *
      * @param seed PRNG state

@@ -174,9 +174,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        EggState5 state(rng.nextUInt(0x1fff), saveNeedle, advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
+        EggState5 state(rng.nextUInt(), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
                         Utilities::getShiny<true>(pid, tsv), inheritance, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
@@ -220,10 +218,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 pid = Utilities5::createPID(tsv, ability, 255, Shiny::Random, false, info->getGender(), go);
             }
 
-            BWRNG rngCopy = rng;
-            u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-            state.update(rng.nextUInt(0x1fff), saveNeedle, advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
-                         Utilities::getShiny<true>(pid, tsv));
+            state.update(rng.nextUInt(), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv));
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

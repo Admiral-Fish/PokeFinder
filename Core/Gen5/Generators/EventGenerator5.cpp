@@ -94,10 +94,8 @@ std::vector<EventState5> EventGenerator5::generate(u64 seed) const
             ability = (pid >> 16) & 1;
         }
 
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        EventState5 state(rng.nextUInt(0x1fff), saveNeedle, advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
-                          pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
+        EventState5 state(rng.nextUInt(), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), pgf.getLevel(),
+                          nature, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

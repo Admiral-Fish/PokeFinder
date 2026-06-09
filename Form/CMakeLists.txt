@@ -88,6 +88,7 @@ set(PROJECT_UI
     Gen8/Wild8.ui
     MainWindow.ui
     Util/EncounterLookup.ui
+    Util/AdvanceFinder.ui
     Util/IVCalculator.ui
     Util/IVToPID.ui
     Util/Researcher.ui
@@ -176,8 +177,6 @@ set(PROJECT_SOURCES
     Gen5/DreamRadar.hpp
     Gen5/Eggs5.cpp
     Gen5/Eggs5.hpp
-    Gen5/AdvanceFinder.cpp
-    Gen5/AdvanceFinder.hpp
     Gen5/Event5.cpp
     Gen5/Event5.hpp
     Gen5/HiddenGrotto.cpp
@@ -222,6 +221,8 @@ set(PROJECT_SOURCES
     MainWindow.hpp
     Util/EncounterLookup.cpp
     Util/EncounterLookup.hpp
+    Util/AdvanceFinder.cpp
+    Util/AdvanceFinder.hpp
     Util/IVCalculator.cpp
     Util/IVCalculator.hpp
     Util/IVToPID.cpp

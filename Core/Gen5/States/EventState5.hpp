@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new EventState5 object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs
@@ -42,9 +42,11 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    EventState5(u16 prng, u8 saveNeedle, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+    EventState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                 const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), chatot(prng / 82), saveNeedle(saveNeedle)
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
 

@@ -21,13 +21,13 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGeneratorModel5::StaticGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showSaveNeedles(false)
+StaticGeneratorModel5::StaticGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 
 int StaticGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -41,21 +41,19 @@ QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            if (showSaveNeedles)
-            {
-                return QString::fromStdString(Utilities5::getSaveNeedle(state.getSaveNeedle()));
-            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
         case 3:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 4:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 4:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 6:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -66,20 +64,20 @@ QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 6:
         case 7:
         case 8:
         case 9:
         case 10:
         case 11:
-            return showStats ? state.getStat(column - 6) : state.getIV(column - 6);
         case 12:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 14:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 15:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 16:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
@@ -91,10 +89,6 @@ QVariant StaticGeneratorModel5::headerData(int section, Qt::Orientation orientat
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (section == 1 && showSaveNeedles)
-        {
-            return tr("Needle");
-        }
         return header[section];
     }
     return QVariant();
@@ -103,22 +97,7 @@ QVariant StaticGeneratorModel5::headerData(int section, Qt::Orientation orientat
 void StaticGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
-}
-
-void StaticGeneratorModel5::setShowSaveNeedles(bool flag)
-{
-    if (showSaveNeedles == flag)
-    {
-        return;
-    }
-
-    showSaveNeedles = flag;
-    if (rowCount() > 0)
-    {
-        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
-    }
-    emit headerDataChanged(Qt::Horizontal, 1, 1);
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

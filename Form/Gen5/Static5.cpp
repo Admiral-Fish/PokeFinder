@@ -19,7 +19,7 @@
 
 #include "Static5.hpp"
 #include "ui_Static5.h"
-#include "AdvanceFinder.hpp"
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -36,9 +36,8 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
-#include <QGridLayout>
-#include <QHBoxLayout>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
@@ -87,31 +86,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), advanc
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
-    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
-    buttonAdvanceFinder->setMaximumWidth(100);
-
-    auto *parentLayout = qobject_cast<QGridLayout *>(ui->checkBoxGeneratorSaveNeedles->parentWidget()->layout());
-    int index = parentLayout ? parentLayout->indexOf(ui->checkBoxGeneratorSaveNeedles) : -1;
-    if (index != -1)
-    {
-        int row;
-        int column;
-        int rowSpan;
-        int columnSpan;
-        parentLayout->getItemPosition(index, &row, &column, &rowSpan, &columnSpan);
-        parentLayout->removeWidget(ui->checkBoxGeneratorSaveNeedles);
-
-        auto *layout = new QHBoxLayout;
-        layout->addWidget(ui->checkBoxGeneratorSaveNeedles);
-        layout->addWidget(buttonAdvanceFinder);
-        layout->addStretch();
-        parentLayout->addLayout(layout, row, column, rowSpan, columnSpan);
-        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Static5::openAdvanceFinder);
-    }
-    else
-    {
-        delete buttonAdvanceFinder;
-    }
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static5::openAdvanceFinder);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
@@ -124,7 +100,6 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), advanc
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static5::searcherPokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel5::setShowStats);
-    connect(ui->checkBoxGeneratorSaveNeedles, &QCheckBox::toggled, generatorModel, &StaticGeneratorModel5::setShowSaveNeedles);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel5::setShowStats);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Static5::searcherFastSearchChanged);

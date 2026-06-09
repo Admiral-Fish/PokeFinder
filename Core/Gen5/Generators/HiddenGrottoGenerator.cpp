@@ -70,9 +70,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        u16 prng = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
@@ -81,7 +79,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                 {
                     const auto &pokemon = encounterArea.getPokemon(group, slot);
                     u8 gender = go.nextUInt(100) < pokemon.getGender();
-                    HiddenGrottoState state(prng, saveNeedle, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
+                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
                     if (filter.compareState(state))
                     {
                         states.emplace_back(state);
@@ -90,7 +88,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                 else if (slot < 7) // Item
                 {
                     u16 item = encounterArea.getItem(group, slot - 3);
-                    HiddenGrottoState state(prng, saveNeedle, advances + initialAdvances + cnt, group, slot, item);
+                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
                     if (filter.compareState(state))
                     {
                         states.emplace_back(state);
@@ -99,7 +97,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                 else // Hidden item
                 {
                     u16 item = encounterArea.getHiddenItem(group, slot - 7);
-                    HiddenGrottoState state(prng, saveNeedle, advances + initialAdvances + cnt, group, slot, item);
+                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
                     if (filter.compareState(state))
                     {
                         states.emplace_back(state);
@@ -192,12 +190,10 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
             nature = toInt(lead);
         }
 
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, saveNeedle, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, 0, info);
+            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, 0, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);

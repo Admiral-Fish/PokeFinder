@@ -28,12 +28,10 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
-#include <Form/Gen5/AdvanceFinder.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EggModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QGridLayout>
-#include <QHBoxLayout>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
@@ -83,18 +81,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4), advanceFinde
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
-    buttonAdvanceFinder->setMaximumWidth(100);
-    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
-    if (settingsLayout)
-    {
-        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
-        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Eggs4::openAdvanceFinder);
-    }
-    else
-    {
-        delete buttonAdvanceFinder;
-    }
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Eggs4::openAdvanceFinder);
 
     connect(ui->tabEggSelection, &TabWidget::transferFilters, this, &Eggs4::transferFilters);
     connect(ui->tabEggSelection, &TabWidget::transferSettings, this, &Eggs4::transferSettings);

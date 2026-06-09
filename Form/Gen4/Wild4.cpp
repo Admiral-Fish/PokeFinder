@@ -34,11 +34,10 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
-#include <Form/Gen5/AdvanceFinder.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/WildModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
-#include <QGridLayout>
-#include <QHBoxLayout>
+#include <QAction>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
@@ -135,18 +134,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4), advanceFinde
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
-    buttonAdvanceFinder->setMaximumWidth(100);
-    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
-    if (settingsLayout)
-    {
-        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
-        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Wild4::openAdvanceFinder);
-    }
-    else
-    {
-        delete buttonAdvanceFinder;
-    }
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Wild4::openAdvanceFinder);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild4::transferFilters);

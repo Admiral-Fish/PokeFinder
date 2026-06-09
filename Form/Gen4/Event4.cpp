@@ -30,12 +30,10 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
-#include <Form/Gen5/AdvanceFinder.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EventModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QGridLayout>
-#include <QHBoxLayout>
 #include <QPushButton>
 #include <QSettings>
 #include <QThread>
@@ -83,18 +81,8 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4), advanceFi
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
-    QPushButton *buttonAdvanceFinder = new QPushButton(tr("Advance Finder"), this);
-    buttonAdvanceFinder->setMaximumWidth(100);
-    auto *settingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
-    if (settingsLayout)
-    {
-        settingsLayout->addWidget(buttonAdvanceFinder, settingsLayout->rowCount(), 0, 1, 2);
-        connect(buttonAdvanceFinder, &QPushButton::clicked, this, &Event4::openAdvanceFinder);
-    }
-    else
-    {
-        delete buttonAdvanceFinder;
-    }
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Event4::openAdvanceFinder);
 
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event4::transferSettings);

@@ -21,13 +21,13 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showSaveNeedles(false)
+WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 
 int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 19;
+    return 20;
 }
 
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -41,30 +41,27 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            if (showSaveNeedles)
-            {
-                static const QString needles[] = { QStringLiteral("↑"), QStringLiteral("↗"), QStringLiteral("→"), QStringLiteral("↘"), QStringLiteral("↓"), QStringLiteral("↙"), QStringLiteral("←"), QStringLiteral("↖") };
-                return needles[state.getSaveNeedle()];
-            }
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::fromStdString(Translator::getItem(state.getItem()));
+            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
         case 3:
+            return QString::fromStdString(Translator::getItem(state.getItem()));
+        case 4:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 4:
-            return state.getLevel();
         case 5:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 6:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 7:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 7:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 9:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -75,20 +72,20 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 9:
         case 10:
         case 11:
         case 12:
         case 13:
         case 14:
-            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
         case 16:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 17:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 18:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 19:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
@@ -100,10 +97,6 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (section == 1 && showSaveNeedles)
-        {
-            return tr("Needle");
-        }
         return header[section];
     }
     return QVariant();
@@ -114,23 +107,8 @@ void WildGeneratorModel5::setShowStats(bool flag)
     showStats = flag;
     if (rowCount() > 0)
     {
-        emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
+        emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
     }
-}
-
-void WildGeneratorModel5::setShowSaveNeedles(bool flag)
-{
-    if (showSaveNeedles == flag)
-    {
-        return;
-    }
-
-    showSaveNeedles = flag;
-    if (rowCount() > 0)
-    {
-        emit dataChanged(index(0, 1), index(rowCount() - 1, 1), { Qt::DisplayRole });
-    }
-    emit headerDataChanged(Qt::Horizontal, 1, 1);
 }
 
 WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

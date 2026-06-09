@@ -147,13 +147,11 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
         u8 nature = go.nextUInt(25);
 
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, saveNeedle, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
+            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(), nature, shiny,
+                         info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
@@ -242,13 +240,11 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             nature = toInt(lead);
         }
 
-        BWRNG rngCopy = rng;
-        u8 saveNeedle = static_cast<u8>(rngCopy.nextUInt(8));
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, saveNeedle, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
+            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(), nature, shiny,
+                         info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
