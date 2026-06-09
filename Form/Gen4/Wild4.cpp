@@ -44,7 +44,7 @@
 #include <QThread>
 #include <QTimer>
 
-Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4), advanceFinder(nullptr)
+Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -1056,11 +1056,6 @@ void Wild4::transferSettings(int index)
 
 void Wild4::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

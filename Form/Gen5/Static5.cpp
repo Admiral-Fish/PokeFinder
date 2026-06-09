@@ -44,7 +44,7 @@
 #include <QThread>
 #include <QTimer>
 
-Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), advanceFinder(nullptr), ivCache(nullptr), shaCache(nullptr)
+Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -541,11 +541,6 @@ void Static5::transferSettings(int index)
 
 void Static5::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

@@ -39,7 +39,7 @@
 #include <QThread>
 #include <QTimer>
 
-Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5), advanceFinder(nullptr)
+Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -294,11 +294,6 @@ void Eggs5::transferSettings(int index)
 
 void Eggs5::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

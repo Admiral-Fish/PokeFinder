@@ -22,6 +22,7 @@
 #include <Core/Util/Translator.hpp>
 #include <QAbstractItemView>
 #include <QAbstractItemModel>
+#include <QCoreApplication>
 #include <QHeaderView>
 #include <QLineEdit>
 #include <QPushButton>
@@ -33,11 +34,14 @@
 #include <array>
 #include <utility>
 
-static int findColumn(QAbstractItemModel *model, const QString &header)
+static int findColumn(QAbstractItemModel *model, const char *header)
 {
+    QString source = QString::fromUtf8(header);
+    QString translated = QCoreApplication::translate(model->metaObject()->className(), header);
     for (int column = 0; column < model->columnCount(); column++)
     {
-        if (model->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString() == header)
+        QString columnHeader = model->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
+        if (columnHeader == source || columnHeader == translated)
         {
             return column;
         }
@@ -76,6 +80,20 @@ static u8 readNeedle(QAbstractItemModel *model, int row, int column)
     return 0;
 }
 
+static u8 readCall(QAbstractItemModel *model, int row, int column)
+{
+    QString text = model->data(model->index(row, column), Qt::DisplayRole).toString();
+    if (text == "E")
+    {
+        return 0;
+    }
+    if (text == "K")
+    {
+        return 1;
+    }
+    return 2;
+}
+
 AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QWidget *parent) : AdvanceFinder(generatorModel, nullptr, parent)
 {
 }
@@ -85,16 +103,23 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
     ui(new Ui::AdvanceFinder),
     generatorModel(generatorModel),
     sourceTableView(sourceTableView),
-    chatotColumn(findColumn(generatorModel, tr("Chatot"))),
-    needleColumn(findColumn(generatorModel, tr("Needle"))),
+    chatotColumn(findColumn(generatorModel, "Chatot")),
+    needleColumn(findColumn(generatorModel, "Needle")),
+    callColumn(findColumn(generatorModel, "Call")),
     switchingMode(false)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
     bool hasNeedles = needleColumn != -1;
+    bool hasCalls = !hasNeedles && callColumn != -1;
 
-    ui->widgetMode->setVisible(hasNeedles);
+    ui->widgetMode->setVisible(hasNeedles || hasCalls);
+    ui->radioButtonNeedle->setText(hasCalls ? tr("Calls") : tr("Save Needles"));
+    ui->radioButtonElm->setText(QCoreApplication::translate("SearchCalls", "Elm"));
+    ui->radioButtonIrwin->setText(QCoreApplication::translate("SearchCalls", "Irwin"));
     ui->groupBoxNeedle->setVisible(false);
+    ui->groupBoxCall->setVisible(false);
 
     using ChatotToken = AdvanceFinderLogic::ChatotToken;
     const std::array<std::pair<QPushButton *, ChatotToken>, 10> chatotButtons
@@ -128,6 +153,14 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
     {
         connect(button, &QPushButton::clicked, this, [=] { appendNeedleToken(button->text(), token); });
     }
+
+    using CallToken = AdvanceFinderLogic::CallToken;
+    connect(ui->pushButtonCallE, &QPushButton::clicked, this, [=] { appendCallToken(ui->pushButtonCallE->text(), CallToken::E); });
+    connect(ui->pushButtonCallK, &QPushButton::clicked, this, [=] { appendCallToken(ui->pushButtonCallK->text(), CallToken::K); });
+    connect(ui->pushButtonCallP, &QPushButton::clicked, this, [=] { appendCallToken(ui->pushButtonCallP->text(), CallToken::P); });
+    connect(ui->radioButtonElm, &QRadioButton::clicked, this, &AdvanceFinder::elm);
+    connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &AdvanceFinder::irwin);
+    irwin();
 
     ui->tableWidgetResults->setColumnCount(generatorModel->columnCount());
     QStringList headers;
@@ -164,6 +197,12 @@ void AdvanceFinder::appendNeedleToken(const QString &text, AdvanceFinderLogic::N
     appendTokenText(text);
 }
 
+void AdvanceFinder::appendCallToken(const QString &text, AdvanceFinderLogic::CallToken token)
+{
+    callTokens.emplace_back(token);
+    appendTokenText(text);
+}
+
 void AdvanceFinder::appendTokenText(const QString &token)
 {
     QString text = ui->lineEditSequence->text().trimmed();
@@ -186,9 +225,13 @@ void AdvanceFinder::removeToken()
         }
         else
         {
-            if (!needleTokens.empty())
+            if (needleColumn != -1 && !needleTokens.empty())
             {
                 needleTokens.pop_back();
+            }
+            else if (callColumn != -1 && !callTokens.empty())
+            {
+                callTokens.pop_back();
             }
         }
     }
@@ -208,9 +251,44 @@ void AdvanceFinder::clearTokens()
     }
     else
     {
-        needleTokens.clear();
+        if (needleColumn != -1)
+        {
+            needleTokens.clear();
+        }
+        else
+        {
+            callTokens.clear();
+        }
     }
     ui->lineEditSequence->clear();
+}
+
+void AdvanceFinder::elm()
+{
+    ui->labelKResponse->setText(QCoreApplication::translate(
+        "SearchCalls",
+        "K - I expect there are some Pok\303\251mon in the Kanto region that I don't know. There are probably methods of evolution that "
+        "I'm not familiar with yet. I should use that perspective and discover what I can!"));
+    ui->labelEResponse->setText(QCoreApplication::translate(
+        "SearchCalls",
+        "E - There are so many different ways that Pok\303\251mon evolve, aren't there?! Some Pok\303\251mon don't even evolve until "
+        "they meet certain conditions first!"));
+    ui->labelPResponse->setText(QCoreApplication::translate(
+        "SearchCalls",
+        "P - It seems that Pok\303\251mon that have been infected with Pok\303\251rus level up better. We're not quite sure why..."));
+}
+
+void AdvanceFinder::irwin()
+{
+    ui->labelKResponse->setText(QCoreApplication::translate(
+        "SearchCalls", "K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
+    ui->labelEResponse->setText(QCoreApplication::translate("SearchCalls",
+                                                            "E - Hearing about your escapades rocks my soul! It sure does!"));
+    ui->labelPResponse->setText(QCoreApplication::translate(
+        "SearchCalls",
+        "P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How's "
+        "your mom? Have you got lots of Pok\303\251mon? Is it going to be sunny tomorrow? Arrgh, there's so much I want to chat about! "
+        "This is going nowhere!"));
 }
 
 void AdvanceFinder::sequenceTextChanged(const QString &text)
@@ -223,7 +301,14 @@ void AdvanceFinder::sequenceTextChanged(const QString &text)
         }
         else
         {
-            needleSequence = text;
+            if (needleColumn != -1)
+            {
+                needleSequence = text;
+            }
+            else
+            {
+                callSequence = text;
+            }
         }
     }
 
@@ -232,9 +317,19 @@ void AdvanceFinder::sequenceTextChanged(const QString &text)
 
 void AdvanceFinder::search()
 {
-    AdvanceFinderLogic::Sequence sequence = ui->radioButtonChatot->isChecked()
-        ? AdvanceFinderLogic::getChatotSequence(chatotTokens)
-        : AdvanceFinderLogic::getNeedleSequence(needleTokens);
+    AdvanceFinderLogic::Sequence sequence;
+    if (ui->radioButtonChatot->isChecked())
+    {
+        sequence = AdvanceFinderLogic::getChatotSequence(chatotTokens);
+    }
+    else if (needleColumn != -1)
+    {
+        sequence = AdvanceFinderLogic::getNeedleSequence(needleTokens);
+    }
+    else
+    {
+        sequence = AdvanceFinderLogic::getCallSequence(callTokens);
+    }
 
     ui->tableWidgetResults->setRowCount(0);
     previewRows.clear();
@@ -247,8 +342,15 @@ void AdvanceFinder::search()
     }
 
     auto getter = [this](size_t row) {
-        return ui->radioButtonChatot->isChecked() ? readChatot(generatorModel, static_cast<int>(row), chatotColumn)
-                                                  : readNeedle(generatorModel, static_cast<int>(row), needleColumn);
+        if (ui->radioButtonChatot->isChecked())
+        {
+            return readChatot(generatorModel, static_cast<int>(row), chatotColumn);
+        }
+        if (needleColumn != -1)
+        {
+            return readNeedle(generatorModel, static_cast<int>(row), needleColumn);
+        }
+        return readCall(generatorModel, static_cast<int>(row), callColumn);
     };
     std::vector<size_t> matches = AdvanceFinderLogic::findMatches(static_cast<size_t>(generatorModel->rowCount()), sequence, getter);
 
@@ -308,10 +410,11 @@ void AdvanceFinder::onModeChanged()
 {
     bool chatot = ui->radioButtonChatot->isChecked();
     ui->groupBoxChatot->setVisible(chatot);
-    ui->groupBoxNeedle->setVisible(!chatot);
+    ui->groupBoxNeedle->setVisible(!chatot && needleColumn != -1);
+    ui->groupBoxCall->setVisible(!chatot && callColumn != -1);
 
     switchingMode = true;
-    ui->lineEditSequence->setText(chatot ? chatotSequence : needleSequence);
+    ui->lineEditSequence->setText(chatot ? chatotSequence : needleColumn != -1 ? needleSequence : callSequence);
     switchingMode = false;
     search();
 }

@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class AdvanceFinder;
 class EncounterArea4;
 class Profile4;
 class SortFilterProxyModel;
@@ -68,7 +67,6 @@ public slots:
 private:
     Ui::Wild4 *ui;
 
-    AdvanceFinder *advanceFinder;
     Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
     std::vector<EncounterArea4> encounterGenerator;

@@ -49,8 +49,6 @@
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HiddenGrotto),
-    grottoAdvanceFinder(nullptr),
-    pokemonAdvanceFinder(nullptr),
     ivCache(nullptr),
     shaCache(nullptr),
     encounter(Encounters5::getHiddenGrottoEncounters())
@@ -840,22 +838,12 @@ void HiddenGrotto::transferSettingsPokemon(int index)
 
 void HiddenGrotto::openGrottoAdvanceFinder()
 {
-    if (!grottoAdvanceFinder)
-    {
-        grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
-    }
+    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
     grottoAdvanceFinder->show();
-    grottoAdvanceFinder->raise();
-    grottoAdvanceFinder->activateWindow();
 }
 
 void HiddenGrotto::openPokemonAdvanceFinder()
 {
-    if (!pokemonAdvanceFinder)
-    {
-        pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
-    }
+    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
     pokemonAdvanceFinder->show();
-    pokemonAdvanceFinder->raise();
-    pokemonAdvanceFinder->activateWindow();
 }

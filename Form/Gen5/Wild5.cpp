@@ -46,7 +46,7 @@
 #include <QThread>
 #include <QTimer>
 
-Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), advanceFinder(nullptr), ivCache(nullptr), shaCache(nullptr)
+Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -573,11 +573,6 @@ void Wild5::transferSettings(int index)
 
 void Wild5::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

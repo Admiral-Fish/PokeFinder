@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class AdvanceFinder;
 class EncounterArea5;
 class IVCache;
 class Profile5;
@@ -78,7 +77,6 @@ public slots:
 private:
     Ui::Wild5 *ui;
 
-    AdvanceFinder *advanceFinder;
     IVCache *ivCache;
     Profile5 *currentProfile;
     SHA1Cache *shaCache;

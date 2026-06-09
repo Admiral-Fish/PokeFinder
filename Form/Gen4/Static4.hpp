@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class AdvanceFinder;
 class Profile4;
 class SortFilterProxyModel;
 class StaticGeneratorModel4;
@@ -67,7 +66,6 @@ public slots:
 private:
     Ui::Static4 *ui;
 
-    AdvanceFinder *advanceFinder;
     Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
     StaticGeneratorModel4 *generatorModel;

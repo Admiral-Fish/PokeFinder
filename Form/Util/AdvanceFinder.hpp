@@ -62,10 +62,13 @@ private:
     QTableView *sourceTableView;
     int chatotColumn;
     int needleColumn;
+    int callColumn;
     QString chatotSequence;
     QString needleSequence;
+    QString callSequence;
     std::vector<AdvanceFinderLogic::ChatotToken> chatotTokens;
     std::vector<AdvanceFinderLogic::NeedleToken> needleTokens;
+    std::vector<AdvanceFinderLogic::CallToken> callTokens;
     bool switchingMode;
     std::vector<int> previewRows;
 
@@ -85,6 +88,14 @@ private:
     void appendNeedleToken(const QString &text, AdvanceFinderLogic::NeedleToken token);
 
     /**
+     * @brief Adds a call token to the search sequence
+     *
+     * @param text Token text to append
+     * @param token Token value to append
+     */
+    void appendCallToken(const QString &text, AdvanceFinderLogic::CallToken token);
+
+    /**
      * @brief Adds text to the search sequence
      *
      * @param text Token text to append
@@ -95,6 +106,16 @@ private:
      * @brief Clears the search sequence
      */
     void clearTokens();
+
+    /**
+     * @brief Updates display text to show the Elm E/K/P text
+     */
+    void elm();
+
+    /**
+     * @brief Updates display text to show the Irwin E/K/P text
+     */
+    void irwin();
 
     /**
      * @brief Removes the last token from the search sequence

@@ -58,6 +58,13 @@ namespace AdvanceFinderLogic
         Any
     };
 
+    enum class CallToken
+    {
+        E,
+        K,
+        P
+    };
+
     /**
      * @brief Converts Chatot pitch tokens into allowed pitch values
      *
@@ -75,6 +82,15 @@ namespace AdvanceFinderLogic
      * @return Sequence of valid values for each token
      */
     Sequence getNeedleSequence(const std::vector<NeedleToken> &tokens);
+
+    /**
+     * @brief Converts call tokens into allowed call values
+     *
+     * @param tokens Search tokens
+     *
+     * @return Sequence of valid values for each token
+     */
+    Sequence getCallSequence(const std::vector<CallToken> &tokens);
 
     /**
      * @brief Searches a row sequence for matching advances

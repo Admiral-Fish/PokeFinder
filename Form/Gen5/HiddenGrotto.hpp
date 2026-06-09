@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class AdvanceFinder;
 class HiddenGrottoArea;
 class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
@@ -80,8 +79,6 @@ public slots:
 private:
     Ui::HiddenGrotto *ui;
 
-    AdvanceFinder *grottoAdvanceFinder;
-    AdvanceFinder *pokemonAdvanceFinder;
     HiddenGrottoSlotGeneratorModel5 *grottoGeneratorModel;
     HiddenGrottoSlotSearcherModel5 *grottoSearcherModel;
     HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;

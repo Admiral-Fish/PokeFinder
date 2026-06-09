@@ -41,7 +41,7 @@
 #include <QThread>
 #include <QTimer>
 
-Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4), advanceFinder(nullptr)
+Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -405,11 +405,6 @@ void Static4::transferSettings(int index)
 
 void Static4::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

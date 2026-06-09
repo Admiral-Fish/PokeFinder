@@ -39,7 +39,7 @@
 #include <QThread>
 #include <QTimer>
 
-Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4), advanceFinder(nullptr)
+Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -287,11 +287,6 @@ void Event4::transferSettings(int index)
 
 void Event4::openAdvanceFinder()
 {
-    if (!advanceFinder)
-    {
-        advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
     advanceFinder->show();
-    advanceFinder->raise();
-    advanceFinder->activateWindow();
 }

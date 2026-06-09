@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class AdvanceFinder;
 class EventGeneratorModel5;
 class EventSearcherModel5;
 class PGF;
@@ -76,7 +75,6 @@ public slots:
 private:
     Ui::Event5 *ui;
 
-    AdvanceFinder *advanceFinder;
     EventGeneratorModel5 *generatorModel;
     EventSearcherModel5 *searcherModel;
     Profile5 *currentProfile;

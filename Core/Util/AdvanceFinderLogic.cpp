@@ -85,6 +85,29 @@ namespace AdvanceFinderLogic
         return sequence;
     }
 
+    Sequence getCallSequence(const std::vector<CallToken> &tokens)
+    {
+        Sequence sequence;
+
+        for (CallToken token : tokens)
+        {
+            switch (token)
+            {
+            case CallToken::E:
+                sequence.emplace_back(0, 1);
+                break;
+            case CallToken::K:
+                sequence.emplace_back(1, 2);
+                break;
+            case CallToken::P:
+                sequence.emplace_back(2, 3);
+                break;
+            }
+        }
+
+        return sequence;
+    }
+
     std::vector<size_t> findMatches(size_t rowCount, const Sequence &sequence, const ValueGetter &getter)
     {
         std::vector<size_t> matches;

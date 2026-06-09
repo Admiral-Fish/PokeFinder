@@ -16,6 +16,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -709,6 +713,11 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
+        <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1587,10 +1596,6 @@
 <context>
     <name>Eggs5</name>
     <message>
-        <source>Display Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2123,10 +2128,6 @@
 <context>
     <name>Event5</name>
     <message>
-        <source>Display Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2597,6 +2598,11 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
+        <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3567,10 +3573,6 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
-        <source>Display Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3819,6 +3821,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
+        <source>Needle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
@@ -4026,6 +4033,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
+        <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7784,10 +7796,6 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Static5</name>
     <message>
-        <source>Display Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8445,6 +8453,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
         <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
+        <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9916,10 +9929,6 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild5</name>
     <message>
-        <source>Display Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10730,6 +10739,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
