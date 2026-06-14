@@ -14,11 +14,11 @@ def get_type(type: int, gen: int):
         return type
 
 
-def embed_personal():
+def embed_personal(parent_dir: str, output_dir: str):
     arrays = []
     read = struct.Struct("<H")
     for index in (3, 4, 5, 8):
-        for file in glob.glob(f"Personal/Gen{index}/*.bin"):
+        for file in glob.glob(f"{parent_dir}/Personal/Gen{index}/*.bin"):
             with open(file, "rb") as f:
                 data = f.read()
                 size = len(data)
@@ -132,4 +132,4 @@ def embed_personal():
             string += " };"
             arrays.append(string)
 
-    write_data(arrays, "Personal.hpp", ("Core/Parents/PersonalInfo.hpp", "array"))
+    write_data(arrays, f"{output_dir}/Personal.hpp", ("Core/Parents/PersonalInfo.hpp", "array"))

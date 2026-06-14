@@ -5,10 +5,10 @@ import compression.zstd as zstd
 from .embed_util import write_data
 
 
-def embed_encounters4():
+def embed_encounters4(parent_dir: str, input_dir: str, output_dir: str):
     arrays = []
 
-    with open("EncounterTables/Gen4/encounters.json") as f:
+    with open(f"{parent_dir}/EncounterTables/Gen4/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             string = f"constexpr std::array<StaticTemplate4, {len(encounters)}> {type.upper()} = {{ "
@@ -24,7 +24,7 @@ def embed_encounters4():
 
     files = ("d_honey", "diamond", "heartgold", "hg_headbutt", "hgss_bug", "hgss_safari", "p_honey", "pearl", "platinum", "pt_honey", "soulsilver", "ss_headbutt")
     for file in files:
-        with open(f"EncounterTables/{file}.bin", "rb") as f:
+        with open(f"{input_dir}/{file}.bin", "rb") as f:
             data = f.read()
 
         data = zstd.compress(data, 22)
@@ -40,4 +40,4 @@ def embed_encounters4():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData4.hpp", ("Core/Gen4/StaticTemplate4.hpp", "array"))
+    write_data(arrays, f"{output_dir}/EncounterData4.hpp", ("Core/Gen4/StaticTemplate4.hpp", "array"))

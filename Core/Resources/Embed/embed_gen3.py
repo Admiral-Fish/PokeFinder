@@ -5,10 +5,10 @@ import compression.zstd as zstd
 from .embed_util import write_data
 
 
-def embed_encounters3():
+def embed_encounters3(parent_dir: str, input_dir: str, output_dir: str):
     arrays = []
 
-    with open("EncounterTables/Gen3/encounters.json") as f:
+    with open(f"{parent_dir}/EncounterTables/Gen3/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             if "Shadow" in type:
@@ -38,7 +38,7 @@ def embed_encounters3():
 
     files = ("emerald", "firered", "leafgreen", "ruby", "sapphire", "xd")
     for file in files:
-        with open(f"EncounterTables/{file}.bin", "rb") as f:
+        with open(f"{input_dir}/{file}.bin", "rb") as f:
             data = f.read()
 
         data = zstd.compress(data, 22)
@@ -54,4 +54,4 @@ def embed_encounters3():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData3.hpp", ("Core/Gen3/ShadowTemplate.hpp", "Core/Gen3/StaticTemplate3.hpp", "array"))
+    write_data(arrays, f"{output_dir}/EncounterData3.hpp", ("Core/Gen3/ShadowTemplate.hpp", "Core/Gen3/StaticTemplate3.hpp", "array"))

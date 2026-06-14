@@ -11,13 +11,5 @@ CMakeSettings.json
 CppProperties.json
 out
 
-# Resource files
-i18n.hpp
-EncounterData*.hpp
-Personal.hpp
-IVs.hpp
+# Python cache files
 *.pyc
-
-# Test resource files
-Enum.cpp
-Enum.hpp

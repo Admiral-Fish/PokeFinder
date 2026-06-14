@@ -1,21 +1,54 @@
 project(PokeFinderCore)
 
-if (MSVC)
-    add_compile_options(/Zc:inline)
-endif ()
+# Modify raw encounter data into format PokeFinder uses
+file(GLOB_RECURSE ALL_ENCOUNTER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/*)
+list(FILTER ALL_ENCOUNTER_FILES EXCLUDE REGEX "(/\\.git($|/)|\\.pyc$|/__pycache__/)")
 
-if (MINGW OR UNIX)
-    include(GetTargetArch)
-    get_target_arch(ARCH)
-endif ()
+set(ENCOUNTER_DATA_FILES ${ALL_ENCOUNTER_FILES})
+list(FILTER ENCOUNTER_DATA_FILES EXCLUDE REGEX "\\.py$")
 
-find_package(Python3 3.14 COMPONENTS Interpreter REQUIRED)
-execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
-execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
+set(ENCOUNTER_PYTHON_FILES ${ALL_ENCOUNTER_FILES})
+list(FILTER ENCOUNTER_PYTHON_FILES INCLUDE REGEX "\\.py$")
+
+set(ENCOUNTER_BIN   ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(ENCOUNTER_STAMP ${CMAKE_CURRENT_BINARY_DIR}/bin.stamp)
+
+add_custom_command(
+    OUTPUT ${ENCOUNTER_STAMP}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py ${ENCOUNTER_BIN} ${ENCOUNTER_STAMP}
+    DEPENDS ${ENCOUNTER_DATA_FILES} ${ENCOUNTER_PYTHON_FILES}
+)
+
+# Convert modified encounter data into header files
+file(GLOB_RECURSE ALL_EMBED_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resources/*)
+list(FILTER ALL_EMBED_FILES EXCLUDE REGEX "/EncounterTables/")
+
+set(EMBED_DATA_FILES ${ALL_EMBED_FILES})
+list(FILTER EMBED_DATA_FILES INCLUDE REGEX "\\.(bin|txt)$")
+
+set(EMBED_PYTHON_FILES ${ALL_EMBED_FILES})
+list(FILTER EMBED_PYTHON_FILES INCLUDE REGEX "\\.py$")
+
+set(EMBED_PATH ${CMAKE_CURRENT_BINARY_DIR}/generated/Core/Resources)
+set(EMBED_HEADERS 
+    ${EMBED_PATH}/EncounterData3.hpp
+    ${EMBED_PATH}/EncounterData4.hpp
+    ${EMBED_PATH}/EncounterData5.hpp
+    ${EMBED_PATH}/EncounterData8.hpp
+    ${EMBED_PATH}/i18n.hpp
+    ${EMBED_PATH}/Personal.hpp
+)
+
+add_custom_command(
+    OUTPUT ${EMBED_HEADERS}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py ${ENCOUNTER_BIN} ${EMBED_PATH}
+    DEPENDS ${ENCOUNTER_STAMP} ${EMBED_DATA_FILES} ${EMBED_PYTHON_FILES}
+)
 
 add_subdirectory(External)
 
 add_library(PokeFinderCore STATIC
+    ${EMBED_HEADERS}
     Enum/Buttons.hpp
     Enum/DSType.hpp
     Enum/Encounter.hpp
@@ -264,27 +297,33 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External)
-target_link_libraries(PokeFinderCore libzstd_static)
+target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated)
+target_link_libraries(PokeFinderCore libzstd_static PokeFinderIncludes)
+
+if (MSVC)
+    add_compile_options(PokeFinderCore PRIVATE /Zc:inline)
+endif ()
 
 if (SIMD)
     target_compile_definitions(PokeFinderCore PRIVATE SIMD)
 
     if (APPLE)
-        if (CMAKE_OSX_ARCHITECTURES MATCHES "x86_64")
-            if (CMAKE_OSX_ARCHITECTURES MATCHES "arm64")
-                # Universal binary: scope x86 SIMD flags to the x86_64 slice only.
-                # arm64 always has NEON; -mfpu= is ARMv7-only and must not be passed.
-                # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
-                target_compile_options(PokeFinderCore PRIVATE
-                    "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
-                    "SHELL:-Xarch_x86_64 -mavx" "SHELL:-Xarch_x86_64 -mavx2")
-            else()
-                target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
-            endif()
+        if ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES AND "arm64" IN_LIST CMAKE_OSX_ARCHITECTURES)
+            # Universal binary: scope x86 SIMD flags to the x86_64 slice only.
+            # arm64 always has NEON; -mfpu= is ARMv7-only and must not be passed.
+            # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
+            target_compile_options(PokeFinderCore PRIVATE
+                "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
+                "SHELL:-Xarch_x86_64 -mavx" "SHELL:-Xarch_x86_64 -mavx2")
+        elseif ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES)
+            # x86_64 only: Add
+            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
         endif()
         # arm64-only: NEON is always enabled by default, no explicit flag needed.
     elseif (MINGW OR UNIX)
+        include(GetTargetArch)
+        get_target_arch(ARCH)
+
         if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
             target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
         elseif (ARCH STREQUAL "arm")
