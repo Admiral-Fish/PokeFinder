@@ -243,7 +243,7 @@ namespace JirachiPattern
                         std::vector<u8> actions(menuCount + searchActions.size() + 1, 0);
 
                         // Copy over the search actions
-                        std::copy(searchActions.cbegin(), searchActions.cend(), actions.begin() + menuCount);
+                        std::ranges::copy(searchActions, actions.begin() + menuCount);
 
                         actions[actions.size() - 1] = 3;
 
@@ -252,7 +252,7 @@ namespace JirachiPattern
                 }
 
                 // Exit loop once all possibilities have been attempted
-                if (std::count(searchActions.cbegin(), searchActions.cend(), 2) == i)
+                if (std::ranges::count(searchActions, 2) == i)
                 {
                     break;
                 }

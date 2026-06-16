@@ -47,7 +47,7 @@ public:
      * @param file Path to file to read the cache from
      * @param read Whether or not to read the seed cache data
      */
-    IVCache(const std::string &file, bool read = true);
+    IVCache(std::string_view file, bool read = true);
 
     /**
      * @brief Returns the IV caches for the \p type

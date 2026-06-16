@@ -138,7 +138,7 @@ void GalesSeedSearcher::startSearch(int threads)
 
     delete[] threadContainer;
 
-    std::sort(results.begin(), results.end());
+    std::ranges::sort(results);
     results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
@@ -162,7 +162,7 @@ void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
         progress++;
     }
 
-    std::sort(results.begin(), results.end());
+    std::ranges::sort(results);
     results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 

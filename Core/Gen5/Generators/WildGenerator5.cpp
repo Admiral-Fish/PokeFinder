@@ -107,7 +107,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         std::array<u8, 6> iv;
-        std::generate(iv.begin(), iv.end(), [&rngList] { return rngList.next(); });
+        std::ranges::generate(iv, [&rngList] { return rngList.next(); });
         if (filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);

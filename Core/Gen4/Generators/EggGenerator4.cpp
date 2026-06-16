@@ -246,6 +246,6 @@ std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const st
         }
     }
 
-    std::sort(states.begin(), states.end(), compare);
+    std::ranges::sort(states, compare);
     return states;
 }

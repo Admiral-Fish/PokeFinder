@@ -74,8 +74,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     updateEncounters();
 
     std::vector<u16> locs;
-    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
-                   [](const UndergroundArea &area) { return area.getLocation() + 181; });
+    std::ranges::transform(encounters, std::back_inserter(locs), [](const UndergroundArea &area) { return area.getLocation() + 181; });
 
     ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
 
@@ -103,8 +102,8 @@ void Underground::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();

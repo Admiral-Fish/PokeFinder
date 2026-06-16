@@ -96,7 +96,7 @@ void HiddenGrottoGeneratorTest::pokemon()
                      false, 0, 0, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(), [location](const HiddenGrottoArea &encounterArea) {
+    auto encounterArea = std::ranges::find_if(encounterAreas, [location](const HiddenGrottoArea &encounterArea) {
         return encounterArea.getLocation() == location;
     });
 
@@ -148,7 +148,7 @@ void HiddenGrottoGeneratorTest::slot()
                      false, 0, 0, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(), [location](const HiddenGrottoArea &encounterArea) {
+    auto encounterArea = std::ranges::find_if(encounterAreas, [location](const HiddenGrottoArea &encounterArea) {
         return encounterArea.getLocation() == location;
     });
 

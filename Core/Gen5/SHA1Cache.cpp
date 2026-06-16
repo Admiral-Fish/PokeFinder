@@ -25,7 +25,7 @@
 
 constexpr u32 DATA_OFFSET = 42;
 
-SHA1Cache::SHA1Cache(const std::string &path) : file(path.data(), std::ios_base::in | std::ios_base::binary), valid(false)
+SHA1Cache::SHA1Cache(std::string_view path) : file(path.data(), std::ios_base::in | std::ios_base::binary), valid(false)
 {
     if (file.is_open())
     {
@@ -100,8 +100,7 @@ fph::MetaFphMap<u64, u64> SHA1Cache::getCache(u32 initialAdvance, u32 maxAdvance
         file.read(reinterpret_cast<char *>(&entry), sizeof(entry));
 
         if (entry.key.date >= (start.getJD() - Date().getJD()) && entry.key.date <= (end.getJD() - Date().getJD())
-            && std::find_if(keypresses.begin(), keypresses.end(),
-                            [&entry](const Keypress keypress) { return entry.key.button == toInt(keypress.button); })
+            && std::ranges::find_if(keypresses, [&entry](const Keypress keypress) { return entry.key.button == toInt(keypress.button); })
                 != keypresses.end())
         {
             for (u64 j = initialAdvance; j <= (initialAdvance + maxAdvance); j++)

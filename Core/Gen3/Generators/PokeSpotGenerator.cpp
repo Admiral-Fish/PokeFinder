@@ -97,7 +97,7 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateEncounter(u32 seed, const 
         }
     }
 
-    std::sort(states.begin(), states.end(), [](const PokeSpotState &left, const PokeSpotState &right) {
+    std::ranges::sort(states, [](const PokeSpotState &left, const PokeSpotState &right) {
         if (left.getAdvances() < right.getAdvances())
         {
             return true;

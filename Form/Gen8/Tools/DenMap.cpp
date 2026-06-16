@@ -88,8 +88,8 @@ void DenMap::locationIndexChanged(int index)
         std::vector<u16> indices(end - start);
         std::vector<u16> locationIndices(end - start);
 
-        std::iota(indices.begin(), indices.end(), start);
-        std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
+        std::ranges::iota(indices, start);
+        std::ranges::transform(indices, locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
 
         ui->comboBoxDen->clear();
         auto locations = Translator::getLocations(locationIndices, Game::SwSh);

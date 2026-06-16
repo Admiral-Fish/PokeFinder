@@ -78,7 +78,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
 
         // Advance jirachi pattern
         go.advance(4);
-        if (std::any_of(std::begin(threshHolds), std::end(threshHolds), [&go](u16 thresh) { return go.nextUShort() <= thresh; }))
+        if (std::ranges::any_of(threshHolds, [&go](u16 thresh) { return go.nextUShort() <= thresh; }))
         {
             go.advance(1);
         }

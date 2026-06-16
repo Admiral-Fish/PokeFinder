@@ -140,8 +140,8 @@ void Wild3::updateProfiles()
 {
     profiles = { Profile3("None", Game::Emerald, 12345, 54321, false) };
     auto completeProfiles = ProfileLoader3::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -161,7 +161,7 @@ void Wild3::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings = {};
+    EncounterSettings3 settings = { };
     settings.feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
 
     encounterGenerator = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
@@ -171,7 +171,7 @@ void Wild3::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings = {};
+    EncounterSettings3 settings = { };
     settings.feebasTile = ui->checkBoxSearcherFeebasTile->isChecked();
 
     encounterSearcher = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
@@ -216,8 +216,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
         updateEncounterGenerator();
 
         std::vector<u16> locs;
-        std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
-                       [](const EncounterArea3 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
         ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
@@ -340,8 +339,8 @@ void Wild3::search()
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, lead, feebas, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
-                                       *currentProfile, filter);
+    auto *searcher
+        = new WildSearcher3(method, lead, feebas, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -387,8 +386,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
         updateEncounterSearcher();
 
         std::vector<u16> locs;
-        std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
-                       [](const EncounterArea3 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
         ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));

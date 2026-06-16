@@ -27,7 +27,7 @@ UndergroundStateFilter::UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, 
                                                const std::vector<u16> &species) :
     StateFilter(gender, ability, shiny, heightMin, heightMax, weightMin, weightMax, skip, min, max, natures, powers), species(species)
 {
-    std::sort(this->species.begin(), this->species.end());
+    std::ranges::sort(this->species);
 }
 
 bool UndergroundStateFilter::compareState(const UndergroundState &state) const
@@ -62,7 +62,7 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
         return false;
     }
 
-    if (!std::binary_search(species.begin(), species.end(), state.getSpecie()))
+    if (!std::ranges::binary_search(species, state.getSpecie()))
     {
         return false;
     }

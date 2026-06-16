@@ -52,7 +52,7 @@ void ChannelSeedSearcher::startSearch(int threads)
 
     delete[] threadContainer;
 
-    std::sort(results.begin(), results.end());
+    std::ranges::sort(results);
     results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 

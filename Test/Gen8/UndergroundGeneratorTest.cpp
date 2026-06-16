@@ -91,8 +91,8 @@ void UndergroundGeneratorTest::generate()
     Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
 
     std::vector<UndergroundArea> encounterAreas = Encounters8::getUndergroundEncounters(storyFlag, diglett, &profile);
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
-                                      [location](const UndergroundArea &encounterArea) { return encounterArea.getLocation() == location; });
+    auto encounterArea = std::ranges::find_if(
+        encounterAreas, [location](const UndergroundArea &encounterArea) { return encounterArea.getLocation() == location; });
 
     UndergroundStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterArea->getSpecies());
     UndergroundGenerator generator(0, 9, 0, lead, diglett, levelFlag, *encounterArea, profile, filter);
