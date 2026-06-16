@@ -48,7 +48,7 @@ void ComboMenu::addAction(const QString &actionText, int data, QMenu *menu)
 void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions)
 {
     std::vector<int> indices(actions.size());
-    std::ranges::iota(indices, 0);
+    std::iota(indices.begin(), indices.end(), 0);
     std::ranges::sort(indices, [&actions](int i, int j) { return actions[i] < actions[j]; });
 
     QMenu *menu = topMenu->addMenu(menuText);
