@@ -288,6 +288,11 @@ private slots:
     void openIVCacheFinder() const;
 
     /**
+     * @brief Opens the Gen 5 Adjacent Seed Tool window
+     */
+    void openAdjacentSeedTool() const;
+
+    /**
      * @brief Opens the Gen 5 Profile Calibrator window
      */
     void openProfileCalibrator() const;

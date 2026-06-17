@@ -146,6 +146,15 @@ namespace Translator
     std::string getKeypresses(Buttons keypresses);
 
     /**
+     * @brief Gets the string for the \p needle
+     *
+     * @param needle Needle value
+     *
+     * @return Save needle string
+     */
+    const std::string &getSaveNeedle(u8 needle);
+
+    /**
      * @brief Gets the strings for the provided locations/game
      *
      * @param nums Location numbers
