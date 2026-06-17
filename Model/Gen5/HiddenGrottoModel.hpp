@@ -70,7 +70,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Group"), tr("Slot") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Group"), tr("Slot") };
 };
 
 /**
@@ -174,9 +174,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Level"), tr("PID"),    tr("Shiny"),         tr("Nature"),
-                           tr("Ability"),  tr("HP"),     tr("Atk"),   tr("Def"),    tr("SpA"),           tr("SpD"),
-                           tr("Spe"),      tr("Hidden"), tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Level"),  tr("PID"),    tr("Shiny"),
+                           tr("Nature"),   tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),    tr("SpA"),
+                           tr("SpD"),      tr("Spe"),     tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
     bool showStats;
 };
 

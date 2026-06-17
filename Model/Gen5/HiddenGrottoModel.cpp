@@ -27,7 +27,7 @@ HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent
 
 int HiddenGrottoSlotGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 4;
+    return 5;
 }
 
 QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -43,8 +43,10 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return state.getGroup();
+            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
         case 3:
+            return state.getGroup();
+        case 4:
             if (state.getItem())
             {
                 return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
@@ -132,7 +134,7 @@ HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : Tabl
 
 int HiddenGrottoGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 17;
+    return 18;
 }
 
 QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -148,17 +150,19 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return state.getLevel();
+            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
         case 3:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 4:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 7:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -169,20 +173,20 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 7:
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
-            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 16:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 17:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
@@ -202,7 +206,7 @@ QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation or
 void HiddenGrottoGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount() - 1, 13), { Qt::DisplayRole });
 }
 
 HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

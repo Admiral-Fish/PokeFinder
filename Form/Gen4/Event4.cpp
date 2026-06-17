@@ -30,9 +30,11 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EventModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -78,6 +80,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Event4::openAdvanceFinder);
 
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event4::transferSettings);
@@ -278,4 +283,10 @@ void Event4::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
     }
+}
+
+void Event4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }

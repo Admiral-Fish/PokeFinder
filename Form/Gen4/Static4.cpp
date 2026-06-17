@@ -32,8 +32,11 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -79,6 +82,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static4::openAdvanceFinder);
 
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static4::transferSettings);
@@ -395,4 +401,10 @@ void Static4::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
+}
+
+void Static4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }

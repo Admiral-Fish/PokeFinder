@@ -19,6 +19,7 @@
 
 #include "Static5.hpp"
 #include "ui_Static5.h"
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -35,8 +36,10 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -82,6 +85,9 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static5::openAdvanceFinder);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
@@ -531,4 +537,10 @@ void Static5::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
+}
+
+void Static5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }

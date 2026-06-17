@@ -2,6 +2,85 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>AdvanceFinder</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chatot Pitches</source>
+        <translation>Plaudagei Tonhöhen</translation>
+    </message>
+    <message>
+        <source>Save Needles</source>
+        <translation>Speicherzeiger Pfeile</translation>
+    </message>
+    <message>
+        <source>Calls</source>
+        <translation>Anrufe</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High / Mid-High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-High / Mid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid / Mid-Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mid-Low / Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation>Beliebig</translation>
+    </message>
+    <message>
+        <source>Jump to Advance</source>
+        <translation>Zum Advance springen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Possible Results: Invalid input</source>
+        <translation>Mögliche Advances: Ungültige Eingabe</translation>
+    </message>
+    <message>
+        <source>Possible Results: %1</source>
+        <translation>Mögliche Advances: %1</translation>
+    </message>
+</context>
+<context>
     <name>ChainedSID</name>
     <message>
         <source>HP</source>
@@ -638,6 +717,11 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>PID</source>
         <translation></translation>
     </message>
@@ -1171,12 +1255,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="77"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs in Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs aus Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="274"/>
@@ -1223,12 +1307,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Text aus der Zwischenablage ist nicht im richtigen format.</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="69"/>
@@ -1377,6 +1461,10 @@
 <context>
     <name>Eggs4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Eggs</source>
         <translation>Generation 4 Eier</translation>
     </message>
@@ -1506,6 +1594,10 @@
 </context>
 <context>
     <name>Eggs5</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Eggs</source>
         <translation>Generation 5 Eier</translation>
@@ -1919,6 +2011,10 @@
 <context>
     <name>Event4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Wondercard IVs</source>
         <translation>Wunderkarten IVs</translation>
     </message>
@@ -2030,6 +2126,10 @@
 </context>
 <context>
     <name>Event5</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Event</source>
         <translation>Generation 5 Event</translation>
@@ -2501,6 +2601,11 @@
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>PID</source>
         <translation></translation>
     </message>
@@ -2812,12 +2917,12 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="102"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs in Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="103"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs aus Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
@@ -2829,57 +2934,57 @@
         <location filename="../Controls/Filter.cpp" line="374"/>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Invalid filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Filter Einstellungen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="332"/>
         <source>Height minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Größe ist größer als maximale Größe</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="339"/>
         <source>HP minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale KP sind größer als maximale KP</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="346"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimaler Angr ist größer als maximaler Angr</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="353"/>
         <source>Def minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Vert ist größer als maximale Vert</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="360"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimaler SpAngr ist größer als maximaler SpAngr</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="367"/>
         <source>SpD minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale SpVert ist größer als maximale SpVert</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="374"/>
         <source>Spe minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Init ist größer als maximale Init</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="381"/>
         <source>Weight minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimales Gewicht ist größer als maximales Gewicht</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="499"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Text aus der Zwischenablage ist nicht im richtigen format</translation>
     </message>
     <message>
         <source>HP</source>
@@ -3467,6 +3572,10 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Grotto</source>
         <translation>Versteckte Lichtungen</translation>
     </message>
@@ -3712,6 +3821,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="177"/>
         <source>Level</source>
         <translation></translation>
     </message>
@@ -3920,6 +4034,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
         <source>Chatot</source>
         <translation>Plaudagei</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="73"/>
@@ -5909,7 +6028,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -5960,7 +6079,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -6011,7 +6130,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -6062,7 +6181,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -7481,6 +7600,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>Static4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Static</source>
         <translation>Generation 4 Stationär</translation>
     </message>
@@ -7666,6 +7789,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>Static5</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Static</source>
         <translation>Generation 5 Stationär</translation>
@@ -8325,6 +8452,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
         <source>PID</source>
         <translation></translation>
     </message>
@@ -8801,12 +8933,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="27"/>
         <source>Transfer Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter übertragen</translation>
     </message>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="30"/>
         <source>Transfer Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen übertragen</translation>
     </message>
 </context>
 <context>
@@ -9358,6 +9490,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>Wild4</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 4 Wild</source>
         <translation>Generation 4 Wild</translation>
     </message>
@@ -9787,6 +9923,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Generation 5 Wild</translation>
@@ -10596,6 +10736,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Chatot</source>
         <translation>Plaudagei</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Needle</source>
+        <translation>Zeiger</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>

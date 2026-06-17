@@ -19,6 +19,7 @@
 
 #include "HiddenGrotto.hpp"
 #include "ui_HiddenGrotto.h"
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -37,14 +38,20 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
-    QWidget(parent), ui(new Ui::HiddenGrotto), ivCache(nullptr), shaCache(nullptr), encounter(Encounters5::getHiddenGrottoEncounters())
+    QWidget(parent),
+    ui(new Ui::HiddenGrotto),
+    ivCache(nullptr),
+    shaCache(nullptr),
+    encounter(Encounters5::getHiddenGrottoEncounters())
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -102,6 +109,12 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+
+    auto *grottoAdvanceFinder = ui->tableViewGrottoGenerator->addAction(tr("Advance Finder"));
+    connect(grottoAdvanceFinder, &QAction::triggered, this, &HiddenGrotto::openGrottoAdvanceFinder);
+
+    auto *pokemonAdvanceFinder = ui->tableViewPokemonGenerator->addAction(tr("Advance Finder"));
+    connect(pokemonAdvanceFinder, &QAction::triggered, this, &HiddenGrotto::openPokemonAdvanceFinder);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
     connect(ui->tabGrottoRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
@@ -820,4 +833,16 @@ void HiddenGrotto::transferSettingsPokemon(int index)
         ui->comboBoxPokemonGeneratorPokemon->setCurrentIndex(ui->comboBoxPokemonSearcherPokemon->currentIndex());
         ui->comboBoxPokemonGeneratorGender->setCurrentIndex(ui->comboBoxPokemonSearcherGender->currentIndex());
     }
+}
+
+void HiddenGrotto::openGrottoAdvanceFinder()
+{
+    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
+    grottoAdvanceFinder->show();
+}
+
+void HiddenGrotto::openPokemonAdvanceFinder()
+{
+    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
+    pokemonAdvanceFinder->show();
 }

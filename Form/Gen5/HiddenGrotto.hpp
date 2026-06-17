@@ -230,6 +230,16 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettingsPokemon(int index);
+
+    /**
+     * @brief Opens the grotto advance finder dialog
+     */
+    void openGrottoAdvanceFinder();
+
+    /**
+     * @brief Opens the pokemon advance finder dialog
+     */
+    void openPokemonAdvanceFinder();
 };
 
 #endif // HIDDENGROTTO_HPP

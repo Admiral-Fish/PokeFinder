@@ -31,30 +31,54 @@ public:
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param group Pokemon group
      * @param slot Pokemon slot
      * @param specie Pokemon specie
      * @param gender Pokemon gender
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
-        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
+        advances(advances),
+        data(specie),
+        item(false),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        gender(gender),
+        group(group),
+        slot(slot)
     {
     }
 
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param group Item group
      * @param slot Item slot
      * @param item Item number
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
-        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 item) :
+        advances(advances),
+        data(item),
+        item(true),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        gender(0),
+        group(group),
+        slot(slot)
     {
+    }
+
+    /**
+     * @brief Returns the save needle value
+     *
+     * @return Save needle value
+     */
+    u8 getSaveNeedle() const
+    {
+        return saveNeedle;
     }
 
     /**
@@ -134,6 +158,7 @@ private:
     u16 data;
     bool item;
     u8 chatot;
+    u8 saveNeedle;
     u8 gender;
     u8 group;
     u8 slot;

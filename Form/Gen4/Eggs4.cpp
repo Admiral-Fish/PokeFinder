@@ -28,10 +28,12 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EggModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -78,6 +80,9 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Eggs4::openAdvanceFinder);
 
     connect(ui->tabEggSelection, &TabWidget::transferFilters, this, &Eggs4::transferFilters);
     connect(ui->tabEggSelection, &TabWidget::transferSettings, this, &Eggs4::transferSettings);
@@ -317,4 +322,10 @@ void Eggs4::transferSettings(int index)
     {
         ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
     }
+}
+
+void Eggs4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }

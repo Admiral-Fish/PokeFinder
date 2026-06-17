@@ -19,6 +19,7 @@
 
 #include "Event5.hpp"
 #include "ui_Event5.h"
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -33,8 +34,10 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EventModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -68,6 +71,9 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Event5::openAdvanceFinder);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
@@ -495,4 +501,10 @@ void Event5::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->checkBoxGeneratorEgg->setCheckState(ui->checkBoxSearcherEgg->checkState());
     }
+}
+
+void Event5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }

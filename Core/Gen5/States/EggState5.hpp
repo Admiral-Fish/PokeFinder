@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new EggState5 object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs
@@ -42,9 +42,11 @@ public:
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
+    EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
               const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
-        EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info), chatot(prng / 82)
+        EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
 
@@ -76,23 +78,35 @@ public:
     /**
      * @brief Updates egg with things that are calculated later in BW2
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine Chatot pitch and save needle
      * @param advances Advances of the state
      * @param pid Pokemon PID
      * @param gender Pokemon gender
      * @param shiny Pokemon shininess
      */
-    void update(u16 prng, u32 advances, u32 pid, u8 gender, u8 shiny)
+    void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny)
     {
-        chatot = prng / 82;
+        chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
+        saveNeedle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
         this->advances = advances;
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
     }
 
+    /**
+     * @brief Returns the save needle value
+     *
+     * @return Save needle value
+     */
+    u8 getSaveNeedle() const
+    {
+        return saveNeedle;
+    }
+
 private:
     u8 chatot;
+    u8 saveNeedle;
 };
 
 #endif // EGGSTATE5_HPP
