@@ -42,9 +42,10 @@ public:
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
+     * @param includeEmpty Whether to include advances without an encounter
      */
     WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower, const EncounterArea5 &area,
-                   const Profile5 &profile, const WildStateFilter &filter);
+                   const Profile5 &profile, const WildStateFilter &filter, bool includeEmpty = false);
 
     /**
      * @brief Generates states for the \p encounterArea
@@ -69,6 +70,7 @@ public:
 
 private:
     u8 luckyPower;
+    bool includeEmpty;
 };
 
 #endif // WILDGENERATOR5_HPP

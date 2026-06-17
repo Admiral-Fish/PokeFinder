@@ -1,5 +1,7 @@
 project(PokeFinderModel)
 
+find_package(Qt6 REQUIRED COMPONENTS Core Gui)
+
 add_library(PokeFinderModel STATIC
     Gen3/IDModel3.cpp
     Gen3/IDModel3.hpp
@@ -71,4 +73,4 @@ add_library(PokeFinderModel STATIC
     Util/ResearcherModel.hpp
 )
 
-target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core)
+target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core Qt6::Gui)

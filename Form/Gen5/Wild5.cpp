@@ -228,10 +228,11 @@ void Wild5::generate()
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    bool includeEmpty = ui->comboBoxGeneratorEncounter->getEnum<Encounter>() == Encounter::SuperRod;
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
-                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
+                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter, includeEmpty);
 
     auto states = generator.generate(seed, ivAdvances, 0);
     generatorModel->addItems(states);

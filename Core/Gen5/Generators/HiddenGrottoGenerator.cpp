@@ -55,8 +55,11 @@ static u8 gen(MT &rng)
 
 HiddenGrottoSlotGenerator::HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel,
                                                      const HiddenGrottoArea &encounterArea, const Profile5 &profile,
-                                                     const HiddenGrottoFilter &filter) :
-    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), encounterArea(encounterArea), powerLevel(powerLevel)
+                                                     const HiddenGrottoFilter &filter, bool includeEmpty) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter),
+    encounterArea(encounterArea),
+    powerLevel(powerLevel),
+    includeEmpty(includeEmpty)
 {
 }
 
@@ -103,6 +106,10 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                     states.emplace_back(state);
                 }
             }
+        }
+        else if (includeEmpty)
+        {
+            states.emplace_back(prng, advances + initialAdvances + cnt);
         }
     }
 

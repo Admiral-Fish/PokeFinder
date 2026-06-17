@@ -91,9 +91,10 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
-                               const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
+                               const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter, bool includeEmpty) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
+    includeEmpty(includeEmpty)
 {
 }
 
@@ -108,7 +109,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     {
         std::array<u8, 6> iv;
         std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if (filter.compareIV(iv))
+        if ((includeEmpty && area.getEncounter() == Encounter::SuperRod) || filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -157,6 +158,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
+        bool valid = true;
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -196,8 +198,13 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
-            rng.next();
-            continue;
+            if (!includeEmpty)
+            {
+                rng.next();
+                continue;
+            }
+
+            valid = false;
         }
 
         u8 encounterSlot;
@@ -250,8 +257,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         for (const auto &iv : ivs)
         {
             WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+            if (!valid || filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);
             }

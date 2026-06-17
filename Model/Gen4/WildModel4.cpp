@@ -21,6 +21,8 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QColor>
+#include <QFont>
 
 WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
 {
@@ -43,10 +45,29 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 
 QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
+    const auto &state = model[index.row()];
+    if (!state.isValid())
+    {
+        if (role == Qt::FontRole)
+        {
+            QFont font;
+            font.setItalic(true);
+            return font;
+        }
+        else if (role == Qt::ForegroundRole)
+        {
+            return QColor(128, 128, 128);
+        }
+    }
+
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model[index.row()];
         int column = getColumn(index.column());
+        if (!state.isValid() && column > 3)
+        {
+            return "-";
+        }
+
         switch (column)
         {
         case 0:
