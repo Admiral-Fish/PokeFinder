@@ -125,7 +125,7 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, u32 initialAdvance
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         std::array<u8, 6> iv;
-        std::generate(iv.begin(), iv.end(), [&rngList] { return rngList.next(); });
+        std::ranges::generate(iv, [&rngList] { return rngList.next(); });
         if (filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);

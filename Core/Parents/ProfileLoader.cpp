@@ -172,7 +172,7 @@ namespace ProfileLoader3
         std::vector<Profile3> profiles;
         json j = readJson();
         const auto &gen3 = j["gen3"];
-        std::transform(gen3.begin(), gen3.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
+        std::ranges::transform(gen3, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
         return profiles;
     }
 
@@ -264,7 +264,7 @@ namespace ProfileLoader4
         std::vector<Profile4> profiles;
         json j = readJson();
         const auto &gen4 = j["gen4"];
-        std::transform(gen4.begin(), gen4.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
+        std::ranges::transform(gen4, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
         return profiles;
     }
 
@@ -407,7 +407,7 @@ namespace ProfileLoader5
         std::vector<Profile5> profiles;
         json j = readJson();
         const auto &gen5 = j["gen5"];
-        std::transform(gen5.begin(), gen5.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
+        std::ranges::transform(gen5, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
         return profiles;
     }
 
@@ -504,7 +504,7 @@ namespace ProfileLoader8
         std::vector<Profile8> profiles;
         json j = readJson();
         const auto &gen8 = j["gen8"];
-        std::transform(gen8.begin(), gen8.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
+        std::ranges::transform(gen8, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
         return profiles;
     }
 

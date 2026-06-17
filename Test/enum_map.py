@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
-import re
+import argparse
 import os
+import pathlib
+import re
+
+FILES = ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method", "Shiny")
+PARENT = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
 
 
-def enum_map(parent, files):
+def enum_map(output_file: str):
     re1 = re.compile(r"enum class (\w+) : u\d+")
     re2 = re.compile(r"(\w+)(?:,| =|$)")
 
     strings = []
-    for file in files:
-        with open(f"{parent}/{file}.hpp", "r") as f:
+    for file in FILES:
+        with open(f"{PARENT}/{file}.hpp", "r") as f:
             data = [x for x in f.read().split("\n") if x != ""]
 
         for start, string in enumerate(data):
@@ -41,27 +46,28 @@ def enum_map(parent, files):
 
         strings.append(string)
 
-    with open("Enum.hpp", "w+") as f:
+    with open(output_file, "w+") as f:
         f.write("#ifndef ENUM_HPP\n")
         f.write("#define ENUM_HPP\n\n")
 
-        for file in files:
+        for file in FILES:
             f.write(f"#include <Core/Enum/{file}.hpp>\n")
         f.write("#include <nlohmann/json.hpp>\n\n")
 
         for string in strings:
             f.write(f"{string}\n\n")
-        f.write("\n")
 
         f.write("#endif")
 
 
 def main():
-    import pathlib
-    os.chdir(pathlib.Path(__file__).parent.absolute())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("output_file", type=str)
+    args = parser.parse_args()
 
-    parent = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
-    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method", "Shiny"))
+    os.makedirs(pathlib.Path(args.output_file).parent.absolute(), exist_ok=True)
+
+    enum_map(args.output_file)
 
 
 if __name__ == "__main__":

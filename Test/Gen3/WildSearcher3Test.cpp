@@ -94,8 +94,9 @@ void WildSearcher3Test::search()
     settings.feebasTile = feebasTile;
 
     std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, settings, version);
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
-                                      [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto encounterArea
+        = std::ranges::find_if(encounterAreas.begin(), encounterAreas.end(),
+                               [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher3 searcher(method, lead, settings.feebasTile, *encounterArea, profile, filter);

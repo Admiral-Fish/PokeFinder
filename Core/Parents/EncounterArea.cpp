@@ -33,7 +33,7 @@ EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const st
 
 u8 EncounterArea::getCount() const
 {
-    return std::count_if(pokemon.begin(), pokemon.end(), [](const auto &mon) { return mon.getSpecie() != 0; });
+    return std::ranges::count_if(pokemon, [](const auto &mon) { return mon.getSpecie() != 0; });
 }
 
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
@@ -116,7 +116,7 @@ std::vector<u16> EncounterArea::getUniqueSpecies() const
     for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
     {
         u16 num = (pokemon[i].getForm() << 11) | pokemon[i].getSpecie();
-        if (std::find(nums.begin(), nums.end(), num) == nums.end())
+        if (std::ranges::find(nums, num) == nums.end())
         {
             nums.emplace_back(num);
         }

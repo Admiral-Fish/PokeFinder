@@ -83,7 +83,7 @@ static std::array<u8, 6> computeIVs(u32 seed, u8 advance, CacheType type)
     return ivs;
 }
 
-IVCache::IVCache(const std::string &file, bool read) : valid(false)
+IVCache::IVCache(std::string_view file, bool read) : valid(false)
 {
     std::ifstream stream(file.data(), std::ios_base::in | std::ios_base::binary);
     if (stream.is_open())
@@ -180,7 +180,7 @@ std::vector<u32> IVCache::getSeeds(Game version, CacheType type) const
         }
     }
 
-    std::sort(seeds.begin(), seeds.end());
+    std::ranges::sort(seeds);
     seeds.erase(std::unique(seeds.begin(), seeds.end()), seeds.end());
 
     return seeds;

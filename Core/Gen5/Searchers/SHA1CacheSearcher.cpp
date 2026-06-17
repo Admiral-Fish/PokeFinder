@@ -77,7 +77,7 @@ void SHA1CacheSearcher::startSearch(int threads)
     delete[] threadContainer;
 }
 
-void SHA1CacheSearcher::writeResults(const std::string &file)
+void SHA1CacheSearcher::writeResults(std::string_view file)
 {
     auto sort = [](const SHA1Seed &first, const SHA1Seed &second) { return first.seed < second.seed; };
 
@@ -106,9 +106,9 @@ void SHA1CacheSearcher::writeResults(const std::string &file)
         write(stream, profile.getVFrame());
 
         // Write seed sizes
-        std::sort(results.begin(), results.end(), sort);
-        std::sort(normalResults.begin(), normalResults.end(), sort);
-        std::sort(roamerResults.begin(), roamerResults.end(), sort);
+        std::ranges::sort(results, sort);
+        std::ranges::sort(normalResults, sort);
+        std::ranges::sort(roamerResults, sort);
 
         write<u32>(stream, results.size());
         write<u32>(stream, normalResults.size());
@@ -149,21 +149,21 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
 
                         for (u32 i = 0; i < seeds.size(); i++)
                         {
-                            if (std::binary_search(entralinkSeeds.begin(), entralinkSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(entralinkSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->results.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
                                                            seeds[i]);
                             }
 
-                            if (std::binary_search(normalSeeds.begin(), normalSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(normalSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->normalResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
                                                                  seeds[i]);
                             }
 
-                            if (std::binary_search(roamerSeeds.begin(), roamerSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(roamerSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->roamerResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
@@ -202,21 +202,21 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
 
                         for (u32 i = 0; i < seeds.size(); i++)
                         {
-                            if (std::binary_search(entralinkSeeds.begin(), entralinkSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(entralinkSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->results.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
                                                            seeds[i]);
                             }
 
-                            if (std::binary_search(normalSeeds.begin(), normalSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(normalSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->normalResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
                                                                  seeds[i]);
                             }
 
-                            if (std::binary_search(roamerSeeds.begin(), roamerSeeds.end(), seeds[i] >> 32))
+                            if (std::ranges::binary_search(roamerSeeds, seeds[i] >> 32))
                             {
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->roamerResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,

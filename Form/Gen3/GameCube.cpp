@@ -100,8 +100,8 @@ void GameCube::updateProfiles()
 {
     profiles = { Profile3("-", Game::Gales, 12345, 54321, false) };
     auto completeProfiles = ProfileLoader3::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

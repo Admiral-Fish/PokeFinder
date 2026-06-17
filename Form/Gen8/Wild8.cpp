@@ -126,8 +126,8 @@ void Wild8::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
@@ -187,8 +187,7 @@ void Wild8::encounterIndexChanged(int index)
         updateEncounters();
 
         std::vector<u16> locs;
-        std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
-                       [](const EncounterArea8 &area) { return area.getLocation(); });
+        std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea8 &area) { return area.getLocation(); });
 
         ui->comboBoxLocation->clear();
         ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
@@ -223,7 +222,7 @@ void Wild8::generate()
     if (encounter == Encounter::HoneyTree)
     {
         std::array<bool, 12> encounters = ui->filter->getEncounterSlots();
-        if (std::count(encounters.begin(), encounters.end(), true) != 1)
+        if (std::ranges::count(encounters, true) != 1)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                             tr("Please select a single encounter slot for Honey Tree"));
@@ -233,7 +232,7 @@ void Wild8::generate()
         else
         {
             method = Method::HoneyTree;
-            fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+            fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
         }
     }
 
@@ -246,8 +245,8 @@ void Wild8::generate()
     bool feebasTile = ui->checkBoxFeebasTile->isChecked();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, encounters[ui->comboBoxLocation->currentIndex()],
-                             *currentProfile, filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile,
+                             encounters[ui->comboBoxLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, fixedSlot);
     model->addItems(states);

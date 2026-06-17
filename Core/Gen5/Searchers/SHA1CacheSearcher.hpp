@@ -71,7 +71,7 @@ public:
      *
      * @param file Path to write files too
      */
-    void writeResults(const std::string &file);
+    void writeResults(std::string_view file);
 
 private:
     Profile5 profile;

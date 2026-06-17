@@ -16,10 +16,10 @@ execute_process(
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
-    ${CMAKE_BINARY_DIR}/generated/version.h
+    ${CMAKE_CURRENT_BINARY_DIR}/generated/Form/version.h
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Network Widgets)
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools Network)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -233,18 +233,20 @@ set(PROJECT_SOURCES
     Util/Settings.hpp
 )
 
+qt_add_resources(PROJECT_RESOURCES ${PROJECT_QRC})
+
+add_library(PokeFinderForm STATIC
+    ${PROJECT_UI}
+    ${PROJECT_SOURCES}
+    ${PROJECT_RESOURCES}
+)
+
 qt_add_translations(PokeFinderForm
     MERGE_QT_TRANSLATIONS
-    TS_FILES i18n/PokeFinder_fr.ts i18n/PokeFinder_es.ts i18n/PokeFinder_de.ts i18n/PokeFinder_it.ts i18n/PokeFinder_ja.ts i18n/PokeFinder_ko.ts i18n/PokeFinder_zh.ts
+    TS_FILES ${PROJECT_TS}
     NO_GENERATE_PLURALS_TS_FILE
     LRELEASE_OPTIONS -nounfinished -removeidentical
 )
 
-add_library(PokeFinderForm STATIC
-    ${PROJECT_QRC}
-    ${PROJECT_UI}
-    ${PROJECT_SOURCES}
-)
-
-target_include_directories(PokeFinderForm PRIVATE ${CMAKE_BINARY_DIR}/generated)
-target_link_libraries(PokeFinderForm PRIVATE PokeFinderCore PokeFinderModel Qt6::Core Qt6::Network Qt6::Widgets)
+target_include_directories(PokeFinderForm PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated)
+target_link_libraries(PokeFinderForm PRIVATE PokeFinderCore PokeFinderIncludes PokeFinderModel Qt6::Core Qt6::Network Qt6::Widgets)

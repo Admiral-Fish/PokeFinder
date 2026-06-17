@@ -421,7 +421,7 @@ static std::vector<EncounterArea4> getDPPtHoney(Game version, const Profile4 *pr
 
         int max = 12;
         u8 treeID = getTreeIDFromMapID(data[i].location);
-        if (std::any_of(munchlaxTreeIDs.begin(), munchlaxTreeIDs.end(), [treeID](u8 tree) { return tree == treeID; }))
+        if (std::ranges::any_of(munchlaxTreeIDs, [treeID](u8 tree) { return tree == treeID; }))
         {
             max = 18;
         }

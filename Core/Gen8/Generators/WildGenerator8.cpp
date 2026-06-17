@@ -157,7 +157,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
         }
 
         std::array<u8, 6> ivs;
-        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
+        std::ranges::generate(ivs, [&rngList] { return rngList.next(rand) % 32; });
 
         u8 ability = rngList.next(rand) % 2;
 
@@ -257,7 +257,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         }
 
         std::array<u8, 6> ivs;
-        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
+        std::ranges::generate(ivs, [&rngList] { return rngList.next(rand) % 32; });
 
         u8 ability = rngList.next(rand) % 2;
 

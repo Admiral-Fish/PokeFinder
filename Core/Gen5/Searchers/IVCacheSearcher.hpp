@@ -51,7 +51,7 @@ public:
      *
      * @param file Path to write files too
      */
-    void writeResults(const std::string &file);
+    void writeResults(std::string_view file);
 
 private:
     std::vector<std::vector<u32>> entralink;

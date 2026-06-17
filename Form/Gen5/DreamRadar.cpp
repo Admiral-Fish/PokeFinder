@@ -234,7 +234,7 @@ void DreamRadar::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
                  [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
 
     ui->comboBoxProfiles->clear();

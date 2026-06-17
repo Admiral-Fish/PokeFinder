@@ -147,8 +147,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     connect(ui->textBoxPokemonSearcherMaxIVAdvances, &TextBox::textChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
 
     std::vector<u16> locs;
-    std::transform(encounter.begin(), encounter.end(), std::back_inserter(locs),
-                   [](const HiddenGrottoArea &area) { return area.getLocation(); });
+    std::ranges::transform(encounter, std::back_inserter(locs), [](const HiddenGrottoArea &area) { return area.getLocation(); });
     auto locations = Translator::getLocations(locs, Game::BW2);
 
     ui->comboBoxGrottoGeneratorLocation->addItems(locations);
@@ -211,8 +210,8 @@ void HiddenGrotto::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

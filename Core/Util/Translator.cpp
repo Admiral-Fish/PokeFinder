@@ -194,7 +194,7 @@ namespace Translator
     {
         std::vector<std::string> s;
         s.reserve(item.size());
-        std::transform(item.begin(), item.end(), std::back_inserter(s), [](u16 num) { return items[num]; });
+        std::ranges::transform(item, std::back_inserter(s), [](u16 num) { return items[num]; });
         return s;
     }
 
@@ -277,7 +277,7 @@ namespace Translator
         std::map<u16, std::string> map = readFile(data, translation);
         std::vector<std::string> locations;
         locations.reserve(nums.size());
-        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
+        std::ranges::transform(nums, std::back_inserter(locations), [&map](u16 num) { return map[num]; });
 
         delete[] data;
 
@@ -337,11 +337,11 @@ namespace Translator
     {
         std::vector<std::string> s;
         s.reserve(specie.size());
-        std::transform(specie.begin(), specie.end(), std::back_inserter(s), [](u16 num) { return getSpecie(num & 0x7ff, num >> 11); });
+        std::ranges::transform(specie, std::back_inserter(s), [](u16 num) { return getSpecie(num & 0x7ff, num >> 11); });
         return s;
     }
 
-    void init(const std::string &locale)
+    void init(std::string_view locale)
     {
         if (locale == "de")
         {

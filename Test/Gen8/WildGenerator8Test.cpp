@@ -95,8 +95,8 @@ void WildGenerator8Test::generateWild()
     settings.feebasTile = feebasTile;
 
     std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
-                                      [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto encounterArea = std::ranges::find_if(
+        encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, Method::None, lead, feebasTile, *encounterArea, profile, filter);
@@ -161,8 +161,8 @@ void WildGenerator8Test::generateHoneyTree()
     EncounterSettings8 settings = { };
 
     std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, settings, &profile);
-    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
-                                      [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
+    auto encounterArea = std::ranges::find_if(
+        encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, Method::HoneyTree, lead, false, *encounterArea, profile, filter);

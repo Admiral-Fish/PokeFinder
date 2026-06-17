@@ -89,7 +89,7 @@ namespace
                 if ((i % 5) == result)
                 {
                     // Only add values that are greater or equal to the minimums of all the stats
-                    if (std::all_of(minIVs.begin(), minIVs.end(), [i](u8 minIV) { return i >= minIV; }))
+                    if (std::ranges::all_of(minIVs, [i](u8 minIV) { return i >= minIV; }))
                     {
                         possible[charIndex].emplace_back(i);
                         characteristicHigh = i;
@@ -132,7 +132,7 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
             for (size_t j = 0; j < 6; j++)
             {
                 std::vector<u8> temp;
-                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp));
+                std::ranges::set_intersection(ivs[j], current[j], std::back_inserter(temp));
                 ivs[j] = temp;
             }
         }
@@ -143,11 +143,11 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
         std::array<std::vector<u8>, 6> possible;
         for (int i = 0; i < 6; i++)
         {
-            if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 0; }) != ivs[i].end())
+            if (std::ranges::find_if(ivs[i], [](u8 iv) { return (iv % 2) == 0; }) != ivs[i].end())
             {
                 possible[i].emplace_back(0);
             }
-            if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 1; }) != ivs[i].end())
+            if (std::ranges::find_if(ivs[i], [](u8 iv) { return (iv % 2) == 1; }) != ivs[i].end())
             {
                 possible[i].emplace_back(1);
             }
@@ -174,18 +174,12 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
                                 u8 type = ((spdVal + 8 * (spe)) * 15) / 63;
                                 if (type == hiddenPower)
                                 {
-                                    std::copy_if(ivs[0].begin(), ivs[0].end(), std::back_inserter(temp[0]),
-                                                 [hp](u8 iv) { return (iv % 2) == hp; });
-                                    std::copy_if(ivs[1].begin(), ivs[1].end(), std::back_inserter(temp[1]),
-                                                 [atk](u8 iv) { return (iv % 2) == atk; });
-                                    std::copy_if(ivs[2].begin(), ivs[2].end(), std::back_inserter(temp[2]),
-                                                 [def](u8 iv) { return (iv % 2) == def; });
-                                    std::copy_if(ivs[3].begin(), ivs[3].end(), std::back_inserter(temp[3]),
-                                                 [spa](u8 iv) { return (iv % 2) == spa; });
-                                    std::copy_if(ivs[4].begin(), ivs[4].end(), std::back_inserter(temp[4]),
-                                                 [spd](u8 iv) { return (iv % 2) == spd; });
-                                    std::copy_if(ivs[5].begin(), ivs[5].end(), std::back_inserter(temp[5]),
-                                                 [spe](u8 iv) { return (iv % 2) == spe; });
+                                    std::ranges::copy_if(ivs[0], std::back_inserter(temp[0]), [hp](u8 iv) { return (iv % 2) == hp; });
+                                    std::ranges::copy_if(ivs[1], std::back_inserter(temp[1]), [atk](u8 iv) { return (iv % 2) == atk; });
+                                    std::ranges::copy_if(ivs[2], std::back_inserter(temp[2]), [def](u8 iv) { return (iv % 2) == def; });
+                                    std::ranges::copy_if(ivs[3], std::back_inserter(temp[3]), [spa](u8 iv) { return (iv % 2) == spa; });
+                                    std::ranges::copy_if(ivs[4], std::back_inserter(temp[4]), [spd](u8 iv) { return (iv % 2) == spd; });
+                                    std::ranges::copy_if(ivs[5], std::back_inserter(temp[5]), [spe](u8 iv) { return (iv % 2) == spe; });
                                 }
                             }
                         }
@@ -196,7 +190,7 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
 
         for (size_t i = 0; i < 6; i++)
         {
-            std::sort(temp[i].begin(), temp[i].end());
+            std::ranges::sort(temp[i]);
             temp[i].erase(std::unique(temp[i].begin(), temp[i].end()), temp[i].end());
             ivs[i] = temp[i];
         }

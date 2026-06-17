@@ -253,8 +253,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
 
         std::vector<u16> locs;
-        std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
-                       [](const EncounterArea5 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
         ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
@@ -461,8 +460,7 @@ void Wild5::searcherEncounterIndexChanged(int index)
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
 
         std::vector<u16> locs;
-        std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
-                       [](const EncounterArea5 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
         ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));

@@ -62,7 +62,7 @@ std::vector<u16> HiddenGrottoArea::getUniqueItems() const
     std::vector<u16> nums;
     for (u16 i : item)
     {
-        if (std::find(nums.begin(), nums.end(), i) == nums.end())
+        if (std::ranges::find(nums, i) == nums.end())
         {
             nums.emplace_back(i);
         }
@@ -70,7 +70,7 @@ std::vector<u16> HiddenGrottoArea::getUniqueItems() const
 
     for (u16 i : hiddenItem)
     {
-        if (std::find(nums.begin(), nums.end(), i) == nums.end())
+        if (std::ranges::find(nums, i) == nums.end())
         {
             nums.emplace_back(i);
         }
@@ -84,7 +84,7 @@ std::vector<u16> HiddenGrottoArea::getUniqueSpecies() const
     std::vector<u16> nums;
     for (const auto &mon : pokemon)
     {
-        if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
+        if (std::ranges::find(nums, mon.getSpecie()) == nums.end())
         {
             nums.emplace_back(mon.getSpecie());
         }
