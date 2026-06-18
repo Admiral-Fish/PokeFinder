@@ -76,6 +76,12 @@ static std::pair<u8, u8> getLevelRange(const EncounterArea5 &area, u16 specie)
     return range;
 }
 
+static int findLocationName(const std::vector<std::string> &locations, const QString &location)
+{
+    auto it = std::ranges::find_if(locations, [&location](const std::string &name) { return QString::fromStdString(name) == location; });
+    return it == locations.end() ? -1 : static_cast<int>(it - locations.begin());
+}
+
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
@@ -325,6 +331,8 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterGenerator.empty() && ui->comboBoxGeneratorLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxGeneratorLocation->currentText() : QString();
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -333,7 +341,13 @@ void Wild5::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxGeneratorLocation->addItems(locations);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxGeneratorLocation->setCurrentIndex(locationIndex);
+        }
         updateGeneratorLevelRange();
     }
 }
@@ -543,6 +557,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterSearcher.empty() && ui->comboBoxSearcherLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxSearcherLocation->currentText() : QString();
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -551,7 +567,13 @@ void Wild5::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxSearcherLocation->addItems(locations);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxSearcherLocation->setCurrentIndex(locationIndex);
+        }
         updateSearcherLevelRange();
     }
 }

@@ -54,6 +54,12 @@ static std::pair<u8, u8> getLevelRange(const EncounterArea4 &area, u16 specie)
     return specie == 0 ? std::pair<u8, u8> { 0, 0 } : area.getLevelRange(specie);
 }
 
+static int findLocationName(const std::vector<std::string> &locations, const QString &location)
+{
+    auto it = std::ranges::find_if(locations, [&location](const std::string &name) { return QString::fromStdString(name) == location; });
+    return it == locations.end() ? -1 : static_cast<int>(it - locations.begin());
+}
+
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
     ui->setupUi(this);
@@ -476,6 +482,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterGenerator.empty() && ui->comboBoxGeneratorLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxGeneratorLocation->currentText() : QString();
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -528,7 +536,13 @@ void Wild4::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxGeneratorLocation->addItems(locations, !bug);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxGeneratorLocation->setCurrentIndex(locationIndex);
+        }
         updateGeneratorLevelRange();
     }
 }
@@ -847,6 +861,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterSearcher.empty() && ui->comboBoxSearcherLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxSearcherLocation->currentText() : QString();
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -899,7 +915,13 @@ void Wild4::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxSearcherLocation->addItems(locations, !bug);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxSearcherLocation->setCurrentIndex(locationIndex);
+        }
         updateSearcherLevelRange();
     }
 }

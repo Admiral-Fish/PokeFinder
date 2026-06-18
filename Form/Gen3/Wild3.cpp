@@ -52,6 +52,12 @@ static std::pair<u8, u8> getLevelRange(const EncounterArea3 &area, u16 specie)
     return specie == 0 ? std::pair<u8, u8> { 0, 0 } : area.getLevelRange(specie);
 }
 
+static int findLocationName(const std::vector<std::string> &locations, const QString &location)
+{
+    auto it = std::ranges::find_if(locations, [&location](const std::string &name) { return QString::fromStdString(name) == location; });
+    return it == locations.end() ? -1 : static_cast<int>(it - locations.begin());
+}
+
 Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 {
     ui->setupUi(this);
@@ -269,6 +275,8 @@ void Wild3::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterGenerator.empty() && ui->comboBoxGeneratorLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxGeneratorLocation->currentText() : QString();
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -281,7 +289,13 @@ void Wild3::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxGeneratorLocation->addItems(locations);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxGeneratorLocation->setCurrentIndex(locationIndex);
+        }
         updateGeneratorLevelRange();
     }
 }
@@ -450,6 +464,8 @@ void Wild3::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        bool preserveLocation = !encounterSearcher.empty() && ui->comboBoxSearcherLocation->currentIndex() >= 0;
+        QString locationName = preserveLocation ? ui->comboBoxSearcherLocation->currentText() : QString();
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -462,7 +478,13 @@ void Wild3::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
+        ui->comboBoxSearcherLocation->addItems(locations);
+        if (locationIndex >= 0)
+        {
+            ui->comboBoxSearcherLocation->setCurrentIndex(locationIndex);
+        }
         updateSearcherLevelRange();
     }
 }
