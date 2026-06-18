@@ -3472,7 +3472,7 @@
     <name>HiddenGrotto</name>
     <message>
         <source>Level Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Levelspanne</translation>
     </message>
     <message>
         <source>Min</source>
@@ -3488,7 +3488,7 @@
     </message>
     <message>
         <source>Level outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
+        <translation>Level außerhalb der Levelspanne!</translation>
     </message>
     <message>
         <source>Hidden Grotto</source>
