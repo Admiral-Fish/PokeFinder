@@ -85,6 +85,16 @@ private:
      */
     void updateEncounterSearcher();
 
+    /**
+     * @brief Updates the displayed level range for the generator tab
+     */
+    void updateGeneratorLevelRange() const;
+
+    /**
+     * @brief Updates the displayed level range for the searcher tab
+     */
+    void updateSearcherLevelRange() const;
+
 private slots:
     /**
      * @brief Generates wild encounters from a starting seed

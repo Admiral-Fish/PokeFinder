@@ -76,6 +76,8 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->addItems(Translator::getHiddenPowers());
     ui->checkListNature->addItems(Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
+    ui->pushButtonLevelReset->setText(tr("Reset"));
+    setLevelVisible(false);
 
     ui->checkListEncounterSlot->setToolTip(tr("Click holding ctrl to reset"));
     ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
@@ -120,6 +122,7 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
             [=](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
+    connect(ui->pushButtonLevelReset, &QPushButton::clicked, this, [=] { ui->spinBoxLevel->setValue(0); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
 }
 
@@ -154,6 +157,7 @@ void Filter::copyFrom(const Filter *other)
     ui->comboBoxAbility->setCurrentIndex(other->ui->comboBoxAbility->currentIndex());
     ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
     ui->comboBoxGender->setCurrentIndex(other->ui->comboBoxGender->currentIndex());
+    ui->spinBoxLevel->setValue(other->ui->spinBoxLevel->value());
     ui->spinBoxHeightMin->setValue(other->ui->spinBoxHeightMin->value());
     ui->spinBoxHeightMax->setValue(other->ui->spinBoxHeightMax->value());
     ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
@@ -289,6 +293,11 @@ u8 Filter::getHeightMin() const
     return static_cast<u8>(ui->spinBoxHeightMin->value());
 }
 
+u8 Filter::getLevel() const
+{
+    return static_cast<u8>(ui->spinBoxLevel->value());
+}
+
 std::array<bool, 16> Filter::getHiddenPowers() const
 {
     return ui->checkListHiddenPower->getCheckedArray<16>();
@@ -384,6 +393,17 @@ bool Filter::isValid() const
     }
 
     return true;
+}
+
+void Filter::setLevelVisible(bool flag) const
+{
+    ui->labelLevel->setVisible(flag);
+    ui->spinBoxLevel->setVisible(flag);
+    ui->pushButtonLevelReset->setVisible(flag);
+    if (!flag)
+    {
+        ui->spinBoxLevel->setValue(0);
+    }
 }
 
 void Filter::resetEncounterSlots() const

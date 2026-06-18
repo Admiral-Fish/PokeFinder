@@ -2921,6 +2921,10 @@
         <source>Weight</source>
         <translation>体重</translation>
     </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GameCube</name>
@@ -9144,6 +9148,26 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild3</name>
     <message>
+        <source>Level Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 3 Wild</source>
         <translation>第三世代野生乱数</translation>
     </message>
@@ -9355,6 +9379,26 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild4</name>
+    <message>
+        <source>Level Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>第四世代野生乱数</translation>
@@ -9785,6 +9829,26 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Level Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>第五世代野生乱数</translation>

@@ -175,9 +175,10 @@ bool StateFilter::compareState(const State8 &state) const
 
 WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                                  const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
-                                 const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots) :
+                                 const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots, u8 level) :
     StateFilter(gender, ability, shiny, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
-    encounterSlots(encounterSlots)
+    encounterSlots(encounterSlots),
+    level(level)
 {
 }
 
@@ -209,6 +210,11 @@ bool WildStateFilter::compareState(const WildGeneratorState &state) const
     }
 
     if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    if (level != 0 && level != state.getLevel())
     {
         return false;
     }
@@ -247,12 +253,18 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
         return false;
     }
 
+    if (level != 0 && level != state.getLevel())
+    {
+        return false;
+    }
+
     return true;
 }
 
 bool WildStateFilter::compareState(const WildState &state) const
 {
-    return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
+    return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()]
+        && (skip || level == 0 || level == state.getLevel());
 }
 
 

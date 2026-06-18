@@ -123,7 +123,8 @@ public:
         if constexpr (wild)
         {
             return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots());
+                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots(),
+                              getLevel());
         }
         else
         {
@@ -152,6 +153,13 @@ public:
      * @return Minimum height
      */
     u8 getHeightMin() const;
+
+    /**
+     * @brief Gets level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevel() const;
 
     /**
      * @brief Gets hidden powers to filter by
@@ -192,6 +200,13 @@ public:
      * @brief Determines if Filter is valid based on current selections
      */
     bool isValid() const;
+
+    /**
+     * @brief Shows or hides the level filter
+     *
+     * @param flag Whether to show the level filter
+     */
+    void setLevelVisible(bool flag) const;
 
     /**
      * @brief Unchecks all encounter slots

@@ -1805,7 +1805,7 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="49"/>
         <source>Level Range</source>
-        <translation>Levelbereich</translation>
+        <translation>Levelspanne</translation>
     </message>
     <message>
         <source>Ruby</source>
@@ -2920,6 +2920,10 @@
     <message>
         <source>Weight</source>
         <translation>Gewicht</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Zurücksetzen</translation>
     </message>
 </context>
 <context>
@@ -9146,6 +9150,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>Wild3</name>
     <message>
+        <source>Level Range</source>
+        <translation>Levelspanne</translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation>Unültiges level</translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation>Level außerhalb der Levelspanne!</translation>
+    </message>
+    <message>
         <source>Gen 3 Wild</source>
         <translation>Generation 3 Wild</translation>
     </message>
@@ -9357,6 +9381,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>Wild4</name>
+    <message>
+        <source>Level Range</source>
+        <translation>Levelspanne</translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation>Unültiges level</translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation>Level außerhalb der Levelspanne!</translation>
+    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>Generation 4 Wild</translation>
@@ -9787,6 +9831,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Level Range</source>
+        <translation>Levelspanne</translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation>Unültiges level</translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation>Level außerhalb der Levelspanne!</translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Generation 5 Wild</translation>
