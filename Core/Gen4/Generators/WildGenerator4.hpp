@@ -48,10 +48,9 @@ public:
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
-     * @param includeEmpty Whether to include advances without an encounter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
-                   u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter, bool includeEmpty = false);
+                   u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -68,7 +67,6 @@ private:
     bool shiny;
     bool unownRadio;
     u8 happiness;
-    bool includeEmpty;
 
     /**
      * @brief Generates states via Method J

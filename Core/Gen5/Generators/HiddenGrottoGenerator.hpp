@@ -46,10 +46,9 @@ public:
      * @param encounterArea Hidden grotto information
      * @param profile Profile Information
      * @param filter State filter
-     * @param includeEmpty Whether to include advances without an encounter
      */
     HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel, const HiddenGrottoArea &encounterArea,
-                              const Profile5 &profile, const HiddenGrottoFilter &filter, bool includeEmpty = false);
+                              const Profile5 &profile, const HiddenGrottoFilter &filter);
 
     /**
      * @brief Generates states
@@ -63,7 +62,6 @@ public:
 private:
     HiddenGrottoArea encounterArea;
     u8 powerLevel;
-    bool includeEmpty;
 };
 
 /**

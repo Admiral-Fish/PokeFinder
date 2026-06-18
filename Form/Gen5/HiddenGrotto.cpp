@@ -250,7 +250,7 @@ void HiddenGrotto::grottoGenerate()
                               ui->checkListGrottoGeneratorGender->getCheckedArray<2>(),
                               ui->checkListGrottoGeneratorGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, offset, powerLevel,
-                                        encounter[ui->comboBoxGrottoGeneratorLocation->currentIndex()], *currentProfile, filter, true);
+                                        encounter[ui->comboBoxGrottoGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
     grottoGeneratorModel->addItems(states);

@@ -91,10 +91,9 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
-                               const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter, bool includeEmpty) :
+                               const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
-    includeEmpty(includeEmpty)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
 {
 }
 
@@ -109,7 +108,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     {
         std::array<u8, 6> iv;
         std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if ((includeEmpty && area.getEncounter() == Encounter::SuperRod) || filter.compareIV(iv))
+        if (area.getEncounter() == Encounter::SuperRod || filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -198,12 +197,6 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
-            if (!includeEmpty)
-            {
-                rng.next();
-                continue;
-            }
-
             valid = false;
         }
 

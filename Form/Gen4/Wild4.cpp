@@ -399,11 +399,10 @@ void Wild4::generate()
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
     bool unownRadio = ui->checkBoxGeneratorRadio->isChecked() && ui->comboBoxGeneratorRadio->currentIndex() == 2;
     u8 happiness = ui->comboBoxGeneratorHappiness->getCurrentUChar();
-    bool includeEmpty = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator4 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, chained, unownRadio, happiness,
-                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter, includeEmpty);
+                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, fixedSlot);
     generatorModel->addItems(states);

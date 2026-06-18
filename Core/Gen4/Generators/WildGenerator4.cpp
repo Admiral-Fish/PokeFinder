@@ -78,13 +78,12 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
                                bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
-                               const WildStateFilter &filter, bool includeEmpty) :
+                               const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
-    happiness(happiness),
-    includeEmpty(includeEmpty)
+    happiness(happiness)
 {
 }
 
@@ -136,12 +135,6 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
              || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort<false>(100, &battleAdvances) >= thresh)
         {
-            if (!includeEmpty)
-            {
-                rng.next();
-                continue;
-            }
-
             valid = false;
         }
 
@@ -295,14 +288,6 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
              || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort(100, &battleAdvances) >= rate)
         {
-            if (!includeEmpty
-                || (area.getEncounter() != Encounter::OldRod && area.getEncounter() != Encounter::GoodRod
-                    && area.getEncounter() != Encounter::SuperRod))
-            {
-                rng.next();
-                continue;
-            }
-
             valid = false;
         }
 
