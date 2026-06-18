@@ -43,8 +43,8 @@
 
 static bool hasLevelRange(Encounter encounter)
 {
-    return encounter == Encounter::Surfing || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
-        || encounter == Encounter::SuperRod;
+    return encounter == Encounter::RockSmash || encounter == Encounter::Surfing || encounter == Encounter::OldRod
+        || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
 }
 
 static std::pair<u8, u8> getLevelRange(const EncounterArea3 &area, u16 specie)

@@ -148,7 +148,7 @@ std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, const std::vector<
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
 
-    u8 range = slot.getMaxLevel() - slot.getMinLevel();
+    u8 range = slot.getMaxLevel() - slot.getMinLevel() + 1;
 
     // Even though hidden grotto can't be shiny it still respects the extra rolls from shiny charm
     // It also respects the extra roll from lucky power but since that choice isn't selectable in the UI we will ignore it

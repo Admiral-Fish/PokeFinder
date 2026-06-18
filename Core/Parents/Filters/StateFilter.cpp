@@ -24,7 +24,7 @@
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                          const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
-                         const std::array<bool, 16> &powers) :
+                         const std::array<bool, 16> &powers, u8 level) :
     skip(skip),
     natures(natures),
     powers(powers),
@@ -34,6 +34,7 @@ StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heigh
     gender(gender),
     heightMax(heightMax),
     heightMin(heightMin),
+    level(level),
     shiny(shiny),
     weightMax(weightMax),
     weightMin(weightMin)
@@ -137,6 +138,11 @@ bool StateFilter::compareState(const State &state) const
     }
 
     if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    if (level != 0 && level != state.getLevel())
     {
         return false;
     }

@@ -43,7 +43,9 @@
 
 static bool hasLevelRange(Encounter encounter)
 {
-    return encounter == Encounter::Surfing || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
+    return encounter == Encounter::HoneyTree || encounter == Encounter::RockSmash || encounter == Encounter::BugCatchingContest
+        || encounter == Encounter::Headbutt || encounter == Encounter::HeadbuttAlt || encounter == Encounter::HeadbuttSpecial
+        || encounter == Encounter::Surfing || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
         || encounter == Encounter::SuperRod;
 }
 

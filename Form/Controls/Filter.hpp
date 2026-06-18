@@ -129,7 +129,7 @@ public:
         else
         {
             return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers());
+                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getLevel());
         }
     }
 

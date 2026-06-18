@@ -140,6 +140,16 @@ private slots:
     void pokemonGenerate();
 
     /**
+     * @brief Updates the displayed level range for the pokemon generator tab
+     */
+    void updatePokemonGeneratorLevelRange() const;
+
+    /**
+     * @brief Updates the displayed level range for the pokemon searcher tab
+     */
+    void updatePokemonSearcherLevelRange() const;
+
+    /**
      * @brief Updates the group listed
      *
      * @param index Group index

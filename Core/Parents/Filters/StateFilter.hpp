@@ -55,7 +55,7 @@ public:
      */
     StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                 const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
-                const std::array<bool, 16> &powers);
+                const std::array<bool, 16> &powers, u8 level = 0);
 
     /**
      * @brief Determines if the \p ability meets the filter criteria
@@ -161,6 +161,7 @@ protected:
     u8 gender;
     u8 heightMax;
     u8 heightMin;
+    u8 level;
     u8 shiny;
     u8 weightMax;
     u8 weightMin;

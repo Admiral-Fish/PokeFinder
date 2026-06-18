@@ -3471,6 +3471,26 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Level Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Grotto</source>
         <translation>Versteckte Lichtungen</translation>
     </message>
