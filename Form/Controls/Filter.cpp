@@ -157,8 +157,8 @@ void Filter::copyFrom(const Filter *other)
     ui->spinBoxHeightMin->setValue(other->ui->spinBoxHeightMin->value());
     ui->spinBoxHeightMax->setValue(other->ui->spinBoxHeightMax->value());
     ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
-    ui->spinBoxLevelMax->setValue(other->ui->spinBoxLevelMax->value());
     ui->spinBoxLevelMin->setValue(other->ui->spinBoxLevelMin->value());
+    ui->spinBoxLevelMax->setValue(other->ui->spinBoxLevelMax->value());
     ui->checkListNature->setChecks(other->ui->checkListNature->getChecked());
     ui->comboBoxShiny->setCurrentIndex(other->ui->comboBoxShiny->currentIndex());
     ui->spinBoxWeightMin->setValue(other->ui->spinBoxWeightMin->value());

@@ -259,8 +259,6 @@ void Wild3::generatorLocationIndexChanged(int index)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-
-        generatorPokemonIndexChanged(0);
     }
 }
 
