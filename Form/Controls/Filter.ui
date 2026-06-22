@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>306</width>
-    <height>238</height>
+    <height>292</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -279,23 +279,53 @@
       <widget class="CheckList" name="checkListHiddenPower"/>
      </item>
      <item row="5" column="0">
+      <widget class="QLabel" name="labelLevel">
+       <property name="text">
+        <string>Level</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="spinBoxLevelMin">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QSpinBox" name="spinBoxLevelMax">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
       <widget class="QLabel" name="labelNature">
        <property name="text">
         <string>Nature</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1" colspan="2">
+     <item row="6" column="1" colspan="2">
       <widget class="CheckList" name="checkListNature"/>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <widget class="QLabel" name="labelShiny">
        <property name="text">
         <string>Shiny</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1" colspan="2">
+     <item row="7" column="1" colspan="2">
       <widget class="ComboBox" name="comboBoxShiny">
        <item>
         <property name="text">
@@ -317,27 +347,6 @@
          <string>Star/Square</string>
         </property>
        </item>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="labelLevel">
-       <property name="text">
-        <string>Level</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QSpinBox" name="spinBoxLevel">
-       <property name="maximum">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QPushButton" name="pushButtonLevelReset">
-       <property name="text">
-        <string>Reset</string>
-       </property>
       </widget>
      </item>
      <item row="8" column="0">
@@ -408,6 +417,8 @@
   <tabstop>spinBoxHeightMin</tabstop>
   <tabstop>spinBoxHeightMax</tabstop>
   <tabstop>checkListHiddenPower</tabstop>
+  <tabstop>spinBoxLevelMin</tabstop>
+  <tabstop>spinBoxLevelMax</tabstop>
   <tabstop>checkListNature</tabstop>
   <tabstop>comboBoxShiny</tabstop>
   <tabstop>spinBoxWeightMin</tabstop>

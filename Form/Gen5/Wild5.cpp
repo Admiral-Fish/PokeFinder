@@ -42,45 +42,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
-
-static bool hasLevelRange(Encounter encounter)
-{
-    return encounter == Encounter::Surfing || encounter == Encounter::SurfingRippling || encounter == Encounter::SuperRod
-        || encounter == Encounter::SuperRodRippling;
-}
-
-static std::pair<u8, u8> getLevelRange(const EncounterArea5 &area, u16 specie)
-{
-    if (specie == 0)
-    {
-        return { 0, 0 };
-    }
-
-    std::pair<u8, u8> range = { 100, 0 };
-    for (u8 i = 0; i < area.getCount(); i++)
-    {
-        const auto &slot = area.getPokemon(i);
-        if (slot.getSpecie() == (specie & 0x7ff) && slot.getForm() == (specie >> 11))
-        {
-            range.first = std::min(range.first, slot.getMinLevel());
-            range.second = std::max(range.second, slot.getMaxLevel());
-        }
-    }
-
-    if (range.first == 100)
-    {
-        return { 0, 0 };
-    }
-
-    return range;
-}
-
-static int findLocationName(const std::vector<std::string> &locations, const QString &location)
-{
-    auto it = std::ranges::find_if(locations, [&location](const std::string &name) { return QString::fromStdString(name) == location; });
-    return it == locations.end() ? -1 : static_cast<int>(it - locations.begin());
-}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -114,8 +75,6 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
-    ui->filterGenerator->setLevelVisible(false);
-    ui->filterSearcher->setLevelVisible(false);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -253,58 +212,10 @@ bool Wild5::fastSearchEnabled() const
     return min[0] >= 30 && min[2] >= 30 && min[4] >= 30 && (min[1] >= 30 || min[3] >= 30) && (min[5] >= 30 || max[5] <= 1);
 }
 
-void Wild5::updateGeneratorLevelRange() const
-{
-    bool visible = hasLevelRange(ui->comboBoxGeneratorEncounter->getEnum<Encounter>());
-    ui->labelGeneratorLevelRange->setVisible(visible);
-    ui->widgetGeneratorLevelRange->setVisible(visible);
-    ui->filterGenerator->setLevelVisible(visible);
-
-    if (!visible || encounterGenerator.empty() || ui->comboBoxGeneratorLocation->currentIndex() < 0)
-    {
-        ui->spinBoxGeneratorLevelMin->setValue(0);
-        ui->spinBoxGeneratorLevelMax->setValue(0);
-        return;
-    }
-
-    u16 specie = ui->comboBoxGeneratorPokemon->currentIndex() <= 0 ? 0 : ui->comboBoxGeneratorPokemon->getCurrentUShort();
-    auto range = getLevelRange(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], specie);
-    ui->spinBoxGeneratorLevelMin->setValue(range.first);
-    ui->spinBoxGeneratorLevelMax->setValue(range.second);
-}
-
-void Wild5::updateSearcherLevelRange() const
-{
-    bool visible = hasLevelRange(ui->comboBoxSearcherEncounter->getEnum<Encounter>());
-    ui->labelSearcherLevelRange->setVisible(visible);
-    ui->widgetSearcherLevelRange->setVisible(visible);
-    ui->filterSearcher->setLevelVisible(visible);
-
-    if (!visible || encounterSearcher.empty() || ui->comboBoxSearcherLocation->currentIndex() < 0)
-    {
-        ui->spinBoxSearcherLevelMin->setValue(0);
-        ui->spinBoxSearcherLevelMax->setValue(0);
-        return;
-    }
-
-    u16 specie = ui->comboBoxSearcherPokemon->currentIndex() <= 0 ? 0 : ui->comboBoxSearcherPokemon->getCurrentUShort();
-    auto range = getLevelRange(encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], specie);
-    ui->spinBoxSearcherLevelMin->setValue(range.first);
-    ui->spinBoxSearcherLevelMax->setValue(range.second);
-}
-
 void Wild5::generate()
 {
     if (!ui->filterGenerator->isValid())
     {
-        return;
-    }
-
-    u8 level = ui->filterGenerator->getLevel();
-    if (level != 0 && (level < ui->spinBoxGeneratorLevelMin->value() || level > ui->spinBoxGeneratorLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -331,8 +242,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        bool preserveLocation = !encounterGenerator.empty() && ui->comboBoxGeneratorLocation->currentIndex() >= 0;
-        QString locationName = preserveLocation ? ui->comboBoxGeneratorLocation->currentText() : QString();
+        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -341,14 +251,8 @@ void Wild5::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
-        ui->comboBoxGeneratorLocation->addItems(locations);
-        if (locationIndex >= 0)
-        {
-            ui->comboBoxGeneratorLocation->setCurrentIndex(locationIndex);
-        }
-        updateGeneratorLevelRange();
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -368,7 +272,6 @@ void Wild5::generatorLocationIndexChanged(int index)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-        updateGeneratorLevelRange();
     }
 }
 
@@ -377,14 +280,19 @@ void Wild5::generatorPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterGenerator->resetEncounterSlots();
+        ui->spinBoxGeneratorLevelMin->setValue(0);
+        ui->spinBoxGeneratorLevelMax->setValue(0);
     }
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
         auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
+
+        auto range = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxGeneratorLevelMin->setValue(range.first);
+        ui->spinBoxGeneratorLevelMax->setValue(range.second);
     }
-    updateGeneratorLevelRange();
 }
 
 void Wild5::generatorSeasonIndexChanged(int index)
@@ -480,14 +388,6 @@ void Wild5::search()
         return;
     }
 
-    u8 level = ui->filterSearcher->getLevel();
-    if (level != 0 && (level < ui->spinBoxSearcherLevelMin->value() || level > ui->spinBoxSearcherLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level outside of encounters level range!"));
-        msg.exec();
-        return;
-    }
-
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);
@@ -557,8 +457,7 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        bool preserveLocation = !encounterSearcher.empty() && ui->comboBoxSearcherLocation->currentIndex() >= 0;
-        QString locationName = preserveLocation ? ui->comboBoxSearcherLocation->currentText() : QString();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -567,14 +466,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-        int locationIndex = preserveLocation ? findLocationName(locations, locationName) : -1;
-        ui->comboBoxSearcherLocation->addItems(locations);
-        if (locationIndex >= 0)
-        {
-            ui->comboBoxSearcherLocation->setCurrentIndex(locationIndex);
-        }
-        updateSearcherLevelRange();
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -625,7 +518,6 @@ void Wild5::searcherLocationIndexChanged(int index)
         {
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
-        updateSearcherLevelRange();
     }
 }
 
@@ -634,14 +526,19 @@ void Wild5::searcherPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterSearcher->resetEncounterSlots();
+        ui->spinBoxSearcherLevelMin->setValue(0);
+        ui->spinBoxSearcherLevelMax->setValue(0);
     }
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
+
+        auto range = encounterGenerator[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxSearcherLevelMin->setValue(range.first);
+        ui->spinBoxSearcherLevelMax->setValue(range.second);
     }
-    updateSearcherLevelRange();
 }
 
 void Wild5::searcherSeasonIndexChanged(int index)

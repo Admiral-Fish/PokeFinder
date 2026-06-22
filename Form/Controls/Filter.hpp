@@ -122,14 +122,15 @@ public:
     {
         if constexpr (wild)
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots(),
-                              getLevel());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers(), getEncounterSlots());
         }
         else
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getLevel());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers());
         }
     }
 
@@ -155,18 +156,25 @@ public:
     u8 getHeightMin() const;
 
     /**
-     * @brief Gets level to filter by
-     *
-     * @return Level value
-     */
-    u8 getLevel() const;
-
-    /**
      * @brief Gets hidden powers to filter by
      *
      * @return Array of hidden powers
      */
     std::array<bool, 16> getHiddenPowers() const;
+
+    /**
+     * @brief Gets max level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMax() const;
+
+    /**
+     * @brief Gets min level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMin() const;
 
     /**
      * @brief Gets upper bound IVs to filter by
@@ -200,13 +208,6 @@ public:
      * @brief Determines if Filter is valid based on current selections
      */
     bool isValid() const;
-
-    /**
-     * @brief Shows or hides the level filter
-     *
-     * @param flag Whether to show the level filter
-     */
-    void setLevelVisible(bool flag) const;
 
     /**
      * @brief Unchecks all encounter slots

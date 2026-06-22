@@ -76,8 +76,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->addItems(Translator::getHiddenPowers());
     ui->checkListNature->addItems(Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
-    ui->pushButtonLevelReset->setText(tr("Reset"));
-    setLevelVisible(false);
 
     ui->checkListEncounterSlot->setToolTip(tr("Click holding ctrl to reset"));
     ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
@@ -122,7 +120,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
             [=](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
-    connect(ui->pushButtonLevelReset, &QPushButton::clicked, this, [=] { ui->spinBoxLevel->setValue(0); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
 }
 
@@ -157,10 +154,11 @@ void Filter::copyFrom(const Filter *other)
     ui->comboBoxAbility->setCurrentIndex(other->ui->comboBoxAbility->currentIndex());
     ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
     ui->comboBoxGender->setCurrentIndex(other->ui->comboBoxGender->currentIndex());
-    ui->spinBoxLevel->setValue(other->ui->spinBoxLevel->value());
     ui->spinBoxHeightMin->setValue(other->ui->spinBoxHeightMin->value());
     ui->spinBoxHeightMax->setValue(other->ui->spinBoxHeightMax->value());
     ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
+    ui->spinBoxLevelMax->setValue(other->ui->spinBoxLevelMax->value());
+    ui->spinBoxLevelMin->setValue(other->ui->spinBoxLevelMin->value());
     ui->checkListNature->setChecks(other->ui->checkListNature->getChecked());
     ui->comboBoxShiny->setCurrentIndex(other->ui->comboBoxShiny->currentIndex());
     ui->spinBoxWeightMin->setValue(other->ui->spinBoxWeightMin->value());
@@ -236,6 +234,13 @@ void Filter::disableControls(Controls control)
         ui->pushButtonIVCalculator->setVisible(false);
     }
 
+    if ((control & Controls::Level) != Controls::None)
+    {
+        ui->labelLevel->setVisible(false);
+        ui->spinBoxLevelMin->setVisible(false);
+        ui->spinBoxLevelMax->setVisible(false);
+    }
+
     if ((control & Controls::Natures) != Controls::None)
     {
         ui->labelNature->setVisible(false);
@@ -293,14 +298,19 @@ u8 Filter::getHeightMin() const
     return static_cast<u8>(ui->spinBoxHeightMin->value());
 }
 
-u8 Filter::getLevel() const
-{
-    return static_cast<u8>(ui->spinBoxLevel->value());
-}
-
 std::array<bool, 16> Filter::getHiddenPowers() const
 {
     return ui->checkListHiddenPower->getCheckedArray<16>();
+}
+
+u8 Filter::getLevelMax() const
+{
+    return static_cast<u8>(ui->spinBoxLevelMax->value());
+}
+
+u8 Filter::getLevelMin() const
+{
+    return static_cast<u8>(ui->spinBoxLevelMin->value());
 }
 
 std::array<u8, 6> Filter::getMaxIVs() const
@@ -334,13 +344,6 @@ bool Filter::isValid() const
     if (ui->checkBoxDisableFilters->isChecked())
     {
         return true;
-    }
-
-    if (ui->spinBoxHeightMin->value() > ui->spinBoxHeightMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Height minimum is greater than maximum"));
-        msg.exec();
-        return false;
     }
 
     if (ui->spinBoxHPMin->value() > ui->spinBoxHPMax->value())
@@ -385,6 +388,20 @@ bool Filter::isValid() const
         return false;
     }
 
+    if (ui->spinBoxLevelMin->value() > ui->spinBoxLevelMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Level minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
+    if (ui->spinBoxHeightMin->value() > ui->spinBoxHeightMax->value())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Height minimum is greater than maximum"));
+        msg.exec();
+        return false;
+    }
+
     if (ui->spinBoxWeightMin->value() > ui->spinBoxWeightMax->value())
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Weight minimum is greater than maximum"));
@@ -393,17 +410,6 @@ bool Filter::isValid() const
     }
 
     return true;
-}
-
-void Filter::setLevelVisible(bool flag) const
-{
-    ui->labelLevel->setVisible(flag);
-    ui->spinBoxLevel->setVisible(flag);
-    ui->pushButtonLevelReset->setVisible(flag);
-    if (!flag)
-    {
-        ui->spinBoxLevel->setValue(0);
-    }
 }
 
 void Filter::resetEncounterSlots() const

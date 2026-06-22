@@ -93,8 +93,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
                                                 | Controls::Shiny | Controls::Weight);
     ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
                                                | Controls::Height | Controls::Shiny | Controls::Weight);
-    ui->filterPokemonGenerator->setLevelVisible(true);
-    ui->filterPokemonSearcher->setLevelVisible(true);
 
     ui->comboBoxPokemonGeneratorLocation->enableAutoComplete();
     ui->comboBoxPokemonSearcherLocation->enableAutoComplete();
@@ -144,8 +142,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->comboBoxPokemonGeneratorLocation->addItems(locations);
     ui->comboBoxPokemonSearcherLocation->addItems(locations);
-    updatePokemonGeneratorLevelRange();
-    updatePokemonSearcherLevelRange();
 
     updateProfiles();
     pokemonSearcherFastSearchChanged();
@@ -468,14 +464,6 @@ void HiddenGrotto::pokemonGenerate()
         return;
     }
 
-    u8 level = ui->filterPokemonGenerator->getLevel();
-    if (level != 0 && (level < ui->spinBoxPokemonGeneratorLevelMin->value() || level > ui->spinBoxPokemonGeneratorLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level outside of encounters level range!"));
-        msg.exec();
-        return;
-    }
-
     pokemonGeneratorModel->clearModel();
 
     u64 seed = ui->textBoxPokemonGeneratorSeed->getULong();
@@ -496,40 +484,6 @@ void HiddenGrotto::pokemonGenerate()
     pokemonGeneratorModel->addItems(states);
 }
 
-void HiddenGrotto::updatePokemonGeneratorLevelRange() const
-{
-    if (ui->comboBoxPokemonGeneratorLocation->currentIndex() < 0 || ui->comboBoxPokemonGeneratorGroup->currentIndex() < 0
-        || ui->comboBoxPokemonGeneratorPokemon->currentIndex() < 0)
-    {
-        ui->spinBoxPokemonGeneratorLevelMin->setValue(0);
-        ui->spinBoxPokemonGeneratorLevelMax->setValue(0);
-        return;
-    }
-
-    auto pokemon = encounter[ui->comboBoxPokemonGeneratorLocation->currentIndex()].getPokemon(
-        ui->comboBoxPokemonGeneratorGroup->currentIndex(), ui->comboBoxPokemonGeneratorPokemon->currentIndex());
-
-    ui->spinBoxPokemonGeneratorLevelMin->setValue(pokemon.getMinLevel());
-    ui->spinBoxPokemonGeneratorLevelMax->setValue(pokemon.getMaxLevel());
-}
-
-void HiddenGrotto::updatePokemonSearcherLevelRange() const
-{
-    if (ui->comboBoxPokemonSearcherLocation->currentIndex() < 0 || ui->comboBoxPokemonSearcherGroup->currentIndex() < 0
-        || ui->comboBoxPokemonSearcherPokemon->currentIndex() < 0)
-    {
-        ui->spinBoxPokemonSearcherLevelMin->setValue(0);
-        ui->spinBoxPokemonSearcherLevelMax->setValue(0);
-        return;
-    }
-
-    auto pokemon = encounter[ui->comboBoxPokemonSearcherLocation->currentIndex()].getPokemon(
-        ui->comboBoxPokemonSearcherGroup->currentIndex(), ui->comboBoxPokemonSearcherPokemon->currentIndex());
-
-    ui->spinBoxPokemonSearcherLevelMin->setValue(pokemon.getMinLevel());
-    ui->spinBoxPokemonSearcherLevelMax->setValue(pokemon.getMaxLevel());
-}
-
 void HiddenGrotto::pokemonGeneratorGroupIndexChanged(int index)
 {
     if (index >= 0)
@@ -543,7 +497,6 @@ void HiddenGrotto::pokemonGeneratorGroupIndexChanged(int index)
             ui->comboBoxPokemonGeneratorPokemon->addItem(
                 QString("%1: %2").arg(i).arg(QString::fromStdString(Translator::getSpecie(pokemon.getSpecie()))), pokemon.getSpecie());
         }
-        updatePokemonGeneratorLevelRange();
     }
 }
 
@@ -552,7 +505,6 @@ void HiddenGrotto::pokemonGeneratorLocationIndexChanged(int index)
     if (index >= 0)
     {
         pokemonGeneratorGroupIndexChanged(ui->comboBoxPokemonGeneratorGroup->currentIndex());
-        updatePokemonGeneratorLevelRange();
     }
 }
 
@@ -581,7 +533,9 @@ void HiddenGrotto::pokemonGeneratorPokemonIndexChanged(int index)
             ui->comboBoxPokemonGeneratorGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         }
-        updatePokemonGeneratorLevelRange();
+        
+        ui->spinBoxPokemonGeneratorLevelMin->setValue(pokemon.getMinLevel());
+        ui->spinBoxPokemonGeneratorLevelMax->setValue(pokemon.getMaxLevel());
     }
 }
 
@@ -598,14 +552,6 @@ void HiddenGrotto::pokemonSearch()
 
     if (!ui->filterPokemonSearcher->isValid())
     {
-        return;
-    }
-
-    u8 level = ui->filterPokemonSearcher->getLevel();
-    if (level != 0 && (level < ui->spinBoxPokemonSearcherLevelMin->value() || level > ui->spinBoxPokemonSearcherLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -720,7 +666,6 @@ void HiddenGrotto::pokemonSearcherGroupIndexChanged(int index)
             ui->comboBoxPokemonSearcherPokemon->addItem(
                 QString("%1: %2").arg(i).arg(QString::fromStdString(Translator::getSpecie(pokemon.getSpecie()))), pokemon.getSpecie());
         }
-        updatePokemonSearcherLevelRange();
     }
 }
 
@@ -729,7 +674,6 @@ void HiddenGrotto::pokemonSearcherLocationIndexChanged(int index)
     if (index >= 0)
     {
         pokemonSearcherGroupIndexChanged(ui->comboBoxPokemonSearcherGroup->currentIndex());
-        updatePokemonSearcherLevelRange();
     }
 }
 
@@ -758,7 +702,9 @@ void HiddenGrotto::pokemonSearcherPokemonIndexChanged(int index)
             ui->comboBoxPokemonSearcherGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         }
-        updatePokemonSearcherLevelRange();
+
+        ui->spinBoxPokemonSearcherLevelMin->setValue(pokemon.getMinLevel());
+        ui->spinBoxPokemonSearcherLevelMax->setValue(pokemon.getMaxLevel());
     }
 }
 
