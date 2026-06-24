@@ -2755,6 +2755,10 @@
         <translation>遇敌种类</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>觉醒力量</translation>
     </message>
@@ -10665,6 +10669,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>否</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Advances</source>
         <translation>帧数</translation>
@@ -11105,6 +11113,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>No</source>
         <translation>否</translation>
+    </message>
+    <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>

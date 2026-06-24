@@ -2755,6 +2755,10 @@
         <translation>Slot Incontro</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>Introforza</translation>
     </message>
@@ -10668,6 +10672,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Advances</source>
         <translation>Avanzamenti</translation>
@@ -11107,6 +11115,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swarm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -223,7 +223,7 @@ void Wild8::generate()
     u8 fixedSlot = 0;
     if (encounter == Encounter::HoneyTree)
     {
-        std::array<bool, 12> encounters = ui->filter->getEncounterSlots();
+        auto encounters = ui->filter->getEncounterSlots();
         if (std::ranges::count(encounters, true) != 1)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),

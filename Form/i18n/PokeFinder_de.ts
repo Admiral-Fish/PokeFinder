@@ -2755,6 +2755,10 @@
         <translation></translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation>Schwarm</translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>Kraftreserve</translation>
     </message>
@@ -10668,6 +10672,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Nein</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation>Schwarm</translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Advances</source>
         <translation></translation>
@@ -11108,6 +11116,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>No</source>
         <translation>Nein</translation>
+    </message>
+    <message>
+        <source>Swarm</source>
+        <translation>Schwarm</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>

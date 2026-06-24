@@ -2756,6 +2756,10 @@
         <translation>Espacio de encuentro</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>Poder Oculto</translation>
     </message>
@@ -10672,6 +10676,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
@@ -11112,6 +11120,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="146"/>
         <source>No</source>
         <translation type="unfinished">No</translation>
+    </message>
+    <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
