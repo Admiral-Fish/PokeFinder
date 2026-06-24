@@ -111,9 +111,9 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
-                                         | Controls::Shiny | Controls::Weight);
+                                         | Controls::Level | Controls::Shiny | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                        | Controls::Height | Controls::Shiny | Controls::Weight);
+                                        | Controls::Height | Controls::Level | Controls::Shiny | Controls::Weight);
 
     ui->comboBoxGeneratorSpecie1->enableAutoComplete();
     ui->comboBoxGeneratorSpecie2->enableAutoComplete();
@@ -235,7 +235,7 @@ void DreamRadar::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
     std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                 [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
+                         [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

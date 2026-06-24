@@ -43,6 +43,8 @@ public:
      * @param gender Gender value to filter by
      * @param ability Ability value to filter by
      * @param shiny Shiny value to filter by
+     * @param levelMin Minimum level threshold
+     * @param levelMax Maximum level threshold
      * @param heightMin Minimum height threshold
      * @param heightMax Maximum height threshold
      * @param weightMin Minimum weight threshold
@@ -53,7 +55,7 @@ public:
      * @param natures Natures to filter by
      * @param powers Hidden powers to filter by
      */
-    StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+    StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                 const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                 const std::array<bool, 16> &powers);
 
@@ -161,6 +163,8 @@ protected:
     u8 gender;
     u8 heightMax;
     u8 heightMin;
+    u8 levelMax;
+    u8 levelMin;
     u8 shiny;
     u8 weightMax;
     u8 weightMin;
@@ -178,6 +182,8 @@ public:
      * @param gender Gender value to filter by
      * @param ability Ability value to filter by
      * @param shiny Shiny value to filter by
+     * @param levelMin Minimum level threshold
+     * @param levelMax Maximum level threshold
      * @param heightMin Minimum height threshold
      * @param heightMax Maximum height threshold
      * @param weightMin Minimum weight threshold
@@ -188,9 +194,31 @@ public:
      * @param natures Natures to filter by
      * @param powers Hidden powers to filter by
      */
-    WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+    WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                     const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                     const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots);
+
+    /**
+     * @brief Construct a new WildStateFilter object
+     *
+     * @param gender Gender value to filter by
+     * @param ability Ability value to filter by
+     * @param shiny Shiny value to filter by
+     * @param levelMin Minimum level threshold
+     * @param levelMax Maximum level threshold
+     * @param heightMin Minimum height threshold
+     * @param heightMax Maximum height threshold
+     * @param weightMin Minimum weight threshold
+     * @param weightMax Maximum weight threshold
+     * @param skip If filters should be skipped
+     * @param min Minimum IV thresholds
+     * @param max Maximum IV thresholds
+     * @param natures Natures to filter by
+     * @param powers Hidden powers to filter by
+     */
+    WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+                    const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+                    const std::array<bool, 16> &powers, const std::array<bool, 13> &encounterSlots);
 
     /**
      * @brief Determines if the \p encounterSlot meets the filter criteria
@@ -249,7 +277,7 @@ public:
     bool compareState(const WildState8 &state) const;
 
 protected:
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
 };
 
 #endif // STATEFILTER_HPP

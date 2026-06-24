@@ -107,7 +107,7 @@ public:
      *
      * @return Array of encounter slots
      */
-    std::array<bool, 12> getEncounterSlots() const;
+    std::array<bool, 13> getEncounterSlots() const;
 
     /**
      * @brief Constructs filter from the UI settings
@@ -122,13 +122,15 @@ public:
     {
         if constexpr (wild)
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers(), getEncounterSlots());
         }
         else
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers());
         }
     }
 
@@ -159,6 +161,20 @@ public:
      * @return Array of hidden powers
      */
     std::array<bool, 16> getHiddenPowers() const;
+
+    /**
+     * @brief Gets max level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMax() const;
+
+    /**
+     * @brief Gets min level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMin() const;
 
     /**
      * @brief Gets upper bound IVs to filter by

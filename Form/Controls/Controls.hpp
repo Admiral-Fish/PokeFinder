@@ -35,9 +35,10 @@ enum class Controls : u16
     Height = 1 << 4,
     HiddenPowers = 1 << 5,
     IVs = 1 << 6,
-    Natures = 1 << 7,
-    Shiny = 1 << 8,
-    Weight = 1 << 9
+    Level = 1 << 7,
+    Natures = 1 << 8,
+    Shiny = 1 << 9,
+    Weight = 1 << 10
 };
 
 /**

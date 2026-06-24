@@ -323,6 +323,34 @@
       <item row="7" column="2">
        <widget class="ComboBox" name="comboBoxReplacement1"/>
       </item>
+      <item row="8" column="0" colspan="3">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="labelLevel">
+        <property name="text">
+         <string>Levels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QSpinBox" name="spinBoxLevelMin">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QSpinBox" name="spinBoxLevelMax">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -381,6 +409,8 @@
   <tabstop>checkBoxReplacement</tabstop>
   <tabstop>comboBoxReplacement0</tabstop>
   <tabstop>comboBoxReplacement1</tabstop>
+  <tabstop>spinBoxLevelMin</tabstop>
+  <tabstop>spinBoxLevelMax</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

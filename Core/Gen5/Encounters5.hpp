@@ -56,10 +56,11 @@ namespace Encounters5
      * @param encounter Encounter type
      * @param season Season modifier
      * @param profile Profile information
+     * @param swarm Whether to include swarm encounters
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile);
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile, bool swarm = false);
 
     /**
      * @brief Gets hidden grotto encounters

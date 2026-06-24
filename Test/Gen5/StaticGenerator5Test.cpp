@@ -80,7 +80,7 @@ void StaticGenerator5Test::generateNonWild()
                      false, 0, 0, false, false, DSType::DS, Language::English);
 
     const StaticTemplate5 *staticTemplate = Encounters5::getStaticEncounter(category, pokemon);
-    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
     StaticGenerator5 generator(0, 9, 0, Method::Method5, Lead::None, 0, *staticTemplate, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
@@ -138,7 +138,7 @@ void StaticGenerator5Test::generateWild()
                      false, 0, 0, false, false, DSType::DS, Language::English);
 
     const StaticTemplate5 *staticTemplate = Encounters5::getStaticEncounter(category, pokemon);
-    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
     StaticGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, *staticTemplate, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
