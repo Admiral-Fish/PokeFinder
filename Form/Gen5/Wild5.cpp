@@ -34,6 +34,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/Filter.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -42,6 +43,11 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+static bool validLevelRange(const Filter *filter, int min, int max)
+{
+    return min == 0 || max == 0 || (filter->getLevelMin() <= max && filter->getLevelMax() >= min);
+}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -219,6 +225,13 @@ void Wild5::generate()
         return;
     }
 
+    if (!validLevelRange(ui->filterGenerator, ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
+        return;
+    }
+
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
@@ -385,6 +398,13 @@ void Wild5::search()
 
     if (!ui->filterSearcher->isValid())
     {
+        return;
+    }
+
+    if (!validLevelRange(ui->filterSearcher, ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
         return;
     }
 

@@ -31,14 +31,21 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/Filter.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+static bool validLevelRange(const Filter *filter, int min, int max)
+{
+    return min == 0 || max == 0 || (filter->getLevelMin() <= max && filter->getLevelMax() >= min);
+}
 
 Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 {
@@ -181,6 +188,13 @@ void Wild3::generate()
 {
     if (!ui->filterGenerator->isValid())
     {
+        return;
+    }
+
+    if (!validLevelRange(ui->filterGenerator, ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
         return;
     }
 
@@ -332,6 +346,13 @@ void Wild3::search()
 {
     if (!ui->filterSearcher->isValid())
     {
+        return;
+    }
+
+    if (!validLevelRange(ui->filterSearcher, ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
         return;
     }
 

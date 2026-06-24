@@ -3477,6 +3477,14 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Invalid level</source>
+        <translation>Ungültiges level</translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation>Level filter außerhalb der Levelspanne!</translation>
+    </message>
+    <message>
         <source>Level Range</source>
         <translation>Levelspanne</translation>
     </message>
@@ -9167,16 +9175,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Height</source>
-        <translation type="unfinished">Größe</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Weight</source>
-        <translation type="unfinished">Gewicht</translation>
+        <translation>Gewicht</translation>
     </message>
 </context>
 <context>
     <name>Wild3</name>
+    <message>
+        <source>Invalid level</source>
+        <translation>Ungültiges level</translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation>Level filter außerhalb der Levelspanne!</translation>
+    </message>
     <message>
         <source>Gen 3 Wild</source>
         <translation>Generation 3 Wild</translation>
@@ -9388,11 +9404,19 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Level</translation>
     </message>
 </context>
 <context>
     <name>Wild4</name>
+    <message>
+        <source>Invalid level</source>
+        <translation>Ungültiges level</translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation>Level filter außerhalb der Levelspanne!</translation>
+    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>Generation 4 Wild</translation>
@@ -9822,11 +9846,19 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Level</translation>
     </message>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Invalid level</source>
+        <translation>Ungültiges level</translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation>Level filter außerhalb der Levelspanne!</translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Generation 5 Wild</translation>
@@ -10141,7 +10173,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Level</translation>
     </message>
 </context>
 <context>
@@ -10394,7 +10426,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Level</translation>
     </message>
 </context>
 <context>

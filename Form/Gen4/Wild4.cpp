@@ -32,6 +32,7 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/Filter.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
@@ -40,6 +41,11 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+static bool validLevelRange(const Filter *filter, int min, int max)
+{
+    return min == 0 || max == 0 || (filter->getLevelMin() <= max && filter->getLevelMax() >= min);
+}
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
@@ -337,6 +343,13 @@ void Wild4::generate()
 {
     if (!ui->filterGenerator->isValid())
     {
+        return;
+    }
+
+    if (!validLevelRange(ui->filterGenerator, ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
         return;
     }
 
@@ -662,6 +675,13 @@ void Wild4::search()
 {
     if (!ui->filterSearcher->isValid())
     {
+        return;
+    }
+
+    if (!validLevelRange(ui->filterSearcher, ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
+        msg.exec();
         return;
     }
 

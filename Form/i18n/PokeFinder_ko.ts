@@ -3477,6 +3477,14 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Level Range</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9176,6 +9184,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild3</name>
     <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 3 Wild</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9391,6 +9407,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild4</name>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation type="unfinished"></translation>
@@ -9825,6 +9849,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation type="unfinished"></translation>

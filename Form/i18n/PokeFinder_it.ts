@@ -3477,6 +3477,14 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Level Range</source>
         <translation type="unfinished">Intervallo Livello</translation>
     </message>
@@ -9178,6 +9186,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>Wild3</name>
     <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 3 Wild</source>
         <translation>Selvatici Gen 3</translation>
     </message>
@@ -9393,6 +9409,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>Wild4</name>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>Selvatici Gen 4</translation>
@@ -9827,6 +9851,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level filter outside of encounters level range!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Selvatici Gen 5</translation>
