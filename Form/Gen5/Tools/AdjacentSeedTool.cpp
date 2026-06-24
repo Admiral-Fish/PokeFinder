@@ -26,13 +26,17 @@
 #include <Form/Util/IVCalculator.hpp>
 #include <Model/Gen5/AdjacentSeedModel5.hpp>
 #include <QAbstractItemView>
-#include <QDateTime>
+#include <QDate>
+#include <QTime>
+#include <QEvent>
 #include <QItemSelectionModel>
 #include <QLineEdit>
+#include <QMouseEvent>
 #include <QSettings>
 #include <QStandardItemModel>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
+#include <QTimer>
 #include <array>
 
 constexpr u32 previewCount = 25;
@@ -71,12 +75,14 @@ AdjacentSeedTool::AdjacentSeedTool(QWidget *parent) : QWidget(parent), ui(new Ui
     ui->comboBoxKeypresses->setModel(keypressModel);
     ui->comboBoxKeypresses->setEditable(true);
     ui->comboBoxKeypresses->lineEdit()->setReadOnly(true);
+    ui->comboBoxKeypresses->lineEdit()->installEventFilter(this);
     ui->comboBoxKeypresses->setMaxVisibleItems(static_cast<int>(keypressButtons.size()));
-    ui->comboBoxKeypresses->view()->setMinimumHeight(210);
-    ui->comboBoxKeypresses->view()->setMaximumHeight(230);
+    ui->comboBoxKeypresses->view()->setMinimumHeight(190);
+    ui->comboBoxKeypresses->view()->setMaximumHeight(205);
 
-    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
-    ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime());
+    ui->dateEdit->setDate(QDate::currentDate());
+    ui->timeEdit->setDisplayFormat("HH:mm:ss");
+    ui->timeEdit->setTime(QTime::currentTime());
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMinIVAdvance->setText("0");
@@ -85,23 +91,27 @@ AdjacentSeedTool::AdjacentSeedTool(QWidget *parent) : QWidget(parent), ui(new Ui
     ui->gridLayoutSettings->setColumnStretch(0, 0);
     ui->gridLayoutSettings->setColumnStretch(1, 0);
     ui->gridLayoutSettings->setColumnStretch(2, 0);
-    ui->gridLayoutSettings->setColumnStretch(3, 1);
+    ui->gridLayoutSettings->setColumnStretch(3, 0);
     ui->gridLayoutSettings->setColumnStretch(4, 0);
-    ui->gridLayoutSettings->setColumnStretch(5, 0);
-    ui->gridLayoutSettings->setColumnStretch(6, 1);
-    ui->dateTimeEdit->setMaximumWidth(175);
-    ui->comboBoxKeypresses->setMinimumWidth(285);
-    ui->comboBoxKeypresses->setMaximumWidth(450);
+    ui->gridLayoutSettings->setColumnStretch(5, 1);
+    ui->gridLayoutSettings->setColumnStretch(6, 0);
+    ui->gridLayoutSettings->setColumnStretch(7, 0);
+    ui->gridLayoutSettings->setColumnStretch(8, 1);
+    ui->dateEdit->setMaximumWidth(115);
+    ui->timeEdit->setMaximumWidth(90);
+    ui->comboBoxKeypresses->setMinimumWidth(300);
+    ui->comboBoxKeypresses->setMaximumWidth(999);
     ui->pushButtonGenerate->setMinimumWidth(120);
     ui->pushButtonGenerate->setMaximumWidth(999);
-    ui->spinBoxSeconds->setMaximumWidth(60);
-    ui->comboBoxMethod->setMinimumWidth(150);
-    ui->comboBoxMethod->setMaximumWidth(180);
-    ui->textBoxMinIVAdvance->setMaximumWidth(70);
-    ui->textBoxMaxIVAdvance->setMaximumWidth(70);
+    ui->spinBoxSeconds->setMaximumWidth(48);
+    ui->comboBoxMethod->setMinimumWidth(180);
+    ui->comboBoxMethod->setMaximumWidth(999);
+    ui->textBoxMinIVAdvance->setMaximumWidth(65);
+    ui->textBoxMaxIVAdvance->setMaximumWidth(65);
     ui->pushButtonIVCalculator->setMinimumWidth(120);
     ui->pushButtonIVCalculator->setMaximumWidth(999);
-    ui->labelDateTime->setMaximumWidth(100);
+    ui->labelDate->setMaximumWidth(70);
+    ui->labelTime->setMaximumWidth(70);
     ui->labelSeconds->setMaximumWidth(100);
     ui->labelKeypresses->setMaximumWidth(100);
     ui->labelMethod->setMaximumWidth(100);
@@ -161,12 +171,27 @@ bool AdjacentSeedTool::hasProfiles() const
     return !profiles.empty();
 }
 
+bool AdjacentSeedTool::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == ui->comboBoxKeypresses->lineEdit() && event->type() == QEvent::MouseButtonPress)
+    {
+        auto *mouse = static_cast<QMouseEvent *>(event);
+        if (mouse->button() == Qt::LeftButton)
+        {
+            ui->comboBoxKeypresses->showPopup();
+            return true;
+        }
+    }
+
+    return QWidget::eventFilter(object, event);
+}
+
 void AdjacentSeedTool::setInitialSearch(const DateTime &dateTime, Buttons buttons)
 {
     Date date = dateTime.getDate();
     Time time = dateTime.getTime();
-    ui->dateTimeEdit->setDateTime(QDateTime(QDate(date.year(), date.month(), date.day()),
-                                            QTime(time.hour(), time.minute(), time.second())));
+    ui->dateEdit->setDate(QDate(date.year(), date.month(), date.day()));
+    ui->timeEdit->setTime(QTime(time.hour(), time.minute(), time.second()));
     setSelectedButtons(buttons);
 }
 
@@ -252,8 +277,11 @@ void AdjacentSeedTool::generate()
     u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
     u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
 
+    QTime time = ui->timeEdit->time();
+    DateTime dateTime(ui->dateEdit->getDate(), Time(time.hour(), time.minute(), time.second()));
+
     AdjacentSeedSettings settings { *currentProfile,
-                                    ui->dateTimeEdit->getDateTime(),
+                                    dateTime,
                                     getSelectedButtons(),
                                     static_cast<u32>(ui->spinBoxSeconds->value()),
                                     initialIVAdvance,
@@ -291,7 +319,7 @@ void AdjacentSeedTool::keypressIndexPressed(const QModelIndex &index)
 
     item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     currentButtons = getSelectedButtons();
-    updateKeypressText();
+    QTimer::singleShot(0, this, &AdjacentSeedTool::updateKeypressText);
 }
 
 void AdjacentSeedTool::openIVCalculator()

@@ -55,6 +55,9 @@ public:
 public slots:
     void updateProfiles();
 
+protected:
+    bool eventFilter(QObject *object, QEvent *event) override;
+
 private:
     Ui::AdjacentSeedTool *ui;
     AdjacentSeedModel5 *model;
