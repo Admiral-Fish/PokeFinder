@@ -41,7 +41,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
     ui->filter->enableHiddenAbility();
 
     ui->comboBoxAbilityType->setup({ 0, 1, 2, 3, 4 });

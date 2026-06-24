@@ -201,7 +201,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="1" colspan="2">
            <widget class="ComboBox" name="comboBoxGeneratorEncounter">
             <item>
              <property name="text">
@@ -242,7 +242,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="1" colspan="2">
            <widget class="ComboBoxProxy" name="comboBoxGeneratorLocation"/>
           </item>
           <item row="2" column="0">
@@ -252,13 +252,41 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="1" colspan="2">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="3" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxGeneratorFeebasTile">
             <property name="text">
              <string>Feebas Tile</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -372,7 +400,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="1" colspan="2">
            <widget class="ComboBox" name="comboBoxSearcherEncounter">
             <item>
              <property name="text">
@@ -413,7 +441,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="1" colspan="2">
            <widget class="ComboBoxProxy" name="comboBoxSearcherLocation"/>
           </item>
           <item row="2" column="0">
@@ -423,13 +451,41 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="1" colspan="2">
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="3" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxSearcherFeebasTile">
             <property name="text">
              <string>Feebas Tile</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelSearcherLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -504,11 +560,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboMenu</class>
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
@@ -529,6 +580,8 @@
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>checkBoxGeneratorFeebasTile</tabstop>
+  <tabstop>spinBoxGeneratorLevelMin</tabstop>
+  <tabstop>spinBoxGeneratorLevelMax</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
@@ -538,6 +591,8 @@
   <tabstop>comboBoxSearcherLocation</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>checkBoxSearcherFeebasTile</tabstop>
+  <tabstop>spinBoxSearcherLevelMin</tabstop>
+  <tabstop>spinBoxSearcherLevelMax</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

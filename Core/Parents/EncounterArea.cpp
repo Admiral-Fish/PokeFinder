@@ -47,6 +47,13 @@ std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
             range.second = std::max(range.second, pokemon[i].getMaxLevel());
         }
     }
+
+    // Zero out range if we don't have a matching pokemon
+    if (range.first == 100 && range.second == 0)
+    {
+        range.first = 0;
+    }
+
     return range;
 }
 

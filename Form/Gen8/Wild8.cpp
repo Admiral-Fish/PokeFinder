@@ -168,6 +168,7 @@ void Wild8::encounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxLocation->getCurrentUShort();
 
         bool honey = encounter == Encounter::HoneyTree;
 
@@ -190,7 +191,8 @@ void Wild8::encounterIndexChanged(int index)
         std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea8 &area) { return area.getLocation(); });
 
         ui->comboBoxLocation->clear();
-        ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -330,12 +332,18 @@ void Wild8::pokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filter->resetEncounterSlots();
+        ui->spinBoxLevelMin->setValue(0);
+        ui->spinBoxLevelMax->setValue(0);
     }
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
         auto flags = encounters[ui->comboBoxLocation->currentIndex()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
+
+        auto range = encounters[ui->comboBoxLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxLevelMin->setValue(range.first);
+        ui->spinBoxLevelMax->setValue(range.second);
     }
 }
 

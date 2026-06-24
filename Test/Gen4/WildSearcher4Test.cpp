@@ -109,7 +109,7 @@ void WildSearcher4Test::searchMethodJ()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50,
                            *encounterArea, profile, filter);
 
@@ -189,7 +189,7 @@ void WildSearcher4Test::searchMethodK()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, false, false, false, 50, *encounterArea,
                            profile, filter);
 
@@ -265,7 +265,7 @@ void WildSearcher4Test::searchHoneyTree()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::HoneyTree, lead, settings.dppt.feebasTile, false, false, 50,
                            *encounterArea, profile, filter);
 
@@ -346,7 +346,7 @@ void WildSearcher4Test::searchPokeRadar()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::PokeRadar, lead, false, shiny, false, 50, *encounterArea,
                            profile, filter);
 

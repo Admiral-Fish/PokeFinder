@@ -98,7 +98,7 @@ void WildSearcher3Test::search()
         = std::ranges::find_if(encounterAreas.begin(), encounterAreas.end(),
                                [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher3 searcher(method, lead, settings.feebasTile, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);

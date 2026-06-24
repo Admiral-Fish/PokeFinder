@@ -480,6 +480,34 @@
           <item row="12" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorWaterBlock"/>
           </item>
+          <item row="13" column="0" colspan="4">
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="labelGeneratorLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="3">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -919,6 +947,34 @@
           <item row="12" column="3">
            <widget class="QSpinBox" name="spinBoxSearcherWaterBlock"/>
           </item>
+          <item row="13" column="0" colspan="4">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="labelSearcherLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="3">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -985,11 +1041,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboMenu</class>
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
@@ -1016,8 +1067,8 @@
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorHappiness</tabstop>
-  <tabstop>checkBoxGeneratorDualSlot</tabstop>
   <tabstop>comboBoxGeneratorDualSlot</tabstop>
+  <tabstop>checkBoxGeneratorDualSlot</tabstop>
   <tabstop>checkBoxGeneratorFeebasTile</tabstop>
   <tabstop>checkBoxGeneratorPokeRadar</tabstop>
   <tabstop>checkBoxGeneratorRadio</tabstop>
@@ -1030,6 +1081,8 @@
   <tabstop>spinBoxGeneratorForestBlock</tabstop>
   <tabstop>spinBoxGeneratorPeakBlock</tabstop>
   <tabstop>spinBoxGeneratorWaterBlock</tabstop>
+  <tabstop>spinBoxGeneratorLevelMin</tabstop>
+  <tabstop>spinBoxGeneratorLevelMax</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
   <tabstop>checkBoxSearcherPokeRadarShiny</tabstop>
@@ -1058,6 +1111,8 @@
   <tabstop>spinBoxSearcherForestBlock</tabstop>
   <tabstop>spinBoxSearcherPeakBlock</tabstop>
   <tabstop>spinBoxSearcherWaterBlock</tabstop>
+  <tabstop>spinBoxSearcherLevelMin</tabstop>
+  <tabstop>spinBoxSearcherLevelMax</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

@@ -22,7 +22,7 @@
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
 
-StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                          const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                          const std::array<bool, 16> &powers) :
     skip(skip),
@@ -34,6 +34,8 @@ StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heigh
     gender(gender),
     heightMax(heightMax),
     heightMin(heightMin),
+    levelMax(levelMax),
+    levelMin(levelMin),
     shiny(shiny),
     weightMax(weightMax),
     weightMin(weightMin)
@@ -141,6 +143,11 @@ bool StateFilter::compareState(const State &state) const
         return false;
     }
 
+    if (state.getLevel() < levelMin || state.getLevel() > levelMax)
+    {
+        return false;
+    }
+
     for (int i = 0; i < 6; i++)
     {
         u8 iv = state.getIV(i);
@@ -173,10 +180,10 @@ bool StateFilter::compareState(const State8 &state) const
     return true;
 }
 
-WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
+WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                                  const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                                  const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots) :
-    StateFilter(gender, ability, shiny, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
+    StateFilter(gender, ability, shiny, levelMin, levelMax, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
     encounterSlots(encounterSlots)
 {
 }
@@ -213,6 +220,11 @@ bool WildStateFilter::compareState(const WildGeneratorState &state) const
         return false;
     }
 
+    if (state.getLevel() < levelMin || state.getLevel() > levelMax)
+    {
+        return false;
+    }
+
     for (int i = 0; i < 6; i++)
     {
         u8 iv = state.getIV(i);
@@ -243,6 +255,11 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
     }
 
     if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    if (state.getLevel() < levelMin || state.getLevel() > levelMax)
     {
         return false;
     }

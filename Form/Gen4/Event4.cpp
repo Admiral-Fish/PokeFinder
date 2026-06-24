@@ -63,9 +63,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->comboBoxSearcherNature->addItems(Translator::getNatures());
 
     ui->filterGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
-                                         | Controls::Natures | Controls::Shiny | Controls::Weight);
+                                         | Controls::Level | Controls::Natures | Controls::Shiny | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                        | Controls::Height | Controls::Natures | Controls::Shiny | Controls::Weight);
+                                        | Controls::Height | Controls::Level | Controls::Natures | Controls::Shiny | Controls::Weight);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
