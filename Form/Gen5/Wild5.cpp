@@ -46,7 +46,7 @@
 static bool showPhenomenonColumn(Encounter encounter)
 {
     return encounter == Encounter::GrassRustling || encounter == Encounter::DustCloud || encounter == Encounter::SurfingRippling
-        || encounter == Encounter::SuperRodRippling;
+        || encounter == Encounter::SuperRodRippling || encounter == Encounter::FlyingShadow;
 }
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)

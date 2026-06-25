@@ -94,7 +94,7 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 static bool canTriggerPhenomenon(Encounter encounter)
 {
     return encounter == Encounter::GrassRustling || encounter == Encounter::DustCloud || encounter == Encounter::SurfingRippling
-        || encounter == Encounter::SuperRodRippling;
+        || encounter == Encounter::SuperRodRippling || encounter == Encounter::FlyingShadow;
 }
 
 static bool canYieldPhenomenonItem(Encounter encounter)
@@ -325,8 +325,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             item = getItem(go, bw, lead, area.getEncounter(), info);
         }
 
-        u16 chatot = rng.nextUInt(0x1fff);
         bool phenomenon = canTriggerPhenomenon(area.getEncounter()) && BWRNG(rng).nextUInt(1000) < 100;
+        u16 chatot = rng.nextUInt(0x1fff);
         for (const auto &iv : ivs)
         {
             WildState5 state(chatot, phenomenon, phenomenonItem, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,

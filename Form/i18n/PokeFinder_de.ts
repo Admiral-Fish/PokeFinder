@@ -10700,11 +10700,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Phenomenon</source>
-        <translation type="unfinished"></translation>
+        <translation>Phänomen</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
 </context>
 <context>
