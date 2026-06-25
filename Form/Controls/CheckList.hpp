@@ -88,6 +88,7 @@ public:
     {
         auto checked = getChecked();
         std::array<bool, size> array;
+        array.fill(true);
         std::ranges::copy(checked, array.begin());
         return array;
     }

@@ -338,6 +338,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Dust Cloud</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Surfing</string>
              </property>
             </item>
@@ -354,6 +359,11 @@
             <item>
              <property name="text">
               <string>Rippling Fishing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Flying Shadow</string>
              </property>
             </item>
            </widget>
@@ -631,6 +641,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Dust Cloud</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Surfing</string>
              </property>
             </item>
@@ -647,6 +662,11 @@
             <item>
              <property name="text">
               <string>Rippling Fishing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Flying Shadow</string>
              </property>
             </item>
            </widget>

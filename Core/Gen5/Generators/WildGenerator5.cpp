@@ -29,6 +29,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <array>
 
 static u8 gen(MT &rng)
 {
@@ -88,6 +89,63 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
         }
     }
     return 0;
+}
+
+static bool canTriggerPhenomenon(Encounter encounter)
+{
+    return encounter == Encounter::GrassRustling || encounter == Encounter::DustCloud || encounter == Encounter::SurfingRippling
+        || encounter == Encounter::SuperRodRippling;
+}
+
+static bool canYieldPhenomenonItem(Encounter encounter)
+{
+    return encounter == Encounter::DustCloud || encounter == Encounter::FlyingShadow;
+}
+
+static bool hasShardDustCloudItems(Game version, u8 location)
+{
+    if ((version & Game::BW2) == Game::None)
+    {
+        return false;
+    }
+
+    return location == 49 || location == 50 || location == 52 || location == 81 || location == 82 || location == 83;
+}
+
+static u16 getDustCloudItem(BWRNG &rng, Game version, u8 location)
+{
+    constexpr std::array<u16, 10> stones = { 80, 81, 82, 83, 84, 85, 107, 108, 109, 110 };
+    constexpr std::array<u16, 17> items = { 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564 };
+    constexpr std::array<u16, 4> shards = { 72, 73, 74, 75 };
+
+    if (hasShardDustCloudItems(version, location))
+    {
+        return shards[rng.nextUInt(4)];
+    }
+
+    u32 current = rng.getSeed() >> 32;
+    bool stone = ((static_cast<u64>(current) * 1000) >> 32) < 100;
+    u8 index = rng.nextUInt(stone ? 1000 : 1700) / 100;
+
+    return stone ? stones[index] : items[index];
+}
+
+static u16 getFlyingShadowItem(BWRNG &rng)
+{
+    constexpr std::array<u16, 6> wings = { 565, 566, 567, 568, 569, 570 };
+
+    u32 current = rng.getSeed() >> 32;
+    if (((static_cast<u64>(current) * 1000) >> 32) > 900)
+    {
+        return 571;
+    }
+
+    return wings[rng.nextUInt(6)];
+}
+
+static u16 getPhenomenonItem(BWRNG &rng, Encounter encounter, Game version, u8 location)
+{
+    return encounter == Encounter::DustCloud ? getDustCloudItem(rng, version, location) : getFlyingShadowItem(rng);
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
@@ -160,10 +218,17 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         bool cuteCharm = false;
         bool magnetStatic = false;
+        bool phenomenonItem = false;
         bool pressure = false;
         bool sync = false;
 
-        if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        if (canYieldPhenomenonItem(area.getEncounter()))
+        {
+            u8 battleRate = area.getEncounter() == Encounter::DustCloud ? 40 : 20;
+            phenomenonItem = getPercentRand(go, bw) >= battleRate;
+        }
+
+        if (!phenomenonItem && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
@@ -189,39 +254,50 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         bool doubleBattle = false;
-        if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
+        if (!phenomenonItem && area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
         {
             doubleBattle = true;
         }
 
-        if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
+        if (!phenomenonItem && area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
             rng.next();
             continue;
         }
 
-        u8 encounterSlot;
-        if (magnetStatic && !modifiedSlots.empty())
+        u8 encounterSlot = 0;
+        u8 level = 0;
+        u16 item = 0;
+
+        if (phenomenonItem)
         {
-            encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
+            item = getPhenomenonItem(go, area.getEncounter(), profile.getVersion(), area.getLocation());
+            go.advance(1);
         }
         else
         {
-            encounterSlot = EncounterSlot::bwSlot(getPercentRand(go, bw), area.getEncounter(), luckyPower);
-        }
+            if (magnetStatic && !modifiedSlots.empty())
+            {
+                encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
+            }
+            else
+            {
+                encounterSlot = EncounterSlot::bwSlot(getPercentRand(go, bw), area.getEncounter(), luckyPower);
+            }
 
-        u8 level = area.calculateLevel(encounterSlot, getPercentRand(go, bw), pressure);
+            level = area.calculateLevel(encounterSlot, getPercentRand(go, bw), pressure);
 
-        // RNG calls for left encounter slot and level
-        if (doubleBattle)
-        {
-            go.advance(2);
+            // RNG calls for left encounter slot and level
+            if (doubleBattle)
+            {
+                go.advance(2);
+            }
         }
 
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
-        u32 pid;
+        u32 pid = 0;
         for (u8 i = 0; i < shinyRolls; i++)
         {
             // Only allow cute charm if the target isn't fixed gender
@@ -244,14 +320,18 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             nature = toInt(lead);
         }
 
-        u16 item = getItem(go, bw, lead, area.getEncounter(), info);
+        if (!phenomenonItem)
+        {
+            item = getItem(go, bw, lead, area.getEncounter(), info);
+        }
 
         u16 chatot = rng.nextUInt(0x1fff);
+        bool phenomenon = canTriggerPhenomenon(area.getEncounter()) && BWRNG(rng).nextUInt(1000) < 100;
         for (const auto &iv : ivs)
         {
-            WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+            WildState5 state(chatot, phenomenon, phenomenonItem, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+                             level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
+            if ((!phenomenonItem && filter.compareState(static_cast<const WildState &>(state))) || (phenomenonItem && !filter.hasFilters()))
             {
                 states.emplace_back(state);
             }

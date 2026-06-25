@@ -43,6 +43,12 @@
 #include <QThread>
 #include <QTimer>
 
+static bool showPhenomenonColumn(Encounter encounter)
+{
+    return encounter == Encounter::GrassRustling || encounter == Encounter::DustCloud || encounter == Encounter::SurfingRippling
+        || encounter == Encounter::SuperRodRippling;
+}
+
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
@@ -66,12 +72,16 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::GrassRustling),
-                                            toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
-                                            toInt(Encounter::SuperRodRippling) });
-    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::GrassRustling),
-                                           toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
-                                           toInt(Encounter::SuperRodRippling) });
+    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass),           toInt(Encounter::GrassDark),
+                                            toInt(Encounter::GrassRustling),   toInt(Encounter::DustCloud),
+                                            toInt(Encounter::Surfing),         toInt(Encounter::SurfingRippling),
+                                            toInt(Encounter::SuperRod),        toInt(Encounter::SuperRodRippling),
+                                            toInt(Encounter::FlyingShadow) });
+    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass),           toInt(Encounter::GrassDark),
+                                           toInt(Encounter::GrassRustling),   toInt(Encounter::DustCloud),
+                                           toInt(Encounter::Surfing),         toInt(Encounter::SurfingRippling),
+                                           toInt(Encounter::SuperRod),        toInt(Encounter::SuperRodRippling),
+                                           toInt(Encounter::FlyingShadow) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
@@ -242,6 +252,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        generatorModel->setShowPhenomenon(showPhenomenonColumn(encounter));
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -449,6 +460,7 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        searcherModel->setShowPhenomenon(showPhenomenonColumn(encounter));
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);

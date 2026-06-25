@@ -30,6 +30,8 @@ enum class Encounter : u8
     Grass,
     GrassDark,
     GrassRustling,
+    DustCloud,
+    FlyingShadow,
     RockSmash,
     Surfing,
     SurfingRippling,
