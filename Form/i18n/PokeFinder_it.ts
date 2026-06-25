@@ -1915,6 +1915,14 @@
         <source>White 2</source>
         <translation>Bianca 2</translation>
     </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Event4</name>
@@ -10099,6 +10107,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Wild8</name>
@@ -10682,6 +10698,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>Characteristic</source>
         <translation>Caratteristica</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11143,6 +11167,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
         <translation>Tasti</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

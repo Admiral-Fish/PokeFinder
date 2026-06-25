@@ -1915,6 +1915,14 @@
         <source>White 2</source>
         <translation>Weiß 2</translation>
     </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation>Staubwolke</translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation>Schatten fliegender Pokémon</translation>
+    </message>
 </context>
 <context>
     <name>Event4</name>
@@ -9909,7 +9917,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Rippling Surfing</source>
-        <translation>Schatten auf dem Wasser</translation>
+        <translation>Schatten auf der Wasseroberfläche</translation>
     </message>
     <message>
         <source>Fishing</source>
@@ -9917,7 +9925,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Rippling Fishing</source>
-        <translation>Angel im Schatten auf dem Wasser</translation>
+        <translation>Angeln im Schatten auf der Wasseroberfläche</translation>
     </message>
     <message>
         <source>Location</source>
@@ -10098,6 +10106,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Wild5.cpp" line="491"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
+    </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation>Staubwolke</translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation>Schatten fliegender Pokémon</translation>
     </message>
 </context>
 <context>
@@ -10682,6 +10698,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11143,6 +11167,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
     </message>
 </context>
 </TS>
