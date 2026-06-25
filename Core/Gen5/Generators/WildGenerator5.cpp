@@ -59,6 +59,11 @@ static u8 getPercentRand(BWRNG &rng, bool bw)
     }
 }
 
+static u8 getMovingTrigger(BWRNG &rng)
+{
+    return (rng.nextUInt() >> 16) / 656;
+}
+
 static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const PersonalInfo *info)
 {
     constexpr u8 ItemTable[2][3] = { { 50, 55, 0 }, { 60, 80, 0 } };
@@ -91,9 +96,11 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+                               bool searchMovingTrigger,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
+    searchMovingTrigger(searchMovingTrigger)
 {
 }
 
@@ -127,7 +134,9 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances);
+    u32 start = advances + initialAdvances;
+    BWRNG rng(seed, start);
+    BWRNG encounterRNG(seed, start + (searchMovingTrigger ? 1 : 0));
     auto jump = rng.getJump(offset);
 
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
@@ -156,7 +165,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, jump);
+        BWRNG go(searchMovingTrigger ? encounterRNG : rng, jump);
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -199,6 +208,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             rng.next();
             continue;
         }
+
+        u8 movingTrigger = searchMovingTrigger ? getMovingTrigger(go) : 255;
 
         u8 encounterSlot;
         if (magnetStatic && !modifiedSlots.empty())
@@ -247,10 +258,14 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
         u16 chatot = rng.nextUInt(0x1fff);
+        if (searchMovingTrigger)
+        {
+            encounterRNG.next();
+        }
         for (const auto &iv : ivs)
         {
-            WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
+            WildState5 state(chatot, movingTrigger, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level,
+                             nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
             if (filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);

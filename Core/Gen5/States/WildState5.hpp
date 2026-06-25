@@ -32,6 +32,7 @@ public:
      * @brief Construct a new State5 object
      *
      * @param prng PRNG call to determine Chatot pitch
+     * @param movingTrigger Moving battle trigger ratio
      * @param advances Advances of the state
      * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
@@ -43,10 +44,11 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    WildState5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-               u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+    WildState5(u16 prng, u8 movingTrigger, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender,
+               u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
+        movingTrigger(movingTrigger),
         chatot(prng / 82)
     {
     }
@@ -71,8 +73,19 @@ public:
         return ivAdvances;
     }
 
+    /**
+     * @brief Returns the moving battle trigger ratio
+     *
+     * @return Moving battle trigger ratio
+     */
+    u8 getMovingTrigger() const
+    {
+        return movingTrigger;
+    }
+
 private:
     u32 ivAdvances;
+    u8 movingTrigger;
     u8 chatot;
 };
 

@@ -76,11 +76,19 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays moving trigger ratio
+     *
+     * @param flag Whether to show moving trigger ratio or not
+     */
+    void setShowMovingTrigger(bool flag);
+
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Item"),  tr("Slot"),   tr("Level"),         tr("PID"), tr("Shiny"),
-                           tr("Nature"),   tr("Ability"), tr("HP"),    tr("Atk"),    tr("Def"),           tr("SpA"), tr("SpD"),
-                           tr("Spe"),      tr("Hidden"),  tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Ratio"),          tr("Item"),   tr("Slot"),   tr("Level"), tr("PID"),
+                           tr("Shiny"),    tr("Nature"), tr("Ability"),        tr("HP"),     tr("Atk"),    tr("Def"),   tr("SpA"),
+                           tr("SpD"),      tr("Spe"),    tr("Hidden"),         tr("Power"),  tr("Gender"), tr("Characteristic") };
     bool showStats;
+    bool showMovingTrigger;
 };
 
 /**

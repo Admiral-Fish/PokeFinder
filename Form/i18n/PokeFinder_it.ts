@@ -9880,6 +9880,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Potere fortuna</translation>
     </message>
     <message>
+        <source>Step Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Generate</source>
         <translation>Genera</translation>
     </message>
@@ -10681,6 +10685,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Characteristic</source>
         <translation>Caratteristica</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

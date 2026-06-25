@@ -9878,6 +9878,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Step Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10677,6 +10681,10 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Characteristic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

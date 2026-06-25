@@ -409,6 +409,13 @@
           <item row="3" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxGeneratorMovingTrigger">
+            <property name="text">
+             <string>Step Encounter</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
