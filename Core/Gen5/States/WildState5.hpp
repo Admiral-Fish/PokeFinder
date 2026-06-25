@@ -31,7 +31,8 @@ public:
     /**
      * @brief Construct a new State5 object
      *
-     * @param prng PRNG call to determine chatot pitch and needle
+     * @param prng PRNG call to determine Chatot pitch
+     * @param movingTrigger Moving battle trigger ratio
      * @param advances Advances of the state
      * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
@@ -45,13 +46,12 @@ public:
      * @param info Pokemon information
      * @param valid Whether state is valid to encounter or not
      */
-    WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-               u8 encounterSlot, u16 item, u16 specie, u8 form, u8 phenomenonRate, const PersonalInfo *info, bool valid = true) :
-        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info, valid),
+    WildState5(u16 prng, u8 movingTrigger, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender,
+               u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
-        phenomenon(((static_cast<u64>(prng) * 1000) >> 32) < phenomenonRate),
-        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
-        needle((static_cast<u64>(prng) * 8) >> 32)
+        movingTrigger(movingTrigger),
+        chatot(prng / 82)
     {
     }
 
@@ -76,29 +76,18 @@ public:
     }
 
     /**
-     * @brief Returns the needle value
+     * @brief Returns the moving battle trigger ratio
      *
-     * @return Needle value
+     * @return Moving battle trigger ratio
      */
-    u8 getNeedle() const
+    u8 getMovingTrigger() const
     {
-        return needle;
-    }
-
-    /**
-     * @brief Returns whether this state generates a phenomenon tile
-     *
-     * @return true State generates a phenomenon tile
-     * @return false State does not generate a phenomenon tile
-     */
-    bool getPhenomenon() const
-    {
-        return phenomenon;
+        return movingTrigger;
     }
 
 private:
     u32 ivAdvances;
-    bool phenomenon;
+    u8 movingTrigger;
     u8 chatot;
     u8 needle;
 };

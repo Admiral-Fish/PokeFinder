@@ -40,13 +40,16 @@
 #include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
-#include <QAction>
+#include <QCheckBox>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QTimer>
 
-static const QString settingPrefix = QStringLiteral("static5");
+static bool supportsMovingTrigger(Encounter encounter)
+{
+    return encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing;
+}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -143,6 +146,14 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     connect(ui->checkBoxSearcherSwarm, &QCheckBox::checkStateChanged, this, [this] { searcherEncounterIndexChanged(0); });
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
+    connect(ui->checkBoxGeneratorMovingTrigger, &QCheckBox::toggled, this, [this](bool checked) {
+        generatorModel->setShowMovingTrigger(checked);
+        if (generatorModel->rowCount() > 0)
+        {
+            generate();
+        }
+    });
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
@@ -233,11 +244,12 @@ void Wild5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    auto luckyPower = ui->comboBoxGeneratorLuckyPower->getEnum<PassPower>();
-    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
+    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    bool searchMovingTrigger = ui->checkBoxGeneratorMovingTrigger->isChecked();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, area, *currentProfile, filter);
+    WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, searchMovingTrigger,
+                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
     generatorModel->setPhenomenon(area.getPhenomenonType() != PhenomenonType::None);
@@ -249,9 +261,12 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
-        bool grass = encounter == Encounter::Grass;
-        bool fish = encounter == Encounter::SuperRod;
+        bool movingTrigger = supportsMovingTrigger(encounter);
+        ui->checkBoxGeneratorMovingTrigger->setEnabled(movingTrigger);
+        if (!movingTrigger)
+        {
+            ui->checkBoxGeneratorMovingTrigger->setChecked(false);
+        }
 
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !fish);
         ui->checkBoxGeneratorSwarm->setVisible(grass);
@@ -417,7 +432,7 @@ void Wild5::search()
     auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower, false,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;

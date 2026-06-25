@@ -9984,6 +9984,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Beschwörungskraft</translation>
     </message>
     <message>
+        <source>Step Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Generate</source>
         <translation>Generieren</translation>
     </message>
@@ -10798,6 +10802,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
