@@ -66,11 +66,16 @@ private:
 
     /**
      * @brief Searches for matching states from provided IVs
-     * @param minSpd
-     * @param maxSpd
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
      * @param staticTemplate Pokemon template
      */
-    void searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate);
+    std::vector<SearcherState> searchChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs
