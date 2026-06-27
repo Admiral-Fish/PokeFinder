@@ -19,6 +19,7 @@
 
 #include "Static5.hpp"
 #include "ui_Static5.h"
+#include <Form/Gen5/Tools/AdjacentSeedTool.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -35,6 +36,7 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -82,6 +84,10 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    auto *adjacentSeedTool = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
+    connect(adjacentSeedTool, &QAction::triggered, this, &Static5::openAdjacentSeedTool);
+    ui->tableViewSearcher->addAction(adjacentSeedTool);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
@@ -531,4 +537,16 @@ void Static5::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
+}
+
+void Static5::openAdjacentSeedTool()
+{
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
+    const StaticTemplate5 *staticTemplate
+        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
+    auto method = staticTemplate->getRoamer() ? AdjacentSeedMethod::Roamer : AdjacentSeedMethod::Standard;
+
+    auto *window = new AdjacentSeedTool(state.getDateTime(), state.getButtons(), *currentProfile, method);
+    window->show();
 }
