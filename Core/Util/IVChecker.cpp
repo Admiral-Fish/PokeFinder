@@ -85,15 +85,12 @@ namespace
             for (u8 i = minIVs[charIndex]; i <= maxIVs[charIndex]; i++)
             {
                 // IV is only possible if (iv % 5) matches the characteristic
+                // Only add values that are greater or equal to the minimums of all the stats
                 // Keep the highest value to filter with below
-                if ((i % 5) == result)
+                if ((i % 5) == result && std::ranges::all_of(minIVs, [i](u8 minIV) { return i >= minIV; }))
                 {
-                    // Only add values that are greater or equal to the minimums of all the stats
-                    if (std::ranges::all_of(minIVs, [i](u8 minIV) { return i >= minIV; }))
-                    {
-                        possible[charIndex].emplace_back(i);
-                        characteristicHigh = i;
-                    }
+                    possible[charIndex].emplace_back(i);
+                    characteristicHigh = i;
                 }
             }
         }

@@ -75,7 +75,7 @@ private:
      * @param spe Spe IV
      * @param staticTemplate Pokemon template
      */
-    std::vector<SearcherState> searchChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate);
+    std::vector<SearcherState> searchChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate) const;
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -90,7 +90,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+    std::vector<SearcherState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate) const;
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -105,7 +105,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState> searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+    std::vector<SearcherState> searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate) const;
 
     /**
      * @brief Searches for matching states from provided IVs

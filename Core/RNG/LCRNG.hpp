@@ -62,30 +62,9 @@ public:
      * @brief Construct a new LCRNG object
      *
      * @param seed Starting PRNG value
-     */
-    LCRNG(u32 seed) : seed(seed)
-    {
-    }
-
-    /**
-     * @brief Construct a new LCRNG object
-     *
-     * @tparam add1 LCRNG addition value
-     * @tparam mult1 LCRNG multiplication value
-     * @param rng LCRNG object to copy
-     */
-    template <u32 add1, u32 mult1>
-    LCRNG(const LCRNG<add1, mult1> &rng) : seed(rng.getSeed())
-    {
-    }
-
-    /**
-     * @brief Construct a new LCRNG object
-     *
-     * @param seed Starting PRNG value
      * @param advances Number of initial advances
      */
-    LCRNG(u32 seed, u32 advances) : seed(seed)
+    LCRNG(u32 seed, u32 advances = 0) : seed(seed)
     {
         jump(advances);
     }
@@ -99,6 +78,20 @@ public:
     LCRNG(const LCRNG &rng, const Jump &j) : seed(rng.seed)
     {
         jump(j);
+}
+
+    /**
+     * @brief Construct a new LCRNG object
+     *
+     * @tparam add1 LCRNG addition value
+     * @tparam mult1 LCRNG multiplication value
+     * @param rng LCRNG object to copy
+     * @param advances Number of initial advances
+     */
+    template <u32 add1, u32 mult1>
+    LCRNG(const LCRNG<add1, mult1> &rng, u32 advances = 0) : seed(rng.getSeed())
+    {
+        jump(advances);
     }
 
     /**

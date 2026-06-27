@@ -91,8 +91,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
-        XDRNGR test(rng);
-        test.advance(5);
+        XDRNGR test(rng, 5);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -102,8 +101,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
     {
-        XDRNGR test(rng);
-        test.advance(4);
+        XDRNGR test(rng, 4);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -113,8 +111,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num1 <= 0x4000) // 6 advances
     {
-        XDRNGR test(rng);
-        test.advance(3);
+        XDRNGR test(rng, 3);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -226,7 +223,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                           const StaticTemplate3 *staticTemplate)
+                                                           const StaticTemplate3 *staticTemplate) const
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -274,7 +271,7 @@ std::vector<SearcherState> GameCubeSearcher::searchChannel(u8 hp, u8 atk, u8 def
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                              const ShadowTemplate *shadowTemplate)
+                                                              const ShadowTemplate *shadowTemplate) const
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
@@ -339,7 +336,7 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                               const ShadowTemplate *shadowTemplate)
+                                                               const ShadowTemplate *shadowTemplate) const
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
