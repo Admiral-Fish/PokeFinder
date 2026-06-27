@@ -260,11 +260,9 @@ add_library(PokeFinderCore STATIC
     Parents/States/State.hpp
     Parents/States/WildState.hpp
     Parents/StaticTemplate.hpp
-    RNG/LCRNG.cpp
     RNG/LCRNG.hpp
     RNG/LCRNGReverse.cpp
     RNG/LCRNGReverse.hpp
-    RNG/LCRNG64.cpp
     RNG/LCRNG64.hpp
     RNG/MT.cpp
     RNG/MT.hpp

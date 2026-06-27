@@ -33,12 +33,20 @@ struct JumpTable
     Jump jump[32];
 };
 
-extern const JumpTable ARNGTable;
-extern const JumpTable ARNGRTable;
-extern const JumpTable PokeRNGTable;
-extern const JumpTable PokeRNGRTable;
-extern const JumpTable XDRNGTable;
-extern const JumpTable XDRNGRTable;
+static consteval JumpTable computeJumpTable(u32 add, u32 mult)
+{
+    JumpTable table;
+    table.jump[0].add = add;
+    table.jump[0].mult = mult;
+
+    for (int i = 1; i < 32; i++)
+    {
+        table.jump[i].add = table.jump[i - 1].add * (table.jump[i - 1].mult + 1);
+        table.jump[i].mult = table.jump[i - 1].mult * table.jump[i - 1].mult;
+    }
+
+    return table;
+}
 
 /**
  * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
@@ -46,7 +54,7 @@ extern const JumpTable XDRNGRTable;
  * @tparam add LCRNG addition value
  * @tparam mult LCRNG multiplication value
  */
-template <u32 add, u32 mult>
+template <u32 add, u32 mult, JumpTable table = computeJumpTable(add, mult)>
 class LCRNG
 {
 public:
@@ -120,8 +128,6 @@ public:
      */
     static u32 distance(u32 start, u32 end)
     {
-        const JumpTable *table = getJumpTable();
-
         u32 count = 0;
         u32 p = 1;
 
@@ -129,8 +135,7 @@ public:
         {
             if ((start ^ end) & p)
             {
-                const Jump *jump = &table->jump[i];
-                start = jump->mult * start + jump->add;
+                start = table.jump[i].mult * start + table.jump[i].add;
                 count += p;
             }
         }
@@ -167,7 +172,6 @@ public:
      */
     Jump getJump(u32 advances)
     {
-        const JumpTable *table = getJumpTable();
         Jump jump;
 
         jump.add = 0;
@@ -176,8 +180,8 @@ public:
         {
             if (advances & 1)
             {
-                jump.add = jump.add * table->jump[i].mult + table->jump[i].add;
-                jump.mult *= table->jump[i].mult;
+                jump.add = jump.add * table.jump[i].mult + table.jump[i].add;
+                jump.mult *= table.jump[i].mult;
             }
         }
 
@@ -204,13 +208,11 @@ public:
      */
     u32 jump(u32 advances)
     {
-        const JumpTable *table = getJumpTable();
-
         for (int i = 0; advances; advances >>= 1, i++)
         {
             if (advances & 1)
             {
-                seed = seed * table->jump[i].mult + table->jump[i].add;
+                seed = seed * table.jump[i].mult + table.jump[i].add;
             }
         }
 
@@ -292,35 +294,6 @@ public:
 
 private:
     u32 seed;
-
-    static const JumpTable *getJumpTable()
-    {
-        if constexpr (add == 0x01) // ARNG
-        {
-            return &ARNGTable;
-        }
-        else if constexpr (add == 0x69C77F93) // ARNG(R)
-        {
-            return &ARNGRTable;
-        }
-        else if constexpr (add == 0x6073) // PokeRNG
-        {
-            return &PokeRNGTable;
-        }
-        else if constexpr (add == 0xA3561A1) // PokeRNG(R)
-        {
-            return &PokeRNGRTable;
-        }
-        else if constexpr (add == 0x269EC3) // XDRNG
-        {
-            return &XDRNGTable;
-        }
-        else // XDRNG(R)
-        {
-            static_assert(add == 0xA170F641, "Unsupported LCRNG");
-            return &XDRNGRTable;
-        }
-    }
 };
 
 using ARNG = LCRNG<0x01, 0x6C078965>;
