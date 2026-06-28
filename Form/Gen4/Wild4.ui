@@ -511,12 +511,9 @@
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
             <property name="enabled">
              <bool>false</bool>
-            <property name="minimum">
-             <number>1</number>
             </property>
             <property name="maximum">
              <number>100</number>
-            </property>
             </property>
            </widget>
           </item>
