@@ -45,7 +45,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<IDState8> generate(u64 seed0, u64 seed1);
+    std::vector<IDState8> generate(u64 seed0, u64 seed1) const;
 };
 
 #endif // IDGENERATOR8_HPP

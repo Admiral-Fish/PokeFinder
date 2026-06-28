@@ -290,7 +290,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         }
 
         std::array<u8, 6> ivs;
-        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
+        std::ranges::generate(ivs, [&rngList] { return rngList.next(rand) % 32; });
 
         u8 ability = rngList.next(rand) % 2;
 

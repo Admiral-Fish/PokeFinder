@@ -23,6 +23,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
+#include <algorithm>
 #include <bit>
 
 static u32 calcW(u32 *data, int i)
@@ -177,7 +178,7 @@ SHA1::SHA1(const Profile5 &profile) :
 SHA1::SHA1(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat)
 {
     auto nazos = Nazos::getNazo(version, language, type);
-    std::copy(nazos.begin(), nazos.end(), data);
+    std::ranges::copy(nazos, data);
 
     data[6] = mac & 0xffff;
     data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);

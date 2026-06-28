@@ -27,7 +27,7 @@ UndergroundModel::UndergroundModel(QObject *parent) : TableModel(parent), showSt
 
 int UndergroundModel::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    return 20;
 }
 
 QVariant UndergroundModel::data(const QModelIndex &index, int role) const
@@ -80,6 +80,10 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 17:
+            return state.getHeight();
+        case 18:
+            return state.getWeight();
+        case 19:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }

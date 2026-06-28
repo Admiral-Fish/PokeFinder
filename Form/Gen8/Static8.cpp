@@ -53,7 +53,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
@@ -90,8 +90,8 @@ void Static8::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();

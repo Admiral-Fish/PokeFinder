@@ -361,7 +361,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<Eg
         }
     }
 
-    std::sort(states.begin(), states.end(), compare);
+    std::ranges::sort(states, compare);
     return states;
 }
 
@@ -472,6 +472,6 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
         }
     }
 
-    std::sort(states.begin(), states.end(), compare);
+    std::ranges::sort(states, compare);
     return states;
 }

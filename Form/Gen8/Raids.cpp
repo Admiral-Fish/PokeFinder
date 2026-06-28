@@ -41,7 +41,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
     ui->filter->enableHiddenAbility();
 
     ui->comboBoxAbilityType->setup({ 0, 1, 2, 3, 4 });
@@ -97,8 +97,8 @@ void Raids::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return (profile.getVersion() & Game::SwSh) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile &profile) { return (profile.getVersion() & Game::SwSh) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::Sword, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
@@ -205,7 +205,7 @@ void Raids::locationIndexChanged(int index)
             std::vector<u16> locationIndices(end - start);
 
             std::iota(indices.begin(), indices.end(), start);
-            std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
+            std::ranges::transform(indices, locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
 
             auto locations = Translator::getLocations(locationIndices, Game::SwSh);
             for (u16 i : indices)

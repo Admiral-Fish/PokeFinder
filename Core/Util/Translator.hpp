@@ -223,7 +223,7 @@ namespace Translator
      *
      * @param locale Language
      */
-    void init(const std::string &locale);
+    void init(std::string_view locale);
 }
 
 #endif // TRANSLATOR_HPP

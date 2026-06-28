@@ -185,7 +185,7 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
         }
         else
         {
-            customs.insert(std::find(customs.begin(), customs.end(), toInt(Custom::Custom1) + i - 2) + 1, toInt(Custom::Custom1) + i - 1);
+            customs.insert(std::ranges::find(customs, toInt(Custom::Custom1) + i - 2) + 1, toInt(Custom::Custom1) + i - 1);
             customs.emplace_back(toInt(Custom::Previous1) + i - 1);
         }
     }

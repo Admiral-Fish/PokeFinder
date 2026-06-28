@@ -73,7 +73,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
     MTFast<13, true> mt(seed >> 32, 7);
     std::array<u8, 6> mtIVs;
-    std::generate(mtIVs.begin(), mtIVs.end(), [&mt] { return mt.next(); });
+    std::ranges::generate(mtIVs, [&mt] { return mt.next(); });
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);

@@ -49,7 +49,7 @@ void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> 
 {
     std::vector<int> indices(actions.size());
     std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&actions](int i, int j) { return actions[i] < actions[j]; });
+    std::ranges::sort(indices, [&actions](int i, int j) { return actions[i] < actions[j]; });
 
     QMenu *menu = topMenu->addMenu(menuText);
     for (int i : indices)
@@ -97,7 +97,7 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
         if (menu)
         {
             auto menuActions = menu->actions();
-            bool visible = std::any_of(menuActions.begin(), menuActions.end(), [](const QAction *action) { return action->isVisible(); });
+            bool visible = std::ranges::any_of(menuActions, [](const QAction *action) { return action->isVisible(); });
             menu->menuAction()->setVisible(visible);
         }
     }

@@ -71,7 +71,7 @@ void IVCacheSearcher::startSearch(int threads)
     delete[] threadContainer;
 }
 
-void IVCacheSearcher::writeResults(const std::string &file)
+void IVCacheSearcher::writeResults(std::string_view file)
 {
     std::ofstream stream(file.data(), std::ios_base::out | std::ios_base::binary | std::ios_base::trunc);
     if (stream.is_open())
@@ -86,19 +86,19 @@ void IVCacheSearcher::writeResults(const std::string &file)
         // Write seed sizes
         for (int i = 0; i < entralink.size(); i++)
         {
-            std::sort(entralink[i].begin(), entralink[i].end());
+            std::ranges::sort(entralink[i]);
             write<u32>(stream, entralink[i].size());
         }
 
         for (int i = 0; i < results.size(); i++)
         {
-            std::sort(results[i].begin(), results[i].end());
+            std::ranges::sort(results[i]);
             write<u32>(stream, results[i].size());
         }
 
         for (int i = 0; i < roamer.size(); i++)
         {
-            std::sort(roamer[i].begin(), roamer[i].end());
+            std::ranges::sort(roamer[i]);
             write<u32>(stream, roamer[i].size());
         }
 

@@ -124,7 +124,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game version, 
         for (const auto &area : areas)
         {
             auto pokemon = area.getPokemon();
-            if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+            if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
             {
                 std::pair<u8, u8> range = area.getLevelRange(specie);
                 QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -156,7 +156,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
     auto swarms = { false, true };
     auto times = { 0, 1, 2 };
 
-    EncounterSettings4 settings = {};
+    EncounterSettings4 settings = { };
 
     for (auto type : types)
     {
@@ -180,8 +180,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
                             for (const auto &area : areas)
                             {
                                 auto pokemon = area.getPokemon();
-                                if (std::any_of(pokemon.begin(), pokemon.end(),
-                                                [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                                if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                                 {
                                     std::pair<u8, u8> range = area.getLevelRange(specie);
                                     QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -201,8 +200,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
                         for (const auto &area : areas)
                         {
                             auto pokemon = area.getPokemon();
-                            if (std::any_of(pokemon.begin(), pokemon.end(),
-                                            [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                            if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                             {
                                 std::pair<u8, u8> range = area.getLevelRange(specie);
                                 QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -225,7 +223,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
             for (const auto &area : areas)
             {
                 auto pokemon = area.getPokemon();
-                if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                 {
                     std::pair<u8, u8> range = area.getLevelRange(specie);
                     QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -258,7 +256,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters5(Game version, 
             for (const auto &area : areas)
             {
                 auto pokemon = area.getPokemon();
-                if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                 {
                     std::pair<u8, u8> range = area.getLevelRange(specie);
                     QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -282,7 +280,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game version, 
     auto swarms = { false, true };
     auto times = { 0, 1, 2 };
 
-    EncounterSettings8 settings = {};
+    EncounterSettings8 settings = { };
 
     for (auto type : types)
     {
@@ -300,8 +298,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game version, 
                     for (const auto &area : areas)
                     {
                         auto pokemon = area.getPokemon();
-                        if (std::any_of(pokemon.begin(), pokemon.end(),
-                                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                        if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                         {
                             std::pair<u8, u8> range = area.getLevelRange(specie);
                             QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
@@ -344,8 +341,8 @@ void EncounterLookup::find()
     std::vector<u16> locations;
     std::vector<std::string> locationNames;
 
-    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locations),
-                   [](const std::pair<u16, QString> &encounter) { return encounter.first; });
+    std::ranges::transform(encounters, std::back_inserter(locations),
+                           [](const std::pair<u16, QString> &encounter) { return encounter.first; });
     locationNames = Translator::getLocations(locations, version);
 
     u16 i = 0;

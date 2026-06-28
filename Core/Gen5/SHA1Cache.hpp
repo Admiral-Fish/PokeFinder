@@ -70,7 +70,7 @@ public:
      *
      * @param path Path to file to read the cache from
      */
-    SHA1Cache(const std::string &path);
+    SHA1Cache(std::string_view path);
 
     /**
      * @brief Destroy the SHA1Cache object
@@ -144,14 +144,6 @@ public:
      * @param profile Profile information
      */
     bool isValid(const Profile5 &profile) const;
-
-    /**
-     * @brief Determines if cache was created the the given \p profile and \p ivFile
-     *
-     * @param profile Profile information
-     * @param ivFile Path to IV cache file to validate from
-     */
-    bool isValid(const Profile5 &profile, const std::string &ivFile) const;
 
 private:
     std::ifstream file;

@@ -20,10 +20,10 @@ def _get_stars(flags: List[str]):
     return f"std::array<bool, 5> {{ {', '.join(stars)} }}"
 
 
-def embed_encounters8():
+def embed_encounters8(parent_dir: str, input_dir: str, output_dir: str):
     arrays = []
 
-    with open("EncounterTables/Gen8/encounters.json") as f:
+    with open(f"{parent_dir}/EncounterTables/Gen8/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             string = f"constexpr std::array<StaticTemplate8, {len(encounters)}> {type.upper()} = {{ "
@@ -37,7 +37,7 @@ def embed_encounters8():
             string += " };"
             arrays.append(string)
 
-    with open("EncounterTables/Gen8/swsh/nests.json", "r") as f:
+    with open(f"{parent_dir}/EncounterTables/Gen8/swsh/nests.json", "r") as f:
         data = json.load(f)
         tables = data["Tables"]
 
@@ -83,7 +83,7 @@ def embed_encounters8():
 
     string = "constexpr std::array<DenEvent, 69> NESTS_EVENT = { "
     for i in range(1, 70):
-        with open(f"EncounterTables/Gen8/swsh/event{i}.json", "r") as f:
+        with open(f"{parent_dir}/EncounterTables/Gen8/swsh/event{i}.json", "r") as f:
             data = json.load(f)
             tables = data["Tables"]
 
@@ -134,7 +134,7 @@ def embed_encounters8():
 
     files = ("bd", "bd_honey", "bd_underground", "sp", "sp_honey", "sp_underground")
     for file in files:
-        with open(f"EncounterTables/{file}.bin", "rb") as f:
+        with open(f"{input_dir}/{file}.bin", "rb") as f:
             data = f.read()
 
         data = zstd.compress(data, 22)
@@ -150,4 +150,4 @@ def embed_encounters8():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData8.hpp", ("Core/Gen8/Den.hpp", "Core/Gen8/StaticTemplate8.hpp", "array"))
+    write_data(arrays, f"{output_dir}/EncounterData8.hpp", ("Core/Gen8/Den.hpp", "Core/Gen8/StaticTemplate8.hpp", "array"))

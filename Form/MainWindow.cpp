@@ -65,6 +65,7 @@
 #include <Form/Util/IVToPID.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
+#include <Form/version.h>
 #include <QClipboard>
 #include <QDate>
 #include <QDesktopServices>
@@ -74,7 +75,6 @@
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
-#include <version.h>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -593,7 +593,7 @@ void MainWindow::openSHA1CacheFinder() const
         window->close();
     }
     else
-    {  
+    {
         connect(window, &SHA1CacheFinder::profilesModified, this, &MainWindow::updateProfiles);
         connect(this, &MainWindow::profilesModified5, window, &SHA1CacheFinder::updateProfiles);
         window->show();
@@ -657,7 +657,7 @@ void MainWindow::openRaids()
         connect(this, &MainWindow::profilesModified8, raids, &Raids::updateProfiles);
     }
     raids->show();
-    raids->show();
+    raids->raise();
 }
 
 void MainWindow::openStatic8()
@@ -669,7 +669,7 @@ void MainWindow::openStatic8()
         connect(this, &MainWindow::profilesModified8, static8, &Static8::updateProfiles);
     }
     static8->show();
-    static8->show();
+    static8->raise();
 }
 
 void MainWindow::openUnderground()

@@ -53,8 +53,7 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
     encounters = Encounters3::getPokeSpotEncounters();
 
     std::vector<u16> locs;
-    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
-                   [](const EncounterArea &area) { return area.getLocation(); });
+    std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea &area) { return area.getLocation(); });
 
     ui->comboBoxLocation->clear();
     ui->comboBoxLocation->addItems(Translator::getLocations(locs, Game::Gales));
@@ -93,8 +92,8 @@ void PokeSpot::updateProfiles()
 {
     profiles = { Profile3("-", Game::Gales, 12345, 54321, false) };
     auto completeProfiles = ProfileLoader3::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return (profile.getVersion() & Game::Gales) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile3 &profile) { return (profile.getVersion() & Game::Gales) != Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

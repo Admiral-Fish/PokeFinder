@@ -126,8 +126,8 @@ void Wild8::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
@@ -168,6 +168,7 @@ void Wild8::encounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxLocation->getCurrentUShort();
 
         bool honey = encounter == Encounter::HoneyTree;
 
@@ -187,11 +188,11 @@ void Wild8::encounterIndexChanged(int index)
         updateEncounters();
 
         std::vector<u16> locs;
-        std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
-                       [](const EncounterArea8 &area) { return area.getLocation(); });
+        std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea8 &area) { return area.getLocation(); });
 
         ui->comboBoxLocation->clear();
-        ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -212,7 +213,7 @@ void Wild8::generate()
         return;
     }
 
-    if (!ui->filter->isValid())
+    if (!ui->filter->isValid(ui->spinBoxLevelMin->value(), ui->spinBoxLevelMax->value()))
     {
         return;
     }
@@ -223,7 +224,7 @@ void Wild8::generate()
     if (encounter == Encounter::HoneyTree)
     {
         std::array<bool, 12> encounters = ui->filter->getEncounterSlots();
-        if (std::count(encounters.begin(), encounters.end(), true) != 1)
+        if (std::ranges::count(encounters, true) != 1)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                             tr("Please select a single encounter slot for Honey Tree"));
@@ -233,7 +234,7 @@ void Wild8::generate()
         else
         {
             method = Method::HoneyTree;
-            fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+            fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
         }
     }
 
@@ -246,8 +247,8 @@ void Wild8::generate()
     bool feebasTile = ui->checkBoxFeebasTile->isChecked();
 
     auto filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, encounters[ui->comboBoxLocation->currentIndex()],
-                             *currentProfile, filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile,
+                             encounters[ui->comboBoxLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, fixedSlot);
     model->addItems(states);
@@ -331,12 +332,20 @@ void Wild8::pokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filter->resetEncounterSlots();
+        ui->spinBoxLevelMin->setValue(0);
+        ui->spinBoxLevelMax->setValue(0);
+        ui->filter->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
         auto flags = encounters[ui->comboBoxLocation->currentIndex()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
+
+        auto range = encounters[ui->comboBoxLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxLevelMin->setValue(range.first);
+        ui->spinBoxLevelMax->setValue(range.second);
+        ui->filter->setLevelRange(range.first, range.second);
     }
 }
 

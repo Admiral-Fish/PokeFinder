@@ -59,7 +59,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
                                  { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Level);
 
     ui->comboBoxLocation->enableAutoComplete();
 
@@ -74,8 +74,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     updateEncounters();
 
     std::vector<u16> locs;
-    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
-                   [](const UndergroundArea &area) { return area.getLocation() + 181; });
+    std::ranges::transform(encounters, std::back_inserter(locs), [](const UndergroundArea &area) { return area.getLocation() + 181; });
 
     ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
 
@@ -103,8 +102,8 @@ void Underground::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
@@ -160,10 +159,11 @@ void Underground::generate()
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();
 
-    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getHeightMin(),
-                                  ui->filter->getHeightMax(), ui->filter->getWeightMin(), ui->filter->getWeightMax(),
-                                  ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
-                                  ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
+    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getLevelMin(),
+                                  ui->filter->getLevelMax(), ui->filter->getHeightMin(), ui->filter->getHeightMax(),
+                                  ui->filter->getWeightMin(), ui->filter->getWeightMax(), ui->filter->getDisableFilters(),
+                                  ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
+                                  species);
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, lead, bonus, levelFlag,
                                    encounters[ui->comboBoxLocation->currentIndex()], *currentProfile, filter);
 

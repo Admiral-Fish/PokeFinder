@@ -277,7 +277,7 @@ void Wild4::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
-    EncounterSettings4 settings = {};
+    EncounterSettings4 settings = { };
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         settings.dppt.dual = ui->checkBoxGeneratorDualSlot->isChecked() ? ui->comboBoxGeneratorDualSlot->getEnum<Game>() : Game::None;
@@ -307,7 +307,7 @@ void Wild4::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
-    EncounterSettings4 settings = {};
+    EncounterSettings4 settings = { };
     if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         settings.dppt.dual = ui->checkBoxSearcherDualSlot->isChecked() ? ui->comboBoxSearcherDualSlot->getEnum<Game>() : Game::None;
@@ -335,7 +335,7 @@ void Wild4::updateEncounterSearcher()
 
 void Wild4::generate()
 {
-    if (!ui->filterGenerator->isValid())
+    if (!ui->filterGenerator->isValid(ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
     {
         return;
     }
@@ -349,7 +349,7 @@ void Wild4::generate()
         {
             method = Method::PokeRadar;
             std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
-            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                                 tr("Please select a single encounter slot for Poke Radar"));
@@ -358,14 +358,14 @@ void Wild4::generate()
             }
             else
             {
-                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
             }
         }
         else if (encounter == Encounter::HoneyTree)
         {
             method = Method::HoneyTree;
             std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
-            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                                 tr("Please select a single encounter slot for Honey Tree"));
@@ -374,7 +374,7 @@ void Wild4::generate()
             }
             else
             {
-                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
             }
         }
         else
@@ -413,6 +413,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -462,11 +463,11 @@ void Wild4::generatorEncounterIndexChanged(int index)
         updateEncounterGenerator();
 
         std::vector<u16> locs;
-        std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
-                       [](const EncounterArea4 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -586,12 +587,20 @@ void Wild4::generatorPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterGenerator->resetEncounterSlots();
+        ui->spinBoxGeneratorLevelMin->setValue(0);
+        ui->spinBoxGeneratorLevelMax->setValue(0);
+        ui->filterGenerator->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
         auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
+
+        auto range = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxGeneratorLevelMin->setValue(range.first);
+        ui->spinBoxGeneratorLevelMax->setValue(range.second);
+        ui->filterGenerator->setLevelRange(range.first, range.second);
     }
 }
 
@@ -653,7 +662,7 @@ void Wild4::profileManager()
 
 void Wild4::search()
 {
-    if (!ui->filterSearcher->isValid())
+    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
         return;
     }
@@ -667,7 +676,7 @@ void Wild4::search()
         {
             method = Method::PokeRadar;
             std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
-            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                                 tr("Please select a single encounter slot for Poke Radar"));
@@ -676,14 +685,14 @@ void Wild4::search()
             }
             else
             {
-                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
             }
         }
         else if (encounter == Encounter::HoneyTree)
         {
             method = Method::HoneyTree;
             std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
-            if (std::count(encounters.begin(), encounters.end(), true) != 1)
+            if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
                                 tr("Please select a single encounter slot for Honey Tree"));
@@ -692,7 +701,7 @@ void Wild4::search()
             }
             else
             {
-                fixedSlot = std::find(encounters.begin(), encounters.end(), true) - encounters.begin();
+                fixedSlot = std::ranges::find(encounters, true) - encounters.begin();
             }
         }
         else
@@ -711,7 +720,7 @@ void Wild4::search()
     auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
     if (encounter == Encounter::BugCatchingContest || area.safariZone(currentProfile->getVersion()))
     {
-        bool flag = std::any_of(min.begin(), min.end(), [](u8 iv) { return iv == 31; });
+        bool flag = std::ranges::any_of(min, [](u8 iv) { return iv == 31; });
         if (!flag)
         {
             QMessageBox msg(QMessageBox::Warning, tr("Missing Flawless IV"), tr("This search needs at least one IV at 31"));
@@ -774,6 +783,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -823,11 +833,11 @@ void Wild4::searcherEncounterIndexChanged(int index)
         updateEncounterSearcher();
 
         std::vector<u16> locs;
-        std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
-                       [](const EncounterArea4 &area) { return area.getLocation(); });
+        std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -944,12 +954,20 @@ void Wild4::searcherPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterSearcher->resetEncounterSlots();
+        ui->spinBoxSearcherLevelMin->setValue(0);
+        ui->spinBoxSearcherLevelMax->setValue(0);
+        ui->filterSearcher->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
+
+        auto range = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxSearcherLevelMin->setValue(range.first);
+        ui->spinBoxSearcherLevelMax->setValue(range.second);
+        ui->filterSearcher->setLevelRange(range.first, range.second);
     }
 }
 

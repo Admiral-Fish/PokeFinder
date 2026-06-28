@@ -33,8 +33,20 @@ struct JumpTable64
     Jump64 jump[64];
 };
 
-extern const JumpTable64 BWRNGTable;
-extern const JumpTable64 BWRNGRTable;
+static consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
+{
+    JumpTable64 table;
+    table.jump[0].add = add;
+    table.jump[0].mult = mult;
+
+    for (int i = 1; i < 64; i++)
+    {
+        table.jump[i].add = table.jump[i - 1].add * (table.jump[i - 1].mult + 1);
+        table.jump[i].mult = table.jump[i - 1].mult * table.jump[i - 1].mult;
+    }
+
+    return table;
+}
 
 /**
  * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
@@ -42,7 +54,7 @@ extern const JumpTable64 BWRNGRTable;
  * @tparam add LCRNG64 addition value
  * @tparam mult LCRNG64 multiplication value
  */
-template <u64 add, u64 mult>
+template <u64 add, u64 mult, JumpTable64 table = computeJumpTable64(add, mult)>
 class LCRNG64
 {
 public:
@@ -50,27 +62,9 @@ public:
      * @brief Construct a new LCRNG64 object
      *
      * @param seed Starting PRNG state
-     */
-    LCRNG64(u64 seed) : seed(seed)
-    {
-    }
-
-    /**
-     * @brief Construct a new LCRNG64 object
-     *
-     * @param rng LCRNG object to copy
-     */
-    LCRNG64(const LCRNG64 &rng) : seed(rng.seed)
-    {
-    }
-
-    /**
-     * @brief Construct a new LCRNG64 object
-     *
-     * @param seed Starting PRNG state
      * @param advances Initial number of advances
      */
-    LCRNG64(u64 seed, u32 advances) : seed(seed)
+    LCRNG64(u64 seed, u32 advances = 0) : seed(seed)
     {
         jump(advances);
     }
@@ -81,7 +75,7 @@ public:
      * @param rng LCRNG object to copy
      * @param advances Initial number of advances
      */
-    LCRNG64(const LCRNG64 &rng, u32 advances) : seed(rng.seed)
+    LCRNG64(const LCRNG64 &rng, u32 advances = 0) : seed(rng.seed)
     {
         jump(advances);
     }
@@ -125,8 +119,6 @@ public:
      */
     static u64 distance(u64 start, u64 end)
     {
-        const JumpTable64 *table = getJumpTable();
-
         u64 count = 0;
         u64 p = 1;
 
@@ -134,8 +126,7 @@ public:
         {
             if ((start ^ end) & p)
             {
-                const Jump64 *jump = &table->jump[i];
-                start = jump->mult * start + jump->add;
+                start = table.jump[i].mult * start + table.jump[i].add;
                 count += p;
             }
         }
@@ -172,7 +163,6 @@ public:
      */
     Jump64 getJump(u32 advances)
     {
-        const JumpTable64 *table = getJumpTable();
         Jump64 jump;
 
         jump.add = 0;
@@ -181,8 +171,8 @@ public:
         {
             if (advances & 1)
             {
-                jump.add = jump.add * table->jump[i].mult + table->jump[i].add;
-                jump.mult *= table->jump[i].mult;
+                jump.add = jump.add * table.jump[i].mult + table.jump[i].add;
+                jump.mult *= table.jump[i].mult;
             }
         }
 
@@ -209,13 +199,11 @@ public:
      */
     u64 jump(u32 advances)
     {
-        const JumpTable64 *table = getJumpTable();
-
         for (int i = 0; advances; advances >>= 1, i++)
         {
             if (advances & 1)
             {
-                seed = seed * table->jump[i].mult + table->jump[i].add;
+                seed = seed * table.jump[i].mult + table.jump[i].add;
             }
         }
 
@@ -277,19 +265,6 @@ public:
 
 private:
     u64 seed;
-
-    static const JumpTable64 *getJumpTable()
-    {
-        if constexpr (add == 0x269ec3) // BWRNG
-        {
-            return &BWRNGTable;
-        }
-        else // BWRNG(R)
-        {
-            static_assert(add == 0x9b1ae6e9a384e6f9, "Unsupported LCRNG64");
-            return &BWRNGRTable;
-        }
-    }
 };
 
 using BWRNG = LCRNG64<0x269ec3, 0x5d588b656c078965>;

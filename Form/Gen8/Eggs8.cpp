@@ -46,7 +46,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 
     ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
 
     ui->eggSettings->setup(Game::BDSP);
 
@@ -84,8 +84,8 @@ void Eggs8::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
+    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
+                         [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
     profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();

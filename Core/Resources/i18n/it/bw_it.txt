@@ -15,10 +15,10 @@
 41,Cava Pietrelettrica P1
 42,Cava Pietrelettrica P1S
 43,Cava Pietrelettrica P2S
-44,Monte Vite (Levello Superiore)
-45,Monte Vite (Levello Centrale)
-46,Monte Vite (Levello Inferiore)
-47,Monte Vite (Levello Più Basso)
+44,Monte Vite (Livello Superiore)
+45,Monte Vite (Livello Centrale)
+46,Monte Vite (Livello Inferiore)
+47,Monte Vite (Livello Più Basso)
 48,Torre Dragospira (Ingresso)
 49,Torre Dragospira (Esterno)
 50,Torre Dragospira P1

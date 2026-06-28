@@ -197,8 +197,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
     {
         PokeRNGR rng(seeds[i]);
 
-        PokeRNG forward(seeds[i]);
-        forward.advance(1);
+        PokeRNG forward(seeds[i], 1);
         u8 itemRand = forward.nextUShort(100);
         u8 unownForm = area.unownForm(forward.nextUShort());
 
@@ -594,8 +593,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
     {
         PokeRNGR rng(seeds[i]);
 
-        PokeRNG forward(seeds[i]);
-        u8 itemRand = (forward.advance(2) >> 16) % 100;
+        PokeRNG forward(seeds[i], 1);
+        u8 itemRand = forward.nextUShort(100);
 
         u8 form = 0;
         if (area.getLocation() == 10)

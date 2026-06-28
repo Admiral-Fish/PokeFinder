@@ -1,0 +1,179 @@
+name: CI - Crossplatform
+
+on:
+  push:
+    branches:
+      - "master"
+      - "feature/**"
+    tags:
+      - "v[0-9]+\\.[0-9]+\\.[0-9]+"
+  pull_request:
+
+jobs:
+  ci:
+    name: Build (${{ matrix.platform-name }})
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            platform-name: Windows
+            cache-key: windows
+            qt-archives: qtbase qtsvg qttools
+            tools: tools_opensslv3_x64
+
+          - os: ubuntu-24.04
+            platform-name: Ubuntu
+            cache-key: ubuntu
+            qt-archives: icu qtbase qtsvg qttools
+            tools: ""
+
+          - os: macos-15
+            platform-name: macOS
+            cache-key: macos
+            qt-archives: qtbase qtsvg qttools
+            tools: ""
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set Python version
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      # Install platform-specific package manager requirements
+      - name: Install Build System Dependencies (Windows)
+        if: matrix.platform-name == 'Windows'
+        run: choco install ninja -y
+
+      - name: Install Build System Dependencies (Ubuntu)
+        if: matrix.platform-name == 'Ubuntu'
+        run: |
+          sudo apt update
+          sudo apt install -y appstream ninja-build libfuse2
+
+      - name: Install Build System Dependencies (macOS)
+        if: matrix.platform-name == 'macOS'
+        run: brew install ninja
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.10.1"
+          archives: ${{ matrix.qt-archives }}
+          tools: ${{ matrix.tools }}
+          cache: true
+
+      - name: Initialize ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ccache-${{ matrix.cache-key }}-${{ github.ref_name }}
+          restore-keys: |
+            ccache-${{ matrix.cache-key }}-master-
+            ccache-${{ matrix.cache-key }}-
+
+      - name: Configure Developer Command Prompt (Windows)
+        if: matrix.platform-name == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure CMake
+        shell: bash
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DTEST=ON \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            ${{ matrix.platform-name == 'macOS' && '-DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"' || '' }}
+
+      - name: Build PokeFinder
+        run: cmake --build build
+
+      - name: Test PokeFinder
+        run: ctest --test-dir build -V
+
+      - name: Package PokeFinder (Windows)
+        if: matrix.platform-name == 'Windows'
+        run: |
+          mkdir PokeFinder
+          mkdir PokeFinder/platforms
+          mkdir PokeFinder/styles
+          mv build/PokeFinder.exe PokeFinder/
+          windeployqt --no-translations --no-plugins --no-opengl-sw --no-system-d3d-compiler PokeFinder/PokeFinder.exe
+          rm -Force PokeFinder/vc_redist*.exe
+          cp "${{env.QT_ROOT_DIR}}/plugins/platforms/qwindows.dll" PokeFinder/platforms/
+          cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
+          cp "${{env.QT_ROOT_DIR}}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder/
+          7z a PokeFinder-win.zip PokeFinder
+          mkdir upload && mv PokeFinder upload
+
+      - name: Package PokeFinder (Ubuntu)
+        if: matrix.platform-name == 'Ubuntu'
+        run: |
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod a+x linuxdeploy-*.AppImage
+          
+          export QMAKE=$QT_ROOT_DIR/bin/qmake
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt \
+            -e build/PokeFinder \
+            -d Form/io.github.admiral_fish.pokefinder.desktop \
+            -i Form/Images/Icon/pokefinder_16x16.png \
+            -i Form/Images/Icon/pokefinder_24x24.png \
+            -i Form/Images/Icon/pokefinder_32x32.png \
+            -i Form/Images/Icon/pokefinder_48x48.png \
+            -i Form/Images/Icon/pokefinder_256x256.png \
+            --icon-filename io.github.admiral_fish.pokefinder
+          mkdir -p AppDir/usr/share/metainfo
+          cp Form/io.github.admiral_fish.pokefinder.appdata.xml AppDir/usr/share/metainfo/
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
+          mv PokéFinder-x86_64.AppImage PokeFinder-x86_64.AppImage
+          
+          tar czf PokeFinder-linux.tar.gz -C ./build/ PokeFinder
+          tar czf PokeFinder-linux-AppImage.tar.gz PokeFinder-x86_64.AppImage
+
+      - name: Package PokeFinder (macOS)
+        if: matrix.platform-name == 'macOS'
+        run: |
+          mv build/PokeFinder.app .
+          macdeployqt PokeFinder.app -verbose=3
+          tar czf PokeFinder-macOS.tar.gz PokeFinder.app
+          mkdir upload && mv PokeFinder.app upload
+
+      - name: Upload Artifact (Windows / macOS)
+        if: matrix.platform-name != 'Ubuntu'
+        uses: actions/upload-artifact@v6
+        with:
+          name: PokeFinder-${{ matrix.platform-name }}
+          path: upload
+
+      - name: Upload Artifact (Linux Binary)
+        if: matrix.platform-name == 'Ubuntu'
+        uses: actions/upload-artifact@v6
+        with:
+          name: PokeFinder-linux
+          path: ./build/PokeFinder
+
+      - name: Upload Artifact (Linux AppImage)
+        if: matrix.platform-name == 'Ubuntu'
+        uses: actions/upload-artifact@v6
+        with:
+          name: PokeFinder-linux-AppImage
+          path: PokeFinder-x86_64.AppImage
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            PokeFinder-win.zip
+            PokeFinder-linux.tar.gz
+            PokeFinder-linux-AppImage.tar.gz
+            PokeFinder-macOS.tar.gz

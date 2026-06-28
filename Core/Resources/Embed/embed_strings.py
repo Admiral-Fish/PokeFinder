@@ -1,15 +1,18 @@
 import glob
+import os
 import compression.zstd as zstd
 
 from .embed_util import write_data
 
+LANGUAGES = ("de", "en", "es", "fr", "it", "ja", "ko", "zh")
 
-def embed_strings(paths):
+
+def embed_strings(parent_dir: str, output_dir: str):
     strings = bytes()
     indexes = []
     index = 0
-    for path in paths:
-        files = glob.glob(f"i18n/{path}/*.txt", recursive=True)
+    for path in LANGUAGES:
+        files = glob.glob(f"{parent_dir}/i18n/{path}/*.txt", recursive=True)
         for file in sorted(files):
             with open(file, "r", encoding="utf-8") as f:
                 data = f.read().split("\n")
@@ -44,4 +47,4 @@ def embed_strings(paths):
             index_string += ", "
     index_string += " };"
 
-    write_data((string, index_string), "i18n.hpp", ("Core/Global.hpp", "array"), "utf-8")
+    write_data((string, index_string), f"{output_dir}/i18n.hpp", ("Core/Global.hpp", "array"), "utf-8")

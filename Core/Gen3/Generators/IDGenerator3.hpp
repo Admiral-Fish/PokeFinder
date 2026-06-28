@@ -44,7 +44,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generateXDColo(u32 seed);
+    std::vector<IDState> generateXDColo(u32 seed) const;
 
     /**
      * @brief Generates states for FRLGE
@@ -53,7 +53,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generateFRLGE(u16 tid);
+    std::vector<IDState> generateFRLGE(u16 tid) const;
 
     /**
      * @brief Generates states for RS
@@ -62,7 +62,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generateRS(u16 seed);
+    std::vector<IDState> generateRS(u16 seed) const;
 };
 
 #endif // IDGENERATOR3_HPP

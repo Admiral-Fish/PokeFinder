@@ -44,8 +44,7 @@ namespace ShadowLock
 {
     bool coloShadow(u32 &seed, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(1);
+        XDRNGR backward(seed, 1);
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -70,8 +69,7 @@ namespace ShadowLock
             }
         }
 
-        XDRNG forward(backward);
-        forward.advance(1);
+        XDRNG forward(backward, 1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
         {
@@ -112,8 +110,7 @@ namespace ShadowLock
             return false;
         }
 
-        XDRNGR backward(seed);
-        backward.advance(1);
+        XDRNGR backward(seed , 1);
 
         u32 pid;
         for (index--; index >= 0; index--)
@@ -130,8 +127,7 @@ namespace ShadowLock
             } while (!lock.compare(pid));
         }
 
-        XDRNG forward(backward);
-        forward.advance(1);
+        XDRNG forward(backward, 1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
         {
@@ -160,8 +156,7 @@ namespace ShadowLock
 
     bool firstShadowNormal(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(1);
+        XDRNGR backward(seed, 1);
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -191,8 +186,7 @@ namespace ShadowLock
             backward.advance(2);
         }
 
-        XDRNG forward(backward);
-        forward.advance(1);
+        XDRNG forward(backward, 1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
         {
@@ -225,8 +219,7 @@ namespace ShadowLock
 
     bool firstShadowSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(6);
+        XDRNGR backward(seed, 6);
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -256,8 +249,7 @@ namespace ShadowLock
             backward.advance(2);
         }
 
-        XDRNG forward(backward);
-        forward.advance(1);
+        XDRNG forward(backward, 1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
         {
@@ -290,8 +282,7 @@ namespace ShadowLock
 
     bool firstShadowUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(3);
+        XDRNGR backward(seed, 3);
 
         // Shiny lock test for first shadow
         XDRNGR test(backward);
@@ -332,8 +323,7 @@ namespace ShadowLock
             backward.advance(2);
         }
 
-        XDRNG forward(backward);
-        forward.advance(1);
+        XDRNG forward(backward, 1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
         {
@@ -366,8 +356,7 @@ namespace ShadowLock
 
     bool salamenceSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(6);
+        XDRNGR backward(seed, 6);
 
         // Build PID of non-shadow
         u32 pid = getPIDBackward(backward);
@@ -390,8 +379,7 @@ namespace ShadowLock
 
     bool salamenceUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(3);
+        XDRNGR backward(seed, 3);
 
         // Shiny lock test for first shadow
         XDRNGR test(backward);
@@ -425,8 +413,7 @@ namespace ShadowLock
 
     bool singleNL(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
-        XDRNGR backward(seed);
-        backward.advance(1);
+        XDRNGR backward(seed, 1);
 
         // Build PID of non-shadow
         u32 pid = getPIDBackward(backward);

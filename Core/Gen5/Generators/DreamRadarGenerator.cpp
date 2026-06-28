@@ -83,7 +83,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         BWRNG go(rng, jump);
 
         std::array<u8, 6> ivs;
-        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(); });
+        std::ranges::generate(ivs, [&rngList] { return rngList.next(); });
 
         go.next();
 

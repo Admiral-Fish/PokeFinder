@@ -21,13 +21,13 @@
 #include <Core/Gen8/States/UndergroundState.hpp>
 #include <algorithm>
 
-UndergroundStateFilter::UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax,
+UndergroundStateFilter::UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax,
                                                bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                                                const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
                                                const std::vector<u16> &species) :
-    StateFilter(gender, ability, shiny, heightMin, heightMax, weightMin, weightMax, skip, min, max, natures, powers), species(species)
+    StateFilter(gender, ability, shiny, levelMin, levelMax, heightMin, heightMax, weightMin, weightMax, skip, min, max, natures, powers), species(species)
 {
-    std::sort(this->species.begin(), this->species.end());
+    std::ranges::sort(this->species);
 }
 
 bool UndergroundStateFilter::compareState(const UndergroundState &state) const
@@ -52,6 +52,11 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
         return false;
     }
 
+    if (state.getLevel() < levelMin || state.getLevel() > levelMax)
+    {
+        return false;
+    }
+
     if (state.getHeight() < heightMin || state.getHeight() > heightMax)
     {
         return false;
@@ -62,7 +67,7 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
         return false;
     }
 
-    if (!std::binary_search(species.begin(), species.end(), state.getSpecie()))
+    if (!std::ranges::binary_search(species, state.getSpecie()))
     {
         return false;
     }
