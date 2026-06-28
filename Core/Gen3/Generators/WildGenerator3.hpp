@@ -20,11 +20,12 @@
 #ifndef WILDGENERATOR3_HPP
 #define WILDGENERATOR3_HPP
 
-#include <Core/Enum/ItemEffect.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
+
+enum class Item : u8;
 
 /**
  * @brief Wild encounter generator for Gen3
@@ -41,11 +42,13 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param feebasTile Whether Feebas tiles are active
+     * @param bike Whether bike is being ridden
+     * @param item Selected active item
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool bike, ItemEffect effect,
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool bike, Item item,
                    const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
@@ -60,7 +63,7 @@ public:
 private:
     bool feebasTile;
     bool bike;
-    ItemEffect effect;
+    Item item;
 };
 
 #endif // WILDGENERATOR3_HPP

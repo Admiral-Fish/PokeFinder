@@ -17,15 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ITEMEFFECT_HPP
-#define ITEMEFFECT_HPP
+#ifndef ITEM_HPP
+#define ITEM_HPP
 
 #include <Core/Global.hpp>
 
 /**
- * @brief Enum to encompass different item effects
+ * @brief Enum to encompass different items
  */
-enum class ItemEffect : u8
+enum class Item : u8
 {
     None,
 
@@ -37,13 +37,13 @@ enum class ItemEffect : u8
 /**
  * @brief Converts enum to number
  *
- * @param effect Input effect
+ * @param item Input item
  *
  * @return Converted number
  */
-constexpr u8 toInt(ItemEffect effect)
+constexpr u8 toInt(Item item)
 {
-    return static_cast<u8>(effect);
+    return static_cast<u8>(item);
 }
 
-#endif // ITEMEFFECT_HPP
+#endif // ITEM_HPP

@@ -21,7 +21,7 @@
 #include "ui_Wild3.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
-#include <Core/Enum/ItemEffect.hpp>
+#include <Core/Enum/Item.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Encounters3.hpp>
@@ -66,11 +66,9 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                            toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
-    ui->comboBoxGeneratorItemEffect->setup({ toInt(ItemEffect::None), toInt(ItemEffect::BlackFlute), toInt(ItemEffect::CleanseTag),
-                                             toInt(ItemEffect::WhiteFlute) });
+    ui->comboBoxGeneratorItem->setup({ toInt(Item::None), toInt(Item::BlackFlute), toInt(Item::CleanseTag), toInt(Item::WhiteFlute) });
 
-    ui->comboBoxSearcherItemEffect->setup({ toInt(ItemEffect::None), toInt(ItemEffect::BlackFlute), toInt(ItemEffect::CleanseTag),
-                                             toInt(ItemEffect::WhiteFlute) });
+    ui->comboBoxSearcherItem->setup({ toInt(Item::None), toInt(Item::BlackFlute), toInt(Item::CleanseTag), toInt(Item::WhiteFlute) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
@@ -168,7 +166,7 @@ void Wild3::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings = {};
+    EncounterSettings3 settings = { };
     settings.feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
 
     encounterGenerator = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
@@ -178,7 +176,7 @@ void Wild3::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
-    EncounterSettings3 settings = {};
+    EncounterSettings3 settings = { };
     settings.feebasTile = ui->checkBoxSearcherFeebasTile->isChecked();
 
     encounterSearcher = Encounters3::getEncounters(encounter, settings, currentProfile->getVersion());
@@ -201,7 +199,7 @@ void Wild3::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
     bool bike = ui->checkBoxGeneratorBike->isChecked();
-    auto effect = ui->comboBoxGeneratorItemEffect->getEnum<ItemEffect>();
+    auto effect = ui->comboBoxGeneratorItem->getEnum<Item>();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator3 generator(initialAdvances, maxAdvances, offset, method, lead, feebasTile, bike, effect,
@@ -261,15 +259,17 @@ void Wild3::generatorLocationIndexChanged(int index)
             ui->checkBoxGeneratorFeebasTile->setChecked(false);
         }
 
-        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash) {
-            ui->labelGeneratorItemEffect->setVisible(true);
-            ui->comboBoxGeneratorItemEffect->setVisible(true);
+        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
+        {
+            ui->labelGeneratorItem->setVisible(true);
+            ui->comboBoxGeneratorItem->setVisible(true);
             ui->checkBoxGeneratorBike->setVisible(true);
         }
-        else {
-            ui->labelGeneratorItemEffect->setVisible(false);
-            ui->comboBoxGeneratorItemEffect->setVisible(false);
-            ui->comboBoxGeneratorItemEffect->setCurrentIndex(toInt(ItemEffect::None));
+        else
+        {
+            ui->labelGeneratorItem->setVisible(false);
+            ui->comboBoxGeneratorItem->setVisible(false);
+            ui->comboBoxGeneratorItem->setCurrentIndex(toInt(Item::None));
             ui->checkBoxGeneratorBike->setVisible(false);
             ui->checkBoxGeneratorBike->setChecked(false);
         }
@@ -361,10 +361,10 @@ void Wild3::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
     bool bike = ui->checkBoxSearcherBike->isChecked();
-    auto effect = ui->comboBoxSearcherItemEffect->getEnum<ItemEffect>();
+    auto item = ui->comboBoxSearcherItem->getEnum<Item>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, lead, feebas, bike, effect, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
+    auto *searcher = new WildSearcher3(method, lead, feebas, bike, item, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
                                        *currentProfile, filter);
 
     int maxProgress = 1;
@@ -447,15 +447,17 @@ void Wild3::searcherLocationIndexChanged(int index)
             ui->checkBoxSearcherFeebasTile->setChecked(false);
         }
 
-        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash) {
-            ui->labelSearcherItemEffect->setVisible(true);
-            ui->comboBoxSearcherItemEffect->setVisible(true);
+        if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
+        {
+            ui->labelSearcherItem->setVisible(true);
+            ui->comboBoxSearcherItem->setVisible(true);
             ui->checkBoxSearcherBike->setVisible(true);
         }
-        else {
-            ui->labelSearcherItemEffect->setVisible(false);
-            ui->comboBoxSearcherItemEffect->setVisible(false);
-            ui->comboBoxSearcherItemEffect->setCurrentIndex(toInt(ItemEffect::None));
+        else
+        {
+            ui->labelSearcherItem->setVisible(false);
+            ui->comboBoxSearcherItem->setVisible(false);
+            ui->comboBoxSearcherItem->setCurrentIndex(toInt(Item::None));
             ui->checkBoxSearcherBike->setVisible(false);
             ui->checkBoxSearcherBike->setChecked(false);
         }
