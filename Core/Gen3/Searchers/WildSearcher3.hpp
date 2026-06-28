@@ -59,10 +59,10 @@ public:
 
 private:
     u16 rate;
-    bool feebasTile;
     bool bike;
-    Item item;
+    bool feebasTile;
     bool ivAdvance;
+    Item item;
     ModifiedSlots modifiedSlots;
 
     /**

@@ -37,7 +37,7 @@ static u8 unownLetter(u32 pid)
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool bike,
                                Item item, const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter), feebasTile(feebasTile), bike(bike), item(item)
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter), bike(bike), feebasTile(feebasTile), item(item)
 {
 }
 

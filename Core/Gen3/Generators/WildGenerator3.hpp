@@ -61,8 +61,8 @@ public:
     std::vector<WildGeneratorState> generate(u32 seed) const;
 
 private:
-    bool feebasTile;
     bool bike;
+    bool feebasTile;
     Item item;
 };
 

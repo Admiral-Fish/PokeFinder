@@ -60,10 +60,10 @@ WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, bool bik
                              const Profile3 &profile, const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     rate(0),
-    feebasTile(feebasTile),
     bike(bike),
-    item(item),
+    feebasTile(feebasTile),
     ivAdvance(method == Method::Method2),
+    item(item),
     modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
