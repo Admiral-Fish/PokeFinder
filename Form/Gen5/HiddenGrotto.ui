@@ -915,7 +915,7 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="1" colspan="2">
                <widget class="ComboBoxProxy" name="comboBoxPokemonGeneratorLocation"/>
               </item>
               <item row="1" column="0">
@@ -925,7 +925,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="1" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxPokemonGeneratorGroup">
                 <item>
                  <property name="text">
@@ -956,7 +956,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="2" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonGeneratorPokemon"/>
               </item>
               <item row="3" column="0">
@@ -966,72 +966,34 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="3" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonGeneratorGender"/>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="labelPokemonGeneratorLevelRange">
+               <widget class="QLabel" name="labelPokemonGeneratorLevel">
                 <property name="text">
-                 <string>Level Range</string>
+                 <string>Levels</string>
                 </property>
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QWidget" name="widgetPokemonGeneratorLevelRange" native="true">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+               <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMin">
+                <property name="enabled">
+                 <bool>false</bool>
                 </property>
-                <layout class="QGridLayout" name="gridLayoutPokemonGeneratorLevelRange">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelPokemonGeneratorLevelMin">
-                   <property name="text">
-                    <string>Min</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="labelPokemonGeneratorLevelMax">
-                   <property name="text">
-                    <string>Max</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMin">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="maximum">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMax">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="maximum">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMax">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1261,68 +1223,30 @@
                <widget class="ComboBox" name="comboBoxPokemonSearcherGender"/>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="labelPokemonSearcherLevelRange">
+               <widget class="QLabel" name="labelPokemonSearcherLevel">
                 <property name="text">
-                 <string>Level Range</string>
+                 <string>Levels</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="2">
-               <widget class="QWidget" name="widgetPokemonSearcherLevelRange" native="true">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBoxPokemonSearcherLevelMin">
+                <property name="enabled">
+                 <bool>false</bool>
                 </property>
-                <layout class="QGridLayout" name="gridLayoutPokemonSearcherLevelRange">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelPokemonSearcherLevelMin">
-                   <property name="text">
-                    <string>Min</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="labelPokemonSearcherLevelMax">
-                   <property name="text">
-                    <string>Max</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QSpinBox" name="spinBoxPokemonSearcherLevelMin">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="maximum">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinBoxPokemonSearcherLevelMax">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="maximum">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QSpinBox" name="spinBoxPokemonSearcherLevelMax">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
                </widget>
               </item>
               <item row="5" column="0" colspan="3">

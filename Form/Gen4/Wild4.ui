@@ -499,12 +499,24 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
            </widget>
           </item>
           <item row="14" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
             <property name="enabled">
              <bool>false</bool>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
             </property>
            </widget>
           </item>
@@ -966,12 +978,18 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
            </widget>
           </item>
           <item row="14" column="3">
            <widget class="QSpinBox" name="spinBoxSearcherLevelMax">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>100</number>
             </property>
            </widget>
           </item>

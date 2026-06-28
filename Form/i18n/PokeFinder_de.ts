@@ -1267,7 +1267,7 @@
     </message>
     <message>
         <source>Redraws</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aufnahme Advances</translation>
     </message>
     <message>
         <source>Calibration</source>
@@ -2843,7 +2843,7 @@
         <translation>Größen Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="424"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Level filter outside of encounters level range</source>
         <translation>Level filter außerhalb der Levelspanne</translation>
     </message>
@@ -2883,17 +2883,17 @@
         <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="424"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Invalid level</source>
         <translation>Ungültiges level</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="542"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>Invalid Format</source>
         <translation>Ungültiges Format</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="542"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
@@ -3487,18 +3487,6 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
-        <source>Level Range</source>
-        <translation>Levelspanne</translation>
-    </message>
-    <message>
-        <source>Min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Max</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hidden Grotto</source>
         <translation>Versteckte Lichtungen</translation>
     </message>
@@ -3648,45 +3636,45 @@
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="548"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="549"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="548"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="549"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="631"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="632"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="636"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="637"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="643"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="644"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="648"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="649"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="649"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="650"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="650"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="651"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
@@ -3713,6 +3701,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Max IV Advances</source>
         <translation>Maximale IV Advances</translation>
+    </message>
+    <message>
+        <source>Levels</source>
+        <translation type="unfinished">Level</translation>
     </message>
 </context>
 <context>
@@ -9208,67 +9200,67 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="72"/>
-        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="76"/>
+        <location filename="../Gen3/Wild3.cpp" line="87"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="74"/>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="78"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="74"/>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="78"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="94"/>
         <source>Slot Modifier</source>
         <translation>Slot Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="95"/>
         <source>Magnet Pull</source>
         <translation>Magnetfalle</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="95"/>
         <source>Static</source>
         <translation>Statik</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="75"/>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="79"/>
+        <location filename="../Gen3/Wild3.cpp" line="90"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="76"/>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="77"/>
-        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="81"/>
+        <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="78"/>
-        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="93"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="97"/>
+        <location filename="../Gen3/Wild3.cpp" line="101"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
@@ -9329,8 +9321,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Superangel</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="81"/>
-        <location filename="../Gen3/Wild3.cpp" line="92"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="96"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -9355,8 +9347,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Sucher</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="73"/>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="77"/>
+        <location filename="../Gen3/Wild3.cpp" line="88"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
@@ -9399,6 +9391,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Levels</source>
         <translation>Level</translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black Flute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cleanse Tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>White Flute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9607,23 +9619,23 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="355"/>
-        <location filename="../Gen4/Wild4.cpp" line="680"/>
+        <location filename="../Gen4/Wild4.cpp" line="682"/>
         <source>Please select a single encounter slot for Poke Radar</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Pokéradar RNG auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="371"/>
-        <location filename="../Gen4/Wild4.cpp" line="696"/>
+        <location filename="../Gen4/Wild4.cpp" line="698"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="724"/>
+        <location filename="../Gen4/Wild4.cpp" line="726"/>
         <source>Missing Flawless IV</source>
         <translation>Fehlender perfekter IV</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="724"/>
+        <location filename="../Gen4/Wild4.cpp" line="726"/>
         <source>This search needs at least one IV at 31</source>
         <translation>Diese Suche benötigt mindestens einen IV Wert auf 31</translation>
     </message>
@@ -9661,18 +9673,18 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="354"/>
         <location filename="../Gen4/Wild4.cpp" line="370"/>
-        <location filename="../Gen4/Wild4.cpp" line="679"/>
-        <location filename="../Gen4/Wild4.cpp" line="695"/>
+        <location filename="../Gen4/Wild4.cpp" line="681"/>
+        <location filename="../Gen4/Wild4.cpp" line="697"/>
         <source>Too many slots selected</source>
         <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="626"/>
+        <location filename="../Gen4/Wild4.cpp" line="628"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="626"/>
+        <location filename="../Gen4/Wild4.cpp" line="628"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -10108,44 +10120,44 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="381"/>
+        <location filename="../Gen5/Wild5.cpp" line="383"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="381"/>
+        <location filename="../Gen5/Wild5.cpp" line="383"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="480"/>
+        <location filename="../Gen5/Wild5.cpp" line="482"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="485"/>
+        <location filename="../Gen5/Wild5.cpp" line="487"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="492"/>
+        <location filename="../Gen5/Wild5.cpp" line="494"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="497"/>
+        <location filename="../Gen5/Wild5.cpp" line="499"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="498"/>
+        <location filename="../Gen5/Wild5.cpp" line="500"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="499"/>
+        <location filename="../Gen5/Wild5.cpp" line="501"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
