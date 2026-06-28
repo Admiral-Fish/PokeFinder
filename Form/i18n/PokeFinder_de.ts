@@ -1171,12 +1171,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="77"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs aus der Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="274"/>
@@ -1223,12 +1223,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="324"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="69"/>
@@ -1267,7 +1267,7 @@
     </message>
     <message>
         <source>Redraws</source>
-        <translation type="unfinished">Aufnahme Advances</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Calibration</source>
@@ -2812,12 +2812,12 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="102"/>
         <source>Copy IVs to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="103"/>
         <source>Paste IVs from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs aus der Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
@@ -2830,17 +2830,17 @@
         <location filename="../Controls/Filter.cpp" line="400"/>
         <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Invalid filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Filter Einstellungen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Level Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="400"/>
         <source>Height minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Größen Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="424"/>
@@ -2850,37 +2850,37 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="358"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Angr Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="365"/>
         <source>Def minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Vert Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="372"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>SpAng Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="379"/>
         <source>SpD minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>SpVer Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="386"/>
         <source>Spe minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Init Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Weight minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="424"/>
@@ -2890,12 +2890,12 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="542"/>
         <source>Invalid Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="542"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
     <message>
         <source>HP</source>
@@ -3269,11 +3269,11 @@
     </message>
     <message>
         <source>Seth</source>
-        <translation></translation>
+        <translation>Duncan</translation>
     </message>
     <message>
         <source>Thomas</source>
-        <translation type="unfinished"></translation>
+        <translation>Wolf</translation>
     </message>
     <message>
         <source>Party Lead</source>
@@ -5941,7 +5941,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -5992,7 +5992,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -6043,7 +6043,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -6094,7 +6094,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplizieren</translation>
     </message>
 </context>
 <context>
@@ -8833,12 +8833,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="27"/>
         <source>Transfer Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter übertragen</translation>
     </message>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="30"/>
         <source>Transfer Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen übertragen</translation>
     </message>
 </context>
 <context>

@@ -414,6 +414,11 @@ bool Filter::isValid() const
 
 bool Filter::isValid(u32 min, u32 max) const
 {
+    if (ui->checkBoxDisableFilters->isChecked())
+    {
+        return true;
+    }
+
     if (!isValid())
     {
         return false;
