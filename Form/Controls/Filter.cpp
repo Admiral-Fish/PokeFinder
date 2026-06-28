@@ -412,7 +412,7 @@ bool Filter::isValid() const
     return true;
 }
 
-bool Filter::isValid(u32 min, u32 max)
+bool Filter::isValid(u32 min, u32 max) const
 {
     if (!isValid())
     {

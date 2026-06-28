@@ -221,7 +221,7 @@ public:
      * @return true Filter is valid
      * @return false Filter is not valid
      */
-    bool isValid(u32 min, u32 max);
+    bool isValid(u32 min, u32 max) const;
 
     /**
      * @brief Unchecks all encounter slots

@@ -36,7 +36,6 @@
 #include <Model/Gen3/WildModel3.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
