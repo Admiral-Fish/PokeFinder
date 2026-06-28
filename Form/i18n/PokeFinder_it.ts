@@ -2843,6 +2843,11 @@
         <translation>L&apos;altezza minima è maggiore della massima</translation>
     </message>
     <message>
+        <location filename="../Controls/Filter.cpp" line="424"/>
+        <source>Level filter outside of encounters level range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
         <translation>I PS minimi sono maggiori dei massimi</translation>
@@ -2878,12 +2883,17 @@
         <translation>Il peso minimo è maggiore del massimo</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="525"/>
+        <location filename="../Controls/Filter.cpp" line="424"/>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/Filter.cpp" line="542"/>
         <source>Invalid Format</source>
         <translation>Formato non valido</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="525"/>
+        <location filename="../Controls/Filter.cpp" line="542"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
@@ -3476,14 +3486,6 @@
 </context>
 <context>
     <name>HiddenGrotto</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Level Range</source>
         <translation type="unfinished">Intervallo Livello</translation>
@@ -9186,14 +9188,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>Wild3</name>
     <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Gen 3 Wild</source>
         <translation>Selvatici Gen 3</translation>
     </message>
@@ -9214,67 +9208,67 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Filtri</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="71"/>
-        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="72"/>
+        <location filename="../Gen3/Wild3.cpp" line="83"/>
         <source>None</source>
         <translation>Nessuna</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="73"/>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="74"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
         <source>♂ Lead</source>
         <translation>Leader ♂</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="73"/>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="74"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
         <source>♀ Lead</source>
         <translation>Leader ♀</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="78"/>
-        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="79"/>
+        <location filename="../Gen3/Wild3.cpp" line="90"/>
         <source>Slot Modifier</source>
         <translation>Modificatore Slot</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>Magnet Pull</source>
         <translation>Magnetismo</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>Static</source>
         <translation>Statico</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="74"/>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="75"/>
+        <location filename="../Gen3/Wild3.cpp" line="86"/>
         <source>Level Modifier</source>
         <translation>Modificatore Livello</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="75"/>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="76"/>
+        <location filename="../Gen3/Wild3.cpp" line="87"/>
         <source>Hustle</source>
         <translation>Tuttafretta</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="76"/>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="77"/>
+        <location filename="../Gen3/Wild3.cpp" line="88"/>
         <source>Pressure</source>
         <translation>Pressione</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="77"/>
-        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="78"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>Vital Spirit</source>
         <translation>Spiritovivo</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="96"/>
+        <location filename="../Gen3/Wild3.cpp" line="97"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
@@ -9335,8 +9329,8 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Super Amo</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="81"/>
+        <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Synchronize</source>
         <translation>Sincronismo</translation>
     </message>
@@ -9361,8 +9355,8 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Ricercatore</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="72"/>
-        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="73"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
         <source>Cute Charm</source>
         <translation>Incantevole</translation>
     </message>
@@ -9409,14 +9403,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>Wild4</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>Selvatici Gen 4</translation>
@@ -9851,14 +9837,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>Wild5</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Selvatici Gen 5</translation>

@@ -213,7 +213,7 @@ void Wild8::generate()
         return;
     }
 
-    if (!ui->filter->isValid())
+    if (!ui->filter->isValid(ui->spinBoxLevelMin->value(), ui->spinBoxLevelMax->value()))
     {
         return;
     }
@@ -334,6 +334,7 @@ void Wild8::pokemonIndexChanged(int index)
         ui->filter->resetEncounterSlots();
         ui->spinBoxLevelMin->setValue(0);
         ui->spinBoxLevelMax->setValue(0);
+        ui->filter->setLevelRange(1, 100);
     }
     else
     {
@@ -344,6 +345,7 @@ void Wild8::pokemonIndexChanged(int index)
         auto range = encounters[ui->comboBoxLocation->currentIndex()].getLevelRange(num);
         ui->spinBoxLevelMin->setValue(range.first);
         ui->spinBoxLevelMax->setValue(range.second);
+        ui->filter->setLevelRange(range.first, range.second);
     }
 }
 

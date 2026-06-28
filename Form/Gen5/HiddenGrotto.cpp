@@ -34,7 +34,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/Filter.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -43,11 +42,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-
-static bool validLevelRange(const Filter *filter, int min, int max)
-{
-    return min == 0 || max == 0 || (filter->getLevelMin() <= max && filter->getLevelMax() >= min);
-}
 
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
     QWidget(parent), ui(new Ui::HiddenGrotto), ivCache(nullptr), shaCache(nullptr), encounter(Encounters5::getHiddenGrottoEncounters())
@@ -465,16 +459,8 @@ void HiddenGrotto::grottoSearcherUpdateFilter()
 
 void HiddenGrotto::pokemonGenerate()
 {
-    if (!ui->filterPokemonGenerator->isValid())
+    if (!ui->filterPokemonGenerator->isValid(ui->spinBoxPokemonGeneratorLevelMin->value(), ui->spinBoxPokemonGeneratorLevelMax->value()))
     {
-        return;
-    }
-
-    if (!validLevelRange(ui->filterPokemonGenerator, ui->spinBoxPokemonGeneratorLevelMin->value(),
-                         ui->spinBoxPokemonGeneratorLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -547,9 +533,10 @@ void HiddenGrotto::pokemonGeneratorPokemonIndexChanged(int index)
             ui->comboBoxPokemonGeneratorGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         }
-        
+
         ui->spinBoxPokemonGeneratorLevelMin->setValue(pokemon.getMinLevel());
         ui->spinBoxPokemonGeneratorLevelMax->setValue(pokemon.getMaxLevel());
+        ui->filterPokemonGenerator->setLevelRange(pokemon.getMinLevel(), pokemon.getMaxLevel());
     }
 }
 
@@ -564,16 +551,8 @@ void HiddenGrotto::pokemonSearch()
         return;
     }
 
-    if (!ui->filterPokemonSearcher->isValid())
+    if (!ui->filterPokemonSearcher->isValid(ui->spinBoxPokemonSearcherLevelMin->value(), ui->spinBoxPokemonSearcherLevelMax->value()))
     {
-        return;
-    }
-
-    if (!validLevelRange(ui->filterPokemonSearcher, ui->spinBoxPokemonSearcherLevelMin->value(),
-                         ui->spinBoxPokemonSearcherLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -727,6 +706,7 @@ void HiddenGrotto::pokemonSearcherPokemonIndexChanged(int index)
 
         ui->spinBoxPokemonSearcherLevelMin->setValue(pokemon.getMinLevel());
         ui->spinBoxPokemonSearcherLevelMax->setValue(pokemon.getMaxLevel());
+        ui->filterPokemonSearcher->setLevelRange(pokemon.getMinLevel(), pokemon.getMaxLevel());
     }
 }
 

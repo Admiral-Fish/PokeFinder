@@ -412,6 +412,23 @@ bool Filter::isValid() const
     return true;
 }
 
+bool Filter::isValid(u32 min, u32 max)
+{
+    if (!isValid())
+    {
+        return false;
+    }
+
+    if ((min != 0 || max != 0) && (getLevelMin() < min || getLevelMax() > max))
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range"));
+        msg.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void Filter::resetEncounterSlots() const
 {
     ui->checkListEncounterSlot->resetChecks();
@@ -425,6 +442,12 @@ void Filter::setEncounterSlots(u8 max) const
         items.emplace_back(std::to_string(i));
     }
     ui->checkListEncounterSlot->addItems(items);
+}
+
+void Filter::setLevelRange(u32 min, u32 max)
+{
+    ui->spinBoxLevelMin->setValue(min);
+    ui->spinBoxLevelMax->setValue(max);
 }
 
 void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const

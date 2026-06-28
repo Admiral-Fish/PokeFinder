@@ -32,7 +32,6 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Controls/Filter.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
@@ -41,11 +40,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-
-static bool validLevelRange(const Filter *filter, int min, int max)
-{
-    return min == 0 || max == 0 || (filter->getLevelMin() <= max && filter->getLevelMax() >= min);
-}
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
@@ -341,15 +335,8 @@ void Wild4::updateEncounterSearcher()
 
 void Wild4::generate()
 {
-    if (!ui->filterGenerator->isValid())
+    if (!ui->filterGenerator->isValid(ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
     {
-        return;
-    }
-
-    if (!validLevelRange(ui->filterGenerator, ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -602,6 +589,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
         ui->filterGenerator->resetEncounterSlots();
         ui->spinBoxGeneratorLevelMin->setValue(0);
         ui->spinBoxGeneratorLevelMax->setValue(0);
+        ui->filterGenerator->setLevelRange(1, 100);
     }
     else
     {
@@ -612,6 +600,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
         auto range = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getLevelRange(num);
         ui->spinBoxGeneratorLevelMin->setValue(range.first);
         ui->spinBoxGeneratorLevelMax->setValue(range.second);
+        ui->filterGenerator->setLevelRange(range.first, range.second);
     }
 }
 
@@ -673,15 +662,8 @@ void Wild4::profileManager()
 
 void Wild4::search()
 {
-    if (!ui->filterSearcher->isValid())
+    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
-        return;
-    }
-
-    if (!validLevelRange(ui->filterSearcher, ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range!"));
-        msg.exec();
         return;
     }
 
@@ -974,6 +956,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
         ui->filterSearcher->resetEncounterSlots();
         ui->spinBoxSearcherLevelMin->setValue(0);
         ui->spinBoxSearcherLevelMax->setValue(0);
+        ui->filterSearcher->setLevelRange(1, 100);
     }
     else
     {
@@ -984,6 +967,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
         auto range = encounterGenerator[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
         ui->spinBoxSearcherLevelMin->setValue(range.first);
         ui->spinBoxSearcherLevelMax->setValue(range.second);
+        ui->filterSearcher->setLevelRange(range.first, range.second);
     }
 }
 

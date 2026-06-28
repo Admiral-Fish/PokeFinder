@@ -2843,6 +2843,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Controls/Filter.cpp" line="424"/>
+        <source>Level filter outside of encounters level range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
         <translation type="unfinished"></translation>
@@ -2878,12 +2883,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="525"/>
+        <location filename="../Controls/Filter.cpp" line="424"/>
+        <source>Invalid level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/Filter.cpp" line="542"/>
         <source>Invalid Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="525"/>
+        <location filename="../Controls/Filter.cpp" line="542"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3476,14 +3486,6 @@
 </context>
 <context>
     <name>HiddenGrotto</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Level Range</source>
         <translation type="unfinished">等级范围</translation>
@@ -9184,14 +9186,6 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild3</name>
     <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Gen 3 Wild</source>
         <translation>第三世代野生乱数</translation>
     </message>
@@ -9212,67 +9206,67 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>筛选项</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="71"/>
-        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="72"/>
+        <location filename="../Gen3/Wild3.cpp" line="83"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="73"/>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="74"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
         <source>♂ Lead</source>
         <translation>♂ 队首</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="73"/>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="74"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
         <source>♀ Lead</source>
         <translation>♀ 队首</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="78"/>
-        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="79"/>
+        <location filename="../Gen3/Wild3.cpp" line="90"/>
         <source>Slot Modifier</source>
         <translation>遭遇种类修正</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>Magnet Pull</source>
         <translation>磁力</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>Static</source>
         <translation>静电</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="74"/>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="75"/>
+        <location filename="../Gen3/Wild3.cpp" line="86"/>
         <source>Level Modifier</source>
         <translation>遭遇等级机率修正</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="75"/>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="76"/>
+        <location filename="../Gen3/Wild3.cpp" line="87"/>
         <source>Hustle</source>
         <translation>活力</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="76"/>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="77"/>
+        <location filename="../Gen3/Wild3.cpp" line="88"/>
         <source>Pressure</source>
         <translation>压迫感</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="77"/>
-        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="78"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>Vital Spirit</source>
         <translation>干劲</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="96"/>
+        <location filename="../Gen3/Wild3.cpp" line="97"/>
         <source>Generate times for seed</source>
         <translation>为Seed生成时间</translation>
     </message>
@@ -9333,8 +9327,8 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>厉害钓竿</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="81"/>
+        <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Synchronize</source>
         <translation>同步</translation>
     </message>
@@ -9359,8 +9353,8 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>检索器</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="72"/>
-        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="73"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
         <source>Cute Charm</source>
         <translation>迷人身躯</translation>
     </message>
@@ -9407,14 +9401,6 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild4</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Gen 4 Wild</source>
         <translation>第四世代野生乱数</translation>
@@ -9849,14 +9835,6 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild5</name>
-    <message>
-        <source>Invalid level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level filter outside of encounters level range!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>第五世代野生乱数</translation>
