@@ -2835,7 +2835,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Il livello minimo è maggiore del massimo></translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="400"/>
@@ -2845,7 +2845,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Level filter outside of encounters level range</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtri del livello al di fuori dall&apos;intervallo del livello degli incontri</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
@@ -2885,7 +2885,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Invalid level</source>
-        <translation type="unfinished"></translation>
+        <translation>Livello non valido</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="553"/>
@@ -2939,7 +2939,7 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished">Livello</translation>
+        <translation>Livello</translation>
     </message>
 </context>
 <context>
@@ -3649,7 +3649,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="632"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation type="unfinished">Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
+        <translation>Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="637"/>
@@ -3704,7 +3704,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Livelli</translation>
     </message>
 </context>
 <context>
@@ -9169,12 +9169,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Height</source>
-        <translation type="unfinished">Altezza</translation>
+        <translation>Altezza</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Weight</source>
-        <translation type="unfinished">Peso</translation>
+        <translation>Peso</translation>
     </message>
 </context>
 <context>
@@ -9390,27 +9390,27 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Livelli</translation>
     </message>
     <message>
         <source>Item</source>
-        <translation type="unfinished">Strumento</translation>
+        <translation>Strumento</translation>
     </message>
     <message>
         <source>Black Flute</source>
-        <translation type="unfinished"></translation>
+        <translation>Flauto Nero</translation>
     </message>
     <message>
         <source>Cleanse Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Velopuro</translation>
     </message>
     <message>
         <source>White Flute</source>
-        <translation type="unfinished"></translation>
+        <translation>Flauto Bianco</translation>
     </message>
     <message>
         <source>Bike</source>
-        <translation type="unfinished"></translation>
+        <translation>Bicicletta</translation>
     </message>
 </context>
 <context>
@@ -9844,7 +9844,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Livelli</translation>
     </message>
 </context>
 <context>
@@ -10163,7 +10163,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Livelli</translation>
     </message>
 </context>
 <context>
@@ -10416,7 +10416,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Livelli</translation>
     </message>
 </context>
 <context>
