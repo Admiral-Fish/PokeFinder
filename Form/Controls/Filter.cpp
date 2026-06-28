@@ -424,7 +424,7 @@ bool Filter::isValid(u32 min, u32 max) const
         return false;
     }
 
-    if ((min != 0 || max != 0) && (getLevelMin() < min || getLevelMax() > max))
+    if ((min != 0 || max != 0) && (getLevelMax() < min || getLevelMin() > max))
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid level"), tr("Level filter outside of encounters level range"));
         msg.exec();
