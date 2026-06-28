@@ -2835,7 +2835,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
-        <translation>Il livello minimo è maggiore del massimo></translation>
+        <translation>Il livello minimo è maggiore del massimo</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="400"/>
