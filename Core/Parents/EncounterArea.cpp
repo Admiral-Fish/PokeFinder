@@ -39,9 +39,11 @@ u8 EncounterArea::getCount() const
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
     std::pair<u8, u8> range = std::make_pair(100, 0);
+    u16 num = specie & 0x7ff;
+    u8 form = specie >> 11;
     for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
     {
-        if (pokemon[i].getSpecie() == specie)
+        if (pokemon[i].getSpecie() == num && pokemon[i].getForm() == form)
         {
             range.first = std::min(range.first, pokemon[i].getMinLevel());
             range.second = std::max(range.second, pokemon[i].getMaxLevel());

@@ -387,7 +387,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -457,7 +457,7 @@ void Wild3::searcherPokemonIndexChanged(int index)
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
 
-        auto range = encounterGenerator[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        auto range = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
         ui->spinBoxSearcherLevelMin->setValue(range.first);
         ui->spinBoxSearcherLevelMax->setValue(range.second);
         ui->filterSearcher->setLevelRange(range.first, range.second);

@@ -964,7 +964,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
 
-        auto range = encounterGenerator[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        auto range = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
         ui->spinBoxSearcherLevelMin->setValue(range.first);
         ui->spinBoxSearcherLevelMax->setValue(range.second);
         ui->filterSearcher->setLevelRange(range.first, range.second);
