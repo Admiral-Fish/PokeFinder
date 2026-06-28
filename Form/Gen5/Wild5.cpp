@@ -44,9 +44,10 @@
 #include <QThread>
 #include <QTimer>
 
-static bool supportsMovingTrigger(Encounter encounter)
+static bool supportsMovingTrigger(Encounter encounter, const Profile5 *profile)
 {
-    return encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing;
+    return profile != nullptr && (profile->getVersion() & Game::Gen5) != Game::None
+        && (encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing);
 }
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
@@ -241,7 +242,7 @@ void Wild5::generate()
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
-    bool searchMovingTrigger = ui->checkBoxGeneratorMovingTrigger->isChecked();
+    bool searchMovingTrigger = ui->checkBoxGeneratorMovingTrigger->isChecked() && (currentProfile->getVersion() & Game::Gen5) != Game::None;
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, searchMovingTrigger,
@@ -256,7 +257,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-        bool movingTrigger = supportsMovingTrigger(encounter);
+        bool movingTrigger = supportsMovingTrigger(encounter, currentProfile);
         ui->checkBoxGeneratorMovingTrigger->setEnabled(movingTrigger);
         if (!movingTrigger)
         {

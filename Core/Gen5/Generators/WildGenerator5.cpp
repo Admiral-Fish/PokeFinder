@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Shiny.hpp>
+#include <Core/Gen5/StepEncounter.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
@@ -209,7 +210,9 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             continue;
         }
 
-        u8 movingTrigger = searchMovingTrigger ? getMovingTrigger(go) : 255;
+        u8 movingTrigger = searchMovingTrigger ? getMovingTrigger(go) : StepEncounter5::impossible;
+        u8 movingSteps = searchMovingTrigger ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger)
+                                             : StepEncounter5::impossible;
 
         u8 encounterSlot;
         if (magnetStatic && !modifiedSlots.empty())
@@ -264,8 +267,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
         for (const auto &iv : ivs)
         {
-            WildState5 state(chatot, movingTrigger, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level,
-                             nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
+            WildState5 state(chatot, movingTrigger, movingSteps, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+                             level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
             if (filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);

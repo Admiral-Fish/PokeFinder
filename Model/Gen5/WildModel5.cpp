@@ -27,7 +27,7 @@ WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), 
 
 int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return showMovingTrigger ? 20 : 19;
+    return showMovingTrigger ? 21 : 19;
 }
 
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -38,7 +38,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         int column = index.column();
         if (!showMovingTrigger && column >= 2)
         {
-            column++;
+            column += 2;
         }
 
         switch (column)
@@ -50,23 +50,29 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 2:
             return state.getMovingTrigger();
         case 3:
-            return QString::fromStdString(Translator::getItem(state.getItem()));
+            if (state.getMovingSteps() == 255)
+            {
+                return "-";
+            }
+            return state.getMovingSteps();
         case 4:
+            return QString::fromStdString(Translator::getItem(state.getItem()));
+        case 5:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 5:
-            return state.getLevel();
         case 6:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 7:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 8:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 8:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 9:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 10:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -77,20 +83,20 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 10:
         case 11:
         case 12:
         case 13:
         case 14:
         case 15:
-            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
         case 16:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 11) : state.getIV(column - 11);
         case 17:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 18:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 19:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 20:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
@@ -104,7 +110,7 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
     {
         if (!showMovingTrigger && section >= 2)
         {
-            section++;
+            section += 2;
         }
 
         return header[section];
@@ -115,8 +121,8 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    int offset = showMovingTrigger ? 0 : -1;
-    emit dataChanged(index(0, 10 + offset), index(rowCount() - 1, 15 + offset), { Qt::DisplayRole });
+    int offset = showMovingTrigger ? 0 : -2;
+    emit dataChanged(index(0, 11 + offset), index(rowCount() - 1, 16 + offset), { Qt::DisplayRole });
 }
 
 void WildGeneratorModel5::setShowMovingTrigger(bool flag)
