@@ -179,7 +179,7 @@ void Wild3::updateEncounterSearcher()
 
 void Wild3::generate()
 {
-    if (!ui->filterGenerator->isValid())
+    if (!ui->filterGenerator->isValid(ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
     {
         return;
     }
@@ -207,6 +207,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -219,7 +220,8 @@ void Wild3::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -265,12 +267,20 @@ void Wild3::generatorPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterGenerator->resetEncounterSlots();
+        ui->spinBoxGeneratorLevelMin->setValue(0);
+        ui->spinBoxGeneratorLevelMax->setValue(0);
+        ui->filterGenerator->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
         auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
+
+        auto range = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxGeneratorLevelMin->setValue(range.first);
+        ui->spinBoxGeneratorLevelMax->setValue(range.second);
+        ui->filterGenerator->setLevelRange(range.first, range.second);
     }
 }
 
@@ -322,7 +332,7 @@ void Wild3::profileManager()
 
 void Wild3::search()
 {
-    if (!ui->filterSearcher->isValid())
+    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
         return;
     }
@@ -377,6 +387,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
 
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
@@ -389,7 +400,8 @@ void Wild3::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea3 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -435,12 +447,20 @@ void Wild3::searcherPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterSearcher->resetEncounterSlots();
+        ui->spinBoxSearcherLevelMin->setValue(0);
+        ui->spinBoxSearcherLevelMax->setValue(0);
+        ui->filterSearcher->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
+
+        auto range = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxSearcherLevelMin->setValue(range.first);
+        ui->spinBoxSearcherLevelMax->setValue(range.second);
+        ui->filterSearcher->setLevelRange(range.first, range.second);
     }
 }
 

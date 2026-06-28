@@ -37,6 +37,8 @@ public:
      * @param gender Gender value to filter by
      * @param ability Ability value to filter by
      * @param shiny Shiny value to filter by
+     * @param levelMin Minimum level threshold
+     * @param levelMax Maximum level threshold
      * @param heightMin Minimum height threshold
      * @param heightMax Maximum height threshold
      * @param weightMin Minimum weight threshold
@@ -48,7 +50,8 @@ public:
      * @param powers Hidden powers to filter by
      * @param species Pokemon species to filter by
      */
-    UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax,
+    UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin,
+                           u8 weightMax, bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<u16> &species);
 
     /**

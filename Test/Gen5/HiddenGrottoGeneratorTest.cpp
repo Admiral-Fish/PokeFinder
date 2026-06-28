@@ -100,7 +100,7 @@ void HiddenGrottoGeneratorTest::pokemon()
         return encounterArea.getLocation() == location;
     });
 
-    StateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
     HiddenGrottoGenerator generator(0, 9, 0, lead, gender, encounterArea->getPokemon(group, index), profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
