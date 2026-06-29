@@ -5026,6 +5026,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -9853,6 +9857,282 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
 </context>
 <context>
+    <name>Phenomenon</name>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rustling Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rippling Surfing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rippling Fishing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished">Ninguno</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished">Perfiles</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished">Juego</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished">Generador</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation type="unfinished">Informacion del RNG</translation>
+    </message>
+    <message>
+        <source>Lead</source>
+        <translation type="unfinished">Lidera</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation type="unfinished">Seed</translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished">Generar</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Configuraciones</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation type="unfinished">Encuentro</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Localización</translation>
+    </message>
+    <message>
+        <source>Levels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation type="unfinished">Filtros</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation type="unfinished">Buscador</translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Buscar</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>Compound Eyes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cute Charm</source>
+        <translation type="unfinished">Gran encanto</translation>
+    </message>
+    <message>
+        <source>♂ Lead</source>
+        <translation type="unfinished">♂ Lidera</translation>
+    </message>
+    <message>
+        <source>♀ Lead</source>
+        <translation type="unfinished">♀ Lidera</translation>
+    </message>
+    <message>
+        <source>Level Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hustle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pressure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vital Spirit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet Pull</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronize</source>
+        <translation type="unfinished">Sincronía</translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV/SHA searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV searching.
+Profile is missing or has an incompatible SHA cache.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile does not have a IV cache file configured</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are not configured for fast searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep initial/max advances below %1/%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ensure IV filters are set to common spreads</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Wild5</name>
     <message>
         <source>Gen 5 Wild</source>
@@ -9967,23 +10247,11 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rustling Grass</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Surfing</source>
         <translation type="unfinished">Surfeando</translation>
     </message>
     <message>
-        <source>Rippling Surfing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Fishing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rippling Fishing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10756,6 +11024,14 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11216,6 +11492,14 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

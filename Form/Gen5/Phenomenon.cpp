@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Wild5.hpp"
-#include "ui_Wild5.h"
+#include "Phenomenon.hpp"
+#include "ui_Phenomenon.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
@@ -27,23 +27,54 @@
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
 #include <Core/Gen5/IVCache.hpp>
+#include <Core/Gen5/PhenomenonArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Form/Controls/CheckList.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QButtonGroup>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QRadioButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
 
-Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
+namespace
+{
+    WildStateFilter getUnfilteredWildStateFilter()
+    {
+        std::array<u8, 6> ivMin {};
+        std::array<u8, 6> ivMax;
+        ivMax.fill(31);
+
+        std::array<bool, 25> natures;
+        natures.fill(true);
+
+        std::array<bool, 16> powers;
+        powers.fill(true);
+
+        std::array<bool, 12> encounterSlots;
+        encounterSlots.fill(true);
+
+        return WildStateFilter(255, 255, 255, 1, 100, 0, 255, 0, 255, true, ivMin, ivMax, natures, powers, encounterSlots);
+    }
+}
+
+Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -51,6 +82,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     generatorModel = new WildGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel5(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
+    generatorModel->setShowPhenomenon(true);
+    searcherModel->setShowPhenomenon(true);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(proxyModel);
@@ -66,10 +99,77 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorEncounter->setup(
-        { toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing), toInt(Encounter::SuperRod) });
-    ui->comboBoxSearcherEncounter->setup(
-        { toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing), toInt(Encounter::SuperRod) });
+    ui->comboBoxGeneratorEncounter->setItemText(0, tr("Rustling Grass"));
+    ui->comboBoxGeneratorEncounter->setItemText(1, tr("Dust Cloud"));
+    ui->comboBoxGeneratorEncounter->setItemText(2, tr("Rippling Surfing"));
+    ui->comboBoxGeneratorEncounter->setItemText(3, tr("Rippling Fishing"));
+    ui->comboBoxGeneratorEncounter->setItemText(4, tr("Flying Shadow"));
+    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::GrassRustling), toInt(Encounter::DustCloud), toInt(Encounter::SurfingRippling),
+                                            toInt(Encounter::SuperRodRippling), toInt(Encounter::FlyingShadow) });
+
+    ui->comboBoxSearcherEncounter->setItemText(0, tr("Rustling Grass"));
+    ui->comboBoxSearcherEncounter->setItemText(1, tr("Dust Cloud"));
+    ui->comboBoxSearcherEncounter->setItemText(2, tr("Rippling Surfing"));
+    ui->comboBoxSearcherEncounter->setItemText(3, tr("Rippling Fishing"));
+    ui->comboBoxSearcherEncounter->setItemText(4, tr("Flying Shadow"));
+    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::GrassRustling), toInt(Encounter::DustCloud), toInt(Encounter::SurfingRippling),
+                                           toInt(Encounter::SuperRodRippling), toInt(Encounter::FlyingShadow) });
+
+    checkListGeneratorItem = new CheckList(ui->groupBoxGeneratorSettings);
+    checkListGeneratorItem->setUncheckedText(tr("None"));
+    labelGeneratorItem = new QLabel(tr("Item"), ui->groupBoxGeneratorSettings);
+    auto *generatorSettingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxGeneratorSettings->layout());
+    auto moveLayoutItem = [](QGridLayout *layout, int row, int column, int newRow, int newColumn, int rowSpan = 1, int columnSpan = 1) {
+        if (QLayoutItem *item = layout->itemAtPosition(row, column))
+        {
+            layout->removeItem(item);
+            layout->addItem(item, newRow, newColumn, rowSpan, columnSpan);
+        }
+    };
+    moveLayoutItem(generatorSettingsLayout, 5, 0, 6, 0);
+    moveLayoutItem(generatorSettingsLayout, 5, 1, 6, 1);
+    moveLayoutItem(generatorSettingsLayout, 5, 2, 6, 2);
+    moveLayoutItem(generatorSettingsLayout, 4, 0, 5, 0, 1, 3);
+    generatorSettingsLayout->addWidget(labelGeneratorItem, 4, 0);
+    generatorSettingsLayout->addWidget(checkListGeneratorItem, 4, 1, 1, 2);
+
+    checkListSearcherItem = new CheckList(ui->groupBoxSearcherSettings);
+    checkListSearcherItem->setUncheckedText(tr("None"));
+    radioButtonSearcherPokemon = new QRadioButton(ui->groupBoxSearcherSettings);
+    radioButtonSearcherItem = new QRadioButton(ui->groupBoxSearcherSettings);
+    auto createSearcherFilterLabel = [](const QString &text, QRadioButton *button, QWidget *parent) {
+        auto *widget = new QWidget(parent);
+        auto *layout = new QHBoxLayout(widget);
+        auto *label = new QPushButton(text, widget);
+        label->setFlat(true);
+        label->setFocusPolicy(Qt::NoFocus);
+        label->setStyleSheet("QPushButton { border: none; text-align: left; padding: 0; background: transparent; }");
+        layout->setContentsMargins(0, 0, 0, 0);
+        layout->setSpacing(4);
+        layout->addWidget(label, 1);
+        layout->addWidget(button);
+        QObject::connect(label, &QPushButton::clicked, button, [button] { button->setChecked(true); });
+        return widget;
+    };
+    auto *labelSearcherPokemon = createSearcherFilterLabel(tr("Pokémon"), radioButtonSearcherPokemon, ui->groupBoxSearcherSettings);
+    labelSearcherItem = createSearcherFilterLabel(tr("Item"), radioButtonSearcherItem, ui->groupBoxSearcherSettings);
+    auto *searcherFilterGroup = new QButtonGroup(ui->groupBoxSearcherSettings);
+    searcherFilterGroup->setExclusive(true);
+    searcherFilterGroup->addButton(radioButtonSearcherPokemon);
+    searcherFilterGroup->addButton(radioButtonSearcherItem);
+    radioButtonSearcherPokemon->setChecked(true);
+    auto *searcherSettingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxSearcherSettings->layout());
+    ui->labelSearcherPokemon->setVisible(false);
+    searcherSettingsLayout->removeWidget(ui->labelSearcherPokemon);
+    moveLayoutItem(searcherSettingsLayout, 7, 0, 8, 0, 1, 3);
+    moveLayoutItem(searcherSettingsLayout, 6, 0, 7, 0, 1, 3);
+    moveLayoutItem(searcherSettingsLayout, 5, 0, 6, 0);
+    moveLayoutItem(searcherSettingsLayout, 5, 1, 6, 1);
+    moveLayoutItem(searcherSettingsLayout, 5, 2, 6, 2);
+    moveLayoutItem(searcherSettingsLayout, 4, 0, 5, 0, 1, 3);
+    searcherSettingsLayout->addWidget(labelSearcherPokemon, 3, 0);
+    searcherSettingsLayout->addWidget(labelSearcherItem, 4, 0);
+    searcherSettingsLayout->addWidget(checkListSearcherItem, 4, 1, 1, 2);
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
@@ -104,26 +204,28 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
-    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
-    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild5::transferSettings);
-    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild5::generate);
-    connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild5::search);
-    connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild5::generatorEncounterIndexChanged);
-    connect(ui->comboBoxSearcherEncounter, &QComboBox::currentIndexChanged, this, &Wild5::searcherEncounterIndexChanged);
-    connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &Wild5::generatorLocationIndexChanged);
-    connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &Wild5::searcherLocationIndexChanged);
-    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Wild5::generatorPokemonIndexChanged);
-    connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild5::searcherPokemonIndexChanged);
-    connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Wild5::generatorSeasonIndexChanged);
-    connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Wild5::searcherSeasonIndexChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild5::profileManager);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Phenomenon::profileIndexChanged);
+    connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Phenomenon::transferFilters);
+    connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Phenomenon::transferSettings);
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Phenomenon::generate);
+    connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Phenomenon::search);
+    connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Phenomenon::generatorEncounterIndexChanged);
+    connect(ui->comboBoxSearcherEncounter, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherEncounterIndexChanged);
+    connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &Phenomenon::generatorLocationIndexChanged);
+    connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherLocationIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Phenomenon::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherPokemonIndexChanged);
+    connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Phenomenon::generatorSeasonIndexChanged);
+    connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherSeasonIndexChanged);
+    connect(radioButtonSearcherPokemon, &QRadioButton::toggled, this, &Phenomenon::updateSearcherFilterMode);
+    connect(radioButtonSearcherItem, &QRadioButton::toggled, this, &Phenomenon::updateSearcherFilterMode);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Phenomenon::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
-    connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
-    connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
-    connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherFastSearchChanged);
+    connect(ui->filterSearcher, &Filter::ivsChanged, this, &Phenomenon::searcherFastSearchChanged);
+    connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Phenomenon::searcherFastSearchChanged);
+    connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Phenomenon::searcherFastSearchChanged);
 
     updateProfiles();
     if (hasProfiles())
@@ -134,7 +236,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     searcherFastSearchChanged();
 
     QSettings setting;
-    setting.beginGroup("wild5");
+    setting.beginGroup("phenomenon");
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -150,10 +252,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     setting.endGroup();
 }
 
-Wild5::~Wild5()
+Phenomenon::~Phenomenon()
 {
     QSettings setting;
-    setting.beginGroup("wild5");
+    setting.beginGroup("phenomenon");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
@@ -165,12 +267,12 @@ Wild5::~Wild5()
     delete ui;
 }
 
-bool Wild5::hasProfiles() const
+bool Phenomenon::hasProfiles() const
 {
     return !profiles.empty();
 }
 
-void Wild5::updateProfiles()
+void Phenomenon::updateProfiles()
 {
     profiles = ProfileLoader5::getProfiles();
 
@@ -181,14 +283,13 @@ void Wild5::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("wild5/profile", 0).toInt();
+    int val = setting.value("phenomenon/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
-
-bool Wild5::fastSearchEnabled() const
+bool Phenomenon::fastSearchEnabled() const
 {
     if (ivCache == nullptr)
     {
@@ -210,7 +311,120 @@ bool Wild5::fastSearchEnabled() const
     return min[0] >= 30 && min[2] >= 30 && min[4] >= 30 && (min[1] >= 30 || min[3] >= 30) && (min[5] >= 30 || max[5] <= 1);
 }
 
-void Wild5::generate()
+bool Phenomenon::removeByGeneratorFilters(const WildState5 &state) const
+{
+    if (state.getPhenomenonItem())
+    {
+        auto itemCheckState = checkListGeneratorItem->getCheckState();
+        if (itemCheckState == Qt::Unchecked)
+        {
+            return true;
+        }
+
+        bool pokemonSelected = ui->comboBoxGeneratorPokemon->currentIndex() > 0;
+        bool itemFilterAny = itemCheckState == Qt::Checked;
+        if (pokemonSelected && itemFilterAny)
+        {
+            return true;
+        }
+
+        auto items = checkListGeneratorItem->getCheckedData();
+        return std::find(items.begin(), items.end(), state.getItem()) == items.end();
+    }
+
+    return false;
+}
+
+bool Phenomenon::removeBySearcherFilters(const WildState5 &state) const
+{
+    bool itemMode = radioButtonSearcherItem->isChecked();
+    if (state.getPhenomenonItem())
+    {
+        if (!itemMode)
+        {
+            return true;
+        }
+
+        if (checkListSearcherItem->getCheckState() == Qt::Unchecked)
+        {
+            return true;
+        }
+
+        auto items = checkListSearcherItem->getCheckedData();
+        return std::find(items.begin(), items.end(), state.getItem()) == items.end();
+    }
+
+    return itemMode;
+}
+
+void Phenomenon::updateSearcherFilterMode()
+{
+    bool itemMode = radioButtonSearcherItem->isChecked();
+    ui->comboBoxSearcherPokemon->setEnabled(!itemMode);
+    checkListSearcherItem->setEnabled(itemMode);
+
+    if (itemMode)
+    {
+        ui->filterSearcher->resetEncounterSlots();
+        ui->spinBoxSearcherLevelMin->setValue(0);
+        ui->spinBoxSearcherLevelMax->setValue(0);
+        ui->filterSearcher->setLevelRange(1, 100);
+    }
+    else
+    {
+        searcherPokemonIndexChanged(ui->comboBoxSearcherPokemon->currentIndex());
+    }
+}
+
+void Phenomenon::updateItemFilter(QWidget *itemLabel, CheckList *itemFilter, EncounterArea5 &area, bool checkAll)
+{
+    itemFilter->clear();
+
+    PhenomenonType type;
+    if (area.getEncounter() == Encounter::DustCloud)
+    {
+        type = PhenomenonType::Cave;
+    }
+    else if (area.getEncounter() == Encounter::FlyingShadow)
+    {
+        type = PhenomenonType::Bridge;
+    }
+    else
+    {
+        if (itemFilter == checkListSearcherItem && radioButtonSearcherItem->isChecked())
+        {
+            radioButtonSearcherPokemon->setChecked(true);
+        }
+
+        if (itemFilter == checkListSearcherItem)
+        {
+            radioButtonSearcherPokemon->setVisible(false);
+        }
+        itemLabel->setVisible(false);
+        itemFilter->setVisible(false);
+        updateSearcherFilterMode();
+        return;
+    }
+
+    PhenomenonArea phenomenonArea(area.getLocation(), type);
+    auto items = phenomenonArea.getUniqueItems();
+    auto names = phenomenonArea.getItemNames();
+    for (size_t i = 0; i < items.size(); i++)
+    {
+        itemFilter->addItem(QString::fromStdString(names[i]), items[i]);
+    }
+    itemFilter->setChecks(std::vector<bool>(items.size(), checkAll));
+
+    itemLabel->setVisible(true);
+    itemFilter->setVisible(true);
+    if (itemFilter == checkListSearcherItem)
+    {
+        radioButtonSearcherPokemon->setVisible(true);
+    }
+    updateSearcherFilterMode();
+}
+
+void Phenomenon::generate()
 {
     if (!ui->filterGenerator->isValid(ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
     {
@@ -231,11 +445,38 @@ void Wild5::generate()
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
+    auto itemCheckState = checkListGeneratorItem->isVisible() ? checkListGeneratorItem->getCheckState() : Qt::Unchecked;
+    bool pokemonSelected = ui->comboBoxGeneratorPokemon->currentIndex() > 0;
+    bool generateItems = itemCheckState != Qt::Unchecked && !(pokemonSelected && itemCheckState == Qt::Checked);
+
     auto states = generator.generate(seed, ivAdvances, 0);
+    if (generateItems)
+    {
+        std::erase_if(states, [](const WildState5 &state) { return state.getPhenomenonItem(); });
+
+        WildGenerator5 itemGenerator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
+                                     encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile,
+                                     getUnfilteredWildStateFilter());
+        auto itemStates = itemGenerator.generate(seed, ivAdvances, 0);
+        std::erase_if(itemStates, [=, this](const WildState5 &state) {
+            return !state.getPhenomenonItem() || removeByGeneratorFilters(state);
+        });
+
+        states.insert(states.end(), itemStates.begin(), itemStates.end());
+        std::stable_sort(states.begin(), states.end(), [](const WildState5 &left, const WildState5 &right) {
+            return left.getAdvances() < right.getAdvances();
+        });
+    }
+    else
+    {
+        std::erase_if(states, [=, this](const WildState5 &state) {
+            return removeByGeneratorFilters(state);
+        });
+    }
     generatorModel->addItems(states);
 }
 
-void Wild5::generatorEncounterIndexChanged(int index)
+void Phenomenon::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -254,7 +495,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
     }
 }
 
-void Wild5::generatorLocationIndexChanged(int index)
+void Phenomenon::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -270,10 +511,12 @@ void Wild5::generatorLocationIndexChanged(int index)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
+
+        updateItemFilter(labelGeneratorItem, checkListGeneratorItem, area, true);
     }
 }
 
-void Wild5::generatorPokemonIndexChanged(int index)
+void Phenomenon::generatorPokemonIndexChanged(int index)
 {
     if (index <= 0)
     {
@@ -295,7 +538,7 @@ void Wild5::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Wild5::generatorSeasonIndexChanged(int index)
+void Phenomenon::generatorSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -303,7 +546,7 @@ void Wild5::generatorSeasonIndexChanged(int index)
     }
 }
 
-void Wild5::profileIndexChanged(int index)
+void Phenomenon::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -365,14 +608,14 @@ void Wild5::profileIndexChanged(int index)
     }
 }
 
-void Wild5::profileManager()
+void Phenomenon::profileManager()
 {
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
 
-void Wild5::search()
+void Phenomenon::search()
 {
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
@@ -383,7 +626,8 @@ void Wild5::search()
         return;
     }
 
-    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
+    bool itemMode = radioButtonSearcherItem->isChecked();
+    if (!itemMode && !ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
         return;
     }
@@ -400,12 +644,12 @@ void Wild5::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
-    auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
+    auto filter = itemMode ? getUnfilteredWildStateFilter() : ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;
-    if (fastSearchEnabled())
+    if (!itemMode && fastSearchEnabled())
     {
         auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
@@ -435,7 +679,12 @@ void Wild5::search()
 
     auto *timer = new QTimer();
     connect(timer, &QTimer::timeout, this, [=] {
-        searcherModel->addItems(searcher->getResults());
+        auto results = searcher->getResults();
+        std::erase_if(results, [=, this](const SearcherState5<WildState5> &result) {
+            const auto &state = result.getState();
+            return removeBySearcherFilters(state);
+        });
+        searcherModel->addItems(results);
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
@@ -443,7 +692,12 @@ void Wild5::search()
     connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        searcherModel->addItems(searcher->getResults());
+        auto results = searcher->getResults();
+        std::erase_if(results, [=, this](const SearcherState5<WildState5> &result) {
+            const auto &state = result.getState();
+            return removeBySearcherFilters(state);
+        });
+        searcherModel->addItems(results);
         ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
@@ -452,7 +706,7 @@ void Wild5::search()
     timer->start(1000);
 }
 
-void Wild5::searcherEncounterIndexChanged(int index)
+void Phenomenon::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -471,7 +725,7 @@ void Wild5::searcherEncounterIndexChanged(int index)
     }
 }
 
-void Wild5::searcherFastSearchChanged()
+void Phenomenon::searcherFastSearchChanged()
 {
     if (fastSearchEnabled())
     {
@@ -502,7 +756,7 @@ void Wild5::searcherFastSearchChanged()
     }
 }
 
-void Wild5::searcherLocationIndexChanged(int index)
+void Phenomenon::searcherLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -518,10 +772,12 @@ void Wild5::searcherLocationIndexChanged(int index)
         {
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
+
+        updateItemFilter(labelSearcherItem, checkListSearcherItem, area, false);
     }
 }
 
-void Wild5::searcherPokemonIndexChanged(int index)
+void Phenomenon::searcherPokemonIndexChanged(int index)
 {
     if (index <= 0)
     {
@@ -543,7 +799,7 @@ void Wild5::searcherPokemonIndexChanged(int index)
     }
 }
 
-void Wild5::searcherSeasonIndexChanged(int index)
+void Phenomenon::searcherSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -551,19 +807,21 @@ void Wild5::searcherSeasonIndexChanged(int index)
     }
 }
 
-void Wild5::transferFilters(int index)
+void Phenomenon::transferFilters(int index)
 {
     if (index == 0)
     {
         ui->filterSearcher->copyFrom(ui->filterGenerator);
+        checkListSearcherItem->setChecks(checkListGeneratorItem->getChecked());
     }
     else
     {
         ui->filterGenerator->copyFrom(ui->filterSearcher);
+        checkListGeneratorItem->setChecks(checkListSearcherItem->getChecked());
     }
 }
 
-void Wild5::transferSettings(int index)
+void Phenomenon::transferSettings(int index)
 {
     if (index == 0)
     {

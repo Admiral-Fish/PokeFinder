@@ -17,26 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WILDMODEL5_HPP
-#define WILDMODEL5_HPP
+#ifndef PHENOMENONMODEL_HPP
+#define PHENOMENONMODEL_HPP
 
+#include <Core/Gen5/States/PhenomenonState.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Gen5/States/WildState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
 #include <Model/TableModel.hpp>
 
 /**
- * @brief Provides a table model implementation to show wild encounter information for Gen 5
+ * @brief Provides a table model implementation to show hidden grotto information for Gen 5
  */
-class WildGeneratorModel5 : public TableModel<WildState5>
+class PhenomenonGeneratorModel5 : public TableModel<PhenomenonState>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new WildGeneratorModel5 object
+     * @brief Construct a new PhenomenonGeneratorModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */
-    WildGeneratorModel5(QObject *parent);
+    PhenomenonGeneratorModel5(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -68,51 +69,23 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-public slots:
-    /**
-     * @brief Sets flag that controls whether the model display stats or IVs
-     *
-     * @param flag Whether to show stats or not
-     */
-    void setShowStats(bool flag);
-
-    /**
-     * @brief Sets flag that controls whether the model displays the phenomenon column
-     *
-     * @param flag Whether to show the phenomenon column or not
-     */
-    void setShowPhenomenon(bool flag)
-    {
-        if (showPhenomenon != flag)
-        {
-            beginResetModel();
-            showPhenomenon = flag;
-            endResetModel();
-        }
-    }
-
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Phenomenon"), tr("Item"),   tr("Slot"),
-                           tr("Level"),    tr("PID"),     tr("Shiny"),      tr("Nature"), tr("Ability"),
-                           tr("HP"),       tr("Atk"),     tr("Def"),        tr("SpA"),    tr("SpD"),
-                           tr("Spe"),      tr("Hidden"),  tr("Power"),      tr("Gender"), tr("Characteristic") };
-    bool showStats;
-    bool showPhenomenon;
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Slot") };
 };
 
 /**
- * @brief Provides a table model implementation to show wild encounter information for Gen 5
+ * @brief Provides a table model implementation to show hidden grotto information for Gen 5
  */
-class WildSearcherModel5 : public TableModel<SearcherState5<WildState5>>
+class PhenomenonSearcherModel5 : public TableModel<SearcherState5<PhenomenonState>>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new WildSearcherModel5 object
+     * @brief Construct a new PhenomenonSearcherModel5 object
      *
      * @param parent Parent object, which takes memory ownership
      */
-    WildSearcherModel5(QObject *parent);
+    PhenomenonSearcherModel5(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -144,37 +117,8 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-public slots:
-    /**
-     * @brief Sets flag that controls whether the model display stats or IVs
-     *
-     * @param flag Whether to show stats or not
-     */
-    void setShowStats(bool flag);
-
-    /**
-     * @brief Sets flag that controls whether the model displays the phenomenon column
-     *
-     * @param flag Whether to show the phenomenon column or not
-     */
-    void setShowPhenomenon(bool flag)
-    {
-        if (showPhenomenon != flag)
-        {
-            beginResetModel();
-            showPhenomenon = flag;
-            endResetModel();
-        }
-    }
-
 private:
-    QStringList header = { tr("Seed"),      tr("Advances"), tr("Phenomenon"), tr("IV Advances"), tr("Item"),
-                           tr("Slot"),      tr("Level"),    tr("PID"),        tr("Shiny"),       tr("Nature"),
-                           tr("Ability"),   tr("HP"),       tr("Atk"),        tr("Def"),         tr("SpA"),
-                           tr("SpD"),       tr("Spe"),      tr("Hidden"),     tr("Power"),       tr("Gender"),
-                           tr("Characteristic"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
-    bool showStats;
-    bool showPhenomenon;
+    QStringList header = { tr("Seed"), tr("Advances"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
-#endif // WILDMODEL5_HPP
+#endif // PHENOMENONMODEL_HPP

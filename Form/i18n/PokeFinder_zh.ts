@@ -5025,6 +5025,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -9846,6 +9850,282 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
 </context>
 <context>
+    <name>Phenomenon</name>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rustling Grass</source>
+        <translation>摇动草丛</translation>
+    </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rippling Surfing</source>
+        <translation>水纹冲浪</translation>
+    </message>
+    <message>
+        <source>Rippling Fishing</source>
+        <translation>水纹钓鱼</translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>存档信息</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation>存档信息管理</translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>MAC地址</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>机型</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>按键</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>游戏</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>生成器</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation>乱数信息</translation>
+    </message>
+    <message>
+        <source>Lead</source>
+        <translation>队首</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation>初始帧</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation>最大帧数</translation>
+    </message>
+    <message>
+        <source>Offset</source>
+        <translation>Offset</translation>
+    </message>
+    <message>
+        <source>Lucky Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>遭遇类型</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation>季节</translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation>春天</translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation>夏天</translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation>秋天</translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation>冬天</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>地点</translation>
+    </message>
+    <message>
+        <source>Levels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation>筛选项</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation>检索器</translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation>起始日期</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation>最后日期</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>检索</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Compound Eyes</source>
+        <translation>复眼</translation>
+    </message>
+    <message>
+        <source>Cute Charm</source>
+        <translation>迷人身躯</translation>
+    </message>
+    <message>
+        <source>♂ Lead</source>
+        <translation>♂ 队首</translation>
+    </message>
+    <message>
+        <source>♀ Lead</source>
+        <translation>♀ 队首</translation>
+    </message>
+    <message>
+        <source>Level Modifier</source>
+        <translation>遭遇等级机率修正</translation>
+    </message>
+    <message>
+        <source>Hustle</source>
+        <translation>活力</translation>
+    </message>
+    <message>
+        <source>Pressure</source>
+        <translation>压迫感</translation>
+    </message>
+    <message>
+        <source>Vital Spirit</source>
+        <translation>干劲</translation>
+    </message>
+    <message>
+        <source>Slot Modifier</source>
+        <translation>遭遇种类修正</translation>
+    </message>
+    <message>
+        <source>Magnet Pull</source>
+        <translation>磁力</translation>
+    </message>
+    <message>
+        <source>Static</source>
+        <translation>静电</translation>
+    </message>
+    <message>
+        <source>Synchronize</source>
+        <translation>同步</translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation>请输入正确的日期范围</translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV/SHA searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV searching.
+Profile is missing or has an incompatible SHA cache.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile does not have a IV cache file configured</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings are not configured for fast searching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep initial/max advances below %1/%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ensure IV filters are set to common spreads</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Wild5</name>
     <message>
         <source>Gen 5 Wild</source>
@@ -9960,24 +10240,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>深色草丛</translation>
     </message>
     <message>
-        <source>Rustling Grass</source>
-        <translation>摇动草丛</translation>
-    </message>
-    <message>
         <source>Surfing</source>
         <translation>冲浪</translation>
     </message>
     <message>
-        <source>Rippling Surfing</source>
-        <translation>水纹冲浪</translation>
-    </message>
-    <message>
         <source>Fishing</source>
         <translation>钓鱼</translation>
-    </message>
-    <message>
-        <source>Rippling Fishing</source>
-        <translation>水纹钓鱼</translation>
     </message>
     <message>
         <source>Location</source>
@@ -10749,6 +11017,14 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11209,6 +11485,14 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

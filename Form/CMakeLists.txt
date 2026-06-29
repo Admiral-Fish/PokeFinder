@@ -69,6 +69,7 @@ set(PROJECT_UI
     Gen5/Eggs5.ui
     Gen5/Event5.ui
     Gen5/IDs5.ui
+    Gen5/Phenomenon.ui
     Gen5/Profile/ProfileCalibrator5.ui
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
@@ -182,6 +183,8 @@ set(PROJECT_SOURCES
     Gen5/HiddenGrotto.hpp
     Gen5/IDs5.cpp
     Gen5/IDs5.hpp
+    Gen5/Phenomenon.cpp
+    Gen5/Phenomenon.hpp
     Gen5/Profile/ProfileCalibrator5.cpp
     Gen5/Profile/ProfileCalibrator5.hpp
     Gen5/Profile/ProfileEditor5.cpp
