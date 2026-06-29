@@ -2,6 +2,105 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="es_ES">
 <context>
+    <name>AdjacentSeedTool</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IV Calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seconds +/-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wild / Static / Grotto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Roamer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chatot Pitches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Needles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ChainedSID</name>
     <message>
         <source>HP</source>
@@ -3488,6 +3587,10 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Grotto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4813,6 +4916,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>MainWindow</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 3</source>
         <translation>Generación 3</translation>
@@ -7697,6 +7804,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Static5</name>
     <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 5 Static</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9854,6 +9965,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation type="unfinished"></translation>

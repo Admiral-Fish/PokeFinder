@@ -2,6 +2,105 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>AdjacentSeedTool</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Profil</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>MAC Adresse</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>DS Typ</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>Gedrückte Knöpfe</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>Spiel</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Date/Time</source>
+        <translation>Datum/Uhrzeit</translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation>Minimale IV Advances</translation>
+    </message>
+    <message>
+        <source>IV Calculator</source>
+        <translation>IV Rechner</translation>
+    </message>
+    <message>
+        <source>Seconds +/-</source>
+        <translation>Sekunden +/-</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>Begegnungsart</translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation>Maximale IV Advances</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>Generieren</translation>
+    </message>
+    <message>
+        <source>Wild / Static / Grotto</source>
+        <translation>Wild / Stationär / Lichtung</translation>
+    </message>
+    <message>
+        <source>Roamer</source>
+        <translation>Wanderpokémon</translation>
+    </message>
+    <message>
+        <source>Chatot Pitches</source>
+        <translation>Plaudagei Tonhöhen</translation>
+    </message>
+    <message>
+        <source>Save Needles</source>
+        <translation>Speicherzeiger Pfeile</translation>
+    </message>
+</context>
+<context>
     <name>ChainedSID</name>
     <message>
         <source>HP</source>
@@ -3487,6 +3586,10 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Grotto</source>
         <translation>Versteckte Lichtungen</translation>
     </message>
@@ -4813,6 +4916,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>MainWindow</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 3</source>
         <translation></translation>
@@ -7691,6 +7798,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>Static5</name>
     <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gen 5 Static</source>
         <translation>Generation 5 Stationär</translation>
     </message>
@@ -9849,6 +9960,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 </context>
 <context>
     <name>Wild5</name>
+    <message>
+        <source>Adjacent Seed Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Generation 5 Wild</translation>

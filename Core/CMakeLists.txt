@@ -195,6 +195,8 @@ add_library(PokeFinderCore STATIC
     Gen5/States/State5.hpp
     Gen5/States/WildState5.hpp
     Gen5/StaticTemplate5.hpp
+    Gen5/Tools/AdjacentSeedCalculator.cpp
+    Gen5/Tools/AdjacentSeedCalculator.hpp
     Gen8/Den.hpp
     Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp

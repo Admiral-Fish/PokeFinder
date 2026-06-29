@@ -263,6 +263,7 @@
     <property name="title">
      <string>Gen 5 Tools</string>
     </property>
+    <addaction name="actionAdjacentSeedTool"/>
     <addaction name="actionIVCache"/>
     <addaction name="actionProfileCalibrator"/>
     <addaction name="actionProfileManager5"/>
@@ -394,6 +395,11 @@
   <action name="actionIVCache">
    <property name="text">
     <string>IV Cache</string>
+   </property>
+  </action>
+  <action name="actionAdjacentSeedTool">
+   <property name="text">
+    <string>Adjacent Seed Tool</string>
    </property>
   </action>
  </widget>
