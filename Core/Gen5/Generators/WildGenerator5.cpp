@@ -102,6 +102,21 @@ static bool canYieldPhenomenonItem(Encounter encounter)
     return encounter == Encounter::DustCloud || encounter == Encounter::FlyingShadow;
 }
 
+static bool checkFlyingShadowBattle(BWRNG &rng)
+{
+    return ((static_cast<u64>(rng.nextUInt()) * 1000) >> 32) < 200;
+}
+
+static bool checkFlyingShadowLead(BWRNG &rng, Lead lead)
+{
+    if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+    {
+        return (((static_cast<u64>(rng.nextUInt()) * 0xffff) >> 32) / 656) < 67;
+    }
+
+    return (rng.nextUInt() >> 31) == 1;
+}
+
 static bool hasShardDustCloudItems(Game version, u8 location)
 {
     if ((version & Game::BW2) == Game::None)
@@ -231,13 +246,44 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         bool pressure = false;
         bool sync = false;
 
-        if (canYieldPhenomenonItem(area.getEncounter()))
+        if (area.getEncounter() == Encounter::FlyingShadow)
+        {
+            phenomenonItem = !checkFlyingShadowBattle(go);
+        }
+        else if (canYieldPhenomenonItem(area.getEncounter()))
         {
             u8 battleRate = area.getEncounter() == Encounter::DustCloud ? 40 : 20;
             phenomenonItem = getPercentRand(go, bw) >= battleRate;
         }
 
-        if (!phenomenonItem && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        if (area.getEncounter() == Encounter::FlyingShadow && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        {
+            if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+            {
+                cuteCharm = checkFlyingShadowLead(go, lead);
+                if (!cuteCharm)
+                {
+                    go.advance(1);
+                }
+            }
+            else
+            {
+                bool flag = checkFlyingShadowLead(go, lead);
+                if (lead == Lead::MagnetPull || lead == Lead::Static)
+                {
+                    magnetStatic = flag;
+                }
+                else if (lead == Lead::Pressure)
+                {
+                    pressure = flag;
+                }
+                else if (lead <= Lead::SynchronizeEnd)
+                {
+                    sync = flag;
+                }
+            }
+        }
+        else if (!phenomenonItem && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
