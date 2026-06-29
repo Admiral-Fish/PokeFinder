@@ -76,11 +76,28 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays the phenomenon column
+     *
+     * @param flag Whether to show the phenomenon column or not
+     */
+    void setShowPhenomenon(bool flag)
+    {
+        if (showPhenomenon != flag)
+        {
+            beginResetModel();
+            showPhenomenon = flag;
+            endResetModel();
+        }
+    }
+
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Item"),  tr("Slot"),   tr("Level"),         tr("PID"), tr("Shiny"),
-                           tr("Nature"),   tr("Ability"), tr("HP"),    tr("Atk"),    tr("Def"),           tr("SpA"), tr("SpD"),
-                           tr("Spe"),      tr("Hidden"),  tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Phenomenon"), tr("Item"),   tr("Slot"),
+                           tr("Level"),    tr("PID"),     tr("Shiny"),      tr("Nature"), tr("Ability"),
+                           tr("HP"),       tr("Atk"),     tr("Def"),        tr("SpA"),    tr("SpD"),
+                           tr("Spe"),      tr("Hidden"),  tr("Power"),      tr("Gender"), tr("Characteristic") };
     bool showStats;
+    bool showPhenomenon;
 };
 
 /**
@@ -135,13 +152,29 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays the phenomenon column
+     *
+     * @param flag Whether to show the phenomenon column or not
+     */
+    void setShowPhenomenon(bool flag)
+    {
+        if (showPhenomenon != flag)
+        {
+            beginResetModel();
+            showPhenomenon = flag;
+            endResetModel();
+        }
+    }
+
 private:
-    QStringList header = { tr("Seed"),      tr("Advances"), tr("IV Advances"), tr("Item"),   tr("Slot"),
-                           tr("Level"),     tr("PID"),      tr("Shiny"),       tr("Nature"), tr("Ability"),
-                           tr("HP"),        tr("Atk"),      tr("Def"),         tr("SpA"),    tr("SpD"),
-                           tr("Spe"),       tr("Hidden"),   tr("Power"),       tr("Gender"), tr("Characteristic"),
-                           tr("Date/Time"), tr("Timer0"),   tr("Buttons") };
+    QStringList header = { tr("Seed"),      tr("Advances"), tr("Phenomenon"), tr("IV Advances"), tr("Item"),
+                           tr("Slot"),      tr("Level"),    tr("PID"),        tr("Shiny"),       tr("Nature"),
+                           tr("Ability"),   tr("HP"),       tr("Atk"),        tr("Def"),         tr("SpA"),
+                           tr("SpD"),       tr("Spe"),      tr("Hidden"),     tr("Power"),       tr("Gender"),
+                           tr("Characteristic"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
     bool showStats;
+    bool showPhenomenon;
 };
 
 #endif // WILDMODEL5_HPP

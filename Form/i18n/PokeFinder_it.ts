@@ -5034,6 +5034,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>IV Cache</source>
         <translation>Cache IV</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -9836,6 +9840,282 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
 </context>
 <context>
+    <name>Phenomenon</name>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rustling Grass</source>
+        <translation>Erba Frusciante</translation>
+    </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rippling Surfing</source>
+        <translation>Surf Increspato</translation>
+    </message>
+    <message>
+        <source>Rippling Fishing</source>
+        <translation>Pesca Increspata</translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nessuno</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Profilo</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation>Gestore</translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>Indirizzo MAC</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>Modello DS</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>Pressione Tasti</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>Gioco</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>Generatore</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation>Info RNG</translation>
+    </message>
+    <message>
+        <source>Lead</source>
+        <translation>Leader</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation>Avanzamenti IV</translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation>Avanzamenti Iniziali</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation>Avanzamenti Massimi</translation>
+    </message>
+    <message>
+        <source>Offset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power</source>
+        <translation>Potere fortuna</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>Genera</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Impostazioni</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>Incontro</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation>Stagione</translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation>Primavera</translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation>Estate</translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation>Autunno</translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation>Inverno</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Zona</translation>
+    </message>
+    <message>
+        <source>Levels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation>Filtri</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation>Ricercatore</translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation>Avanzamenti IV Iniziali</translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation>Avanzamenti IV Massimi</translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation>Data Iniziale</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation>Data Finale</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Cerca</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annulla</translation>
+    </message>
+    <message>
+        <source>Compound Eyes</source>
+        <translation>Insettocchi</translation>
+    </message>
+    <message>
+        <source>Cute Charm</source>
+        <translation>Incantevole</translation>
+    </message>
+    <message>
+        <source>♂ Lead</source>
+        <translation>Leader ♂</translation>
+    </message>
+    <message>
+        <source>♀ Lead</source>
+        <translation>Leader ♀</translation>
+    </message>
+    <message>
+        <source>Level Modifier</source>
+        <translation>Modificatore Livello</translation>
+    </message>
+    <message>
+        <source>Hustle</source>
+        <translation>Tuttafretta</translation>
+    </message>
+    <message>
+        <source>Pressure</source>
+        <translation>Pressione</translation>
+    </message>
+    <message>
+        <source>Vital Spirit</source>
+        <translation>Spiritovivo</translation>
+    </message>
+    <message>
+        <source>Slot Modifier</source>
+        <translation>Modificatore Slot</translation>
+    </message>
+    <message>
+        <source>Magnet Pull</source>
+        <translation>Magnetismo</translation>
+    </message>
+    <message>
+        <source>Static</source>
+        <translation>Statico</translation>
+    </message>
+    <message>
+        <source>Synchronize</source>
+        <translation>Sincronismo</translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation>Intervallo di date non valido</translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation>La data iniziale è successiva alla data finale</translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV/SHA searching</source>
+        <translation>Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV searching.
+Profile is missing or has an incompatible SHA cache.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile does not have a IV cache file configured</source>
+        <translation>Il profilo non ha un file IV cache configurato</translation>
+    </message>
+    <message>
+        <source>Settings are not configured for fast searching</source>
+        <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
+    </message>
+    <message>
+        <source>Keep initial/max advances below %1/%2</source>
+        <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
+    </message>
+    <message>
+        <source>Ensure IV filters are set to common spreads</source>
+        <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
+    </message>
+</context>
+<context>
     <name>Wild5</name>
     <message>
         <source>Gen 5 Wild</source>
@@ -9950,24 +10230,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Erba Scura</translation>
     </message>
     <message>
-        <source>Rustling Grass</source>
-        <translation>Erba Frusciante</translation>
-    </message>
-    <message>
         <source>Surfing</source>
         <translation>Surf</translation>
     </message>
     <message>
-        <source>Rippling Surfing</source>
-        <translation>Surf Increspato</translation>
-    </message>
-    <message>
         <source>Fishing</source>
         <translation>Pesca</translation>
-    </message>
-    <message>
-        <source>Rippling Fishing</source>
-        <translation>Pesca Increspata</translation>
     </message>
     <message>
         <source>Location</source>
@@ -10740,6 +11008,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>Characteristic</source>
         <translation>Caratteristica</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11201,6 +11477,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
         <translation>Tasti</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -254,6 +254,14 @@ public:
      */
     bool compareState(const WildState8 &state) const;
 
+    /**
+     * @brief Determines if any filters are active
+     *
+     * @return true Filters are active
+     * @return false No filters are active
+     */
+    bool hasFilters() const;
+
 protected:
     std::array<bool, 12> encounterSlots;
 };

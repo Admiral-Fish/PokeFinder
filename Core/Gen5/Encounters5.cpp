@@ -29,6 +29,7 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData5.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 struct DynamicSlot
 {
@@ -89,6 +90,32 @@ struct WildEncounterGrotto
     std::array<u16, 16> hiddenItems;
 };
 static_assert(sizeof(WildEncounterGrotto) == 138);
+
+template <size_t size>
+static bool contains(const std::array<u8, size> &locations, u8 location)
+{
+    return std::find(locations.begin(), locations.end(), location) != locations.end();
+}
+
+static bool isDustCloudLocation(Game version, u8 location)
+{
+    constexpr std::array<u8, 35> bwLocations
+        = { 41, 42, 43, 44, 45, 46, 47, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,
+            63, 64, 65, 66, 67, 68, 69, 70, 71, 80, 81, 85, 86, 87, 96, 97, 98 };
+    constexpr std::array<u8, 35> bw2Locations
+        = { 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 36, 49, 50, 52, 71, 74, 75,
+            77, 80, 81, 82, 83, 85, 87, 90, 91, 92, 93, 94, 102, 103, 108, 109, 110 };
+
+    return (version & Game::BW) != Game::None ? contains(bwLocations, location) : contains(bw2Locations, location);
+}
+
+static bool isFlyingShadowLocation(Game version, u8 location)
+{
+    constexpr std::array<u8, 2> bwLocations = { 74, 76 };
+    constexpr std::array<u8, 2> bw2Locations = { 96, 98 };
+
+    return (version & Game::BW) != Game::None ? contains(bwLocations, location) : contains(bw2Locations, location);
+}
 
 namespace Encounters5
 {
@@ -169,7 +196,11 @@ namespace Encounters5
                 }
                 break;
             case Encounter::GrassRustling:
-                if (entrySeason->grassSpecialRate != 0)
+            case Encounter::DustCloud:
+            case Encounter::FlyingShadow:
+                if (entrySeason->grassSpecialRate != 0
+                    && (encounter == Encounter::DustCloud) == isDustCloudLocation(version, entry->location)
+                    && (encounter == Encounter::FlyingShadow) == isFlyingShadowLocation(version, entry->location))
                 {
                     for (size_t i = 0; i < 12; i++)
                     {
@@ -263,16 +294,47 @@ namespace Encounters5
 
     std::vector<PhenomenonArea> getPhenomenonEncounters()
     {
-        u32 length;
-        auto *data = Utilities::decompress<WildEncounterGrotto>(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
-
-        const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
-
         std::vector<PhenomenonArea> encounters;
-        for (size_t i = 0; i < length; i++)
-        {
+        auto addEncounters = [&encounters](const u8 *data, u32 length, Game version) {
+            for (size_t offset = 0; offset < length;)
+            {
+                const auto *entry = reinterpret_cast<const WildEncounter5 *>(data + offset);
+                bool hasPhenomenon = false;
+                for (u8 i = 0; i < entry->seasonCount; i++)
+                {
+                    hasPhenomenon |= entry->seasons[i].grassSpecialRate != 0;
+                }
 
-        }
+                bool exists = std::find_if(encounters.begin(), encounters.end(), [entry](const PhenomenonArea &area) {
+                    return area.getLocation() == entry->location;
+                }) != encounters.end();
+
+                if (hasPhenomenon && !exists)
+                {
+                    PhenomenonType type = PhenomenonType::Grass;
+                    if (isDustCloudLocation(version, entry->location))
+                    {
+                        type = PhenomenonType::Cave;
+                    }
+                    else if (isFlyingShadowLocation(version, entry->location))
+                    {
+                        type = PhenomenonType::Bridge;
+                    }
+
+                    encounters.emplace_back(entry->location, type);
+                }
+
+                offset += sizeof(WildEncounter5) + entry->seasonCount * sizeof(WildEncounter5Season);
+            }
+        };
+
+        u32 length;
+        const u8 *data = Utilities::decompress<u8>(BLACK2.data(), BLACK2.size(), length);
+        addEncounters(data, length, Game::Black2);
+        delete[] data;
+
+        data = Utilities::decompress<u8>(WHITE2.data(), WHITE2.size(), length);
+        addEncounters(data, length, Game::White2);
         delete[] data;
         return encounters;
     }

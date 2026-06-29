@@ -27,7 +27,7 @@ constexpr std::array<u16, 4> SHARDS = { 72, 73, 74, 75 };
 constexpr std::array<u16, 10> STONES = { 80, 81, 82, 83, 84, 85, 107, 108, 109, 110 };
 constexpr u16 EVERSTONE = 229;
 
-constexpr std::array<u16, 15> SHARD_LOCATIONS = { 503, 504, 505, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 541 };
+constexpr std::array<u8, 6> SHARD_LOCATIONS = { 49, 50, 52, 81, 82, 83 };
 
 static u16 getBridgeItem(BWRNG &rng)
 {
@@ -40,7 +40,7 @@ static u16 getBridgeItem(BWRNG &rng)
     return FEATHERS.back();
 }
 
-static u16 getCaveItem(BWRNG &rng, u16 location)
+static u16 getCaveItem(BWRNG &rng, u8 location)
 {
     u16 prng = rng.nextUInt(1000);
     if (std::binary_search(SHARD_LOCATIONS.begin(), SHARD_LOCATIONS.end(), location))
@@ -70,8 +70,9 @@ PhenomenonArea::PhenomenonArea(u8 location, PhenomenonType type) : location(loca
     case PhenomenonType::Cave:
         if (std::find(SHARD_LOCATIONS.begin(), SHARD_LOCATIONS.end(), location) != SHARD_LOCATIONS.end())
         {
-            std::copy(SHARD_LOCATIONS.begin(), SHARD_LOCATIONS.end(), items.begin());
-            itemCount = SHARD_LOCATIONS.size();
+            std::copy(SHARDS.begin(), SHARDS.end(), items.begin());
+            itemCount = SHARDS.size();
+            break;
         }
 
         std::copy(STONES.begin(), STONES.end(), items.begin() + itemCount);

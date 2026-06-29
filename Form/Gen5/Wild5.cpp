@@ -66,12 +66,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::GrassRustling),
-                                            toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
-                                            toInt(Encounter::SuperRodRippling) });
-    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::GrassRustling),
-                                           toInt(Encounter::Surfing), toInt(Encounter::SurfingRippling), toInt(Encounter::SuperRod),
-                                           toInt(Encounter::SuperRodRippling) });
+    ui->comboBoxGeneratorEncounter->setup(
+        { toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing), toInt(Encounter::SuperRod) });
+    ui->comboBoxSearcherEncounter->setup(
+        { toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing), toInt(Encounter::SuperRod) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
