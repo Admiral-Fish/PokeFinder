@@ -10691,11 +10691,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <source>Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Steps</source>
+        <source>Movements</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11053,6 +11049,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
         <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
+        <source>Movements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -10684,11 +10684,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>个性</translation>
     </message>
     <message>
-        <source>Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Steps</source>
+        <source>Movements</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11047,6 +11043,11 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
         <source>Advances</source>
         <translation>帧数</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
+        <source>Movements</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>

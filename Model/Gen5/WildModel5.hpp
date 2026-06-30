@@ -77,16 +77,16 @@ public slots:
     void setShowStats(bool flag);
 
     /**
-     * @brief Sets flag that controls whether the model displays moving trigger ratio
+     * @brief Sets flag that controls whether the model displays moving trigger steps
      *
-     * @param flag Whether to show moving trigger ratio or not
+     * @param flag Whether to show moving trigger steps or not
      */
     void setShowMovingTrigger(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Ratio"),  tr("Steps"), tr("Item"),   tr("Slot"),   tr("Level"),
-                           tr("PID"),      tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),
-                           tr("SpA"),      tr("SpD"),    tr("Spe"),    tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Movements"), tr("Item"), tr("Slot"),   tr("Level"),  tr("PID"),
+                           tr("Shiny"),    tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),    tr("SpA"),
+                           tr("SpD"),      tr("Spe"),    tr("Hidden"),  tr("Power"),  tr("Gender"), tr("Characteristic") };
     bool showStats;
     bool showMovingTrigger;
 };
@@ -143,13 +143,21 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays moving trigger steps
+     *
+     * @param flag Whether to show moving trigger steps or not
+     */
+    void setShowMovingTrigger(bool flag);
+
 private:
-    QStringList header = { tr("Seed"),      tr("Advances"), tr("IV Advances"), tr("Item"),   tr("Slot"),
-                           tr("Level"),     tr("PID"),      tr("Shiny"),       tr("Nature"), tr("Ability"),
-                           tr("HP"),        tr("Atk"),      tr("Def"),         tr("SpA"),    tr("SpD"),
-                           tr("Spe"),       tr("Hidden"),   tr("Power"),       tr("Gender"), tr("Characteristic"),
-                           tr("Date/Time"), tr("Timer0"),   tr("Buttons") };
+    QStringList header = { tr("Seed"),          tr("Advances"), tr("Movements"),    tr("IV Advances"), tr("Item"),
+                           tr("Slot"),          tr("Level"),    tr("PID"),          tr("Shiny"),       tr("Nature"),
+                           tr("Ability"),       tr("HP"),       tr("Atk"),          tr("Def"),         tr("SpA"),
+                           tr("SpD"),           tr("Spe"),      tr("Hidden"),       tr("Power"),       tr("Gender"),
+                           tr("Characteristic"), tr("Date/Time"), tr("Timer0"),     tr("Buttons") };
     bool showStats;
+    bool showMovingTrigger;
 };
 
 #endif // WILDMODEL5_HPP

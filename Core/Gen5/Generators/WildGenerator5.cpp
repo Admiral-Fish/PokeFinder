@@ -65,6 +65,31 @@ static u8 getMovingTrigger(BWRNG &rng)
     return (rng.nextUInt() >> 16) / 656;
 }
 
+static u8 getMovingTrigger(BWRNG &rng, bool bw, Lead lead, Encounter encounter)
+{
+    if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+    {
+        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        {
+            if (getPercentRand(rng, bw) >= 67)
+            {
+                getPercentRand(rng, bw);
+            }
+        }
+        else
+        {
+            getPercentRand(rng, bw);
+        }
+    }
+
+    if (encounter == Encounter::GrassDark)
+    {
+        getPercentRand(rng, bw);
+    }
+
+    return getMovingTrigger(rng);
+}
+
 static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const PersonalInfo *info)
 {
     constexpr u8 ItemTable[2][3] = { { 50, 55, 0 }, { 60, 80, 0 } };
@@ -97,11 +122,12 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 }
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
-                               bool searchMovingTrigger,
+                               bool searchMovingTrigger, bool requireMovingTrigger,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
-    searchMovingTrigger(searchMovingTrigger)
+    searchMovingTrigger(searchMovingTrigger),
+    requireMovingTrigger(requireMovingTrigger)
 {
 }
 
@@ -136,8 +162,10 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 {
     u32 advances = Utilities5::initialAdvances(seed, profile);
     u32 start = advances + initialAdvances;
+    bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
     BWRNG rng(seed, start);
-    BWRNG encounterRNG(seed, start + (searchMovingTrigger ? 1 : 0));
+    BWRNG encounterRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
+    BWRNG triggerRNG(seed, start + (searchMovingTrigger ? 1 : 0));
     auto jump = rng.getJump(offset);
 
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
@@ -210,9 +238,23 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             continue;
         }
 
-        u8 movingTrigger = searchMovingTrigger ? getMovingTrigger(go) : StepEncounter5::impossible;
+        BWRNG triggerGo(triggerRNG, jump);
+        u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(go) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
+                                               : StepEncounter5::impossible;
         u8 movingSteps = searchMovingTrigger ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger)
                                              : StepEncounter5::impossible;
+        if (requireMovingTrigger && movingSteps == StepEncounter5::impossible)
+        {
+            rng.nextUInt(0x1fff);
+            encounterRNG.next();
+            triggerRNG.next();
+            continue;
+        }
+
+        if (searchMovingTrigger && !bw2)
+        {
+            getMovingTrigger(go);
+        }
 
         u8 encounterSlot;
         if (magnetStatic && !modifiedSlots.empty())
@@ -264,6 +306,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         if (searchMovingTrigger)
         {
             encounterRNG.next();
+            triggerRNG.next();
         }
         for (const auto &iv : ivs)
         {

@@ -136,6 +136,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
             generate();
         }
     });
+    connect(ui->checkBoxSearcherMovingTrigger, &QCheckBox::toggled, searcherModel, &WildSearcherModel5::setShowMovingTrigger);
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
@@ -245,7 +246,7 @@ void Wild5::generate()
     bool searchMovingTrigger = ui->checkBoxGeneratorMovingTrigger->isChecked() && (currentProfile->getVersion() & Game::Gen5) != Game::None;
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, searchMovingTrigger,
+    WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, searchMovingTrigger, false,
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
@@ -412,9 +413,11 @@ void Wild5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    bool searchMovingTrigger
+        = ui->checkBoxSearcherMovingTrigger->isChecked() && supportsMovingTrigger(ui->comboBoxSearcherEncounter->getEnum<Encounter>(), currentProfile);
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower, false,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower, searchMovingTrigger, searchMovingTrigger,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;
@@ -470,6 +473,12 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        bool movingTrigger = supportsMovingTrigger(encounter, currentProfile);
+        ui->checkBoxSearcherMovingTrigger->setEnabled(movingTrigger);
+        if (!movingTrigger)
+        {
+            ui->checkBoxSearcherMovingTrigger->setChecked(false);
+        }
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -574,6 +583,7 @@ void Wild5::transferSettings(int index)
         ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
         ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
         ui->comboBoxSearcherSeason->setCurrentIndex(ui->comboBoxGeneratorSeason->currentIndex());
+        ui->checkBoxSearcherMovingTrigger->setChecked(ui->checkBoxGeneratorMovingTrigger->isChecked());
     }
     else
     {
@@ -581,5 +591,6 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
+        ui->checkBoxGeneratorMovingTrigger->setChecked(ui->checkBoxSearcherMovingTrigger->isChecked());
     }
 }

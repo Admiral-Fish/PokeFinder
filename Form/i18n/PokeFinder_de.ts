@@ -10687,12 +10687,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Persönlichkeit</translation>
     </message>
     <message>
-        <source>Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <source>Movements</source>
+        <translation>Bewegungen</translation>
     </message>
 </context>
 <context>
@@ -11050,6 +11046,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
         <source>Advances</source>
         <translation>Ziel Advance</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
+        <source>Movements</source>
+        <translation>Bewegungen</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
