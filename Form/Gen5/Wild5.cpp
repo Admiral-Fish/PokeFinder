@@ -19,7 +19,6 @@
 
 #include "Wild5.hpp"
 #include "ui_Wild5.h"
-#include <Form/Gen5/Tools/AdjacentSeedTool.hpp>
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
@@ -36,6 +35,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeed.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -108,9 +108,9 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
-    auto *adjacentSeedTool = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
-    connect(adjacentSeedTool, &QAction::triggered, this, &Wild5::openAdjacentSeedTool);
-    ui->tableViewSearcher->addAction(adjacentSeedTool);
+    auto *adjacentSeed = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
+    connect(adjacentSeed, &QAction::triggered, this, &Wild5::openAdjacentSeed);
+    ui->tableViewSearcher->addAction(adjacentSeed);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
@@ -569,11 +569,11 @@ void Wild5::transferSettings(int index)
     }
 }
 
-void Wild5::openAdjacentSeedTool()
+void Wild5::openAdjacentSeed()
 {
     QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
 
-    auto *window = new AdjacentSeedTool(state.getDateTime(), state.getButtons(), *currentProfile);
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile);
     window->show();
 }

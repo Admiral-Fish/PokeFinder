@@ -17,38 +17,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADJACENTSEEDTOOL_HPP
-#define ADJACENTSEEDTOOL_HPP
+#ifndef ADJACENTSEED_HPP
+#define ADJACENTSEED_HPP
 
-#include <Core/Enum/Buttons.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Tools/AdjacentSeedCalculator.hpp>
-#include <Core/Util/DateTime.hpp>
 #include <QWidget>
 #include <vector>
 
-class AdjacentSeedModel5;
-class QModelIndex;
+class AdjacentSeedModel;
+class DateTime;
 class QStandardItemModel;
+
+enum class Button : u16;
 
 namespace Ui
 {
-    class AdjacentSeedTool;
+    class AdjacentSeed;
 }
 
-class AdjacentSeedTool : public QWidget
+class AdjacentSeed : public QWidget
 {
     Q_OBJECT
 signals:
     void profilesModified(int);
 
 public:
-    AdjacentSeedTool(QWidget *parent = nullptr);
-    AdjacentSeedTool(const DateTime &dateTime, Buttons buttons, AdjacentSeedMethod method = AdjacentSeedMethod::Standard,
+    AdjacentSeed(QWidget *parent = nullptr);
+    AdjacentSeed(const DateTime &dateTime, Buttons buttons, AdjacentSeedMethod method = AdjacentSeedMethod::Standard,
                      QWidget *parent = nullptr);
-    AdjacentSeedTool(const DateTime &dateTime, Buttons buttons, const Profile5 &profile,
+    AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile,
                      AdjacentSeedMethod method = AdjacentSeedMethod::Standard, QWidget *parent = nullptr);
-    ~AdjacentSeedTool() override;
+    ~AdjacentSeed() override;
 
     bool hasProfiles() const;
 
@@ -59,11 +59,11 @@ protected:
     bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
-    Ui::AdjacentSeedTool *ui;
-    AdjacentSeedModel5 *model;
+    Ui::AdjacentSeed *ui;
+    AdjacentSeedModel *model;
     QStandardItemModel *keypressModel;
-    Profile5 *currentProfile = nullptr;
-    Buttons currentButtons = Buttons::None;
+    Profile5 *currentProfile;
+    Buttons currentButtons;
     std::vector<Profile5> profiles;
 
     Buttons getSelectedButtons() const;
@@ -82,4 +82,4 @@ private slots:
     void updatePreview();
 };
 
-#endif // ADJACENTSEEDTOOL_HPP
+#endif // ADJACENTSEED_HPP

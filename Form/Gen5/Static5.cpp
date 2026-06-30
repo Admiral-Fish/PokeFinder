@@ -19,7 +19,6 @@
 
 #include "Static5.hpp"
 #include "ui_Static5.h"
-#include <Form/Gen5/Tools/AdjacentSeedTool.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -34,6 +33,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeed.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -85,9 +85,9 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
-    auto *adjacentSeedTool = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
-    connect(adjacentSeedTool, &QAction::triggered, this, &Static5::openAdjacentSeedTool);
-    ui->tableViewSearcher->addAction(adjacentSeedTool);
+    auto *adjacentSeed = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
+    connect(adjacentSeed, &QAction::triggered, this, &Static5::openAdjacentSeed);
+    ui->tableViewSearcher->addAction(adjacentSeed);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
@@ -539,7 +539,7 @@ void Static5::transferSettings(int index)
     }
 }
 
-void Static5::openAdjacentSeedTool()
+void Static5::openAdjacentSeed()
 {
     QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
@@ -547,6 +547,6 @@ void Static5::openAdjacentSeedTool()
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
     auto method = staticTemplate->getRoamer() ? AdjacentSeedMethod::Roamer : AdjacentSeedMethod::Standard;
 
-    auto *window = new AdjacentSeedTool(state.getDateTime(), state.getButtons(), *currentProfile, method);
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, method);
     window->show();
 }

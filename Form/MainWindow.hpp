@@ -283,14 +283,14 @@ private slots:
     void openWild5();
 
     /**
+     * @brief Opens the Gen 5 Adjacent Seed Tool window
+     */
+    void openAdjacentSeed() const;
+
+    /**
      * @brief Opens the Gen 5 IV Cache Finder window
      */
     void openIVCacheFinder() const;
-
-    /**
-     * @brief Opens the Gen 5 Adjacent Seed Tool window
-     */
-    void openAdjacentSeedTool() const;
 
     /**
      * @brief Opens the Gen 5 Profile Calibrator window

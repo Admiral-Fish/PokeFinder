@@ -17,18 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AdjacentSeedModel5.hpp"
+#include "AdjacentSeedModel.hpp"
 
-AdjacentSeedModel5::AdjacentSeedModel5(QObject *parent) : TableModel(parent)
+AdjacentSeedModel::AdjacentSeedModel(QObject *parent) : TableModel(parent)
 {
 }
 
-int AdjacentSeedModel5::columnCount(const QModelIndex &parent) const
+int AdjacentSeedModel::columnCount(const QModelIndex &parent) const
 {
     return 10;
 }
 
-QVariant AdjacentSeedModel5::data(const QModelIndex &index, int role) const
+QVariant AdjacentSeedModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -36,7 +36,7 @@ QVariant AdjacentSeedModel5::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return QString("%1").arg(state.getSeed(), 16, 16, QChar('0')).toUpper();
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
             return QString::fromStdString(state.getDateTime().toString());
         case 2:
@@ -59,7 +59,7 @@ QVariant AdjacentSeedModel5::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant AdjacentSeedModel5::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant AdjacentSeedModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {

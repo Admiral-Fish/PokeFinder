@@ -19,7 +19,6 @@
 
 #include "HiddenGrotto.hpp"
 #include "ui_HiddenGrotto.h"
-#include <Form/Gen5/Tools/AdjacentSeedTool.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -36,6 +35,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeed.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -105,9 +105,9 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    auto *adjacentSeedTool = new QAction(tr("Adjacent Seed Tool"), ui->tableViewPokemonSearcher);
-    connect(adjacentSeedTool, &QAction::triggered, this, &HiddenGrotto::openAdjacentSeedTool);
-    ui->tableViewPokemonSearcher->addAction(adjacentSeedTool);
+    auto *adjacentSeed = new QAction(tr("Adjacent Seed Tool"), ui->tableViewPokemonSearcher);
+    connect(adjacentSeed, &QAction::triggered, this, &HiddenGrotto::openAdjacentSeed);
+    ui->tableViewPokemonSearcher->addAction(adjacentSeed);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
     connect(ui->tabGrottoRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
@@ -828,11 +828,11 @@ void HiddenGrotto::transferSettingsPokemon(int index)
     }
 }
 
-void HiddenGrotto::openAdjacentSeedTool()
+void HiddenGrotto::openAdjacentSeed()
 {
     QModelIndex index = pokemonProxyModel->mapToSource(ui->tableViewPokemonSearcher->currentIndex());
     const auto &state = pokemonSearcherModel->getItem(index.row());
 
-    auto *window = new AdjacentSeedTool(state.getDateTime(), state.getButtons(), *currentProfile);
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile);
     window->show();
 }

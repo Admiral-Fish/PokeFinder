@@ -48,7 +48,7 @@
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
-#include <Form/Gen5/Tools/AdjacentSeedTool.hpp>
+#include <Form/Gen5/Tools/AdjacentSeed.hpp>
 #include <Form/Gen5/Tools/IVCacheFinder.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
@@ -113,7 +113,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
-    connect(ui->actionAdjacentSeedTool, &QAction::triggered, this, &MainWindow::openAdjacentSeedTool);
+    connect(ui->actionAdjacentSeed, &QAction::triggered, this, &MainWindow::openAdjacentSeed);
     connect(ui->actionIVCache, &QAction::triggered, this, &MainWindow::openIVCacheFinder);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
@@ -564,15 +564,9 @@ void MainWindow::openWild5()
     }
 }
 
-void MainWindow::openIVCacheFinder() const
+void MainWindow::openAdjacentSeed() const
 {
-    auto *window = new IVCacheFinder();
-    window->show();
-}
-
-void MainWindow::openAdjacentSeedTool() const
-{
-    auto *window = new AdjacentSeedTool();
+    auto *window = new AdjacentSeed();
     if (!window->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
@@ -582,11 +576,17 @@ void MainWindow::openAdjacentSeedTool() const
     }
     else
     {
-        connect(window, &AdjacentSeedTool::profilesModified, this, &MainWindow::updateProfiles);
-        connect(this, &MainWindow::profilesModified5, window, &AdjacentSeedTool::updateProfiles);
+        connect(window, &AdjacentSeed::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, window, &AdjacentSeed::updateProfiles);
         window->show();
         window->raise();
     }
+}
+
+void MainWindow::openIVCacheFinder() const
+{
+    auto *window = new IVCacheFinder();
+    window->show();
 }
 
 void MainWindow::openProfileCalibrator() const

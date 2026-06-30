@@ -167,9 +167,9 @@ private slots:
     void searcherLocationIndexChanged(int index);
 
     /**
-     * @brief Opens adjacent seed tool for the selected searcher result
+     * @brief Opens adjacent seed for the selected searcher result
      */
-    void openAdjacentSeedTool();
+    void openAdjacentSeed();
 
     /**
      * @brief Updates the encounter slot filter based on the pokemon

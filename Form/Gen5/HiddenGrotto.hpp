@@ -204,9 +204,9 @@ private slots:
     void profileManager();
 
     /**
-     * @brief Opens adjacent seed tool for the selected pokemon searcher result
+     * @brief Opens adjacent seed for the selected pokemon searcher result
      */
-    void openAdjacentSeedTool();
+    void openAdjacentSeed();
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab

@@ -125,9 +125,9 @@ private slots:
     void profileManager();
 
     /**
-     * @brief Opens adjacent seed tool for the selected searcher result
+     * @brief Opens adjacent seed for the selected searcher result
      */
-    void openAdjacentSeedTool();
+    void openAdjacentSeed();
 
     /**
      * @brief Searches static encounters from the provided IVs
