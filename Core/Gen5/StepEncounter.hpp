@@ -73,27 +73,33 @@ namespace StepEncounter5
         return &patterns[rate - 1];
     }
 
-    inline u8 getSteps(u8 ratio, const Pattern &pattern)
+    inline u8 getSteps(u8 ratio, const Pattern &pattern, u8 multiplier = 1)
     {
-        if (ratio > pattern.max)
+        if (ratio > pattern.max * multiplier)
         {
             return impossible;
         }
 
-        u8 needed = std::max<u8>(1, ratio);
+        u8 needed = std::max<u8>(1, (ratio + multiplier - 1) / multiplier);
         return pattern.safety + std::max<u8>(1, ((needed - 1 + pattern.up - 1) / pattern.up) * pattern.interval);
     }
 
-    inline u8 getSteps(Game version, Encounter encounter, u8 rate, u8 ratio)
+    inline u8 getSteps(Game version, Encounter encounter, u8 rate, u8 ratio, bool stepModifier = false)
     {
         if ((version & Game::BW) != Game::None
             && (encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing))
         {
-            return ratio <= rate ? (ratio <= 1 ? 0 : 1) : impossible;
+            u16 threshold = stepModifier ? rate * 2 : rate;
+            return ratio <= threshold ? (ratio <= 1 ? 0 : 1) : impossible;
         }
 
         const Pattern *pattern = getPattern(version, encounter, rate);
-        return pattern != nullptr ? getSteps(ratio, *pattern) : impossible;
+        if (pattern == nullptr)
+        {
+            return impossible;
+        }
+
+        return getSteps(ratio, *pattern, stepModifier ? 2 : 1);
     }
 }
 

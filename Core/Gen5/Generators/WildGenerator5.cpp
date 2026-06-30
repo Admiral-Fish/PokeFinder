@@ -65,6 +65,11 @@ static u8 getMovingTrigger(BWRNG &rng)
     return (rng.nextUInt() >> 16) / 656;
 }
 
+static bool isStepModifier(Lead lead)
+{
+    return lead == Lead::ArenaTrap;
+}
+
 static u8 getMovingTrigger(BWRNG &rng, bool bw, Lead lead, Encounter encounter)
 {
     if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
@@ -241,8 +246,9 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         BWRNG triggerGo(triggerRNG, jump);
         u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(go) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
                                                : StepEncounter5::impossible;
-        u8 movingSteps = searchMovingTrigger ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger)
-                                             : StepEncounter5::impossible;
+        u8 movingSteps = searchMovingTrigger
+            ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger, isStepModifier(lead))
+            : StepEncounter5::impossible;
         bool valid = !searchMovingTrigger || movingSteps != StepEncounter5::impossible;
         if (requireMovingTrigger && movingSteps == StepEncounter5::impossible)
         {

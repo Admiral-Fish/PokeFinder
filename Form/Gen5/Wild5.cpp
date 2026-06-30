@@ -93,6 +93,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                           { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"),
                                         { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Step Modifier"),
+                                        { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                          { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                          { tr("No Guard"), toInt(Lead::NoGuard) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
@@ -105,6 +109,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Step Modifier"),
+                                       { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                         { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                         { tr("No Guard"), toInt(Lead::NoGuard) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
