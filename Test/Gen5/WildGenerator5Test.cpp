@@ -101,7 +101,7 @@ void WildGenerator5Test::generate()
     auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, false, *encounterArea, profile, filter);
+    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, false, false, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());

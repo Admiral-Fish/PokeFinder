@@ -558,15 +558,15 @@
           <item row="3" column="1" colspan="2">
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
-          <item row="4" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxSearcherSwarm">
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxSearcherMovingTrigger">
             <property name="text">
-             <string>Swarm</string>
+             <string>Step Encounter</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="3">
-           <widget class="Line" name="line_1">
+          <item row="5" column="0" colspan="2">
+           <widget class="Line" name="line_5">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
