@@ -29,6 +29,17 @@ class HiddenGrottoState
 {
 public:
     /**
+     * @brief Construct a new empty HiddenGrottoState object
+     *
+     * @param prng PRNG call to determine Chatot pitch
+     * @param advances Advances of the state
+     */
+    HiddenGrottoState(u16 prng, u32 advances) :
+        advances(advances), data(0), item(false), valid(false), chatot(prng / 82), gender(0), group(0), slot(0)
+    {
+    }
+
+    /**
      * @brief Construct a new HiddenGrottoState object
      *
      * @param prng PRNG call to determine Chatot pitch
@@ -39,7 +50,7 @@ public:
      * @param gender Pokemon gender
      */
     HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
-        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
+        advances(advances), data(specie), item(false), valid(true), chatot(prng / 82), gender(gender), group(group), slot(slot)
     {
     }
 
@@ -53,7 +64,7 @@ public:
      * @param item Item number
      */
     HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
-        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
+        advances(advances), data(item), item(true), valid(true), chatot(prng / 82), gender(0), group(group), slot(slot)
     {
     }
 
@@ -120,6 +131,17 @@ public:
     }
 
     /**
+     * @brief Determines if the state can be hit
+     *
+     * @return true State can be hit
+     * @return false State cannot be hit
+     */
+    bool isValid() const
+    {
+        return valid;
+    }
+
+    /**
      * @brief Returns the slot of the state
      *
      * @return State slot
@@ -133,6 +155,7 @@ private:
     u32 advances;
     u16 data;
     bool item;
+    bool valid;
     u8 chatot;
     u8 gender;
     u8 group;
