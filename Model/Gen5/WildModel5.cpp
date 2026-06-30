@@ -35,9 +35,22 @@ int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    if (role == Qt::FontRole)
+    if (showMovingTrigger && !state.isValid())
     {
-        const auto &state = model[index.row()];
+        if (role == Qt::FontRole)
+        {
+            QFont font;
+            font.setItalic(true);
+            return font;
+        }
+        else if (role == Qt::ForegroundRole)
+        {
+            return QColor(128, 128, 128);
+        }
+    }
+
+    if (role == Qt::DisplayRole)
+    {
         int column = index.column();
         if (showMovingTrigger && column >= 2)
         {
@@ -46,6 +59,11 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         else if (!showMovingTrigger && column >= 2)
         {
             column += 2;
+        }
+
+        if (showMovingTrigger && !state.isValid() && column > 3)
+        {
+            return "-";
         }
 
         switch (column)
