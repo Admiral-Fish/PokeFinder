@@ -20,6 +20,8 @@
 #include "WildModel5.hpp"
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QColor>
+#include <QFont>
 
 WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false), showMovingTrigger(false)
 {
@@ -32,9 +34,23 @@ int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
 {
+    const auto &state = model[index.row()];
+    if (showMovingTrigger && !state.isValid())
+    {
+        if (role == Qt::FontRole)
+        {
+            QFont font;
+            font.setItalic(true);
+            return font;
+        }
+        else if (role == Qt::ForegroundRole)
+        {
+            return QColor(128, 128, 128);
+        }
+    }
+
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model[index.row()];
         int column = index.column();
         if (showMovingTrigger && column >= 2)
         {
@@ -43,6 +59,11 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         else if (!showMovingTrigger && column >= 2)
         {
             column += 2;
+        }
+
+        if (showMovingTrigger && !state.isValid() && column > 3)
+        {
+            return "-";
         }
 
         switch (column)

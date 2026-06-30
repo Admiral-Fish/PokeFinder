@@ -89,7 +89,7 @@ namespace StepEncounter5
         if ((version & Game::BW) != Game::None
             && (encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing))
         {
-            return ratio <= rate ? 1 : impossible;
+            return ratio <= rate ? (ratio <= 1 ? 0 : 1) : impossible;
         }
 
         const Pattern *pattern = getPattern(version, encounter, rate);

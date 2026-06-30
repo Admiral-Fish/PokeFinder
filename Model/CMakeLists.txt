@@ -71,4 +71,4 @@ add_library(PokeFinderModel STATIC
     Util/ResearcherModel.hpp
 )
 
-target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core)
+target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core Qt6::Gui)

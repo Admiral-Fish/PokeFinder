@@ -165,7 +165,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
     BWRNG rng(seed, start);
     BWRNG encounterRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
-    BWRNG triggerRNG(seed, start + (searchMovingTrigger ? 1 : 0));
+    BWRNG triggerRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
     auto jump = rng.getJump(offset);
 
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
@@ -243,6 +243,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
                                                : StepEncounter5::impossible;
         u8 movingSteps = searchMovingTrigger ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger)
                                              : StepEncounter5::impossible;
+        bool valid = !searchMovingTrigger || movingSteps != StepEncounter5::impossible;
         if (requireMovingTrigger && movingSteps == StepEncounter5::impossible)
         {
             rng.nextUInt(0x1fff);
@@ -311,8 +312,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         for (const auto &iv : ivs)
         {
             WildState5 state(chatot, movingTrigger, movingSteps, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
-                             level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+                             level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+            if (!valid || filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);
             }
