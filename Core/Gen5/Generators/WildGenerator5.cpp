@@ -72,7 +72,7 @@ static bool isStepModifier(Lead lead)
 
 static u8 getMovingTrigger(BWRNG &rng, bool bw, Lead lead, Encounter encounter)
 {
-    if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+    if (lead != Lead::None && lead != Lead::CompoundEyes && lead != Lead::SuctionCups && !(bw && isStepModifier(lead)))
     {
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
@@ -168,12 +168,24 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     u32 advances = Utilities5::initialAdvances(seed, profile);
     u32 start = advances + initialAdvances;
     bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
+    bool bw = (profile.getVersion() & Game::BW) != Game::None;
     BWRNG rng(seed, start);
     BWRNG encounterRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
-    BWRNG triggerRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
+    u32 triggerOffset = 0;
+    if (searchMovingTrigger)
+    {
+        if (bw2)
+        {
+            triggerOffset = isStepModifier(lead) ? 0 : 1;
+        }
+        else if (bw && lead == Lead::None)
+        {
+            triggerOffset = 1;
+        }
+    }
+    BWRNG triggerRNG(seed, start + triggerOffset);
     auto jump = rng.getJump(offset);
 
-    bool bw = (profile.getVersion() & Game::BW) != Game::None;
     auto modifiedSlots = area.getSlots(lead);
 
     u8 rate = area.getRate();
@@ -206,7 +218,16 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         bool pressure = false;
         bool sync = false;
 
-        if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        if (bw2 && lead == Lead::None)
+        {
+            getPercentRand(go, bw);
+            getPercentRand(go, bw);
+        }
+        else if (bw && lead == Lead::None)
+        {
+            getPercentRand(go, bw);
+        }
+        else if (lead != Lead::None && lead != Lead::CompoundEyes && lead != Lead::SuctionCups && !(bw && isStepModifier(lead)))
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
@@ -244,7 +265,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         BWRNG triggerGo(triggerRNG, jump);
-        u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(go) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
+        u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(triggerGo) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
                                                : StepEncounter5::impossible;
         u8 movingSteps = searchMovingTrigger
             ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger, isStepModifier(lead))
