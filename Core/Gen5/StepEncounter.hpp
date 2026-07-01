@@ -81,7 +81,8 @@ namespace StepEncounter5
         }
 
         u8 needed = std::max<u8>(1, (ratio + multiplier - 1) / multiplier);
-        return pattern.safety + std::max<u8>(1, ((needed - 1 + pattern.up - 1) / pattern.up) * pattern.interval);
+        u8 steps = pattern.safety + std::max<u8>(1, ((needed - 1 + pattern.up - 1) / pattern.up) * pattern.interval);
+        return steps - 1;
     }
 
     inline u8 getSteps(Game version, Encounter encounter, u8 rate, u8 ratio, bool stepModifier = false)
