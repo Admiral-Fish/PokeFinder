@@ -29,6 +29,7 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
@@ -52,9 +53,147 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static bool isStepModifier(Lead lead)
+{
+    return lead == Lead::ArenaTrap;
+}
+
+static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute);
+static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio);
+
+static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement)
+{
+    PokeRNG movementRNG(seed, targetAdvance);
+    PokeRNG encounterRNG(seed, targetAdvance + 1);
+    u8 movementRatio = movementRNG.nextUShort() / 0x290;
+    u8 encounterRatio = encounterRNG.nextUShort() / 0x290;
+    u16 movementRate = fastMovement ? 70 : 40;
+
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    return movementRatio < movementRate && encounterRatio < encounterRate;
+}
+
+static bool getHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Encounter encounter, Lead lead, bool whiteFlute, u8 movement,
+                                 u8 radio, u8 *movements)
+{
+    PokeRNG rng(seed, targetAdvance);
+    u8 movementRatio = rng.nextUShort(100);
+    u8 encounterRatio = rng.nextUShort(100);
+    encounterRate = modifyHGSSStepEncounterRate(encounterRate, lead, whiteFlute);
+    if (encounterRatio >= encounterRate)
+    {
+        return false;
+    }
+
+    u16 movementRate = getHGSSMovementRate(encounter, movement, radio);
+    if (movementRatio < movementRate)
+    {
+        *movements = 3;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 30, 100))
+    {
+        *movements = 4;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 40, 100))
+    {
+        *movements = 5;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 60, 100))
+    {
+        *movements = 6;
+        return true;
+    }
+
+    return false;
+}
+
+static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    u8 rate = encounterRate / 10;
+    if (rate > 8)
+    {
+        rate = 8;
+    }
+
+    return 8 - rate;
+}
+
+static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate += encounterRate / 2;
+    }
+
+    return std::min<u16>(encounterRate, 100);
+}
+
+static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
+{
+    u16 movementRate;
+    switch (movement)
+    {
+    case 1:
+        movementRate = 40;
+        break;
+    case 2:
+        movementRate = 70;
+        break;
+    case 3:
+        movementRate = 60;
+        break;
+    case 4:
+        movementRate = 80;
+        break;
+    case 0:
+    default:
+        movementRate = encounter == Encounter::Surfing ? 40 : 20;
+        break;
+    }
+
+    if (radio == 4)
+    {
+        movementRate += 25;
+    }
+
+    return std::min<u16>(movementRate, 100);
+}
+
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                              const WildStateFilter &filter) :
+    WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, feebasTile, shiny, unownRadio, happiness, false, false, false, 0, 0,
+                  area, profile, filter)
+{
+}
+
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
+                             bool shiny, bool unownRadio, u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement,
+                             u8 movement, u8 radio, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     unlockedUnown(profile.getUnlockedUnownForms()),
     undiscoveredUnown(profile.getUndiscoveredUnownForms(unlockedUnown)),
@@ -63,13 +202,19 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(area.getRate()),
+    stepMovements(searchStepEncounter ? getStepMovements(area.getRate(), lead, whiteFlute) : 0),
     feebas(area.feebasLocation(profile.getVersion())
            && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
                || area.getEncounter() == Encounter::SuperRod)),
     feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
+    searchStepEncounter(searchStepEncounter),
     shiny(shiny),
     unownRadio(unownRadio),
+    whiteFlute(whiteFlute),
+    fastMovement(fastMovement),
+    movement(movement),
+    radio(radio),
     modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::HGSS) != Game::None)
@@ -158,10 +303,11 @@ std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 
 std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vector<WildSearcherState4> &results) const
 {
     std::vector<WildSearcherState4> states;
+    u32 advanceOffset = searchStepEncounter ? 2 : 0;
 
     for (WildSearcherState4 result : results)
     {
-        PokeRNGR rng(result.getSeed(), minAdvance);
+        PokeRNGR rng(result.getSeed(), minAdvance + advanceOffset);
         u32 seed = rng.getSeed();
         for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
@@ -171,9 +317,28 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
             // Check if seed matches a valid gen 4 format
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
-                result.setSeed(seed);
-                result.setAdvances(cnt);
-                states.emplace_back(result);
+                bool validStepEncounter = true;
+                u8 movements = stepMovements;
+                if (searchStepEncounter)
+                {
+                    if (method == Method::MethodK)
+                    {
+                        validStepEncounter = getHGSSStepEncounter(seed, cnt, area.getRate(), area.getEncounter(), lead, whiteFlute, movement, radio,
+                                                                  &movements);
+                    }
+                    else
+                    {
+                        validStepEncounter = getStepEncounter(seed, cnt, area.getRate(), lead, whiteFlute, fastMovement);
+                    }
+                }
+
+                if (validStepEncounter)
+                {
+                    result.setSeed(seed);
+                    result.setAdvances(cnt);
+                    result.setMovements(movements);
+                    states.emplace_back(result);
+                }
             }
 
             seed = rng.next();
