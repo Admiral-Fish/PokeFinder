@@ -49,11 +49,16 @@ public:
      * @param valid Whether state is valid to encounter or not
      */
     WildGeneratorState4(u16 prng, u32 battleAdvances, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level,
-                        u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, bool valid = true) :
-        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info, valid),
+                        u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info,
+                        bool stepEncounter = false, u8 movements = 0, u8 movementRatio = 0, u8 encounterRatio = 0) :
+        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         battleAdvances(battleAdvances),
         call(prng % 3),
-        chatot(((prng % 8192) * 100) >> 13)
+        chatot(((prng % 8192) * 100) >> 13),
+        stepEncounter(stepEncounter),
+        movements(movements),
+        movementRatio(movementRatio),
+        encounterRatio(encounterRatio)
     {
     }
 
@@ -87,10 +92,44 @@ public:
         return battleAdvances;
     }
 
+    /**
+     * @brief Returns if this advance can trigger a step encounter
+     *
+     * @return Step encounter state
+     */
+    bool getStepEncounter() const
+    {
+        return stepEncounter;
+    }
+
+    /**
+     * @brief Returns the number of setup movements before the final encounter check
+     *
+     * @return Setup movements
+     */
+    u8 getMovements() const
+    {
+        return movements;
+    }
+
+    u8 getMovementRatio() const
+    {
+        return movementRatio;
+    }
+
+    u8 getEncounterRatio() const
+    {
+        return encounterRatio;
+    }
+
 private:
     u32 battleAdvances;
     u8 call;
     u8 chatot;
+    bool stepEncounter;
+    u8 movements;
+    u8 movementRatio;
+    u8 encounterRatio;
 };
 
 /**
@@ -118,7 +157,8 @@ public:
      */
     WildSearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                        u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info)
+        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
+        movements(0)
     {
     }
 
@@ -152,8 +192,29 @@ public:
         this->seed = seed;
     }
 
+    /**
+     * @brief Returns the number of setup movements before the final encounter check
+     *
+     * @return Setup movements
+     */
+    u8 getMovements() const
+    {
+        return movements;
+    }
+
+    /**
+     * @brief Sets the number of setup movements before the final encounter check
+     *
+     * @param movements Setup movements
+     */
+    void setMovements(u8 movements)
+    {
+        this->movements = movements;
+    }
+
 private:
     u32 advances;
+    u8 movements;
 };
 
 #endif // WILDSTATE4_HPP
