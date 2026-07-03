@@ -19,6 +19,7 @@
 
 #include "ProfileManager4.hpp"
 #include "ui_ProfileManager4.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen4/Profile/ProfileEditor4.hpp>
 #include <Model/Gen4/ProfileModel4.hpp>
@@ -32,7 +33,7 @@ ProfileManager4::ProfileManager4(QWidget *parent) : QWidget(parent), ui(new Ui::
     setAttribute(Qt::WA_DeleteOnClose);
 
     model = new ProfileModel4(ui->tableView);
-    model->addItems(ProfileLoader4::getProfiles());
+    model->addItems(ProfileLoader4::getProfiles(Game::Gen4));
     ui->tableView->setModel(model);
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager4::create);
@@ -64,7 +65,7 @@ void ProfileManager4::create()
         Profile4 profile = dialog->getProfile();
         ProfileLoader4::addProfile(profile);
         model->addItem(profile);
-        emit profilesModified(4);
+        emit profilesChanged(4);
     }
 }
 
@@ -81,7 +82,7 @@ void ProfileManager4::duplicate()
     const Profile4 &profile = model->getItem(row);
     ProfileLoader4::addProfile(profile);
     model->addItem(profile);
-    emit profilesModified(4);
+    emit profilesChanged(4);
 }
 
 void ProfileManager4::edit()
@@ -101,7 +102,7 @@ void ProfileManager4::edit()
         Profile4 update = dialog->getProfile();
         ProfileLoader4::updateProfile(update, original);
         model->updateItem(update, row);
-        emit profilesModified(4);
+        emit profilesChanged(4);
     }
 }
 
@@ -122,6 +123,6 @@ void ProfileManager4::remove()
         const Profile4 &profile = model->getItem(row);
         ProfileLoader4::removeProfile(profile);
         model->removeItem(row);
-        emit profilesModified(4);
+        emit profilesChanged(4);
     }
 }

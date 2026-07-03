@@ -38,10 +38,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("gamecube");
+
 GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::GC);
 
     generatorModel = new GameCubeGeneratorModel(ui->tableViewGenerator);
     searcherModel = new GameCubeSearcherModel(ui->tableViewSearcher);
@@ -62,12 +66,12 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
 
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &GameCube::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &GameCube::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &GameCube::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &GameCube::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &GameCube::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &GameCube::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &GameCube::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &GameCube::searcherCategoryIndexChanged);
@@ -80,17 +84,18 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     searcherCategoryIndexChanged(0);
 
     QSettings setting;
-    if (setting.contains("gamecube/geometry"))
+    setting.beginGroup(settingPrefix);
+    if (setting.contains("geometry"))
     {
-        this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
+        this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    setting.endGroup();
 }
 
 GameCube::~GameCube()
 {
     QSettings setting;
-    setting.beginGroup("gamecube");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -99,23 +104,7 @@ GameCube::~GameCube()
 
 void GameCube::updateProfiles()
 {
-    profiles = { Profile3("-", Game::Gales, 12345, 54321, false) };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("gamecube/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void GameCube::generate()
@@ -211,26 +200,9 @@ void GameCube::generatorPokemonIndexChanged(int index)
     }
 }
 
-void GameCube::profileIndexChanged(int index)
+void GameCube::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
-    }
-}
-
-void GameCube::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void GameCube::search()

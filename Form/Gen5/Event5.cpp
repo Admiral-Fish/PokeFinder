@@ -19,6 +19,7 @@
 
 #include "Event5.hpp"
 #include "ui_Event5.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -39,10 +40,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("event5");
+
 Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     generatorModel = new EventGeneratorModel5(ui->tableViewGenerator);
     ui->tableViewGenerator->setModel(generatorModel);
@@ -85,21 +90,21 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->comboBoxGeneratorSpecies->enableAutoComplete();
     ui->comboBoxSearcherSpecies->enableAutoComplete();
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Event5::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Event5::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event5::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
     connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);
     connect(ui->pushButtonSearcherImport, &QPushButton::clicked, this, &Event5::searcherImportEvent);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &EventGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &EventSearcherModel5::setShowStats);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("event5");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -118,8 +123,7 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 Event5::~Event5()
 {
     QSettings setting;
-    setting.beginGroup("event5");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
@@ -130,25 +134,12 @@ Event5::~Event5()
 
 bool Event5::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void Event5::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("event5/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 PGF Event5::getGeneratorParameters() const
@@ -272,31 +263,9 @@ void Event5::generatorImportEvent()
     }
 }
 
-void Event5::profileIndexChanged(int index)
+void Event5::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Event5::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void Event5::search()

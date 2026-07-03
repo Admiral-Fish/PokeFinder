@@ -25,7 +25,7 @@
      <property name="title">
       <string>RNG Info</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_6">
+     <layout class="QGridLayout" name="gridLayout_1">
       <item row="0" column="0">
        <widget class="QLabel" name="labelInitialAdvances">
         <property name="text">
@@ -89,7 +89,7 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_7">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="IDsFilter" name="filter" native="true"/>
       </item>

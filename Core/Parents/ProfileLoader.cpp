@@ -28,6 +28,7 @@
 #include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <ranges>
 
 using json = nlohmann::json;
 
@@ -167,13 +168,12 @@ namespace ProfileLoader3
         writeJson(j);
     }
 
-    std::vector<Profile3> getProfiles()
+    std::vector<Profile3> getProfiles(Game version)
     {
-        std::vector<Profile3> profiles;
         json j = readJson();
         const auto &gen3 = j["gen3"];
-        std::ranges::transform(gen3, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-        return profiles;
+        return gen3 | std::views::filter([version](const json &j) { return (j.value("version", Game::Emerald) & version) != Game::None; })
+            | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
     void removeProfile(const Profile3 &remove)
@@ -259,13 +259,12 @@ namespace ProfileLoader4
         }
     }
 
-    std::vector<Profile4> getProfiles()
+    std::vector<Profile4> getProfiles(Game version)
     {
-        std::vector<Profile4> profiles;
         json j = readJson();
         const auto &gen4 = j["gen4"];
-        std::ranges::transform(gen4, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-        return profiles;
+        return gen4 | std::views::filter([version](const json &j) { return (j.value("version", Game::Diamond) & version) != Game::None; })
+            | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
     void addProfile(const Profile4 &profile)
@@ -402,13 +401,12 @@ namespace ProfileLoader5
         writeJson(j);
     }
 
-    std::vector<Profile5> getProfiles()
+    std::vector<Profile5> getProfiles(Game version)
     {
-        std::vector<Profile5> profiles;
         json j = readJson();
         const auto &gen5 = j["gen5"];
-        std::ranges::transform(gen5, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-        return profiles;
+        return gen5 | std::views::filter([version](const json &j) { return (j.value("version", Game::Black) & version) != Game::None; })
+            | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
     void removeProfile(const Profile5 &remove)
@@ -499,13 +497,12 @@ namespace ProfileLoader8
         writeJson(j);
     }
 
-    std::vector<Profile8> getProfiles()
+    std::vector<Profile8> getProfiles(Game version)
     {
-        std::vector<Profile8> profiles;
         json j = readJson();
         const auto &gen8 = j["gen8"];
-        std::ranges::transform(gen8, std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-        return profiles;
+        return gen8 | std::views::filter([version](const json &j) { return (j.value("version", Game::BD) & version) != Game::None; })
+            | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
     void removeProfile(const Profile8 &remove)
