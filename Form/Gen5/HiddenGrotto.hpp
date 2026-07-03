@@ -135,6 +135,11 @@ private slots:
     void grottoSearcherUpdateFilter();
 
     /**
+     * @brief Opens adjacent seed for the selected pokemon searcher result
+     */
+    void openAdjacentSeed();
+
+    /**
      * @brief Generates grotto pokemon from a starting seed
      */
     void pokemonGenerate();
@@ -202,11 +207,6 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
-
-    /**
-     * @brief Opens adjacent seed for the selected pokemon searcher result
-     */
-    void openAdjacentSeed();
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab

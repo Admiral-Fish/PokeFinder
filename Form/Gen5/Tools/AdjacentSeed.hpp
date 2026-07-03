@@ -44,10 +44,7 @@ signals:
 
 public:
     AdjacentSeed(QWidget *parent = nullptr);
-    AdjacentSeed(const DateTime &dateTime, Buttons buttons, AdjacentSeedMethod method = AdjacentSeedMethod::Standard,
-                     QWidget *parent = nullptr);
-    AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile,
-                     AdjacentSeedMethod method = AdjacentSeedMethod::Standard, QWidget *parent = nullptr);
+    AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent = nullptr);
     ~AdjacentSeed() override;
 
     bool hasProfiles() const;
@@ -67,9 +64,6 @@ private:
     std::vector<Profile5> profiles;
 
     Buttons getSelectedButtons() const;
-    void setInitialSearch(const DateTime &dateTime, Buttons buttons);
-    void setMethod(AdjacentSeedMethod method);
-    void setProfile(const Profile5 &profile);
     void setSelectedButtons(Buttons buttons);
 
 private slots:

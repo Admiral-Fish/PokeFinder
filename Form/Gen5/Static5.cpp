@@ -271,6 +271,18 @@ void Static5::generatorPokemonIndexChanged(int index)
     }
 }
 
+void Static5::openAdjacentSeed()
+{
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
+    const StaticTemplate5 *staticTemplate
+        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
+
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, staticTemplate->getRoamer());
+    window->show();
+}
+
+
 void Static5::profileIndexChanged(int index)
 {
     if (index >= 0)
@@ -537,16 +549,4 @@ void Static5::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
-}
-
-void Static5::openAdjacentSeed()
-{
-    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
-    const auto &state = searcherModel->getItem(index.row());
-    const StaticTemplate5 *staticTemplate
-        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
-    auto method = staticTemplate->getRoamer() ? AdjacentSeedMethod::Roamer : AdjacentSeedMethod::Standard;
-
-    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, method);
-    window->show();
 }

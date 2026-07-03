@@ -112,6 +112,11 @@ private slots:
     void generatorPokemonIndexChanged(int index);
 
     /**
+     * @brief Opens adjacent seed for the selected searcher result
+     */
+    void openAdjacentSeed();
+
+    /**
      * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
      * settings.
      *
@@ -123,11 +128,6 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
-
-    /**
-     * @brief Opens adjacent seed for the selected searcher result
-     */
-    void openAdjacentSeed();
 
     /**
      * @brief Searches static encounters from the provided IVs

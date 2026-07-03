@@ -25,129 +25,72 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 
-static u8 nextIV(MT &rng)
-{
-    return rng.next() >> 27;
-}
-
 static std::array<u8, 6> generateMTIVs(u64 seed, Game version, u32 ivAdvance, bool roamer)
 {
     bool bw = (version & Game::BW) != Game::None;
     MT rng(seed >> 32, ivAdvance + (bw ? 0 : 2) + (roamer ? 1 : 0));
 
     std::array<u8, 6> ivs;
-    ivs[0] = nextIV(rng);
-    ivs[1] = nextIV(rng);
-    ivs[2] = nextIV(rng);
+    ivs[0] = rng.next() >> 27;
+    ivs[1] = rng.next() >> 27;
+    ivs[2] = rng.next() >> 27;
 
     if (roamer)
     {
-        ivs[4] = nextIV(rng);
-        ivs[5] = nextIV(rng);
-        ivs[3] = nextIV(rng);
+        ivs[4] = rng.next() >> 27;
+        ivs[5] = rng.next() >> 27;
+        ivs[3] = rng.next() >> 27;
     }
     else
     {
-        ivs[3] = nextIV(rng);
-        ivs[4] = nextIV(rng);
-        ivs[5] = nextIV(rng);
+        ivs[3] = rng.next() >> 27;
+        ivs[4] = rng.next() >> 27;
+        ivs[5] = rng.next() >> 27;
     }
 
     return ivs;
 }
 
-AdjacentSeedState::AdjacentSeedState(u64 seed, const DateTime &dateTime, Buttons buttons, u16 timer0, u32 ivAdvance,
-                                     const std::array<u8, 6> &ivs, u32 pidAdvance, bool target) :
-    seed(seed),
-    dateTime(dateTime),
-    buttons(buttons),
-    timer0(timer0),
-    ivAdvance(ivAdvance),
-    ivs(ivs),
-    pidAdvance(pidAdvance),
-    target(target)
+std::vector<AdjacentSeedState> AdjacentSeedCalculator::generate(const Profile5 &profile, const DateTime &dateTime, Buttons buttons,
+                                                                int seconds, u32 minIVAdvance, u32 maxIVAdvance, bool roamer)
 {
-}
-
-Buttons AdjacentSeedState::getButtons() const
-{
-    return buttons;
-}
-
-const DateTime &AdjacentSeedState::getDateTime() const
-{
-    return dateTime;
-}
-
-u8 AdjacentSeedState::getIV(u8 index) const
-{
-    return ivs[index];
-}
-
-u32 AdjacentSeedState::getIVAdvance() const
-{
-    return ivAdvance;
-}
-
-u32 AdjacentSeedState::getPIDAdvance() const
-{
-    return pidAdvance;
-}
-
-u64 AdjacentSeedState::getSeed() const
-{
-    return seed;
-}
-
-u16 AdjacentSeedState::getTimer0() const
-{
-    return timer0;
-}
-
-bool AdjacentSeedState::isTarget() const
-{
-    return target;
-}
-
-std::vector<AdjacentSeedState> AdjacentSeedCalculator::generate(const AdjacentSeedSettings &settings)
-{
-    std::vector<AdjacentSeedState> states;
-    u32 timer0Min = settings.profile.getTimer0Min();
-    u32 timer0Max = settings.profile.getTimer0Max();
+    u32 timer0Min = profile.getTimer0Min();
+    u32 timer0Max = profile.getTimer0Max();
     timer0Min = timer0Min == 0 ? 0 : timer0Min - 1;
     timer0Max = timer0Max == 0xffff ? 0xffff : timer0Max + 1;
 
-    u32 rangeSeconds = settings.seconds * 2 + 1;
+    u32 rangeSeconds = seconds * 2 + 1;
     u32 timer0Count = timer0Max - timer0Min + 1;
-    u32 ivCount = settings.maxIVAdvance - settings.minIVAdvance + 1;
+    u32 ivCount = maxIVAdvance - minIVAdvance + 1;
+
+    SHA1 sha(profile);
+    sha.setButton(Keypresses::getValue(buttons));
+
+    std::vector<AdjacentSeedState> states;
     states.reserve(rangeSeconds * timer0Count * ivCount);
 
-    SHA1 sha(settings.profile);
-    sha.setButton(Keypresses::getValue(settings.buttons));
-
-    for (int secondOffset = -static_cast<int>(settings.seconds); secondOffset <= static_cast<int>(settings.seconds); secondOffset++)
+    for (int secondOffset = seconds; secondOffset <= seconds; secondOffset++)
     {
-        DateTime dateTime = settings.dateTime.addSeconds(secondOffset);
-        Date date = dateTime.getDate();
-        Time time = dateTime.getTime();
+        DateTime offset = dateTime.addSeconds(secondOffset);
+        Date date = offset.getDate();
+        Time time = offset.getTime();
+
         sha.setDate(date);
-        sha.setTime(time.hour(), time.minute(), time.second(), settings.profile.getDSType());
+        sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
 
         for (u32 timer0 = timer0Min; timer0 <= timer0Max; timer0++)
         {
-            sha.setTimer0(timer0, settings.profile.getVCount());
+            sha.setTimer0(timer0, profile.getVCount());
             auto alpha = sha.precompute();
             u64 seed = sha.hashSeed(alpha);
 
-            for (u32 ivAdvance = settings.minIVAdvance; ivAdvance <= settings.maxIVAdvance; ivAdvance++)
+            for (u32 ivAdvance = minIVAdvance; ivAdvance <= maxIVAdvance; ivAdvance++)
             {
-                std::array<u8, 6> ivs
-                    = generateMTIVs(seed, settings.profile.getVersion(), ivAdvance, settings.method == AdjacentSeedMethod::Roamer);
+                std::array<u8, 6> ivs = generateMTIVs(seed, profile.getVersion(), ivAdvance, roamer);
 
-                states.emplace_back(seed, dateTime, settings.buttons, static_cast<u16>(timer0), ivAdvance, ivs,
-                                    Utilities5::initialAdvances(seed, settings.profile) + ivAdvance,
-                                    dateTime == settings.dateTime && timer0 == settings.profile.getTimer0Min()
-                                        && ivAdvance == settings.minIVAdvance);
+                states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
+                                    Utilities5::initialAdvances(seed, profile) + ivAdvance,
+                                    offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
             }
         }
     }

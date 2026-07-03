@@ -463,6 +463,15 @@ void HiddenGrotto::grottoSearcherUpdateFilter()
     ui->checkListGrottoSearcherSlot->setChecks(encounterSlots);
 }
 
+void HiddenGrotto::openAdjacentSeed()
+{
+    QModelIndex index = pokemonProxyModel->mapToSource(ui->tableViewPokemonSearcher->currentIndex());
+    const auto &state = pokemonSearcherModel->getItem(index.row());
+
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, false);
+    window->show();
+}
+
 void HiddenGrotto::pokemonGenerate()
 {
     if (!ui->filterPokemonGenerator->isValid())
@@ -826,13 +835,4 @@ void HiddenGrotto::transferSettingsPokemon(int index)
         ui->comboBoxPokemonGeneratorPokemon->setCurrentIndex(ui->comboBoxPokemonSearcherPokemon->currentIndex());
         ui->comboBoxPokemonGeneratorGender->setCurrentIndex(ui->comboBoxPokemonSearcherGender->currentIndex());
     }
-}
-
-void HiddenGrotto::openAdjacentSeed()
-{
-    QModelIndex index = pokemonProxyModel->mapToSource(ui->tableViewPokemonSearcher->currentIndex());
-    const auto &state = pokemonSearcherModel->getItem(index.row());
-
-    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile);
-    window->show();
 }

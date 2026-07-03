@@ -70,6 +70,7 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
     model = new AdjacentSeedModel(ui->tableView);
     ui->tableView->setModel(model);
     ui->tableView->setItemDelegate(new TargetRowDelegate(ui->tableView));
+
     keypressModel = new QStandardItemModel(this);
     ui->comboBoxKeypresses->setModel(keypressModel);
     ui->comboBoxKeypresses->setEditable(true);
@@ -81,9 +82,6 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
 
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
-
-    ui->comboBoxMethod->addItem(tr("Wild / Static / Grotto"), static_cast<int>(AdjacentSeedMethod::Standard));
-    ui->comboBoxMethod->addItem(tr("Roamer"), static_cast<int>(AdjacentSeedMethod::Roamer));
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &AdjacentSeed::profileIndexChanged);
     connect(ui->comboBoxKeypresses->view(), &QAbstractItemView::pressed, this, &AdjacentSeed::keypressIndexPressed);
@@ -97,18 +95,25 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
     updateProfiles();
 }
 
-AdjacentSeed::AdjacentSeed(const DateTime &dateTime, Buttons buttons, AdjacentSeedMethod method, QWidget *parent) : AdjacentSeed(parent)
-{
-    setInitialSearch(dateTime, buttons);
-    setMethod(method);
-}
-
-AdjacentSeed::AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, AdjacentSeedMethod method, QWidget *parent) :
+AdjacentSeed::AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent) :
     AdjacentSeed(parent)
 {
-    setProfile(profile);
-    setInitialSearch(dateTime, buttons);
-    setMethod(method);
+    for (int i = 0; i < static_cast<int>(profiles.size()); i++)
+    {
+        if (profiles[i] == profile)
+        {
+            ui->comboBoxProfiles->setCurrentIndex(i);
+            break;
+        }
+    }
+
+    ui->dateTimeEdit->setDateTime(dateTime);
+    setSelectedButtons(buttons);
+
+    if (roamer)
+    {
+        ui->comboBoxMethod->setCurrentIndex(1);
+    }
 }
 
 AdjacentSeed::~AdjacentSeed()
@@ -142,33 +147,6 @@ bool AdjacentSeed::eventFilter(QObject *object, QEvent *event)
     }
 
     return QWidget::eventFilter(object, event);
-}
-
-void AdjacentSeed::setInitialSearch(const DateTime &dateTime, Buttons buttons)
-{
-    ui->dateTimeEdit->setDateTime(dateTime);
-    setSelectedButtons(buttons);
-}
-
-void AdjacentSeed::setMethod(AdjacentSeedMethod method)
-{
-    int index = ui->comboBoxMethod->findData(static_cast<int>(method));
-    if (index != -1)
-    {
-        ui->comboBoxMethod->setCurrentIndex(index);
-    }
-}
-
-void AdjacentSeed::setProfile(const Profile5 &profile)
-{
-    for (int i = 0; i < static_cast<int>(profiles.size()); i++)
-    {
-        if (profiles[i] == profile)
-        {
-            ui->comboBoxProfiles->setCurrentIndex(i);
-            return;
-        }
-    }
 }
 
 Buttons AdjacentSeed::getSelectedButtons() const
@@ -218,28 +196,18 @@ void AdjacentSeed::updateProfiles()
 
 void AdjacentSeed::generate()
 {
-    if (!currentProfile)
-    {
-        return;
-    }
-
-    u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
-    u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
+    model->clearModel();
 
     DateTime dateTime = ui->dateTimeEdit->getDateTime();
+    Buttons buttons = getSelectedButtons();
+    int seconds = ui->spinBoxSeconds->value();
+    u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
+    u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
+    bool roamer = ui->comboBoxMethod->currentIndex() == 1;
 
-    AdjacentSeedSettings settings { *currentProfile,
-                                    dateTime,
-                                    getSelectedButtons(),
-                                    static_cast<u32>(ui->spinBoxSeconds->value()),
-                                    initialIVAdvance,
-                                    maxIVAdvance,
-                                    static_cast<AdjacentSeedMethod>(ui->comboBoxMethod->currentData().toUInt()) };
+    auto states = AdjacentSeedCalculator::generate(*currentProfile, dateTime, buttons, seconds, initialIVAdvance, maxIVAdvance, roamer);
+    model->addItems(states);
 
-    model->clearModel();
-    ui->lineEditPreview->clear();
-    model->addItems(AdjacentSeedCalculator::generate(settings));
-    ui->tableView->resizeColumnsToContents();
     if (model->rowCount() > 0)
     {
         int targetRow = 0;
@@ -254,6 +222,7 @@ void AdjacentSeed::generate()
         }
         ui->tableView->selectRow(targetRow);
     }
+
     updatePreview();
 }
 
@@ -278,46 +247,38 @@ void AdjacentSeed::openIVCalculator()
 
 void AdjacentSeed::profileIndexChanged(int index)
 {
-    if (index < 0 || index >= static_cast<int>(profiles.size()))
+    if (index >= 0)
     {
-        currentProfile = nullptr;
+        currentProfile = &profiles[index];
+
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+
         keypressModel->clear();
+        for (Buttons button : keypressButtons)
+        {
+            auto *item = new QStandardItem(QString::fromStdString(Translator::getKeypresses(button)));
+            item->setData(toInt(button));
+            item->setCheckable(true);
+            item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+            item->setCheckState((currentButtons & button) != Buttons::None ? Qt::Checked : Qt::Unchecked);
+            keypressModel->appendRow(item);
+        }
         updateKeypressText();
-        return;
     }
-
-    currentProfile = &profiles[index];
-
-    ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-    ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-    ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-    ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                         + QString::number(currentProfile->getTimer0Max(), 16));
-    ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-    ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-    ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-    ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-    keypressModel->clear();
-    for (Buttons button : keypressButtons)
-    {
-        auto *item = new QStandardItem(QString::fromStdString(Translator::getKeypresses(button)));
-        item->setData(toInt(button));
-        item->setCheckable(true);
-        item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-        item->setCheckState((currentButtons & button) != Buttons::None ? Qt::Checked : Qt::Unchecked);
-        keypressModel->appendRow(item);
-    }
-    updateKeypressText();
 }
 
 void AdjacentSeed::profileManager()
 {
     auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) {
-        emit profilesModified(num);
-        updateProfiles();
-    });
+    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
 
@@ -330,7 +291,7 @@ void AdjacentSeed::updateKeypressText()
 
 void AdjacentSeed::updatePreview()
 {
-    if (!currentProfile || model->rowCount() == 0)
+    if (model->rowCount() == 0)
     {
         ui->lineEditPreview->clear();
         return;

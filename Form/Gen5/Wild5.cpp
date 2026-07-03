@@ -301,6 +301,15 @@ void Wild5::generatorSeasonIndexChanged(int index)
     }
 }
 
+void Wild5::openAdjacentSeed()
+{
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
+
+    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, false);
+    window->show();
+}
+
 void Wild5::profileIndexChanged(int index)
 {
     if (index >= 0)
@@ -567,13 +576,4 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
     }
-}
-
-void Wild5::openAdjacentSeed()
-{
-    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
-    const auto &state = searcherModel->getItem(index.row());
-
-    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile);
-    window->show();
 }

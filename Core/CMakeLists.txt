@@ -185,6 +185,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/Searcher5.hpp
     Gen5/SHA1Cache.cpp
     Gen5/SHA1Cache.hpp
+    Gen5/States/AdjacentSeedState.hpp
     Gen5/States/DreamRadarState.hpp
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp

@@ -130,6 +130,11 @@ private slots:
     void generatorSeasonIndexChanged(int index);
 
     /**
+     * @brief Opens adjacent seed for the selected searcher result
+     */
+    void openAdjacentSeed();
+
+    /**
      * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
      * settings.
      *
@@ -165,11 +170,6 @@ private slots:
      * @param index Location index
      */
     void searcherLocationIndexChanged(int index);
-
-    /**
-     * @brief Opens adjacent seed for the selected searcher result
-     */
-    void openAdjacentSeed();
 
     /**
      * @brief Updates the encounter slot filter based on the pokemon

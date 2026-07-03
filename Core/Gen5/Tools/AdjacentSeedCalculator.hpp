@@ -20,59 +20,18 @@
 #ifndef ADJACENTSEEDCALCULATOR_HPP
 #define ADJACENTSEEDCALCULATOR_HPP
 
-#include <Core/Enum/Buttons.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/States/AdjacentSeedState.hpp>
 #include <Core/Global.hpp>
 #include <Core/Util/DateTime.hpp>
-#include <array>
 #include <vector>
 
-enum class AdjacentSeedMethod : u8
-{
-    Standard,
-    Roamer
-};
-
-class AdjacentSeedState
-{
-public:
-    AdjacentSeedState(u64 seed, const DateTime &dateTime, Buttons buttons, u16 timer0, u32 ivAdvance, const std::array<u8, 6> &ivs,
-                      u32 pidAdvance, bool target);
-
-    Buttons getButtons() const;
-    const DateTime &getDateTime() const;
-    u8 getIV(u8 index) const;
-    u32 getIVAdvance() const;
-    u32 getPIDAdvance() const;
-    u64 getSeed() const;
-    u16 getTimer0() const;
-    bool isTarget() const;
-
-private:
-    u64 seed;
-    DateTime dateTime;
-    Buttons buttons;
-    u16 timer0;
-    u32 ivAdvance;
-    std::array<u8, 6> ivs;
-    u32 pidAdvance;
-    bool target;
-};
-
-struct AdjacentSeedSettings
-{
-    Profile5 profile;
-    DateTime dateTime;
-    Buttons buttons;
-    u32 seconds;
-    u32 minIVAdvance;
-    u32 maxIVAdvance;
-    AdjacentSeedMethod method;
-};
+enum class Buttons : u16;
 
 namespace AdjacentSeedCalculator
 {
-    std::vector<AdjacentSeedState> generate(const AdjacentSeedSettings &settings);
+    std::vector<AdjacentSeedState> generate(const Profile5 &profile, const DateTime &dateTime, Buttons buttons, int seconds,
+                                            u32 minIVAdvance, u32 maxIVAdvance, bool roamer);
     std::vector<u32> previewPRNG(u64 seed, const Profile5 &profile, u32 pidAdvance, u32 count);
 }
 
