@@ -39,11 +39,10 @@ constexpr u8 genderThreshHolds[5] = { 0, 0x32, 0x4b, 0x96, 0xc8 };
  *
  * @return Vector of computed PIDs
  */
-static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
+static void calcMethod12(std::vector<IVToPIDState> &states, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
     auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
 
-    std::vector<IVToPIDState> states;
     for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -88,9 +87,8 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
     for (int i = 0; i < seeds.count; i++)
     {
-        PokeRNGR rng(seeds[i]);
+        PokeRNGR rng(seeds[i], 1);
 
-        rng.advance(1);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
         u16 sid = (high ^ low ^ tid) & 0xfff8;
@@ -102,8 +100,6 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
             states.emplace_back(seed, pid, sid, Method::Method2);
         }
     }
-
-    return states;
 }
 
 /**
@@ -120,11 +116,10 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
  *
  * @return Vector of computed PIDs
  */
-static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
+static void calcMethod4(std::vector<IVToPIDState> &states, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
     auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method4);
 
-    std::vector<IVToPIDState> states;
     for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -140,7 +135,6 @@ static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 s
             states.emplace_back(seed, pid, sid, Method::Method4);
         }
     }
-    return states;
 }
 
 /**
@@ -156,15 +150,13 @@ static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 s
  *
  * @return Vector of computed PIDs
  */
-static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature)
+static void calcMethodChannel(std::vector<IVToPIDState> &states, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature)
 {
     auto seeds = LCRNGReverse::recoverChannelIV(hp, atk, def, spa, spd, spe);
 
-    std::vector<IVToPIDState> states;
     for (int i = 0; i < seeds.count; i++)
     {
-        XDRNGR rng(seeds[i]);
-        rng.advance(3);
+        XDRNGR rng(seeds[i], 3);
 
         u16 low = rng.nextUShort();
         u16 high = rng.nextUShort();
@@ -183,7 +175,6 @@ static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa
             states.emplace_back(seed, pid, sid, Method::Channel);
         }
     }
-    return states;
 }
 
 /**
@@ -200,17 +191,15 @@ static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa
  *
  * @return Vector of computed PIDs
  */
-static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
+static void calcMethodXDColo(std::vector<IVToPIDState> &states, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
 {
     auto seeds = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe);
 
-    std::vector<IVToPIDState> states;
     for (int i = 0; i < seeds.count; i++)
     {
         u32 seed = XDRNGR(seeds[i]).next();
 
-        XDRNG rng(seeds[i]);
-        rng.advance(2);
+        XDRNG rng(seeds[i], 2);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
@@ -222,7 +211,6 @@ static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa,
             states.emplace_back(seed, pid, sid, Method::XDColo);
         }
     }
-    return states;
 }
 
 namespace IVToPIDCalculator
@@ -231,15 +219,10 @@ namespace IVToPIDCalculator
     {
         std::vector<IVToPIDState> states;
 
-        auto results1 = calcMethod12(hp, atk, def, spa, spd, spe, nature, tid);
-        auto results2 = calcMethod4(hp, atk, def, spa, spd, spe, nature, tid);
-        auto results3 = calcMethodXDColo(hp, atk, def, spa, spd, spe, nature, tid);
-        auto results4 = calcMethodChannel(hp, atk, def, spa, spd, spe, nature);
-
-        states.insert(states.end(), results1.begin(), results1.end());
-        states.insert(states.end(), results2.begin(), results2.end());
-        states.insert(states.end(), results3.begin(), results3.end());
-        states.insert(states.end(), results4.begin(), results4.end());
+        calcMethod12(states, hp, atk, def, spa, spd, spe, nature, tid);
+        calcMethod4(states, hp, atk, def, spa, spd, spe, nature, tid);
+        calcMethodXDColo(states, hp, atk, def, spa, spd, spe, nature, tid);
+        calcMethodChannel(states, hp, atk, def, spa, spd, spe, nature);
 
         return states;
     }

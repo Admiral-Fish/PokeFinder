@@ -45,8 +45,9 @@ public:
      * @brief Add item to the combobox
      *
      * @param string Item that should be added to the combo box
+     * @param data Data to assign to the item
      */
-    void addItem(const QString &string);
+    void addItem(const QString &string, const QVariant &data = QVariant());
 
     /**
      * @brief Adds items to the combobox
@@ -55,6 +56,15 @@ public:
      * @param sort Whether or not to sort the proxy model
      */
     void addItems(const std::vector<std::string> &strings, bool sort = true);
+
+    /**
+     * @brief Adds items to the combobox
+     *
+     * @param strings List of items that should be added to the combo box
+     * @param data List of data to assign with the items
+     * @param sort Whether or not to sort the proxy model
+     */
+    void addItems(const std::vector<std::string> &strings, const std::vector<u16> &data, bool sort = true);
 
     /**
      * @brief Gets the current index. Maps the index from the proxy model to the model
@@ -67,11 +77,25 @@ public:
     void enableAutoComplete();
 
     /**
+     * @brief Gets current selected index data as u16
+     *
+     * @return Current data
+     */
+    u16 getCurrentUShort() const;
+
+    /**
      * @brief Sets the current index. Maps the index from the model to the proxy model
      *
      * @param index Index to set
      */
     void setCurrentIndex(int index);
+
+    /**
+     * @brief Sets the current index. Maps the index from the model to the proxy model if the data is found
+     *
+     * @param data Data to set index by
+     */
+    void setCurrentIndexByData(u16 data);
 
 private:
     QStandardItemModel *model;

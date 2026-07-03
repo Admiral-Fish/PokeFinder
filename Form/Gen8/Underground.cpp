@@ -59,7 +59,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
                                  { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Level);
 
     ui->comboBoxLocation->enableAutoComplete();
 
@@ -159,10 +159,11 @@ void Underground::generate()
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();
 
-    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getHeightMin(),
-                                  ui->filter->getHeightMax(), ui->filter->getWeightMin(), ui->filter->getWeightMax(),
-                                  ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
-                                  ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
+    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getLevelMin(),
+                                  ui->filter->getLevelMax(), ui->filter->getHeightMin(), ui->filter->getHeightMax(),
+                                  ui->filter->getWeightMin(), ui->filter->getWeightMax(), ui->filter->getDisableFilters(),
+                                  ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
+                                  species);
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, lead, bonus, levelFlag,
                                    encounters[ui->comboBoxLocation->currentIndex()], *currentProfile, filter);
 

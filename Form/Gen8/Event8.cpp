@@ -49,7 +49,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
     ui->textBoxEC->setValues(InputType::Seed32Bit);
     ui->textBoxPID->setValues(InputType::Seed32Bit);
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::Level);
 
     ui->filter->enableHiddenAbility();
 
