@@ -30,6 +30,8 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 
+constexpr u8 feebasSlot[] = { 2, 3, 5 };
+
 static u8 unownLetter(u32 pid)
 {
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
@@ -96,18 +98,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         u8 encounterSlot;
         if (feebas && go.nextUShort(100) < 50)
         {
-            if (area.getEncounter() == Encounter::OldRod)
-            {
-                encounterSlot = 2;
-            }
-            else if (area.getEncounter() == Encounter::GoodRod)
-            {
-                encounterSlot = 3;
-            }
-            else
-            {
-                encounterSlot = 5;
-            }
+            encounterSlot = feebasSlot[toInt(area.getEncounter() - Encounter::OldRod)];
         }
         else
         {
