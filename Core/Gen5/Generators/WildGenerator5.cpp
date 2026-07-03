@@ -218,16 +218,16 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         bool pressure = false;
         bool sync = false;
 
-        if (bw2 && lead == Lead::None)
+        if (searchMovingTrigger && bw2 && lead == Lead::None)
         {
             getPercentRand(go, bw);
             getPercentRand(go, bw);
         }
-        else if (bw && lead == Lead::None)
+        else if (searchMovingTrigger && bw && lead == Lead::None)
         {
             getPercentRand(go, bw);
         }
-        else if (lead != Lead::None && lead != Lead::CompoundEyes && lead != Lead::SuctionCups && !(bw && isStepModifier(lead)))
+        else if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups && (!searchMovingTrigger || !(bw && isStepModifier(lead))))
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
