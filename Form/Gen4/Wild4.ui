@@ -427,6 +427,11 @@
               <string>Pokémon March</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Pokémon Lullaby</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="7" column="0" colspan="2">
@@ -465,7 +470,7 @@
               <number>1</number>
              </property>
              <property name="text">
-              <string>Running/Surfing</string>
+              <string>Running</string>
              </property>
             </item>
             <item>
@@ -936,6 +941,11 @@
               <string>Pokémon March</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Pokémon Lullaby</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="7" column="0" colspan="2">
@@ -950,57 +960,6 @@
             <property name="text">
              <string>White Flute</string>
             </property>
-           </widget>
-          </item>
-          <item row="8" column="0" colspan="2">
-           <widget class="QLabel" name="labelSearcherMovement">
-            <property name="text">
-             <string>Movement</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="2" colspan="2">
-           <widget class="ComboBox" name="comboBoxSearcherMovement">
-            <item>
-             <property name="data">
-              <number>0</number>
-             </property>
-             <property name="text">
-              <string>Walking</string>
-             </property>
-            </item>
-            <item>
-             <property name="data">
-              <number>1</number>
-             </property>
-             <property name="text">
-              <string>Running/Surfing</string>
-             </property>
-            </item>
-            <item>
-             <property name="data">
-              <number>2</number>
-             </property>
-             <property name="text">
-              <string>Biking</string>
-             </property>
-            </item>
-            <item>
-             <property name="data">
-              <number>3</number>
-             </property>
-             <property name="text">
-              <string>Walking in Long Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="data">
-              <number>4</number>
-             </property>
-             <property name="text">
-              <string>Running in Long Grass</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item row="11" column="0" colspan="2">
@@ -1196,7 +1155,6 @@
   <tabstop>checkBoxSearcherSwarm</tabstop>
   <tabstop>checkBoxSearcherStepEncounter</tabstop>
   <tabstop>checkBoxSearcherWhiteFlute</tabstop>
-  <tabstop>comboBoxSearcherMovement</tabstop>
   <tabstop>checkBoxSearcherReplacement</tabstop>
   <tabstop>comboBoxSearcherReplacement0</tabstop>
   <tabstop>comboBoxSearcherReplacement1</tabstop>

@@ -174,13 +174,14 @@ WildSearcherModel4::WildSearcherModel4(QObject *parent) :
     TableModel(parent),
     showStats(false),
     showStepEncounter(false),
+    showStepMovement(true),
     method(Method::MethodJ)
 {
 }
 
 int WildSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return showStepEncounter ? 20 : 19;
+    return showStepEncounter ? showStepMovement ? 22 : 21 : 19;
 }
 
 QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
@@ -190,6 +191,10 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         const auto &state = model[index.row()];
         int column = index.column();
         if (!showStepEncounter && column >= 2)
+        {
+            column += 3;
+        }
+        else if (showStepEncounter && !showStepMovement && column >= 3)
         {
             column++;
         }
@@ -202,38 +207,76 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 2:
             return static_cast<int>(state.getMovements());
         case 3:
-            return QString::fromStdString(Translator::getItem(state.getItem()));
+            switch (state.getMovement())
+            {
+            case 1:
+                return tr("Running");
+            case 2:
+                return tr("Biking");
+            case 3:
+                return method == Method::MethodK ? tr("Walking in Long Grass") : tr("Walking / Running in Long Grass");
+            case 4:
+                return tr("Running in Long Grass");
+            case 5:
+                return tr("Surfing");
+            case 0:
+            default:
+                return method == Method::MethodK ? tr("Walking") : tr("Walking / Running");
+            }
         case 4:
+            switch (state.getStepModifier())
+            {
+            case 1:
+                return tr("White Flute");
+            case 2:
+                return tr("Pokemon March");
+            case 3:
+                return tr("White Flute") + QString(" & ") + tr("Pokemon March");
+            case 4:
+                return tr("Pokemon Lullaby");
+            case 5:
+                return tr("White Flute") + QString(" & ") + tr("Pokemon Lullaby");
+            case 6:
+                return tr("Pokemon March") + QString(" / ") + tr("Lullaby");
+            case 7:
+                return tr("White Flute") + QString(" & ") + tr("Pokemon March") + QString(" / ") + tr("Lullaby");
+            case 0:
+            default:
+                return QString("-");
+            }
+        case 5:
+            return QString::fromStdString(Translator::getItem(state.getItem()));
+        case 6:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 5:
-            return state.getLevel();
-        case 6:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 7:
+            return state.getLevel();
+        case 8:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 9:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 8:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
-        case 9:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 10:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 11:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 12:
         case 13:
         case 14:
         case 15:
-            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
         case 16:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 17:
-            return state.getHiddenPowerStrength();
+            return showStats ? state.getStat(column - 12) : state.getIV(column - 12);
         case 18:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 19:
+            return state.getHiddenPowerStrength();
+        case 20:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 21:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
@@ -245,6 +288,10 @@ QVariant WildSearcherModel4::headerData(int section, Qt::Orientation orientation
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         if (!showStepEncounter && section >= 2)
+        {
+            section += 3;
+        }
+        else if (showStepEncounter && !showStepMovement && section >= 3)
         {
             section++;
         }
@@ -263,7 +310,7 @@ void WildSearcherModel4::setMethod(Method method)
 void WildSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    int hp = showStepEncounter ? 10 : 9;
+    int hp = showStepEncounter ? showStepMovement ? 12 : 11 : 9;
     emit dataChanged(index(0, hp), index(rowCount() - 1, hp + 5), { Qt::DisplayRole });
 }
 
@@ -271,5 +318,12 @@ void WildSearcherModel4::setShowStepEncounter(bool flag)
 {
     beginResetModel();
     showStepEncounter = flag;
+    endResetModel();
+}
+
+void WildSearcherModel4::setShowStepMovement(bool flag)
+{
+    beginResetModel();
+    showStepMovement = flag;
     endResetModel();
 }

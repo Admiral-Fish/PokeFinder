@@ -137,7 +137,7 @@ static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
     u16 movementRate;
     switch (movement)
     {
-    case 1: // Running/surfing
+    case 1: // Running
         movementRate = 40;
         break;
     case 2: // Biking
@@ -149,6 +149,9 @@ static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
     case 4: // Running long grass
         movementRate = 80;
         break;
+    case 5: // Surfing
+        movementRate = 40;
+        break;
     case 0:
     default:
         movementRate = encounter == Encounter::Surfing ? 40 : 20;
@@ -158,6 +161,10 @@ static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
     if (radio == 4)
     {
         movementRate += 25;
+    }
+    else if (radio == 5)
+    {
+        movementRate -= 25;
     }
 
     return std::min<u16>(movementRate, 100);

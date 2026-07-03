@@ -92,7 +92,7 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Battle Advances"), tr("Call"),   tr("Chatot"), tr("Movements"), tr("Item"),
+    QStringList header = { tr("Advances"), tr("Battle Advances"), tr("Call"),   tr("Chatot"), tr("Steps"), tr("Item"),
                            tr("Slot"),     tr("Level"),           tr("PID"),    tr("Shiny"),  tr("Nature"),    tr("Ability"),
                            tr("HP"),       tr("Atk"),             tr("Def"),    tr("SpA"),    tr("SpD"),       tr("Spe"),
                            tr("Hidden"),   tr("Power"),           tr("Gender"), tr("Characteristic") };
@@ -176,12 +176,21 @@ public slots:
      */
     void setShowStepEncounter(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays the step movement column
+     *
+     * @param flag Whether to show step movement information or not
+     */
+    void setShowStepMovement(bool flag);
+
 private:
-    QStringList header = { tr("Seed"),   tr("Advances"), tr("Movements"), tr("Item"),   tr("Slot"),   tr("Level"), tr("PID"),
-                           tr("Shiny"),  tr("Nature"),   tr("Ability"),   tr("HP"),     tr("Atk"),    tr("Def"),   tr("SpA"),
-                           tr("SpD"),    tr("Spe"),      tr("Hidden"),    tr("Power"),  tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Seed"),   tr("Advances"), tr("Steps"),   tr("Movement"), tr("Step Modifier"), tr("Item"),
+                           tr("Slot"),   tr("Level"),    tr("PID"),     tr("Shiny"),    tr("Nature"),        tr("Ability"),
+                           tr("HP"),     tr("Atk"),      tr("Def"),     tr("SpA"),      tr("SpD"),           tr("Spe"),
+                           tr("Hidden"), tr("Power"),    tr("Gender"),  tr("Characteristic") };
     bool showStats;
     bool showStepEncounter;
+    bool showStepMovement;
     Method method;
 };
 

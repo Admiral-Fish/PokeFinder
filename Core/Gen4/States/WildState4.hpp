@@ -157,7 +157,9 @@ public:
     WildSearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                        u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
         WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
-        movements(0)
+        movements(0),
+        movement(0),
+        stepModifier(0)
     {
     }
 
@@ -211,9 +213,51 @@ public:
         this->movements = movements;
     }
 
+    /**
+     * @brief Returns the movement type required for a step encounter
+     *
+     * @return Movement type
+     */
+    u8 getMovement() const
+    {
+        return movement;
+    }
+
+    /**
+     * @brief Sets the movement type required for a step encounter
+     *
+     * @param movement Movement type
+     */
+    void setMovement(u8 movement)
+    {
+        this->movement = movement;
+    }
+
+    /**
+     * @brief Returns the extra step encounter modifier required
+     *
+     * @return Step encounter modifier
+     */
+    u8 getStepModifier() const
+    {
+        return stepModifier;
+    }
+
+    /**
+     * @brief Sets the extra step encounter modifier required
+     *
+     * @param stepModifier Step encounter modifier
+     */
+    void setStepModifier(u8 stepModifier)
+    {
+        this->stepModifier = stepModifier;
+    }
+
 private:
     u32 advances;
     u8 movements;
+    u8 movement;
+    u8 stepModifier;
 };
 
 #endif // WILDSTATE4_HPP

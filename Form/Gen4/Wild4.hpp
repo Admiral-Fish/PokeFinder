@@ -20,8 +20,10 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
+#include <Core/Global.hpp>
 #include <QWidget>
 
+class CheckList;
 class EncounterArea4;
 class Profile4;
 class SortFilterProxyModel;
@@ -74,6 +76,7 @@ private:
     std::vector<Profile4> profiles;
     WildGeneratorModel4 *generatorModel;
     WildSearcherModel4 *searcherModel;
+    CheckList *checkListSearcherStepOptions;
 
     /**
      * @brief Updates generator encounter tables
@@ -84,6 +87,28 @@ private:
      * @brief Update searcher encounter tables
      */
     void updateEncounterSearcher();
+
+    /**
+     * @brief Updates the generator movement options based on the selected encounter/location
+     */
+    void updateGeneratorMovementOptions();
+
+    /**
+     * @brief Updates the HGSS searcher step encounter option popup
+     */
+    void updateSearcherStepOptions();
+
+    /**
+     * @brief Updates the displayed HGSS searcher step option summary
+     */
+    void updateSearcherStepOptionsText();
+
+    /**
+     * @brief Gets the enabled HGSS searcher step options
+     *
+     * @return Enabled step option bitmask
+     */
+    u8 getSearcherStepOptions() const;
 
 private slots:
     /**

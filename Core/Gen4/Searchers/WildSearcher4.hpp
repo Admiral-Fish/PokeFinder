@@ -54,8 +54,8 @@ public:
                   bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
-                  bool unownRadio, u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement, u8 movement, u8 radio,
-                  const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+                  bool unownRadio, u8 happiness, bool searchStepEncounter, u8 stepOptions, const EncounterArea4 &area,
+                  const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -74,17 +74,13 @@ private:
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
-    u8 stepMovements;
     bool feebas;
     bool feebasTile;
     bool safari;
     bool searchStepEncounter;
     bool shiny;
     bool unownRadio;
-    bool whiteFlute;
-    bool fastMovement;
-    u8 movement;
-    u8 radio;
+    u8 stepOptions;
     ModifiedSlots modifiedSlots;
 
     /**

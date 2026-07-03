@@ -77,6 +77,13 @@ public:
     std::vector<bool> getChecked() const;
 
     /**
+     * @brief Determines which check boxes are explicitly checked
+     *
+     * @return Vector of true/false to signify which check boxes are checked
+     */
+    std::vector<bool> getExplicitChecked() const;
+
+    /**
      * @brief Determines which of the check boxes are checked
      *
      * @tparam size Size of the array
@@ -98,6 +105,13 @@ public:
      * @return Vector of checked data
      */
     std::vector<u16> getCheckedData() const;
+
+    /**
+     * @brief Gets the data of the explicitly checked items
+     *
+     * @return Vector of checked data
+     */
+    std::vector<u16> getExplicitCheckedData() const;
 
     /**
      * @brief Sets all check boxes to be unchecked
