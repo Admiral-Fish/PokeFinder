@@ -29,8 +29,6 @@ enum class Item : u8
 {
     None,
 
-    BlackFlute,
-    CleanseTag,
     WhiteFlute
 };
 

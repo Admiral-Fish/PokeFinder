@@ -40,13 +40,12 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param feebasTile Whether Feebas tiles are active
-     * @param bike Whether bike is being ridden
      * @param item Selected active item
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher3(Method method, Lead lead, bool feebasTile, bool bike, Item item, const EncounterArea3 &area, const Profile3 &profile,
+    WildSearcher3(Method method, Lead lead, bool feebasTile, Item item, const EncounterArea3 &area, const Profile3 &profile,
                   const WildStateFilter &filter);
 
     /**
@@ -59,7 +58,6 @@ public:
 
 private:
     u16 rate;
-    bool bike;
     bool feebasTile;
     bool ivAdvance;
     Item item;

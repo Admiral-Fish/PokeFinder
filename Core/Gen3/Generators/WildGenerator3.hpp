@@ -42,13 +42,12 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param feebasTile Whether Feebas tiles are active
-     * @param bike Whether bike is being ridden
      * @param item Selected active item
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool bike, Item item,
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, Item item,
                    const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
@@ -61,7 +60,6 @@ public:
     std::vector<WildGeneratorState> generate(u32 seed) const;
 
 private:
-    bool bike;
     bool feebasTile;
     Item item;
 };

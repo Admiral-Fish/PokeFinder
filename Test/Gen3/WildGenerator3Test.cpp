@@ -51,7 +51,6 @@ void WildGenerator3Test::generate_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<bool>("feebasTile");
-    QTest::addColumn<bool>("bike");
     QTest::addColumn<Item>("item");
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
@@ -61,8 +60,8 @@ void WildGenerator3Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["encounter"].get<Encounter>()
-            << d["lead"].get<Lead>() << d.value("feebasTile", false) << d.value("bike", false) << d.value("item", Item::None)
-            << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["lead"].get<Lead>() << d.value("feebasTile", false) << d.value("item", Item::None) << d["location"].get<int>()
+            << d["results"].get<json>().dump();
     }
 }
 
@@ -74,7 +73,6 @@ void WildGenerator3Test::generate()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(bool, feebasTile);
-    QFETCH(bool, bike);
     QFETCH(Item, item);
     QFETCH(int, location);
     QFETCH(std::string, results);
@@ -105,7 +103,7 @@ void WildGenerator3Test::generate()
     auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, bike, item, *area, profile, filter);
+    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, item, *area, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
