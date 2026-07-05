@@ -210,6 +210,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel4::setShowStats);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild4::profileManager);
 
+    ui->comboBoxGeneratorTime->setCurrentIndex(1);
+    ui->comboBoxSearcherTime->setCurrentIndex(1);
+
     updateProfiles();
     generatorEncounterIndexChanged(0);
     searcherEncounterIndexChanged(0);
