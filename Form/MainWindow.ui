@@ -399,7 +399,7 @@
   </action>
   <action name="actionAdjacentSeed">
    <property name="text">
-    <string>Adjacent Seed</string>
+    <string>Adjacent Seed Tool</string>
    </property>
   </action>
  </widget>

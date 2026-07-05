@@ -66,6 +66,7 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
+    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
 
     model = new AdjacentSeedModel(ui->tableView);
     ui->tableView->setModel(model);
@@ -79,6 +80,31 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
     ui->comboBoxKeypresses->setMaxVisibleItems(static_cast<int>(keypressButtons.size()));
     ui->comboBoxKeypresses->view()->setMinimumHeight(190);
     ui->comboBoxKeypresses->view()->setMaximumHeight(205);
+    ui->comboBoxPreviewMode->setItemData(0, chatotPreview);
+    ui->comboBoxPreviewMode->setItemData(1, needlePreview);
+
+    ui->gridLayoutSettings->setHorizontalSpacing(8);
+    ui->gridLayoutSettings->setColumnStretch(0, 0);
+    ui->gridLayoutSettings->setColumnStretch(1, 0);
+    ui->gridLayoutSettings->setColumnStretch(2, 0);
+    ui->gridLayoutSettings->setColumnStretch(3, 0);
+    ui->gridLayoutSettings->setColumnStretch(4, 0);
+    ui->gridLayoutSettings->setColumnStretch(5, 1);
+    ui->gridLayoutSettings->setColumnStretch(6, 0);
+    ui->gridLayoutSettings->setColumnStretch(7, 0);
+    ui->gridLayoutSettings->setColumnStretch(8, 0);
+    ui->gridLayoutSettings->setColumnStretch(9, 1);
+    ui->dateTimeEdit->setMinimumWidth(165);
+    ui->dateTimeEdit->setMaximumWidth(180);
+    ui->spinBoxSeconds->setMaximumWidth(48);
+    ui->comboBoxKeypresses->setMinimumWidth(280);
+    ui->comboBoxKeypresses->setMaximumWidth(999);
+    ui->comboBoxMethod->setMinimumWidth(160);
+    ui->comboBoxMethod->setMaximumWidth(999);
+    ui->textBoxMinIVAdvance->setMaximumWidth(65);
+    ui->textBoxMaxIVAdvance->setMaximumWidth(65);
+    ui->pushButtonIVCalculator->setMinimumWidth(120);
+    ui->pushButtonGenerate->setMinimumWidth(120);
 
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
@@ -320,6 +346,6 @@ void AdjacentSeed::updatePreview()
         }
     }
 
-    ui->lineEditPreview->setText(preview.join(", "));
+    ui->lineEditPreview->setText(preview.join(ui->comboBoxPreviewMode->currentData().toInt() == needlePreview ? "  ,  " : ", "));
     ui->lineEditPreview->setCursorPosition(0);
 }

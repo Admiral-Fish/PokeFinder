@@ -51,6 +51,27 @@ static std::array<u8, 6> generateMTIVs(u64 seed, Game version, u32 ivAdvance, bo
     return ivs;
 }
 
+static bool normalizeDSDateTime(DateTime &dateTime)
+{
+    const u32 minJD = Date(2000, 1, 1).getJD();
+    const u32 maxJD = Date(2100, 1, 1).getJD();
+    const u32 days = maxJD - minJD;
+
+    Date date = dateTime.getDate();
+    u32 jd = date.getJD();
+    if (jd < minJD)
+    {
+        return false;
+    }
+
+    if (jd >= maxJD)
+    {
+        dateTime = DateTime(Date(minJD + ((jd - minJD) % days)), dateTime.getTime());
+    }
+
+    return true;
+}
+
 std::vector<AdjacentSeedState> AdjacentSeedCalculator::generate(const Profile5 &profile, const DateTime &dateTime, Buttons buttons,
                                                                 int seconds, u32 minIVAdvance, u32 maxIVAdvance, bool roamer)
 {
@@ -69,9 +90,14 @@ std::vector<AdjacentSeedState> AdjacentSeedCalculator::generate(const Profile5 &
     std::vector<AdjacentSeedState> states;
     states.reserve(rangeSeconds * timer0Count * ivCount);
 
-    for (int secondOffset = seconds; secondOffset <= seconds; secondOffset++)
+    for (int secondOffset = -seconds; secondOffset <= seconds; secondOffset++)
     {
         DateTime offset = dateTime.addSeconds(secondOffset);
+        if (!normalizeDSDateTime(offset))
+        {
+            continue;
+        }
+
         Date date = offset.getDate();
         Time time = offset.getTime();
 

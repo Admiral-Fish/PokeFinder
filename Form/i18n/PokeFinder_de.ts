@@ -9900,7 +9900,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>Wild5</name>
     <message>
         <source>Adjacent Seed Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Naheliegende Seeds Tool</translation>
     </message>
     <message>
         <source>Gen 5 Wild</source>

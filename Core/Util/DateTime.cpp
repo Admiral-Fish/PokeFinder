@@ -133,25 +133,15 @@ u16 Date::year() const
 
 int Time::addSeconds(int seconds)
 {
-    md += seconds;
-
-    int days = 0;
-    if (md >= 0)
+    long long total = static_cast<long long>(md) + seconds;
+    int days = static_cast<int>(total / 86400);
+    int time = static_cast<int>(total % 86400);
+    if (time < 0)
     {
-        while (md >= 86400)
-        {
-            md -= 86400;
-            days++;
-        }
+        time += 86400;
+        days--;
     }
-    else if (md <= 0)
-    {
-        while (md < 0)
-        {
-            md += 86400;
-            days--;
-        }
-    }
+    md = time;
 
     return days;
 }
@@ -191,7 +181,7 @@ DateTime DateTime::addSeconds(int seconds) const
     DateTime dt(*this);
 
     int days = dt.time.addSeconds(seconds);
-    dt.date += days;
+    dt.date.jd = static_cast<u32>(static_cast<long long>(dt.date.jd) + days);
 
     return dt;
 }
