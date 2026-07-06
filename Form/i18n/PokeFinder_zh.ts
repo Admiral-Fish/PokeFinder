@@ -1623,6 +1623,10 @@
         <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
     </message>
     <message>
+        <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen5/Eggs5.cpp" line="146"/>
         <location filename="../Gen5/Eggs5.cpp" line="190"/>
         <source>Parents Reordered</source>

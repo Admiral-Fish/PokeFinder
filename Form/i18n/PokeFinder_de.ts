@@ -1623,6 +1623,10 @@
         <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
+        <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation>Eltern nicht kompatibel für Versteckte Fähigkeit!</translation>
+    </message>
+    <message>
         <location filename="../Gen5/Eggs5.cpp" line="146"/>
         <location filename="../Gen5/Eggs5.cpp" line="190"/>
         <source>Parents Reordered</source>

@@ -24,6 +24,7 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -35,6 +36,20 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+namespace
+{
+    bool parentsCompatibleForHiddenAbility(const Daycare &daycare)
+    {
+        if (daycare.getDitto())
+        {
+            return false;
+        }
+
+        return (daycare.getParentGender(0) == 0 && daycare.getParentGender(1) == 1 && daycare.getParentAbility(1) == 2)
+            || (daycare.getParentGender(0) == 1 && daycare.getParentAbility(0) == 2 && daycare.getParentGender(1) == 0);
+    }
+}
 
 Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 {
@@ -147,6 +162,14 @@ void Eggs5::generate()
         box.exec();
     }
 
+    Daycare daycare = ui->eggSettingsGenerator->getDaycare();
+    if (!ui->filterGenerator->getDisableFilters() && ui->filterGenerator->getAbility() == 2 && !parentsCompatibleForHiddenAbility(daycare))
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
+        box.exec();
+        return;
+    }
+
     if (!ui->filterGenerator->isValid())
     {
         return;
@@ -158,7 +181,6 @@ void Eggs5::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
-    Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter);
@@ -191,6 +213,14 @@ void Eggs5::search()
         box.exec();
     }
 
+    Daycare daycare = ui->eggSettingsSearcher->getDaycare();
+    if (ui->filterSearcher->getAbility() == 2 && !parentsCompatibleForHiddenAbility(daycare))
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
+        box.exec();
+        return;
+    }
+
     if (!ui->filterSearcher->isValid())
     {
         return;
@@ -203,7 +233,6 @@ void Eggs5::search()
 
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
