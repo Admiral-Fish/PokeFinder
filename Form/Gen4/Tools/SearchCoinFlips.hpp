@@ -21,8 +21,10 @@
 #define SEARCHCOINFLIPS_HPP
 
 #include <QDialog>
+#include <vector>
 
 class SeedTimeCalibrate4;
+class SeedToTimeCalibrateModel4;
 
 namespace Ui
 {
@@ -57,9 +59,17 @@ public:
 
 private:
     Ui::SearchCoinFlips *ui;
+    SeedToTimeCalibrateModel4 *previewModel;
 
     std::vector<bool> possible;
     const std::vector<SeedTimeCalibrate4> &data;
+
+    /**
+     * @brief Updates preview table with possible matching results
+     *
+     * @param matches Matching results
+     */
+    void updatePreview(const std::vector<SeedTimeCalibrate4> &matches);
 
 private slots:
     /**
@@ -68,6 +78,16 @@ private slots:
      * @param text Current coin flip text
      */
     void flipsTextChanged(const QString &text);
+
+    /**
+     * @brief Removes the last coin flip from the string
+     */
+    void remove();
+
+    /**
+     * @brief Clears all coin flips from the string
+     */
+    void clear();
 
     /**
      * @brief Updates display text to show the heads text

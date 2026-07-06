@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
-    <height>300</height>
+    <width>680</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -101,14 +101,41 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="4">
+   <item row="7" column="0" colspan="6">
+    <widget class="QTableView" name="tableViewPreview">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>130</height>
+      </size>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QPushButton" name="pushButtonRemove">
+     <property name="text">
+      <string>Remove</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QPushButton" name="pushButtonClear">
+     <property name="text">
+      <string>Clear</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="4">
     <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
       <string>Ok</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="5">
+   <item row="8" column="5">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
       <string>Cancel</string>

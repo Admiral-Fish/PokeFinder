@@ -21,6 +21,7 @@
 #include "ui_SearchCalls.h"
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Model/Gen4/SeedToTimeModel4.hpp>
 #include <QSettings>
 
 SearchCalls::SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent) :
@@ -29,12 +30,17 @@ SearchCalls::SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *p
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
+    previewModel = new SeedToTimeCalibrateModel4(ui->tableViewPreview, false);
+    ui->tableViewPreview->setModel(previewModel);
+
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
 
     connect(ui->pushButtonE, &QPushButton::clicked, this, &SearchCalls::e);
     connect(ui->pushButtonK, &QPushButton::clicked, this, &SearchCalls::k);
     connect(ui->pushButtonP, &QPushButton::clicked, this, &SearchCalls::p);
     connect(ui->lineEditCalls, &QLineEdit::textChanged, this, &SearchCalls::callsTextChanged);
+    connect(ui->pushButtonRemove, &QPushButton::clicked, this, &SearchCalls::remove);
+    connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCalls::clear);
     connect(ui->radioButtonElm, &QRadioButton::clicked, this, &SearchCalls::elm);
     connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &SearchCalls::irwin);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCalls::accept);
@@ -68,6 +74,7 @@ void SearchCalls::callsTextChanged(const QString &text)
         std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
 
         int num = 0;
+        std::vector<SeedTimeCalibrate4> matches;
 
         possible.clear();
         for (const auto &d : data)
@@ -86,10 +93,33 @@ void SearchCalls::callsTextChanged(const QString &text)
             if (pass)
             {
                 num++;
+                matches.emplace_back(d);
             }
         }
 
         ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
+        updatePreview(matches);
+    }
+    else
+    {
+        possible.clear();
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
+        updatePreview({});
+    }
+}
+
+void SearchCalls::updatePreview(const std::vector<SeedTimeCalibrate4> &matches)
+{
+    previewModel->clearModel();
+    if (!matches.empty() && matches.size() <= 3)
+    {
+        previewModel->addItems(matches);
+        ui->tableViewPreview->setVisible(true);
+        ui->tableViewPreview->resizeColumnsToContents();
+    }
+    else
+    {
+        previewModel->clearModel();
     }
 }
 
@@ -117,6 +147,18 @@ void SearchCalls::irwin()
     ui->labelPResponse->setText(tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money "
                                    "have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, "
                                    "there's so much I want to chat about! This is going nowhere!"));
+}
+
+void SearchCalls::remove()
+{
+    QString string = ui->lineEditCalls->text();
+    int index = string.lastIndexOf(',');
+    ui->lineEditCalls->setText(index == -1 ? QString() : string.left(index));
+}
+
+void SearchCalls::clear()
+{
+    ui->lineEditCalls->clear();
 }
 
 void SearchCalls::k()

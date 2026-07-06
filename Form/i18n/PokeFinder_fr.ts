@@ -6991,6 +6991,14 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Annuler</translation>
     </message>
     <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
@@ -7044,6 +7052,14 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <source>Cancel</source>
         <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
@@ -7220,7 +7236,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
-        <source>Roamer locations</source>
+        <source>Roamers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
