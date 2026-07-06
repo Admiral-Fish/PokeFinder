@@ -77,6 +77,23 @@ union alignas(16) vuint128 {
      *
      * @param x0 Initalization number0
      * @param x1 Initalization number1
+     */
+    vuint128(u64 x0, u64 x1)
+    {
+#if defined(SIMD_X86)
+        uint128 = _mm_set_epi64x(x1, x0);
+#elif defined(SIMD_ARM)
+        uint128 = vreinterpretq_u32_u64(vcombine_u64(vcreate_u64(x0), vcreate_u64(x1)));
+#else
+        uint64 = { x0, x1 };
+#endif
+    }
+
+    /**
+     * @brief Construct a new vuint128 object
+     *
+     * @param x0 Initalization number0
+     * @param x1 Initalization number1
      * @param x2 Initalization number2
      * @param x3 Initalization number3
      */

@@ -18,17 +18,9 @@
  */
 
 #include "Xoroshiro.hpp"
+#include <Core/RNG/Jump.hpp>
 
-constexpr u64 jumpTable[25][2]
-    = { { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },
-        { 0x23ac5e0ba1cecb29, 0x1207a1706bebb202 }, { 0xbb18e9c8d463bb1b, 0x2c88ef71166bc53d }, { 0xe3fbe606ef4e8e09, 0xc3865bb154e9be10 },
-        { 0x28faaaebb31ee2db, 0x1a9fc99fa7818274 }, { 0x30a7c4eef203c7eb, 0x588abd4c2ce2ba80 }, { 0xa425003f3220a91d, 0x9c90debc053e8cef },
-        { 0x81e1dd96586cf985, 0xb82ca99a09a4e71e }, { 0x4f7fd3dfbb820bfb, 0x35d69e118698a31d }, { 0xfee2760ef3a900b3, 0x49613606c466efd3 },
-        { 0xf0df0531f434c57d, 0xbd031d011900a9e5 }, { 0x442576715266740c, 0x235e761b3b378590 }, { 0x1e8bae8f680d2b35, 0x3710a7ae7945df77 },
-        { 0xfd7027fe6d2f6764, 0x75d8e7dbceda609c }, { 0x28eff231ad438124, 0xde2cba60cd3332b5 }, { 0x1808760d0a0909a1, 0x377e64c4e80a06fa },
-        { 0xb9a362fafedfe9d2, 0xcf0a2225da7fb95 },  { 0xf57881ab117349fd, 0x2bab58a3cadfc0a3 }, { 0x849272241425c996, 0x8d51ecdb9ed82455 },
-        { 0xf1ccb8898cbc07cd, 0x521b29d0a57326c1 }, { 0x61179e44214caafa, 0xfbe65017abec72dd }, { 0xd9aa6b1e93fbb6e4, 0x6c446b9bc95c267b },
-        { 0x86e3772194563f6d, 0x64f80248d23655c6 } };
+static const vuint128 polynomial = vuint128(0x095b8f76579aa001, 0x0008828e513b43d5);
 
 static inline u64 splitmix(u64 seed)
 {
@@ -58,31 +50,22 @@ void Xoroshiro::advance(u32 advances)
 
 void Xoroshiro::jump(u32 advances)
 {
-    advance(advances & 0x7f);
-    advances >>= 7;
+    auto jump = Jump::computeJumpPolynomial<128>(polynomial, advances);
 
-    for (int i = 0; advances; advances >>= 1, i++)
+    vuint128 temp(0);
+    for (int i = 0; i < 2; i++)
     {
-        if (advances & 1)
+        for (int j = 0; j < 64; j++)
         {
-            vuint128 jump(0);
-
-            for (int j = 1; j >= 0; j--)
+            if (jump.uint64[i] & (1ULL << j))
             {
-                u64 val = jumpTable[i][j];
-                for (int k = 0; k < 64; k++, val >>= 1)
-                {
-                    if (val & 1)
-                    {
-                        jump = jump ^ state;
-                    }
-                    next();
-                }
+                temp = temp ^ state;
             }
-
-            state = jump;
+            next();
         }
     }
+
+    state = temp;
 }
 
 u64 Xoroshiro::next()

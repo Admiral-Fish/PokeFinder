@@ -18,17 +18,10 @@
  */
 
 #include "TinyMT.hpp"
+#include <Core/RNG/Jump.hpp>
+#include <bit>
 
-constexpr u64 jumpTable[25][2]
-    = { { 0x68f6c067369601df, 0x9654f148a90fcec5 }, { 0x3acf552103dbbf73, 0xb9e15caa5f8d586b }, { 0x2528779341278769, 0x149df0a3ce8a313d },
-        { 0x5ab81fcd13ccd9fa, 0xce6673b3d158340e }, { 0x3f8285b29763f1a0, 0x84c1c823c273e23b }, { 0x2e1bd6473d093826, 0x61def4964ec4ab34 },
-        { 0x33ae14e5d2005a71, 0x334a0fe77ab182de }, { 0x0e06f5b1e69f0174, 0xba589ce43d24301d }, { 0x0586e1d6b2670a75, 0x86bf0979d37c9a1e },
-        { 0x55d7db08d9d6e575, 0x6f1cde00c5428bd5 }, { 0x457372c828f32370, 0x55bf4c862403495b }, { 0x7d9a80f7f39cdc7f, 0xa37711f1e4e489c5 },
-        { 0x7c5c99ea483c815a, 0x9f1173b680f6752e }, { 0x658cd2f421d18c04, 0x41fbd20233bcb628 }, { 0x694898799783db46, 0xc8fc1f0f485cc220 },
-        { 0x4cf6c5ecc4826e0b, 0x8e695f0109724eb6 }, { 0x2a5eaf3a194065dc, 0xf9b4e14b65c67175 }, { 0x475fa9dca8a63e5a, 0xf2272003ed156055 },
-        { 0x73ab53c0e246197f, 0x97191167e296db49 }, { 0x20999170716ca869, 0x203777ca7d356342 }, { 0x5dcb2d78b3e9ca0f, 0x7222f0529a9dd99c },
-        { 0x197365ac9569a8b4, 0x6dd7a644730f081a }, { 0x2a472d665ef39ef4, 0x0d7382718dc46f8f }, { 0x74284a9019b6eae3, 0xafb1a319fcfd8eb7 },
-        { 0x40afea91e9ad4b2c, 0x58440d15ded1d336 } };
+static const vuint128 polynomial = vuint128(0x8dcc50c798faba43, 0x58524022ed8dff4a);
 
 TinyMT::TinyMT(u32 seed) : state(seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff)
 {
@@ -63,31 +56,22 @@ void TinyMT::advance(u32 advances)
 
 void TinyMT::jump(u32 advances)
 {
-    advance(advances & 0x7f);
-    advances >>= 7;
+    auto jump = Jump::computeJumpPolynomial<127>(polynomial, advances);
 
-    for (int i = 0; advances; advances >>= 1, i++)
+    vuint128 temp(0);
+    for (int i = 0; i < 2; i++)
     {
-        if (advances & 1)
+        for (int j = 0; j < 64; j++)
         {
-            vuint128 jump(0);
-
-            for (int j = 1; j >= 0; j--)
+            if (jump.uint64[i] & (1ULL << j))
             {
-                u64 val = jumpTable[i][j];
-                for (int k = 0; k < 64; k++, val >>= 1)
-                {
-                    if (val & 1)
-                    {
-                        jump = jump ^ state;
-                    }
-                    nextState();
-                }
+                temp = temp ^ state;
             }
-
-            state = jump;
+            next();
         }
     }
+
+    state = temp;
 }
 
 u32 TinyMT::next()
