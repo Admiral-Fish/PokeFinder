@@ -6992,6 +6992,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Zurücksetzen</translation>
+    </message>
+    <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation>P - Pokémon, die mit dem Pokérus infiziert sind, scheinen schneller zu wachsen. Wenn ich nur wüsste, woran das liegt...</translation>
@@ -7045,6 +7053,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
@@ -7221,8 +7237,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
-        <source>Roamer locations</source>
-        <translation>Wanderpokémon Positionen</translation>
+        <source>Roamers</source>
+        <translation>Wanderpokémon</translation>
     </message>
 </context>
 <context>

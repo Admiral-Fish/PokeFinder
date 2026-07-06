@@ -22,8 +22,10 @@
 
 #include <Core/Global.hpp>
 #include <QDialog>
+#include <vector>
 
 class SeedTimeCalibrate4;
+class SeedToTimeCalibrateModel4;
 
 namespace Ui
 {
@@ -58,9 +60,17 @@ public:
 
 private:
     Ui::SearchCalls *ui;
+    SeedToTimeCalibrateModel4 *previewModel;
 
     std::vector<bool> possible;
     const std::vector<SeedTimeCalibrate4> &data;
+
+    /**
+     * @brief Updates preview table with possible matching results
+     *
+     * @param matches Matching results
+     */
+    void updatePreview(const std::vector<SeedTimeCalibrate4> &matches);
 
 private slots:
     /**
@@ -69,6 +79,16 @@ private slots:
      * @param text Current Elm/Irwin calls text
      */
     void callsTextChanged(const QString &text);
+
+    /**
+     * @brief Removes the last Elm/Irwin call from the string
+     */
+    void remove();
+
+    /**
+     * @brief Clears all Elm/Irwin calls from the string
+     */
+    void clear();
 
     /**
      * @brief Adds the Elm/Irwin E call to the string

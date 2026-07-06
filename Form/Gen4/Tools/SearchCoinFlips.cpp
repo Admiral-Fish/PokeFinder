@@ -21,6 +21,7 @@
 #include "ui_SearchCoinFlips.h"
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Model/Gen4/SeedToTimeModel4.hpp>
 #include <QSettings>
 
 SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent) :
@@ -29,11 +30,16 @@ SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QW
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
+    previewModel = new SeedToTimeCalibrateModel4(ui->tableViewPreview, true);
+    ui->tableViewPreview->setModel(previewModel);
+
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
 
     connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
     connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
     connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+    connect(ui->pushButtonRemove, &QPushButton::clicked, this, &SearchCoinFlips::remove);
+    connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCoinFlips::clear);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCoinFlips::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCoinFlips::reject);
 
@@ -64,6 +70,7 @@ void SearchCoinFlips::flipsTextChanged(const QString &text)
         std::string result = text.toUpper().toStdString();
         std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
         int num = 0;
+        std::vector<SeedTimeCalibrate4> matches;
 
         possible.clear();
         for (const auto &dt : data)
@@ -76,10 +83,33 @@ void SearchCoinFlips::flipsTextChanged(const QString &text)
             if (pass)
             {
                 num++;
+                matches.emplace_back(dt);
             }
         }
 
         ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
+        updatePreview(matches);
+    }
+    else
+    {
+        possible.clear();
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
+        updatePreview({});
+    }
+}
+
+void SearchCoinFlips::updatePreview(const std::vector<SeedTimeCalibrate4> &matches)
+{
+    previewModel->clearModel();
+    if (!matches.empty() && matches.size() <= 3)
+    {
+        previewModel->addItems(matches);
+        ui->tableViewPreview->setVisible(true);
+        ui->tableViewPreview->resizeColumnsToContents();
+    }
+    else
+    {
+        previewModel->clearModel();
     }
 }
 
@@ -88,6 +118,18 @@ void SearchCoinFlips::heads()
     QString string = ui->lineEditFlips->text();
     string += string.isEmpty() ? "H" : ", H";
     ui->lineEditFlips->setText(string);
+}
+
+void SearchCoinFlips::remove()
+{
+    QString string = ui->lineEditFlips->text();
+    int index = string.lastIndexOf(',');
+    ui->lineEditFlips->setText(index == -1 ? QString() : string.left(index));
+}
+
+void SearchCoinFlips::clear()
+{
+    ui->lineEditFlips->clear();
 }
 
 void SearchCoinFlips::tails()

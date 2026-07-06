@@ -6992,6 +6992,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Annulla</translation>
     </message>
     <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation>P - Un Pokémon infettato dal Pokérus evolve più facilmente. Tuttavia, non ne comprendo il motivo...</translation>
@@ -7045,6 +7053,14 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <source>Cancel</source>
         <translation>Annulla</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
@@ -7221,8 +7237,8 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
-        <source>Roamer locations</source>
-        <translation>Zone erranti</translation>
+        <source>Roamers</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
