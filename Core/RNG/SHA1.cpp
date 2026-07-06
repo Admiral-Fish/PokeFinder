@@ -976,6 +976,12 @@ u64 SHA1SIMD::hashSeed()
     ABCD = vuint128(0x10325476, 0x98badcfe, 0xefcdab89, 0x67452301);
     E0 = 0xc3d2e1f0;
 
+    /* Load message */
+    MSG0 = v32x4_load(&data[0]);
+    MSG1 = v32x4_load(&data[4]);
+    MSG2 = v32x4_load(&data[8]);
+    MSG3 = v32x4_load(&data[12]);
+
     /* Reverse for little endian */
     MSG0.uint128 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG0.uint128)));
     MSG1.uint128 = vreinterpretq_u32_u8(vrev32q_u8(vreinterpretq_u8_u32(MSG1.uint128)));
