@@ -46,7 +46,9 @@ enum class Translation : u8
     BDSP,
     BW2,
     BW,
-    Characteristic,
+    CharacteristicGen4,
+    CharacteristicGen5,
+    CharacteristicGen8,
     DPPt,
     E,
     Form,
@@ -66,7 +68,7 @@ enum class Translation : u8
 
 static Language language;
 static std::vector<std::string> abilities;
-static std::vector<std::string> characteristics;
+static std::array<std::vector<std::string>, 5> characteristicsByGeneration;
 static std::map<u16, std::string> forms;
 static std::vector<std::string> games;
 static std::vector<std::string> hiddenPowers;
@@ -131,19 +133,53 @@ static std::map<u16, std::string> readFile(const char *data, Translation transla
 
 namespace Translator
 {
+    static CharacteristicGeneration getCharacteristicGeneration(Game version)
+    {
+        if ((version & Game::Gen5) != Game::None)
+        {
+            return CharacteristicGeneration::Gen5;
+        }
+        else if ((version & Game::Gen6) != Game::None)
+        {
+            return CharacteristicGeneration::Gen6;
+        }
+        else if ((version & Game::Gen7) != Game::None)
+        {
+            return CharacteristicGeneration::Gen7;
+        }
+        else if ((version & Game::Gen8) != Game::None)
+        {
+            return CharacteristicGeneration::Gen8;
+        }
+        else
+        {
+            return CharacteristicGeneration::Gen4;
+        }
+    }
+
     const std::string &getAbility(u16 ability)
     {
         return abilities[ability - 1];
     }
 
-    const std::string &getCharacteristic(u8 characteristic)
+    const std::string &getCharacteristic(u8 characteristic, CharacteristicGeneration generation)
     {
-        return characteristics[characteristic];
+        return characteristicsByGeneration[static_cast<u8>(generation)][characteristic];
     }
 
-    const std::vector<std::string> &getCharacteristics()
+    const std::string &getCharacteristic(u8 characteristic, Game version)
     {
-        return characteristics;
+        return getCharacteristic(characteristic, getCharacteristicGeneration(version));
+    }
+
+    const std::vector<std::string> &getCharacteristics(CharacteristicGeneration generation)
+    {
+        return characteristicsByGeneration[static_cast<u8>(generation)];
+    }
+
+    const std::vector<std::string> &getCharacteristics(Game version)
+    {
+        return getCharacteristics(getCharacteristicGeneration(version));
     }
 
     const std::string &getForm(u16 specie, u8 form)
@@ -373,7 +409,13 @@ namespace Translator
         auto *data = Utilities::decompress<char>(I18N.data(), I18N.size(), size);
 
         readFile(data, Translation::Ability, abilities);
-        readFile(data, Translation::Characteristic, characteristics);
+        readFile(data, Translation::CharacteristicGen4, characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen4)]);
+        readFile(data, Translation::CharacteristicGen5, characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen5)]);
+        readFile(data, Translation::CharacteristicGen8, characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen8)]);
+        characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen6)] =
+            characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen5)];
+        characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen7)] =
+            characteristicsByGeneration[static_cast<u8>(CharacteristicGeneration::Gen5)];
         forms = readFile(data, Translation::Form);
         readFile(data, Translation::Game, games);
         readFile(data, Translation::Power, hiddenPowers);

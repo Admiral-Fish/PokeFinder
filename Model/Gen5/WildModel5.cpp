@@ -84,7 +84,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 17:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 18:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
 
@@ -172,7 +172,7 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         case 18:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 19:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         case 20:
             return QString::fromStdString(display.getDateTime().toString());
         case 21:

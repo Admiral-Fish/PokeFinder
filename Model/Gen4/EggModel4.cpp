@@ -88,7 +88,7 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
         case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 17:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
 
@@ -193,7 +193,7 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
         case 15:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 16:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();
