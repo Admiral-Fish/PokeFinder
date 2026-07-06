@@ -67,6 +67,11 @@ public:
     void addItems(const std::vector<std::string> &strings, const std::vector<u16> &data, bool sort = true);
 
     /**
+     * @brief Clears the source model
+     */
+    void clear();
+
+    /**
      * @brief Gets the current index. Maps the index from the proxy model to the model
      */
     int currentIndex() const;
