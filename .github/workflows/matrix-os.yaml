@@ -20,23 +20,47 @@ jobs:
       matrix:
         include:
           - os: windows-2025
-            platform-name: Windows
             cache-key: windows
+            msvc-arch: x64
+            platform-name: Windows
+            release-file: PokeFinder-win.zip
+            qt-arch: win64_msvc2022_64
             qt-archives: qtbase qtsvg qttools
-            tools: tools_opensslv3_x64
+            qt-host: windows
+            qt-tools: tools_opensslv3_x64
+
+          - os: windows-2025
+            cache-key: windows-arm64
+            msvc-arch: amd64_arm64
+            platform-name: Windows ARM64
+            release-file: PokeFinder-win-arm64.zip
+            qt-arch: win64_msvc2022_arm64
+            qt-archives: qtbase qtsvg qttools
+            qt-host: windows_arm64
+            qt-tools: ""
 
           - os: ubuntu-24.04
-            platform-name: Ubuntu
             cache-key: ubuntu
-            qt-archives: icu qtbase qtsvg qttools
-            tools: ""
             env: { CC: gcc-14, CXX: g++-14 }
+            msvc-arch: ""
+            platform-name: Ubuntu
+            release-file: |
+              PokeFinder-linux.tar.gz
+              PokeFinder-linux-AppImage.tar.gz
+            qt-arch: ""
+            qt-archives: icu qtbase qtsvg qttools
+            qt-host: linux
+            qt-tools: ""
 
           - os: macos-15
-            platform-name: macOS
             cache-key: macos
+            msvc-arch: ""
+            platform-name: macOS
+            release-file: PokeFinder-macOS.tar.gz
+            qt-arch: ""
             qt-archives: qtbase qtsvg qttools
-            tools: ""
+            qt-host: mac
+            qt-tools: ""
 
     steps:
       - name: Checkout repository
@@ -50,9 +74,8 @@ jobs:
         with:
           python-version: "3.14"
 
-      # Install platform-specific package manager requirements
       - name: Install Build System Dependencies (Windows)
-        if: matrix.platform-name == 'Windows'
+        if: startsWith(matrix.platform-name, 'Windows')
         run: choco install ninja -y
 
       - name: Install Build System Dependencies (Ubuntu)
@@ -69,8 +92,10 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: "6.10.1"
+          arch: ${{ matrix.qt-arch }}
           archives: ${{ matrix.qt-archives }}
-          tools: ${{ matrix.tools }}
+          host: ${{ matrix.qt-host }}
+          tools: ${{ matrix.qt-tools }}
           cache: true
 
       - name: Initialize ccache
@@ -82,8 +107,10 @@ jobs:
             ccache-${{ matrix.cache-key }}-
 
       - name: Configure Developer Command Prompt (Windows)
-        if: matrix.platform-name == 'Windows'
+        if: startsWith(matrix.platform-name, 'Windows')
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.msvc-arch }}
 
       - name: Configure CMake
         shell: bash
@@ -99,9 +126,10 @@ jobs:
         run: cmake --build build
 
       - name: Test PokeFinder
+        if: matrix.platform-name != 'Windows ARM64'
         run: ctest --test-dir build -V
 
-      - name: Package PokeFinder (Windows)
+      - name: Package PokeFinder (Windows x64)
         if: matrix.platform-name == 'Windows'
         run: |
           mkdir PokeFinder
@@ -114,6 +142,20 @@ jobs:
           cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
           cp "${{env.QT_ROOT_DIR}}/../../Tools/OpenSSLv3/Win_x64/bin/lib*.dll" PokeFinder/
           7z a PokeFinder-win.zip PokeFinder
+          mkdir upload && mv PokeFinder upload
+
+      - name: Package PokeFinder (Windows ARM64)
+        if: matrix.platform-name == 'Windows ARM64'
+        run: |
+          mkdir PokeFinder
+          mkdir PokeFinder/platforms
+          mkdir PokeFinder/styles
+          mv build/PokeFinder.exe PokeFinder/
+          windeployqt --no-translations --no-plugins --no-opengl-sw --no-system-d3d-compiler PokeFinder/PokeFinder.exe
+          rm -Force PokeFinder/vc_redist*.exe
+          cp "${{env.QT_ROOT_DIR}}/plugins/platforms/qwindows.dll" PokeFinder/platforms/
+          cp "${{env.QT_ROOT_DIR}}/plugins/styles/qmodernwindowsstyle.dll" PokeFinder/styles/
+          7z a PokeFinder-win-arm64.zip PokeFinder
           mkdir upload && mv PokeFinder upload
 
       - name: Package PokeFinder (Ubuntu)
@@ -174,8 +216,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            PokeFinder-win.zip
-            PokeFinder-linux.tar.gz
-            PokeFinder-linux-AppImage.tar.gz
-            PokeFinder-macOS.tar.gz
+          files: ${{ matrix.release-file }}
