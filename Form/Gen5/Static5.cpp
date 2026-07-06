@@ -33,7 +33,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
-#include <Form/Gen5/Tools/AdjacentSeed.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -85,9 +85,9 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
-    auto *adjacentSeed = new QAction(tr("Adjacent Seed Tool"), ui->tableViewSearcher);
-    connect(adjacentSeed, &QAction::triggered, this, &Static5::openAdjacentSeed);
-    ui->tableViewSearcher->addAction(adjacentSeed);
+    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    connect(adjacentSeeds, &QAction::triggered, this, &Static5::openAdjacentSeeds);
+    ui->tableViewSearcher->addAction(adjacentSeeds);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
@@ -271,14 +271,14 @@ void Static5::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static5::openAdjacentSeed()
+void Static5::openAdjacentSeeds()
 {
     QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-    auto *window = new AdjacentSeed(state.getDateTime(), state.getButtons(), *currentProfile, staticTemplate->getRoamer());
+    auto *window = new AdjacentSeeds(state.getDateTime(), state.getButtons(), *currentProfile, staticTemplate->getRoamer());
     window->show();
 }
 

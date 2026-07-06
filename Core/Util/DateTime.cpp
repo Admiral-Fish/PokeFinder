@@ -126,6 +126,14 @@ std::string Date::toString() const
     return std::string(buf, sizeof(buf) - 1);
 }
 
+bool Date::valid() const
+{
+    constexpr Date min;
+    constexpr Date max(2488077);
+
+    return *this >= min && *this <= max;
+}
+
 u16 Date::year() const
 {
     return getParts().year;
@@ -133,9 +141,10 @@ u16 Date::year() const
 
 int Time::addSeconds(int seconds)
 {
-    long long total = static_cast<long long>(md) + seconds;
-    int days = static_cast<int>(total / 86400);
-    int time = static_cast<int>(total % 86400);
+    seconds += md;
+
+    int days = seconds / 86400;
+    int time = seconds % 86400;
     if (time < 0)
     {
         time += 86400;
@@ -172,6 +181,11 @@ std::string Time::toString() const
     return std::string(buf, sizeof(buf) - 1);
 }
 
+bool Time::valid() const
+{
+    return md < 86400;
+}
+
 DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : date(year, month, day), time(hour, minute, second)
 {
 }
@@ -181,7 +195,7 @@ DateTime DateTime::addSeconds(int seconds) const
     DateTime dt(*this);
 
     int days = dt.time.addSeconds(seconds);
-    dt.date.jd = static_cast<u32>(static_cast<long long>(dt.date.jd) + days);
+    dt.date += days;
 
     return dt;
 }
@@ -209,4 +223,9 @@ std::string DateTime::toString() const
     std::memcpy(buf + 17, numbers[time.second()], 2);
 
     return std::string(buf, sizeof(buf) - 1);
+}
+
+bool DateTime::valid() const
+{
+    return date.valid() && time.valid();
 }

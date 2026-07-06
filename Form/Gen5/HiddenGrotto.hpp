@@ -135,9 +135,9 @@ private slots:
     void grottoSearcherUpdateFilter();
 
     /**
-     * @brief Opens adjacent seed for the selected pokemon searcher result
+     * @brief Opens adjacent seeds for the selected pokemon searcher result
      */
-    void openAdjacentSeed();
+    void openAdjacentSeeds();
 
     /**
      * @brief Generates grotto pokemon from a starting seed

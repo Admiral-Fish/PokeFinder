@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADJACENTSEEDSTATE_HPP
-#define ADJACENTSEEDSTATE_HPP
+#ifndef ADJACENTSEEDSSTATE_HPP
+#define ADJACENTSEEDSSTATE_HPP
 
 #include <Core/Global.hpp>
 #include <Core/Util/DateTime.hpp>
@@ -26,10 +26,10 @@
 
 enum class Buttons : u16;
 
-class AdjacentSeedState
+class AdjacentSeedsState
 {
 public:
-    AdjacentSeedState(u64 seed, const DateTime &dateTime, Buttons buttons, u16 timer0, u32 ivAdvance, const std::array<u8, 6> &ivs,
+    AdjacentSeedsState(u64 seed, const DateTime &dateTime, Buttons buttons, u16 timer0, u32 ivAdvance, const std::array<u8, 6> &ivs,
                       u32 pidAdvance, bool target) :
         seed(seed),
         dateTime(dateTime),
@@ -93,4 +93,4 @@ private:
     bool target;
 };
 
-#endif // ADJACENTSEEDSTATE_HPP
+#endif // ADJACENTSEEDSSTATE_HPP

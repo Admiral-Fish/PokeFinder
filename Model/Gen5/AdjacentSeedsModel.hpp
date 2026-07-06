@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADJACENTSEEDMODEL_HPP
-#define ADJACENTSEEDMODEL_HPP
+#ifndef ADJACENTSEEDSMODEL_HPP
+#define ADJACENTSEEDSMODEL_HPP
 
-#include <Core/Gen5/Tools/AdjacentSeedCalculator.hpp>
+#include <Core/Gen5/Tools/AdjacentSeedsCalculator.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show adjacent seed information for Gen 5
  */
-class AdjacentSeedModel : public TableModel<AdjacentSeedState>
+class AdjacentSeedsModel : public TableModel<AdjacentSeedsState>
 {
     Q_OBJECT
 public:
@@ -35,7 +35,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    AdjacentSeedModel(QObject *parent);
+    AdjacentSeedsModel(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -72,4 +72,4 @@ private:
         = { tr("Seed"), tr("Date/Time"), tr("Timer0"), tr("IV Advance"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe") };
 };
 
-#endif // ADJACENTSEEDMODEL_HPP
+#endif // ADJACENTSEEDSMODEL_HPP

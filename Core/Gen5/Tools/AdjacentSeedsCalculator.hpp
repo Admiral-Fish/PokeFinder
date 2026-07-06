@@ -17,22 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADJACENTSEEDCALCULATOR_HPP
-#define ADJACENTSEEDCALCULATOR_HPP
+#ifndef ADJACENTSEEDSCALCULATOR_HPP
+#define ADJACENTSEEDSCALCULATOR_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/AdjacentSeedState.hpp>
+#include <Core/Gen5/States/AdjacentSeedsState.hpp>
 #include <Core/Global.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <vector>
 
 enum class Buttons : u16;
 
-namespace AdjacentSeedCalculator
+namespace AdjacentSeedsCalculator
 {
-    std::vector<AdjacentSeedState> generate(const Profile5 &profile, const DateTime &dateTime, Buttons buttons, int seconds,
-                                            u32 minIVAdvance, u32 maxIVAdvance, bool roamer);
-    std::vector<u32> previewPRNG(u64 seed, const Profile5 &profile, u32 pidAdvance, u32 count);
+    std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
+                                             const DateTime &dateTime, const Profile5 &profile);
+    std::string previewPRNG(u64 seed, u32 pidAdvance, u32 count, bool chatot);
 }
 
-#endif // ADJACENTSEEDCALCULATOR_HPP
+#endif // ADJACENTSEEDSCALCULATOR_HPP

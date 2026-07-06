@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AdjacentSeed.hpp"
-#include "ui_AdjacentSeed.h"
+#include "AdjacentSeeds.hpp"
+#include "ui_AdjacentSeeds.h"
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/DateTime.hpp>
@@ -26,7 +26,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Util/IVCalculator.hpp>
-#include <Model/Gen5/AdjacentSeedModel.hpp>
+#include <Model/Gen5/AdjacentSeedsModel.hpp>
 #include <QAbstractItemView>
 #include <QEvent>
 #include <QItemSelectionModel>
@@ -35,12 +35,9 @@
 #include <QStandardItemModel>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
-#include <QTimer>
 #include <array>
 
-constexpr u32 previewCount = 25;
-constexpr int chatotPreview = 0;
-constexpr int needlePreview = 1;
+constexpr u32 roamerIndex = 1;
 
 constexpr std::array<Buttons, 12> keypressButtons
     = { Buttons::Start, Buttons::Select, Buttons::A, Buttons::B, Buttons::Right, Buttons::Left,
@@ -61,14 +58,13 @@ public:
     }
 };
 
-AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::AdjacentSeed)
+AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::AdjacentSeeds)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
 
-    model = new AdjacentSeedModel(ui->tableView);
+    model = new AdjacentSeedsModel(ui->tableView);
     ui->tableView->setModel(model);
     ui->tableView->setItemDelegate(new TargetRowDelegate(ui->tableView));
 
@@ -78,53 +74,26 @@ AdjacentSeed::AdjacentSeed(QWidget *parent) : QWidget(parent), ui(new Ui::Adjace
     ui->comboBoxKeypresses->lineEdit()->setReadOnly(true);
     ui->comboBoxKeypresses->lineEdit()->installEventFilter(this);
     ui->comboBoxKeypresses->setMaxVisibleItems(static_cast<int>(keypressButtons.size()));
-    ui->comboBoxKeypresses->view()->setMinimumHeight(190);
-    ui->comboBoxKeypresses->view()->setMaximumHeight(205);
-    ui->comboBoxPreviewMode->setItemData(0, chatotPreview);
-    ui->comboBoxPreviewMode->setItemData(1, needlePreview);
-
-    ui->gridLayoutSettings->setHorizontalSpacing(8);
-    ui->gridLayoutSettings->setColumnStretch(0, 0);
-    ui->gridLayoutSettings->setColumnStretch(1, 0);
-    ui->gridLayoutSettings->setColumnStretch(2, 0);
-    ui->gridLayoutSettings->setColumnStretch(3, 0);
-    ui->gridLayoutSettings->setColumnStretch(4, 0);
-    ui->gridLayoutSettings->setColumnStretch(5, 1);
-    ui->gridLayoutSettings->setColumnStretch(6, 0);
-    ui->gridLayoutSettings->setColumnStretch(7, 0);
-    ui->gridLayoutSettings->setColumnStretch(8, 0);
-    ui->gridLayoutSettings->setColumnStretch(9, 1);
-    ui->dateTimeEdit->setMinimumWidth(165);
-    ui->dateTimeEdit->setMaximumWidth(180);
-    ui->spinBoxSeconds->setMaximumWidth(48);
-    ui->comboBoxKeypresses->setMinimumWidth(280);
-    ui->comboBoxKeypresses->setMaximumWidth(999);
-    ui->comboBoxMethod->setMinimumWidth(160);
-    ui->comboBoxMethod->setMaximumWidth(999);
-    ui->textBoxMinIVAdvance->setMaximumWidth(65);
-    ui->textBoxMaxIVAdvance->setMaximumWidth(65);
-    ui->pushButtonIVCalculator->setMinimumWidth(120);
-    ui->pushButtonGenerate->setMinimumWidth(120);
 
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &AdjacentSeed::profileIndexChanged);
-    connect(ui->comboBoxKeypresses->view(), &QAbstractItemView::pressed, this, &AdjacentSeed::keypressIndexPressed);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &AdjacentSeed::profileManager);
-    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &AdjacentSeed::openIVCalculator);
-    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &AdjacentSeed::generate);
-    connect(ui->comboBoxPreviewMode, &QComboBox::currentIndexChanged, this, &AdjacentSeed::updatePreview);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::profileIndexChanged);
+    connect(ui->comboBoxKeypresses->view(), &QAbstractItemView::pressed, this, &AdjacentSeeds::keypressIndexPressed);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &AdjacentSeeds::profileManager);
+    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &AdjacentSeeds::openIVCalculator);
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &AdjacentSeeds::generate);
+    connect(ui->comboBoxPreviewMode, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::updatePreview);
     connect(ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this,
             [=](const QModelIndex &, const QModelIndex &) { updatePreview(); });
 
     updateProfiles();
 }
 
-AdjacentSeed::AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent) :
-    AdjacentSeed(parent)
+AdjacentSeeds::AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent) :
+    AdjacentSeeds(parent)
 {
-    for (int i = 0; i < static_cast<int>(profiles.size()); i++)
+    for (int i = 0; i < profiles.size(); i++)
     {
         if (profiles[i] == profile)
         {
@@ -138,14 +107,14 @@ AdjacentSeed::AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Prof
 
     if (roamer)
     {
-        ui->comboBoxMethod->setCurrentIndex(1);
+        ui->comboBoxMethod->setCurrentIndex(roamerIndex);
     }
 }
 
-AdjacentSeed::~AdjacentSeed()
+AdjacentSeeds::~AdjacentSeeds()
 {
     QSettings setting;
-    setting.beginGroup("AdjacentSeed");
+    setting.beginGroup("adjacentSeeds");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("seconds", ui->spinBoxSeconds->value());
     setting.setValue("minIVAdvance", ui->textBoxMinIVAdvance->text());
@@ -155,12 +124,12 @@ AdjacentSeed::~AdjacentSeed()
     delete ui;
 }
 
-bool AdjacentSeed::hasProfiles() const
+bool AdjacentSeeds::hasProfiles() const
 {
     return !profiles.empty();
 }
 
-bool AdjacentSeed::eventFilter(QObject *object, QEvent *event)
+bool AdjacentSeeds::eventFilter(QObject *object, QEvent *event)
 {
     if (object == ui->comboBoxKeypresses->lineEdit() && event->type() == QEvent::MouseButtonPress)
     {
@@ -175,7 +144,7 @@ bool AdjacentSeed::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-Buttons AdjacentSeed::getSelectedButtons() const
+Buttons AdjacentSeeds::getSelectedButtons() const
 {
     u16 buttons = 0;
     for (int i = 0; i < keypressModel->rowCount(); i++)
@@ -190,7 +159,7 @@ Buttons AdjacentSeed::getSelectedButtons() const
     return static_cast<Buttons>(buttons);
 }
 
-void AdjacentSeed::setSelectedButtons(Buttons buttons)
+void AdjacentSeeds::setSelectedButtons(Buttons buttons)
 {
     currentButtons = buttons;
     for (int i = 0; i < keypressModel->rowCount(); i++)
@@ -201,7 +170,7 @@ void AdjacentSeed::setSelectedButtons(Buttons buttons)
     updateKeypressText();
 }
 
-void AdjacentSeed::updateProfiles()
+void AdjacentSeeds::updateProfiles()
 {
     currentButtons = getSelectedButtons();
     profiles = ProfileLoader5::getProfiles();
@@ -213,14 +182,14 @@ void AdjacentSeed::updateProfiles()
     }
 
     QSettings setting;
-    int profileIndex = setting.value("AdjacentSeed/profile", 0).toInt();
+    int profileIndex = setting.value("adjacentSeeds/profile", 0).toInt();
     if (profileIndex < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(profileIndex);
     }
 }
 
-void AdjacentSeed::generate()
+void AdjacentSeeds::generate()
 {
     model->clearModel();
 
@@ -229,9 +198,9 @@ void AdjacentSeed::generate()
     int seconds = ui->spinBoxSeconds->value();
     u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
     u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
-    bool roamer = ui->comboBoxMethod->currentIndex() == 1;
+    bool roamer = ui->comboBoxMethod->currentIndex() == roamerIndex;
 
-    auto states = AdjacentSeedCalculator::generate(*currentProfile, dateTime, buttons, seconds, initialIVAdvance, maxIVAdvance, roamer);
+    auto states = AdjacentSeedsCalculator::generate(initialIVAdvance, maxIVAdvance, seconds, roamer, buttons, dateTime, *currentProfile);
     model->addItems(states);
 
     if (model->rowCount() > 0)
@@ -252,7 +221,7 @@ void AdjacentSeed::generate()
     updatePreview();
 }
 
-void AdjacentSeed::keypressIndexPressed(const QModelIndex &index)
+void AdjacentSeeds::keypressIndexPressed(const QModelIndex &index)
 {
     auto *item = keypressModel->item(index.row());
     if (!item)
@@ -262,16 +231,16 @@ void AdjacentSeed::keypressIndexPressed(const QModelIndex &index)
 
     item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     currentButtons = getSelectedButtons();
-    QTimer::singleShot(0, this, &AdjacentSeed::updateKeypressText);
+    updateKeypressText();
 }
 
-void AdjacentSeed::openIVCalculator()
+void AdjacentSeeds::openIVCalculator()
 {
     auto *calculator = new IVCalculator();
     calculator->show();
 }
 
-void AdjacentSeed::profileIndexChanged(int index)
+void AdjacentSeeds::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -301,22 +270,25 @@ void AdjacentSeed::profileIndexChanged(int index)
     }
 }
 
-void AdjacentSeed::profileManager()
+void AdjacentSeeds::profileManager()
 {
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
 
-void AdjacentSeed::updateKeypressText()
+void AdjacentSeeds::updateKeypressText()
 {
     Buttons buttons = getSelectedButtons();
     ui->comboBoxKeypresses->lineEdit()->setText(buttons == Buttons::None ? tr("None")
                                                                          : QString::fromStdString(Translator::getKeypresses(buttons)));
 }
 
-void AdjacentSeed::updatePreview()
+void AdjacentSeeds::updatePreview()
 {
+    constexpr u32 chatotIndex = 0;
+    constexpr u32 previewCount = 25;
+
     if (model->rowCount() == 0)
     {
         ui->lineEditPreview->clear();
@@ -331,21 +303,9 @@ void AdjacentSeed::updatePreview()
     }
 
     const auto &state = model->getItem(index.row());
-    QStringList preview;
-    for (u32 prng : AdjacentSeedCalculator::previewPRNG(state.getSeed(), *currentProfile, state.getPIDAdvance(), previewCount))
-    {
-        if (ui->comboBoxPreviewMode->currentData().toInt() == needlePreview)
-        {
-            u8 needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
-            preview << QString::fromStdString(Translator::getNeedle(needle));
-        }
-        else
-        {
-            u8 chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
-            preview << QString::fromStdString(Utilities5::getChatot(chatot));
-        }
-    }
+    std::string preview = AdjacentSeedsCalculator::previewPRNG(state.getSeed(), state.getPIDAdvance(), previewCount,
+                                                               ui->comboBoxPreviewMode->currentIndex() == chatotIndex);
 
-    ui->lineEditPreview->setText(preview.join(ui->comboBoxPreviewMode->currentData().toInt() == needlePreview ? "  ,  " : ", "));
+    ui->lineEditPreview->setText(QString::fromStdString(preview));
     ui->lineEditPreview->setCursorPosition(0);
 }

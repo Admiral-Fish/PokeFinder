@@ -17,18 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AdjacentSeedModel.hpp"
+#include "AdjacentSeedsModel.hpp"
 
-AdjacentSeedModel::AdjacentSeedModel(QObject *parent) : TableModel(parent)
+AdjacentSeedsModel::AdjacentSeedsModel(QObject *parent) : TableModel(parent)
 {
 }
 
-int AdjacentSeedModel::columnCount(const QModelIndex &parent) const
+int AdjacentSeedsModel::columnCount(const QModelIndex &parent) const
 {
     return 10;
 }
 
-QVariant AdjacentSeedModel::data(const QModelIndex &index, int role) const
+QVariant AdjacentSeedsModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -59,7 +59,7 @@ QVariant AdjacentSeedModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant AdjacentSeedModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant AdjacentSeedsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {

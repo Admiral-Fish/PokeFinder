@@ -48,7 +48,7 @@
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
-#include <Form/Gen5/Tools/AdjacentSeed.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Form/Gen5/Tools/IVCacheFinder.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
@@ -566,7 +566,7 @@ void MainWindow::openWild5()
 
 void MainWindow::openAdjacentSeed() const
 {
-    auto *window = new AdjacentSeed();
+    auto *window = new AdjacentSeeds();
     if (!window->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
@@ -576,8 +576,8 @@ void MainWindow::openAdjacentSeed() const
     }
     else
     {
-        connect(window, &AdjacentSeed::profilesModified, this, &MainWindow::updateProfiles);
-        connect(this, &MainWindow::profilesModified5, window, &AdjacentSeed::updateProfiles);
+        connect(window, &AdjacentSeeds::profilesModified, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesModified5, window, &AdjacentSeeds::updateProfiles);
         window->show();
         window->raise();
     }

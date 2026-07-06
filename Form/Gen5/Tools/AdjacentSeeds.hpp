@@ -17,15 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADJACENTSEED_HPP
-#define ADJACENTSEED_HPP
+#ifndef ADJACENTSEEDS_HPP
+#define ADJACENTSEEDS_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Tools/AdjacentSeedCalculator.hpp>
+#include <Core/Gen5/Tools/AdjacentSeedsCalculator.hpp>
 #include <QWidget>
 #include <vector>
 
-class AdjacentSeedModel;
+class AdjacentSeedsModel;
 class DateTime;
 class QStandardItemModel;
 
@@ -33,19 +33,19 @@ enum class Button : u16;
 
 namespace Ui
 {
-    class AdjacentSeed;
+    class AdjacentSeeds;
 }
 
-class AdjacentSeed : public QWidget
+class AdjacentSeeds : public QWidget
 {
     Q_OBJECT
 signals:
     void profilesModified(int);
 
 public:
-    AdjacentSeed(QWidget *parent = nullptr);
-    AdjacentSeed(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent = nullptr);
-    ~AdjacentSeed() override;
+    AdjacentSeeds(QWidget *parent = nullptr);
+    AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent = nullptr);
+    ~AdjacentSeeds() override;
 
     bool hasProfiles() const;
 
@@ -56,8 +56,8 @@ protected:
     bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
-    Ui::AdjacentSeed *ui;
-    AdjacentSeedModel *model;
+    Ui::AdjacentSeeds *ui;
+    AdjacentSeedsModel *model;
     QStandardItemModel *keypressModel;
     Profile5 *currentProfile;
     Buttons currentButtons;
@@ -76,4 +76,4 @@ private slots:
     void updatePreview();
 };
 
-#endif // ADJACENTSEED_HPP
+#endif // ADJACENTSEEDS_HPP
