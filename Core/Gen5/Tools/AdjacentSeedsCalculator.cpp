@@ -73,7 +73,7 @@ namespace AdjacentSeedsCalculator
         for (int secondOffset = -seconds; secondOffset <= seconds; secondOffset++)
         {
             DateTime offset = dateTime.addSeconds(secondOffset);
-            if (offset.valid())
+            if (!offset.valid())
             {
                 continue;
             }

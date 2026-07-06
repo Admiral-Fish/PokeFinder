@@ -44,6 +44,9 @@ consteval std::array<char[2], 100> computeNumbers()
 
 constexpr std::array<char[2], 100> numbers = computeNumbers();
 constexpr u8 monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+constexpr u32 minJD = 2451545; // 2000-01-01
+constexpr u32 maxJD = 2488069; // 2099-12-31
+constexpr u32 jdRange = maxJD - minJD + 1;
 
 /**
  * @brief Determines if the year is a leap year.
@@ -128,8 +131,8 @@ std::string Date::toString() const
 
 bool Date::valid() const
 {
-    constexpr Date min;
-    constexpr Date max(2488077);
+    constexpr Date min(minJD);
+    constexpr Date max(maxJD);
 
     return *this >= min && *this <= max;
 }
@@ -196,6 +199,10 @@ DateTime DateTime::addSeconds(int seconds) const
 
     int days = dt.time.addSeconds(seconds);
     dt.date += days;
+    if (dt.date.jd > maxJD)
+    {
+        dt.date.jd = minJD + ((dt.date.jd - minJD) % jdRange);
+    }
 
     return dt;
 }
