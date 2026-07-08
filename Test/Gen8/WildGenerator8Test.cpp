@@ -98,7 +98,7 @@ void WildGenerator8Test::generateWild()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, Method::None, lead, feebasTile, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed0, seed1, 0);
@@ -164,7 +164,7 @@ void WildGenerator8Test::generateHoneyTree()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, Method::HoneyTree, lead, false, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed0, seed1, index);

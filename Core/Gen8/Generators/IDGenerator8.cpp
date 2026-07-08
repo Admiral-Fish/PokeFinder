@@ -31,7 +31,7 @@ IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 {
 }
 
-std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
+std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances);
 

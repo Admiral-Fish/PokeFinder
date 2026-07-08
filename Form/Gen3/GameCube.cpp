@@ -55,8 +55,9 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
+                                        | Controls::Weight);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
@@ -254,17 +255,9 @@ void GameCube::search()
     auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;
-    if (method != Method::Channel)
+    for (u8 i = 0; i < 6; i++)
     {
-        for (u8 i = 0; i < 6; i++)
-        {
-            maxProgress *= max[i] - min[i] + 1;
-        }
-    }
-    else
-    {
-        maxProgress *= max[4] - min[4] + 1;
-        maxProgress *= 0x7ffffff;
+        maxProgress *= max[i] - min[i] + 1;
     }
     searcher->setMaxProgress(maxProgress);
 
