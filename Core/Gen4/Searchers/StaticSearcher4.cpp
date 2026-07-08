@@ -32,6 +32,23 @@ static constexpr bool isSynchronizeLead(Lead lead)
     return lead <= Lead::SynchronizeEnd;
 }
 
+static std::vector<Lead> expandLegacySynchronizeLead(Lead lead)
+{
+    if (lead != Lead::Synchronize)
+    {
+        return { lead };
+    }
+
+    std::vector<Lead> leads;
+    leads.reserve(toInt(Lead::SynchronizeEnd) + 1);
+    for (u8 nature = 0; nature <= toInt(Lead::SynchronizeEnd); nature++)
+    {
+        leads.emplace_back(static_cast<Lead>(nature));
+    }
+
+    return leads;
+}
+
 static bool matches(const SearcherState4 &left, const SearcherState4 &right)
 {
     return left.getSeed() == right.getSeed() && left.getAdvances() == right.getAdvances() && left.getPID() == right.getPID()
@@ -61,7 +78,7 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
     maxDelay(maxDelay),
     minDelay(minDelay),
     buffer(0),
-    leads({ lead })
+    leads(expandLegacySynchronizeLead(lead))
 {
 }
 

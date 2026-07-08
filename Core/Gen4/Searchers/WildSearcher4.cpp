@@ -57,6 +57,23 @@ static constexpr bool isSynchronizeLead(Lead lead)
     return lead <= Lead::SynchronizeEnd;
 }
 
+static std::vector<Lead> expandLegacySynchronizeLead(Lead lead)
+{
+    if (lead != Lead::Synchronize)
+    {
+        return { lead };
+    }
+
+    std::vector<Lead> leads;
+    leads.reserve(toInt(Lead::SynchronizeEnd) + 1);
+    for (u8 nature = 0; nature <= toInt(Lead::SynchronizeEnd); nature++)
+    {
+        leads.emplace_back(static_cast<Lead>(nature));
+    }
+
+    return leads;
+}
+
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                              const WildStateFilter &filter) :
@@ -77,7 +94,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     shiny(shiny),
     unownRadio(unownRadio),
     modifiedSlots(area.getSlots(lead)),
-    leads({ lead })
+    leads(expandLegacySynchronizeLead(lead))
 {
     if ((profile.getVersion() & Game::HGSS) != Game::None)
     {

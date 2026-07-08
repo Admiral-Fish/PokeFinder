@@ -61,6 +61,23 @@ static constexpr bool isSynchronizeLead(Lead lead)
     return lead <= Lead::SynchronizeEnd;
 }
 
+static std::vector<Lead> expandLegacySynchronizeLead(Lead lead)
+{
+    if (lead != Lead::Synchronize)
+    {
+        return { lead };
+    }
+
+    std::vector<Lead> leads;
+    leads.reserve(toInt(Lead::SynchronizeEnd) + 1);
+    for (u8 nature = 0; nature <= toInt(Lead::SynchronizeEnd); nature++)
+    {
+        leads.emplace_back(static_cast<Lead>(nature));
+    }
+
+    return leads;
+}
+
 static bool matches(const WildSearcherState &left, const WildSearcherState &right)
 {
     return left.getSeed() == right.getSeed() && left.getPID() == right.getPID() && left.getItem() == right.getItem()
@@ -92,7 +109,7 @@ WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, bool bik
     ivAdvance(method == Method::Method2),
     item(item),
     modifiedSlots(area.getSlots(lead)),
-    leads({ lead })
+    leads(expandLegacySynchronizeLead(lead))
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
     {
