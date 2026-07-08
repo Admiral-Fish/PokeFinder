@@ -8706,6 +8706,41 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Synchronize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Any Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Cute Charm: ♂ or ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Cute Charm: ♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="1"/>
+        <source>Cute Charm: ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StaticSearcherModel5</name>
@@ -8822,6 +8857,36 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="158"/>
         <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>Synchronize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>Cute Charm: ♂ or ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>Cute Charm: ♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/StaticModel5.cpp" line="1"/>
+        <source>Cute Charm: ♀ Lead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10972,6 +11037,56 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Synchronize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Any Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Cute Charm: ♂ or ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Cute Charm: ♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Cute Charm: ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Magnet Pull</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen3/WildModel3.cpp" line="1"/>
+        <source>Hustle / Pressure / Vital Spirit</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildSearcherModel4</name>
@@ -11084,6 +11199,71 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Synchronize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Any Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Cute Charm: ♂ or ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Cute Charm: ♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Cute Charm: ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Magnet Pull</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Hustle / Pressure / Vital Spirit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Compound Eyes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Arena Trap / Illuminate / No Guard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="1"/>
+        <source>Sticky Hold / Suction Cups</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11216,6 +11396,61 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Synchronize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Sync</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Cute Charm: ♂ or ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Cute Charm: ♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Cute Charm: ♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Magnet Pull</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Hustle / Pressure / Vital Spirit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="1"/>
+        <source>Compound Eyes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -20,6 +20,7 @@
 #ifndef STATE5_HPP
 #define STATE5_HPP
 
+#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/States/State.hpp>
 
 /**
@@ -44,9 +45,21 @@ public:
      * @param info Pokemon information
      */
     State5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-           u8 shiny, const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), ivAdvances(ivAdvances), chatot(prng / 82)
+           u8 shiny, const PersonalInfo *info, Lead lead = Lead::None) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
+        ivAdvances(ivAdvances),
+        chatot(prng / 82),
+        lead(lead),
+        leadFlags(getLeadFlag(lead))
     {
+    }
+
+    void addLead(Lead newLead)
+    {
+        if (lead != Lead::None)
+        {
+            leadFlags |= getLeadFlag(newLead);
+        }
     }
 
     /**
@@ -69,9 +82,39 @@ public:
         return ivAdvances;
     }
 
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    u8 getLeadFlags() const
+    {
+        return leadFlags;
+    }
+
 private:
     u32 ivAdvances;
     u8 chatot;
+    Lead lead;
+    u8 leadFlags;
+
+    static constexpr u8 getLeadFlag(Lead lead)
+    {
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            return 1 << 0;
+        }
+
+        switch (lead)
+        {
+        case Lead::CuteCharmM:
+            return 1 << 1;
+        case Lead::CuteCharmF:
+            return 1 << 2;
+        default:
+            return 0;
+        }
+    }
 };
 
 #endif // STATE5_HPP

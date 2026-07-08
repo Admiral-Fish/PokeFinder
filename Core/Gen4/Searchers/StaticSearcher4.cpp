@@ -27,6 +27,32 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
 
+static constexpr bool isSynchronizeLead(Lead lead)
+{
+    return lead <= Lead::SynchronizeEnd;
+}
+
+static bool matches(const SearcherState4 &left, const SearcherState4 &right)
+{
+    return left.getSeed() == right.getSeed() && left.getAdvances() == right.getAdvances() && left.getPID() == right.getPID()
+        && left.getAbility() == right.getAbility() && left.getGender() == right.getGender() && left.getLevel() == right.getLevel()
+        && left.getNature() == right.getNature() && left.getShiny() == right.getShiny() && left.getIVs() == right.getIVs();
+}
+
+static void addOrMerge(std::vector<SearcherState4> &states, const SearcherState4 &state)
+{
+    for (auto &existing : states)
+    {
+        if (matches(existing, state))
+        {
+            existing.addLead(state.getLead());
+            return;
+        }
+    }
+
+    states.emplace_back(state);
+}
+
 StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
                                  const Profile4 &profile, const StateFilter &filter) :
     StaticSearcher(method, lead, profile, filter),
@@ -34,25 +60,21 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
-    buffer(0)
+    buffer(0),
+    leads({ lead })
 {
+}
+
+StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method,
+                                 const std::vector<Lead> &leads, const Profile4 &profile, const StateFilter &filter) :
+    StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, leads.front(), profile, filter)
+{
+    this->leads = leads;
 }
 
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
     searching = true;
-
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
-    {
-        if (staticTemplate->getInfo()->getFixedGender())
-        {
-            lead = Lead::None;
-        }
-        else if (lead == Lead::CuteCharmF)
-        {
-            buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
-        }
-    }
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -71,11 +93,37 @@ void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
+                            std::vector<SearcherState4> mergedStates;
+                            for (Lead activeLead : leads)
+                            {
+                                lead = activeLead;
+                                buffer = 0;
+                                if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+                                {
+                                    if (staticTemplate->getInfo()->getFixedGender())
+                                    {
+                                        lead = Lead::None;
+                                    }
+                                    else if (lead == Lead::CuteCharmF)
+                                    {
+                                        buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
+                                    }
+                                }
 
-                            std::lock_guard<std::mutex> guard(mutex);
-                            results.insert(results.end(), states.begin(), states.end());
-                            progress++;
+                                auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
+                                for (auto &state : states)
+                                {
+                                    state.setLead(lead);
+                                    addOrMerge(mergedStates, state);
+                                }
+
+                                progress++;
+                            }
+
+                            {
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.insert(results.end(), mergedStates.begin(), mergedStates.end());
+                            }
                         }
                     }
                 }
@@ -249,9 +297,9 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
                         valid[0] = true;
                     }
                 }
-                else if (lead == Lead::Synchronize)
+                else if (isSynchronizeLead(lead))
                 {
-                    if ((nextRNG >> 15) == 0)
+                    if ((nextRNG >> 15) == 0 && toInt(lead) == nature)
                     {
                         seed[0] = rng.getSeed();
                         valid[0] = true;
@@ -345,9 +393,9 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
                         valid[0] = true;
                     }
                 }
-                else if (lead == Lead::Synchronize)
+                else if (isSynchronizeLead(lead))
                 {
-                    if ((nextRNG % 2) == 0)
+                    if ((nextRNG % 2) == 0 && toInt(lead) == nature)
                     {
                         seed[0] = rng.getSeed();
                         valid[0] = true;

@@ -37,11 +37,49 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QCoreApplication>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
+#include <QSizePolicy>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+#include <vector>
+
+static void addSearcherLeadItems(ComboMenu *comboMenu)
+{
+    comboMenu->setMultiSelect(true);
+    comboMenu->addAction(QCoreApplication::translate("Wild5", "None"), toInt(Lead::None));
+    comboMenu->addMenu(QCoreApplication::translate("Wild5", "Synchronize"), Translator::getNatures());
+    comboMenu->addMenu(QCoreApplication::translate("Wild5", "Cute Charm"),
+                       { { QCoreApplication::translate("Wild5", "♂ Lead"), toInt(Lead::CuteCharmM) },
+                         { QCoreApplication::translate("Wild5", "♀ Lead"), toInt(Lead::CuteCharmF) } });
+    comboMenu->addMenu(QCoreApplication::translate("Wild5", "Slot Modifier"),
+                       { { QCoreApplication::translate("Wild5", "Magnet Pull"), toInt(Lead::MagnetPull) },
+                         { QCoreApplication::translate("Wild5", "Static"), toInt(Lead::Static) } });
+    comboMenu->addMenu(QCoreApplication::translate("Wild5", "Level Modifier"),
+                       { { QCoreApplication::translate("Wild5", "Hustle"), toInt(Lead::Hustle) },
+                         { QCoreApplication::translate("Wild5", "Pressure"), toInt(Lead::Pressure) },
+                         { QCoreApplication::translate("Wild5", "Vital Spirit"), toInt(Lead::VitalSpirit) } });
+    comboMenu->addAction(QCoreApplication::translate("Wild5", "Compound Eyes"), toInt(Lead::CompoundEyes));
+    comboMenu->setCheckedData({ toInt(Lead::None) });
+}
+
+static std::vector<Lead> getSearcherLeads(ComboMenu *comboMenu)
+{
+    auto data = comboMenu->getCheckedData();
+    std::vector<Lead> leads;
+    for (int lead : data)
+    {
+        Lead value = static_cast<Lead>(lead);
+        if (!std::ranges::contains(leads, value))
+        {
+            leads.emplace_back(value);
+        }
+    }
+    return leads;
+}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -88,17 +126,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                         { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
-    ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
-                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
-    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
-                                       { { tr("Hustle"), toInt(Lead::Hustle) },
-                                         { tr("Pressure"), toInt(Lead::Pressure) },
-                                         { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
-    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
-                                       { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-    ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    addSearcherLeadItems(ui->comboMenuSearcherLead);
+    ui->comboMenuSearcherLead->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -399,11 +428,10 @@ void Wild5::search()
     u32 maxIVAdvances = ui->textBoxSearcherMaxIVAdvances->getUInt();
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, getSearcherLeads(ui->comboMenuSearcherLead), luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;
