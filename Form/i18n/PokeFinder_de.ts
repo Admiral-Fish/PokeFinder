@@ -1250,6 +1250,18 @@
         <source>Egg Specie</source>
         <translation>Ei Spezies</translation>
     </message>
+    <message>
+        <source>Incompatible Parents</source>
+        <translation>Inkompatible Eltern</translation>
+    </message>
+    <message>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
+    </message>
+    <message>
+        <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation>Eltern nicht kompatibel für Versteckte Fähigkeit!</translation>
+    </message>
 </context>
 <context>
     <name>Eggs3</name>

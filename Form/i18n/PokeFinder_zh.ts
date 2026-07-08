@@ -1250,6 +1250,18 @@
         <source>Egg Specie</source>
         <translation>蛋种类</translation>
     </message>
+    <message>
+        <source>Incompatible Parents</source>
+        <translation>亲代组合不兼容</translation>
+    </message>
+    <message>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation>所选亲代性别组合无法进行培育孵蛋。</translation>
+    </message>
+    <message>
+        <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Eggs3</name>

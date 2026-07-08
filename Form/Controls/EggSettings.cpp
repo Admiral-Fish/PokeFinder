@@ -125,6 +125,36 @@ bool EggSettings::compatibleParents() const
     return false;
 }
 
+bool EggSettings::isValid() const
+{
+    return isValid(false);
+}
+
+bool EggSettings::isValid(bool hiddenAbility) const
+{
+    if (!compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
+        box.exec();
+        return false;
+    }
+
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
+    u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
+    u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
+
+    bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
+    if (hiddenAbility && !hiddenAbilityCompatible)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
+        box.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void EggSettings::copyFrom(const EggSettings *other)
 {
     ui->spinBoxParentAHP->setValue(other->ui->spinBoxParentAHP->value());

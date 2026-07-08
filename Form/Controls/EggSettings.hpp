@@ -72,6 +72,24 @@ public:
     bool compatibleParents() const;
 
     /**
+     * @brief Determines if selected settings are valid for parents in the daycare.
+     *
+     * @return true Settings are valid
+     * @return false Settings are not valid
+     */
+    bool isValid() const;
+
+    /**
+     * @brief Determines if selected settings are valid for parents in the daycare.
+     *
+     * @param hiddenAbility Whether parents must be compatible for passing hidden ability
+     *
+     * @return true Settings are valid
+     * @return false Settings are not valid
+     */
+    bool isValid(bool hiddenAbility) const;
+
+    /**
      * @brief Copies the values from another EggSettings
      *
      * @param other The EggSettings to copy values from

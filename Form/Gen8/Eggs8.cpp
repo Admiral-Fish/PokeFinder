@@ -104,10 +104,8 @@ void Eggs8::updateProfiles()
 
 void Eggs8::generate()
 {
-    if (!ui->eggSettings->compatibleParents())
+    if (!ui->eggSettings->isValid())
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
     if (ui->eggSettings->reorderParents())
