@@ -95,7 +95,7 @@ namespace AdjacentSeedsCalculator
                     std::array<u8, 6> ivs = generateMTIVs(seed, profile.getVersion(), ivAdvance, roamer);
 
                     states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
-                                        Utilities5::initialAdvances(seed, profile) + ivAdvance,
+                                        Utilities5::initialAdvances(seed, profile),
                                         offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
                 }
             }
