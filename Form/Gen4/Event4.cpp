@@ -177,6 +177,10 @@ void Event4::profileIndexChanged(int index)
     if (index >= 0)
     {
         currentProfile = &profiles[index];
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 
