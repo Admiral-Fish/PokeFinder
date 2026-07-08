@@ -678,7 +678,7 @@ void MainWindow::openRaids()
         connect(this, &MainWindow::profilesModified8, raids, &Raids::updateProfiles);
     }
     raids->show();
-    raids->show();
+    raids->raise();
 }
 
 void MainWindow::openStatic8()
@@ -690,7 +690,7 @@ void MainWindow::openStatic8()
         connect(this, &MainWindow::profilesModified8, static8, &Static8::updateProfiles);
     }
     static8->show();
-    static8->show();
+    static8->raise();
 }
 
 void MainWindow::openUnderground()

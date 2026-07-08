@@ -91,8 +91,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
-        XDRNGR test(rng);
-        test.advance(5);
+        XDRNGR test(rng, 5);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -102,8 +101,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
     {
-        XDRNGR test(rng);
-        test.advance(4);
+        XDRNGR test(rng, 4);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -113,8 +111,7 @@ static bool validateJirachi(u32 &seed)
 
     if (num1 <= 0x4000) // 6 advances
     {
-        XDRNGR test(rng);
-        test.advance(3);
+        XDRNGR test(rng, 3);
         if (validateMenu(test))
         {
             seed = test.getSeed();
@@ -176,12 +173,6 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
 {
     searching = true;
 
-    if (method == Method::Channel)
-    {
-        searchChannel(min[4], max[4], staticTemplate);
-        return;
-    }
-
     // Ageto Pikachu/Celebi
     if (staticTemplate->getSpecie() == 25 || staticTemplate->getSpecie() == 251)
     {
@@ -210,7 +201,15 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
                                 return;
                             }
 
-                            auto states = searchNonLock(hp, atk, def, spa, spd, spe, staticTemplate);
+                            std::vector<SearcherState> states;
+                            if (method == Method::Channel)
+                            {
+                                states = searchChannel(hp, atk, def, spa, spd, spe, staticTemplate);
+                            }
+                            else
+                            {
+                                states = searchNonLock(hp, atk, def, spa, spd, spe, staticTemplate);
+                            }
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -223,76 +222,56 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
     }
 }
 
-void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate)
+std::vector<SearcherState> GameCubeSearcher::searchChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                           const StaticTemplate3 *staticTemplate) const
 {
+    std::vector<SearcherState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
-    for (u8 spd = minSpd; spd <= maxSpd; spd++)
+    auto seeds = LCRNGReverse::recoverChannelIV(hp, atk, def, spa, spd, spe);
+    for (int i = 0; i < seeds.count; i++)
     {
-        u32 lower = spd << 27;
-        u32 upper = lower | 0x7ffffff;
+        XDRNGR rng(seeds[i]);
 
-        for (u64 seed = lower; seed <= upper; seed++, progress++)
+        rng.advance(3);
+        u16 low = rng.nextUShort();
+        u16 high = rng.nextUShort();
+        u16 sid = rng.nextUShort();
+        constexpr u16 tid = 40122;
+
+        // Failed non-shiny check due to operator precedence
+        if (tid ^ sid ^ high ^ low < 8)
         {
-            if (!searching)
-            {
-                return;
-            }
+            high ^= 0x8000;
+        }
 
-            XDRNGR rng(seed);
+        u32 pid = (high << 16) | low;
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
 
-            std::array<u8, 6> ivs;
+        u32 origin = rng.next();
+        if (!validateJirachi(origin))
+        {
+            continue;
+        }
 
-            ivs[4] = spd;
-            ivs[3] = rng.nextUShort() >> 11;
-            ivs[5] = rng.nextUShort() >> 11;
-            ivs[2] = rng.nextUShort() >> 11;
-            ivs[1] = rng.nextUShort() >> 11;
-            ivs[0] = rng.nextUShort() >> 11;
-
-            if (!filter.compareIV(ivs))
-            {
-                continue;
-            }
-
-            rng.advance(3);
-            u16 low = rng.nextUShort();
-            u16 high = rng.nextUShort();
-            u16 sid = rng.nextUShort();
-            constexpr u16 tid = 40122;
-
-            // Failed non-shiny check due to operator precedence
-            if (tid ^ sid ^ high ^ low < 8)
-            {
-                high ^= 0x8000;
-            }
-
-            u32 pid = (high << 16) | low;
-            u8 nature = pid % 25;
-            if (!filter.compareNature(nature))
-            {
-                continue;
-            }
-
-            u32 origin = rng.next();
-            if (!validateJirachi(origin))
-            {
-                continue;
-            }
-
-            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny<true>(pid, tid ^ sid),
-                                info);
-            if (filter.compareState(static_cast<const SearcherState &>(state)))
-            {
-                std::lock_guard<std::mutex> guard(mutex);
-                results.emplace_back(state);
-            }
+        SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny<true>(pid, tid ^ sid),
+                            info);
+        if (filter.compareState(static_cast<const SearcherState &>(state)))
+        {
+            states.emplace_back(state);
         }
     }
+
+    return states;
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                              const ShadowTemplate *shadowTemplate)
+                                                              const ShadowTemplate *shadowTemplate) const
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
@@ -357,7 +336,7 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                               const ShadowTemplate *shadowTemplate)
+                                                               const ShadowTemplate *shadowTemplate) const
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();

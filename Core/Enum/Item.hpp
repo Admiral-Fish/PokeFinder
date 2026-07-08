@@ -17,23 +17,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "LCRNG64.hpp"
+#ifndef ITEM_HPP
+#define ITEM_HPP
 
-template <class RNG>
-static consteval JumpTable64 computeJumpTable64()
+#include <Core/Global.hpp>
+
+/**
+ * @brief Enum to encompass different items
+ */
+enum class Item : u8
 {
-    JumpTable64 table;
-    table.jump[0].add = RNG::getAdd();
-    table.jump[0].mult = RNG::getMult();
+    None,
 
-    for (int i = 1; i < 64; i++)
-    {
-        table.jump[i].add = table.jump[i - 1].add * (table.jump[i - 1].mult + 1);
-        table.jump[i].mult = table.jump[i - 1].mult * table.jump[i - 1].mult;
-    }
+    BlackFlute,
+    CleanseTag,
+    WhiteFlute
+};
 
-    return table;
+/**
+ * @brief Converts enum to number
+ *
+ * @param item Input item
+ *
+ * @return Converted number
+ */
+constexpr u8 toInt(Item item)
+{
+    return static_cast<u8>(item);
 }
 
-constexpr JumpTable64 BWRNGTable = computeJumpTable64<BWRNG>();
-constexpr JumpTable64 BWRNGRTable = computeJumpTable64<BWRNGR>();
+#endif // ITEM_HPP

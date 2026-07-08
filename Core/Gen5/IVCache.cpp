@@ -48,7 +48,7 @@ static bool compareIVs(const std::array<u8, 6> &ivs, const StateFilter &filter)
     return filter.compareIV(ivs) && filter.compareHiddenPower(hiddenPower);
 }
 
-static std::array<u8, 6> computeIVs(u32 seed, u8 advance, CacheType type)
+static std::array<u8, 6> computeIVs(u32 seed, u32 advance, CacheType type)
 {
     std::array<u8, 6> ivs;
 

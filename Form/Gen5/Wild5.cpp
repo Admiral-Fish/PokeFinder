@@ -220,7 +220,7 @@ bool Wild5::fastSearchEnabled() const
 
 void Wild5::generate()
 {
-    if (!ui->filterGenerator->isValid())
+    if (!ui->filterGenerator->isValid(ui->spinBoxGeneratorLevelMin->value(), ui->spinBoxGeneratorLevelMax->value()))
     {
         return;
     }
@@ -248,6 +248,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -256,7 +257,8 @@ void Wild5::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -284,12 +286,20 @@ void Wild5::generatorPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterGenerator->resetEncounterSlots();
+        ui->spinBoxGeneratorLevelMin->setValue(0);
+        ui->spinBoxGeneratorLevelMax->setValue(0);
+        ui->filterGenerator->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
         auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
+
+        auto range = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxGeneratorLevelMin->setValue(range.first);
+        ui->spinBoxGeneratorLevelMax->setValue(range.second);
+        ui->filterGenerator->setLevelRange(range.first, range.second);
     }
 }
 
@@ -390,7 +400,7 @@ void Wild5::search()
         return;
     }
 
-    if (!ui->filterSearcher->isValid())
+    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
         return;
     }
@@ -464,6 +474,7 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -472,7 +483,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(currentLocation);
     }
 }
 
@@ -531,12 +543,20 @@ void Wild5::searcherPokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filterSearcher->resetEncounterSlots();
+        ui->spinBoxSearcherLevelMin->setValue(0);
+        ui->spinBoxSearcherLevelMax->setValue(0);
+        ui->filterSearcher->setLevelRange(1, 100);
     }
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
+
+        auto range = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getLevelRange(num);
+        ui->spinBoxSearcherLevelMin->setValue(range.first);
+        ui->spinBoxSearcherLevelMax->setValue(range.second);
+        ui->filterSearcher->setLevelRange(range.first, range.second);
     }
 }
 

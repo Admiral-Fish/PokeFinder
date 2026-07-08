@@ -42,11 +42,8 @@ struct RecoverySeeds
 
 /**
  * @brief Provides a way to compute origin seed given IVs or PID.
- *
- * The PokeRNG attacks are a derivate of meet-in-the-middle attack (based on https://crypto.stackexchange.com/a/10609) combined with
- * patterns in modular arithmetic.
- *
- * The Channel and XDRNG attacks are Euclidean divisor based (https://crypto.stackexchange.com/a/10629).
+ * 
+ * All attacks are based on a lattice reduction method. See https://github.com/StarfBerry/PokeRNG/blob/main/Recovery/LCG_Recovery.py
  */
 namespace LCRNGReverse
 {
