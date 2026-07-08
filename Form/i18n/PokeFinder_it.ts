@@ -8628,6 +8628,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
+        <source>Hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
         <source>Advances</source>
         <translation>Avanzamenti</translation>
     </message>
@@ -11104,6 +11109,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
         <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
+        <source>Hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

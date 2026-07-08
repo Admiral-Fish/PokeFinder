@@ -8628,6 +8628,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
+        <source>Hour</source>
+        <translation>Stunde</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
         <source>Advances</source>
         <translation></translation>
     </message>
@@ -11105,6 +11110,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
         <source>Seed</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
+        <source>Hour</source>
+        <translation>Stunde</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>

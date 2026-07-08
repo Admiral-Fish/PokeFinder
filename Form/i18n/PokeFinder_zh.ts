@@ -8626,6 +8626,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
+        <source>Hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
@@ -11102,6 +11107,11 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
         <source>Seed</source>
         <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
+        <source>Hour</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>

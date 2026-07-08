@@ -155,9 +155,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Seed"),   tr("Lead"),    tr("Advances"), tr("Item"),  tr("Slot"),   tr("Level"), tr("PID"),
-                           tr("Shiny"),  tr("Nature"),  tr("Ability"),  tr("HP"),    tr("Atk"),    tr("Def"),   tr("SpA"),
-                           tr("SpD"),    tr("Spe"),     tr("Hidden"),   tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Seed"),   tr("Delay"),  tr("Hour"),  tr("Lead"),   tr("Advances"), tr("Item"),   tr("Slot"),   tr("Level"),
+                           tr("PID"),    tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),      tr("Atk"),    tr("Def"),    tr("SpA"),
+                           tr("SpD"),    tr("Spe"),    tr("Hidden"), tr("Power"),   tr("Gender"),  tr("Characteristic") };
     bool showStats;
 };
 
