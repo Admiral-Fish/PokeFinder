@@ -31,10 +31,14 @@
 #include <QMessageBox>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("event8");
+
 Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::BDSP);
 
     model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
@@ -62,16 +66,16 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
 
     ui->comboBoxSpecies->enableAutoComplete();
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event8::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Event8::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Event8::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event8::generate);
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &Event8::importEvent);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event8::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("event8");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -82,8 +86,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
 Event8::~Event8()
 {
     QSettings setting;
-    setting.beginGroup("event8");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -92,24 +95,7 @@ Event8::~Event8()
 
 void Event8::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader8::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("event8/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 WB8 Event8::getParameters() const
@@ -199,21 +185,7 @@ void Event8::generate()
     model->addItems(states);
 }
 
-void Event8::profileIndexChanged(int index)
+void Event8::profileChanged(const Profile8 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Event8::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }

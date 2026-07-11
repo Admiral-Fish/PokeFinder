@@ -148,7 +148,9 @@ namespace Translator
 
     const std::string &getForm(u16 specie, u8 form)
     {
-        return forms[(form << 11) | specie];
+        static const std::string empty;
+        auto it = forms.find((form << 11) | specie);
+        return it != forms.end() ? it->second : empty;
     }
 
     const std::string &getGame(Game version)
@@ -305,7 +307,7 @@ namespace Translator
     std::string getSpecie(u16 specie, u8 form)
     {
         auto it = forms.find((form << 11) | specie);
-        if (it != forms.end())
+        if (it != forms.end() && !it->second.empty())
         {
             return species[specie - 1] + " (" + it->second + ")";
         }

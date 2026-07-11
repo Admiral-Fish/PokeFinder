@@ -35,10 +35,14 @@
 #include <QMessageBox>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("underground");
+
 Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Underground)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::BDSP);
 
     model = new UndergroundModel(ui->tableView);
     ui->tableView->setModel(model);
@@ -63,11 +67,11 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
 
     ui->comboBoxLocation->enableAutoComplete();
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Underground::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Underground::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Underground::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Underground::generate);
     connect(ui->comboBoxStoryFlag, &QComboBox::currentIndexChanged, this, &Underground::storyFlagIndexChanged);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Underground::locationIndexChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Underground::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &UndergroundModel::setShowStats);
 
     updateProfiles();
@@ -79,7 +83,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->comboBoxLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()));
 
     QSettings setting;
-    setting.beginGroup("underground");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -90,8 +94,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
 Underground::~Underground()
 {
     QSettings setting;
-    setting.beginGroup("underground");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -100,25 +103,7 @@ Underground::~Underground()
 
 void Underground::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader8::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
-
-    ui->comboBoxProfiles->clear();
-
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("underground/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Underground::updateEncounters()
@@ -182,24 +167,10 @@ void Underground::locationIndexChanged(int index)
     }
 }
 
-void Underground::profileIndexChanged(int index)
+void Underground::profileChanged(const Profile8 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
+    currentProfile = &profile;
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        updateEncounters();
-        locationIndexChanged(ui->comboBoxLocation->currentIndex());
-    }
-}
-
-void Underground::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    updateEncounters();
+    locationIndexChanged(ui->comboBoxLocation->currentIndex());
 }

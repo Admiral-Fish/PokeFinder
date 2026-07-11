@@ -43,9 +43,9 @@ class Wild5 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -78,12 +78,11 @@ private:
     Ui::Wild5 *ui;
 
     IVCache *ivCache;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     SHA1Cache *shaCache;
     SortFilterProxyModel *proxyModel;
     std::vector<EncounterArea5> encounterGenerator;
     std::vector<EncounterArea5> encounterSearcher;
-    std::vector<Profile5> profiles;
     WildGeneratorModel5 *generatorModel;
     WildSearcherModel5 *searcherModel;
 
@@ -130,17 +129,11 @@ private slots:
     void generatorSeasonIndexChanged(int index);
 
     /**
-     * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
-     * settings.
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
 
     /**
      * @brief Searches static encounters from the provided IVs
