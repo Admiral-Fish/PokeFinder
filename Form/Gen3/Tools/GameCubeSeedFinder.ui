@@ -20,13 +20,13 @@
       <attribute name="title">
        <string>Gales</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_6">
+      <layout class="QGridLayout" name="gridLayout_1">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGalesSearch">
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_7">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGalesRound">
             <property name="text">
@@ -73,7 +73,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGalesYourLead">
             <property name="text">
@@ -146,13 +146,13 @@
       <attribute name="title">
        <string>Colo</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxColoSearch">
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
            <widget class="QLabel" name="labelColoRound">
             <property name="text">
@@ -199,7 +199,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="labelColoTrainer">
             <property name="text">
@@ -248,13 +248,13 @@
       <attribute name="title">
        <string>Channel</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_13">
+      <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxChannelSearch">
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_14">
+         <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0">
            <widget class="QLabel" name="labelChannelResult">
             <property name="text">
@@ -287,7 +287,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
+         <layout class="QGridLayout" name="gridLayout_9">
           <item row="0" column="0">
            <widget class="QPushButton" name="pushButtonSNOC">
             <property name="text">
@@ -437,7 +437,7 @@
          <property name="title">
           <string>Inputs</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_11">
+         <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0">
            <widget class="QListWidget" name="listWidgetInputs"/>
           </item>

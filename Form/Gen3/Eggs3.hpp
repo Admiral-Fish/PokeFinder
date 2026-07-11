@@ -38,9 +38,9 @@ class Eggs3 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -66,8 +66,7 @@ private:
 
     EggModel3 *emerald;
     EggModel3 *rsfrlg;
-    Profile3 *currentProfile;
-    std::vector<Profile3> profiles;
+    const Profile3 *currentProfile;
 
 private slots:
     /**
@@ -81,16 +80,11 @@ private slots:
     void rsfrlgGenerate();
 
     /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile3 &profile);
 };
 
 #endif // EGGS3_HPP

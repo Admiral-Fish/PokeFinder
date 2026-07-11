@@ -42,6 +42,7 @@ set(PROJECT_UI
     Gen3/Eggs3.ui
     Gen3/IDs3.ui
     Gen3/GameCube.ui
+    Gen3/Profile/ProfileDisplay3.ui
     Gen3/Profile/ProfileEditor3.ui
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
@@ -55,6 +56,7 @@ set(PROJECT_UI
     Gen4/Eggs4.ui
     Gen4/Event4.ui
     Gen4/IDs4.ui
+    Gen4/Profile/ProfileDisplay4.ui
     Gen4/Profile/ProfileEditor4.ui
     Gen4/Profile/ProfileManager4.ui
     Gen4/Static4.ui
@@ -70,6 +72,7 @@ set(PROJECT_UI
     Gen5/Event5.ui
     Gen5/IDs5.ui
     Gen5/Profile/ProfileCalibrator5.ui
+    Gen5/Profile/ProfileDisplay5.ui
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
     Gen5/Static5.ui
@@ -79,6 +82,7 @@ set(PROJECT_UI
     Gen8/Eggs8.ui
     Gen8/Event8.ui
     Gen8/IDs8.ui
+    Gen8/Profile/ProfileDisplay8.ui
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
     Gen8/Raids.ui
@@ -128,6 +132,8 @@ set(PROJECT_SOURCES
     Gen3/IDs3.hpp
     Gen3/GameCube.cpp
     Gen3/GameCube.hpp
+    Gen3/Profile/ProfileDisplay3.cpp
+    Gen3/Profile/ProfileDisplay3.hpp
     Gen3/Profile/ProfileEditor3.cpp
     Gen3/Profile/ProfileEditor3.hpp
     Gen3/Profile/ProfileManager3.cpp
@@ -154,6 +160,8 @@ set(PROJECT_SOURCES
     Gen4/Event4.hpp
     Gen4/IDs4.cpp
     Gen4/IDs4.hpp
+    Gen4/Profile/ProfileDisplay4.cpp
+    Gen4/Profile/ProfileDisplay4.hpp
     Gen4/Profile/ProfileEditor4.cpp
     Gen4/Profile/ProfileEditor4.hpp
     Gen4/Profile/ProfileManager4.cpp
@@ -184,6 +192,8 @@ set(PROJECT_SOURCES
     Gen5/IDs5.hpp
     Gen5/Profile/ProfileCalibrator5.cpp
     Gen5/Profile/ProfileCalibrator5.hpp
+    Gen5/Profile/ProfileDisplay5.cpp
+    Gen5/Profile/ProfileDisplay5.hpp
     Gen5/Profile/ProfileEditor5.cpp
     Gen5/Profile/ProfileEditor5.hpp
     Gen5/Profile/ProfileManager5.cpp
@@ -202,6 +212,8 @@ set(PROJECT_SOURCES
     Gen8/Event8.hpp
     Gen8/IDs8.cpp
     Gen8/IDs8.hpp
+    Gen8/Profile/ProfileDisplay8.cpp
+    Gen8/Profile/ProfileDisplay8.hpp
     Gen8/Profile/ProfileEditor8.cpp
     Gen8/Profile/ProfileEditor8.hpp
     Gen8/Profile/ProfileManager8.cpp

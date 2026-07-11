@@ -13,159 +13,9 @@
   <property name="windowTitle">
    <string>Gen 5 Wild</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_8">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line_4">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileMACAddress">
-        <property name="text">
-         <string>MAC Address</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileMACAddressValue"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QLabel" name="labelProfileDSType">
-        <property name="text">
-         <string>DS Type</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileDSTypeValue"/>
-      </item>
-      <item row="0" column="7" rowspan="2">
-       <widget class="Line" name="line_3">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="8">
-       <widget class="QLabel" name="labelProfileVCount">
-        <property name="text">
-         <string>VCount</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QLabel" name="labelProfileVCountValue"/>
-      </item>
-      <item row="1" column="8">
-       <widget class="QLabel" name="labelProfileTimer0">
-        <property name="text">
-         <string>Timer0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="9">
-       <widget class="QLabel" name="labelProfileTimer0Value"/>
-      </item>
-      <item row="0" column="10" rowspan="2">
-       <widget class="Line" name="line_2">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="11">
-       <widget class="QLabel" name="labelProfileGxStat">
-        <property name="text">
-         <string>GxStat</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="12">
-       <widget class="QLabel" name="labelProfileGxStatValue"/>
-      </item>
-      <item row="1" column="11">
-       <widget class="QLabel" name="labelProfileVFrame">
-        <property name="text">
-         <string>VFrame</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="12">
-       <widget class="QLabel" name="labelProfileVFrameValue"/>
-      </item>
-      <item row="0" column="13" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="14">
-       <widget class="QLabel" name="labelProfileKeypresses">
-        <property name="text">
-         <string>Keypresses</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="15">
-       <widget class="QLabel" name="labelProfileKeypressesValue"/>
-      </item>
-      <item row="1" column="14">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="15">
-       <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-     </layout>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
     </widget>
    </item>
    <item row="1" column="0">
@@ -174,7 +24,7 @@
       <attribute name="title">
        <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_12">
+      <layout class="QGridLayout" name="gridLayout_1">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="sizePolicy">
@@ -186,7 +36,7 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_6">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorLead">
             <property name="text">
@@ -311,7 +161,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_7">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorEncounter">
             <property name="text">
@@ -410,7 +260,7 @@
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
           <item row="4" column="0" colspan="3">
-           <widget class="Line" name="line_6">
+           <widget class="Line" name="line">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
@@ -457,7 +307,7 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0" rowspan="2">
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
@@ -473,7 +323,7 @@
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="sizePolicy">
@@ -485,7 +335,7 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherLead">
             <property name="text">
@@ -638,7 +488,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_9">
+         <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherEncounter">
             <property name="text">
@@ -737,7 +587,7 @@
            <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
           <item row="4" column="0" colspan="3">
-           <widget class="Line" name="line_5">
+           <widget class="Line" name="line_1">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
@@ -771,7 +621,7 @@
            </widget>
           </item>
           <item row="6" column="0" colspan="3">
-           <widget class="Line" name="line_7">
+           <widget class="Line" name="line_2">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
@@ -804,7 +654,7 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0" rowspan="2">
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
@@ -839,14 +689,21 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Form/Controls/DateEdit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProfileDisplay5</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen5/Profile/ProfileDisplay5.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -855,25 +712,22 @@
    <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Form/Controls/ComboMenu.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboBoxProxy</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>Form/Controls/TabWidget.hpp</header>
-   <container>1</container>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Form/Controls/DateEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>comboMenuGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>

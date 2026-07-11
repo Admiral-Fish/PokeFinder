@@ -19,6 +19,7 @@
 
 #include "ProfileManager3.hpp"
 #include "ui_ProfileManager3.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen3/Profile/ProfileEditor3.hpp>
 #include <Model/Gen3/ProfileModel3.hpp>
@@ -31,7 +32,7 @@ ProfileManager3::ProfileManager3(QWidget *parent) : QWidget(parent), ui(new Ui::
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    model->addItems(ProfileLoader3::getProfiles());
+    model->addItems(ProfileLoader3::getProfiles(Game::Gen3));
     ui->tableView->setModel(model);
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager3::create);
@@ -63,7 +64,7 @@ void ProfileManager3::create()
         Profile3 profile = dialog->getProfile();
         ProfileLoader3::addProfile(profile);
         model->addItem(profile);
-        emit profilesModified(3);
+        emit profilesChanged(3);
     }
 }
 
@@ -80,7 +81,7 @@ void ProfileManager3::duplicate()
     const Profile3 &profile = model->getItem(row);
     ProfileLoader3::addProfile(profile);
     model->addItem(profile);
-    emit profilesModified(3);
+    emit profilesChanged(3);
 }
 
 void ProfileManager3::edit()
@@ -100,7 +101,7 @@ void ProfileManager3::edit()
         Profile3 update = dialog->getProfile();
         ProfileLoader3::updateProfile(update, original);
         model->updateItem(update, row);
-        emit profilesModified(3);
+        emit profilesChanged(3);
     }
 }
 
@@ -121,6 +122,6 @@ void ProfileManager3::remove()
         const Profile3 &profile = model->getItem(row);
         ProfileLoader3::removeProfile(profile);
         model->removeItem(row);
-        emit profilesModified(3);
+        emit profilesChanged(3);
     }
 }
