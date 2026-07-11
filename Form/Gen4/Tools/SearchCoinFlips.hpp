@@ -23,7 +23,6 @@
 #include <QDialog>
 
 class IndexFilterProxyModel;
-class SeedTimeCalibrate4;
 class SeedToTimeCalibrateModel4;
 typedef QList<QModelIndex> QModelIndexList;
 
