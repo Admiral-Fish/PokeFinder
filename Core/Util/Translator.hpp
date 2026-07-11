@@ -62,16 +62,6 @@ namespace Translator
     const std::string &getCharacteristic(u8 characteristic, CharacteristicGeneration generation);
 
     /**
-     * @brief Gets the string for the \p characteristic for \p version
-     *
-     * @param characteristic Characteristic number
-     * @param version Game version
-     *
-     * @return Characteristic string
-     */
-    const std::string &getCharacteristic(u8 characteristic, Game version);
-
-    /**
      * @brief Gets all the characteristic strings for \p generation
      *
      * @param generation Generation context
