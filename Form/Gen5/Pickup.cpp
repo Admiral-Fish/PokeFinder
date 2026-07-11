@@ -49,6 +49,8 @@
 #include <map>
 #include <set>
 
+static const QString settingPrefix = QStringLiteral("pickup");
+
 static bool canSlotGenerateItem(u8 level, u16 item)
 {
     auto items = PickupGenerator::getLevelItems(level);
@@ -118,6 +120,8 @@ Pickup::Pickup(QWidget *parent) : QWidget(parent), ui(new Ui::Pickup)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
+
     setupPickupUi();
 
     generatorModel = new PickupGeneratorModel5(ui->tableViewGenerator);
@@ -136,16 +140,16 @@ Pickup::Pickup(QWidget *parent) : QWidget(parent), ui(new Ui::Pickup)
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Pickup::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Pickup::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Pickup::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Pickup::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Pickup::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Pickup::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Pickup::profileManager);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("pickup");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         restoreGeometry(setting.value("geometry").toByteArray());
@@ -164,8 +168,7 @@ Pickup::Pickup(QWidget *parent) : QWidget(parent), ui(new Ui::Pickup)
 Pickup::~Pickup()
 {
     QSettings setting;
-    setting.beginGroup("pickup");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
@@ -176,25 +179,12 @@ Pickup::~Pickup()
 
 bool Pickup::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void Pickup::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles(Game::Gen5);
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("pickup/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Pickup::setupPickupUi()
@@ -386,9 +376,7 @@ void Pickup::setupPickupUi()
         }
         QWidget::setTabOrder(items[5], clear);
         QWidget::setTabOrder(clear, ui->filterGenerator);
-        QWidget::setTabOrder(ui->filterGenerator, ui->comboBoxProfiles);
-        QWidget::setTabOrder(ui->comboBoxProfiles, ui->pushButtonProfileManager);
-        QWidget::setTabOrder(ui->pushButtonProfileManager, ui->tabRNGSelector);
+        QWidget::setTabOrder(ui->filterGenerator, ui->tabRNGSelector);
         QWidget::setTabOrder(ui->tabRNGSelector, ui->textBoxGeneratorSeed);
     };
 
@@ -781,34 +769,12 @@ void Pickup::search()
     timer->start(1000);
 }
 
-void Pickup::profileIndexChanged(int index)
+void Pickup::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+    currentProfile = &profile;
 
         generatorEncounterIndexChanged(0);
         searcherEncounterIndexChanged(0);
-    }
-}
-
-void Pickup::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesChanged, this, [=](int num) { emit profilesChanged(num); });
-    manager->show();
 }
 
 void Pickup::transferSettings(int index)

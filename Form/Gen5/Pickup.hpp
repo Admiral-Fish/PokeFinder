@@ -62,9 +62,8 @@ private:
 
     PickupGeneratorModel5 *generatorModel;
     PickupSearcherModel5 *searcherModel;
-    Profile5 *currentProfile = nullptr;
+    const Profile5 *currentProfile;
     SortFilterProxyModel *proxyModel;
-    std::vector<Profile5> profiles;
 
     std::array<QCheckBox *, 6> generatorSlots;
     std::array<QCheckBox *, 6> searcherSlots;
@@ -98,8 +97,7 @@ private:
 private slots:
     void generate();
     void search();
-    void profileIndexChanged(int index);
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
     void transferSettings(int index);
     void generatorEncounterIndexChanged(int index);
     void generatorSeasonIndexChanged(int index);
