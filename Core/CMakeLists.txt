@@ -160,6 +160,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/HiddenGrottoGenerator.hpp
     Gen5/Generators/IDGenerator5.cpp
     Gen5/Generators/IDGenerator5.hpp
+    Gen5/Generators/PickupGenerator.cpp
+    Gen5/Generators/PickupGenerator.hpp
     Gen5/Generators/StaticGenerator5.cpp
     Gen5/Generators/StaticGenerator5.hpp
     Gen5/Generators/WildGenerator5.cpp
@@ -190,6 +192,7 @@ add_library(PokeFinderCore STATIC
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp
     Gen5/States/HiddenGrottoState.hpp
+    Gen5/States/PickupState.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp

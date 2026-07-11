@@ -4664,6 +4664,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>IV Cache</source>
         <translation>Cache IV</translation>
     </message>
+    <message>
+        <source>Pickup</source>
+        <translation>Raccolta</translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -10711,4 +10715,382 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Tasti</translation>
     </message>
 </context>
+ <context>
+    <name>Pickup</name>
+    <message>
+        <source>Pickup</source>
+        <translation>Raccolta</translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Profilo</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation>Gestore</translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>Indirizzo MAC</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>Modello DS</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>Pressione Tasti</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>Gioco</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>Generatore</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation>Ricercatore</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation>Info RNG</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation>Avanzamenti IV</translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation>Avanzamenti Iniziali</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation>Avanzamenti Massimi</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>Genera</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Impostazioni</translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation>Filtri</translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation>Data Iniziale</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation>Data Finale</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Cerca</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annulla</translation>
+    </message>
+    <message>
+        <source>Grass</source>
+        <translation>Erba</translation>
+    </message>
+    <message>
+        <source>Dark Grass</source>
+        <translation>Erba Scura</translation>
+    </message>
+    <message>
+        <source>Surfing</source>
+        <translation>Surf</translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation>Primavera</translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation>Estate</translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation>Autunno</translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation>Inverno</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>Incontro</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation>Stagione</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Zona</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pickup Slots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>Livello</translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation>Strumenti</translation>
+    </message>
+    <message>
+        <source>Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Pulisci</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation>Qualsiasi</translation>
+    </message>
+    <message>
+        <source>Slot %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing settings</source>
+        <translation>Impostazioni mancanti</translation>
+    </message>
+    <message>
+        <source>Select at least 1 Pickup Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation>Intervallo di date non valido</translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation>La data iniziale è successiva alla data finale</translation>
+    </message>
+    <message>
+        <source>Badges</source>
+        <translation>Medaglie</translation>
+    </message>
+
+ </context>
+ <context>
+    <name>PickupGeneratorModel5</name>
+    <message>
+        <source>Advances</source>
+        <translation>Avanzamenti</translation>
+    </message>
+    <message>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Held Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>Livello</translation>
+    </message>
+    <message>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shiny</source>
+        <translation>Cromatico</translation>
+    </message>
+    <message>
+        <source>Nature</source>
+        <translation>Natura</translation>
+    </message>
+    <message>
+        <source>Ability</source>
+        <translation>Abilità</translation>
+    </message>
+    <message>
+        <source>HP</source>
+        <translation>PS</translation>
+    </message>
+    <message>
+        <source>Atk</source>
+        <translation>Att</translation>
+    </message>
+    <message>
+        <source>Def</source>
+        <translation>Dif</translation>
+    </message>
+    <message>
+        <source>SpA</source>
+        <translation>AttSp</translation>
+    </message>
+    <message>
+        <source>SpD</source>
+        <translation>DifSp</translation>
+    </message>
+    <message>
+        <source>Spe</source>
+        <translation>Vel</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Intro</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Forza</translation>
+    </message>
+    <message>
+        <source>Gender</source>
+        <translation>Sesso</translation>
+    </message>
+    <message>
+        <source>Characteristic</source>
+        <translation>Caratteristica</translation>
+    </message>
+ </context>
+ <context>
+    <name>PickupSearcherModel5</name>
+    <message>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advances</source>
+        <translation>Avanzamenti</translation>
+    </message>
+    <message>
+        <source>Item 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date/Time</source>
+        <translation>Data/Ora</translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buttons</source>
+        <translation>Tasti</translation>
+    </message>
+ </context>
 </TS>

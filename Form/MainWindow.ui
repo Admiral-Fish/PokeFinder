@@ -143,13 +143,20 @@
          </widget>
         </item>
         <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonPickup">
+          <property name="text">
+           <string>Pickup</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
          <widget class="QPushButton" name="pushButtonStatic5">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="7" column="0">
          <widget class="QPushButton" name="pushButtonWild5">
           <property name="text">
            <string>Wild</string>

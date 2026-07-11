@@ -3,11 +3,17 @@
 3,Mega Ball
 4,Poké Ball
 17,Pozione
+18,Antidoto
+23,Ricarica Tot
 25,Iperpozione
 26,Superpozione
+27,Cura Totale
 28,Revitalizzante
 29,Revitalizzante max
 33,Latte Mumu
+38,Etere
+40,Elisir
+41,Elisir Max
 43,Succo di bacca
 44,Cenere magica
 50,Caramella rara
@@ -19,6 +25,7 @@
 75,Coccio verde
 76,Superrepellente
 77,Repellente max
+78,Fune di Fuga
 79,Repellente
 80,Pietrasolare
 81,Pietralunare
@@ -124,6 +131,7 @@
 322,Elettritore
 323,Magmatore
 326,Affilartiglio
+537,Squama Bella
 541,Palloncino
 545,Bulbo
 546,Ricaripila

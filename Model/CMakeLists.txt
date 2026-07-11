@@ -43,6 +43,8 @@ add_library(PokeFinderModel STATIC
     Gen5/HiddenGrottoModel.hpp
     Gen5/IDModel5.cpp
     Gen5/IDModel5.hpp
+    Gen5/PickupModel.cpp
+    Gen5/PickupModel.hpp
     Gen5/ProfileModel5.cpp
     Gen5/ProfileModel5.hpp
     Gen5/ProfileSearcherModel5.cpp
@@ -71,4 +73,4 @@ add_library(PokeFinderModel STATIC
     Util/ResearcherModel.hpp
 )
 
-target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core)
+target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core Qt6::Gui)

@@ -4663,6 +4663,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pickup</source>
+        <translation>捡拾</translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -10708,4 +10712,382 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
+ <context>
+    <name>Pickup</name>
+    <message>
+        <source>Pickup</source>
+        <translation>捡拾</translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>存档信息</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation>存档信息管理</translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>MAC地址</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>机型</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>按键</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>游戏</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>生成器</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation>检索器</translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation>乱数信息</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation>初始帧</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation>最大帧数</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation>筛选项</translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation>起始日期</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation>最后日期</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>检索</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Grass</source>
+        <translation>草丛</translation>
+    </message>
+    <message>
+        <source>Dark Grass</source>
+        <translation>深色草丛</translation>
+    </message>
+    <message>
+        <source>Surfing</source>
+        <translation>冲浪</translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation>春天</translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation>夏天</translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation>秋天</translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation>冬天</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>遭遇类型</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation>季节</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>地点</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pickup Slots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>等级</translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation>道具</translation>
+    </message>
+    <message>
+        <source>Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>清空</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation>任意</translation>
+    </message>
+    <message>
+        <source>Slot %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select at least 1 Pickup Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation>请输入正确的日期范围</translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Badges</source>
+        <translation>徽章</translation>
+    </message>
+
+ </context>
+ <context>
+    <name>PickupGeneratorModel5</name>
+    <message>
+        <source>Advances</source>
+        <translation>帧数</translation>
+    </message>
+    <message>
+        <source>Chatot</source>
+        <translation>音高</translation>
+    </message>
+    <message>
+        <source>Item 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Held Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slot</source>
+        <translation>Slot</translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>等级</translation>
+    </message>
+    <message>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <source>Shiny</source>
+        <translation>异色</translation>
+    </message>
+    <message>
+        <source>Nature</source>
+        <translation>性格</translation>
+    </message>
+    <message>
+        <source>Ability</source>
+        <translation>特性</translation>
+    </message>
+    <message>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <source>Atk</source>
+        <translation>攻击</translation>
+    </message>
+    <message>
+        <source>Def</source>
+        <translation>防御</translation>
+    </message>
+    <message>
+        <source>SpA</source>
+        <translation>特攻</translation>
+    </message>
+    <message>
+        <source>SpD</source>
+        <translation>特防</translation>
+    </message>
+    <message>
+        <source>Spe</source>
+        <translation>速度</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>觉醒属性</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>觉醒威力</translation>
+    </message>
+    <message>
+        <source>Gender</source>
+        <translation>性别</translation>
+    </message>
+    <message>
+        <source>Characteristic</source>
+        <translation>个性</translation>
+    </message>
+ </context>
+ <context>
+    <name>PickupSearcherModel5</name>
+    <message>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <source>Advances</source>
+        <translation>帧数</translation>
+    </message>
+    <message>
+        <source>Item 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date/Time</source>
+        <translation>日期/时间</translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+ </context>
 </TS>
