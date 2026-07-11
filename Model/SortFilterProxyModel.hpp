@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROXYMODEL_HPP
-#define PROXYMODEL_HPP
+#ifndef SORTFILTERPROXYMODEL_HPP
+#define SORTFILTERPROXYMODEL_HPP
 
 #include <QSortFilterProxyModel>
 
@@ -40,4 +40,4 @@ public:
     }
 };
 
-#endif // TABLEMODEL_HPP
+#endif // SORTFILTERPROXYMODEL_HPP

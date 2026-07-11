@@ -117,8 +117,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList dpptHeader = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips") };
-    QStringList hgssHeader = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Calls"), tr("Roamers") };
+    QStringList header = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips"), tr("Calls"), tr("Roamers") };
     bool dppt;
 
     /**

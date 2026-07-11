@@ -22,10 +22,11 @@
 
 #include <Core/Global.hpp>
 #include <QDialog>
-#include <vector>
 
+class IndexFilterProxyModel;
 class SeedTimeCalibrate4;
 class SeedToTimeCalibrateModel4;
+typedef QList<QModelIndex> QModelIndexList;
 
 namespace Ui
 {
@@ -42,9 +43,10 @@ public:
     /**
      * @brief Construct a new SearchCalls object
      *
+     * @param model Input model to search
      * @param parent Parent widget, which takes memory ownership
      */
-    SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
+    SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the SearchCalls object
@@ -52,25 +54,23 @@ public:
     ~SearchCalls() override;
 
     /**
-     * @brief Returns possible matching results based on input Elm/Irwin calls
+     * @brief Returns possible matching indexes based on input Elm/Irwin calls
      *
-     * @return Vector of possible results
+     * @return Vector of possible indexes
      */
-    std::vector<bool> getResults() const;
+    QModelIndexList getIndexes() const;
 
 private:
     Ui::SearchCalls *ui;
-    SeedToTimeCalibrateModel4 *previewModel;
 
-    std::vector<bool> possible;
-    const std::vector<SeedTimeCalibrate4> &data;
+    IndexFilterProxyModel *previewModel;
+    SeedToTimeCalibrateModel4 *model;
+    QModelIndexList indexes;
 
     /**
      * @brief Updates preview table with possible matching results
-     *
-     * @param matches Matching results
      */
-    void updatePreview(const std::vector<SeedTimeCalibrate4> &matches);
+    void updatePreview();
 
 private slots:
     /**
@@ -79,11 +79,6 @@ private slots:
      * @param text Current Elm/Irwin calls text
      */
     void callsTextChanged(const QString &text);
-
-    /**
-     * @brief Removes the last Elm/Irwin call from the string
-     */
-    void remove();
 
     /**
      * @brief Clears all Elm/Irwin calls from the string
@@ -114,6 +109,11 @@ private slots:
      * @brief Adds the Elm/Irwin P call to the string
      */
     void p();
+
+    /**
+     * @brief Removes the last Elm/Irwin call from the string
+     */
+    void remove();
 };
 
 #endif // SEARCHCALLS_HPP

@@ -22,27 +22,27 @@
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Model/Gen4/SeedToTimeModel4.hpp>
+#include <Model/IndexFilterProxyModel.hpp>
 #include <QSettings>
 
-SearchCalls::SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent) :
-    QDialog(parent), ui(new Ui::SearchCalls), data(data)
+SearchCalls::SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCalls), model(model)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    previewModel = new SeedToTimeCalibrateModel4(ui->tableViewPreview, false);
+    previewModel = new IndexFilterProxyModel(ui->tableViewPreview, model);
     ui->tableViewPreview->setModel(previewModel);
 
-    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(model->rowCount()));
 
     connect(ui->pushButtonE, &QPushButton::clicked, this, &SearchCalls::e);
     connect(ui->pushButtonK, &QPushButton::clicked, this, &SearchCalls::k);
     connect(ui->pushButtonP, &QPushButton::clicked, this, &SearchCalls::p);
     connect(ui->lineEditCalls, &QLineEdit::textChanged, this, &SearchCalls::callsTextChanged);
-    connect(ui->pushButtonRemove, &QPushButton::clicked, this, &SearchCalls::remove);
-    connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCalls::clear);
     connect(ui->radioButtonElm, &QRadioButton::clicked, this, &SearchCalls::elm);
     connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &SearchCalls::irwin);
+    connect(ui->pushButtonRemove, &QPushButton::clicked, this, &SearchCalls::remove);
+    connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCalls::clear);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCalls::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCalls::reject);
 
@@ -61,9 +61,21 @@ SearchCalls::~SearchCalls()
     delete ui;
 }
 
-std::vector<bool> SearchCalls::getResults() const
+QModelIndexList SearchCalls::getIndexes() const
 {
-    return possible;
+    return indexes;
+}
+
+void SearchCalls::updatePreview()
+{
+    if (!indexes.empty() && indexes.size() <= 3)
+    {
+        previewModel->setFilteredIndexes(indexes);
+    }
+    else
+    {
+        previewModel->setFilteredIndexes(QModelIndexList());
+    }
 }
 
 void SearchCalls::callsTextChanged(const QString &text)
@@ -74,12 +86,11 @@ void SearchCalls::callsTextChanged(const QString &text)
         std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
 
         int num = 0;
-        std::vector<SeedTimeCalibrate4> matches;
 
-        possible.clear();
-        for (const auto &d : data)
+        indexes.clear();
+        for (int i = 0; i < model->rowCount(); i++)
         {
-            std::string compare = d.getSequence();
+            std::string compare = model->getItem(i).getSequence();
             if (compare.find("skipped") != std::string::npos)
             {
                 size_t index = compare.find(')');
@@ -89,38 +100,27 @@ void SearchCalls::callsTextChanged(const QString &text)
             std::erase_if(compare, [](char c) { return c == ' ' || c == ','; });
 
             bool pass = compare.find(result) != std::string::npos;
-            possible.emplace_back(pass);
             if (pass)
             {
+                indexes.append(model->index(i, 0));
                 num++;
-                matches.emplace_back(d);
             }
         }
 
         ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
-        updatePreview(matches);
+        updatePreview();
     }
     else
     {
-        possible.clear();
-        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
-        updatePreview({});
+        indexes.clear();
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(model->rowCount()));
+        updatePreview();
     }
 }
 
-void SearchCalls::updatePreview(const std::vector<SeedTimeCalibrate4> &matches)
+void SearchCalls::clear()
 {
-    previewModel->clearModel();
-    if (!matches.empty() && matches.size() <= 3)
-    {
-        previewModel->addItems(matches);
-        ui->tableViewPreview->setVisible(true);
-        ui->tableViewPreview->resizeColumnsToContents();
-    }
-    else
-    {
-        previewModel->clearModel();
-    }
+    ui->lineEditCalls->clear();
 }
 
 void SearchCalls::e()
@@ -149,18 +149,6 @@ void SearchCalls::irwin()
                                    "there's so much I want to chat about! This is going nowhere!"));
 }
 
-void SearchCalls::remove()
-{
-    QString string = ui->lineEditCalls->text();
-    int index = string.lastIndexOf(',');
-    ui->lineEditCalls->setText(index == -1 ? QString() : string.left(index));
-}
-
-void SearchCalls::clear()
-{
-    ui->lineEditCalls->clear();
-}
-
 void SearchCalls::k()
 {
     QString string = ui->lineEditCalls->text();
@@ -173,4 +161,11 @@ void SearchCalls::p()
     QString string = ui->lineEditCalls->text();
     string += string.isEmpty() ? "P" : ", P";
     ui->lineEditCalls->setText(string);
+}
+
+void SearchCalls::remove()
+{
+    QString string = ui->lineEditCalls->text();
+    int index = string.lastIndexOf(',');
+    ui->lineEditCalls->setText(index == -1 ? QString() : string.left(index));
 }

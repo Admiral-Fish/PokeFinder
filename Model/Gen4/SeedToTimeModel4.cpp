@@ -95,7 +95,7 @@ QVariant SeedToTimeCalibrateModel4::headerData(int section, Qt::Orientation orie
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return dppt ? dpptHeader[section] : hgssHeader[section];
+        return header[getColumn(section)];
     }
     return QVariant();
 }
