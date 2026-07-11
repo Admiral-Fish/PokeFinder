@@ -5138,12 +5138,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5242,16 +5242,16 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6729,38 +6729,39 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="107"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="92"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="36"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="110"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="105"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="135"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="115"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="145"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="146"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="117"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="147"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6792,8 +6793,9 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="82"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="37"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="106"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="112"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
