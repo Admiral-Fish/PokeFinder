@@ -71,11 +71,6 @@ void ComboBoxProxy::addItems(const std::vector<std::string> &strings, const std:
     }
 }
 
-void ComboBoxProxy::clear()
-{
-    model->clear();
-}
-
 int ComboBoxProxy::currentIndex() const
 {
     QModelIndex index = proxyModel->mapToSource(proxyModel->index(QComboBox::currentIndex(), 0));
