@@ -26,7 +26,6 @@
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
 #include <QSpinBox>
-#include <algorithm>
 
 IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalculator), rows(0)
 {
