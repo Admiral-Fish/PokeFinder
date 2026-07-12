@@ -305,7 +305,7 @@ void Wild5::openAdjacentSeeds()
     QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
     const auto &state = searcherModel->getItem(index.row());
 
-    auto *window = new AdjacentSeeds(state.getDateTime(), state.getButtons(), *currentProfile, false);
+    auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
 }
 

@@ -30,9 +30,29 @@ enum class Buttons : u16;
 
 namespace AdjacentSeedsCalculator
 {
+    /**
+     * @brief Computes "nearby" seeds for calibration purposes
+     * 
+     * @param minIVAdvance Minimum IV advances
+     * @param maxIVAdvance Maximum IV advances
+     * @param seconds Second search range
+     * @param roamer Whether encounter is roamer or not
+     * @param buttons Current button presses
+     * @param dateTime Starting date/time
+     * @param profile Profile information
+     */
     std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
                                              const DateTime &dateTime, const Profile5 &profile);
-    std::string previewPRNG(u64 seed, u32 pidAdvance, u32 count, bool chatot);
+
+    /**
+     * @brief Computes chatot/needle string for seed verification purposes
+     * 
+     * @param seed PRNG state
+     * @param advances PRNG advances
+     * @param count Number of chatot/needle calls to output
+     * @param chatot Whether to output chatot/needle
+     */
+    std::string previewPRNG(u64 seed, u32 advances, u32 count, bool chatot);
 }
 
 #endif // ADJACENTSEEDSCALCULATOR_HPP

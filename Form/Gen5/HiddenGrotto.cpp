@@ -454,7 +454,7 @@ void HiddenGrotto::openAdjacentSeeds()
     QModelIndex index = pokemonProxyModel->mapToSource(ui->tableViewPokemonSearcher->currentIndex());
     const auto &state = pokemonSearcherModel->getItem(index.row());
 
-    auto *window = new AdjacentSeeds(state.getDateTime(), state.getButtons(), *currentProfile, false);
+    auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
 }
 

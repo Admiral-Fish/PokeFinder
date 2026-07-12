@@ -59,11 +59,6 @@
         <source>Save Needles</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../Gen5/Tools/AdjacentSeeds.cpp" line="246"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AdjacentSeedsModel</name>
@@ -202,9 +197,15 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="294"/>
+        <location filename="../Controls/CheckList.cpp" line="321"/>
+        <location filename="../Controls/CheckList.cpp" line="324"/>
         <source>Any</source>
         <translation>Qualsiasi</translation>
+    </message>
+    <message>
+        <location filename="../Controls/CheckList.cpp" line="324"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5191,12 +5192,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Per favore seleziona una riga</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="232"/>
         <source>Some min values are greater then max values</source>
         <translation>Alcuni valori minimi sono più grandi dei valori massimi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="241"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="232"/>
         <source>Invalid Input</source>
         <translation>Inserimento non valido</translation>
     </message>

@@ -104,11 +104,11 @@ namespace AdjacentSeedsCalculator
         return states;
     }
 
-    std::string previewPRNG(u64 seed, u32 pidAdvance, u32 count, bool chatot)
+    std::string previewPRNG(u64 seed, u32 advances, u32 count, bool chatot)
     {
         std::string preview;
 
-        BWRNG rng(seed, pidAdvance);
+        BWRNG rng(seed, advances);
         for (u32 i = 0; i < count; i++)
         {
             if (chatot)

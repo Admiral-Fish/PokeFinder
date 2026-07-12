@@ -268,7 +268,7 @@ void Static5::openAdjacentSeeds()
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-    auto *window = new AdjacentSeeds(state.getDateTime(), state.getButtons(), *currentProfile, staticTemplate->getRoamer());
+    auto *window = new AdjacentSeeds(staticTemplate->getRoamer(), state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
 }
 
@@ -276,62 +276,62 @@ void Static5::profileChanged(const Profile5 &profile)
 {
     currentProfile = &profile;
 
-        if (ivCache)
-        {
-            delete ivCache;
-            ivCache = nullptr;
-        }
+    if (ivCache)
+    {
+        delete ivCache;
+        ivCache = nullptr;
+    }
 
-        if (shaCache)
-        {
-            delete shaCache;
-            shaCache = nullptr;
-        }
+    if (shaCache)
+    {
+        delete shaCache;
+        shaCache = nullptr;
+    }
 
-        auto ivCachePath = currentProfile->getIVCache();
-        if (!ivCachePath.empty())
-        {
-            ivCache = new IVCache(ivCachePath);
-        }
+    auto ivCachePath = currentProfile->getIVCache();
+    if (!ivCachePath.empty())
+    {
+        ivCache = new IVCache(ivCachePath);
+    }
 
-        auto shaCachePath = currentProfile->getSHACache();
-        if (!shaCachePath.empty())
-        {
-            shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-            ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-        }
-        else
-        {
-            ui->dateEditSearcherStartDate->clearDateRange();
-            ui->dateEditSearcherEndDate->clearDateRange();
-        }
+    auto shaCachePath = currentProfile->getSHACache();
+    if (!shaCachePath.empty())
+    {
+        shaCache = new SHA1Cache(shaCachePath);
+        ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+        ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+    }
+    else
+    {
+        ui->dateEditSearcherStartDate->clearDateRange();
+        ui->dateEditSearcherEndDate->clearDateRange();
+    }
 
-        bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
+    bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
 
-        ui->labelGeneratorLuckyPower->setHidden(!bw);
-        ui->labelSearcherLuckyPower->setHidden(!bw);
-        ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
-        ui->comboBoxSearcherLuckyPower->setHidden(!bw);
+    ui->labelGeneratorLuckyPower->setHidden(!bw);
+    ui->labelSearcherLuckyPower->setHidden(!bw);
+    ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
+    ui->comboBoxSearcherLuckyPower->setHidden(!bw);
 
-        // Event
-        ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
+    // Event
+    ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
 
-        // Roamer
-        ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
+    // Roamer
+    ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
 
-        // Curtis
-        ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(7, bw);
+    // Curtis
+    ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(7, bw);
 
-        // Yancy
-        ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(8, bw);
+    // Yancy
+    ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(8, bw);
 
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
 
     searcherFastSearchChanged();
 }

@@ -73,7 +73,7 @@
        </widget>
       </item>
       <item row="0" column="4" colspan="3">
-       <widget class="QComboBox" name="comboBoxKeypresses"/>
+       <widget class="CheckList" name="checkListKeypresses"/>
       </item>
       <item row="1" column="9">
        <widget class="QPushButton" name="pushButtonGenerate">
@@ -168,6 +168,11 @@
    <class>DateTimeEdit</class>
    <extends>QDateTimeEdit</extends>
    <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
   </customwidget>
   <customwidget>
    <class>ProfileDisplay5</class>

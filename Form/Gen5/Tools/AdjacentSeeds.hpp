@@ -20,60 +20,84 @@
 #ifndef ADJACENTSEEDS_HPP
 #define ADJACENTSEEDS_HPP
 
-#include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Tools/AdjacentSeedsCalculator.hpp>
+#include <Core/Global.hpp>
 #include <QWidget>
-#include <vector>
 
 class AdjacentSeedsModel;
 class DateTime;
-class QStandardItemModel;
-
-enum class Button : u16;
+class Profile5;
+enum class Buttons : u16;
 
 namespace Ui
 {
     class AdjacentSeeds;
 }
 
+/**
+ * @brief Provides settings to calibrate nearby seeds
+ */
 class AdjacentSeeds : public QWidget
 {
     Q_OBJECT
 signals:
+    /**
+     * @brief Emits that the profiles have been changed
+     */
     void profilesChanged(int);
 
 public:
+    /**
+     * @brief Construct a new AdjacentSeeds object
+     *
+     * @param parent Parent widget, which takes memory ownership
+     */
     AdjacentSeeds(QWidget *parent = nullptr);
 
-    AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent = nullptr);
+    /**
+     * @brief Construct a new AdjacentSeeds object
+     *
+     * @param roamer Whether encounter is roamer or not
+     * @param buttons Current button presses
+     * @param dateTime Starting date/time
+     * @param profile Profile information
+     * @param parent Parent widget, which takes memory ownership
+     */
+    AdjacentSeeds(bool roamer, Buttons buttons, const DateTime &dateTime, const Profile5 &profile, QWidget *parent = nullptr);
 
+    /**
+     * @brief Destroy the AdjacentSeeds object
+     */
     ~AdjacentSeeds() override;
 
+    /**
+     * @brief Determines if any profiles exist
+     *
+     * @return true At least 1 profile exists
+     * @return false 0 profiles exist
+     */
     bool hasProfiles() const;
 
 public slots:
+    /**
+     * @brief Reloads profiles
+     */
     void updateProfiles();
-
-protected:
-    bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
     Ui::AdjacentSeeds *ui;
 
     AdjacentSeedsModel *model;
-    QStandardItemModel *keypressModel;
     const Profile5 *currentProfile;
-    Buttons currentButtons;
-
-    Buttons getSelectedButtons() const;
-
-    void setSelectedButtons(Buttons buttons);
 
 private slots:
+    /**
+     * @brief Generates adjacent seeds from a date/time and keypresses
+     */
     void generate();
 
-    void keypressIndexPressed(const QModelIndex &index);
-
+    /**
+     * @brief Opens IV Calculator for IV search method
+     */
     void openIVCalculator();
 
     /**
@@ -83,8 +107,9 @@ private slots:
      */
     void profileChanged(const Profile5 &profile);
 
-    void updateKeypressText();
-
+    /**
+     * @brief Updates chatot/needle string for seed verification purposes
+     */
     void updatePreview();
 };
 

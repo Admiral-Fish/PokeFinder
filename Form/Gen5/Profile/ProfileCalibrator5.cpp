@@ -64,10 +64,10 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
                                   toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
     ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), toInt(DSType::DS3) });
 
+    ui->checkListKeypresses->setFull(false);
     for (int i = 0; i < 12; i++)
     {
-        QCheckBox *check = new QCheckBox(QString::fromStdString(Translator::getKeypress(i)), ui->scrollAreaKeypresses);
-        ui->verticalLayoutKeypresses->addWidget(check);
+        ui->checkListKeypresses->addItem(Translator::getKeypress(i), 1 << i);
     }
 
     ui->listWidgetNeedles->setFlow(QListView::LeftToRight);
@@ -225,16 +225,7 @@ void ProfileCalibrator5::search()
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-
-    Buttons buttons = Buttons::None;
-    for (int i = 0; i < 12; i++)
-    {
-        auto *check = qobject_cast<QCheckBox *>(ui->verticalLayoutKeypresses->itemAt(i)->widget());
-        if (check->isChecked())
-        {
-            buttons = buttons | static_cast<Buttons>(1 << i);
-        }
-    }
+    auto buttons = ui->checkListKeypresses->getEnum<Buttons>();
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
