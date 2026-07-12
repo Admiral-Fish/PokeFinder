@@ -32,6 +32,7 @@ SearchCalls::SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent) : QD
 
     previewModel = new IndexFilterProxyModel(ui->tableViewPreview, model);
     ui->tableViewPreview->setModel(previewModel);
+    ui->tableViewPreview->setColumnWidth(1, 120);
 
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(model->rowCount()));
 
