@@ -81,7 +81,7 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
         case 13:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 14:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen8));
         }
     }
 

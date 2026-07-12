@@ -84,7 +84,7 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 18:
             return state.getWeight();
         case 19:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen8));
         }
     }
 

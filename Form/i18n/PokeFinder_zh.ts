@@ -4144,6 +4144,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>觉醒力量</translation>
     </message>
     <message>
+        <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
         <translation>无</translation>
     </message>
@@ -4208,12 +4209,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="45"/>
+        <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="78"/>
+        <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
         <translation>无效值</translation>
     </message>
@@ -5138,12 +5139,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>Yes</source>
         <translation type="unfinished">是</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>
@@ -5242,16 +5243,16 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">闪耀护符</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>Yes</source>
         <translation type="unfinished">是</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>

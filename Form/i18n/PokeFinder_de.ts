@@ -4145,6 +4145,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Kraftreserve</translation>
     </message>
     <message>
+        <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
@@ -4209,12 +4210,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Basis Init</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="45"/>
+        <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
         <translation>Nächstes Level möglicherweise nicht akkurat ohne Angabe des Wesens</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="78"/>
+        <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
         <translation>Ungültig</translation>
     </message>
@@ -5139,12 +5140,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation type="unfinished">Nationaler Pokedex</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>Yes</source>
         <translation type="unfinished">Ja</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>No</source>
         <translation type="unfinished">Nein</translation>
     </message>
@@ -5243,16 +5244,16 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation type="unfinished">Schillerpin</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>Yes</source>
         <translation type="unfinished">Ja</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
-        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>No</source>
         <translation type="unfinished">Nein</translation>
     </message>
