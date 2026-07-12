@@ -6519,24 +6519,24 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="345"/>
+        <location filename="../Util/Researcher.cpp" line="344"/>
         <source>Missing setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="346"/>
+        <location filename="../Util/Researcher.cpp" line="345"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>No result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>Unable to find a result</source>
         <translation type="unfinished"></translation>
     </message>

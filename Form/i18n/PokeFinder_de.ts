@@ -6513,24 +6513,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Vorherige 16Bit Low</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="345"/>
+        <location filename="../Util/Researcher.cpp" line="344"/>
         <source>Missing setting</source>
         <translation>Fehlende Einstellung</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="346"/>
+        <location filename="../Util/Researcher.cpp" line="345"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation>Hex Box muss abgehakt sein, um Hexadezimalwerte für Nummer %1 zu verwenden</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>No result</source>
         <translation>Kein Ergebnis</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>Unable to find a result</source>
         <translation>Konnte kein Ergebnis finden</translation>
     </message>
