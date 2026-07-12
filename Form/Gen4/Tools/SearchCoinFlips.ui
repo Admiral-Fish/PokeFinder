@@ -53,17 +53,7 @@
     </widget>
    </item>
    <item row="3" column="0" colspan="4">
-    <widget class="QTableView" name="tableViewPreview">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>130</height>
-      </size>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-    </widget>
+    <widget class="TableView" name="tableViewPreview"/>
    </item>
    <item row="4" column="0">
     <widget class="QPushButton" name="pushButtonRemove">
@@ -95,6 +85,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../resources.qrc"/>
  </resources>
