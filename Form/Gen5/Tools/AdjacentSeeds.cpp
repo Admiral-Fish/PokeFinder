@@ -20,6 +20,7 @@
 #include "AdjacentSeeds.hpp"
 #include "ui_AdjacentSeeds.h"
 #include <Core/Enum/Buttons.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Translator.hpp>
@@ -36,6 +37,8 @@
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
 #include <array>
+
+static const QString settingPrefix = QStringLiteral("adjacentSeeds");
 
 constexpr u32 roamerIndex = 1;
 
@@ -64,6 +67,8 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
+
     model = new AdjacentSeedsModel(ui->tableView);
     ui->tableView->setModel(model);
     ui->tableView->setItemDelegate(new TargetRowDelegate(ui->tableView));
@@ -78,9 +83,9 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &AdjacentSeeds::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &AdjacentSeeds::profilesChanged);
     connect(ui->comboBoxKeypresses->view(), &QAbstractItemView::pressed, this, &AdjacentSeeds::keypressIndexPressed);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &AdjacentSeeds::profileManager);
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &AdjacentSeeds::openIVCalculator);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &AdjacentSeeds::generate);
     connect(ui->comboBoxPreviewMode, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::updatePreview);
@@ -93,14 +98,7 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
 AdjacentSeeds::AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent) :
     AdjacentSeeds(parent)
 {
-    for (int i = 0; i < profiles.size(); i++)
-    {
-        if (profiles[i] == profile)
-        {
-            ui->comboBoxProfiles->setCurrentIndex(i);
-            break;
-        }
-    }
+    ui->profileDisplay->setProfile(profile);
 
     ui->dateTimeEdit->setDateTime(dateTime);
     setSelectedButtons(buttons);
@@ -114,8 +112,7 @@ AdjacentSeeds::AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Pr
 AdjacentSeeds::~AdjacentSeeds()
 {
     QSettings setting;
-    setting.beginGroup("adjacentSeeds");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("seconds", ui->spinBoxSeconds->value());
     setting.setValue("minIVAdvance", ui->textBoxMinIVAdvance->text());
     setting.setValue("maxIVAdvance", ui->textBoxMaxIVAdvance->text());
@@ -126,7 +123,7 @@ AdjacentSeeds::~AdjacentSeeds()
 
 bool AdjacentSeeds::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 bool AdjacentSeeds::eventFilter(QObject *object, QEvent *event)
@@ -172,21 +169,7 @@ void AdjacentSeeds::setSelectedButtons(Buttons buttons)
 
 void AdjacentSeeds::updateProfiles()
 {
-    currentButtons = getSelectedButtons();
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int profileIndex = setting.value("adjacentSeeds/profile", 0).toInt();
-    if (profileIndex < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(profileIndex);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void AdjacentSeeds::generate()
@@ -240,41 +223,21 @@ void AdjacentSeeds::openIVCalculator()
     calculator->show();
 }
 
-void AdjacentSeeds::profileIndexChanged(int index)
+void AdjacentSeeds::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
+    currentProfile = &profile;
+
+    keypressModel->clear();
+    for (Buttons button : keypressButtons)
     {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        keypressModel->clear();
-        for (Buttons button : keypressButtons)
-        {
-            auto *item = new QStandardItem(QString::fromStdString(Translator::getKeypresses(button)));
-            item->setData(toInt(button));
-            item->setCheckable(true);
-            item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-            item->setCheckState((currentButtons & button) != Buttons::None ? Qt::Checked : Qt::Unchecked);
-            keypressModel->appendRow(item);
-        }
-        updateKeypressText();
+        auto *item = new QStandardItem(QString::fromStdString(Translator::getKeypresses(button)));
+        item->setData(toInt(button));
+        item->setCheckable(true);
+        item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+        item->setCheckState((currentButtons & button) != Buttons::None ? Qt::Checked : Qt::Unchecked);
+        keypressModel->appendRow(item);
     }
-}
-
-void AdjacentSeeds::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    updateKeypressText();
 }
 
 void AdjacentSeeds::updateKeypressText()

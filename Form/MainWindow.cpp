@@ -576,8 +576,8 @@ void MainWindow::openAdjacentSeed() const
     }
     else
     {
-        connect(window, &AdjacentSeeds::profilesModified, this, &MainWindow::updateProfiles);
-        connect(this, &MainWindow::profilesModified5, window, &AdjacentSeeds::updateProfiles);
+        connect(window, &AdjacentSeeds::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged5, window, &AdjacentSeeds::updateProfiles);
         window->show();
         window->raise();
     }

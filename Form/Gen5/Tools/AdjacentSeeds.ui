@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
+    <width>682</width>
     <height>463</height>
    </rect>
   </property>
@@ -14,169 +14,10 @@
    <string>Adjacent Seeds</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue">
-        <property name="text">
-         <string notr="true">12345</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
-        <property name="text">
-         <string notr="true">54321</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line_4">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileMACAddress">
-        <property name="text">
-         <string>MAC Address</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileMACAddressValue"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QLabel" name="labelProfileDSType">
-        <property name="text">
-         <string>DS Type</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileDSTypeValue"/>
-      </item>
-      <item row="0" column="7" rowspan="2">
-       <widget class="Line" name="line_3">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="8">
-       <widget class="QLabel" name="labelProfileVCount">
-        <property name="text">
-         <string>VCount</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QLabel" name="labelProfileVCountValue"/>
-      </item>
-      <item row="1" column="8">
-       <widget class="QLabel" name="labelProfileTimer0">
-        <property name="text">
-         <string>Timer0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="9">
-       <widget class="QLabel" name="labelProfileTimer0Value"/>
-      </item>
-      <item row="0" column="10" rowspan="2">
-       <widget class="Line" name="line_2">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="11">
-       <widget class="QLabel" name="labelProfileGxStat">
-        <property name="text">
-         <string>GxStat</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="12">
-       <widget class="QLabel" name="labelProfileGxStatValue"/>
-      </item>
-      <item row="1" column="11">
-       <widget class="QLabel" name="labelProfileVFrame">
-        <property name="text">
-         <string>VFrame</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="12">
-       <widget class="QLabel" name="labelProfileVFrameValue"/>
-      </item>
-      <item row="0" column="13" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="14">
-       <widget class="QLabel" name="labelProfileKeypresses">
-        <property name="text">
-         <string>Keypresses</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="15">
-       <widget class="QLabel" name="labelProfileKeypressesValue"/>
-      </item>
-      <item row="1" column="14">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="15">
-       <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-     </layout>
-    </widget>
+   <item row="0" column="0" colspan="2">
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
-   <item row="1" column="0">
+   <item row="1" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBoxSettings">
      <property name="title">
       <string>Settings</string>
@@ -184,12 +25,6 @@
      <layout class="QGridLayout" name="gridLayoutSettings">
       <item row="1" column="1">
        <widget class="QSpinBox" name="spinBoxSeconds">
-        <property name="minimum">
-         <number>0</number>
-        </property>
-        <property name="maximum">
-         <number>99</number>
-        </property>
         <property name="value">
          <number>1</number>
         </property>
@@ -292,46 +127,28 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="2" column="0" colspan="2">
     <widget class="TableView" name="tableView"/>
    </item>
    <item row="3" column="0">
-    <widget class="QWidget" name="widgetPreview" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayoutPreview">
-      <property name="leftMargin">
-       <number>0</number>
+    <widget class="QComboBox" name="comboBoxPreviewMode">
+     <item>
+      <property name="text">
+       <string>Chatot Pitches</string>
       </property>
-      <property name="topMargin">
-       <number>0</number>
+     </item>
+     <item>
+      <property name="text">
+       <string>Save Needles</string>
       </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QComboBox" name="comboBoxPreviewMode">
-        <item>
-         <property name="text">
-          <string>Chatot Pitches</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Save Needles</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEditPreview">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="lineEditPreview">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
@@ -351,6 +168,12 @@
    <class>DateTimeEdit</class>
    <extends>QDateTimeEdit</extends>
    <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ProfileDisplay5</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen5/Profile/ProfileDisplay5.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -40,11 +40,13 @@ class AdjacentSeeds : public QWidget
 {
     Q_OBJECT
 signals:
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     AdjacentSeeds(QWidget *parent = nullptr);
+
     AdjacentSeeds(const DateTime &dateTime, Buttons buttons, const Profile5 &profile, bool roamer, QWidget *parent = nullptr);
+
     ~AdjacentSeeds() override;
 
     bool hasProfiles() const;
@@ -57,22 +59,32 @@ protected:
 
 private:
     Ui::AdjacentSeeds *ui;
+
     AdjacentSeedsModel *model;
     QStandardItemModel *keypressModel;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     Buttons currentButtons;
-    std::vector<Profile5> profiles;
 
     Buttons getSelectedButtons() const;
+
     void setSelectedButtons(Buttons buttons);
 
 private slots:
     void generate();
+
     void keypressIndexPressed(const QModelIndex &index);
+
     void openIVCalculator();
-    void profileIndexChanged(int index);
-    void profileManager();
+
+    /**
+     * @brief Updates showing profile related information
+     *
+     * @param profile Selected profile
+     */
+    void profileChanged(const Profile5 &profile);
+
     void updateKeypressText();
+
     void updatePreview();
 };
 
