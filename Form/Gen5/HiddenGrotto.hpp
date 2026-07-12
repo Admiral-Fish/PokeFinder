@@ -47,7 +47,7 @@ signals:
     /**
      * @brief Emits that the profiles have been modified
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -84,12 +84,11 @@ private:
     HiddenGrottoGeneratorModel5 *pokemonGeneratorModel;
     HiddenGrottoSearcherModel5 *pokemonSearcherModel;
     IVCache *ivCache;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     SHA1Cache *shaCache;
     SortFilterProxyModel *grottoProxyModel;
     SortFilterProxyModel *pokemonProxyModel;
     std::vector<HiddenGrottoArea> encounter;
-    std::vector<Profile5> profiles;
 
     /**
      * @brief Determines if the IV seed cache can be used for fast IV search
@@ -197,16 +196,11 @@ private slots:
     void pokemonSearcherPokemonIndexChanged(int index);
 
     /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab

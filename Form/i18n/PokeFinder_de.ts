@@ -223,54 +223,6 @@
         <translation>Traumradar</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -347,40 +299,40 @@
         <translation>Startdatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="89"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="90"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="91"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="92"/>
         <location filename="../Gen5/DreamRadar.cpp" line="93"/>
         <location filename="../Gen5/DreamRadar.cpp" line="94"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="95"/>
         <location filename="../Gen5/DreamRadar.cpp" line="96"/>
         <location filename="../Gen5/DreamRadar.cpp" line="97"/>
         <location filename="../Gen5/DreamRadar.cpp" line="98"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="99"/>
         <location filename="../Gen5/DreamRadar.cpp" line="100"/>
         <location filename="../Gen5/DreamRadar.cpp" line="101"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="102"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="103"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="104"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="105"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="315"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="353"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="302"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="340"/>
         <source>Missing settings</source>
         <translation>Fehlende Einstellungen</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="315"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="353"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="302"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="340"/>
         <source>Enter information for at least 1 slot</source>
         <translation>Informationen für mindestens einen Slot ausfüllen</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="345"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="332"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="345"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="332"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
@@ -1000,17 +952,17 @@
 <context>
     <name>EggSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="168"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -1021,81 +973,86 @@
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="188"/>
+        <source>Delay</source>
+        <translation type="unfinished">Delay</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="189"/>
         <source>Held Advances</source>
         <translation>Halten Advances</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="189"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="190"/>
         <source>Pickup Advances</source>
         <translation>Aufnahme Advances</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="190"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="191"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="191"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="192"/>
         <source>Shiny</source>
         <translation>Schillernd</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="192"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="193"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="193"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="194"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="194"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="195"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="195"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="196"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="196"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="197"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="197"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
         <source>Hidden</source>
         <translation>Kraftreserve</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
         <source>Power</source>
         <translation>Stärke</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="203"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="203"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="204"/>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
@@ -1373,26 +1330,6 @@
         <translation>Kalibrierung</translation>
     </message>
     <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
         <source>Generate</source>
         <translation>Generieren</translation>
     </message>
@@ -1437,14 +1374,14 @@
         <translation>Seed (Halten / Aufnahme)</translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="131"/>
-        <location filename="../Gen3/Eggs3.cpp" line="169"/>
+        <location filename="../Gen3/Eggs3.cpp" line="121"/>
+        <location filename="../Gen3/Eggs3.cpp" line="159"/>
         <source>Incompatible Parents</source>
         <translation>Inkompatible Eltern</translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="131"/>
-        <location filename="../Gen3/Eggs3.cpp" line="169"/>
+        <location filename="../Gen3/Eggs3.cpp" line="121"/>
+        <location filename="../Gen3/Eggs3.cpp" line="159"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
@@ -1480,30 +1417,6 @@
         <translation>Generation 4 Eier</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Diamond</source>
-        <translation>Diamant</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -1532,49 +1445,49 @@
         <translation>Suchen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="74"/>
+        <location filename="../Gen4/Eggs4.cpp" line="78"/>
         <source>Calculate Poketch</source>
         <translation>Poketch berechnen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="79"/>
+        <location filename="../Gen4/Eggs4.cpp" line="83"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="148"/>
+        <location filename="../Gen4/Eggs4.cpp" line="137"/>
         <source>Do not switch to the happiness application at all</source>
         <translation>Nicht zur Freundschaftsstatus-App wechseln</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="158"/>
+        <location filename="../Gen4/Eggs4.cpp" line="147"/>
         <source>Switch to the happiness application once but do not click</source>
         <translation>1 mal zur Freundschaftsstatus-App wechseln, aber nicht antippen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="162"/>
+        <location filename="../Gen4/Eggs4.cpp" line="151"/>
         <source>Happiness Application Double Taps: %1</source>
         <translation>Freundschaftsstatus-App Doppeltipps</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="162"/>
+        <location filename="../Gen4/Eggs4.cpp" line="151"/>
         <source>Coin Flip Application Taps: %1</source>
         <translation>Münzwurf-App tipps</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="168"/>
+        <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Poketch Taps</source>
         <translation>Poketch tipps</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="176"/>
-        <location filename="../Gen4/Eggs4.cpp" line="219"/>
+        <location filename="../Gen4/Eggs4.cpp" line="165"/>
+        <location filename="../Gen4/Eggs4.cpp" line="208"/>
         <source>Incompatible Parents</source>
         <translation>Inkompatible Eltern</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="176"/>
-        <location filename="../Gen4/Eggs4.cpp" line="219"/>
+        <location filename="../Gen4/Eggs4.cpp" line="165"/>
+        <location filename="../Gen4/Eggs4.cpp" line="208"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
@@ -1608,54 +1521,6 @@
     <message>
         <source>Gen 5 Eggs</source>
         <translation>Generation 5 Eier</translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -1710,36 +1575,36 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="139"/>
-        <location filename="../Gen5/Eggs5.cpp" line="183"/>
+        <location filename="../Gen5/Eggs5.cpp" line="129"/>
+        <location filename="../Gen5/Eggs5.cpp" line="173"/>
         <source>Incompatible Parents</source>
         <translation>Inkompatible Eltern</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="139"/>
-        <location filename="../Gen5/Eggs5.cpp" line="183"/>
+        <location filename="../Gen5/Eggs5.cpp" line="129"/>
+        <location filename="../Gen5/Eggs5.cpp" line="173"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="146"/>
-        <location filename="../Gen5/Eggs5.cpp" line="190"/>
+        <location filename="../Gen5/Eggs5.cpp" line="136"/>
+        <location filename="../Gen5/Eggs5.cpp" line="180"/>
         <source>Parents Reordered</source>
         <translation>Eltern neu angeordnet</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="146"/>
-        <location filename="../Gen5/Eggs5.cpp" line="190"/>
+        <location filename="../Gen5/Eggs5.cpp" line="136"/>
+        <location filename="../Gen5/Eggs5.cpp" line="180"/>
         <source>Parent were swapped to match the game</source>
         <translation>Eltern wurden passend zum Spiel ausgetauscht</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="176"/>
+        <location filename="../Gen5/Eggs5.cpp" line="166"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="176"/>
+        <location filename="../Gen5/Eggs5.cpp" line="166"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
@@ -1803,74 +1668,34 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Oval Charm</source>
-        <translation>Ovalpin</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Eggs8.cpp" line="161"/>
-        <location filename="../Gen8/Eggs8.cpp" line="162"/>
-        <source>No</source>
-        <translation>Nein</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>Shiny Charm</source>
-        <translation>Schillerpin</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Eggs8.cpp" line="109"/>
+        <location filename="../Gen8/Eggs8.cpp" line="95"/>
         <source>Incompatible Parents</source>
         <translation>Inkompatible Eltern</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="109"/>
+        <location filename="../Gen8/Eggs8.cpp" line="95"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="115"/>
+        <location filename="../Gen8/Eggs8.cpp" line="101"/>
         <source>Parents Reordered</source>
         <translation>Eltern neu angeordnet</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="115"/>
+        <location filename="../Gen8/Eggs8.cpp" line="101"/>
         <source>Parent were swapped to match the game</source>
         <translation>Die Eltern wurden passend zum Spiel ausgetauscht</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="123"/>
+        <location filename="../Gen8/Eggs8.cpp" line="109"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="123"/>
+        <location filename="../Gen8/Eggs8.cpp" line="109"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed-Informationen eingeben</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Eggs8.cpp" line="161"/>
-        <location filename="../Gen8/Eggs8.cpp" line="162"/>
-        <source>Yes</source>
-        <translation>Ja</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -2022,30 +1847,6 @@
         <translation>Wunderkarten IVs</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Diamond</source>
-        <translation>Diamant</translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -2118,7 +1919,7 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Event4.cpp" line="79"/>
+        <location filename="../Gen4/Event4.cpp" line="83"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
@@ -2132,54 +1933,6 @@
     <message>
         <source>Gen 5 Event</source>
         <translation>Generation 5 Event</translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -2310,36 +2063,36 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="218"/>
-        <location filename="../Gen5/Event5.cpp" line="368"/>
+        <location filename="../Gen5/Event5.cpp" line="209"/>
+        <location filename="../Gen5/Event5.cpp" line="337"/>
         <source>Invalid format</source>
         <translation>Ungültiges Format</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="218"/>
-        <location filename="../Gen5/Event5.cpp" line="368"/>
+        <location filename="../Gen5/Event5.cpp" line="209"/>
+        <location filename="../Gen5/Event5.cpp" line="337"/>
         <source>Wondercard is not the correct size</source>
         <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="268"/>
-        <location filename="../Gen5/Event5.cpp" line="418"/>
+        <location filename="../Gen5/Event5.cpp" line="259"/>
+        <location filename="../Gen5/Event5.cpp" line="387"/>
         <source>File error</source>
         <translation>Dateifehler</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="268"/>
-        <location filename="../Gen5/Event5.cpp" line="418"/>
+        <location filename="../Gen5/Event5.cpp" line="259"/>
+        <location filename="../Gen5/Event5.cpp" line="387"/>
         <source>There was a problem opening the wondercard</source>
         <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="308"/>
+        <location filename="../Gen5/Event5.cpp" line="277"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="308"/>
+        <location filename="../Gen5/Event5.cpp" line="277"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
@@ -2387,24 +2140,12 @@
         <translation></translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
         <source>SID</source>
         <translation>SID</translation>
     </message>
     <message>
         <source>TID</source>
         <translation>TID</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
     </message>
     <message>
         <source>Filters</source>
@@ -2479,32 +2220,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="134"/>
+        <location filename="../Gen8/Event8.cpp" line="120"/>
         <source>Invalid format</source>
         <translation>Ungültiges Format</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="134"/>
+        <location filename="../Gen8/Event8.cpp" line="120"/>
         <source>Wondercard is not the correct size</source>
         <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="165"/>
+        <location filename="../Gen8/Event8.cpp" line="151"/>
         <source>File error</source>
         <translation>Dateifehler</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="165"/>
+        <location filename="../Gen8/Event8.cpp" line="151"/>
         <source>There was a problem opening the wondercard</source>
         <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="178"/>
+        <location filename="../Gen8/Event8.cpp" line="164"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="178"/>
+        <location filename="../Gen8/Event8.cpp" line="164"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
@@ -2720,6 +2461,11 @@
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Power</source>
         <translation>Stärke</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
+        <source>Delay</source>
+        <translation type="unfinished">Delay</translation>
     </message>
 </context>
 <context>
@@ -3046,26 +2792,6 @@
     <message>
         <source>GameCube RNG</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -3594,54 +3320,6 @@
         <translation>Versteckte Lichtungen</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -3726,58 +3404,58 @@
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="100"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="103"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="104"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="107"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="101"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="104"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="105"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="108"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="549"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="322"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="535"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="549"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="322"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="535"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="632"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="618"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="637"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="623"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="644"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="630"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="649"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="635"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="650"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="636"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="651"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="637"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
@@ -4355,46 +4033,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Generation 5 TID/SID</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
         <source>Seed Finder</source>
         <translation>Seed-Finder</translation>
     </message>
@@ -4455,12 +4093,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Stationär/Wild</translation>
     </message>
     <message>
-        <location filename="../Gen5/IDs5.cpp" line="142"/>
+        <location filename="../Gen5/IDs5.cpp" line="133"/>
         <source>Invalid date range</source>
         <translation>Unültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/IDs5.cpp" line="142"/>
+        <location filename="../Gen5/IDs5.cpp" line="133"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
@@ -5211,26 +4849,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <source>TID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Food Advances</source>
         <translation>Pokesnack Advances</translation>
     </message>
@@ -5564,6 +5182,186 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>IV Calculator</source>
         <translation>IV Rechner</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileDisplay3</name>
+    <message>
+        <source>Profile Display 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished">Spiel</translation>
+    </message>
+    <message>
+        <source>Emerald</source>
+        <translation type="unfinished">Smaragd</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileDisplay4</name>
+    <message>
+        <source>Profile Display 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished">Spiel</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <source>National Dex</source>
+        <translation type="unfinished">Nationaler Pokedex</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <source>Yes</source>
+        <translation type="unfinished">Ja</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="78"/>
+        <source>No</source>
+        <translation type="unfinished">Nein</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileDisplay5</name>
+    <message>
+        <source>Profile Display 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation type="unfinished">MAC Adresse</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation type="unfinished">DS Typ</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished">Spiel</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileDisplay8</name>
+    <message>
+        <source>Profile Display 8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation type="unfinished">Spiel</translation>
+    </message>
+    <message>
+        <source>National Dex</source>
+        <translation type="unfinished">Nationaler Pokedex</translation>
+    </message>
+    <message>
+        <source>Oval Charm</source>
+        <translation type="unfinished">Ovalpin</translation>
+    </message>
+    <message>
+        <source>Shiny Charm</source>
+        <translation type="unfinished">Schillerpin</translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <source>Yes</source>
+        <translation type="unfinished">Ja</translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="84"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="85"/>
+        <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="86"/>
+        <source>No</source>
+        <translation type="unfinished">Nein</translation>
     </message>
 </context>
 <context>
@@ -6015,26 +5813,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="76"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="92"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="113"/>
         <source>No profile selected</source>
         <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="75"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="91"/>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="112"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="76"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="92"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="113"/>
         <source>Please select a profile</source>
         <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="118"/>
         <source>Delete profile</source>
         <translation>Profil löschen</translation>
     </message>
     <message>
-        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="117"/>
+        <location filename="../Gen3/Profile/ProfileManager3.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Profil endgültig löschen?</translation>
     </message>
@@ -6066,26 +5864,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="77"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="93"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="114"/>
         <source>No profile selected</source>
         <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="76"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="92"/>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="113"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="77"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="93"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="114"/>
         <source>Please select a profile</source>
         <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="119"/>
         <source>Delete profile</source>
         <translation>Profil löschen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="118"/>
+        <location filename="../Gen4/Profile/ProfileManager4.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Profil endgültig löschen?</translation>
     </message>
@@ -6117,26 +5915,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="77"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="93"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="114"/>
         <source>No profile selected</source>
         <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="76"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="113"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="77"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="93"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="114"/>
         <source>Please select a profile</source>
         <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="119"/>
         <source>Delete profile</source>
         <translation>Profil löschen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="118"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Profil endgültig löschen?</translation>
     </message>
@@ -6168,26 +5966,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="77"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="93"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="114"/>
         <source>No profile selected</source>
         <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="76"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="92"/>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="113"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="77"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="93"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="114"/>
         <source>Please select a profile</source>
         <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="119"/>
         <source>Delete profile</source>
         <translation>Profil löschen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="118"/>
+        <location filename="../Gen8/Profile/ProfileManager8.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Profil endgültig löschen?</translation>
     </message>
@@ -6557,8 +6355,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Gigadynamax</translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="278"/>
-        <location filename="../Gen8/Raids.cpp" line="292"/>
+        <location filename="../Gen8/Raids.cpp" line="250"/>
+        <location filename="../Gen8/Raids.cpp" line="264"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -6567,37 +6365,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Event</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="228"/>
+        <location filename="../Gen8/Raids.cpp" line="214"/>
         <source>Wild Area Event %1</source>
         <translation>Naturzone Event %1</translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="278"/>
-        <location filename="../Gen8/Raids.cpp" line="292"/>
+        <location filename="../Gen8/Raids.cpp" line="250"/>
+        <location filename="../Gen8/Raids.cpp" line="264"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
@@ -6969,54 +6747,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>SHA1 Cache-Finder</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -7037,37 +6767,37 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="126"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="95"/>
         <source>Missing output file</source>
         <translation>Output Datei fehlt</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="126"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="95"/>
         <source>Please select a file to save the results to</source>
         <translation>Bitte Datei zum speichern der Ergebnisse auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="135"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="104"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="135"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="104"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="143"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="112"/>
         <source>Invalid IV Cache</source>
         <translation>Ungültiges IV Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="143"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="112"/>
         <source>Profile does not have a valid IV Cache</source>
         <translation>Profil hat kein gültiges IV Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="182"/>
+        <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="151"/>
         <source>Save File</source>
         <translation>Datei speichern</translation>
     </message>
@@ -7480,26 +7210,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Generation 3 Stationär</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -7552,7 +7262,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.cpp" line="65"/>
+        <location filename="../Gen3/Static3.cpp" line="69"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
@@ -7616,26 +7326,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Generation 4 Stationär</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -7672,26 +7362,26 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Sucher</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="70"/>
-        <location filename="../Gen4/Static4.cpp" line="75"/>
+        <location filename="../Gen4/Static4.cpp" line="74"/>
+        <location filename="../Gen4/Static4.cpp" line="79"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="68"/>
-        <location filename="../Gen4/Static4.cpp" line="73"/>
+        <location filename="../Gen4/Static4.cpp" line="72"/>
+        <location filename="../Gen4/Static4.cpp" line="77"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="67"/>
-        <location filename="../Gen4/Static4.cpp" line="72"/>
+        <location filename="../Gen4/Static4.cpp" line="71"/>
+        <location filename="../Gen4/Static4.cpp" line="76"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="69"/>
-        <location filename="../Gen4/Static4.cpp" line="74"/>
+        <location filename="../Gen4/Static4.cpp" line="73"/>
+        <location filename="../Gen4/Static4.cpp" line="78"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
@@ -7720,13 +7410,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="69"/>
-        <location filename="../Gen4/Static4.cpp" line="74"/>
+        <location filename="../Gen4/Static4.cpp" line="73"/>
+        <location filename="../Gen4/Static4.cpp" line="78"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="77"/>
+        <location filename="../Gen4/Static4.cpp" line="81"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
@@ -7804,54 +7494,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Gen 5 Static</source>
         <translation>Generation 5 Stationär</translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Anzahl Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -7990,74 +7632,74 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="71"/>
-        <location filename="../Gen5/Static5.cpp" line="76"/>
+        <location filename="../Gen5/Static5.cpp" line="75"/>
+        <location filename="../Gen5/Static5.cpp" line="80"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="72"/>
-        <location filename="../Gen5/Static5.cpp" line="77"/>
+        <location filename="../Gen5/Static5.cpp" line="76"/>
+        <location filename="../Gen5/Static5.cpp" line="81"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="73"/>
-        <location filename="../Gen5/Static5.cpp" line="78"/>
+        <location filename="../Gen5/Static5.cpp" line="77"/>
+        <location filename="../Gen5/Static5.cpp" line="82"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="73"/>
-        <location filename="../Gen5/Static5.cpp" line="78"/>
+        <location filename="../Gen5/Static5.cpp" line="77"/>
+        <location filename="../Gen5/Static5.cpp" line="82"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="74"/>
-        <location filename="../Gen5/Static5.cpp" line="79"/>
+        <location filename="../Gen5/Static5.cpp" line="78"/>
+        <location filename="../Gen5/Static5.cpp" line="83"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="359"/>
+        <location filename="../Gen5/Static5.cpp" line="328"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="359"/>
+        <location filename="../Gen5/Static5.cpp" line="328"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="467"/>
+        <location filename="../Gen5/Static5.cpp" line="436"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="472"/>
+        <location filename="../Gen5/Static5.cpp" line="441"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="479"/>
+        <location filename="../Gen5/Static5.cpp" line="448"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="484"/>
+        <location filename="../Gen5/Static5.cpp" line="453"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="485"/>
+        <location filename="../Gen5/Static5.cpp" line="454"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="486"/>
+        <location filename="../Gen5/Static5.cpp" line="455"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
@@ -8109,57 +7751,37 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Static8.cpp" line="49"/>
+        <location filename="../Gen8/Static8.cpp" line="53"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="51"/>
+        <location filename="../Gen8/Static8.cpp" line="55"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="50"/>
+        <location filename="../Gen8/Static8.cpp" line="54"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="50"/>
+        <location filename="../Gen8/Static8.cpp" line="54"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="50"/>
+        <location filename="../Gen8/Static8.cpp" line="54"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="137"/>
+        <location filename="../Gen8/Static8.cpp" line="122"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="137"/>
+        <location filename="../Gen8/Static8.cpp" line="122"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
@@ -8718,17 +8340,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>StaticSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -8774,6 +8396,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
+        <source>Delay</source>
+        <translation type="unfinished">Delay</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
@@ -9045,30 +8672,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>8 Orden</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Brilliant Diamond</source>
-        <translation>Strahlender Diamant</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
-    </message>
-    <message>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
@@ -9101,72 +8704,72 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Maximale Advances</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="52"/>
+        <location filename="../Gen8/Underground.cpp" line="56"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="53"/>
+        <location filename="../Gen8/Underground.cpp" line="57"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="53"/>
+        <location filename="../Gen8/Underground.cpp" line="57"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="53"/>
+        <location filename="../Gen8/Underground.cpp" line="57"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="54"/>
+        <location filename="../Gen8/Underground.cpp" line="58"/>
         <source>Item Modifier</source>
         <translation>Item Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="55"/>
+        <location filename="../Gen8/Underground.cpp" line="59"/>
         <source>Compound Eyes</source>
         <translation>Facettenauge</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="55"/>
+        <location filename="../Gen8/Underground.cpp" line="59"/>
         <source>Super Luck</source>
         <translation>Glückspilz</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="56"/>
+        <location filename="../Gen8/Underground.cpp" line="60"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="57"/>
+        <location filename="../Gen8/Underground.cpp" line="61"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="58"/>
+        <location filename="../Gen8/Underground.cpp" line="62"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="59"/>
+        <location filename="../Gen8/Underground.cpp" line="63"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="60"/>
+        <location filename="../Gen8/Underground.cpp" line="64"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="146"/>
+        <location filename="../Gen8/Underground.cpp" line="131"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="146"/>
+        <location filename="../Gen8/Underground.cpp" line="131"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
@@ -9316,67 +8919,67 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="76"/>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="78"/>
-        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="93"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="78"/>
-        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="93"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="83"/>
-        <location filename="../Gen3/Wild3.cpp" line="94"/>
+        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="98"/>
         <source>Slot Modifier</source>
         <translation>Slot Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
-        <location filename="../Gen3/Wild3.cpp" line="95"/>
+        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="99"/>
         <source>Magnet Pull</source>
         <translation>Magnetfalle</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
-        <location filename="../Gen3/Wild3.cpp" line="95"/>
+        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="99"/>
         <source>Static</source>
         <translation>Statik</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="94"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="95"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="81"/>
-        <location filename="../Gen3/Wild3.cpp" line="92"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="96"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="82"/>
-        <location filename="../Gen3/Wild3.cpp" line="93"/>
+        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="97"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="101"/>
+        <location filename="../Gen3/Wild3.cpp" line="105"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
@@ -9385,20 +8988,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Seed</source>
         <translation>Seed</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation></translation>
     </message>
     <message>
         <source>Method</source>
@@ -9437,21 +9028,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Superangel</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
-        <location filename="../Gen3/Wild3.cpp" line="96"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Gen3/Wild3.cpp" line="100"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
         <source>Lead</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
         <translation></translation>
     </message>
     <message>
@@ -9463,8 +9046,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Sucher</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="77"/>
-        <location filename="../Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Gen3/Wild3.cpp" line="81"/>
+        <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
@@ -9536,26 +9119,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Generation 4 Wild</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation>Generator</translation>
     </message>
@@ -9616,8 +9179,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Superangel</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="85"/>
-        <location filename="../Gen4/Wild4.cpp" line="103"/>
+        <location filename="../Gen4/Wild4.cpp" line="89"/>
+        <location filename="../Gen4/Wild4.cpp" line="107"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -9638,126 +9201,126 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="71"/>
-        <location filename="../Gen4/Wild4.cpp" line="89"/>
+        <location filename="../Gen4/Wild4.cpp" line="75"/>
+        <location filename="../Gen4/Wild4.cpp" line="93"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="72"/>
-        <location filename="../Gen4/Wild4.cpp" line="90"/>
+        <location filename="../Gen4/Wild4.cpp" line="76"/>
+        <location filename="../Gen4/Wild4.cpp" line="94"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="78"/>
-        <location filename="../Gen4/Wild4.cpp" line="96"/>
+        <location filename="../Gen4/Wild4.cpp" line="82"/>
+        <location filename="../Gen4/Wild4.cpp" line="100"/>
         <source>Suction Cups</source>
         <translation>Saugnapf</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="73"/>
-        <location filename="../Gen4/Wild4.cpp" line="91"/>
+        <location filename="../Gen4/Wild4.cpp" line="77"/>
+        <location filename="../Gen4/Wild4.cpp" line="95"/>
         <source>Encounter Modifier</source>
         <translation>Encounter Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="74"/>
-        <location filename="../Gen4/Wild4.cpp" line="92"/>
+        <location filename="../Gen4/Wild4.cpp" line="78"/>
+        <location filename="../Gen4/Wild4.cpp" line="96"/>
         <source>Arena Trap</source>
         <translation>Auswegslos</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="75"/>
-        <location filename="../Gen4/Wild4.cpp" line="93"/>
+        <location filename="../Gen4/Wild4.cpp" line="79"/>
+        <location filename="../Gen4/Wild4.cpp" line="97"/>
         <source>Illuminate</source>
         <translation>Erleuchtung</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="76"/>
-        <location filename="../Gen4/Wild4.cpp" line="94"/>
+        <location filename="../Gen4/Wild4.cpp" line="80"/>
+        <location filename="../Gen4/Wild4.cpp" line="98"/>
         <source>No Guard</source>
         <translation>Schildlos</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="77"/>
-        <location filename="../Gen4/Wild4.cpp" line="95"/>
+        <location filename="../Gen4/Wild4.cpp" line="81"/>
+        <location filename="../Gen4/Wild4.cpp" line="99"/>
         <source>Sticky Hold</source>
         <translation>Wertehalter</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="70"/>
-        <location filename="../Gen4/Wild4.cpp" line="88"/>
+        <location filename="../Gen4/Wild4.cpp" line="74"/>
+        <location filename="../Gen4/Wild4.cpp" line="92"/>
         <source>Compound Eyes</source>
         <translation>Facettenauge</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="83"/>
-        <location filename="../Gen4/Wild4.cpp" line="101"/>
+        <location filename="../Gen4/Wild4.cpp" line="87"/>
+        <location filename="../Gen4/Wild4.cpp" line="105"/>
         <source>Slot Modifier</source>
         <translation>Slot Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="84"/>
-        <location filename="../Gen4/Wild4.cpp" line="102"/>
+        <location filename="../Gen4/Wild4.cpp" line="88"/>
+        <location filename="../Gen4/Wild4.cpp" line="106"/>
         <source>Magnet Pull</source>
         <translation>Magnetfalle</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="84"/>
-        <location filename="../Gen4/Wild4.cpp" line="102"/>
+        <location filename="../Gen4/Wild4.cpp" line="88"/>
+        <location filename="../Gen4/Wild4.cpp" line="106"/>
         <source>Static</source>
         <translation>Statik</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="79"/>
-        <location filename="../Gen4/Wild4.cpp" line="97"/>
+        <location filename="../Gen4/Wild4.cpp" line="83"/>
+        <location filename="../Gen4/Wild4.cpp" line="101"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="80"/>
-        <location filename="../Gen4/Wild4.cpp" line="98"/>
+        <location filename="../Gen4/Wild4.cpp" line="84"/>
+        <location filename="../Gen4/Wild4.cpp" line="102"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="81"/>
-        <location filename="../Gen4/Wild4.cpp" line="99"/>
+        <location filename="../Gen4/Wild4.cpp" line="85"/>
+        <location filename="../Gen4/Wild4.cpp" line="103"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="82"/>
-        <location filename="../Gen4/Wild4.cpp" line="100"/>
+        <location filename="../Gen4/Wild4.cpp" line="86"/>
+        <location filename="../Gen4/Wild4.cpp" line="104"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="355"/>
-        <location filename="../Gen4/Wild4.cpp" line="682"/>
+        <location filename="../Gen4/Wild4.cpp" line="344"/>
+        <location filename="../Gen4/Wild4.cpp" line="655"/>
         <source>Please select a single encounter slot for Poke Radar</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Pokéradar RNG auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="371"/>
-        <location filename="../Gen4/Wild4.cpp" line="698"/>
+        <location filename="../Gen4/Wild4.cpp" line="360"/>
+        <location filename="../Gen4/Wild4.cpp" line="671"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="726"/>
+        <location filename="../Gen4/Wild4.cpp" line="699"/>
         <source>Missing Flawless IV</source>
         <translation>Fehlender perfekter IV</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="726"/>
+        <location filename="../Gen4/Wild4.cpp" line="699"/>
         <source>This search needs at least one IV at 31</source>
         <translation>Diese Suche benötigt mindestens einen IV Wert auf 31</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="69"/>
-        <location filename="../Gen4/Wild4.cpp" line="87"/>
+        <location filename="../Gen4/Wild4.cpp" line="73"/>
+        <location filename="../Gen4/Wild4.cpp" line="91"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
@@ -9782,35 +9345,25 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Maximale Advances</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="130"/>
+        <location filename="../Gen4/Wild4.cpp" line="134"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="354"/>
-        <location filename="../Gen4/Wild4.cpp" line="370"/>
-        <location filename="../Gen4/Wild4.cpp" line="681"/>
-        <location filename="../Gen4/Wild4.cpp" line="697"/>
+        <location filename="../Gen4/Wild4.cpp" line="343"/>
+        <location filename="../Gen4/Wild4.cpp" line="359"/>
+        <location filename="../Gen4/Wild4.cpp" line="654"/>
+        <location filename="../Gen4/Wild4.cpp" line="670"/>
         <source>Too many slots selected</source>
         <translation>Zu viele Slots ausgewählt</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Wild4.cpp" line="628"/>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Wild4.cpp" line="628"/>
-        <source>No</source>
-        <translation>Nein</translation>
     </message>
     <message>
         <source>Rock Smash</source>
         <translation>Zertrümmerer</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="72"/>
-        <location filename="../Gen4/Wild4.cpp" line="90"/>
+        <location filename="../Gen4/Wild4.cpp" line="76"/>
+        <location filename="../Gen4/Wild4.cpp" line="94"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
@@ -9841,10 +9394,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Initial Advances</source>
         <translation>Minimale Advances</translation>
-    </message>
-    <message>
-        <source>National Dex</source>
-        <translation>Nationaler Pokedex</translation>
     </message>
     <message>
         <source>Poke Radar Shiny</source>
@@ -9972,54 +9521,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Gen 5 Wild</source>
         <translation>Generation 5 Wild</translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation>MAC Adresse</translation>
-    </message>
-    <message>
-        <source>DS Type</source>
-        <translation>DS Typ</translation>
-    </message>
-    <message>
-        <source>VCount</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Timer0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>GxStat</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VFrame</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Keypresses</source>
-        <translation>Knopfdrücke</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -10162,122 +9663,122 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="79"/>
-        <location filename="../Gen5/Wild5.cpp" line="91"/>
+        <location filename="../Gen5/Wild5.cpp" line="83"/>
+        <location filename="../Gen5/Wild5.cpp" line="95"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="80"/>
-        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="84"/>
+        <location filename="../Gen5/Wild5.cpp" line="96"/>
         <source>Compound Eyes</source>
         <translation>Facettenauge</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="81"/>
-        <location filename="../Gen5/Wild5.cpp" line="93"/>
+        <location filename="../Gen5/Wild5.cpp" line="85"/>
+        <location filename="../Gen5/Wild5.cpp" line="97"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="82"/>
-        <location filename="../Gen5/Wild5.cpp" line="94"/>
+        <location filename="../Gen5/Wild5.cpp" line="86"/>
+        <location filename="../Gen5/Wild5.cpp" line="98"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="82"/>
-        <location filename="../Gen5/Wild5.cpp" line="94"/>
+        <location filename="../Gen5/Wild5.cpp" line="86"/>
+        <location filename="../Gen5/Wild5.cpp" line="98"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="83"/>
-        <location filename="../Gen5/Wild5.cpp" line="95"/>
+        <location filename="../Gen5/Wild5.cpp" line="87"/>
+        <location filename="../Gen5/Wild5.cpp" line="99"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="84"/>
-        <location filename="../Gen5/Wild5.cpp" line="96"/>
+        <location filename="../Gen5/Wild5.cpp" line="88"/>
+        <location filename="../Gen5/Wild5.cpp" line="100"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="85"/>
-        <location filename="../Gen5/Wild5.cpp" line="97"/>
+        <location filename="../Gen5/Wild5.cpp" line="89"/>
+        <location filename="../Gen5/Wild5.cpp" line="101"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="86"/>
-        <location filename="../Gen5/Wild5.cpp" line="98"/>
+        <location filename="../Gen5/Wild5.cpp" line="90"/>
+        <location filename="../Gen5/Wild5.cpp" line="102"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="87"/>
-        <location filename="../Gen5/Wild5.cpp" line="99"/>
+        <location filename="../Gen5/Wild5.cpp" line="91"/>
+        <location filename="../Gen5/Wild5.cpp" line="103"/>
         <source>Slot Modifier</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="88"/>
-        <location filename="../Gen5/Wild5.cpp" line="100"/>
+        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="104"/>
         <source>Magnet Pull</source>
         <translation>Magnetfalle</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="88"/>
-        <location filename="../Gen5/Wild5.cpp" line="100"/>
+        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="104"/>
         <source>Static</source>
         <translation>Statik</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="89"/>
-        <location filename="../Gen5/Wild5.cpp" line="101"/>
+        <location filename="../Gen5/Wild5.cpp" line="93"/>
+        <location filename="../Gen5/Wild5.cpp" line="105"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="383"/>
+        <location filename="../Gen5/Wild5.cpp" line="352"/>
         <source>Invalid date range</source>
         <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="383"/>
+        <location filename="../Gen5/Wild5.cpp" line="352"/>
         <source>Start date is after end date</source>
         <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="482"/>
+        <location filename="../Gen5/Wild5.cpp" line="451"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="487"/>
+        <location filename="../Gen5/Wild5.cpp" line="456"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="494"/>
+        <location filename="../Gen5/Wild5.cpp" line="463"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="499"/>
+        <location filename="../Gen5/Wild5.cpp" line="468"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="500"/>
+        <location filename="../Gen5/Wild5.cpp" line="469"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="501"/>
+        <location filename="../Gen5/Wild5.cpp" line="470"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
@@ -10291,26 +9792,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Wild Gen 8</source>
         <translation>Generation 8 Wild</translation>
-    </message>
-    <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
-        <source>TID</source>
-        <translation>TID</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation>Spiel</translation>
-    </message>
-    <message>
-        <source>Manager</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SID</source>
-        <translation>SID</translation>
     </message>
     <message>
         <source>RNG Info</source>
@@ -10373,112 +9854,112 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="53"/>
+        <location filename="../Gen8/Wild8.cpp" line="57"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="61"/>
+        <location filename="../Gen8/Wild8.cpp" line="65"/>
         <source>Slot Modifier</source>
         <translation>Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="62"/>
+        <location filename="../Gen8/Wild8.cpp" line="66"/>
         <source>Harvest</source>
         <translation>Reiche Ernte</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="63"/>
+        <location filename="../Gen8/Wild8.cpp" line="67"/>
         <source>Flash Fire</source>
         <translation>Feuerfänger</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="64"/>
+        <location filename="../Gen8/Wild8.cpp" line="68"/>
         <source>Magnet Pull</source>
         <translation>Magnetfalle</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="65"/>
+        <location filename="../Gen8/Wild8.cpp" line="69"/>
         <source>Static</source>
         <translation>Statik</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="66"/>
+        <location filename="../Gen8/Wild8.cpp" line="70"/>
         <source>Storm Drain</source>
         <translation>Sturmsog</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="55"/>
+        <location filename="../Gen8/Wild8.cpp" line="59"/>
         <source>Item Modifier</source>
         <translation>Item Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="56"/>
+        <location filename="../Gen8/Wild8.cpp" line="60"/>
         <source>Compound Eyes</source>
         <translation>Facettenauge</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="56"/>
+        <location filename="../Gen8/Wild8.cpp" line="60"/>
         <source>Super Luck</source>
         <translation>Glückspilz</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="57"/>
+        <location filename="../Gen8/Wild8.cpp" line="61"/>
         <source>Level Modifier</source>
         <translation>Level Modifizierer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="58"/>
+        <location filename="../Gen8/Wild8.cpp" line="62"/>
         <source>Hustle</source>
         <translation>Übereifer</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="59"/>
+        <location filename="../Gen8/Wild8.cpp" line="63"/>
         <source>Pressure</source>
         <translation>Erzwinger</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="60"/>
+        <location filename="../Gen8/Wild8.cpp" line="64"/>
         <source>Vital Spirit</source>
         <translation>Munterkeit</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="67"/>
+        <location filename="../Gen8/Wild8.cpp" line="71"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="211"/>
+        <location filename="../Gen8/Wild8.cpp" line="196"/>
         <source>Missing seeds</source>
         <translation>Fehlende Seeds</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="211"/>
+        <location filename="../Gen8/Wild8.cpp" line="196"/>
         <source>Please insert missing seed information</source>
         <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="229"/>
+        <location filename="../Gen8/Wild8.cpp" line="214"/>
         <source>Too many slots selected</source>
         <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="230"/>
+        <location filename="../Gen8/Wild8.cpp" line="215"/>
         <source>Please select a single encounter slot for Honey Tree</source>
         <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="54"/>
+        <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="54"/>
+        <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="54"/>
+        <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>♀ Lead</source>
         <translation></translation>
     </message>
@@ -11092,17 +10573,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -11138,11 +10619,16 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
+        <source>Delay</source>
+        <translation type="unfinished">Delay</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="158"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
         <source>Shiny</source>
         <translation>Schillernd</translation>
     </message>
@@ -11172,12 +10658,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>

@@ -40,9 +40,9 @@ class Event4 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -68,9 +68,8 @@ private:
 
     EventGeneratorModel4 *generatorModel;
     EventSearcherModel4 *searcherModel;
-    Profile4 *currentProfile;
+    const Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
-    std::vector<Profile4> profiles;
 
 private slots:
     /**
@@ -79,16 +78,11 @@ private slots:
     void generate();
 
     /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile4 &profile);
 
     /**
      * @brief Searches static encounters from the provided IVs

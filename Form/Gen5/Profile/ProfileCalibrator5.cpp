@@ -183,7 +183,7 @@ void ProfileCalibrator5::createProfile()
     {
         Profile5 profile = dialog->getProfile();
         ProfileLoader5::addProfile(profile);
-        emit profilesModified(5);
+        emit profilesChanged(5);
     }
 }
 

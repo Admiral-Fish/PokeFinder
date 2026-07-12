@@ -19,6 +19,7 @@
 
 #include "IDs5.hpp"
 #include "ui_IDs5.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -34,10 +35,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("ids5");
+
 IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     model = new IDModel5(ui->tableView);
     ui->tableView->setModel(model);
@@ -51,16 +56,16 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
     ui->textBoxSeedFinderMaxAdvances->setValues(InputType::Advance32Bit);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &IDs5::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &IDs5::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &IDs5::profilesChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs5::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
     connect(ui->checkBoxPID, &QCheckBox::clicked, this, &IDs5::setXOR);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("ids5");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -79,8 +84,7 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
 IDs5::~IDs5()
 {
     QSettings setting;
-    setting.beginGroup("ids5");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditStart->date());
     setting.setValue("endDate", ui->dateEditEnd->date());
@@ -91,25 +95,12 @@ IDs5::~IDs5()
 
 bool IDs5::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void IDs5::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("ids5/profile").toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void IDs5::find()
@@ -206,27 +197,7 @@ void IDs5::setXOR(bool checked)
     ui->checkBoxXOR->setEnabled(checked);
 }
 
-void IDs5::profileIndexChanged(int index)
+void IDs5::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void IDs5::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }

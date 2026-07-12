@@ -61,24 +61,24 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified3();
+    void profilesChanged3();
 
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified4();
+    void profilesChanged4();
 
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified5();
+    void profilesChanged5();
 
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified8();
+    void profilesChanged8();
 
 public:
     /**
