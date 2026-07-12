@@ -21,19 +21,26 @@
 #include "ui_SearchCoinFlips.h"
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Model/Gen4/SeedToTimeModel4.hpp>
+#include <Model/IndexFilterProxyModel.hpp>
 #include <QSettings>
 
-SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent) :
-    QDialog(parent), ui(new Ui::SearchCoinFlips), data(data)
+SearchCoinFlips::SearchCoinFlips(SeedToTimeCalibrateModel4 *model, QWidget *parent) :
+    QDialog(parent), ui(new Ui::SearchCoinFlips), model(model)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
+    previewModel = new IndexFilterProxyModel(ui->tableViewPreview, model);
+    ui->tableViewPreview->setModel(previewModel);
+
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(model->rowCount()));
 
     connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
     connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
     connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+    connect(ui->pushButtonRemove, &QPushButton::clicked, this, &SearchCoinFlips::remove);
+    connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCoinFlips::clear);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCoinFlips::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCoinFlips::reject);
 
@@ -52,9 +59,26 @@ SearchCoinFlips::~SearchCoinFlips()
     delete ui;
 }
 
-std::vector<bool> SearchCoinFlips::getResults() const
+QModelIndexList SearchCoinFlips::getIndexes() const
 {
-    return possible;
+    return indexes;
+}
+
+void SearchCoinFlips::updatePreview()
+{
+    if (!indexes.empty() && indexes.size() <= 3)
+    {
+        previewModel->setFilteredIndexes(indexes);
+    }
+    else
+    {
+        previewModel->setFilteredIndexes(QModelIndexList());
+    }
+}
+
+void SearchCoinFlips::clear()
+{
+    ui->lineEditFlips->clear();
 }
 
 void SearchCoinFlips::flipsTextChanged(const QString &text)
@@ -65,21 +89,28 @@ void SearchCoinFlips::flipsTextChanged(const QString &text)
         std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
         int num = 0;
 
-        possible.clear();
-        for (const auto &dt : data)
+        indexes.clear();
+        for (int i = 0; i < model->rowCount(); i++)
         {
-            std::string compare = dt.getSequence();
+            std::string compare = model->getItem(i).getSequence();
             std::erase_if(compare, [](char c) { return c == ' ' || c == ','; });
 
             bool pass = compare.find(result) != std::string::npos;
-            possible.emplace_back(pass);
             if (pass)
             {
+                indexes.append(model->index(i, 0));
                 num++;
             }
         }
 
         ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
+        updatePreview();
+    }
+    else
+    {
+        indexes.clear();
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(model->rowCount()));
+        updatePreview();
     }
 }
 
@@ -89,6 +120,14 @@ void SearchCoinFlips::heads()
     string += string.isEmpty() ? "H" : ", H";
     ui->lineEditFlips->setText(string);
 }
+
+void SearchCoinFlips::remove()
+{
+    QString string = ui->lineEditFlips->text();
+    int index = string.lastIndexOf(',');
+    ui->lineEditFlips->setText(index == -1 ? QString() : string.left(index));
+}
+
 
 void SearchCoinFlips::tails()
 {

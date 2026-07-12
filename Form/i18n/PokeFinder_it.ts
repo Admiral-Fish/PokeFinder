@@ -6513,24 +6513,24 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>16Bit Basso Precedente</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="345"/>
+        <location filename="../Util/Researcher.cpp" line="344"/>
         <source>Missing setting</source>
         <translation>Impostazioni mancanti</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="346"/>
+        <location filename="../Util/Researcher.cpp" line="345"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation>Devi selezionare la casella Hex per utilizzare valori esadecimali in Personalizzato %1</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>No result</source>
         <translation>Nessun risultato</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="410"/>
-        <location filename="../Util/Researcher.cpp" line="434"/>
+        <location filename="../Util/Researcher.cpp" line="409"/>
+        <location filename="../Util/Researcher.cpp" line="433"/>
         <source>Unable to find a result</source>
         <translation>Impossibile trovare un risultato</translation>
     </message>
@@ -6723,38 +6723,47 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
+        <source>Remove</source>
+        <translation type="unfinished">Rimuovi</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished">Pulisci</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation>P - Un Pokémon infettato dal Pokérus evolve più facilmente. Tuttavia, non ne comprendo il motivo...</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="107"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation>E - L&apos;evoluzione dei Pokémon non finirà mai di sorprendermi! Pare che alcuni Pokémon si evolvano solo in alcune condizioni particolari!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="92"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="36"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="110"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
         <source>Possible Results: %1</source>
         <translation>Risultati Possibili: %1</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="105"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="135"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation>K - Nella regione di Kanto ci sono dei Pokémon a me ancora sconosciuti. E con dei meccanismi evolutivi a dir poco insospettabili! Conto su di te! Sarai i miei occhi vigili sulla regione di Kanto!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="115"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="145"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation>K - Grazie per aver chiamato! Pensa che stavo per chiamarti io! Che intesa, non credi?!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="146"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation>E - Sentire delle tue gesta mi fa proprio esaltare! Non sai quanto!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="117"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="147"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation>P - Come stai? Che cosa stavi facendo? Dove sei? Quante Medaglie hai ora? Quanti soldi hai risparmiato? Come sta la mamma? Hai catturato molti Pokémon? Pensi che farà caldo domani? Ah! Voglio parlare di troppe cose! È meglio che mi dia una calmata!</translation>
     </message>
@@ -6778,8 +6787,17 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="82"/>
+        <source>Remove</source>
+        <translation type="unfinished">Rimuovi</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished">Pulisci</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="37"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="106"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="112"/>
         <source>Possible Results: %1</source>
         <translation>Risultati Possibili: %1</translation>
     </message>
@@ -6952,8 +6970,8 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
-        <source>Roamer locations</source>
-        <translation>Zone erranti</translation>
+        <source>Roamers</source>
+        <translation type="unfinished">Erranti</translation>
     </message>
 </context>
 <context>
