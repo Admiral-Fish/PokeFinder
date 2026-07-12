@@ -46,6 +46,29 @@ void MTTest::advance()
     QCOMPARE(rng.next(), result);
 }
 
+void MTTest::jump_data()
+{
+    QTest::addColumn<u32>("seed");
+    QTest::addColumn<u32>("advances");
+    QTest::addColumn<u32>("result");
+
+    json data = readData("mt", "jump");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u32>();
+    }
+}
+
+void MTTest::jump()
+{
+    QFETCH(u32, seed);
+    QFETCH(u32, advances);
+    QFETCH(u32, result);
+
+    MT rng(seed, advances);
+    QCOMPARE(rng.next(), result);
+}
+
 void MTTest::next_data()
 {
     QTest::addColumn<u32>("seed");

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileDisplay8</class>
+ <widget class="QWidget" name="ProfileDisplay8">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>529</width>
+    <height>106</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Display 8</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBoxProfile">
+     <property name="title">
+      <string>Profile</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Profile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxProfiles"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelTIDValue"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelSIDValue"/>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="labelGame">
+        <property name="text">
+         <string>Game</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="labelGameValue"/>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLabel" name="labelNationalDex">
+        <property name="text">
+         <string>National Dex</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="labelNationalDexValue">
+       </widget>
+      </item>
+      <item row="0" column="7" rowspan="2">
+       <widget class="Line" name="line_1">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QLabel" name="labelOvalCharm">
+        <property name="text">
+         <string>Oval Charm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <widget class="QLabel" name="labelOvalCharmValue"/>
+      </item>
+      <item row="1" column="8">
+       <widget class="QLabel" name="labelShinyCharm">
+        <property name="text">
+         <string>Shiny Charm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="9">
+       <widget class="QLabel" name="labelShinyCharmValue"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

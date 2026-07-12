@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Gen 4 TID/SID</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxSearcher">
      <property name="sizePolicy">
@@ -25,13 +25,13 @@
      <property name="title">
       <string>Searcher</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
+     <layout class="QGridLayout" name="gridLayout_1">
       <item row="0" column="0">
        <widget class="QGroupBox" name="groupBoxRNGInfo">
         <property name="title">
          <string>RNG Info</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout">
+        <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
           <widget class="QLabel" name="labelYear">
            <property name="text">
@@ -107,7 +107,7 @@
         <property name="title">
          <string>Filters</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
+        <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
           <widget class="IDsFilter" name="idFilter" native="true"/>
          </item>
@@ -131,7 +131,7 @@
      <property name="title">
       <string>Seed Finder</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_6">
+     <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
        <widget class="QLabel" name="labelTID">
         <property name="text">

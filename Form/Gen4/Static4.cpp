@@ -41,10 +41,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("static4");
+
 Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
     generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator, Method::Method1);
     searcherModel = new StaticSearcherModel4(ui->tableViewSearcher);
@@ -87,12 +91,12 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Static4::openAdvanceFinder);
 
+    connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Static4::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Static4::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static4::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static4::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static4::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static4::searcherCategoryIndexChanged);
@@ -105,7 +109,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     searcherCategoryIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("static4");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("minDelay"))
     {
         ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
@@ -137,7 +141,6 @@ Static4::~Static4()
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
     setting.setValue("minAdvance", ui->textBoxSearcherMinAdvance->text());
     setting.setValue("maxAdvance", ui->textBoxSearcherMaxAdvance->text());
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -146,21 +149,7 @@ Static4::~Static4()
 
 void Static4::updateProfiles()
 {
-    profiles = ProfileLoader4::getProfiles();
-    profiles.insert(profiles.begin(), Profile4("None", Game::Diamond, 12345, 54321, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static4/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Static4::generate()
@@ -237,32 +226,18 @@ void Static4::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static4::profileIndexChanged(int index)
+void Static4::profileChanged(const Profile4 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
+    currentProfile = &profile;
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+    bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
-        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
+    // Game Corner
+    ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
+    ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
 
-        // Game Corner
-        ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
-        ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
-    }
-}
-
-void Static4::profileManager()
-{
-    auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
 }
 
 void Static4::search()

@@ -32,11 +32,15 @@
 #include <Model/Gen3/PokeSpotModel.hpp>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("pokespot");
+
 PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gales);
 
     model = new PokeSpotModel(ui->tableView);
     ui->tableView->setModel(model);
@@ -58,9 +62,9 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
     ui->comboBoxLocation->clear();
     ui->comboBoxLocation->addItems(Translator::getLocations(locs, Game::Gales));
 
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &PokeSpot::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &PokeSpot::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &PokeSpot::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &PokeSpot::profileIndexChanged);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &PokeSpot::locationIndexChanged);
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &PokeSpot::pokemonIndexChanged);
     connect(ui->filter, &Filter::showStatsChanged, model, &PokeSpotModel::setShowStats);
@@ -69,7 +73,7 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
     locationIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("pokespot");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -80,8 +84,7 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
 PokeSpot::~PokeSpot()
 {
     QSettings setting;
-    setting.beginGroup("pokespot");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -90,23 +93,7 @@ PokeSpot::~PokeSpot()
 
 void PokeSpot::updateProfiles()
 {
-    profiles = { Profile3("-", Game::Gales, 12345, 54321, false) };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile3 &profile) { return (profile.getVersion() & Game::Gales) != Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("pokespot/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void PokeSpot::generate()
@@ -168,21 +155,7 @@ void PokeSpot::pokemonIndexChanged(int index)
     }
 }
 
-void PokeSpot::profileIndexChanged(int index)
+void PokeSpot::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void PokeSpot::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }

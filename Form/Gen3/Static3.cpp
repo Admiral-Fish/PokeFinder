@@ -38,10 +38,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("static3");
+
 Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::RSE | Game::FRLG);
 
     generatorModel = new StaticGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel3(ui->tableViewSearcher);
@@ -66,12 +70,12 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &Static3::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &Static3::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static3::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static3::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static3::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static3::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static3::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static3::searcherCategoryIndexChanged);
@@ -84,17 +88,18 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     searcherCategoryIndexChanged(0);
 
     QSettings setting;
-    if (setting.contains("static3/geometry"))
+    setting.beginGroup(settingPrefix);
+    if (setting.contains("geometry"))
     {
-        this->restoreGeometry(setting.value("static3/geometry").toByteArray());
+        this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    setting.endGroup();
 }
 
 Static3::~Static3()
 {
     QSettings setting;
-    setting.beginGroup("static3");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -103,23 +108,7 @@ Static3::~Static3()
 
 void Static3::updateProfiles()
 {
-    profiles = { Profile3("None", Game::Emerald, 12345, 54321, false) };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static3/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Static3::generate()
@@ -177,42 +166,27 @@ void Static3::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static3::profileIndexChanged(int index)
+void Static3::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
+    currentProfile = &profile;
+    if (currentProfile->getDeadBattery())
     {
-        currentProfile = &profiles[index];
-
-        if (currentProfile->getDeadBattery())
-        {
-            ui->textBoxGeneratorSeed->setText("5a0");
-        }
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
-        bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
-
-        // Game Corner
-        ui->comboBoxGeneratorCategory->setItemHidden(3, !frlg);
-        ui->comboBoxSearcherCategory->setItemHidden(3, !frlg);
-
-        // Event
-        ui->comboBoxGeneratorCategory->setItemHidden(6, rs);
-        ui->comboBoxSearcherCategory->setItemHidden(6, rs);
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
+        ui->textBoxGeneratorSeed->setText("5a0");
     }
-}
 
-void Static3::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
+    bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
+
+    // Game Corner
+    ui->comboBoxGeneratorCategory->setItemHidden(3, !frlg);
+    ui->comboBoxSearcherCategory->setItemHidden(3, !frlg);
+
+    // Event
+    ui->comboBoxGeneratorCategory->setItemHidden(6, rs);
+    ui->comboBoxSearcherCategory->setItemHidden(6, rs);
+
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
 }
 
 void Static3::search()

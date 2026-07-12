@@ -46,6 +46,8 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("hiddenGrotto");
+
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HiddenGrotto),
@@ -55,6 +57,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::BW2);
 
     grottoGeneratorModel = new HiddenGrottoSlotGeneratorModel5(ui->tableViewGrottoGenerator);
     ui->tableViewGrottoGenerator->setModel(grottoGeneratorModel);
@@ -116,7 +120,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     auto *pokemonAdvanceFinder = ui->tableViewPokemonGenerator->addAction(tr("Advance Finder"));
     connect(pokemonAdvanceFinder, &QAction::triggered, this, &HiddenGrotto::openPokemonAdvanceFinder);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &HiddenGrotto::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &HiddenGrotto::profilesChanged);
     connect(ui->tabGrottoRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersGrotto);
     connect(ui->tabGrottoRNGSelector, &TabWidget::transferSettings, this, &HiddenGrotto::transferSettingsGrotto);
     connect(ui->tabPokemonRNGSelector, &TabWidget::transferFilters, this, &HiddenGrotto::transferFiltersPokemon);
@@ -138,10 +143,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     connect(ui->pushButtonGrottoSearch, &QPushButton::clicked, this, &HiddenGrotto::grottoSearch);
     connect(ui->pushButtonPokemonGenerate, &QPushButton::clicked, this, &HiddenGrotto::pokemonGenerate);
     connect(ui->pushButtonPokemonSearch, &QPushButton::clicked, this, &HiddenGrotto::pokemonSearch);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &HiddenGrotto::profileManager);
     connect(ui->filterPokemonGenerator, &Filter::showStatsChanged, pokemonGeneratorModel, &HiddenGrottoGeneratorModel5::setShowStats);
     connect(ui->filterPokemonSearcher, &Filter::showStatsChanged, pokemonSearcherModel, &HiddenGrottoSearcherModel5::setShowStats);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->filterPokemonSearcher, &Filter::ivsChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->textBoxPokemonSearcherInitialIVAdvances, &TextBox::textChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
     connect(ui->textBoxPokemonSearcherMaxIVAdvances, &TextBox::textChanged, this, &HiddenGrotto::pokemonSearcherFastSearchChanged);
@@ -160,7 +163,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     pokemonSearcherFastSearchChanged();
 
     QSettings setting;
-    setting.beginGroup("hiddenGrotto");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -187,8 +190,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 HiddenGrotto::~HiddenGrotto()
 {
     QSettings setting;
-    setting.beginGroup("hiddenGrotto");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDateGrotto", ui->dateEditGrottoSearcherStartDate->date());
     setting.setValue("endDateGrotto", ui->dateEditGrottoSearcherEndDate->date());
@@ -203,28 +205,12 @@ HiddenGrotto::~HiddenGrotto()
 
 bool HiddenGrotto::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void HiddenGrotto::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader5::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("hiddenGrotto/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 bool HiddenGrotto::fastSearchEnabled() const
@@ -723,62 +709,42 @@ void HiddenGrotto::pokemonSearcherPokemonIndexChanged(int index)
     }
 }
 
-void HiddenGrotto::profileIndexChanged(int index)
+void HiddenGrotto::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
+    currentProfile = &profile;
+
+    if (ivCache)
     {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        if (ivCache)
-        {
-            delete ivCache;
-            ivCache = nullptr;
-        }
-
-        if (shaCache)
-        {
-            delete shaCache;
-            shaCache = nullptr;
-        }
-
-        auto ivCachePath = currentProfile->getIVCache();
-        if (!ivCachePath.empty())
-        {
-            ivCache = new IVCache(ivCachePath);
-        }
-
-        auto shaCachePath = currentProfile->getSHACache();
-        if (!shaCachePath.empty())
-        {
-            shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditPokemonSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-            ui->dateEditPokemonSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-        }
-        else
-        {
-            ui->dateEditPokemonSearcherStartDate->clearDateRange();
-            ui->dateEditPokemonSearcherEndDate->clearDateRange();
-        }
+        delete ivCache;
+        ivCache = nullptr;
     }
-}
 
-void HiddenGrotto::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    if (shaCache)
+    {
+        delete shaCache;
+        shaCache = nullptr;
+    }
+
+    auto ivCachePath = currentProfile->getIVCache();
+    if (!ivCachePath.empty())
+    {
+        ivCache = new IVCache(ivCachePath);
+    }
+
+    auto shaCachePath = currentProfile->getSHACache();
+    if (!shaCachePath.empty())
+    {
+        shaCache = new SHA1Cache(shaCachePath);
+        ui->dateEditPokemonSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+        ui->dateEditPokemonSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+    }
+    else
+    {
+        ui->dateEditPokemonSearcherStartDate->clearDateRange();
+        ui->dateEditPokemonSearcherEndDate->clearDateRange();
+    }
+
+    pokemonSearcherFastSearchChanged();
 }
 
 void HiddenGrotto::transferFiltersGrotto(int index)

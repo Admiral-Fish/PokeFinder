@@ -75,7 +75,7 @@ QVariant StaticModel8::data(const QModelIndex &index, int role) const
         case 14:
             return state.getWeight();
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen8));
         }
     }
 

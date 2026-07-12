@@ -13,6 +13,7 @@ jobs:
   ci:
     name: Build (${{ matrix.platform-name }})
     runs-on: ${{ matrix.os }}
+    env: ${{ matrix.env || fromJSON('{}') }} 
     
     strategy:
       fail-fast: false
@@ -29,6 +30,7 @@ jobs:
             cache-key: ubuntu
             qt-archives: icu qtbase qtsvg qttools
             tools: ""
+            env: { CC: gcc-14, CXX: g++-14 }
 
           - os: macos-15
             platform-name: macOS
