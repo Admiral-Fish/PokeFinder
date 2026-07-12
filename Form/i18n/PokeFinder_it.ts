@@ -4145,6 +4145,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Introforza</translation>
     </message>
     <message>
+        <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
         <translation>Nessuna</translation>
     </message>
@@ -4209,12 +4210,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Vel Base</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="45"/>
+        <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
         <translation>Il prossimo livello potrebbe non essere del tutto accurato se non si specifica la natura</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="78"/>
+        <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
         <translation>Non valido</translation>
     </message>

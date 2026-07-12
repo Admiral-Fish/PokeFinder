@@ -4145,6 +4145,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Poder Oculto</translation>
     </message>
     <message>
+        <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
@@ -4209,12 +4210,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Velocidad Base</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="45"/>
+        <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="78"/>
+        <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
         <translation>Inválido</translation>
     </message>

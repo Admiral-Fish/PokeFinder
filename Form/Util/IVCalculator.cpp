@@ -35,7 +35,6 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
 
     ui->comboBoxNature->addItems(Translator::getNatures());
     ui->comboBoxHiddenPower->addItems(Translator::getHiddenPowers());
-    ui->comboBoxCharacteristic->addItems(Translator::getCharacteristics());
 
     ui->comboBoxPokemon->enableAutoComplete();
 
@@ -193,9 +192,9 @@ void IVCalculator::findIVs()
 
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex() - 1);
     u8 hiddenPower = static_cast<u8>(ui->comboBoxHiddenPower->currentIndex() - 1);
-    u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
-
     Game version = ui->comboBoxGame->getEnum<Game>();
+    u8 characteristic = (version & Game::Gen3) != Game::None ? 255 : static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
+
     u16 specie = ui->comboBoxPokemon->getCurrentUShort();
     u8 altform = ui->comboBoxAltForm->currentIndex();
     const PersonalInfo *info = PersonalLoader::getPersonal(version, specie, altform);
@@ -228,6 +227,21 @@ void IVCalculator::gameIndexChanged(int index)
         Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
 
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
+
+        bool hasCharacteristics = (version & Game::Gen3) == Game::None;
+        ui->labelCharacteristic->setVisible(hasCharacteristics);
+        ui->comboBoxCharacteristic->setVisible(hasCharacteristics);
+        if (hasCharacteristics)
+        {
+            int index = ui->comboBoxCharacteristic->currentIndex();
+            ui->comboBoxCharacteristic->clear();
+            ui->comboBoxCharacteristic->addItem(tr("None"));
+            ui->comboBoxCharacteristic->addItems(Translator::getCharacteristics(version));
+            if (index != -1)
+            {
+                ui->comboBoxCharacteristic->setCurrentIndex(index);
+            }
+        }
 
         u16 max = 0;
         if ((version & Game::Gen3) != Game::None)
