@@ -18,6 +18,7 @@
  */
 
 #include "StateFilter.hpp"
+#include <algorithm>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
