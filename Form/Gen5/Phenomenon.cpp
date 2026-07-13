@@ -274,7 +274,7 @@ bool Phenomenon::hasProfiles() const
 
 void Phenomenon::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
+    profiles = ProfileLoader5::getProfiles(Game::Gen5);
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -611,7 +611,7 @@ void Phenomenon::profileIndexChanged(int index)
 void Phenomenon::profileManager()
 {
     auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
+    connect(manager, &ProfileManager5::profilesChanged, this, [=](int num) { emit profilesChanged(num); });
     manager->show();
 }
 

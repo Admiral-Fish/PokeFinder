@@ -18,6 +18,16 @@
  */
 
 #include "MT.hpp"
+#include <cstring>
+
+constexpr u8 jumpTable[9][2493] = {
+#include "MTJump.txt"
+};
+
+MT::MT() : index(0)
+{
+    std::memset(state, 0, sizeof(state));
+}
 
 MT::MT(u32 seed) : index(624)
 {
@@ -33,12 +43,12 @@ MT::MT(u32 seed) : index(624)
 
 MT::MT(u32 seed, u32 advances) : MT(seed)
 {
-    advance(advances);
+    jump(advances);
 }
 
 void MT::advance(u32 advances)
 {
-    u64 advance = advances + index;
+    u64 advance = static_cast<u64>(advances) + index;
     while (advance >= 624)
     {
         shuffle();
@@ -68,6 +78,94 @@ u32 MT::next()
 u16 MT::nextUShort()
 {
     return next() >> 16;
+}
+
+void MT::addState(const MT *other)
+{
+    u32 *ptr = &state[0].uint32[0];
+    const u32 *ptr1 = &other->state[0].uint32[0];
+
+    int split = 624 - other->index;
+
+    int i = 0;
+    for (; i < split - (split % 4); i += 4)
+    {
+        state[i / 4] = state[i / 4] ^ v32x4_load(&ptr1[other->index + i]);
+    }
+
+    while (i < split || (i % 4) != 0)
+    {
+        ptr[i] ^= ptr1[(other->index + i) % 624];
+        i++;
+    }
+
+    for (; i < 624; i += 4)
+    {
+        state[i / 4] = state[i / 4] ^ v32x4_load(&ptr1[other->index + i - 624]);
+    }
+}
+
+void MT::jump(u32 advances)
+{
+    // Since this is only called by the constructor we need to reset index to 0 so we can shuffle 1 at a time
+    index = 0;
+
+    u32 high = advances >> 23;
+    u32 low = advances & 0x7fffff;
+
+    // Advance by amount unsupported by the jump tables
+    // First shuffle by an amount of times divisible by 624 to utilize SIMD logic
+    if (low)
+    {
+        u32 num = low % 624;
+        advance(low - num);
+
+        // Advance 1 by 1 for remaining amount. This will be less than 624
+        for (int i = 0; i < num; i++)
+        {
+            nextState();
+        }
+    }
+
+    for (int i = 0; high; i++, high >>= 1)
+    {
+        if (high & 1)
+        {
+            MT temp;
+
+            for (int j = 2492; j >= 0; j--)
+            {
+                u8 val = jumpTable[i][j];
+                for (int bit = 0; bit < 8; bit++)
+                {
+                    if (val & (1 << bit))
+                    {
+                        temp.addState(this);
+                    }
+                    nextState();
+                }
+            }
+
+            *this = temp;
+        }
+    }
+
+    shuffle();
+}
+
+void MT::nextState()
+{
+    u32 *ptr = &state[0].uint32[0];
+
+    u32 y = (ptr[index] & 0x80000000) | (ptr[(index + 1) % 624] & 0x7fffffff);
+    u32 y1 = y >> 1;
+    if (y & 1)
+    {
+        y1 ^= 0x9908b0df;
+    }
+    ptr[index] = ptr[(index + 397) % 624] ^ y1;
+
+    index = (index + 1) % 624;
 }
 
 void MT::shuffle()

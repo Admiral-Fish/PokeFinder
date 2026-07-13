@@ -65,6 +65,11 @@ namespace SeedToTimeCalculator4
         for (int secondOffset = -secondCalibration; secondOffset <= secondCalibration; secondOffset++)
         {
             DateTime offset = time.addSeconds(secondOffset);
+            if (!offset.valid())
+            {
+                continue;
+            }
+
             for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset);
@@ -85,6 +90,11 @@ namespace SeedToTimeCalculator4
         for (int secondOffset = -secondCalibration; secondOffset <= secondCalibration; secondOffset++)
         {
             DateTime offset = time.addSeconds(secondOffset);
+            if (!offset.valid())
+            {
+                continue;
+            }
+
             for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset, roamers, routes);

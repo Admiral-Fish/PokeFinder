@@ -50,7 +50,7 @@ signals:
     /**
      * @brief Emits that the profiles have been modified
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**

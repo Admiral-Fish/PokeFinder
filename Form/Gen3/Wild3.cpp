@@ -41,10 +41,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("wild3");
+
 Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::RSE | Game::FRLG);
 
     generatorModel = new WildGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel3(ui->tableViewSearcher);
@@ -102,9 +106,10 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &Wild3::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &Wild3::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild3::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild3::transferSettings);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild3::generatorEncounterIndexChanged);
@@ -115,7 +120,6 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild3::searcherPokemonIndexChanged);
     connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::checkStateChanged, this, &Wild3::generatorFeebasTileStateChanged);
     connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::checkStateChanged, this, &Wild3::searcherFeebasTileStateChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel3::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel3::setShowStats);
 
@@ -124,17 +128,18 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     searcherEncounterIndexChanged(0);
 
     QSettings setting;
-    if (setting.contains("wild3/geometry"))
+    setting.beginGroup(settingPrefix);
+    if (setting.contains("geometry"))
     {
-        this->restoreGeometry(setting.value("wild3/geometry").toByteArray());
+        this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    setting.endGroup();
 }
 
 Wild3::~Wild3()
 {
     QSettings setting;
-    setting.beginGroup("wild3");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -143,23 +148,7 @@ Wild3::~Wild3()
 
 void Wild3::updateProfiles()
 {
-    profiles = { Profile3("None", Game::Emerald, 12345, 54321, false) };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("wild3/profile").toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Wild3::updateEncounterGenerator()
@@ -306,50 +295,35 @@ void Wild3::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Wild3::profileIndexChanged(int index)
+void Wild3::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
+    currentProfile = &profile;
+    if (currentProfile->getDeadBattery())
     {
-        currentProfile = &profiles[index];
-
-        if (currentProfile->getDeadBattery())
-        {
-            ui->textBoxGeneratorSeed->setText("5a0");
-        }
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
-        {
-            ui->labelGeneratorLead->setVisible(true);
-            ui->comboMenuGeneratorLead->setVisible(true);
-
-            ui->labelSearcherLead->setVisible(true);
-            ui->comboMenuSearcherLead->setVisible(true);
-        }
-        else
-        {
-            ui->comboMenuGeneratorLead->clearSelection();
-            ui->labelGeneratorLead->setVisible(false);
-            ui->comboMenuGeneratorLead->setVisible(false);
-
-            ui->comboMenuSearcherLead->clearSelection();
-            ui->labelSearcherLead->setVisible(false);
-            ui->comboMenuSearcherLead->setVisible(false);
-        }
-
-        generatorEncounterIndexChanged(0);
-        searcherEncounterIndexChanged(0);
+        ui->textBoxGeneratorSeed->setText("5a0");
     }
-}
 
-void Wild3::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
+    {
+        ui->labelGeneratorLead->setVisible(true);
+        ui->comboMenuGeneratorLead->setVisible(true);
+
+        ui->labelSearcherLead->setVisible(true);
+        ui->comboMenuSearcherLead->setVisible(true);
+    }
+    else
+    {
+        ui->comboMenuGeneratorLead->clearSelection();
+        ui->labelGeneratorLead->setVisible(false);
+        ui->comboMenuGeneratorLead->setVisible(false);
+
+        ui->comboMenuSearcherLead->clearSelection();
+        ui->labelSearcherLead->setVisible(false);
+        ui->comboMenuSearcherLead->setVisible(false);
+    }
+
+    generatorEncounterIndexChanged(0);
+    searcherEncounterIndexChanged(0);
 }
 
 void Wild3::search()

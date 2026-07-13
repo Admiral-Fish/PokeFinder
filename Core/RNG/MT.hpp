@@ -70,6 +70,30 @@ private:
     u16 index;
 
     /**
+     * @brief Construct a new MT object
+     */
+    MT();
+
+    /**
+     * @brief XOR combines two rng states with proper wrap around
+     */
+    void addState(const MT *other);
+
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * Uses a precomputed jump table to complete in O()
+     * With how the table is primarily shuffled all in one go this should only be called by a constructor
+     *
+     * @param advances Number of advances
+     */
+    void jump(u32 advances);
+
+    /**
+     * @brief Generates the next MT state after 1 state has been consumed
+     */
+    void nextState();
+
+    /**
      * @brief Generates the next MT state after all 624 states have been consumed
      */
     void shuffle();

@@ -134,7 +134,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return "-";
             }
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
 
@@ -270,7 +270,7 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
             {
                 return "-";
             }
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         case 21:
             return QString::fromStdString(display.getDateTime().toString());
         case 22:

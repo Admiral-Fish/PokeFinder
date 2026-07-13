@@ -19,6 +19,7 @@
 
 #include "ProfileManager5.hpp"
 #include "ui_ProfileManager5.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen5/Profile/ProfileEditor5.hpp>
 #include <Model/Gen5/ProfileModel5.hpp>
@@ -32,7 +33,7 @@ ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::
     setAttribute(Qt::WA_DeleteOnClose);
 
     model = new ProfileModel5(ui->tableView);
-    model->addItems(ProfileLoader5::getProfiles());
+    model->addItems(ProfileLoader5::getProfiles(Game::Gen5));
     ui->tableView->setModel(model);
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager5::create);
@@ -64,7 +65,7 @@ void ProfileManager5::create()
         Profile5 profile = dialog->getProfile();
         ProfileLoader5::addProfile(profile);
         model->addItem(profile);
-        emit profilesModified(5);
+        emit profilesChanged(5);
     }
 }
 
@@ -81,7 +82,7 @@ void ProfileManager5::duplicate()
     const Profile5 &profile = model->getItem(row);
     ProfileLoader5::addProfile(profile);
     model->addItem(profile);
-    emit profilesModified(5);
+    emit profilesChanged(5);
 }
 
 void ProfileManager5::edit()
@@ -101,7 +102,7 @@ void ProfileManager5::edit()
         Profile5 update = dialog->getProfile();
         ProfileLoader5::updateProfile(update, original);
         model->updateItem(update, row);
-        emit profilesModified(5);
+        emit profilesChanged(5);
     }
 }
 
@@ -122,6 +123,6 @@ void ProfileManager5::remove()
         const Profile5 &profile = model->getItem(row);
         ProfileLoader5::removeProfile(profile);
         model->removeItem(row);
-        emit profilesModified(5);
+        emit profilesChanged(5);
     }
 }
