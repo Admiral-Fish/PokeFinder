@@ -92,6 +92,7 @@ Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon
     ui->textBoxGeneratorIVAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setText(QStringLiteral("1000"));
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherInitialIVAdvances->setValues(InputType::Advance32Bit);
