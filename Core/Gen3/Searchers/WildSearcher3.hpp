@@ -57,6 +57,7 @@ public:
 private:
     u16 rate;
     bool feebasTile;
+    bool natureAdvance;
     bool ivAdvance;
     ModifiedSlots modifiedSlots;
 

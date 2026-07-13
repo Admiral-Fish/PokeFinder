@@ -110,6 +110,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Wild 1 Alt</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Wild 2</string>
              </property>
             </item>
@@ -311,6 +316,11 @@
             <item>
              <property name="text">
               <string>Wild 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Wild 1 Alt</string>
              </property>
             </item>
             <item>

@@ -30,6 +30,7 @@ enum class Method : u8
     None,
 
     Method1,
+    Method1Alt,
     Method1Reverse,
     Method2,
     Method4,

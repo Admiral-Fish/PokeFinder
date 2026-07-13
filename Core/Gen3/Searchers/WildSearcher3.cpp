@@ -58,9 +58,14 @@ static u8 unownLetter(u32 pid)
 WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
-    ivAdvance(method == Method::Method2),
-    feebasTile(feebasTile),
     rate(0),
+    feebasTile(feebasTile),
+    natureAdvance(method == Method::Method1Alt &&
+                  !(area.getEncounter() == Encounter::RockSmash) &&
+                  !(area.getEncounter() == Encounter::OldRod) &&
+                  !(area.getEncounter() == Encounter::GoodRod) &&
+                  !(area.getEncounter() == Encounter::SuperRod)),
+    ivAdvance(method == Method::Method2),
     modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
@@ -147,6 +152,8 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
 
         u16 nextRNG = rng.nextUShort();
         u16 nextRNG2 = rng.nextUShort();
+        PokeRNGR trng(rng.getSeed());
+        u16 nextRNG3 = trng.nextUShort();
 
         do
         {
@@ -162,13 +169,16 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             case Lead::None:
                 if (tanoby)
                 {
-                    levelRand[0] = nextRNG;
-                    encounterSlot[0] = EncounterSlot::hSlot(nextRNG2 % 100, area.getEncounter());
+                    levelRand[0] = natureAdvance ? nextRNG2 : nextRNG;
+                    encounterSlot[0] = EncounterSlot::hSlot(natureAdvance ? nextRNG3 : nextRNG2 % 100, area.getEncounter());
                     valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                 }
                 else if ((nextRNG % 25) == nature)
                 {
-                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+                    if (natureAdvance) {
+                        test[0].next();
+                    }
+                    levelRand[0] = safari ? test[0].nextUShort() : (natureAdvance ? nextRNG3 : nextRNG2);
 
                     if (feebas)
                     {
@@ -210,6 +220,9 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                     {
                         test[0].next();
                     }
+                    if (natureAdvance) {
+                        test[0].next();
+                    }
                     levelRand[0] = test[0].nextUShort();
 
                     if (feebas)
@@ -246,7 +259,10 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             case Lead::Synchronize:
                 if ((nextRNG & 1) == 0)
                 {
-                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+                    if (natureAdvance) {
+                        test[0].next();
+                    }
+                    levelRand[0] = safari ? test[0].nextUShort() : (natureAdvance ? nextRNG3 : nextRNG2);
 
                     if (feebas)
                     {
@@ -284,6 +300,10 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                     if (safari)
                     {
                         test[1].next();
+                    }
+                    if (natureAdvance) {
+                        test[1].next();
+                        test[2].next();
                     }
                     levelRand[1] = test[2].nextUShort();
 
@@ -324,7 +344,10 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                 // Not possible to use this lead for fishing so skip the Feebas logic
                 if ((nextRNG % 25) == nature)
                 {
-                    levelRand[0] = safari ? test[0].nextUShort() : nextRNG2;
+                    if (natureAdvance) {
+                        test[0].next();
+                    }
+                    levelRand[0] = safari ? test[0].nextUShort() : (natureAdvance ? nextRNG3 : nextRNG2);
                     u16 encounterRand = test[0].nextUShort();
                     if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                     {
@@ -340,7 +363,10 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             case Lead::Pressure:
                 if ((nextRNG % 25) == nature)
                 {
-                    force = ((safari ? test[0].nextUShort() : nextRNG2) & 1) == 0;
+                    if (natureAdvance) {
+                        test[0].next();
+                    }
+                    force = ((safari ? test[0].nextUShort() : (natureAdvance ? nextRNG3 : nextRNG2)) & 1) == 0;
                     levelRand[0] = test[0].nextUShort();
 
                     if (feebas)
@@ -427,6 +453,8 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
 
             nextRNG = rng.nextUShort();
             nextRNG2 = rng.nextUShort();
+            trng.setSeed(rng.getSeed());
+            nextRNG3 = trng.nextUShort();
         } while (true);
     }
 

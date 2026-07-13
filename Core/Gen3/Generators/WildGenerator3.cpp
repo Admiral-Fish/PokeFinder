@@ -50,6 +50,11 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
     bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
+    bool method1Alt = method == Method::Method1Alt &&
+        !(area.getEncounter() == Encounter::RockSmash) &&
+        !(area.getEncounter() == Encounter::OldRod) &&
+        !(area.getEncounter() == Encounter::GoodRod) &&
+        !(area.getEncounter() == Encounter::SuperRod);
 
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
         if (lead == Lead::CuteCharmF)
@@ -109,6 +114,11 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
         bool cuteCharm = false;
+
+        if (method1Alt)
+        {
+            go.next();
+        }
         if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && !info->getFixedGender())
         {
             cuteCharm = go.nextUShort(3) != 0;
@@ -119,7 +129,6 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         {
             go.next();
         }
-
         u8 nature;
         u32 pid;
         if (tanoby)

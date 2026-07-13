@@ -57,8 +57,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
-    ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method1Alt), toInt(Method::Method2), toInt(Method::Method4) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method1Alt), toInt(Method::Method2), toInt(Method::Method4) });
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                             toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
@@ -208,8 +208,17 @@ void Wild3::generatorEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
+        bool method1Alt = !(encounter == Encounter::RockSmash) &&
+            !(encounter == Encounter::OldRod) && !(encounter == Encounter::GoodRod) && !(encounter == Encounter::SuperRod);
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        ui->comboBoxGeneratorMethod->clear();
+        ui->comboBoxGeneratorMethod->addItem(tr("Method 1"));
+        if (method1Alt) {
+            ui->comboBoxGeneratorMethod->addItem("Method 1 Alt");
+        }
+        ui->comboBoxGeneratorMethod->addItem(tr("Method 2"));
+        ui->comboBoxGeneratorMethod->addItem(tr("Method 3"));
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), !staticOption);
 
@@ -379,8 +388,11 @@ void Wild3::searcherEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
 
+        bool method1Alt = !(encounter == Encounter::RockSmash) &&
+            !(encounter == Encounter::OldRod) && !(encounter == Encounter::GoodRod) && !(encounter == Encounter::SuperRod);
         bool magnetPullOption = encounter == Encounter::Grass;
         bool staticOption = encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        //ui->comboBoxSearcherMethod->hideAction(toInt(Method::Method1Alt), !method1Alt);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), !staticOption);
 
