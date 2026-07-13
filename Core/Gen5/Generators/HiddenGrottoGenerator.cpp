@@ -75,34 +75,34 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
         {
             u8 group = go.nextUInt(4);
             u8 slot = encounterTable[go.nextUInt(100)];
-                if (slot < 3) // Pokemon
+            if (slot < 3) // Pokemon
+            {
+                const auto &pokemon = encounterArea.getPokemon(group, slot);
+                u8 gender = go.nextUInt(100) < pokemon.getGender();
+                HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
+                if (filter.compareState(state))
                 {
-                    const auto &pokemon = encounterArea.getPokemon(group, slot);
-                    u8 gender = go.nextUInt(100) < pokemon.getGender();
-                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
-                    if (filter.compareState(state))
-                    {
-                        states.emplace_back(state);
-                    }
+                    states.emplace_back(state);
                 }
-                else if (slot < 7) // Item
+            }
+            else if (slot < 7) // Item
+            {
+                u16 item = encounterArea.getItem(group, slot - 3);
+                HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
+                if (filter.compareState(state))
                 {
-                    u16 item = encounterArea.getItem(group, slot - 3);
-                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
-                    if (filter.compareState(state))
-                    {
-                        states.emplace_back(state);
-                    }
+                    states.emplace_back(state);
                 }
-                else // Hidden item
+            }
+            else // Hidden item
+            {
+                u16 item = encounterArea.getHiddenItem(group, slot - 7);
+                HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
+                if (filter.compareState(state))
                 {
-                    u16 item = encounterArea.getHiddenItem(group, slot - 7);
-                    HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
-                    if (filter.compareState(state))
-                    {
-                        states.emplace_back(state);
-                    }
+                    states.emplace_back(state);
                 }
+            }
         }
     }
 
