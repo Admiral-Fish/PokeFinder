@@ -255,22 +255,19 @@ void SeedToTime4::searchCalls()
         return;
     }
 
-    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel()));
+    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel));
     if (search->exec() == QDialog::Accepted)
     {
-        ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
         ui->tableViewHGSSCalibrate->clearSelection();
 
-        auto results = search->getResults();
-        for (size_t i = 0; i < results.size(); i++)
+        QItemSelection selection;
+        auto indexes = search->getIndexes();
+        for (const auto &index : indexes)
         {
-            if (results[i])
-            {
-                ui->tableViewHGSSCalibrate->selectRow(i);
-            }
+            selection.select(index, index);
         }
 
-        ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tableViewHGSSCalibrate->selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
         ui->tableViewHGSSCalibrate->setFocus();
     }
 }
@@ -282,22 +279,19 @@ void SeedToTime4::searchFlips()
         return;
     }
 
-    std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel->getModel()));
+    std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel));
     if (search->exec() == QDialog::Accepted)
     {
-        ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
         ui->tableViewDPPtCalibrate->clearSelection();
 
-        auto results = search->getResults();
-        for (size_t i = 0; i < results.size(); i++)
+        QItemSelection selection;
+        auto indexes = search->getIndexes();
+        for (const auto &index : indexes)
         {
-            if (results[i])
-            {
-                ui->tableViewDPPtCalibrate->selectRow(i);
-            }
+            selection.select(index, index);
         }
 
-        ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tableViewDPPtCalibrate->selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
         ui->tableViewDPPtCalibrate->setFocus();
     }
 }

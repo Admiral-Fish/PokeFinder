@@ -4268,6 +4268,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Poder Oculto</translation>
     </message>
     <message>
+        <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
@@ -4332,12 +4333,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Velocidad Base</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="45"/>
+        <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="78"/>
+        <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
         <translation>Inválido</translation>
     </message>
@@ -6857,38 +6858,47 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished">Borrar</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation>P - Los Pokémon infectados por el Pokérus se crían mucho mejor. Nadie sabe por qué...</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="107"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation>E - La evolución de los Pokémon tiene muchos secretos. Algunos solo evolucionan en circunstancias muy determinadas!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="92"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="36"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="110"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="105"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="135"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation>K - En Kanto todavía debe haber Pokémon desconocidos para mí. Tal vez haya hasta evoluciones que jamás haya visto. ¡Fíjate bien en todo lo que pasa a tu alrededor!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="115"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="145"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation>K - ¡Gracias por llamarme! Yo también estaba a punto de darte un toque. ¡Esto es telepatía!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="146"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation>E - ¡Oír lo de tus aventuras me alegra el alma! ¡Te lo aseguro!</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="117"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="147"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation>P - ¿Cómo estás? ¿Qué estás haciendo? ¿Dónde estás? ¿Cuántas Medallas has conseguido? ¿Cuánto dinero has ahorrado? ¿Cómo está tu madre? ¿Tienes muchos Pokémon? ¿Va a hacer sol mañana? Aaarg... ¡Hay tantas cosas de las que quiero hablar! ¡Esto no lleva a ninguna parte!</translation>
     </message>
@@ -6912,8 +6922,17 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="82"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished">Borrar</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="37"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="106"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="112"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7086,7 +7105,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
-        <source>Roamer locations</source>
+        <source>Roamers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
