@@ -49,6 +49,18 @@ bool ProfileDisplay5::hasProfiles() const
     return !profiles.empty();
 }
 
+void ProfileDisplay5::setProfile(const Profile5 &profile)
+{
+    for (int i = 0; i < profiles.size(); i++)
+    {
+        if (profiles[i] == profile)
+        {
+            ui->comboBoxProfiles->setCurrentIndex(i);
+            break;
+        }
+    }
+}
+
 void ProfileDisplay5::setup(const QString &prefix, Game filter)
 {
     this->prefix = prefix;

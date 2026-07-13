@@ -48,6 +48,7 @@
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Form/Gen5/Tools/IVCacheFinder.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
@@ -112,6 +113,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
+    connect(ui->actionAdjacentSeed, &QAction::triggered, this, &MainWindow::openAdjacentSeed);
     connect(ui->actionIVCache, &QAction::triggered, this, &MainWindow::openIVCacheFinder);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
@@ -559,6 +561,25 @@ void MainWindow::openWild5()
     {
         wild5->show();
         wild5->raise();
+    }
+}
+
+void MainWindow::openAdjacentSeed() const
+{
+    auto *window = new AdjacentSeeds();
+    if (!window->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
+        msg.exec();
+        window->close();
+    }
+    else
+    {
+        connect(window, &AdjacentSeeds::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged5, window, &AdjacentSeeds::updateProfiles);
+        window->show();
+        window->raise();
     }
 }
 

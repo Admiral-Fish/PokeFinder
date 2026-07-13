@@ -61,6 +61,12 @@ void TableView::contextMenuEvent(QContextMenuEvent *event)
 {
     if (model()->rowCount() != 0)
     {
+        QModelIndex index = indexAt(event->pos());
+        if (index.isValid())
+        {
+            selectRow(index.row());
+            setCurrentIndex(index);
+        }
         QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
