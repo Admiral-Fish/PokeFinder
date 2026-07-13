@@ -39,7 +39,6 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -611,6 +610,12 @@ void Wild4::generatorPokeRadarStateChanged(Qt::CheckState state)
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
 }
 
+void Wild4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
 void Wild4::profileChanged(const Profile4 &profile)
 {
     currentProfile = &profile;
@@ -1043,9 +1048,4 @@ void Wild4::transferSettings(int index)
         ui->spinBoxGeneratorPeakBlock->setValue(ui->spinBoxSearcherPeakBlock->value());
         ui->spinBoxGeneratorWaterBlock->setValue(ui->spinBoxSearcherWaterBlock->value());
     }
-}
-void Wild4::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

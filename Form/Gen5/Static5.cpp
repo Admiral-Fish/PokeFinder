@@ -40,7 +40,6 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -274,6 +273,12 @@ void Static5::openAdjacentSeeds()
 
     auto *window = new AdjacentSeeds(staticTemplate->getRoamer(), state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
+}
+
+void Static5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
 }
 
 void Static5::profileChanged(const Profile5 &profile)
@@ -522,10 +527,4 @@ void Static5::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
-}
-
-void Static5::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

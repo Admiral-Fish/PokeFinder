@@ -43,9 +43,9 @@ public:
         data(specie),
         item(false),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
         gender(gender),
         group(group),
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
         slot(slot)
     {
     }
@@ -64,21 +64,11 @@ public:
         data(item),
         item(true),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
         gender(0),
         group(group),
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
         slot(slot)
     {
-    }
-
-    /**
-     * @brief Returns the save needle value
-     *
-     * @return Save needle value
-     */
-    u8 getSaveNeedle() const
-    {
-        return saveNeedle;
     }
 
     /**
@@ -144,6 +134,16 @@ public:
     }
 
     /**
+     * @brief Returns the needle value
+     *
+     * @return Needle value
+     */
+    u8 getNeedle() const
+    {
+        return needle;
+    }
+
+    /**
      * @brief Returns the slot of the state
      *
      * @return State slot
@@ -158,9 +158,9 @@ private:
     u16 data;
     bool item;
     u8 chatot;
-    u8 saveNeedle;
     u8 gender;
     u8 group;
+    u8 needle;
     u8 slot;
 };
 

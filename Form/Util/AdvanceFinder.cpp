@@ -72,7 +72,7 @@ static u8 readNeedle(QAbstractItemModel *model, int row, int column)
     QString text = model->data(model->index(row, column), Qt::DisplayRole).toString();
     for (u8 i = 0; i < 8; i++)
     {
-        if (text == QString::fromStdString(Translator::getSaveNeedle(i)))
+        if (text == QString::fromStdString(Translator::getNeedle(i)))
         {
             return i;
         }

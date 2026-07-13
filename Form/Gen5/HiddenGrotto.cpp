@@ -42,7 +42,6 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -469,6 +468,18 @@ void HiddenGrotto::openAdjacentSeeds()
     window->show();
 }
 
+void HiddenGrotto::openGrottoAdvanceFinder()
+{
+    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
+    grottoAdvanceFinder->show();
+}
+
+void HiddenGrotto::openPokemonAdvanceFinder()
+{
+    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
+    pokemonAdvanceFinder->show();
+}
+
 void HiddenGrotto::pokemonGenerate()
 {
     if (!ui->filterPokemonGenerator->isValid(ui->spinBoxPokemonGeneratorLevelMin->value(), ui->spinBoxPokemonGeneratorLevelMax->value()))
@@ -820,16 +831,4 @@ void HiddenGrotto::transferSettingsPokemon(int index)
         ui->comboBoxPokemonGeneratorPokemon->setCurrentIndex(ui->comboBoxPokemonSearcherPokemon->currentIndex());
         ui->comboBoxPokemonGeneratorGender->setCurrentIndex(ui->comboBoxPokemonSearcherGender->currentIndex());
     }
-}
-
-void HiddenGrotto::openGrottoAdvanceFinder()
-{
-    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
-    grottoAdvanceFinder->show();
-}
-
-void HiddenGrotto::openPokemonAdvanceFinder()
-{
-    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
-    pokemonAdvanceFinder->show();
 }

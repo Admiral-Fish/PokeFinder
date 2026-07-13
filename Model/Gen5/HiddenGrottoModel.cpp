@@ -43,7 +43,7 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
             return state.getGroup();
         case 4:
@@ -150,7 +150,7 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
             return state.getLevel();
         case 4:

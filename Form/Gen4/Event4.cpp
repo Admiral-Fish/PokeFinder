@@ -34,7 +34,6 @@
 #include <Model/Gen4/EventModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -166,6 +165,12 @@ void Event4::generate()
     generatorModel->addItems(states);
 }
 
+void Event4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
 void Event4::profileChanged(const Profile4 &profile)
 {
     currentProfile = &profile;
@@ -262,10 +267,4 @@ void Event4::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
     }
-}
-
-void Event4::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

@@ -42,7 +42,6 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -313,6 +312,12 @@ void Wild5::openAdjacentSeeds()
     window->show();
 }
 
+void Wild5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
 void Wild5::profileChanged(const Profile5 &profile)
 {
     currentProfile = &profile;
@@ -569,10 +574,4 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
     }
-}
-
-void Wild5::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

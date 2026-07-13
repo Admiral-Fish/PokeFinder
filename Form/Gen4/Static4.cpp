@@ -36,7 +36,6 @@
 #include <Model/Gen4/StaticModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -226,6 +225,12 @@ void Static4::generatorPokemonIndexChanged(int index)
     }
 }
 
+void Static4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
 void Static4::profileChanged(const Profile4 &profile)
 {
     currentProfile = &profile;
@@ -377,10 +382,4 @@ void Static4::transferSettings(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
     }
-}
-
-void Static4::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

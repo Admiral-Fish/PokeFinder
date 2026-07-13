@@ -57,7 +57,7 @@ public:
      *
      * @return Save needle value
      */
-    u8 getSaveNeedle() const
+    u8 getNeedle() const
     {
         return saveNeedle;
     }

@@ -43,7 +43,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::fromStdString(Translator::getSaveNeedle(state.getSaveNeedle()));
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
             return QString::fromStdString(Translator::getItem(state.getItem()));
         case 4:
@@ -105,10 +105,7 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    if (rowCount() > 0)
-    {
-        emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
-    }
+    emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
 }
 
 WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)

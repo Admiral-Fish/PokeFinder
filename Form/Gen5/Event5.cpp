@@ -38,7 +38,6 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -269,6 +268,12 @@ void Event5::generatorImportEvent()
     }
 }
 
+void Event5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
 void Event5::profileChanged(const Profile5 &profile)
 {
     currentProfile = &profile;
@@ -471,10 +476,4 @@ void Event5::transferSettings(int index)
         ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
         ui->checkBoxGeneratorEgg->setCheckState(ui->checkBoxSearcherEgg->checkState());
     }
-}
-
-void Event5::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

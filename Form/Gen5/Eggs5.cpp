@@ -34,7 +34,6 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -163,6 +162,17 @@ void Eggs5::generate()
     generatorModel->addItems(states);
 }
 
+void Eggs5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    advanceFinder->show();
+}
+
+void Eggs5::profileChanged(const Profile5 &profile)
+{
+    currentProfile = &profile;
+}
+
 void Eggs5::search()
 {
     Date start = ui->dateEditSearcherStartDate->getDate();
@@ -232,11 +242,6 @@ void Eggs5::search()
     timer->start(1000);
 }
 
-void Eggs5::profileChanged(const Profile5 &profile)
-{
-    currentProfile = &profile;
-}
-
 void Eggs5::transferFilters(int index)
 {
     if (index == 0)
@@ -259,10 +264,4 @@ void Eggs5::transferSettings(int index)
     {
         ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
     }
-}
-
-void Eggs5::openAdvanceFinder()
-{
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
-    advanceFinder->show();
 }

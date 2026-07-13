@@ -86,9 +86,9 @@ private slots:
     void generate();
 
     /**
-     * @brief Searches egg encounters from date range
+     * @brief Opens the advance finder dialog
      */
-    void search();
+    void openAdvanceFinder();
 
     /**
      * @brief Updates showing profile related information
@@ -96,6 +96,11 @@ private slots:
      * @param profile Selected profile
      */
     void profileChanged(const Profile5 &profile);
+
+    /**
+     * @brief Searches egg encounters from date range
+     */
+    void search();
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab
@@ -110,11 +115,6 @@ private slots:
      * @param index Which tab widget to copy from
      */
     void transferSettings(int index);
-
-    /**
-     * @brief Opens the advance finder dialog
-     */
-    void openAdvanceFinder();
 };
 
 #endif // EGGS5_HPP

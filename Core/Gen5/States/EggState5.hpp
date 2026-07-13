@@ -46,7 +46,7 @@ public:
               const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
         EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
 
@@ -76,6 +76,16 @@ public:
     }
 
     /**
+     * @brief Returns the needle value
+     *
+     * @return Needle value
+     */
+    u8 getNeedle() const
+    {
+        return needle;
+    }
+
+    /**
      * @brief Updates egg with things that are calculated later in BW2
      *
      * @param prng PRNG call to determine Chatot pitch and save needle
@@ -87,26 +97,16 @@ public:
     void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny)
     {
         chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
-        saveNeedle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
+        needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
         this->advances = advances;
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
     }
 
-    /**
-     * @brief Returns the save needle value
-     *
-     * @return Save needle value
-     */
-    u8 getSaveNeedle() const
-    {
-        return saveNeedle;
-    }
-
 private:
     u8 chatot;
-    u8 saveNeedle;
+    u8 needle;
 };
 
 #endif // EGGSTATE5_HPP

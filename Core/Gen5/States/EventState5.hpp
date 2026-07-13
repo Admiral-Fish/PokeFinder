@@ -46,18 +46,8 @@ public:
                 const PersonalInfo *info) :
         GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
-    }
-
-    /**
-     * @brief Returns the save needle value
-     *
-     * @return Save needle value
-     */
-    u8 getSaveNeedle() const
-    {
-        return saveNeedle;
     }
 
     /**
@@ -70,9 +60,19 @@ public:
         return chatot;
     }
 
+    /**
+     * @brief Returns the needle value
+     *
+     * @return Needle value
+     */
+    u8 getNeedle() const
+    {
+        return needle;
+    }
+
 private:
     u8 chatot;
-    u8 saveNeedle;
+    u8 needle;
 };
 
 #endif // EVENTSTATE5_HPP

@@ -195,15 +195,6 @@ namespace Translator
     const std::string &getNature(u8 nature);
 
     /**
-     * @brief Gets the save needle arrow for the \p needle
-     *
-     * @param needle Save needle value
-     *
-     * @return Save needle arrow
-     */
-    const std::string &getSaveNeedle(u8 needle);
-
-    /**
      * @brief Gets all the nature strings
      *
      * @return Vector of nature strings
