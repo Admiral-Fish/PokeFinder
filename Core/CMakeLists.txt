@@ -186,6 +186,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/Searcher5.hpp
     Gen5/SHA1Cache.cpp
     Gen5/SHA1Cache.hpp
+    Gen5/States/AdjacentSeedsState.hpp
     Gen5/States/DreamRadarState.hpp
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp
@@ -195,6 +196,8 @@ add_library(PokeFinderCore STATIC
     Gen5/States/State5.hpp
     Gen5/States/WildState5.hpp
     Gen5/StaticTemplate5.hpp
+    Gen5/Tools/AdjacentSeedsCalculator.cpp
+    Gen5/Tools/AdjacentSeedsCalculator.hpp
     Gen8/Den.hpp
     Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp

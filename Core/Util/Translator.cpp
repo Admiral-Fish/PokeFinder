@@ -79,8 +79,7 @@ static std::vector<std::string> natures;
 static std::vector<std::string> species;
 const static std::array<std::string, 3> genders = { "♂", "♀", "-" };
 const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
-const static std::array<std::string, 8> saveNeedles = { "\342\206\221", "\342\206\227", "\342\206\222", "\342\206\230",
-                                                        "\342\206\223", "\342\206\231", "\342\206\220", "\342\206\226" };
+const static std::array<std::string, 8> needles = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
 
 /**
  * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
@@ -353,14 +352,14 @@ namespace Translator
         return natures[nature];
     }
 
-    const std::string &getSaveNeedle(u8 needle)
-    {
-        return saveNeedles[needle & 7];
-    }
-
     const std::vector<std::string> &getNatures()
     {
         return natures;
+    }
+
+    const std::string &getNeedle(u8 needle)
+    {
+        return needles[needle & 7];
     }
 
     const std::string &getSpecie(u16 specie)

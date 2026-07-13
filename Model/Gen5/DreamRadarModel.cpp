@@ -40,7 +40,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::fromStdString(Translator::getSaveNeedle(state.getNeedle()));
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:

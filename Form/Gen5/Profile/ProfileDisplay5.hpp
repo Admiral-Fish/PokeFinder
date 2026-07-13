@@ -70,6 +70,13 @@ public:
     bool hasProfiles() const;
 
     /**
+     * @brief Sets index to match the provided \p profile
+     *
+     * @param profile Profile to set
+     */
+    void setProfile(const Profile5 &profile);
+
+    /**
      * @brief Sets the QSetting group prefix and version filter
      *
      * @param prefix Setting prefix

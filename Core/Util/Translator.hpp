@@ -211,6 +211,15 @@ namespace Translator
     const std::vector<std::string> &getNatures();
 
     /**
+     * @brief Gets the string for the \p needle
+     *
+     * @param needle Needle value
+     *
+     * @return Needle string
+     */
+    const std::string &getNeedle(u8 needle);
+
+    /**
      * @brief Gets the string for the \p specie
      *
      * @param specie Specie number
