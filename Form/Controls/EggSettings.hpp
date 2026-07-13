@@ -44,6 +44,12 @@ signals:
     void showInheritanceChanged(bool);
 
 public:
+    enum class HiddenAbility
+    {
+        Gen5,
+        Gen8
+    };
+
     /**
      * @brief Construct a new EggSettings object
      *
@@ -83,11 +89,12 @@ public:
      * @brief Determines if selected settings are valid for parents in the daycare.
      *
      * @param hiddenAbility Whether parents must be compatible for passing hidden ability
+     * @param hiddenAbilityMode Hidden ability inheritance rules to validate against
      *
      * @return true Settings are valid
      * @return false Settings are not valid
      */
-    bool isValid(bool hiddenAbility) const;
+    bool isValid(bool hiddenAbility, HiddenAbility hiddenAbilityMode = HiddenAbility::Gen5) const;
 
     /**
      * @brief Copies the values from another EggSettings

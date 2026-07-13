@@ -130,7 +130,7 @@ bool EggSettings::isValid() const
     return isValid(false);
 }
 
-bool EggSettings::isValid(bool hiddenAbility) const
+bool EggSettings::isValid(bool hiddenAbility, HiddenAbility hiddenAbilityMode) const
 {
     if (!compatibleParents())
     {
@@ -145,6 +145,10 @@ bool EggSettings::isValid(bool hiddenAbility) const
     u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
 
     bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
+    if (hiddenAbilityMode == HiddenAbility::Gen8)
+    {
+        hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
+    }
     if (hiddenAbility && !hiddenAbilityCompatible)
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));

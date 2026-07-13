@@ -104,7 +104,8 @@ void Eggs8::updateProfiles()
 
 void Eggs8::generate()
 {
-    if (!ui->eggSettings->isValid())
+    bool hiddenAbility = !ui->filter->getDisableFilters() && ui->filter->getAbility() == 2;
+    if (!ui->eggSettings->isValid(hiddenAbility, EggSettings::HiddenAbility::Gen8))
     {
         return;
     }
