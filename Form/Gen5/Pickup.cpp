@@ -35,8 +35,6 @@
 #include <Model/Gen5/PickupModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QCheckBox>
-#include <QGridLayout>
-#include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
@@ -226,241 +224,68 @@ void Pickup::setupPickupUi()
     ui->gridLayout_24->setColumnStretch(1, 0);
     ui->gridLayout_24->setColumnStretch(2, 0);
 
-    std::array<QWidget *, 27> hidden = {
-        ui->labelGeneratorSlot1, ui->labelGeneratorSlot2, ui->labelGeneratorSlot3, ui->labelGeneratorSlot4, ui->labelGeneratorSlot5,
-        ui->labelGeneratorSlot6, ui->labelGeneratorBadges, ui->comboBoxGeneratorSpecie1, ui->comboBoxGeneratorSpecie2,
-        ui->comboBoxGeneratorSpecie3, ui->comboBoxGeneratorSpecie4, ui->comboBoxGeneratorSpecie5, ui->comboBoxGeneratorSpecie6,
-        ui->comboBoxGeneratorGender1, ui->comboBoxGeneratorGender2, ui->comboBoxGeneratorGender3, ui->comboBoxGeneratorGender4,
-        ui->comboBoxGeneratorGender5, ui->comboBoxGeneratorGender6, ui->spinBoxGeneratorBadges,
-        ui->labelSearcherSlot1, ui->labelSearcherSlot2, ui->labelSearcherSlot3, ui->labelSearcherSlot4, ui->labelSearcherSlot5,
-        ui->labelSearcherSlot6, ui->labelSearcherBadges
-    };
-    for (auto *widget : hidden)
-    {
-        widget->hide();
-    }
-
-    std::array<QWidget *, 14> hiddenSearcher = {
-        ui->comboBoxSearcherSpecie1, ui->comboBoxSearcherSpecie2, ui->comboBoxSearcherSpecie3, ui->comboBoxSearcherSpecie4,
-        ui->comboBoxSearcherSpecie5, ui->comboBoxSearcherSpecie6, ui->comboBoxSearcherGender1, ui->comboBoxSearcherGender2,
-        ui->comboBoxSearcherGender3, ui->comboBoxSearcherGender4, ui->comboBoxSearcherGender5, ui->comboBoxSearcherGender6,
-        ui->spinBoxSearcherBadges, ui->filterSearcher
-    };
-    for (auto *widget : hiddenSearcher)
-    {
-        widget->hide();
-    }
-
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->gridLayout_19->removeWidget(ui->filterGenerator);
-    ui->gridLayout_19->addWidget(ui->filterGenerator, 0, 1, 9, 1);
 
-    generatorIVAdvances = new TextBox(this);
-    generatorIVAdvances->setText("0");
-    auto *labelGeneratorIVAdvances = new QLabel(tr("IV Advances"), this);
-    ui->gridLayout_7->addWidget(labelGeneratorIVAdvances, 1, 0);
-    ui->gridLayout_7->addWidget(generatorIVAdvances, 1, 1);
-    ui->gridLayout_7->addWidget(ui->labelGeneratorInitialAdvances, 2, 0);
-    ui->gridLayout_7->addWidget(ui->textBoxGeneratorInitialAdvances, 2, 1);
-    ui->gridLayout_7->addWidget(ui->labelGeneratorMaxAdvances, 3, 0);
-    ui->gridLayout_7->addWidget(ui->textBoxGeneratorMaxAdvances, 3, 1);
-    ui->gridLayout_7->addWidget(ui->pushButtonGenerate, 4, 0, 1, 2);
+    generatorIVAdvances = ui->textBoxGeneratorIVAdvances;
+    generatorEncounter = ui->comboBoxGeneratorEncounter;
+    generatorSeason = ui->comboBoxGeneratorSeason;
+    generatorLocation = ui->comboBoxGeneratorLocation;
+    generatorPokemon = ui->comboBoxGeneratorPokemon;
+    searcherEncounter = ui->comboBoxSearcherEncounter;
+    searcherSeason = ui->comboBoxSearcherSeason;
+    searcherLocation = ui->comboBoxSearcherLocation;
 
-    auto setFieldWidth = [](QWidget *widget) {
-        widget->setMinimumWidth(170);
-        widget->setMaximumWidth(210);
-    };
+    generatorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
+    searcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
+    generatorLocation->enableAutoComplete();
+    searcherLocation->enableAutoComplete();
 
-    auto createEncounterControls = [this, setFieldWidth](QGridLayout *settings, ComboBox *&encounter, ComboBox *&season,
-                                                         ComboBoxProxy *&location, ComboBox *&pokemon, bool includePokemon) {
-        encounter = new ComboBox(this);
-        encounter->addItem(tr("Grass"));
-        encounter->addItem(tr("Dark Grass"));
-        encounter->addItem(tr("Surfing"));
-        encounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
-        setFieldWidth(encounter);
+    generatorSlots = { ui->checkBoxGeneratorSlot1, ui->checkBoxGeneratorSlot2, ui->checkBoxGeneratorSlot3, ui->checkBoxGeneratorSlot4,
+                       ui->checkBoxGeneratorSlot5, ui->checkBoxGeneratorSlot6 };
+    searcherSlots = { ui->checkBoxSearcherSlot1, ui->checkBoxSearcherSlot2, ui->checkBoxSearcherSlot3, ui->checkBoxSearcherSlot4,
+                       ui->checkBoxSearcherSlot5, ui->checkBoxSearcherSlot6 };
+    generatorLevels = { ui->spinBoxGeneratorLevel1, ui->spinBoxGeneratorLevel2, ui->spinBoxGeneratorLevel3, ui->spinBoxGeneratorLevel4,
+                        ui->spinBoxGeneratorLevel5, ui->spinBoxGeneratorLevel6 };
+    searcherLevels = { ui->spinBoxSearcherLevel1, ui->spinBoxSearcherLevel2, ui->spinBoxSearcherLevel3, ui->spinBoxSearcherLevel4,
+                        ui->spinBoxSearcherLevel5, ui->spinBoxSearcherLevel6 };
+    generatorItems = { ui->comboBoxGeneratorItem1, ui->comboBoxGeneratorItem2, ui->comboBoxGeneratorItem3, ui->comboBoxGeneratorItem4,
+                       ui->comboBoxGeneratorItem5, ui->comboBoxGeneratorItem6 };
+    searcherItems = { ui->comboBoxSearcherItem1, ui->comboBoxSearcherItem2, ui->comboBoxSearcherItem3, ui->comboBoxSearcherItem4,
+                       ui->comboBoxSearcherItem5, ui->comboBoxSearcherItem6 };
+    searcherItemCounts = { ui->comboBoxSearcherItemCount1, ui->comboBoxSearcherItemCount2, ui->comboBoxSearcherItemCount3,
+                           ui->comboBoxSearcherItemCount4, ui->comboBoxSearcherItemCount5, ui->comboBoxSearcherItemCount6 };
+    searcherItemClearButtons = { ui->pushButtonSearcherClearItem1, ui->pushButtonSearcherClearItem2, ui->pushButtonSearcherClearItem3,
+                                 ui->pushButtonSearcherClearItem4, ui->pushButtonSearcherClearItem5, ui->pushButtonSearcherClearItem6 };
 
-        season = new ComboBox(this);
-        season->addItem(tr("Spring"));
-        season->addItem(tr("Summer"));
-        season->addItem(tr("Autumn"));
-        season->addItem(tr("Winter"));
-        setFieldWidth(season);
+    for (int i = 0; i < 6; i++)
+    {
+        generatorItems[i]->setMaximumWidth(260);
+        searcherItemCounts[i]->setMaximumWidth(45);
 
-        location = new ComboBoxProxy(this);
-        location->enableAutoComplete();
-        setFieldWidth(location);
+        connect(generatorSlots[i], &QCheckBox::toggled, this,
+                [=] { updateItemList(generatorSlots[i], generatorLevels[i], generatorItems[i]); });
+        connect(generatorLevels[i], qOverload<int>(&QSpinBox::valueChanged), this,
+                [=] { updateItemList(generatorSlots[i], generatorLevels[i], generatorItems[i]); });
+        updateItemList(generatorSlots[i], generatorLevels[i], generatorItems[i]);
 
-        if (includePokemon)
-        {
-            pokemon = new ComboBox(this);
-            setFieldWidth(pokemon);
-            settings->addWidget(new QLabel(tr("Encounter"), this), 1, 2);
-            settings->addWidget(encounter, 1, 3);
-            settings->addWidget(new QLabel(tr("Season"), this), 2, 2);
-            settings->addWidget(season, 2, 3);
-            settings->addWidget(new QLabel(tr("Location"), this), 3, 2);
-            settings->addWidget(location, 3, 3);
-            settings->addWidget(new QLabel(tr("Pokémon"), this), 4, 2);
-            settings->addWidget(pokemon, 4, 3);
-        }
-        else
-        {
-            settings->addWidget(new QLabel(tr("Encounter"), this), 1, 2);
-            settings->addWidget(encounter, 1, 3);
-            settings->addWidget(new QLabel(tr("Season"), this), 2, 2);
-            settings->addWidget(season, 2, 3);
-            settings->addWidget(new QLabel(tr("Location"), this), 3, 2);
-            settings->addWidget(location, 3, 3);
-        }
-    };
-
-    createEncounterControls(ui->gridLayout, generatorEncounter, generatorSeason, generatorLocation, generatorPokemon, true);
-    ComboBox *searcherPokemon = nullptr;
-    createEncounterControls(ui->gridLayout_3, searcherEncounter, searcherSeason, searcherLocation, searcherPokemon, false);
-
-    auto setupGenerator = [this](QGridLayout *settings, QGridLayout *filters, int row, int maxItemWidth,
-                                 std::array<QCheckBox *, 6> &pickupSlotWidgets, std::array<QSpinBox *, 6> &levels,
-                                 std::array<ComboBox *, 6> &items) {
-        settings->addWidget(new QLabel(tr("Pickup Slots"), this), row, 0);
-        settings->addWidget(new QLabel(tr("Level"), this), row, 1);
-        filters->addWidget(new QLabel(tr("Items"), this), row, 0);
-
-        for (int i = 0; i < 6; i++)
-        {
-            auto *pickupSlot = new QCheckBox(tr("Slot %1").arg(i + 1), this);
-
-            auto *level = new QSpinBox(this);
-            level->setRange(0, 100);
-            level->setValue(50);
-
-            auto *item = new ComboBox(this);
-            if (maxItemWidth > 0)
-            {
-                item->setMaximumWidth(maxItemWidth);
-            }
-
-            settings->addWidget(pickupSlot, row + i + 1, 0);
-            settings->addWidget(level, row + i + 1, 1);
-            filters->addWidget(item, row + i + 1, 0);
-
-            pickupSlotWidgets[i] = pickupSlot;
-            levels[i] = level;
-            items[i] = item;
-
-            connect(pickupSlot, &QCheckBox::toggled, this, [=] { updateItemList(pickupSlot, level, item); });
-            connect(level, qOverload<int>(&QSpinBox::valueChanged), this, [=] { updateItemList(pickupSlot, level, item); });
-            updateItemList(pickupSlot, level, item);
-        }
-
-        auto *clear = new QPushButton(tr("Clear"), this);
-        filters->addWidget(clear, row + 7, 0);
-        connect(clear, &QPushButton::clicked, this, [=] {
-            for (auto *item : items)
-            {
-                item->setCurrentIndex(0);
-            }
+        connect(searcherSlots[i], &QCheckBox::toggled, this, &Pickup::updateSearcherItemLists);
+        connect(searcherLevels[i], qOverload<int>(&QSpinBox::valueChanged), this, &Pickup::updateSearcherItemLists);
+        connect(searcherItems[i], qOverload<int>(&QComboBox::currentIndexChanged), this, &Pickup::updateSearcherItemLists);
+        connect(searcherItemCounts[i], qOverload<int>(&QComboBox::currentIndexChanged), this, &Pickup::updateSearcherItemLists);
+        connect(searcherItemClearButtons[i], &QPushButton::clicked, this, [=] {
+            searcherItems[i]->setCurrentIndex(0);
+            searcherItemCounts[i]->setCurrentIndex(0);
+            updateSearcherItemLists();
         });
+    }
 
-        QWidget::setTabOrder(ui->textBoxGeneratorSeed, generatorIVAdvances);
-        QWidget::setTabOrder(generatorIVAdvances, ui->textBoxGeneratorInitialAdvances);
-        QWidget::setTabOrder(ui->textBoxGeneratorInitialAdvances, ui->textBoxGeneratorMaxAdvances);
-        QWidget::setTabOrder(ui->textBoxGeneratorMaxAdvances, ui->pushButtonGenerate);
-        QWidget::setTabOrder(ui->pushButtonGenerate, pickupSlotWidgets[0]);
-        for (int i = 0; i < 6; i++)
+    connect(ui->pushButtonGeneratorClearItems, &QPushButton::clicked, this, [=] {
+        for (auto *item : generatorItems)
         {
-            QWidget::setTabOrder(pickupSlotWidgets[i], levels[i]);
-            if (i < 5)
-            {
-                QWidget::setTabOrder(levels[i], pickupSlotWidgets[i + 1]);
-            }
+            item->setCurrentIndex(0);
         }
-        QWidget::setTabOrder(levels[5], generatorEncounter);
-        QWidget::setTabOrder(generatorEncounter, generatorSeason);
-        QWidget::setTabOrder(generatorSeason, generatorLocation);
-        QWidget::setTabOrder(generatorLocation, generatorPokemon);
-        QWidget::setTabOrder(generatorPokemon, items[0]);
-        for (int i = 0; i < 5; i++)
-        {
-            QWidget::setTabOrder(items[i], items[i + 1]);
-        }
-        QWidget::setTabOrder(items[5], clear);
-        QWidget::setTabOrder(clear, ui->filterGenerator);
-        QWidget::setTabOrder(ui->filterGenerator, ui->comboBoxProfiles);
-        QWidget::setTabOrder(ui->comboBoxProfiles, ui->pushButtonProfileManager);
-        QWidget::setTabOrder(ui->pushButtonProfileManager, ui->tabRNGSelector);
-        QWidget::setTabOrder(ui->tabRNGSelector, ui->textBoxGeneratorSeed);
-    };
+    });
 
-    auto setupSearcher = [this](QGridLayout *settings, QGridLayout *filters, int row, std::array<QCheckBox *, 6> &pickupSlotWidgets,
-                                std::array<QSpinBox *, 6> &levels, std::array<ComboBox *, 6> &items,
-                                std::array<ComboBox *, 6> &counts) {
-        settings->addWidget(new QLabel(tr("Pickup Slots"), this), row, 0);
-        settings->addWidget(new QLabel(tr("Level"), this), row, 1);
-        filters->addWidget(new QLabel(tr("Items"), this), row, 0);
-        filters->addWidget(new QLabel(tr("Count"), this), row, 1);
-
-        for (int i = 0; i < 6; i++)
-        {
-            auto *pickupSlot = new QCheckBox(tr("Slot %1").arg(i + 1), this);
-
-            auto *level = new QSpinBox(this);
-            level->setRange(0, 100);
-            level->setValue(50);
-
-            auto *item = new ComboBox(this);
-            auto *count = new ComboBox(this);
-            auto *clear = new QPushButton(tr("Clear"), this);
-            count->setMaximumWidth(45);
-
-            settings->addWidget(pickupSlot, row + i + 1, 0);
-            settings->addWidget(level, row + i + 1, 1);
-            filters->addWidget(item, row + i + 1, 0);
-            filters->addWidget(count, row + i + 1, 1);
-            filters->addWidget(clear, row + i + 1, 2);
-
-            pickupSlotWidgets[i] = pickupSlot;
-            levels[i] = level;
-            items[i] = item;
-            counts[i] = count;
-            searcherItemClearButtons[i] = clear;
-
-            connect(pickupSlot, &QCheckBox::toggled, this, &Pickup::updateSearcherItemLists);
-            connect(level, qOverload<int>(&QSpinBox::valueChanged), this, &Pickup::updateSearcherItemLists);
-            connect(item, qOverload<int>(&QComboBox::currentIndexChanged), this, &Pickup::updateSearcherItemLists);
-            connect(count, qOverload<int>(&QComboBox::currentIndexChanged), this, &Pickup::updateSearcherItemLists);
-            connect(clear, &QPushButton::clicked, this, [=] {
-                item->setCurrentIndex(0);
-                count->setCurrentIndex(0);
-                updateSearcherItemLists();
-            });
-        }
-
-        for (int i = 0; i < 6; i++)
-        {
-            QWidget::setTabOrder(pickupSlotWidgets[i], levels[i]);
-            if (i < 5)
-            {
-                QWidget::setTabOrder(levels[i], pickupSlotWidgets[i + 1]);
-            }
-        }
-        QWidget::setTabOrder(levels[5], searcherEncounter);
-        QWidget::setTabOrder(searcherEncounter, searcherSeason);
-        QWidget::setTabOrder(searcherSeason, searcherLocation);
-        QWidget::setTabOrder(searcherLocation, items[0]);
-        for (int i = 0; i < 6; i++)
-        {
-            QWidget::setTabOrder(items[i], counts[i]);
-            QWidget::setTabOrder(counts[i], searcherItemClearButtons[i]);
-            if (i < 5)
-            {
-                QWidget::setTabOrder(searcherItemClearButtons[i], items[i + 1]);
-            }
-        }
-    };
-
-    setupGenerator(ui->gridLayout, ui->gridLayout_19, 0, 260, generatorSlots, generatorLevels, generatorItems);
-    setupSearcher(ui->gridLayout_3, ui->gridLayout_24, 0, searcherSlots, searcherLevels, searcherItems, searcherItemCounts);
     updateSearcherItemLists();
 
     connect(generatorEncounter, &QComboBox::currentIndexChanged, this, &Pickup::generatorEncounterIndexChanged);
