@@ -29,6 +29,9 @@ private slots:
     void advance_data();
     void advance();
 
+    void jump_data();
+    void jump();
+
     void next_data();
     void next();
 };

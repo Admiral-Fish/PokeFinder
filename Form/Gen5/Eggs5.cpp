@@ -37,10 +37,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("egg5");
+
 Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     generatorModel = new EggGeneratorModel5(ui->tableViewGenerator);
     ui->tableViewGenerator->setModel(generatorModel);
@@ -67,12 +71,12 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Eggs5::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Eggs5::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Eggs5::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Eggs5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::showInheritanceChanged, generatorModel, &EggGeneratorModel5::setShowInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::showInheritanceChanged, searcherModel, &EggSearcherModel5::setShowInheritance);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &EggGeneratorModel5::setShowStats);
@@ -81,7 +85,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("egg5");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -100,8 +104,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 Eggs5::~Eggs5()
 {
     QSettings setting;
-    setting.beginGroup("egg5");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
@@ -112,25 +115,12 @@ Eggs5::~Eggs5()
 
 bool Eggs5::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void Eggs5::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("egg5/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Eggs5::generate()
@@ -235,31 +225,9 @@ void Eggs5::search()
     timer->start(1000);
 }
 
-void Eggs5::profileIndexChanged(int index)
+void Eggs5::profileChanged(const Profile5 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Eggs5::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void Eggs5::transferFilters(int index)

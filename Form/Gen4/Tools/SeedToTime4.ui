@@ -20,7 +20,7 @@
       <attribute name="title">
        <string>DPPt</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
+      <layout class="QGridLayout" name="gridLayout_1">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxDPPtSearch">
          <property name="title">
@@ -172,7 +172,7 @@
       <attribute name="title">
        <string>HGSS</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_7">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxHGSSSearch">
          <property name="title">

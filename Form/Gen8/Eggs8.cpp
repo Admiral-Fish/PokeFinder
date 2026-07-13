@@ -30,10 +30,14 @@
 #include <QMessageBox>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("egg8");
+
 Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::BDSP);
 
     model = new EggModel8(ui->tableView);
     ui->tableView->setModel(model);
@@ -52,16 +56,16 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 
     ui->filter->enableHiddenAbility();
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs8::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Eggs8::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Eggs8::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs8::generate);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs8::profileManager);
     connect(ui->eggSettings, &EggSettings::showInheritanceChanged, model, &EggModel8::setShowInheritance);
     connect(ui->filter, &Filter::showStatsChanged, model, &EggModel8::setShowStats);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("egg8");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -72,8 +76,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 Eggs8::~Eggs8()
 {
     QSettings setting;
-    setting.beginGroup("egg8");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -82,24 +85,7 @@ Eggs8::~Eggs8()
 
 void Eggs8::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader8::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("egg8/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Eggs8::generate()
@@ -148,23 +134,7 @@ void Eggs8::generate()
     model->addItems(states);
 }
 
-void Eggs8::profileIndexChanged(int index)
+void Eggs8::profileChanged(const Profile8 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-        ui->labelProfileShinyCharmValue->setText(currentProfile->getShinyCharm() ? tr("Yes") : tr("No"));
-        ui->labelProfileOvalCharmValue->setText(currentProfile->getOvalCharm() ? tr("Yes") : tr("No"));
-    }
-}
-
-void Eggs8::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }

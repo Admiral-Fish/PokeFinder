@@ -33,18 +33,24 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("static5");
+
 Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     generatorModel = new StaticGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel5(ui->tableViewSearcher);
@@ -84,7 +90,12 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::profileIndexChanged);
+    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    connect(adjacentSeeds, &QAction::triggered, this, &Static5::openAdjacentSeeds);
+    ui->tableViewSearcher->addAction(adjacentSeeds);
+
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Static5::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Static5::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static5::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static5::generate);
@@ -93,10 +104,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static5::searcherCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static5::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static5::searcherPokemonIndexChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel5::setShowStats);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Static5::searcherFastSearchChanged);
@@ -110,7 +119,7 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     searcherFastSearchChanged();
 
     QSettings setting;
-    setting.beginGroup("static5");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -129,8 +138,7 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
 Static5::~Static5()
 {
     QSettings setting;
-    setting.beginGroup("static5");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
@@ -143,25 +151,12 @@ Static5::~Static5()
 
 bool Static5::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void Static5::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static5/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 bool Static5::fastSearchEnabled() const
@@ -266,88 +261,79 @@ void Static5::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static5::profileIndexChanged(int index)
+void Static5::openAdjacentSeeds()
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
+    const StaticTemplate5 *staticTemplate
+        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        if (ivCache)
-        {
-            delete ivCache;
-            ivCache = nullptr;
-        }
-
-        if (shaCache)
-        {
-            delete shaCache;
-            shaCache = nullptr;
-        }
-
-        auto ivCachePath = currentProfile->getIVCache();
-        if (!ivCachePath.empty())
-        {
-            ivCache = new IVCache(ivCachePath);
-        }
-
-        auto shaCachePath = currentProfile->getSHACache();
-        if (!shaCachePath.empty())
-        {
-            shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-            ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-        }
-        else
-        {
-            ui->dateEditSearcherStartDate->clearDateRange();
-            ui->dateEditSearcherEndDate->clearDateRange();
-        }
-
-        bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
-
-        ui->labelGeneratorLuckyPower->setHidden(!bw);
-        ui->labelSearcherLuckyPower->setHidden(!bw);
-        ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
-        ui->comboBoxSearcherLuckyPower->setHidden(!bw);
-
-        // Event
-        ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
-
-        // Roamer
-        ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
-
-        // Curtis
-        ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(7, bw);
-
-        // Yancy
-        ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(8, bw);
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
-    }
+    auto *window = new AdjacentSeeds(staticTemplate->getRoamer(), state.getButtons(), state.getDateTime(), *currentProfile);
+    window->show();
 }
 
-void Static5::profileManager()
+void Static5::profileChanged(const Profile5 &profile)
 {
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
+
+    if (ivCache)
+    {
+        delete ivCache;
+        ivCache = nullptr;
+    }
+
+    if (shaCache)
+    {
+        delete shaCache;
+        shaCache = nullptr;
+    }
+
+    auto ivCachePath = currentProfile->getIVCache();
+    if (!ivCachePath.empty())
+    {
+        ivCache = new IVCache(ivCachePath);
+    }
+
+    auto shaCachePath = currentProfile->getSHACache();
+    if (!shaCachePath.empty())
+    {
+        shaCache = new SHA1Cache(shaCachePath);
+        ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+        ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+    }
+    else
+    {
+        ui->dateEditSearcherStartDate->clearDateRange();
+        ui->dateEditSearcherEndDate->clearDateRange();
+    }
+
+    bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
+
+    ui->labelGeneratorLuckyPower->setHidden(!bw);
+    ui->labelSearcherLuckyPower->setHidden(!bw);
+    ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
+    ui->comboBoxSearcherLuckyPower->setHidden(!bw);
+
+    // Event
+    ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
+
+    // Roamer
+    ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
+
+    // Curtis
+    ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(7, bw);
+
+    // Yancy
+    ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(8, bw);
+
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
+
+    searcherFastSearchChanged();
 }
 
 void Static5::search()

@@ -81,6 +81,7 @@ void ComboBoxProxy::enableAutoComplete()
 {
     setEditable(true);
     setInsertPolicy(QComboBox::NoInsert);
+    completer()->setFilterMode(Qt::MatchContains);
     completer()->setCompletionMode(QCompleter::PopupCompletion);
 }
 

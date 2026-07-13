@@ -27,15 +27,18 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/EggModel3.hpp>
 #include <QMessageBox>
 #include <QSettings>
+
+static const QString settingPrefix = QStringLiteral("eggs3");
 
 Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::RSE | Game::FRLG);
 
     emerald = new EggModel3(ui->tableViewEmerald, true);
     ui->tableViewEmerald->setModel(emerald);
@@ -76,10 +79,10 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->eggSettingsEmerald->setup(Game::Emerald);
     ui->eggSettingsRSFRLG->setup(Game::RS | Game::FRLG);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs3::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &Eggs3::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &Eggs3::profilesChanged);
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
     connect(ui->pushButtonRSFRLGGenerate, &QPushButton::clicked, this, &Eggs3::rsfrlgGenerate);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs3::profileManager);
     connect(ui->eggSettingsEmerald, &EggSettings::showInheritanceChanged, emerald, &EggModel3::setShowInheritance);
     connect(ui->eggSettingsRSFRLG, &EggSettings::showInheritanceChanged, rsfrlg, &EggModel3::setShowInheritance);
     connect(ui->filterEmerald, &Filter::showStatsChanged, emerald, &EggModel3::setShowStats);
@@ -88,17 +91,18 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     updateProfiles();
 
     QSettings setting;
-    if (setting.contains("eggs3/geometry"))
+    setting.beginGroup(settingPrefix);
+    if (setting.contains("geometry"))
     {
-        this->restoreGeometry(setting.value("eggs3/geometry").toByteArray());
+        this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    setting.endGroup();
 }
 
 Eggs3::~Eggs3()
 {
     QSettings setting;
-    setting.beginGroup("eggs3");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -107,21 +111,7 @@ Eggs3::~Eggs3()
 
 void Eggs3::updateProfiles()
 {
-    profiles = ProfileLoader3::getProfiles();
-    profiles.insert(profiles.begin(), Profile3("None", Game::Emerald, 12345, 54321, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("eggs3/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Eggs3::emeraldGenerate()
@@ -191,27 +181,12 @@ void Eggs3::rsfrlgGenerate()
     rsfrlg->addItems(states);
 }
 
-void Eggs3::profileIndexChanged(int index)
+void Eggs3::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
+    currentProfile = &profile;
+    if (currentProfile->getDeadBattery())
     {
-        currentProfile = &profiles[index];
-
-        if (currentProfile->getDeadBattery())
-        {
-            ui->textBoxRSFRLGSeedHeld->setText("5a0");
-            ui->textBoxRSFRLGSeedPickup->setText("5a0");
-        }
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+        ui->textBoxRSFRLGSeedHeld->setText("5a0");
+        ui->textBoxRSFRLGSeedPickup->setText("5a0");
     }
-}
-
-void Eggs3::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
 }

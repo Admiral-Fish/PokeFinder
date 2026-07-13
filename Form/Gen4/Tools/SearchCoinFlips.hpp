@@ -22,7 +22,9 @@
 
 #include <QDialog>
 
-class SeedTimeCalibrate4;
+class IndexFilterProxyModel;
+class SeedToTimeCalibrateModel4;
+typedef QList<QModelIndex> QModelIndexList;
 
 namespace Ui
 {
@@ -39,9 +41,10 @@ public:
     /**
      * @brief Construct a new SearchCoinFlips object
      *
+     * @param model Input model to search
      * @param parent Parent widget, which takes memory ownership
      */
-    SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
+    SearchCoinFlips(SeedToTimeCalibrateModel4 *model, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the SearchCoinFlips object
@@ -49,19 +52,30 @@ public:
     ~SearchCoinFlips() override;
 
     /**
-     * @brief Returns possible matching results based on input Elm/Irwin calls
+     * @brief Returns possible matching indexes based on input coin flips
      *
-     * @return Vector of possible results
+     * @return Vector of possible indexes
      */
-    std::vector<bool> getResults() const;
+    QModelIndexList getIndexes() const;
 
 private:
     Ui::SearchCoinFlips *ui;
 
-    std::vector<bool> possible;
-    const std::vector<SeedTimeCalibrate4> &data;
+    IndexFilterProxyModel *previewModel;
+    SeedToTimeCalibrateModel4 *model;
+    QModelIndexList indexes;
+
+    /**
+     * @brief Updates preview table with possible matching results
+     */
+    void updatePreview();
 
 private slots:
+    /**
+     * @brief Clears all coin flips from the string
+     */
+    void clear();
+
     /**
      * @brief Updates possible matching calibration results
      *
@@ -73,6 +87,11 @@ private slots:
      * @brief Updates display text to show the heads text
      */
     void heads();
+
+    /**
+     * @brief Removes the last coin flip from the string
+     */
+    void remove();
 
     /**
      * @brief Updates display text to show the tails text
