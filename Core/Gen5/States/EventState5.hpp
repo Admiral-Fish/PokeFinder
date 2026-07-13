@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new EventState5 object
      *
-     * @param prng PRNG call to determine Chatot pitch and save needle
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param pid Pokemon PID
      * @param ivs Pokemon IVs

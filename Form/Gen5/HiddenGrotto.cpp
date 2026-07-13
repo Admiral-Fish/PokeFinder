@@ -19,7 +19,6 @@
 
 #include "HiddenGrotto.hpp"
 #include "ui_HiddenGrotto.h"
-#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -37,6 +36,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -49,11 +49,7 @@
 static const QString settingPrefix = QStringLiteral("hiddenGrotto");
 
 HiddenGrotto::HiddenGrotto(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::HiddenGrotto),
-    ivCache(nullptr),
-    shaCache(nullptr),
-    encounter(Encounters5::getHiddenGrottoEncounters())
+    QWidget(parent), ui(new Ui::HiddenGrotto), ivCache(nullptr), shaCache(nullptr), encounter(Encounters5::getHiddenGrottoEncounters())
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);

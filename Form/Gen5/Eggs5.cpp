@@ -19,7 +19,6 @@
 
 #include "Eggs5.hpp"
 #include "ui_Eggs5.h"
-#include <Form/Util/AdvanceFinder.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -30,6 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/EggModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>

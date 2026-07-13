@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new State5 object
      *
-     * @param prng PRNG call to determine Chatot pitch and save needle
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
@@ -48,18 +48,18 @@ public:
         GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
         ivAdvances(ivAdvances),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        saveNeedle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
 
     /**
-     * @brief Returns the save needle value
+     * @brief Returns the needle value
      *
-     * @return Save needle value
+     * @return Needle value
      */
     u8 getNeedle() const
     {
-        return saveNeedle;
+        return needle;
     }
 
     /**
@@ -85,7 +85,7 @@ public:
 private:
     u32 ivAdvances;
     u8 chatot;
-    u8 saveNeedle;
+    u8 needle;
 };
 
 #endif // STATE5_HPP

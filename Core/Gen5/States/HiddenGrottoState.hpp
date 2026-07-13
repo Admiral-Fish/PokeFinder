@@ -31,7 +31,7 @@ public:
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch and save needle
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param group Pokemon group
      * @param slot Pokemon slot
@@ -53,7 +53,7 @@ public:
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch and save needle
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param group Item group
      * @param slot Item slot
