@@ -110,6 +110,13 @@ public:
     std::array<bool, 12> getEncounterSlots() const;
 
     /**
+     * @brief Gets encounter slots to filter by for wild encounters
+     *
+     * @return Array of encounter slots
+     */
+    std::array<bool, 13> getWildEncounterSlots() const;
+
+    /**
      * @brief Constructs filter from the UI settings
      *
      * @tparam FilterType Filter class type

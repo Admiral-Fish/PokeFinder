@@ -46,7 +46,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             return QString::fromStdString(Translator::getItem(state.getItem()));
         case 3:
             return QString("%1: %2")
-                .arg(state.getEncounterSlot())
+                .arg(state.getEncounterSlot() == 12 ? tr("S") : QString::number(state.getEncounterSlot()))
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
         case 4:
             return state.getLevel();
@@ -134,7 +134,7 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
             return QString::fromStdString(Translator::getItem(state.getItem()));
         case 4:
             return QString("%1: %2")
-                .arg(state.getEncounterSlot())
+                .arg(state.getEncounterSlot() == 12 ? tr("S") : QString::number(state.getEncounterSlot()))
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
         case 5:
             return state.getLevel();

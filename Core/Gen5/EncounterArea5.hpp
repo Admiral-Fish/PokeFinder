@@ -21,6 +21,8 @@
 #define ENCOUNTERAREA5_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/Util/Translator.hpp>
+#include <algorithm>
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -28,6 +30,9 @@
 class EncounterArea5 : public EncounterArea
 {
 public:
+    using EncounterArea::getPokemon;
+    using EncounterArea::getSlots;
+
     /**
      * @brief Construct a new EncounterArea5 object
      *
@@ -36,9 +41,10 @@ public:
      * @param season Whether encounter area has seasonal encounters
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
+     * @param swarm Optional swarm pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 12> &pokemon) :
-        EncounterArea(location, rate, encounter, pokemon), season(season)
+    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 12> &pokemon, const Slot &swarm = Slot()) :
+        EncounterArea(location, rate, encounter, pokemon), swarm(swarm), season(season)
     {
     }
 
@@ -53,7 +59,7 @@ public:
      */
     u8 calculateLevel(u8 encounterSlot, u8 prng, bool force) const
     {
-        const Slot &slot = pokemon[encounterSlot];
+        const Slot &slot = getPokemon(encounterSlot);
 
         u8 min = slot.getMinLevel();
         u8 max = slot.getMaxLevel();
@@ -64,16 +70,17 @@ public:
         {
             bool diff = false;
             u8 max = level;
-            for (u8 i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
+            for (u8 i = 0; i < getCount(); i++)
             {
-                if (pokemon[i].getMinLevel() != pokemon[i].getMaxLevel())
+                const Slot &other = getPokemon(i);
+                if (other.getMinLevel() != other.getMaxLevel())
                 {
                     diff = true;
                 }
 
-                if (slot.getSpecie() == pokemon[i].getSpecie())
+                if (slot.getSpecie() == other.getSpecie())
                 {
-                    max = std::max(max, pokemon[i].getMaxLevel());
+                    max = std::max(max, other.getMaxLevel());
                 }
             }
 
@@ -91,6 +98,53 @@ public:
     }
 
     /**
+     * @brief Return number of encounter slots
+     *
+     * @return Encounter slot count
+     */
+    u8 getCount() const
+    {
+        return EncounterArea::getCount() + hasSwarm();
+    }
+
+    /**
+     * @brief Calculates the level range of a \p specie across all possible slots it can be encountered
+     *
+     * @param specie Species number
+     *
+     * @return Pair of level range
+     */
+    std::pair<u8, u8> getLevelRange(u16 specie) const
+    {
+        auto range = EncounterArea::getLevelRange(specie);
+        if (swarm.getSpecie() == (specie & 0x7ff) && swarm.getForm() == (specie >> 11))
+        {
+            if (range.first == 0 && range.second == 0)
+            {
+                range = { swarm.getMinLevel(), swarm.getMaxLevel() };
+            }
+            else
+            {
+                range.first = std::min(range.first, swarm.getMinLevel());
+                range.second = std::max(range.second, swarm.getMaxLevel());
+            }
+        }
+        return range;
+    }
+
+    /**
+     * @brief Return the pokemon at the specific \p index
+     *
+     * @param index Pokemon index
+     *
+     * @return Pokemon
+     */
+    const Slot &getPokemon(int index) const
+    {
+        return index == 12 ? swarm : EncounterArea::getPokemon(index);
+    }
+
+    /**
      * @brief Returns if the encounter area has multiple seasonal differences
      *
      * @return true Differences based on the season
@@ -101,7 +155,62 @@ public:
         return season;
     }
 
+    /**
+     * @brief Return vector of true/false which indicate slots that match the \p specie
+     *
+     * @param specie Species number
+     *
+     * @return Vector of true/false for matching slots
+     */
+    std::vector<bool> getSlots(u16 specie) const
+    {
+        auto flags = EncounterArea::getSlots(specie);
+        if (hasSwarm())
+        {
+            flags.emplace_back(swarm.getSpecie() == (specie & 0x7ff) && swarm.getForm() == (specie >> 11));
+        }
+        return flags;
+    }
+
+    /**
+     * @brief Return vector of names of all pokemon slots
+     *
+     * @return Vector of pokemon name
+     */
+    std::vector<std::string> getSpecieNames() const
+    {
+        return Translator::getSpecies(getUniqueSpecies());
+    }
+
+    /**
+     * @brief Return the species numbers of unique pokemon of the area
+     *
+     * @return Vector of pokemon species
+     */
+    std::vector<u16> getUniqueSpecies() const
+    {
+        auto species = EncounterArea::getUniqueSpecies();
+        u16 specie = swarm.getSpecie() | (swarm.getForm() << 11);
+        if (hasSwarm() && std::find(species.begin(), species.end(), specie) == species.end())
+        {
+            species.emplace_back(specie);
+        }
+        return species;
+    }
+
+    /**
+     * @brief Returns if the area has a swarm encounter
+     *
+     * @return true Area has a swarm encounter
+     * @return false Area does not have a swarm encounter
+     */
+    bool hasSwarm() const
+    {
+        return swarm.getSpecie() != 0;
+    }
+
 private:
+    Slot swarm;
     bool season;
 };
 

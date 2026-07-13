@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QRegularExpression>
+#include <algorithm>
 
 /**
  * @brief Updates min/max values based on control keys selected
@@ -283,6 +284,14 @@ std::array<bool, 12> Filter::getEncounterSlots() const
     return ui->checkListEncounterSlot->getCheckedArray<12>();
 }
 
+std::array<bool, 13> Filter::getWildEncounterSlots() const
+{
+    auto checked = ui->checkListEncounterSlot->getChecked();
+    std::array<bool, 13> array = {};
+    std::copy_n(checked.begin(), std::min(checked.size(), array.size()), array.begin());
+    return array;
+}
+
 u8 Filter::getGender() const
 {
     return ui->comboBoxGender->getCurrentUChar();
@@ -444,7 +453,7 @@ void Filter::setEncounterSlots(u8 max) const
     std::vector<std::string> items;
     for (u8 i = 0; i < max; i++)
     {
-        items.emplace_back(std::to_string(i));
+        items.emplace_back(i == 12 ? "Swarm" : std::to_string(i));
     }
     ui->checkListEncounterSlot->addItems(items);
 }
