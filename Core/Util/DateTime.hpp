@@ -128,6 +128,14 @@ public:
     std::string toString() const;
 
     /**
+     * @brief Determines if date is valid
+     *
+     * @return true Date is valid
+     * @return false Date is not valid
+     */
+    bool valid() const;
+
+    /**
      * @brief Converts the Julian date to a Gregorian date and returns the year
      *
      * @return Year of the date
@@ -174,6 +182,19 @@ public:
     }
 
     /**
+     * @brief Checks if this date is greater than or equal to the other date
+     *
+     * @param other Date to compare
+     *
+     * @return true This date is greater than or equal to \p other
+     * @return false This date is not greater than or equal to \p other
+     */
+    constexpr bool operator>=(const Date &other) const
+    {
+        return jd >= other.jd;
+    }
+
+    /**
      * @brief Checks if this date is greater than to the other date
      *
      * @param other Date to compare
@@ -205,7 +226,7 @@ public:
      *
      * @return New calculated date
      */
-    constexpr Date &operator+=(u32 days)
+    constexpr Date &operator+=(int days)
     {
         jd += days;
         return *this;
@@ -290,6 +311,14 @@ public:
      * @return Time string
      */
     std::string toString() const;
+
+    /**
+     * @brief Determines if time is valid
+     *
+     * @return true Time is valid
+     * @return false Time is not valid
+     */
+    bool valid() const;
 
     /**
      * @brief Checks if two times are equal
@@ -410,6 +439,7 @@ public:
 
     /**
      * @brief Returns the \ref Time component
+     *
      * @return Time
      */
     Time getTime() const;
@@ -420,6 +450,14 @@ public:
      * @return DateTime string
      */
     std::string toString() const;
+
+    /**
+     * @brief Determines if date/time is valid
+     *
+     * @return true Date/time is valid
+     * @return false Date/time is not valid
+     */
+    bool valid() const;
 
     /**
      * @brief Checks if two date/times are equal

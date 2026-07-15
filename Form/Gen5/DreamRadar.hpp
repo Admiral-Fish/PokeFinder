@@ -42,9 +42,9 @@ class DreamRadar : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -78,9 +78,8 @@ private:
 
     DreamRadarGeneratorModel5 *generatorModel;
     DreamRadarSearcherModel5 *searcherModel;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     SortFilterProxyModel *proxyModel;
-    std::vector<Profile5> profiles;
 
     /**
      * @brief Loads UI settings for dream radar templates
@@ -108,16 +107,11 @@ private slots:
     void search();
 
     /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab

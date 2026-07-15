@@ -35,8 +35,10 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QCoreApplication>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -81,10 +83,14 @@ static std::vector<Lead> getSearcherLeads(ComboMenu *comboMenu)
     return leads;
 }
 
+static const QString settingPrefix = QStringLiteral("static5");
+
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     generatorModel = new WildGeneratorModel5(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel5(ui->tableViewSearcher);
@@ -135,7 +141,12 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::profileIndexChanged);
+    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    connect(adjacentSeeds, &QAction::triggered, this, &Wild5::openAdjacentSeeds);
+    ui->tableViewSearcher->addAction(adjacentSeeds);
+
+    connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Wild5::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Wild5::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Wild5::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Wild5::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild5::generate);
@@ -148,10 +159,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild5::searcherPokemonIndexChanged);
     connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Wild5::generatorSeasonIndexChanged);
     connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Wild5::searcherSeasonIndexChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild5::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
@@ -165,7 +174,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     searcherFastSearchChanged();
 
     QSettings setting;
-    setting.beginGroup("wild5");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -184,8 +193,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
 Wild5::~Wild5()
 {
     QSettings setting;
-    setting.beginGroup("wild5");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("startDate", ui->dateEditSearcherStartDate->date());
     setting.setValue("endDate", ui->dateEditSearcherEndDate->date());
@@ -198,25 +206,12 @@ Wild5::~Wild5()
 
 bool Wild5::hasProfiles() const
 {
-    return !profiles.empty();
+    return ui->profileDisplay->hasProfiles();
 }
 
 void Wild5::updateProfiles()
 {
-    profiles = ProfileLoader5::getProfiles();
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("wild5/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 bool Wild5::fastSearchEnabled() const
@@ -334,73 +329,62 @@ void Wild5::generatorSeasonIndexChanged(int index)
     }
 }
 
-void Wild5::profileIndexChanged(int index)
+void Wild5::openAdjacentSeeds()
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        if (ivCache)
-        {
-            delete ivCache;
-            ivCache = nullptr;
-        }
-
-        if (shaCache)
-        {
-            delete shaCache;
-            shaCache = nullptr;
-        }
-
-        auto ivCachePath = currentProfile->getIVCache();
-        if (!ivCachePath.empty())
-        {
-            ivCache = new IVCache(ivCachePath);
-        }
-
-        auto shaCachePath = currentProfile->getSHACache();
-        if (!shaCachePath.empty())
-        {
-            shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-            ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-        }
-        else
-        {
-            ui->dateEditSearcherStartDate->clearDateRange();
-            ui->dateEditSearcherEndDate->clearDateRange();
-        }
-
-        bool flag = (currentProfile->getVersion() & Game::BW2) != Game::None;
-
-        ui->labelGeneratorLuckyPower->setVisible(flag);
-        ui->comboBoxGeneratorLuckyPower->setVisible(flag);
-
-        ui->labelSearcherLuckyPower->setVisible(flag);
-        ui->comboBoxSearcherLuckyPower->setVisible(flag);
-
-        generatorEncounterIndexChanged(0);
-        searcherEncounterIndexChanged(0);
-    }
+    auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
+    window->show();
 }
 
-void Wild5::profileManager()
+void Wild5::profileChanged(const Profile5 &profile)
 {
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
+
+    if (ivCache)
+    {
+        delete ivCache;
+        ivCache = nullptr;
+    }
+
+    if (shaCache)
+    {
+        delete shaCache;
+        shaCache = nullptr;
+    }
+
+    auto ivCachePath = currentProfile->getIVCache();
+    if (!ivCachePath.empty())
+    {
+        ivCache = new IVCache(ivCachePath);
+    }
+
+    auto shaCachePath = currentProfile->getSHACache();
+    if (!shaCachePath.empty())
+    {
+        shaCache = new SHA1Cache(shaCachePath);
+        ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+        ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+    }
+    else
+    {
+        ui->dateEditSearcherStartDate->clearDateRange();
+        ui->dateEditSearcherEndDate->clearDateRange();
+    }
+
+    bool flag = (currentProfile->getVersion() & Game::BW2) != Game::None;
+
+    ui->labelGeneratorLuckyPower->setVisible(flag);
+    ui->comboBoxGeneratorLuckyPower->setVisible(flag);
+
+    ui->labelSearcherLuckyPower->setVisible(flag);
+    ui->comboBoxSearcherLuckyPower->setVisible(flag);
+
+    generatorEncounterIndexChanged(0);
+    searcherEncounterIndexChanged(0);
+
+    searcherFastSearchChanged();
 }
 
 void Wild5::search()

@@ -20,8 +20,6 @@
 #include "DreamRadarModel.hpp"
 #include <Core/Util/Translator.hpp>
 
-static const QStringList needleStrings = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
-
 DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
@@ -42,7 +40,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 0:
             return state.getAdvances();
         case 1:
-            return needleStrings[state.getNeedle()];
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
@@ -77,7 +75,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
     return QVariant();
@@ -154,7 +152,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         case 16:
             return QString::fromStdString(display.getDateTime().toString());
         case 17:

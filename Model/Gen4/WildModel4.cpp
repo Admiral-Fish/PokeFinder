@@ -193,7 +193,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 19:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 20:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();
@@ -297,7 +297,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 20:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 21:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();

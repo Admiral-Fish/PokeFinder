@@ -1,0 +1,324 @@
+[
+    {
+        "Le encanta comer": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "A menudo se duerme": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Duerme mucho": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Suele desordenar cosas": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Le gusta relajarse": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Orgulloso de su fuerza": [
+            4,
+            5
+        ],
+        "Está orgulloso de su fuerza": [
+            6,
+            7
+        ],
+        "Se enorgullece de su fuerza": [
+            8
+        ]
+    },
+    {
+        "Le gusta revolverse": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "A veces se enfada": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Le gusta luchar": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Tiene mal genio": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Cuerpo resistente": [
+            4,
+            5
+        ],
+        "Se caracteriza por su cuerpo resistente": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Buen fajador": [
+            4,
+            5
+        ],
+        "Es un buen fajador": [
+            6,
+            7
+        ],
+        "Encaja bien los ataques": [
+            8
+        ]
+    },
+    {
+        "Muy persistente": [
+            4,
+            5
+        ],
+        "Es muy persistente": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Muy resistente": [
+            4,
+            5
+        ],
+        "Se caracteriza por ser muy resistente": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Muy perseverante": [
+            4,
+            5
+        ],
+        "Es muy perseverante": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Le gusta correr": [
+            4,
+            5,
+            6,
+            7
+        ],
+        "Le gusta ir muy rápido": [
+            8
+        ]
+    },
+    {
+        "Oído siempre alerta": [
+            4,
+            5
+        ],
+        "Siempre tiene el oído alerta": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Impetuoso y bobo": [
+            4,
+            5
+        ],
+        "Resulta algo impetuoso y bobo": [
+            6,
+            7
+        ],
+        "Es de carácter simple e impetuoso": [
+            8
+        ]
+    },
+    {
+        "Es un poco payaso": [
+            4,
+            5,
+            6,
+            7
+        ],
+        "Le encanta hacer payasadas": [
+            8
+        ]
+    },
+    {
+        "Huye rápido": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Extremadamente curioso": [
+            4,
+            5
+        ],
+        "Es extremadamente curioso": [
+            6,
+            7
+        ],
+        "Siente mucha curiosidad por todo": [
+            8
+        ]
+    },
+    {
+        "Travieso": [
+            4,
+            5
+        ],
+        "Le gusta hacer travesuras": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Muy astuto": [
+            4,
+            5
+        ],
+        "Es muy astuto": [
+            6,
+            7
+        ],
+        "Es muy sagaz": [
+            8
+        ]
+    },
+    {
+        "A menudo está en Babia": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Muy melindroso": [
+            4,
+            5
+        ],
+        "Es muy melindroso": [
+            6,
+            7
+        ],
+        "Es muy tiquismiquis": [
+            8
+        ]
+    },
+    {
+        "Voluntarioso": [
+            4,
+            5
+        ],
+        "Se distingue por ser muy voluntarioso": [
+            6,
+            7
+        ],
+        "Se distingue por su gran fuerza de voluntad": [
+            8
+        ]
+    },
+    {
+        "Algo orgulloso": [
+            4,
+            5
+        ],
+        "Es algo orgulloso": [
+            6,
+            7
+        ],
+        "Es un poco petulante": [
+            8
+        ]
+    },
+    {
+        "Muy insolente": [
+            4,
+            5
+        ],
+        "Es muy insolente": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Odia perder": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Un poco cabezota": [
+            4,
+            5
+        ],
+        "Es un poco cabezota": [
+            6,
+            7,
+            8
+        ]
+    }
+]
