@@ -103,6 +103,16 @@ public:
     bool getDisableFilters() const;
 
     /**
+     * @brief Checks if any real filter is currently active
+     *
+     * @param encounterSlots Number of encounter slots to consider. Use 0 to ignore encounter slot filtering.
+     *
+     * @return true At least 1 filter is active
+     * @return false No filters are active or filters are disabled
+     */
+    bool hasActiveFilters(u8 encounterSlots = 0) const;
+
+    /**
      * @brief Gets encounter slots to filter by
      *
      * @return Array of encounter slots
