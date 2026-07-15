@@ -33,6 +33,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/CheckList.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/Filter.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
@@ -68,6 +69,46 @@ enum HGSSSearcherStepOption : u8
     StepRunningLongGrass = 1 << 6,
     StepPokemonLullaby = 1 << 7
 };
+
+template <size_t size>
+static bool hasUnchecked(const std::array<bool, size> &values, size_t count = size)
+{
+    count = std::min(count, values.size());
+    auto end = values.begin() + count;
+    return std::ranges::find(values.begin(), end, false) != end;
+}
+
+static bool hasActiveGeneratorFilter(const Filter *filter, u8 encounterSlots)
+{
+    if (filter->getDisableFilters())
+    {
+        return false;
+    }
+
+    if (filter->getAbility() != 255 || filter->getGender() != 255 || filter->getShiny() != 255)
+    {
+        return true;
+    }
+
+    if (filter->getLevelMin() != 1 || filter->getLevelMax() != 100 || filter->getHeightMin() != 0 || filter->getHeightMax() != 255
+        || filter->getWeightMin() != 0 || filter->getWeightMax() != 255)
+    {
+        return true;
+    }
+
+    auto min = filter->getMinIVs();
+    auto max = filter->getMaxIVs();
+    for (size_t i = 0; i < min.size(); i++)
+    {
+        if (min[i] != 0 || max[i] != 31)
+        {
+            return true;
+        }
+    }
+
+    return hasUnchecked(filter->getNatures()) || hasUnchecked(filter->getHiddenPowers())
+        || hasUnchecked(filter->getEncounterSlots(), encounterSlots);
+}
 
 static bool hasLongGrass(Game version, Encounter encounter, u8 location)
 {
@@ -696,6 +737,10 @@ void Wild4::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, fixedSlot);
+    if (searchStepEncounter && hasActiveGeneratorFilter(ui->filterGenerator, encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
+    {
+        std::erase_if(states, [](const auto &state) { return !state.getStepEncounter(); });
+    }
     generatorModel->addItems(states);
 }
 

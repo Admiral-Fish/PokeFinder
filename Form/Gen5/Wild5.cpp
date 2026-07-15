@@ -34,6 +34,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/Filter.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/WildModel5.hpp>
@@ -45,6 +46,47 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+
+template <size_t size>
+static bool hasUnchecked(const std::array<bool, size> &values, size_t count = size)
+{
+    count = std::min(count, values.size());
+    auto end = values.begin() + count;
+    return std::ranges::find(values.begin(), end, false) != end;
+}
+
+static bool hasActiveGeneratorFilter(const Filter *filter, u8 encounterSlots)
+{
+    if (filter->getDisableFilters())
+    {
+        return false;
+    }
+
+    if (filter->getAbility() != 255 || filter->getGender() != 255 || filter->getShiny() != 255)
+    {
+        return true;
+    }
+
+    if (filter->getLevelMin() != 1 || filter->getLevelMax() != 100 || filter->getHeightMin() != 0 || filter->getHeightMax() != 255
+        || filter->getWeightMin() != 0 || filter->getWeightMax() != 255)
+    {
+        return true;
+    }
+
+    auto min = filter->getMinIVs();
+    auto max = filter->getMaxIVs();
+    for (size_t i = 0; i < min.size(); i++)
+    {
+        if (min[i] != 0 || max[i] != 31)
+        {
+            return true;
+        }
+    }
+
+    return hasUnchecked(filter->getNatures()) || hasUnchecked(filter->getHiddenPowers())
+        || hasUnchecked(filter->getEncounterSlots(), encounterSlots);
+}
 
 static bool supportsMovingTrigger(Encounter encounter, const Profile5 *profile)
 {
@@ -253,6 +295,11 @@ void Wild5::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
+    if (searchMovingTrigger
+        && hasActiveGeneratorFilter(ui->filterGenerator, encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
+    {
+        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
+    }
     generatorModel->addItems(states);
 }
 
