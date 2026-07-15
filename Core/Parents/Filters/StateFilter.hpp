@@ -110,6 +110,14 @@ public:
     bool compareNature(u8 nature) const;
 
     /**
+     * @brief Determines if every nature is allowed
+     *
+     * @return true Every nature passes the filter
+     * @return false At least one nature is filtered out
+     */
+    bool allowsAllNatures() const;
+
+    /**
      * @brief Determines if the \p shiny meets the filter criteria
      *
      * @param shiny Shiny to compare

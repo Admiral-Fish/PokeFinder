@@ -38,8 +38,30 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
+#include <QSizePolicy>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+#include <vector>
+
+static std::vector<Lead> getSearcherLeads(ComboMenu *comboMenu)
+{
+    auto data = comboMenu->getCheckedData();
+    std::vector<Lead> leads;
+    for (int lead : data)
+    {
+        Lead value = static_cast<Lead>(lead);
+        if (std::find(leads.begin(), leads.end(), value) == leads.end())
+        {
+            leads.emplace_back(value);
+        }
+    }
+    if (leads.empty())
+    {
+        leads.emplace_back(Lead::None);
+    }
+    return leads;
+}
 
 static const QString settingPrefix = QStringLiteral("wild3");
 
@@ -97,7 +119,10 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-    ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+    ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->comboMenuSearcherLead->setMultiSelect(true);
+    ui->comboMenuSearcherLead->setCheckedData({ toInt(Lead::None) });
+    ui->comboMenuSearcherLead->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -341,13 +366,13 @@ void Wild3::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    auto leads = getSearcherLeads(ui->comboMenuSearcherLead);
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
     bool bike = ui->checkBoxSearcherBike->isChecked();
     auto item = ui->comboBoxSearcherItem->getEnum<Item>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, lead, feebas, bike, item, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
+    auto *searcher = new WildSearcher3(method, leads, feebas, bike, item, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
                                        *currentProfile, filter);
 
     int maxProgress = 1;
@@ -355,7 +380,7 @@ void Wild3::search()
     {
         maxProgress *= max[i] - min[i] + 1;
     }
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(maxProgress * leads.size());
 
     auto *thread = QThread::create([=] { searcher->startSearch(min, max); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

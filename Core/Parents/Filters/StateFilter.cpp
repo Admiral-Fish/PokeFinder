@@ -21,6 +21,7 @@
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
+#include <algorithm>
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                          const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
@@ -79,6 +80,11 @@ bool StateFilter::compareIV(const std::array<u8, 6> &ivs) const
 bool StateFilter::compareNature(u8 nature) const
 {
     return skip || natures[nature];
+}
+
+bool StateFilter::allowsAllNatures() const
+{
+    return skip || std::ranges::all_of(natures, [](bool nature) { return nature; });
 }
 
 bool StateFilter::compareShiny(u8 shiny) const

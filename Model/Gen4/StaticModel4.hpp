@@ -156,8 +156,8 @@ public slots:
 
 private:
     QStringList header
-        = { tr("Seed"), tr("Delay"), tr("Hour"),  tr("Advances"), tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"),  tr("Def"),   tr("SpA"),   tr("SpD"),      tr("Spe"),    tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Characteristic") };
+        = { tr("Seed"), tr("Delay"), tr("Hour"), tr("Lead"),  tr("Advances"), tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"),  tr("Def"),  tr("SpA"),   tr("SpD"),   tr("Spe"),      tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Characteristic") };
     bool showStats;
 };
 

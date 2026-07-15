@@ -18,9 +18,80 @@
  */
 
 #include "StaticModel4.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QCoreApplication>
+#include <QStringList>
+
+static QString getSynchronizeLeadNameStatic4(Lead lead, u32 flags, u8 targetNature)
+{
+    constexpr u32 allNatures = (1 << 25) - 1;
+    u32 nonTargetNatures = allNatures & ~(1 << targetNature);
+    if ((flags & allNatures) == allNatures || (flags & nonTargetNatures) != 0)
+    {
+        return QString("%1: %2").arg(QCoreApplication::translate("StaticSearcherModel4", "Synchronize"),
+                                     QCoreApplication::translate("StaticSearcherModel4", "Any Nature"));
+    }
+
+    if (lead <= Lead::SynchronizeEnd)
+    {
+        return QString("%1: %2")
+            .arg(QCoreApplication::translate("StaticSearcherModel4", "Synchronize"),
+                 QString::fromStdString(Translator::getNature(toInt(lead))));
+    }
+
+    return QCoreApplication::translate("StaticSearcherModel4", "Synchronize");
+}
+
+static QString getLeadNameStatic4(Lead lead, Lead synchronizeLead, u32 synchronizeFlags, u8 flags, u8 targetNature)
+{
+    if (lead == Lead::None)
+    {
+        return QCoreApplication::translate("StaticSearcherModel4", "None");
+    }
+
+    if (flags != 0)
+    {
+        QStringList leads;
+        if ((flags & (1 << 0)) != 0)
+        {
+            leads.emplace_back(getSynchronizeLeadNameStatic4(synchronizeLead, synchronizeFlags, targetNature));
+        }
+        bool cuteCharmM = (flags & (1 << 1)) != 0;
+        bool cuteCharmF = (flags & (1 << 2)) != 0;
+        if (cuteCharmM && cuteCharmF)
+        {
+            leads.emplace_back(QCoreApplication::translate("StaticSearcherModel4", "Cute Charm: ♂ or ♀ Lead"));
+        }
+        else if (cuteCharmM)
+        {
+            leads.emplace_back(QCoreApplication::translate("StaticSearcherModel4", "Cute Charm: ♂ Lead"));
+        }
+        else if (cuteCharmF)
+        {
+            leads.emplace_back(QCoreApplication::translate("StaticSearcherModel4", "Cute Charm: ♀ Lead"));
+        }
+
+        return leads.join(" / ");
+    }
+
+    if (lead <= Lead::SynchronizeEnd)
+    {
+        return getSynchronizeLeadNameStatic4(lead, synchronizeFlags, targetNature);
+    }
+
+    switch (lead)
+    {
+    case Lead::CuteCharmM:
+        return QCoreApplication::translate("StaticSearcherModel4", "Cute Charm: ♂ Lead");
+    case Lead::CuteCharmF:
+        return QCoreApplication::translate("StaticSearcherModel4", "Cute Charm: ♀ Lead");
+    default:
+        return QString();
+    }
+}
 
 StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
 {
@@ -127,7 +198,7 @@ StaticSearcherModel4::StaticSearcherModel4(QObject *parent) : TableModel(parent)
 
 int StaticSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    return 19;
 }
 
 QVariant StaticSearcherModel4::data(const QModelIndex &index, int role) const
@@ -145,32 +216,35 @@ QVariant StaticSearcherModel4::data(const QModelIndex &index, int role) const
         case 2:
             return (state.getSeed() >> 16) & 0xff;
         case 3:
-            return state.getAdvances();
+            return getLeadNameStatic4(state.getLead(), state.getSynchronizeLead(), state.getSynchronizeLeadFlags(), state.getLeadFlags(),
+                                      state.getNature());
         case 4:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getAdvances();
         case 5:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 6:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 6:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 9:
         case 10:
         case 11:
         case 12:
         case 13:
-            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 16:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 17:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 18:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
@@ -189,5 +263,5 @@ QVariant StaticSearcherModel4::headerData(int section, Qt::Orientation orientati
 void StaticSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 8), index(rowCount() - 1, 13), { Qt::DisplayRole });
+    emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
 }

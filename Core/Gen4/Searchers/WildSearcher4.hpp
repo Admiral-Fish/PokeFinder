@@ -20,10 +20,12 @@
 #ifndef WILDSEARCHER4_HPP
 #define WILDSEARCHER4_HPP
 
+#include <Core/Enum/Lead.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
+#include <vector>
 
 class WildSearcherState4;
 
@@ -53,6 +55,10 @@ public:
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
                   bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, const std::vector<Lead> &leads,
+                  bool feebasTile, bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                  const WildStateFilter &filter);
+
     /**
      * @brief Starts the search
      *
@@ -70,12 +76,14 @@ private:
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
+    u8 happiness;
     bool feebas;
     bool feebasTile;
     bool safari;
     bool shiny;
     bool unownRadio;
     ModifiedSlots modifiedSlots;
+    std::vector<Lead> leads;
 
     /**
      * @brief Searches for matching states from provided IVs

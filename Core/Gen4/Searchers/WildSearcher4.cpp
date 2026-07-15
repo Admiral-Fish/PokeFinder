@@ -52,6 +52,28 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static constexpr bool isSynchronizeLead(Lead lead)
+{
+    return lead <= Lead::SynchronizeEnd;
+}
+
+static std::vector<Lead> expandLegacySynchronizeLead(Lead lead)
+{
+    if (lead != Lead::Synchronize)
+    {
+        return { lead };
+    }
+
+    std::vector<Lead> leads;
+    leads.reserve(toInt(Lead::SynchronizeEnd) + 1);
+    for (u8 nature = 0; nature <= toInt(Lead::SynchronizeEnd); nature++)
+    {
+        leads.emplace_back(static_cast<Lead>(nature));
+    }
+
+    return leads;
+}
+
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                              const WildStateFilter &filter) :
@@ -63,6 +85,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(area.getRate()),
+    happiness(happiness),
     feebas(area.feebasLocation(profile.getVersion())
            && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
                || area.getEncounter() == Encounter::SuperRod)),
@@ -70,7 +93,8 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     safari(area.safariZone(profile.getVersion())),
     shiny(shiny),
     unownRadio(unownRadio),
-    modifiedSlots(area.getSlots(lead))
+    modifiedSlots(area.getSlots(lead)),
+    leads(expandLegacySynchronizeLead(lead))
 {
     if ((profile.getVersion() & Game::HGSS) != Game::None)
     {
@@ -88,6 +112,38 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
             thresh *= 2;
         }
     }
+}
+
+static bool matches(const WildSearcherState4 &left, const WildSearcherState4 &right)
+{
+    return left.getSeed() == right.getSeed() && left.getAdvances() == right.getAdvances() && left.getPID() == right.getPID()
+        && left.getItem() == right.getItem() && left.getSpecie() == right.getSpecie() && left.getAbility() == right.getAbility()
+        && left.getGender() == right.getGender() && left.getLevel() == right.getLevel() && left.getNature() == right.getNature()
+        && left.getShiny() == right.getShiny() && left.getEncounterSlot() == right.getEncounterSlot() && left.getForm() == right.getForm()
+        && left.getIVs() == right.getIVs();
+}
+
+static void addOrMerge(std::vector<WildSearcherState4> &states, const WildSearcherState4 &state)
+{
+    for (auto &existing : states)
+    {
+        if (matches(existing, state))
+        {
+            existing.addLead(state.getLead());
+            return;
+        }
+    }
+
+    states.emplace_back(state);
+}
+
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method,
+                             const std::vector<Lead> &leads, bool feebasTile, bool shiny, bool unownRadio, u8 happiness,
+                             const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+    WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, leads.front(), feebasTile, shiny, unownRadio, happiness, area,
+                  profile, filter)
+{
+    this->leads = leads;
 }
 
 void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index)
@@ -111,11 +167,43 @@ void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, index);
+                            std::vector<WildSearcherState4> mergedStates;
+                            for (Lead activeLead : leads)
+                            {
+                                lead = activeLead;
+                                modifiedSlots = area.getSlots(activeLead);
+                                thresh = area.getRate();
+                                if ((profile.getVersion() & Game::HGSS) != Game::None)
+                                {
+                                    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+                                        || area.getEncounter() == Encounter::SuperRod)
+                                    {
+                                        thresh += happiness;
+                                        if (activeLead == Lead::SuctionCups)
+                                        {
+                                            thresh *= 2;
+                                        }
+                                    }
+                                    else if (activeLead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
+                                    {
+                                        thresh *= 2;
+                                    }
+                                }
 
-                            std::lock_guard<std::mutex> guard(mutex);
-                            results.insert(results.end(), states.begin(), states.end());
-                            progress++;
+                                auto states = search(hp, atk, def, spa, spd, spe, index);
+                                for (auto &state : states)
+                                {
+                                    state.setLead(activeLead);
+                                    addOrMerge(mergedStates, state);
+                                }
+
+                                progress++;
+                            }
+
+                            {
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.insert(results.end(), mergedStates.begin(), mergedStates.end());
+                            }
                         }
                     }
                 }
@@ -308,7 +396,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                 PokeRNGR test[2] = { rng, rng };
                 bool valid[2] = { false, false };
 
-                switch (lead)
+                Lead leadCategory = isSynchronizeLead(lead) ? Lead::Synchronize : lead;
+                switch (leadCategory)
                 {
                 case Lead::None:
                 case Lead::CompoundEyes:
@@ -354,7 +443,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                     }
                     break;
                 case Lead::Synchronize:
-                    if ((nextRNG / 0x8000) == 0)
+                    if ((nextRNG / 0x8000) == 0 && toInt(lead) == nature)
                     {
                         if (grass)
                         {
@@ -708,7 +797,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                 PokeRNGR test[2] = { rng, rng };
                 bool valid[2] = { false, false };
 
-                switch (lead)
+                Lead leadCategory = isSynchronizeLead(lead) ? Lead::Synchronize : lead;
+                switch (leadCategory)
                 {
                 case Lead::None:
                 case Lead::ArenaTrap:
@@ -733,7 +823,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                     }
                     break;
                 case Lead::Synchronize:
-                    if ((nextRNG % 2) == 0)
+                    if ((nextRNG % 2) == 0 && toInt(lead) == nature)
                     {
                         if (safari)
                         {
@@ -928,7 +1018,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8
                 PokeRNGR test[2] = { rng, rng };
                 bool valid[2] = { false, false };
 
-                switch (lead)
+                Lead leadCategory = isSynchronizeLead(lead) ? Lead::Synchronize : lead;
+                switch (leadCategory)
                 {
                 case Lead::None:
                 case Lead::CompoundEyes:
@@ -939,7 +1030,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8
                     }
                     break;
                 case Lead::Synchronize:
-                    if ((nextRNG / 0x8000) == 0)
+                    if ((nextRNG / 0x8000) == 0 && toInt(lead) == nature)
                     {
                         levelRand[0] = nextRNG2;
                         valid[0] = true;
@@ -1051,7 +1142,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
 
                 bool valid = false;
                 u32 seed;
-                switch (lead)
+                Lead leadCategory = isSynchronizeLead(lead) ? Lead::Synchronize : lead;
+                switch (leadCategory)
                 {
                 case Lead::None:
                 case Lead::CompoundEyes:
@@ -1062,7 +1154,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
                     }
                     break;
                 case Lead::Synchronize:
-                    if ((nextRNG / 0x8000) == 0)
+                    if ((nextRNG / 0x8000) == 0 && toInt(lead) == nature)
                     {
                         seed = test.getSeed();
                         valid = true;
@@ -1140,7 +1232,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
             continue;
         }
 
-        if (lead == Lead::Synchronize || cuteCharm)
+        if (isSynchronizeLead(lead) || cuteCharm)
         {
             u8 huntNature;
             u8 gender = (pid & 0xff) < info->getGender();
@@ -1149,7 +1241,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
                 PokeRNGR test(rng);
 
                 bool valid = false;
-                if (lead == Lead::Synchronize)
+                if (isSynchronizeLead(lead))
                 {
                     valid = test.nextUShort<false>(2) == 0;
                 }

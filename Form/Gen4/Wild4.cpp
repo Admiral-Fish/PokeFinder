@@ -38,8 +38,30 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
+#include <QSizePolicy>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+#include <vector>
+
+static std::vector<Lead> getSearcherLeads(ComboMenu *comboMenu)
+{
+    auto data = comboMenu->getCheckedData();
+    std::vector<Lead> leads;
+    for (int lead : data)
+    {
+        Lead value = static_cast<Lead>(lead);
+        if (std::find(leads.begin(), leads.end(), value) == leads.end())
+        {
+            leads.emplace_back(value);
+        }
+    }
+    if (leads.empty())
+    {
+        leads.emplace_back(Lead::None);
+    }
+    return leads;
+}
 
 static const QString settingPrefix = QStringLiteral("wild4");
 
@@ -104,7 +126,10 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-    ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+    ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->comboMenuSearcherLead->setMultiSelect(true);
+    ui->comboMenuSearcherLead->setCheckedData({ toInt(Lead::None) });
+    ui->comboMenuSearcherLead->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
                                             toInt(Encounter::BugCatchingContest), toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt),
@@ -711,14 +736,14 @@ void Wild4::search()
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    auto leads = getSearcherLeads(ui->comboMenuSearcherLead);
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
     bool unownRadio = ui->checkBoxSearcherRadio->isChecked() && ui->comboBoxSearcherRadio->currentIndex() == 2;
     u8 happiness = ui->comboBoxSearcherHappiness->getCurrentUChar();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, feebas, shiny, unownRadio, happiness, area,
+    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, leads, feebas, shiny, unownRadio, happiness, area,
                                        *currentProfile, filter);
 
     int maxProgress = 1;
@@ -726,7 +751,7 @@ void Wild4::search()
     {
         maxProgress *= max[i] - min[i] + 1;
     }
-    searcher->setMaxProgress(maxProgress);
+    searcher->setMaxProgress(maxProgress * leads.size());
 
     auto *thread = QThread::create([=] { searcher->startSearch(min, max, fixedSlot); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

@@ -29,6 +29,139 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <unordered_map>
+
+struct WildStateKey
+{
+    std::array<u8, 6> ivs;
+    u32 advances;
+    u32 ivAdvances;
+    u32 pid;
+    u16 item;
+    u16 specie;
+    u8 ability;
+    u8 gender;
+    u8 level;
+    u8 nature;
+    u8 shiny;
+    u8 encounterSlot;
+    u8 form;
+
+    bool operator==(const WildStateKey &other) const = default;
+};
+
+struct WildStateKeyHash
+{
+    size_t operator()(const WildStateKey &key) const
+    {
+        size_t hash = 0;
+        auto combine = [&hash](auto value) {
+            hash ^= static_cast<size_t>(value) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        };
+
+        for (u8 iv : key.ivs)
+        {
+            combine(iv);
+        }
+        combine(key.advances);
+        combine(key.ivAdvances);
+        combine(key.pid);
+        combine(key.item);
+        combine(key.specie);
+        combine(key.ability);
+        combine(key.gender);
+        combine(key.level);
+        combine(key.nature);
+        combine(key.shiny);
+        combine(key.encounterSlot);
+        combine(key.form);
+
+        return hash;
+    }
+};
+
+struct WildTargetKey
+{
+    std::array<u8, 6> ivs;
+    u32 advances;
+    u32 ivAdvances;
+    u32 pid;
+    u16 item;
+    u16 specie;
+    u8 ability;
+    u8 gender;
+    u8 level;
+    u8 nature;
+    u8 shiny;
+    u8 encounterSlot;
+    u8 form;
+
+    bool operator==(const WildTargetKey &other) const = default;
+};
+
+struct WildTargetKeyHash
+{
+    size_t operator()(const WildTargetKey &key) const
+    {
+        size_t hash = 0;
+        auto combine = [&hash](auto value) {
+            hash ^= static_cast<size_t>(value) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        };
+
+        for (u8 iv : key.ivs)
+        {
+            combine(iv);
+        }
+        combine(key.advances);
+        combine(key.ivAdvances);
+        combine(key.pid);
+        combine(key.item);
+        combine(key.specie);
+        combine(key.ability);
+        combine(key.gender);
+        combine(key.level);
+        combine(key.nature);
+        combine(key.shiny);
+        combine(key.encounterSlot);
+        combine(key.form);
+
+        return hash;
+    }
+};
+
+static WildStateKey getStateKey(const WildState5 &state, bool normalizeNature)
+{
+    return { { state.getIV(0), state.getIV(1), state.getIV(2), state.getIV(3), state.getIV(4), state.getIV(5) },
+             state.getAdvances(),
+             state.getIVAdvances(),
+             state.getPID(),
+             state.getItem(),
+             state.getSpecie(),
+             state.getAbility(),
+             state.getGender(),
+             state.getLevel(),
+             normalizeNature ? static_cast<u8>(255) : state.getNature(),
+             state.getShiny(),
+             state.getEncounterSlot(),
+             state.getForm() };
+}
+
+static WildTargetKey getTargetKey(const WildState5 &state, u32 advances)
+{
+    return { { state.getIV(0), state.getIV(1), state.getIV(2), state.getIV(3), state.getIV(4), state.getIV(5) },
+             advances,
+             state.getIVAdvances(),
+             state.getPID(),
+             state.getItem(),
+             state.getSpecie(),
+             state.getAbility(),
+             state.getGender(),
+             state.getLevel(),
+             state.getNature(),
+             state.getShiny(),
+             state.getEncounterSlot(),
+             state.getForm() };
+}
 
 static u8 gen(MT &rng)
 {
@@ -93,7 +226,16 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
+    leads({ lead })
+{
+}
+
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const std::vector<Lead> &leads,
+                               u8 luckyPower, const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, offset, method, leads.front(), area, profile, filter),
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
+    leads(leads)
 {
 }
 
@@ -125,6 +267,62 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 }
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
+{
+    std::vector<WildState5> states;
+    std::unordered_map<WildStateKey, size_t, WildStateKeyHash> seen;
+    for (Lead activeLead : leads)
+    {
+        auto leadStates = generate(seed, ivs, activeLead);
+        states.reserve(states.size() + leadStates.size());
+        bool normalizeNature = activeLead <= Lead::SynchronizeEnd && filter.allowsAllNatures();
+        for (auto state : leadStates)
+        {
+            if (normalizeNature)
+            {
+                state.setVariableNature(true);
+            }
+
+            auto key = getStateKey(state, normalizeNature);
+            auto entry = seen.find(key);
+            if (entry == seen.end())
+            {
+                states.emplace_back(state);
+                seen.emplace(key, states.size() - 1);
+            }
+            else
+            {
+                states[entry->second].addLead(state.getLead());
+            }
+        }
+    }
+
+    std::unordered_map<WildTargetKey, bool, WildTargetKeyHash> noneTargets;
+    for (const auto &state : states)
+    {
+        if (state.getLead() == Lead::None)
+        {
+            noneTargets.emplace(getTargetKey(state, state.getAdvances()), true);
+        }
+    }
+
+    if (!noneTargets.empty())
+    {
+        std::vector<WildState5> filtered;
+        filtered.reserve(states.size());
+        for (const auto &state : states)
+        {
+            if (state.getLead() == Lead::None || !noneTargets.contains(getTargetKey(state, state.getAdvances() + 1)))
+            {
+                filtered.emplace_back(state);
+            }
+        }
+        return filtered;
+    }
+
+    return states;
+}
+
+std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs, Lead lead) const
 {
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
@@ -250,7 +448,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         for (const auto &iv : ivs)
         {
             WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
+                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info, lead);
             if (filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);
