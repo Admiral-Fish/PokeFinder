@@ -1,0 +1,320 @@
+[
+    {
+        "Liebt es, zu essen": [
+            4
+        ],
+        "Liebt es zu essen": [
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Nickt oft ein": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Schläft gerne": [
+            4
+        ],
+        "Schläft gern": [
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Macht oft Unordnung": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Mag es, zu entspannen": [
+            4
+        ],
+        "Mag es, sich zu entspannen": [
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Stolz auf seine Stärke": [
+            4,
+            5,
+            6
+        ],
+        "Ist stolz auf seine Stärke": [
+            7,
+            8
+        ]
+    },
+    {
+        "Prügelt sich gerne": [
+            4
+        ],
+        "Prügelt sich gern": [
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Besitzt Temperament": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Liebt Kämpfe": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Impulsiv": [
+            4,
+            5,
+            6
+        ],
+        "Ist impulsiv": [
+            7,
+            8
+        ]
+    },
+    {
+        "Hat robusten Körper": [
+            4,
+            5
+        ],
+        "Hat einen robusten Körper": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Kann Treffer gut ab": [
+            4
+        ],
+        "Kann Treffer gut verkraften": [
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Äußerst ausdauernd": [
+            4,
+            5,
+            6
+        ],
+        "Ist äußerst ausdauernd": [
+            7
+        ],
+        "Ist äußerst zäh": [
+            8
+        ]
+    },
+    {
+        "Hat eine gute Ausdauer": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Ist beharrlich": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Liebt es, zu rennen": [
+            4
+        ],
+        "Liebt es zu rennen": [
+            5,
+            6,
+            7
+        ],
+        "Ist gerne schnell unterwegs": [
+            8
+        ]
+    },
+    {
+        "Achtet auf Geräusche": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Ungestüm und einfältig": [
+            4,
+            5,
+            6
+        ],
+        "Ist ungestüm und einfältig": [
+            7,
+            8
+        ]
+    },
+    {
+        "Ist fast wie ein Clown": [
+            4,
+            5
+        ],
+        "Ein bisschen albern": [
+            6
+        ],
+        "Ist ein bisschen albern": [
+            7,
+            8
+        ]
+    },
+    {
+        "Flüchtet schnell": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Sehr neugierig": [
+            4,
+            5,
+            6
+        ],
+        "Ist sehr neugierig": [
+            7,
+            8
+        ]
+    },
+    {
+        "Hinterhältig": [
+            4,
+            5,
+            6
+        ],
+        "Ist hinterhältig": [
+            7,
+            8
+        ]
+    },
+    {
+        "Äußerst gerissen": [
+            4,
+            5,
+            6
+        ],
+        "Ist äußerst gerissen": [
+            7,
+            8
+        ]
+    },
+    {
+        "Ist oft in Gedanken": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Sehr pedantisch": [
+            4,
+            5,
+            6
+        ],
+        "Ist sehr pedantisch": [
+            7,
+            8
+        ]
+    },
+    {
+        "Besitzt starken Willen": [
+            4,
+            5
+        ],
+        "Besitzt einen starken Willen": [
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Irgendwie eitel": [
+            4,
+            5
+        ],
+        "Etwas eitel": [
+            6
+        ],
+        "Ist etwas eitel": [
+            7,
+            8
+        ]
+    },
+    {
+        "Sehr aufsässig": [
+            4,
+            5,
+            6
+        ],
+        "Ist sehr aufsässig": [
+            7,
+            8
+        ]
+    },
+    {
+        "Hasst Niederlagen": [
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    {
+        "Dickköpfig": [
+            4,
+            5,
+            6
+        ],
+        "Ist dickköpfig": [
+            7,
+            8
+        ]
+    }
+]

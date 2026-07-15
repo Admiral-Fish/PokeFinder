@@ -84,6 +84,19 @@ public:
     std::vector<bool> getExplicitChecked() const;
 
     /**
+     * @brief Converts selected items to bit mask for enum
+     *
+     * @tparam Enum Enum type
+     *
+     * @return Enum with bits set for each item selected
+     */
+    template <typename Enum>
+    Enum getEnum() const
+    {
+        return static_cast<Enum>(getBits());
+    }
+
+    /**
      * @brief Determines which of the check boxes are checked
      *
      * @tparam size Size of the array
@@ -139,9 +152,29 @@ public:
         setChecks(checked);
     }
 
+    /**
+     * @brief Converts enum bit mask to selected items
+     *
+     * @tparam Enum Enum type
+     * @param value Enum value
+     */
+    template <typename Enum>
+    void setEnum(Enum value)
+    {
+        setBits(static_cast<u32>(value));
+    }
+
+    /**
+     * @brief Sets if CheckList should treat nothing selected as empty or full
+     *
+     * @param empty Empty/full flag
+     */
+    void setFull(bool full);
+
 private:
     QStandardItemModel *model;
     CheckListProxyModel *proxyModel;
+    bool full;
 
     /**
      * @brief Determines the check state of the check boxes
@@ -162,11 +195,25 @@ private:
     bool eventFilter(QObject *object, QEvent *event) override;
 
     /**
+     * @brief Converts selected items to bit mask
+     *
+     * @return Bits set for each item selected
+     */
+    u32 getBits() const;
+
+    /**
      * @brief Unused event
      *
      * @param event Contains keypress event information
      */
     void keyPressEvent(QKeyEvent *event) override;
+
+    /**
+     * @brief Converts bit mask to selected items
+     *
+     * @param bits Bit mask
+     */
+    void setBits(u32 bits) const;
 
     /**
      * @brief Unused event

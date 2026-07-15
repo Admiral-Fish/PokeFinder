@@ -37,10 +37,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("event4");
+
 Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
     generatorModel = new EventGeneratorModel4(ui->tableViewGenerator);
     ui->tableViewGenerator->setModel(generatorModel);
@@ -79,19 +83,19 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
+    connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Event4::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Event4::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Event4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Event4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event4::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event4::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event4::profileIndexChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &EventGeneratorModel4::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &EventSearcherModel4::setShowStats);
 
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("event4");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("minDelay"))
     {
         ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
@@ -123,7 +127,6 @@ Event4::~Event4()
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
     setting.setValue("minAdvance", ui->textBoxSearcherMinAdvance->text());
     setting.setValue("maxAdvance", ui->textBoxSearcherMaxAdvance->text());
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -132,21 +135,7 @@ Event4::~Event4()
 
 void Event4::updateProfiles()
 {
-    profiles = ProfileLoader4::getProfiles();
-    profiles.insert(profiles.begin(), Profile4("None", Game::Diamond, 12345, 54321, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("event4/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Event4::generate()
@@ -172,19 +161,9 @@ void Event4::generate()
     generatorModel->addItems(states);
 }
 
-void Event4::profileIndexChanged(int index)
+void Event4::profileChanged(const Profile4 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-    }
-}
-
-void Event4::profileManager()
-{
-    auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void Event4::search()

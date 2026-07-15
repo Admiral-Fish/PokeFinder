@@ -44,6 +44,13 @@ public:
      * @return Date/time information
      */
     DateTime getDateTime() const;
+
+    /**
+     * @brief Sets the date/time
+     *
+     * @param dateTime Date/time to set
+     */
+    void setDateTime(const DateTime &dateTime);
 };
 
 #endif // DATETIMEEDIT_HPP

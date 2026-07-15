@@ -184,10 +184,10 @@ public slots:
     void setShowStepMovement(bool flag);
 
 private:
-    QStringList header = { tr("Seed"),   tr("Advances"), tr("Steps"),   tr("Movement"), tr("Step Modifier"), tr("Item"),
-                           tr("Slot"),   tr("Level"),    tr("PID"),     tr("Shiny"),    tr("Nature"),        tr("Ability"),
-                           tr("HP"),     tr("Atk"),      tr("Def"),     tr("SpA"),      tr("SpD"),           tr("Spe"),
-                           tr("Hidden"), tr("Power"),    tr("Gender"),  tr("Characteristic") };
+    QStringList header = { tr("Seed"),   tr("Delay"), tr("Hour"),   tr("Advances"), tr("Steps"),  tr("Movement"),
+                           tr("Step Modifier"), tr("Item"), tr("Slot"),   tr("Level"), tr("PID"),    tr("Shiny"),
+                           tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),   tr("SpA"),
+                           tr("SpD"),    tr("Spe"),   tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
     bool showStats;
     bool showStepEncounter;
     bool showStepMovement;

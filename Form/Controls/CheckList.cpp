@@ -70,7 +70,7 @@ public:
     }
 };
 
-CheckList::CheckList(QWidget *parent) : QComboBox(parent)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent), full(true)
 {
     setEditable(true);
     lineEdit()->setReadOnly(true);
@@ -146,7 +146,7 @@ std::vector<bool> CheckList::getChecked() const
     }
     else
     {
-        result = std::vector<bool>(model->rowCount(), true);
+        result = std::vector<bool>(model->rowCount(), full);
     }
     return result;
 }
@@ -206,6 +206,11 @@ void CheckList::setChecks(const std::vector<bool> &flags)
         auto *item = model->item(i);
         item->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
     }
+}
+
+void CheckList::setFull(bool full)
+{
+    this->full = full;
 }
 
 Qt::CheckState CheckList::checkState() const
@@ -278,13 +283,36 @@ bool CheckList::eventFilter(QObject *object, QEvent *event)
             return false;
         }
     }
-    
+
     return QComboBox::eventFilter(object, event);
+}
+
+u32 CheckList::getBits() const
+{
+    auto checked = getChecked();
+    u32 bits = 0;
+    for (int i = 0; i < checked.size(); i++)
+    {
+        if (checked[i])
+        {
+            bits |= (1 << i);
+        }
+    }
+    return bits;
 }
 
 void CheckList::keyPressEvent(QKeyEvent *event)
 {
     // Do not handle key event
+}
+
+void CheckList::setBits(u32 bits) const
+{
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        auto *item = model->item(i);
+        item->setCheckState((bits & (1 << i)) ? Qt::Checked : Qt::Unchecked);
+    }
 }
 
 void CheckList::wheelEvent(QWheelEvent *event)
@@ -315,8 +343,10 @@ void CheckList::updateText()
     switch (checkState())
     {
     case Qt::Checked:
-    case Qt::Unchecked:
         text = tr("Any");
+        break;
+    case Qt::Unchecked:
+        text = full ? tr("Any") : tr("None");
         break;
     case Qt::PartiallyChecked:
         for (int i = 0; i < proxyModel->rowCount(); i++)

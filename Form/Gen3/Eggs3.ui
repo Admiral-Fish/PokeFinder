@@ -15,79 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_13">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue">
-        <property name="text">
-         <string notr="true">12345</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
-        <property name="text">
-         <string notr="true">54321</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue">
-        <property name="text">
-         <string>Emerald</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <widget class="ProfileDisplay3" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabEggSelection">
@@ -95,7 +23,7 @@
       <attribute name="title">
        <string>Emerald</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_17">
+      <layout class="QGridLayout" name="gridLayout_1">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxEmeraldRNGInfo">
          <property name="title">
@@ -259,7 +187,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
           </item>
@@ -287,7 +215,7 @@
       <attribute name="title">
        <string>RS/FRLG</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_15">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxRSFRLGRNGInfo">
          <property name="title">
@@ -454,7 +382,7 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0" rowspan="3" colspan="2">
            <widget class="Filter" name="filterRSFRLG" native="true"/>
           </item>
@@ -498,10 +426,14 @@
    <header>Form/Controls/EggSettings.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ProfileDisplay3</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen3/Profile/ProfileDisplay3.hpp</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabEggSelection</tabstop>
   <tabstop>textBoxEmeraldInitialAdvancesHeld</tabstop>
   <tabstop>textBoxEmeraldMaxAdvancesHeld</tabstop>

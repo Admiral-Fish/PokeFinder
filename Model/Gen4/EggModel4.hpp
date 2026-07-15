@@ -185,6 +185,7 @@ public slots:
 
 private:
     QStringList header = { tr("Seed"),
+                           tr("Delay"),
                            tr("Held Advances"),
                            tr("Pickup Advances"),
                            tr("PID"),

@@ -38,9 +38,9 @@ class IDs5 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -73,8 +73,7 @@ private:
     Ui::IDs5 *ui;
 
     IDModel5 *model;
-    Profile5 *currentProfile;
-    std::vector<Profile5> profiles;
+    const Profile5 *currentProfile;
 
 private slots:
     /**
@@ -95,16 +94,11 @@ private slots:
     void setXOR(bool checked);
 
     /**
-     * @brief Updates displayed information for a profile
+     * @brief Updates showing profile related information
      *
-     * @param index Profile index
+     * @param profile Selected profile
      */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
 };
 
 #endif // IDS5_HPP

@@ -13,103 +13,13 @@
   <property name="windowTitle">
    <string>Gen 8 Eggs</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0" colspan="3">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QLabel" name="labelProfileShinyCharm">
-        <property name="text">
-         <string>Shiny Charm</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileShinyCharmValue"/>
-      </item>
-      <item row="0" column="7" rowspan="2">
-       <widget class="Line" name="line_5">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="8">
-       <widget class="QLabel" name="labelProfileOvalCharm">
-        <property name="text">
-         <string>Oval Charm</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QLabel" name="labelProfileOvalCharmValue"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
+  <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
      <property name="title">
       <string>RNG Info</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayout_1">
       <item row="0" column="0">
        <widget class="QLabel" name="labelSeed0">
         <property name="text">
@@ -209,7 +119,7 @@
      <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_11">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="EggSettings" name="eggSettings" native="true"/>
       </item>
@@ -227,7 +137,7 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
+     <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0" rowspan="2">
        <widget class="Filter" name="filter" native="true"/>
       </item>
@@ -236,6 +146,11 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView"/>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="ProfileDisplay8" name="profileDisplay" native="true">
+     <layout class="QGridLayout" name="gridLayout_4"/>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -267,10 +182,14 @@
    <header>Form/Controls/EggSettings.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ProfileDisplay8</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen8/Profile/ProfileDisplay8.hpp</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
   <tabstop>comboBoxCompatibility</tabstop>

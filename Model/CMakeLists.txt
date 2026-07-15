@@ -33,6 +33,8 @@ add_library(PokeFinderModel STATIC
     Gen4/StaticModel4.hpp
     Gen4/WildModel4.cpp
     Gen4/WildModel4.hpp
+    Gen5/AdjacentSeedsModel.cpp
+    Gen5/AdjacentSeedsModel.hpp
     Gen5/DreamRadarModel.cpp
     Gen5/DreamRadarModel.hpp
     Gen5/EggModel5.cpp
@@ -63,6 +65,7 @@ add_library(PokeFinderModel STATIC
     Gen8/UndergroundModel.hpp
     Gen8/WildModel8.cpp
     Gen8/WildModel8.hpp
+    IndexFilterProxyModel.hpp
     SortFilterProxyModel.hpp
     TableModel.hpp
     Util/IVToPIDModel.cpp

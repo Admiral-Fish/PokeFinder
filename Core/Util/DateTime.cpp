@@ -44,6 +44,9 @@ consteval std::array<char[2], 100> computeNumbers()
 
 constexpr std::array<char[2], 100> numbers = computeNumbers();
 constexpr u8 monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+constexpr u32 minJD = 2451545; // 2000-01-01
+constexpr u32 maxJD = 2488069; // 2099-12-31
+constexpr u32 jdRange = maxJD - minJD + 1;
 
 /**
  * @brief Determines if the year is a leap year.
@@ -126,6 +129,14 @@ std::string Date::toString() const
     return std::string(buf, sizeof(buf) - 1);
 }
 
+bool Date::valid() const
+{
+    constexpr Date min(minJD);
+    constexpr Date max(maxJD);
+
+    return *this >= min && *this <= max;
+}
+
 u16 Date::year() const
 {
     return getParts().year;
@@ -133,25 +144,16 @@ u16 Date::year() const
 
 int Time::addSeconds(int seconds)
 {
-    md += seconds;
+    seconds += md;
 
-    int days = 0;
-    if (md >= 0)
+    int days = seconds / 86400;
+    int time = seconds % 86400;
+    if (time < 0)
     {
-        while (md >= 86400)
-        {
-            md -= 86400;
-            days++;
-        }
+        time += 86400;
+        days--;
     }
-    else if (md <= 0)
-    {
-        while (md < 0)
-        {
-            md += 86400;
-            days--;
-        }
-    }
+    md = time;
 
     return days;
 }
@@ -182,6 +184,11 @@ std::string Time::toString() const
     return std::string(buf, sizeof(buf) - 1);
 }
 
+bool Time::valid() const
+{
+    return md < 86400;
+}
+
 DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : date(year, month, day), time(hour, minute, second)
 {
 }
@@ -192,6 +199,10 @@ DateTime DateTime::addSeconds(int seconds) const
 
     int days = dt.time.addSeconds(seconds);
     dt.date += days;
+    if (dt.date.jd > maxJD)
+    {
+        dt.date.jd = minJD + ((dt.date.jd - minJD) % jdRange);
+    }
 
     return dt;
 }
@@ -219,4 +230,9 @@ std::string DateTime::toString() const
     std::memcpy(buf + 17, numbers[time.second()], 2);
 
     return std::string(buf, sizeof(buf) - 1);
+}
+
+bool DateTime::valid() const
+{
+    return date.valid() && time.valid();
 }
