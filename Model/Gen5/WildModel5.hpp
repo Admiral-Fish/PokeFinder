@@ -135,13 +135,16 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    void setShowPassPower(bool flag);
+
 private:
-    QStringList header = { tr("Seed"),      tr("Advances"), tr("IV Advances"), tr("Item"),   tr("Slot"),
-                           tr("Level"),     tr("PID"),      tr("Shiny"),       tr("Nature"), tr("Ability"),
-                           tr("HP"),        tr("Atk"),      tr("Def"),         tr("SpA"),    tr("SpD"),
-                           tr("Spe"),       tr("Hidden"),   tr("Power"),       tr("Gender"), tr("Characteristic"),
-                           tr("Date/Time"), tr("Timer0"),   tr("Buttons") };
+    QStringList header = { tr("Seed"),      tr("Pass Power"), tr("Advances"), tr("IV Advances"), tr("Item"),   tr("Slot"),
+                           tr("Level"),     tr("PID"),        tr("Shiny"),    tr("Nature"),      tr("Ability"),
+                           tr("HP"),        tr("Atk"),        tr("Def"),      tr("SpA"),         tr("SpD"),
+                           tr("Spe"),       tr("Hidden"),     tr("Power"),    tr("Gender"),      tr("Characteristic"),
+                           tr("Date/Time"), tr("Timer0"),     tr("Buttons") };
     bool showStats;
+    bool showPassPower;
 };
 
 #endif // WILDMODEL5_HPP

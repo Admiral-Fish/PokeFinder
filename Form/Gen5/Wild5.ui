@@ -29,7 +29,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
+           <horstretch>11</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -112,7 +112,7 @@
           <item row="6" column="0">
            <widget class="QLabel" name="labelGeneratorLuckyPower">
             <property name="text">
-             <string>Lucky Power</string>
+             <string>Pass Power</string>
             </property>
            </widget>
           </item>
@@ -120,22 +120,22 @@
            <widget class="ComboBox" name="comboBoxGeneratorLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">1</string>
+              <string>Lucky Power ↑</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">2</string>
+              <string>Lucky Power ↑↑</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">3/S</string>
+              <string>Lucky Power ↑↑↑/S</string>
              </property>
             </item>
            </widget>
@@ -154,7 +154,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>19</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -300,7 +300,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>4</horstretch>
+           <horstretch>40</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -328,7 +328,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
+           <horstretch>11</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -405,33 +405,12 @@
           <item row="5" column="0">
            <widget class="QLabel" name="labelSearcherLuckyPower">
             <property name="text">
-             <string>Lucky Power</string>
+             <string>Pass Power</string>
             </property>
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLuckyPower">
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">3/S</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="ComboMenu" name="comboBoxSearcherLuckyPower"/>
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="labelSearcherStartDate">
@@ -481,7 +460,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>19</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -647,7 +626,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>4</horstretch>
+           <horstretch>40</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>

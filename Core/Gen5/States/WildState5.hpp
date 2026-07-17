@@ -44,9 +44,10 @@ public:
      * @param info Pokemon information
      */
     WildState5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-               u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+               u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, u8 passPower = 0) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
+        passPower(passPower),
         chatot(prng / 82)
     {
     }
@@ -71,8 +72,19 @@ public:
         return ivAdvances;
     }
 
+    /**
+     * @brief Returns the pass power of the state
+     *
+     * @return Pass power
+     */
+    u8 getPassPower() const
+    {
+        return passPower;
+    }
+
 private:
     u32 ivAdvances;
+    u8 passPower;
     u8 chatot;
 };
 

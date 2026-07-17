@@ -117,8 +117,13 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void setShowPassPower(bool flag);
+
 private:
-    QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    QStringList header
+        = { tr("Seed"), tr("Pass Power"), tr("Advances"), tr("Group"), tr("Slot"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    bool showPassPower;
 };
 
 /**

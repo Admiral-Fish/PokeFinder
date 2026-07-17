@@ -3363,10 +3363,6 @@
         <translation>Lichtungskraft</translation>
     </message>
     <message>
-        <source>S/MAX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -3507,6 +3503,23 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Levels</source>
         <translation type="unfinished">Level</translation>
     </message>
+    <message>
+        <source>Grotto Power ↑</source>
+        <translation>Lichtungskraft +</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑</source>
+        <translation>Lichtungskraft ++</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑↑</source>
+        <translation>Lichtungskraft +++</translation>
+    </message>
+    <message>
+        <source>Grotto Power S</source>
+        <translation>Lichtungskraft S</translation>
+    </message>
+
 </context>
 <context>
     <name>HiddenGrottoGeneratorModel5</name>
@@ -3794,6 +3807,27 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑</source>
+        <translation>Lichtungskraft +</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑</source>
+        <translation>Lichtungskraft ++</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑↑</source>
+        <translation>Lichtungskraft +++</translation>
+    </message>
+    <message>
+        <source>Grotto Power S</source>
+        <translation>Lichtungskraft S</translation>
+    </message>
+
 </context>
 <context>
     <name>IDModel3</name>
@@ -7753,6 +7787,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Yancy</source>
         <translation>Sabine</translation>
     </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
+    </message>
+
 </context>
 <context>
     <name>Static8</name>
@@ -8604,6 +8643,15 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
+    </message>
+
 </context>
 <context>
     <name>TabWidget</name>
@@ -9829,6 +9877,23 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Levels</source>
         <translation>Level</translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑</source>
+        <translation>Beschwörungskraft +</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑</source>
+        <translation>Beschwörungskraft ++</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
+    </message>
+
 </context>
 <context>
     <name>Wild8</name>
@@ -10868,5 +10933,22 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑</source>
+        <translation>Beschwörungskraft +</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑</source>
+        <translation>Beschwörungskraft ++</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
+    </message>
+
 </context>
 </TS>

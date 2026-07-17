@@ -19,6 +19,7 @@
 
 #include "Static5.hpp"
 #include "ui_Static5.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
@@ -31,6 +32,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Form/Controls/ComboMenu.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
@@ -42,8 +44,27 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+#include <vector>
 
 static const QString settingPrefix = QStringLiteral("static5");
+
+static std::vector<u8> getCheckedUChars(const ComboMenu *comboMenu)
+{
+    auto data = comboMenu->getCheckedData();
+    std::vector<u8> values;
+    values.reserve(data.size());
+    for (int value : data)
+    {
+        values.emplace_back(value);
+    }
+    return values;
+}
+
+static bool hasPassPower(const std::vector<u8> &powers)
+{
+    return std::ranges::find_if(powers, [](u8 power) { return power != 0; }) != powers.end();
+}
 
 Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -76,16 +97,20 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
-                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+                                        { { tr("? Lead"), toInt(Lead::CuteCharmM) }, { tr("? Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
-                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+                                       { { tr("? Lead"), toInt(Lead::CuteCharmM) }, { tr("? Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 3 });
+    ui->comboBoxSearcherLuckyPower->setMultiSelect(true);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("None"), 0);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("Lucky Power ↑↑↑/S"), 3);
+    ui->comboBoxSearcherLuckyPower->setCheckedData({ 0 });
+    ui->comboBoxSearcherLuckyPower->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
@@ -362,13 +387,14 @@ void Static5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPowers = getCheckedUChars(ui->comboBoxSearcherLuckyPower);
+    searcherModel->setShowPassPower((currentProfile->getVersion() & Game::BW2) != Game::None && hasPassPower(luckyPowers));
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
-    StaticGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower, *staticTemplate, *currentProfile,
+    StaticGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPowers, *staticTemplate, *currentProfile,
                                filter);
 
     SearcherBase5<StaticGenerator5, State5> *searcher;

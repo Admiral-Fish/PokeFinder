@@ -21,6 +21,17 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
+static QString getLuckyPowerText(u8 power)
+{
+    switch (power)
+    {
+    case 3:
+        return StaticSearcherModel5::tr("Lucky Power ↑↑↑/S");
+    default:
+        return StaticSearcherModel5::tr("None");
+    }
+}
+
 StaticGeneratorModel5::StaticGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
@@ -98,13 +109,13 @@ void StaticGeneratorModel5::setShowStats(bool flag)
     emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
 }
 
-StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
+StaticSearcherModel5::StaticSearcherModel5(QObject *parent) : TableModel(parent), showStats(false), showPassPower(false)
 {
 }
 
 int StaticSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 20;
+    return 20 + (showPassPower ? 1 : 0);
 }
 
 QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
@@ -114,6 +125,17 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
         const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
+        if (showPassPower)
+        {
+            if (column == 1)
+            {
+                return getLuckyPowerText(state.getPassPower());
+            }
+            else if (column > 1)
+            {
+                column--;
+            }
+        }
         switch (column)
         {
         case 0:
@@ -173,6 +195,10 @@ QVariant StaticSearcherModel5::headerData(int section, Qt::Orientation orientati
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (!showPassPower && section >= 1)
+        {
+            section++;
+        }
         return header[section];
     }
     return QVariant();
@@ -181,5 +207,13 @@ QVariant StaticSearcherModel5::headerData(int section, Qt::Orientation orientati
 void StaticSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
+    int offset = showPassPower ? 1 : 0;
+    emit dataChanged(index(0, 7 + offset), index(rowCount() - 1, 12 + offset), { Qt::DisplayRole });
+}
+
+void StaticSearcherModel5::setShowPassPower(bool flag)
+{
+    showPassPower = flag;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+    emit layoutChanged();
 }

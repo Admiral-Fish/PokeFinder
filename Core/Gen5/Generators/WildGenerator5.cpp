@@ -92,9 +92,21 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
 
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    WildGenerator5(initialAdvances, maxAdvances, offset, method, lead, std::vector<u8> { luckyPower }, area, profile, filter)
 {
+}
+
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const std::vector<u8> &luckyPowers,
+                               const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
+    luckyPowers((profile.getVersion() & Game::BW) != Game::None ? std::vector<u8> { 0 } : luckyPowers)
+{
+    if (this->luckyPowers.empty())
+    {
+        this->luckyPowers.emplace_back(0);
+    }
+    std::ranges::sort(this->luckyPowers);
+    this->luckyPowers.erase(std::ranges::unique(this->luckyPowers).begin(), this->luckyPowers.end());
 }
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
@@ -125,6 +137,36 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 }
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
+{
+    if (luckyPowers.size() == 1)
+    {
+        return generate(seed, ivs, luckyPowers[0]);
+    }
+
+    std::vector<WildState5> states;
+    for (u8 activeLuckyPower : luckyPowers)
+    {
+        auto powerStates = generate(seed, ivs, activeLuckyPower);
+        states.reserve(states.size() + powerStates.size());
+        for (const auto &state : powerStates)
+        {
+            auto duplicate = std::ranges::find_if(states, [&state](const WildState5 &other) {
+                return state.getAdvances() == other.getAdvances() && state.getIVAdvances() == other.getIVAdvances()
+                    && state.getItem() == other.getItem() && state.getEncounterSlot() == other.getEncounterSlot()
+                    && state.getSpecie() == other.getSpecie() && state.getForm() == other.getForm() && state.getLevel() == other.getLevel()
+                    && state.getPID() == other.getPID() && state.getShiny() == other.getShiny() && state.getNature() == other.getNature()
+                    && state.getAbility() == other.getAbility() && state.getIVs() == other.getIVs() && state.getGender() == other.getGender();
+            });
+            if (duplicate == states.end())
+            {
+                states.emplace_back(state);
+            }
+        }
+    }
+    return states;
+}
+
+std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs, u8 luckyPower) const
 {
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
@@ -249,8 +291,13 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u16 chatot = rng.nextUInt(0x1fff);
         for (const auto &iv : ivs)
         {
+            if (luckyPower != 0 && iv.first < 2)
+            {
+                continue;
+            }
+
             WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
+                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info, luckyPower);
             if (filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);
