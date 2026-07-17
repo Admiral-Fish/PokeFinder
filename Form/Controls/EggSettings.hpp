@@ -64,7 +64,7 @@ public:
     void contextMenuEvent(QContextMenuEvent *event) override;
 
     /**
-     * @brief Determines if selected settings are valid for parents in the daycare.
+     * @brief Determines if selected settings are valid for parents in the daycare
      *
      * @param hiddenAbility Whether parents must be compatible for passing hidden ability
      * @param hiddenAbilityMode Hidden ability inheritance rules to validate against
