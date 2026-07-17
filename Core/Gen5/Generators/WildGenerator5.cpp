@@ -29,6 +29,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <iterator>
 
 static u8 gen(MT &rng)
 {
@@ -140,13 +141,30 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 {
     if (luckyPowers.size() == 1)
     {
-        return generate(seed, ivs, luckyPowers[0]);
+        if (luckyPowers[0] == 0)
+        {
+            return generate(seed, ivs, luckyPowers[0]);
+        }
+
+        std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+        std::ranges::copy_if(ivs, std::back_inserter(powerIVs), [](const auto &iv) { return iv.first >= 2; });
+        return generate(seed, powerIVs, luckyPowers[0]);
     }
 
     std::vector<WildState5> states;
     for (u8 activeLuckyPower : luckyPowers)
     {
-        auto powerStates = generate(seed, ivs, activeLuckyPower);
+        std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+        if (activeLuckyPower == 0)
+        {
+            powerIVs = ivs;
+        }
+        else
+        {
+            std::ranges::copy_if(ivs, std::back_inserter(powerIVs), [](const auto &iv) { return iv.first >= 2; });
+        }
+
+        auto powerStates = generate(seed, powerIVs, activeLuckyPower);
         states.reserve(states.size() + powerStates.size());
         for (const auto &state : powerStates)
         {
@@ -289,13 +307,13 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
         u16 chatot = rng.nextUInt(0x1fff);
+        if (luckyPower != 0 && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         for (const auto &iv : ivs)
         {
-            if (luckyPower != 0 && iv.first < 2)
-            {
-                continue;
-            }
-
             WildState5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
                              encounterSlot, item, slot.getSpecie(), slot.getForm(), info, luckyPower);
             if (filter.compareState(static_cast<const WildState &>(state)))

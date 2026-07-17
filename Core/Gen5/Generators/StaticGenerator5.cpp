@@ -25,6 +25,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <iterator>
 #include <vector>
 
 static u8 gen(MT &rng)
@@ -182,7 +183,17 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
     std::vector<State5> states;
     for (u8 activeLuckyPower : luckyPowers)
     {
-        auto powerStates = generateWild(seed, ivs, activeLuckyPower);
+        std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+        if (activeLuckyPower == 0)
+        {
+            powerIVs = ivs;
+        }
+        else
+        {
+            std::ranges::copy_if(ivs, std::back_inserter(powerIVs), [](const auto &iv) { return iv.first >= 2; });
+        }
+
+        auto powerStates = generateWild(seed, powerIVs, activeLuckyPower);
         states.reserve(states.size() + powerStates.size());
         for (const auto &state : powerStates)
         {
@@ -280,13 +291,13 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         }
 
         u16 chatot = rng.nextUInt(0x1fff);
+        if (luckyPower != 0 && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         for (const auto &iv : ivs)
         {
-            if (luckyPower != 0 && iv.first < 2)
-            {
-                continue;
-            }
-
             State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
                          nature, shiny, info, luckyPower);
             if (filter.compareState(static_cast<const State &>(state)))
