@@ -31,7 +31,7 @@ namespace AdvanceFinderLogic
     using Sequence = std::vector<Range>;
     using ValueGetter = std::function<u8(size_t)>;
 
-    enum class ChatotToken
+    enum class ChatotToken : u8
     {
         Any,
         High,
@@ -45,7 +45,7 @@ namespace AdvanceFinderLogic
         MidLowLow
     };
 
-    enum class NeedleToken
+    enum class NeedleToken : u8
     {
         Needle0,
         Needle1,
@@ -58,30 +58,12 @@ namespace AdvanceFinderLogic
         Any
     };
 
-    enum class CallToken
+    enum class CallToken : u8
     {
         E,
         K,
         P
     };
-
-    /**
-     * @brief Converts Chatot pitch tokens into allowed pitch values
-     *
-     * @param tokens Search tokens
-     *
-     * @return Sequence of valid values for each token
-     */
-    Sequence getChatotSequence(const std::vector<ChatotToken> &tokens);
-
-    /**
-     * @brief Converts save needle tokens into allowed needle values
-     *
-     * @param tokens Search tokens
-     *
-     * @return Sequence of valid values for each token
-     */
-    Sequence getNeedleSequence(const std::vector<NeedleToken> &tokens);
 
     /**
      * @brief Converts call tokens into allowed call values
@@ -90,7 +72,25 @@ namespace AdvanceFinderLogic
      *
      * @return Sequence of valid values for each token
      */
-    Sequence getCallSequence(const std::vector<CallToken> &tokens);
+    Sequence getCallSequence(const std::vector<u8> &tokens);
+
+    /**
+     * @brief Converts Chatot pitch tokens into allowed pitch values
+     *
+     * @param tokens Search tokens
+     *
+     * @return Sequence of valid values for each token
+     */
+    Sequence getChatotSequence(const std::vector<u8> &tokens);
+
+    /**
+     * @brief Converts save needle tokens into allowed needle values
+     *
+     * @param tokens Search tokens
+     *
+     * @return Sequence of valid values for each token
+     */
+    Sequence getNeedleSequence(const std::vector<u8> &tokens);
 
     /**
      * @brief Searches a row sequence for matching advances

@@ -21,12 +21,14 @@
 #define ADVANCEFINDER_HPP
 
 #include <Core/Global.hpp>
-#include <Core/Util/AdvanceFinderLogic.hpp>
 #include <QDialog>
 #include <vector>
 
 class QAbstractItemModel;
-class QString;
+class IndexFilterProxyModel;
+class IRNGDreamProvider;
+class IRNGProvider4;
+class IRNGProvider5;
 class QTableView;
 
 namespace Ui
@@ -40,7 +42,6 @@ namespace Ui
 class AdvanceFinder : public QDialog
 {
     Q_OBJECT
-
 public:
     /**
      * @brief Construct a new AdvanceFinder object
@@ -48,7 +49,6 @@ public:
      * @param generatorModel The generator model to search through
      * @param parent Parent widget, which takes memory ownership
      */
-    AdvanceFinder(QAbstractItemModel *generatorModel, QWidget *parent = nullptr);
     AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sourceTableView, QWidget *parent = nullptr);
 
     /**
@@ -58,49 +58,21 @@ public:
 
 private:
     Ui::AdvanceFinder *ui;
-    QAbstractItemModel *generatorModel;
+
+    IndexFilterProxyModel *model;
+    IRNGDreamProvider *needle;
+    IRNGProvider4 *callChatot;
+    IRNGProvider5 *chatotNeedle;
     QTableView *sourceTableView;
-    int chatotColumn;
-    int needleColumn;
-    int callColumn;
-    QString chatotSequence;
-    QString needleSequence;
-    QString callSequence;
-    std::vector<AdvanceFinderLogic::ChatotToken> chatotTokens;
-    std::vector<AdvanceFinderLogic::NeedleToken> needleTokens;
-    std::vector<AdvanceFinderLogic::CallToken> callTokens;
-    bool switchingMode;
-    std::vector<int> previewRows;
+    std::vector<u8> tokens;
 
     /**
      * @brief Adds a token to the search sequence
      *
-     * @param token Token text to append
-     */
-    void appendChatotToken(const QString &text, AdvanceFinderLogic::ChatotToken token);
-
-    /**
-     * @brief Adds a save needle token to the search sequence
-     *
      * @param text Token text to append
      * @param token Token value to append
      */
-    void appendNeedleToken(const QString &text, AdvanceFinderLogic::NeedleToken token);
-
-    /**
-     * @brief Adds a call token to the search sequence
-     *
-     * @param text Token text to append
-     * @param token Token value to append
-     */
-    void appendCallToken(const QString &text, AdvanceFinderLogic::CallToken token);
-
-    /**
-     * @brief Adds text to the search sequence
-     *
-     * @param text Token text to append
-     */
-    void appendTokenText(const QString &text);
+    void appendToken(const QPushButton *button, u8 token);
 
     /**
      * @brief Clears the search sequence
@@ -138,14 +110,6 @@ private:
      * @brief Searches for advances matching the current sequence
      */
     void search();
-
-    /**
-     * @brief Updates the search result table
-     *
-     * @param matches Matching starting rows from the generator model
-     * @param sequenceSize Number of advances in the matched sequence
-     */
-    void displayResults(const std::vector<size_t> &matches, size_t sequenceSize);
 
 private slots:
     /**

@@ -21,6 +21,7 @@
 #define STATIC4MODEL_HPP
 
 #include <Core/Gen4/States/State4.hpp>
+#include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
 
 enum class Method : u8;
@@ -28,7 +29,7 @@ enum class Method : u8;
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 4
  */
-class StaticGeneratorModel4 : public TableModel<GeneratorState4>
+class StaticGeneratorModel4 : public TableModel<GeneratorState4>, public IRNGProvider4
 {
     Q_OBJECT
 public:
@@ -58,6 +59,16 @@ public:
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+    u8 getCall(int row) const override
+    {
+        return model[row].getCall();
+    }
+
+    u8 getChatot(int row) const override
+    {
+        return model[row].getChatot();
+    }
 
     /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
@@ -155,9 +166,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Delay"), tr("Hour"),  tr("Advances"), tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"),  tr("Def"),   tr("SpA"),   tr("SpD"),      tr("Spe"),    tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Characteristic") };
+    QStringList header = { tr("Seed"),   tr("Delay"),   tr("Hour"),   tr("Advances"), tr("PID"),    tr("Shiny"),
+                           tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),      tr("Def"),    tr("SpA"),
+                           tr("SpD"),    tr("Spe"),     tr("Hidden"), tr("Power"),    tr("Gender"), tr("Characteristic") };
     bool showStats;
 };
 

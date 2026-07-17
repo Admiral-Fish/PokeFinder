@@ -21,13 +21,36 @@
 
 namespace AdvanceFinderLogic
 {
-    Sequence getChatotSequence(const std::vector<ChatotToken> &tokens)
+    Sequence getCallSequence(const std::vector<u8> &tokens)
     {
         Sequence sequence;
 
-        for (ChatotToken token : tokens)
+        for (u8 token : tokens)
         {
-            switch (token)
+            switch (static_cast<CallToken>(token))
+            {
+            case CallToken::E:
+                sequence.emplace_back(0, 1);
+                break;
+            case CallToken::K:
+                sequence.emplace_back(1, 2);
+                break;
+            case CallToken::P:
+                sequence.emplace_back(2, 3);
+                break;
+            }
+        }
+
+        return sequence;
+    }
+
+    Sequence getChatotSequence(const std::vector<u8> &tokens)
+    {
+        Sequence sequence;
+
+        for (u8 token : tokens)
+        {
+            switch (static_cast<ChatotToken>(token))
             {
             case ChatotToken::Any:
                 sequence.emplace_back(0, 100);
@@ -65,13 +88,13 @@ namespace AdvanceFinderLogic
         return sequence;
     }
 
-    Sequence getNeedleSequence(const std::vector<NeedleToken> &tokens)
+    Sequence getNeedleSequence(const std::vector<u8> &tokens)
     {
         Sequence sequence;
 
-        for (NeedleToken token : tokens)
+        for (u8 token : tokens)
         {
-            if (token == NeedleToken::Any)
+            if (static_cast<NeedleToken>(token) == NeedleToken::Any)
             {
                 sequence.emplace_back(0, 8);
             }
@@ -79,29 +102,6 @@ namespace AdvanceFinderLogic
             {
                 u8 needle = static_cast<u8>(token);
                 sequence.emplace_back(needle, needle + 1);
-            }
-        }
-
-        return sequence;
-    }
-
-    Sequence getCallSequence(const std::vector<CallToken> &tokens)
-    {
-        Sequence sequence;
-
-        for (CallToken token : tokens)
-        {
-            switch (token)
-            {
-            case CallToken::E:
-                sequence.emplace_back(0, 1);
-                break;
-            case CallToken::K:
-                sequence.emplace_back(1, 2);
-                break;
-            case CallToken::P:
-                sequence.emplace_back(2, 3);
-                break;
             }
         }
 

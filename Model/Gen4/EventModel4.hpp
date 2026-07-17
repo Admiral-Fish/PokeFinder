@@ -21,7 +21,7 @@
 #define EVENTMODEL4_HPP
 
 #include <Core/Gen4/States/State4.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
 
 enum class Game : u32;
@@ -29,7 +29,7 @@ enum class Game : u32;
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 4
  */
-class EventGeneratorModel4 : public TableModel<GeneratorState4>
+class EventGeneratorModel4 : public TableModel<GeneratorState4>, public IRNGProvider4
 {
     Q_OBJECT
 public:
@@ -58,6 +58,16 @@ public:
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role) const override;
+
+    u8 getCall(int row) const override
+    {
+        return model[row].getCall();
+    }
+
+    u8 getChatot(int row) const override
+    {
+        return model[row].getChatot();
+    }
 
     /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
@@ -154,8 +164,8 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Delay"), tr("Advances"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power") };
+    QStringList header = { tr("Seed"), tr("Delay"), tr("Advances"), tr("HP"),     tr("Atk"),  tr("Def"),
+                           tr("SpA"),  tr("SpD"),   tr("Spe"),      tr("Hidden"), tr("Power") };
     bool showStats;
 };
 

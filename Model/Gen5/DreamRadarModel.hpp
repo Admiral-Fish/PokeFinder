@@ -22,12 +22,13 @@
 
 #include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
+#include <Model/Gen5/IRNGProvider5.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show dream radar encounter information for Gen 5
  */
-class DreamRadarGeneratorModel5 : public TableModel<DreamRadarState>
+class DreamRadarGeneratorModel5 : public TableModel<DreamRadarState>, public IRNGDreamProvider
 {
     Q_OBJECT
 public:
@@ -56,6 +57,11 @@ public:
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role) const override;
+
+    u8 getNeedle(int row) const override
+    {
+        return model[row].getNeedle();
+    }
 
     /**
      * @brief Returns header text at the \p section, \p orientation, and \p role

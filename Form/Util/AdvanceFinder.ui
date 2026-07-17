@@ -7,62 +7,121 @@
     <x>0</x>
     <y>0</y>
     <width>680</width>
-    <height>430</height>
+    <height>709</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Advance Finder</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QWidget" name="widgetMode" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayoutMode">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QRadioButton" name="radioButtonChatot">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QRadioButton" name="radioButtonCalls">
+     <property name="text">
+      <string>Calls</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupType</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QRadioButton" name="radioButtonChatot">
+     <property name="text">
+      <string>Chatot Pitches</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupType</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QRadioButton" name="radioButtonNeedle">
+     <property name="text">
+      <string>Save Needles</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupType</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBoxCalls">
+     <property name="title">
+      <string>Calls</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutCall">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButtonCallK">
         <property name="text">
-         <string>Chatot Pitches</string>
+         <string notr="true">K</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCallE">
+        <property name="text">
+         <string notr="true">E</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButtonCallP">
+        <property name="text">
+         <string notr="true">P</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="radioButtonElm">
+        <property name="text">
+         <string>Elm</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupCallType</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QRadioButton" name="radioButtonIrwin">
+        <property name="text">
+         <string>Irwin</string>
         </property>
         <property name="checked">
          <bool>true</bool>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupCallType</string>
+        </attribute>
        </widget>
       </item>
-      <item>
-       <widget class="QRadioButton" name="radioButtonNeedle">
-        <property name="text">
-         <string>Save Needles</string>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelKResponse">
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item>
-       <spacer name="horizontalSpacerMode">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelEResponse">
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelPResponse">
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
-       </spacer>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBoxChatot">
      <property name="title">
       <string>Chatot Pitches</string>
@@ -141,7 +200,7 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBoxNeedle">
      <property name="title">
       <string>Save Needles</string>
@@ -213,81 +272,7 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QGroupBox" name="groupBoxCall">
-     <property name="title">
-      <string>Calls</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayoutCall">
-      <item row="0" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButtonCallK">
-        <property name="text">
-         <string notr="true">K</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2" colspan="2">
-       <widget class="QPushButton" name="pushButtonCallE">
-        <property name="text">
-         <string notr="true">E</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" colspan="2">
-       <widget class="QPushButton" name="pushButtonCallP">
-        <property name="text">
-         <string notr="true">P</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButtonElm">
-        <property name="text">
-         <string>Elm</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupCallType</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QRadioButton" name="radioButtonIrwin">
-        <property name="text">
-         <string>Irwin</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupCallType</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="6">
-       <widget class="QLabel" name="labelKResponse">
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="6">
-       <widget class="QLabel" name="labelEResponse">
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="6">
-       <widget class="QLabel" name="labelPResponse">
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
+   <item row="4" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayoutInput">
      <item>
       <widget class="QLineEdit" name="lineEditSequence">
@@ -298,9 +283,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonJump">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
        <property name="text">
         <string>Jump to Advance</string>
        </property>
@@ -322,28 +304,63 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="5" column="0">
     <widget class="QLabel" name="labelPossibleResults">
      <property name="text">
       <string>Possible Results:</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QTableWidget" name="tableWidgetResults">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-    </widget>
+   <item row="6" column="0" colspan="3">
+    <widget class="TableView" name="tableView"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableWidget</extends>
+   <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>radioButtonCalls</tabstop>
+  <tabstop>radioButtonChatot</tabstop>
+  <tabstop>radioButtonNeedle</tabstop>
+  <tabstop>pushButtonCallK</tabstop>
+  <tabstop>pushButtonCallE</tabstop>
+  <tabstop>pushButtonCallP</tabstop>
+  <tabstop>radioButtonElm</tabstop>
+  <tabstop>radioButtonIrwin</tabstop>
+  <tabstop>pushButtonHigh</tabstop>
+  <tabstop>pushButtonMidHigh</tabstop>
+  <tabstop>pushButtonMid</tabstop>
+  <tabstop>pushButtonMidLow</tabstop>
+  <tabstop>pushButtonLow</tabstop>
+  <tabstop>pushButtonHighMidHigh</tabstop>
+  <tabstop>pushButtonMidHighMid</tabstop>
+  <tabstop>pushButtonMidMidLow</tabstop>
+  <tabstop>pushButtonMidLowLow</tabstop>
+  <tabstop>pushButtonChatotAny</tabstop>
+  <tabstop>pushButtonNeedle7</tabstop>
+  <tabstop>pushButtonNeedle0</tabstop>
+  <tabstop>pushButtonNeedle1</tabstop>
+  <tabstop>pushButtonNeedle6</tabstop>
+  <tabstop>pushButtonNeedleAny</tabstop>
+  <tabstop>pushButtonNeedle2</tabstop>
+  <tabstop>pushButtonNeedle5</tabstop>
+  <tabstop>pushButtonNeedle4</tabstop>
+  <tabstop>pushButtonNeedle3</tabstop>
+  <tabstop>lineEditSequence</tabstop>
+  <tabstop>pushButtonJump</tabstop>
+  <tabstop>pushButtonRemove</tabstop>
+  <tabstop>pushButtonClear</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroupCallType"/>
+  <buttongroup name="buttonGroupType"/>
  </buttongroups>
 </ui>

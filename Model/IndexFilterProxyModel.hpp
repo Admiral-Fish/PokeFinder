@@ -49,6 +49,16 @@ public:
         invalidateFilter();
     }
 
+    void setFilteredIndexes(const std::vector<size_t> &rows)
+    {
+        allowedIndexes.clear();
+        for (size_t row : rows)
+        {
+            allowedIndexes.insert(QPersistentModelIndex(sourceModel()->index(row, 0)));
+        }
+        invalidateFilter();
+    }
+
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override
     {
