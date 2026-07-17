@@ -632,33 +632,6 @@
             "location": 45,
             "results": [
                 {
-                    "advances": 46,
-                    "chatot": 40,
-                    "data": 79,
-                    "gender": 0,
-                    "group": 2,
-                    "item": true,
-                    "slot": 6
-                },
-                {
-                    "advances": 48,
-                    "chatot": 39,
-                    "data": 4,
-                    "gender": 0,
-                    "group": 0,
-                    "item": true,
-                    "slot": 6
-                },
-                {
-                    "advances": 49,
-                    "chatot": 2,
-                    "data": 183,
-                    "gender": 0,
-                    "group": 1,
-                    "item": false,
-                    "slot": 2
-                },
-                {
                     "advances": 50,
                     "chatot": 43,
                     "data": 95,
