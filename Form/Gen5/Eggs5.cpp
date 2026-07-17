@@ -24,7 +24,6 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/Searcher5.hpp>
-#include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -144,11 +143,11 @@ void Eggs5::generate()
 
     generatorModel->clearModel();
 
-    Daycare daycare = ui->eggSettingsGenerator->getDaycare();
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
+    Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter);
@@ -190,9 +189,9 @@ void Eggs5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    Daycare daycare = ui->eggSettingsSearcher->getDaycare();
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
+    Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);

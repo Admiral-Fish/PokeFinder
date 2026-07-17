@@ -93,67 +93,39 @@ void EggSettings::contextMenuEvent(QContextMenuEvent *event)
     QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
-bool EggSettings::compatibleParents() const
+bool EggSettings::isValid(bool hiddenAbility) const
 {
+    // Gender compatability
     u8 parent1 = ui->comboBoxParentAGender->currentIndex();
     u8 parent2 = ui->comboBoxParentBGender->currentIndex();
-
-    // Male/Female
-    if ((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0))
-    {
-        return true;
-    }
-
-    // Ditto/Female
-    if ((parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3))
-    {
-        return true;
-    }
-
-    // Male/Ditto
-    if ((parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0))
-    {
-        return true;
-    }
-
-    // Genderless/Ditto
-    if ((parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))
-    {
-        return true;
-    }
-
-    return false;
-}
-
-bool EggSettings::isValid() const
-{
-    return isValid(false);
-}
-
-bool EggSettings::isValid(bool hiddenAbility, HiddenAbility hiddenAbilityMode) const
-{
-    if (!compatibleParents())
+    if (!((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0) || // Male/Female
+          (parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3) || // Ditto/Female
+          (parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0) || // Male/Ditto
+          (parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))) // Genderless/Ditto
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return false;
     }
 
-    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
-    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
-    u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
-    u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
+    // Hidden ability compatability
+    if (hiddenAbility)
+    {
+        u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
+        u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
 
-    bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
-    if (hiddenAbilityMode == HiddenAbility::Gen8)
-    {
-        hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
-    }
-    if (hiddenAbility && !hiddenAbilityCompatible)
-    {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
-        box.exec();
-        return false;
+        bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
+        if ((game & Game::Gen8) != Game::None) 
+        {
+            hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
+        }
+
+        if (!hiddenAbilityCompatible)
+        {
+            QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
+            box.exec();
+            return false;
+        }
     }
 
     return true;
@@ -269,6 +241,8 @@ bool EggSettings::reorderParents()
 
 void EggSettings::setup(Game game)
 {
+    this->game = game;
+
     u16 max = 0;
     if ((game & Game::Gen3) != Game::None)
     {
