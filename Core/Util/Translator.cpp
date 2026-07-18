@@ -26,6 +26,9 @@
 #include <bit>
 #include <iterator>
 #include <map>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 enum class Language : u8
 {
@@ -66,7 +69,7 @@ enum class Translation : u8
 
 static Language language;
 static std::vector<std::string> abilities;
-static std::vector<std::string> characteristics;
+static std::array<std::vector<std::string>, 5> characteristics;
 static std::map<u16, std::string> forms;
 static std::vector<std::string> games;
 static std::vector<std::string> hiddenPowers;
@@ -76,6 +79,7 @@ static std::vector<std::string> natures;
 static std::vector<std::string> species;
 const static std::array<std::string, 3> genders = { "♂", "♀", "-" };
 const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
+const static std::array<std::string, 8> needles = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
 
 /**
  * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
@@ -96,6 +100,31 @@ static void readFile(const char *data, Translation translation, std::vector<std:
         u32 len = it - &data[i];
         strings.emplace_back(data + i, len);
         i += len + 1;
+    }
+}
+
+/**
+ * @brief Reads characteristic strings in the languaged specified by Translator::init()
+ *
+ * @param data Text to read from
+ * @param strings Vector to write strings out to
+ */
+static void readFile(const char *data, std::array<std::vector<std::string>, 5> &strings)
+{
+    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(Translation::Characteristic);
+    u32 start = INDICES[index];
+    u32 end = INDICES[index + 1];
+
+    json j = json::parse(data + start, data + end);
+    for (const auto &element : j)
+    {
+        for (const auto &[key, value] : element.items())
+        {
+            for (int generation : value)
+            {
+                strings[generation - 4].push_back(key);
+            }
+        }
     }
 }
 
@@ -131,19 +160,48 @@ static std::map<u16, std::string> readFile(const char *data, Translation transla
 
 namespace Translator
 {
+    CharacteristicGeneration getCharacteristicGeneration(Game version)
+    {
+        if ((version & Game::Gen5) != Game::None)
+        {
+            return CharacteristicGeneration::Gen5;
+        }
+        else if ((version & Game::Gen6) != Game::None)
+        {
+            return CharacteristicGeneration::Gen6;
+        }
+        else if ((version & Game::Gen7) != Game::None)
+        {
+            return CharacteristicGeneration::Gen7;
+        }
+        else if ((version & Game::Gen8) != Game::None)
+        {
+            return CharacteristicGeneration::Gen8;
+        }
+        else
+        {
+            return CharacteristicGeneration::Gen4;
+        }
+    }
+
     const std::string &getAbility(u16 ability)
     {
         return abilities[ability - 1];
     }
 
-    const std::string &getCharacteristic(u8 characteristic)
+    const std::string &getCharacteristic(u8 characteristic, CharacteristicGeneration generation)
     {
-        return characteristics[characteristic];
+        return characteristics[static_cast<u8>(generation)][characteristic];
     }
 
-    const std::vector<std::string> &getCharacteristics()
+    const std::vector<std::string> &getCharacteristics(CharacteristicGeneration generation)
     {
-        return characteristics;
+        return characteristics[static_cast<u8>(generation)];
+    }
+
+    const std::vector<std::string> &getCharacteristics(Game version)
+    {
+        return getCharacteristics(getCharacteristicGeneration(version));
     }
 
     const std::string &getForm(u16 specie, u8 form)
@@ -299,6 +357,11 @@ namespace Translator
         return natures;
     }
 
+    const std::string &getNeedle(u8 needle)
+    {
+        return needles[needle & 7];
+    }
+
     const std::string &getSpecie(u16 specie)
     {
         return species[specie - 1];
@@ -375,7 +438,7 @@ namespace Translator
         auto *data = Utilities::decompress<char>(I18N.data(), I18N.size(), size);
 
         readFile(data, Translation::Ability, abilities);
-        readFile(data, Translation::Characteristic, characteristics);
+        readFile(data, characteristics);
         forms = readFile(data, Translation::Form);
         readFile(data, Translation::Game, games);
         readFile(data, Translation::Power, hiddenPowers);

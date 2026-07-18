@@ -76,7 +76,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
 
@@ -154,7 +154,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         case 16:
             return QString::fromStdString(display.getDateTime().toString());
         case 17:

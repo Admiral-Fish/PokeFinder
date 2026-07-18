@@ -515,23 +515,8 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="5" rowspan="2">
-       <widget class="QScrollArea" name="scrollAreaKeypresses">
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>106</width>
-           <height>77</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayoutKeypresses"/>
-        </widget>
-       </widget>
+      <item row="5" column="5">
+       <widget class="CheckList" name="checkListKeypresses"/>
       </item>
      </layout>
     </widget>
@@ -558,6 +543,11 @@
    <class>DateTimeEdit</class>
    <extends>QDateTimeEdit</extends>
    <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -607,17 +597,17 @@
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>comboBoxDSType</tabstop>
   <tabstop>textBoxMACAddress</tabstop>
-  <tabstop>scrollAreaKeypresses</tabstop>
+  <tabstop>checkListKeypresses</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

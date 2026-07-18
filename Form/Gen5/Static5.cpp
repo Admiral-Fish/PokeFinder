@@ -33,8 +33,10 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -87,6 +89,10 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    connect(adjacentSeeds, &QAction::triggered, this, &Static5::openAdjacentSeeds);
+    ui->tableViewSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Static5::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Static5::profilesChanged);
@@ -255,66 +261,77 @@ void Static5::generatorPokemonIndexChanged(int index)
     }
 }
 
+void Static5::openAdjacentSeeds()
+{
+    QModelIndex index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+    const auto &state = searcherModel->getItem(index.row());
+    const StaticTemplate5 *staticTemplate
+        = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
+
+    auto *window = new AdjacentSeeds(staticTemplate->getRoamer(), state.getButtons(), state.getDateTime(), *currentProfile);
+    window->show();
+}
+
 void Static5::profileChanged(const Profile5 &profile)
 {
     currentProfile = &profile;
 
-        if (ivCache)
-        {
-            delete ivCache;
-            ivCache = nullptr;
-        }
+    if (ivCache)
+    {
+        delete ivCache;
+        ivCache = nullptr;
+    }
 
-        if (shaCache)
-        {
-            delete shaCache;
-            shaCache = nullptr;
-        }
+    if (shaCache)
+    {
+        delete shaCache;
+        shaCache = nullptr;
+    }
 
-        auto ivCachePath = currentProfile->getIVCache();
-        if (!ivCachePath.empty())
-        {
-            ivCache = new IVCache(ivCachePath);
-        }
+    auto ivCachePath = currentProfile->getIVCache();
+    if (!ivCachePath.empty())
+    {
+        ivCache = new IVCache(ivCachePath);
+    }
 
-        auto shaCachePath = currentProfile->getSHACache();
-        if (!shaCachePath.empty())
-        {
-            shaCache = new SHA1Cache(shaCachePath);
-            ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-            ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
-        }
-        else
-        {
-            ui->dateEditSearcherStartDate->clearDateRange();
-            ui->dateEditSearcherEndDate->clearDateRange();
-        }
+    auto shaCachePath = currentProfile->getSHACache();
+    if (!shaCachePath.empty())
+    {
+        shaCache = new SHA1Cache(shaCachePath);
+        ui->dateEditSearcherStartDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+        ui->dateEditSearcherEndDate->setDateRange(shaCache->getStartDate(), shaCache->getEndDate());
+    }
+    else
+    {
+        ui->dateEditSearcherStartDate->clearDateRange();
+        ui->dateEditSearcherEndDate->clearDateRange();
+    }
 
-        bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
+    bool bw = (currentProfile->getVersion() & Game::BW) != Game::None;
 
-        ui->labelGeneratorLuckyPower->setHidden(!bw);
-        ui->labelSearcherLuckyPower->setHidden(!bw);
-        ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
-        ui->comboBoxSearcherLuckyPower->setHidden(!bw);
+    ui->labelGeneratorLuckyPower->setHidden(!bw);
+    ui->labelSearcherLuckyPower->setHidden(!bw);
+    ui->comboBoxGeneratorLuckyPower->setHidden(!bw);
+    ui->comboBoxSearcherLuckyPower->setHidden(!bw);
 
-        // Event
-        ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
+    // Event
+    ui->comboBoxGeneratorCategory->setItemHidden(5, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(5, !bw);
 
-        // Roamer
-        ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
-        ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
+    // Roamer
+    ui->comboBoxGeneratorCategory->setItemHidden(6, !bw);
+    ui->comboBoxSearcherCategory->setItemHidden(6, !bw);
 
-        // Curtis
-        ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(7, bw);
+    // Curtis
+    ui->comboBoxGeneratorCategory->setItemHidden(7, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(7, bw);
 
-        // Yancy
-        ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
-        ui->comboBoxSearcherCategory->setItemHidden(8, bw);
+    // Yancy
+    ui->comboBoxGeneratorCategory->setItemHidden(8, bw);
+    ui->comboBoxSearcherCategory->setItemHidden(8, bw);
 
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
 
     searcherFastSearchChanged();
 }

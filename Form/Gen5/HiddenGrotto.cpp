@@ -35,8 +35,10 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -106,6 +108,10 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+
+    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewPokemonSearcher);
+    connect(adjacentSeeds, &QAction::triggered, this, &HiddenGrotto::openAdjacentSeeds);
+    ui->tableViewPokemonSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &HiddenGrotto::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &HiddenGrotto::profilesChanged);
@@ -441,6 +447,15 @@ void HiddenGrotto::grottoSearcherUpdateFilter()
 
     ui->checkListGrottoSearcherGroup->setChecks(groups);
     ui->checkListGrottoSearcherSlot->setChecks(encounterSlots);
+}
+
+void HiddenGrotto::openAdjacentSeeds()
+{
+    QModelIndex index = pokemonProxyModel->mapToSource(ui->tableViewPokemonSearcher->currentIndex());
+    const auto &state = pokemonSearcherModel->getItem(index.row());
+
+    auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
+    window->show();
 }
 
 void HiddenGrotto::pokemonGenerate()

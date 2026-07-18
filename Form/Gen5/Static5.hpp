@@ -111,6 +111,11 @@ private slots:
     void generatorPokemonIndexChanged(int index);
 
     /**
+     * @brief Opens adjacent seeds for the selected searcher result
+     */
+    void openAdjacentSeeds();
+
+    /**
      * @brief Updates showing profile related information
      *
      * @param profile Selected profile
