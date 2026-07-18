@@ -1254,54 +1254,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="274"/>
-        <location filename="../Controls/EggSettings.cpp" line="281"/>
+        <location filename="../Controls/EggSettings.cpp" line="282"/>
+        <location filename="../Controls/EggSettings.cpp" line="289"/>
         <source>Power Weight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="275"/>
-        <location filename="../Controls/EggSettings.cpp" line="282"/>
+        <location filename="../Controls/EggSettings.cpp" line="283"/>
+        <location filename="../Controls/EggSettings.cpp" line="290"/>
         <source>Power Bracer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="276"/>
-        <location filename="../Controls/EggSettings.cpp" line="283"/>
+        <location filename="../Controls/EggSettings.cpp" line="284"/>
+        <location filename="../Controls/EggSettings.cpp" line="291"/>
         <source>Power Belt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="277"/>
-        <location filename="../Controls/EggSettings.cpp" line="284"/>
+        <location filename="../Controls/EggSettings.cpp" line="285"/>
+        <location filename="../Controls/EggSettings.cpp" line="292"/>
         <source>Power Lens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="278"/>
-        <location filename="../Controls/EggSettings.cpp" line="285"/>
+        <location filename="../Controls/EggSettings.cpp" line="286"/>
+        <location filename="../Controls/EggSettings.cpp" line="293"/>
         <source>Power Band</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="279"/>
-        <location filename="../Controls/EggSettings.cpp" line="286"/>
+        <location filename="../Controls/EggSettings.cpp" line="287"/>
+        <location filename="../Controls/EggSettings.cpp" line="294"/>
         <source>Power Anklet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="295"/>
-        <location filename="../Controls/EggSettings.cpp" line="296"/>
+        <location filename="../Controls/EggSettings.cpp" line="303"/>
+        <location filename="../Controls/EggSettings.cpp" line="304"/>
         <source>Destiny Knot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="324"/>
+        <location filename="../Controls/EggSettings.cpp" line="332"/>
         <source>Invalid Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="324"/>
+        <location filename="../Controls/EggSettings.cpp" line="332"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1323,6 +1323,22 @@
     </message>
     <message>
         <source>Egg Specie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/EggSettings.cpp" line="106"/>
+        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <source>Incompatible Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/EggSettings.cpp" line="106"/>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <source>Parents incompatible for breeding Hidden Ability!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1390,18 +1406,6 @@
     </message>
     <message>
         <source>Seed (Held / Pickup)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Eggs3.cpp" line="121"/>
-        <location filename="../Gen3/Eggs3.cpp" line="159"/>
-        <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Eggs3.cpp" line="121"/>
-        <location filename="../Gen3/Eggs3.cpp" line="159"/>
-        <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1499,18 +1503,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="165"/>
-        <location filename="../Gen4/Eggs4.cpp" line="208"/>
-        <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Eggs4.cpp" line="165"/>
-        <location filename="../Gen4/Eggs4.cpp" line="208"/>
-        <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1594,36 +1586,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="129"/>
-        <location filename="../Gen5/Eggs5.cpp" line="173"/>
-        <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Eggs5.cpp" line="129"/>
-        <location filename="../Gen5/Eggs5.cpp" line="173"/>
-        <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Eggs5.cpp" line="136"/>
-        <location filename="../Gen5/Eggs5.cpp" line="180"/>
+        <location filename="../Gen5/Eggs5.cpp" line="135"/>
+        <location filename="../Gen5/Eggs5.cpp" line="178"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="136"/>
-        <location filename="../Gen5/Eggs5.cpp" line="180"/>
+        <location filename="../Gen5/Eggs5.cpp" line="135"/>
+        <location filename="../Gen5/Eggs5.cpp" line="178"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="166"/>
+        <location filename="../Gen5/Eggs5.cpp" line="165"/>
         <source>Invalid date range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="166"/>
+        <location filename="../Gen5/Eggs5.cpp" line="165"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1687,32 +1667,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="95"/>
-        <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Eggs8.cpp" line="95"/>
-        <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen8/Eggs8.cpp" line="101"/>
+        <location filename="../Gen8/Eggs8.cpp" line="100"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="101"/>
+        <location filename="../Gen8/Eggs8.cpp" line="100"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="109"/>
+        <location filename="../Gen8/Eggs8.cpp" line="108"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="109"/>
+        <location filename="../Gen8/Eggs8.cpp" line="108"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>

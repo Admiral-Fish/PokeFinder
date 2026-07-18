@@ -124,10 +124,9 @@ void Eggs5::updateProfiles()
 
 void Eggs5::generate()
 {
-    if (!ui->eggSettingsGenerator->compatibleParents())
+    bool hiddenAbility = !ui->filterGenerator->getDisableFilters() && ui->filterGenerator->getAbility() == 2;
+    if (!ui->eggSettingsGenerator->isValid(hiddenAbility))
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
@@ -168,10 +167,9 @@ void Eggs5::search()
         return;
     }
 
-    if (!ui->eggSettingsSearcher->compatibleParents())
+    bool hiddenAbility = ui->filterSearcher->getAbility() == 2;
+    if (!ui->eggSettingsSearcher->isValid(hiddenAbility))
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
