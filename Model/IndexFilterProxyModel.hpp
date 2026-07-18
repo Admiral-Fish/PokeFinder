@@ -39,6 +39,11 @@ public:
         setSourceModel(model);
     }
 
+    /**
+     * @brief Set indexes the proxy model will filter to show
+     *
+     * @param indexes Indexes to be displayed
+     */
     void setFilteredIndexes(const QModelIndexList &indexes)
     {
         allowedIndexes.clear();
@@ -49,6 +54,11 @@ public:
         invalidateFilter();
     }
 
+    /**
+     * @brief Set indexes the proxy model will filter to show
+     *
+     * @param rows Rows to be displayed
+     */
     void setFilteredIndexes(const std::vector<size_t> &rows)
     {
         allowedIndexes.clear();
@@ -60,12 +70,15 @@ public:
     }
 
 protected:
+    /**
+     * @brief Checks if row should be displayed
+     * 
+     * @param sourceRow Row to check
+     * @param sourceParent Parent index of row
+     */
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override
     {
-        // Create the index for the candidate row
         QModelIndex sourceIndex = sourceModel()->index(sourceRow, 0, sourceParent);
-
-        // Only accept if it's in our targeted list
         return allowedIndexes.contains(QPersistentModelIndex(sourceIndex));
     }
 

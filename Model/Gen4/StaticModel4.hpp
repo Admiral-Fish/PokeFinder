@@ -60,11 +60,21 @@ public:
      */
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    /**
+     * @brief Returns Elm/Irwin call for given \p row
+     *
+     * @return Row Elm/Irwin call
+     */
     u8 getCall(int row) const override
     {
         return model[row].getCall();
     }
 
+    /**
+     * @brief Returns chatot pitch for given \p row
+     *
+     * @return Row chatot pitch
+     */
     u8 getChatot(int row) const override
     {
         return model[row].getChatot();

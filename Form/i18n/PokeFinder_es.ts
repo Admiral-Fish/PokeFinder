@@ -740,92 +740,92 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="106"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="116"/>
         <source>Held Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="107"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="117"/>
         <source>Pickup Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="108"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="118"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="109"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="119"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="120"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="121"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="122"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="113"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="123"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="114"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="124"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="115"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="125"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="116"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="126"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="117"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="127"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="118"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="128"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="119"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="129"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="120"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="130"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="121"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="131"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="122"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="132"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="123"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="133"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -848,87 +848,87 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="98"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="99"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="100"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="100"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="100"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="100"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="100"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -1142,92 +1142,92 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Delay</source>
         <translation type="unfinished">Retraso</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Held Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="198"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Pickup Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="209"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="209"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="209"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="199"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="209"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="210"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="210"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="210"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="200"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="210"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="211"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="211"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="211"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="201"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="211"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="212"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
+        <location filename="../../Model/Gen4/EggModel4.hpp" line="212"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -1250,97 +1250,97 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="176"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="177"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="168"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="178"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="168"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="178"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="168"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="178"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2423,57 +2423,57 @@
 <context>
     <name>EventGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="99"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="109"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="110"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="110"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="110"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="110"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="110"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2496,87 +2496,87 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="101"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="102"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="103"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="103"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="103"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="103"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="103"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -2584,57 +2584,57 @@
 <context>
     <name>EventSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="168"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="178"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="168"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="178"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="168"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="178"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="168"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="178"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="168"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="178"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="167"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Delay</source>
         <translation type="unfinished">Retraso</translation>
     </message>
@@ -2657,97 +2657,97 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="161"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="162"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="163"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="163"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EventModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/EventModel5.hpp" line="163"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3683,92 +3683,92 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="188"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="218"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="189"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="219"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="190"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="220"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -3791,107 +3791,107 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>IV Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="247"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="277"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="248"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="278"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="249"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="279"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="250"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="280"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="250"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="280"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="250"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="280"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3899,27 +3899,27 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>HiddenGrottoSlotGeneratorModel5</name>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="84"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="94"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="84"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="94"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="84"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="94"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="84"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="94"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="84"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="94"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
@@ -3927,37 +3927,37 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>HiddenGrottoSlotSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="132"/>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8192,87 +8192,87 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -8295,87 +8295,87 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="101"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="102"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="103"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="103"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="103"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="103"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="103"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -8584,92 +8584,92 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Delay</source>
         <translation type="unfinished">Retraso</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -8692,102 +8692,102 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="160"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="161"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="162"/>
         <source>IV Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="163"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="154"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="164"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="155"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="165"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="156"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="166"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="157"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="167"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="158"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="168"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="159"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="169"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="170"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="171"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="172"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="173"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="164"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="174"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="165"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="175"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="166"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="176"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="167"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="177"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="168"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="178"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/StaticModel5.hpp" line="169"/>
+        <location filename="../../Model/Gen5/StaticModel5.hpp" line="179"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10375,107 +10375,107 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Battle Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="100"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="110"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="101"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="111"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="112"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="112"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="112"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="112"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="102"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="112"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -10498,102 +10498,102 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="91"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="92"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="93"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -10832,107 +10832,107 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="169"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Delay</source>
         <translation type="unfinished">Retraso</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="170"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="180"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.hpp" line="171"/>
+        <location filename="../../Model/Gen4/WildModel4.hpp" line="181"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -10955,117 +10955,117 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>IV Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="150"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>Slot</source>
         <translation type="unfinished">Espacio</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
         <source>Level</source>
         <translation type="unfinished">Nivel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="151"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="152"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="153"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="154"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="154"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="154"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
