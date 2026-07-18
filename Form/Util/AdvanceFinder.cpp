@@ -24,6 +24,8 @@
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/Gen5/IRNGProvider5.hpp>
 #include <Model/IndexFilterProxyModel.hpp>
+#include <QAbstractItemModel>
+#include <QTableView>
 #include <array>
 
 AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sourceTableView, QWidget *parent) :
@@ -39,7 +41,21 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
     callChatot = dynamic_cast<IRNGProvider4 *>(generatorModel);
     chatotNeedle = dynamic_cast<IRNGProvider5 *>(generatorModel);
 
-    if (callChatot == nullptr)
+    bool hasCallColumn = false;
+    QAbstractItemModel *sourceModel = sourceTableView->model();
+    if (sourceModel != nullptr)
+    {
+        for (int column = 0; column < sourceModel->columnCount(); column++)
+        {
+            QString header = sourceModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
+            if (!sourceTableView->isColumnHidden(column) && (header == "Call" || header == tr("Call")))
+            {
+                hasCallColumn = true;
+                break;
+            }
+        }
+    }
+    if (callChatot == nullptr || !hasCallColumn)
     {
         ui->radioButtonCalls->hide();
         ui->groupBoxCalls->hide();
@@ -57,8 +73,8 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
         ui->groupBoxNeedle->hide();
     }
 
-    ui->radioButtonCalls->setChecked(callChatot);
-    ui->radioButtonChatot->setChecked(!callChatot && chatotNeedle);
+    ui->radioButtonCalls->setChecked(false);
+    ui->radioButtonChatot->setChecked(callChatot || chatotNeedle);
     ui->radioButtonNeedle->setChecked(!callChatot && !chatotNeedle);
 
     onModeChanged();
@@ -136,6 +152,10 @@ void AdvanceFinder::removeToken()
     if (!text.isEmpty())
     {
         text.removeLast();
+    }
+    for (QString &token : text)
+    {
+        token = token.trimmed();
     }
     ui->lineEditSequence->setText(text.join(", "));
 }
@@ -230,7 +250,7 @@ void AdvanceFinder::search()
 
     std::vector<size_t> matches = AdvanceFinderLogic::findMatches(model->sourceModel()->rowCount(), sequence, getter);
 
-    model->setFilteredIndexes(matches);
+    model->setFilteredIndexes(matches.size() <= 5 ? matches : std::vector<size_t>());
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(matches.size()));
 }
 
@@ -264,4 +284,6 @@ void AdvanceFinder::onModeChanged()
     tokens.clear();
     ui->lineEditSequence->clear();
     search();
+
+    resize(width(), sizeHint().height() - (calls ? 35 : 0));
 }
