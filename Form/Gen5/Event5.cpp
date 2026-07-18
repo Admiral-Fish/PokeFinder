@@ -270,7 +270,7 @@ void Event5::generatorImportEvent()
 
 void Event5::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

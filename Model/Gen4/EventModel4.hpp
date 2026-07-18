@@ -108,7 +108,7 @@ public slots:
 private:
     QStringList header = { tr("Advances"), tr("Call"), tr("Chatot"), tr("HP"),     tr("Atk"),  tr("Def"),
                            tr("SpA"),      tr("SpD"),  tr("Spe"),    tr("Hidden"), tr("Power") };
-    Game version;
+    bool dppt;
     bool showStats;
 
     /**

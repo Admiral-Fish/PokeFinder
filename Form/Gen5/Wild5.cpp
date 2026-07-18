@@ -314,7 +314,7 @@ void Wild5::openAdjacentSeeds()
 
 void Wild5::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

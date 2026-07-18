@@ -277,7 +277,7 @@ void Static5::openAdjacentSeeds()
 
 void Static5::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

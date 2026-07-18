@@ -167,7 +167,7 @@ void Event4::generate()
 
 void Event4::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

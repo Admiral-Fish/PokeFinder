@@ -19,43 +19,29 @@
 
 #include "AdvanceFinder.hpp"
 #include "ui_AdvanceFinder.h"
+#include <Core/Enum/Game.hpp>
+#include <Core/Parents/Profile.hpp>
 #include <Core/Util/AdvanceFinderLogic.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/Gen5/IRNGProvider5.hpp>
 #include <Model/IndexFilterProxyModel.hpp>
-#include <QAbstractItemModel>
-#include <QTableView>
 #include <array>
 
-AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sourceTableView, QWidget *parent) :
+AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *sourceTableView, const Profile *profile, QWidget *parent) :
     QDialog(parent), ui(new Ui::AdvanceFinder), sourceTableView(sourceTableView)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    model = new IndexFilterProxyModel(ui->tableView, generatorModel);
+    model = new IndexFilterProxyModel(ui->tableView, sourceModel);
     ui->tableView->setModel(model);
 
-    callChatot = dynamic_cast<IRNGProvider4 *>(generatorModel);
-    chatotNeedle = dynamic_cast<IRNGProvider5 *>(generatorModel);
+    callChatot = dynamic_cast<IRNGProvider4 *>(sourceModel);
+    chatotNeedle = dynamic_cast<IRNGProvider5 *>(sourceModel);
 
-    bool hasCallColumn = false;
-    QAbstractItemModel *sourceModel = sourceTableView->model();
-    if (sourceModel != nullptr)
-    {
-        for (int column = 0; column < sourceModel->columnCount(); column++)
-        {
-            QString header = sourceModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
-            if (!sourceTableView->isColumnHidden(column) && (header == "Call" || header == tr("Call")))
-            {
-                hasCallColumn = true;
-                break;
-            }
-        }
-    }
-    if (callChatot == nullptr || !hasCallColumn)
+    if (callChatot == nullptr || (profile->getVersion() & Game::HGSS) == Game::None)
     {
         ui->radioButtonCalls->hide();
         ui->groupBoxCalls->hide();
@@ -72,10 +58,6 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
         ui->radioButtonNeedle->hide();
         ui->groupBoxNeedle->hide();
     }
-
-    ui->radioButtonCalls->setChecked(false);
-    ui->radioButtonChatot->setChecked(callChatot || chatotNeedle);
-    ui->radioButtonNeedle->setChecked(!callChatot && !chatotNeedle);
 
     onModeChanged();
 
@@ -197,47 +179,23 @@ void AdvanceFinder::search()
     if (ui->radioButtonCalls->isChecked())
     {
         sequence = AdvanceFinderLogic::getCallSequence(tokens);
-
-        if (callChatot == nullptr)
-        {
-            model->setFilteredIndexes(QModelIndexList());
-            ui->labelPossibleResults->setText(tr("Possible Results: 0"));
-            return;
-        }
-
         getter = [this](int row) { return callChatot->getCall(row); };
     }
     else if (ui->radioButtonChatot->isChecked())
     {
         sequence = AdvanceFinderLogic::getChatotSequence(tokens);
-
         if (callChatot)
         {
             getter = [this](int row) { return callChatot->getChatot(row); };
         }
         else
         {
-            if (chatotNeedle == nullptr)
-            {
-                model->setFilteredIndexes(QModelIndexList());
-                ui->labelPossibleResults->setText(tr("Possible Results: 0"));
-                return;
-            }
-
             getter = [this](int row) { return chatotNeedle->getChatot(row); };
         }
     }
     else
     {
         sequence = AdvanceFinderLogic::getNeedleSequence(tokens);
-
-        if (chatotNeedle == nullptr)
-        {
-            model->setFilteredIndexes(QModelIndexList());
-            ui->labelPossibleResults->setText(tr("Possible Results: 0"));
-            return;
-        }
-
         getter = [this](int row) { return chatotNeedle->getNeedle(row); };
     }
 
@@ -273,9 +231,9 @@ void AdvanceFinder::jumpToAdvance()
 
 void AdvanceFinder::onModeChanged()
 {
-    bool calls = ui->radioButtonCalls->isChecked() && callChatot;
-    bool chatot = ui->radioButtonChatot->isChecked() && (callChatot || chatotNeedle);
-    bool needle = ui->radioButtonNeedle->isChecked() && chatotNeedle;
+    bool calls = ui->radioButtonCalls->isChecked();
+    bool chatot = ui->radioButtonChatot->isChecked();
+    bool needle = ui->radioButtonNeedle->isChecked();
 
     ui->groupBoxCalls->setVisible(calls);
     ui->groupBoxChatot->setVisible(chatot);
@@ -284,6 +242,4 @@ void AdvanceFinder::onModeChanged()
     tokens.clear();
     ui->lineEditSequence->clear();
     search();
-
-    resize(width(), sizeHint().height() - (calls ? 35 : 0));
 }

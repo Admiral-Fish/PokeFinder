@@ -52,7 +52,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
+    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -382,7 +382,7 @@ void Wild4::generate()
     }
 
     generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    generatorModel->setGame(currentProfile->getVersion());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -612,7 +612,7 @@ void Wild4::generatorPokeRadarStateChanged(Qt::CheckState state)
 
 void Wild4::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

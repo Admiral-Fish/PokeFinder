@@ -38,7 +38,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    EggGeneratorModel4(QObject *parent, Game version);
+    EggGeneratorModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model

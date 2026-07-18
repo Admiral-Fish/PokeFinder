@@ -24,10 +24,11 @@
 #include <QDialog>
 #include <vector>
 
-class QAbstractItemModel;
 class IndexFilterProxyModel;
 class IRNGProvider4;
 class IRNGProvider5;
+class Profile;
+class QAbstractItemModel;
 class QTableView;
 
 namespace Ui
@@ -45,10 +46,12 @@ public:
     /**
      * @brief Construct a new AdvanceFinder object
      *
-     * @param generatorModel The generator model to search through
+     * @param sourceModel The source model to search through
+     * @param sourceTableView The source tableview to modify viewport
+     * @param profile Profile information
      * @param parent Parent widget, which takes memory ownership
      */
-    AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sourceTableView, QWidget *parent = nullptr);
+    AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sourceTableView, const Profile *profile, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the AdvanceFinder object

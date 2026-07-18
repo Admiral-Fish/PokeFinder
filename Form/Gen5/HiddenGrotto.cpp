@@ -466,13 +466,13 @@ void HiddenGrotto::openAdjacentSeeds()
 
 void HiddenGrotto::openGrottoAdvanceFinder()
 {
-    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, this);
+    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, currentProfile, this);
     grottoAdvanceFinder->show();
 }
 
 void HiddenGrotto::openPokemonAdvanceFinder()
 {
-    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, this);
+    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, currentProfile, this);
     pokemonAdvanceFinder->show();
 }
 

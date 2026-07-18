@@ -22,8 +22,8 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EggGeneratorModel4::EggGeneratorModel4(QObject *parent, Game version) :
-    TableModel(parent), dppt((version & Game::DPPt) != Game::None), showInheritance(false), showStats(false)
+EggGeneratorModel4::EggGeneratorModel4(QObject *parent) :
+    TableModel(parent), dppt(true), showInheritance(false), showStats(false)
 {
 }
 

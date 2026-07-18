@@ -46,7 +46,7 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new EggGeneratorModel4(ui->tableViewGenerator, Game::DPPt);
+    generatorModel = new EggGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new EggSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -205,7 +205,7 @@ void Eggs4::generate()
 
 void Eggs4::openAdvanceFinder()
 {
-    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, this);
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
     advanceFinder->show();
 }
 

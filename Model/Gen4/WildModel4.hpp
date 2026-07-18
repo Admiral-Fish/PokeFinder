@@ -24,7 +24,7 @@
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
 
-enum class Method : u8;
+enum class Game : u32;
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 4
@@ -38,7 +38,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    WildGeneratorModel4(QObject *parent, Method method);
+    WildGeneratorModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -91,11 +91,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
-     * @brief Sets current \p method of the model
+     * @brief Sets current \p version of the model
      *
-     * @param method Method
+     * @param version Game version
      */
-    void setMethod(Method method);
+    void setGame(Game verson);
 
 public slots:
     /**
@@ -110,8 +110,8 @@ private:
         = { tr("Advances"), tr("Battle Advances"), tr("Call"),    tr("Chatot"), tr("Item"),          tr("Slot"), tr("Level"), tr("PID"),
             tr("Shiny"),    tr("Nature"),          tr("Ability"), tr("HP"),     tr("Atk"),           tr("Def"),  tr("SpA"),   tr("SpD"),
             tr("Spe"),      tr("Hidden"),          tr("Power"),   tr("Gender"), tr("Characteristic") };
+    bool dppt;
     bool showStats;
-    Method method;
 
     /**
      * @brief Gets modified column index based on model method
