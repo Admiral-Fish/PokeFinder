@@ -26,7 +26,6 @@
 
 class QAbstractItemModel;
 class IndexFilterProxyModel;
-class IRNGDreamProvider;
 class IRNGProvider4;
 class IRNGProvider5;
 class QTableView;
