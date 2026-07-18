@@ -145,7 +145,7 @@ QVariant PickupGeneratorModel5::data(const QModelIndex &index, int role) const
             case 23:
                 return QString::fromStdString(Translator::getGender(wild->getGender()));
             case 24:
-                return QString::fromStdString(Translator::getCharacteristic(wild->getCharacteristic()));
+                return QString::fromStdString(Translator::getCharacteristic(wild->getCharacteristic(), CharacteristicGeneration::Gen5));
             }
         }
         }

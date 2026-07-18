@@ -45,15 +45,15 @@
     </message>
     <message>
         <source>Wild / Static / Grotto</source>
-        <translation type="unfinished">Wild / Station�r / Lichtung</translation>
+        <translation type="unfinished">Wild / Stationär / Lichtung</translation>
     </message>
     <message>
         <source>Roamer</source>
-        <translation type="unfinished">Wanderpok�mon</translation>
+        <translation type="unfinished">Wanderpokémon</translation>
     </message>
     <message>
         <source>Chatot Pitches</source>
-        <translation type="unfinished">Plaudagei Tonh�hen</translation>
+        <translation type="unfinished">Plaudagei Tonhöhen</translation>
     </message>
     <message>
         <source>Save Needles</source>
@@ -141,7 +141,7 @@
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="37"/>
@@ -151,7 +151,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="37"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>TID</source>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="113"/>
         <source>Possible Results: %1</source>
-        <translation>M�gliche Ergebnisse: %1</translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <source>Pokemon</source>
@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Possible Results:</source>
-        <translation>M�gliche Ergebnisse:</translation>
+        <translation>Mögliche Ergebnisse:</translation>
     </message>
 </context>
 <context>
@@ -228,7 +228,7 @@
     </message>
     <message>
         <source>Isle of Armor</source>
-        <translation>R�stungsinsel</translation>
+        <translation>Rüstungsinsel</translation>
     </message>
     <message>
         <source>Crown Tundra</source>
@@ -343,12 +343,12 @@
         <location filename="../Gen5/DreamRadar.cpp" line="302"/>
         <location filename="../Gen5/DreamRadar.cpp" line="340"/>
         <source>Enter information for at least 1 slot</source>
-        <translation>Informationen f�r mindestens einen Slot ausf�llen</translation>
+        <translation>Informationen für mindestens einen Slot ausfüllen</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="332"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="332"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
@@ -445,7 +445,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
@@ -543,7 +543,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
@@ -553,7 +553,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -626,7 +626,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="102"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="103"/>
@@ -666,7 +666,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="110"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="111"/>
@@ -676,7 +676,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="112"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -724,7 +724,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="88"/>
@@ -764,7 +764,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
@@ -774,7 +774,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="89"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -827,7 +827,7 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="90"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="90"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/EggModel3.hpp" line="94"/>
@@ -925,7 +925,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
@@ -965,7 +965,7 @@
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -1023,7 +1023,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="194"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="195"/>
@@ -1063,7 +1063,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="202"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="203"/>
@@ -1073,7 +1073,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="204"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1121,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="155"/>
@@ -1161,7 +1161,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
@@ -1171,7 +1171,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="156"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
@@ -1186,7 +1186,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="157"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -1229,7 +1229,7 @@
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Gender</source>
@@ -1251,7 +1251,7 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <source>Paste IVs from clipboard</source>
-        <translation>IVs aus der Zwischenablage einf�gen</translation>
+        <translation>IVs aus der Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="282"/>
@@ -1298,12 +1298,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="332"/>
         <source>Invalid Format</source>
-        <translation>Ung�ltiges Format</translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="332"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation>Der Text in der Zwischenablage hat ein ung�ltiges Format</translation>
+        <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="69"/>
@@ -1334,12 +1334,12 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="106"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation>Geschlechter der ausgew�hlten Eltern sind zum Z�chten nicht kompatibel</translation>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="125"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
-        <translation>Eltern nicht kompatibel f�r Versteckte F�higkeit!</translation>
+        <translation>Eltern nicht kompatibel für Versteckte Fähigkeit!</translation>
     </message>
 </context>
 <context>
@@ -1354,7 +1354,7 @@
     </message>
     <message>
         <source>Compatibility</source>
-        <translation>Kompatibilit�t</translation>
+        <translation>Kompatibilität</translation>
     </message>
     <message>
         <source>Redraws</source>
@@ -1378,7 +1378,7 @@
     </message>
     <message>
         <source>The two don&apos;t seem to like each other</source>
-        <translation>Die beiden m�gen sich aber nicht sehr</translation>
+        <translation>Die beiden mögen sich aber nicht sehr</translation>
     </message>
     <message>
         <source>The two seem to get along</source>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <source>The two seem to get along very well</source>
-        <translation>Die beiden scheinen sich sehr zu m�gen</translation>
+        <translation>Die beiden scheinen sich sehr zu mögen</translation>
     </message>
     <message>
         <source>Method</source>
@@ -1475,7 +1475,7 @@
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="83"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="137"/>
@@ -1495,7 +1495,7 @@
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="151"/>
         <source>Coin Flip Application Taps: %1</source>
-        <translation>M�nzwurf-App tipps</translation>
+        <translation>Münzwurf-App tipps</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="157"/>
@@ -1600,7 +1600,7 @@
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="165"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="165"/>
@@ -1636,11 +1636,11 @@
     </message>
     <message>
         <source>Compatibility</source>
-        <translation>Kompatibilit�t</translation>
+        <translation>Kompatibilität</translation>
     </message>
     <message>
         <source>The two don&apos;t seem to like each other</source>
-        <translation>Die beiden m�gen sich aber nicht sehr</translation>
+        <translation>Die beiden mögen sich aber nicht sehr</translation>
     </message>
     <message>
         <source>The two seem to get along</source>
@@ -1648,7 +1648,7 @@
     </message>
     <message>
         <source>The two seem to get along very well</source>
-        <translation>Die beiden scheinen sich sehr zu m�gen</translation>
+        <translation>Die beiden scheinen sich sehr zu mögen</translation>
     </message>
     <message>
         <source>Seed 0</source>
@@ -1734,7 +1734,7 @@
     </message>
     <message>
         <source>Leaf Green</source>
-        <translation>Blattgr�n</translation>
+        <translation>Blattgrün</translation>
     </message>
     <message>
         <source>Emerald</source>
@@ -1796,7 +1796,7 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="98"/>
         <source>Rock Smash</source>
-        <translation>Zertr�mmerer</translation>
+        <translation>Zertrümmerer</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="102"/>
@@ -1806,10 +1806,10 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="104"/>
         <source>Bug Catching Contest</source>
-        <translation>K�ferturnier</translation>
+        <translation>Käferturnier</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -1818,7 +1818,7 @@
     </message>
     <message>
         <source>White</source>
-        <translation>Wei�</translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <source>Black 2</source>
@@ -1826,7 +1826,7 @@
     </message>
     <message>
         <source>White 2</source>
-        <translation>Wei� 2</translation>
+        <translation>Weiß 2</translation>
     </message>
 </context>
 <context>
@@ -1897,7 +1897,7 @@
     </message>
     <message>
         <source>Max Advance</source>
-        <translation>H�chstwert</translation>
+        <translation>Höchstwert</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1910,7 +1910,7 @@
     <message>
         <location filename="../Gen4/Event4.cpp" line="83"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -1981,23 +1981,23 @@
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <source>? Only</source>
-        <translation>Nur ?</translation>
+        <source>♂ Only</source>
+        <translation>Nur ♂</translation>
     </message>
     <message>
-        <source>? Only</source>
-        <translation>Nur ?</translation>
+        <source>♀ Only</source>
+        <translation>Nur ♀</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>Nature</source>
@@ -2055,13 +2055,13 @@
         <location filename="../Gen5/Event5.cpp" line="209"/>
         <location filename="../Gen5/Event5.cpp" line="337"/>
         <source>Invalid format</source>
-        <translation>Ung�ltiges Format</translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="209"/>
         <location filename="../Gen5/Event5.cpp" line="337"/>
         <source>Wondercard is not the correct size</source>
-        <translation>Wunderkarte hat nicht die korrekte Gr��e</translation>
+        <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="259"/>
@@ -2073,12 +2073,12 @@
         <location filename="../Gen5/Event5.cpp" line="259"/>
         <location filename="../Gen5/Event5.cpp" line="387"/>
         <source>There was a problem opening the wondercard</source>
-        <translation>Es gab ein Problem beim �ffnen der Wunderkarte</translation>
+        <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="277"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="277"/>
@@ -2170,7 +2170,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>Star</source>
@@ -2182,7 +2182,7 @@
     </message>
     <message>
         <source>Static</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>IV Count</source>
@@ -2194,7 +2194,7 @@
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Gender</source>
@@ -2211,12 +2211,12 @@
     <message>
         <location filename="../Gen8/Event8.cpp" line="120"/>
         <source>Invalid format</source>
-        <translation>Ung�ltiges Format</translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="120"/>
         <source>Wondercard is not the correct size</source>
-        <translation>Wunderkarte hat nicht die korrekte Gr��e</translation>
+        <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="151"/>
@@ -2226,7 +2226,7 @@
     <message>
         <location filename="../Gen8/Event8.cpp" line="151"/>
         <source>There was a problem opening the wondercard</source>
-        <translation>Es gab ein Problem beim �ffnen der Wunderkarte</translation>
+        <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="164"/>
@@ -2298,7 +2298,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
 </context>
 <context>
@@ -2346,7 +2346,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="81"/>
@@ -2386,7 +2386,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
@@ -2396,7 +2396,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -2449,7 +2449,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="158"/>
@@ -2502,7 +2502,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="140"/>
@@ -2542,7 +2542,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
@@ -2552,7 +2552,7 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="141"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
@@ -2567,14 +2567,14 @@
     <message>
         <location filename="../../Model/Gen5/EventModel5.hpp" line="142"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
     <name>Filter</name>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Any</source>
@@ -2621,7 +2621,7 @@
         <location filename="../Controls/Filter.cpp" line="81"/>
         <location filename="../Controls/Filter.cpp" line="82"/>
         <source>Click holding ctrl to reset</source>
-        <translation>Zum zur�cksetzen klicke w�hrend Strg gedr�ckt ist</translation>
+        <translation>Zum zurücksetzen klicke während Strg gedrückt ist</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="84"/>
@@ -2631,17 +2631,17 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="84"/>
         <source>Click holding ctrl to set 31</source>
-        <translation>Klicke w�hrend Strg gedr�ckt ist um Wert auf 31 zu setzen</translation>
+        <translation>Klicke während Strg gedrückt ist um Wert auf 31 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="84"/>
         <source>Click holding alt to set 30-31</source>
-        <translation>Klicke w�hrend Alt gedr�ckt ist um Werte auf 30-31 zu setzen</translation>
+        <translation>Klicke während Alt gedrückt ist um Werte auf 30-31 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="85"/>
         <source>Click holding ctrl+alt to set 0</source>
-        <translation>Klicke w�hrend Strg+Alt gedr�ckt sind um Wert auf 0 zu setzen</translation>
+        <translation>Klicke während Strg+Alt gedrückt sind um Wert auf 0 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="102"/>
@@ -2651,7 +2651,7 @@
     <message>
         <location filename="../Controls/Filter.cpp" line="103"/>
         <source>Paste IVs from clipboard</source>
-        <translation>IVs aus der Zwischenablage einf�gen</translation>
+        <translation>IVs aus der Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
@@ -2664,72 +2664,72 @@
         <location filename="../Controls/Filter.cpp" line="400"/>
         <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Invalid filter settings</source>
-        <translation>Ung�ltige Filter Einstellungen</translation>
+        <translation>Ungültige Filter Einstellungen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
-        <translation>Level Mininum ist Gr��er als Maximum</translation>
+        <translation>Level Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="400"/>
         <source>Height minimum is greater than maximum</source>
-        <translation>Gr��en Mininum ist Gr��er als Maximum</translation>
+        <translation>Größen Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Level filter outside of encounters level range</source>
-        <translation>Level filter au�erhalb der Levelspanne</translation>
+        <translation>Level filter außerhalb der Levelspanne</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
-        <translation>KP Mininum ist Gr��er als Maximum</translation>
+        <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="358"/>
         <source>Atk minimum is greater than maximum</source>
-        <translation>Angr Mininum ist Gr��er als Maximum</translation>
+        <translation>Angr Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="365"/>
         <source>Def minimum is greater than maximum</source>
-        <translation>Vert Mininum ist Gr��er als Maximum</translation>
+        <translation>Vert Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="372"/>
         <source>SpA minimum is greater than maximum</source>
-        <translation>SpAng Mininum ist Gr��er als Maximum</translation>
+        <translation>SpAng Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="379"/>
         <source>SpD minimum is greater than maximum</source>
-        <translation>SpVer Mininum ist Gr��er als Maximum</translation>
+        <translation>SpVer Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="386"/>
         <source>Spe minimum is greater than maximum</source>
-        <translation>Init Mininum ist Gr��er als Maximum</translation>
+        <translation>Init Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Weight minimum is greater than maximum</source>
-        <translation>KP Mininum ist Gr��er als Maximum</translation>
+        <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Invalid level</source>
-        <translation>Ung�ltiges level</translation>
+        <translation>Ungültiges level</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="553"/>
         <source>Invalid Format</source>
-        <translation>Ung�ltiges Format</translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="553"/>
         <source>The clipboard text did not match the expected format.</source>
-        <translation>Der Text in der Zwischenablage hat ein ung�ltiges Format</translation>
+        <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
     <message>
         <source>HP</source>
@@ -2765,7 +2765,7 @@
     </message>
     <message>
         <source>Height</source>
-        <translation>Gr��e</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <source>Weight</source>
@@ -2899,7 +2899,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="79"/>
@@ -2939,7 +2939,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="80"/>
@@ -2987,7 +2987,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="134"/>
@@ -3027,7 +3027,7 @@
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/GameCubeModel.hpp" line="135"/>
@@ -3055,7 +3055,7 @@
     </message>
     <message>
         <source>Possible Results:</source>
-        <translation>M�gliche Ergebnisse:</translation>
+        <translation>Mögliche Ergebnisse:</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -3063,7 +3063,7 @@
     </message>
     <message>
         <source>Reset</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Enemy Lead</source>
@@ -3103,12 +3103,12 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="136"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="162"/>
         <source>Possible Results: %1</source>
-        <translation>M�gliche Ergebnisse: %1</translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="90"/>
         <source>Result: Invalid</source>
-        <translation>Ergebnis: Ung�ltig</translation>
+        <translation>Ergebnis: Ungültig</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
@@ -3123,18 +3123,18 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="370"/>
         <source>Would you like to use the Gales Precalc file? This decision will be remembered until you close this window.</source>
-        <translation>M�chtest du die Gales Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schlie�t.</translation>
+        <translation>Möchtest du die Gales Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schließt.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="374"/>
         <source>Select Gales Precalc</source>
-        <translation>Gales Precalc ausw�hlen</translation>
+        <translation>Gales Precalc auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="266"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="385"/>
         <source>Invalid Precalc File</source>
-        <translation>Ung�ltige Precalc Datei</translation>
+        <translation>Ungültige Precalc Datei</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="104"/>
@@ -3159,19 +3159,19 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="267"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="386"/>
         <source>An invalid Precalc file was provided. Please try again.</source>
-        <translation>Die Precalc Datei ist ung�ltig. Bitte erneut versuchen.</translation>
+        <translation>Die Precalc Datei ist ungültig. Bitte erneut versuchen.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="274"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="393"/>
         <source>Unable to open file</source>
-        <translation>Datei kann nicht ge�ffnet werden</translation>
+        <translation>Datei kann nicht geöffnet werden</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="274"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="393"/>
         <source>Unable to open file. Please try again.</source>
-        <translation>Datei kann nicht ge�ffnet werden. Bitte erneut versuchen.</translation>
+        <translation>Datei kann nicht geöffnet werden. Bitte erneut versuchen.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
@@ -3181,12 +3181,12 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="251"/>
         <source>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</source>
-        <translation>M�chtest du die Colo Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schlie�t.</translation>
+        <translation>Möchtest du die Colo Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schließt.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="255"/>
         <source>Select Colo Precalc</source>
-        <translation>Colo Precalc ausw�hlen</translation>
+        <translation>Colo Precalc auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="198"/>
@@ -3196,7 +3196,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="198"/>
         <source>You must have at least 10 entries</source>
-        <translation>Du musst mindestens 10 Eintr�ge haben</translation>
+        <translation>Du musst mindestens 10 Einträge haben</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
@@ -3295,7 +3295,7 @@
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
 </context>
 <context>
@@ -3409,7 +3409,7 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="328"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="550"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="328"/>
@@ -3420,13 +3420,13 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="633"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation>Einstellungen sind f�r schnelle IV/SHA Suche konfiguriert</translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="638"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation>Einstellungen sind f�r schnelle IV Suche konfiguriert.
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
@@ -3447,7 +3447,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="652"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation>Setze IV Filter auf h�ufig verwendete IV spreads</translation>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -3528,7 +3528,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="178"/>
@@ -3568,7 +3568,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
@@ -3578,7 +3578,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="179"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -3636,7 +3636,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="237"/>
@@ -3676,7 +3676,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
@@ -3686,7 +3686,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="238"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
@@ -3701,7 +3701,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="239"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -3762,7 +3762,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="121"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3866,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -4013,7 +4013,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/IDs4.cpp" line="52"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
 </context>
 <context>
@@ -4080,12 +4080,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Static/Wild</source>
-        <translation>Station�r/Wild</translation>
+        <translation>Stationär/Wild</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.cpp" line="133"/>
         <source>Invalid date range</source>
-        <translation>Un�ltige Datumsspanne</translation>
+        <translation>Unültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.cpp" line="133"/>
@@ -4203,7 +4203,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="52"/>
         <source>Please select a file to save the results to</source>
-        <translation>Bitte Datei zum speichern ausw�hlen</translation>
+        <translation>Bitte Datei zum speichern auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/IVCacheFinder.cpp" line="91"/>
@@ -4222,7 +4222,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -4231,7 +4231,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <source>Hidden Power</source>
@@ -4305,12 +4305,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="44"/>
         <source>Next level may not be completely accurate without specifying a nature</source>
-        <translation>N�chstes Level m�glicherweise nicht akkurat ohne Angabe des Wesens</translation>
+        <translation>Nächstes Level möglicherweise nicht akkurat ohne Angabe des Wesens</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="77"/>
         <source>Invalid</source>
-        <translation>Ung�ltig</translation>
+        <translation>Ungültig</translation>
     </message>
     <message>
         <source>Altform</source>
@@ -4326,7 +4326,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Add row</source>
-        <translation>Zeile hinzuf�gen</translation>
+        <translation>Zeile hinzufügen</translation>
     </message>
     <message>
         <source>Remove row</source>
@@ -4358,11 +4358,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Black/White/Black 2/White 2</source>
-        <translation>Schwarz/Wei�/Schwarz 2/Wei� 2</translation>
+        <translation>Schwarz/Weiß/Schwarz 2/Weiß 2</translation>
     </message>
     <message>
         <source>Next level</source>
-        <translation>N�chster Level</translation>
+        <translation>Nächster Level</translation>
     </message>
 </context>
 <context>
@@ -4468,7 +4468,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Util/IVToPIDModel.hpp" line="68"/>
@@ -4510,12 +4510,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="65"/>
         <source>Target is outside of specified advance range</source>
-        <translation>Ziel ist au�erhalb des angegebenen Advance-Bereichs</translation>
+        <translation>Ziel ist außerhalb des angegebenen Advance-Bereichs</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
         <source>Invalid target</source>
-        <translation>Un�ltiges Ziel</translation>
+        <translation>Unültiges Ziel</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
@@ -4594,7 +4594,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../MainWindow.cpp" line="205"/>
         <source>An update is available. Would you like to download the newest version?</source>
-        <translation>Ein Update ist verf�gbar. Neueste Version herunterladen?</translation>
+        <translation>Ein Update ist verfügbar. Neueste Version herunterladen?</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="417"/>
@@ -4701,7 +4701,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Static</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Hidden Grotto</source>
@@ -4722,7 +4722,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../MainWindow.cpp" line="724"/>
         <source>About</source>
-        <translation>�ber</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Den Map</source>
@@ -4767,7 +4767,6 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Adjacent Seeds</source>
         <translation type="unfinished"></translation>
-
     </message>
 </context>
 <context>
@@ -4832,7 +4831,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>PokeSpot</name>
     <message>
         <source>PokeSpot</source>
-        <translation>Pok�Platz</translation>
+        <translation>PokéPlatz</translation>
     </message>
     <message>
         <source>RNG Info</source>
@@ -4867,7 +4866,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fundort</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -4930,7 +4929,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="86"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="87"/>
@@ -4970,7 +4969,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="94"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/PokeSpotModel.hpp" line="95"/>
@@ -5042,7 +5041,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation>Gedr�ckte Kn�pfe</translation>
+        <translation>Gedrückte Knöpfe</translation>
     </message>
     <message>
         <source>MAC Address</source>
@@ -5058,7 +5057,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>White</source>
-        <translation>Wei�</translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <source>Black 2</source>
@@ -5066,7 +5065,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>White 2</source>
-        <translation>Wei� 2</translation>
+        <translation>Weiß 2</translation>
     </message>
     <message>
         <source>ENG</source>
@@ -5138,11 +5137,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>L�schen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Seed Search</source>
@@ -5160,22 +5159,22 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="170"/>
         <source>No row selected</source>
-        <translation>Keine Zeile ausgew�hlt</translation>
+        <translation>Keine Zeile ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="170"/>
         <source>Please select a row</source>
-        <translation>Bitte eine Zeile ausw�hlen</translation>
+        <translation>Bitte eine Zeile auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="232"/>
         <source>Some min values are greater then max values</source>
-        <translation>Manche Min Werte sind gr��er als die Max Werte</translation>
+        <translation>Manche Min Werte sind größer als die Max Werte</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="232"/>
         <source>Invalid Input</source>
-        <translation>Ung�ltige Eingabe</translation>
+        <translation>Ungültige Eingabe</translation>
     </message>
     <message>
         <source>IV Calculator</source>
@@ -5394,7 +5393,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Leaf Green</source>
-        <translation>Blattgr�n</translation>
+        <translation>Blattgrün</translation>
     </message>
     <message>
         <source>Emerald</source>
@@ -5548,7 +5547,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation>Best�tigen</translation>
+        <translation>Bestätigen</translation>
     </message>
     <message>
         <source>Version</source>
@@ -5560,7 +5559,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>White</source>
-        <translation>Wei�</translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <source>Black 2</source>
@@ -5568,11 +5567,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>White 2</source>
-        <translation>Wei� 2</translation>
+        <translation>Weiß 2</translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation>Anzahl Knopfdr�cke</translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <source>Timer0 Min</source>
@@ -5675,17 +5674,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="155"/>
         <source>Open IV Cache</source>
-        <translation>IV Cache �ffnen</translation>
+        <translation>IV Cache öffnen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Invalid IV Cache</source>
-        <translation>Ung�ltiges IV Cache</translation>
+        <translation>Ungültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
         <source>Provided file is not a valid IV Cache</source>
-        <translation>Datei ist kein g�ltiges IV Cache</translation>
+        <translation>Datei ist kein gültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="172"/>
@@ -5695,12 +5694,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
         <source>Invalid SHA Cache</source>
-        <translation>Ung�ltiges SHA Cache</translation>
+        <translation>Ungültiges SHA Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="181"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
-        <translation>Datei ist kein g�ltiges SHA Cache oder wurde nicht aus dem Profil erstellt</translation>
+        <translation>Datei ist kein gültiges SHA Cache oder wurde nicht aus dem Profil erstellt</translation>
     </message>
     <message>
         <source>IV Cache</source>
@@ -5708,11 +5707,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Select File</source>
-        <translation>Datei ausw�hlen</translation>
+        <translation>Datei auswählen</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>SHA Cache</source>
@@ -5800,7 +5799,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>L�schen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -5815,24 +5814,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="92"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="113"/>
         <source>No profile selected</source>
-        <translation>Kein Profil ausgew�hlt</translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="76"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="92"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="113"/>
         <source>Please select a profile</source>
-        <translation>Bitte Profil ausw�hlen</translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="118"/>
         <source>Delete profile</source>
-        <translation>Profil l�schen</translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="118"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation>Profil endg�ltig l�schen?</translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -5855,7 +5854,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>L�schen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Done</source>
@@ -5866,24 +5865,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="93"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="114"/>
         <source>No profile selected</source>
-        <translation>Kein Profil ausgew�hlt</translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="77"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="93"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="114"/>
         <source>Please select a profile</source>
-        <translation>Bitte Profil ausw�hlen</translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="119"/>
         <source>Delete profile</source>
-        <translation>Profil l�schen</translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation>Profil endg�ltig l�schen?</translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -5906,7 +5905,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>L�schen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Done</source>
@@ -5917,24 +5916,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="93"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="114"/>
         <source>No profile selected</source>
-        <translation>Kein Profil ausgew�hlt</translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="77"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="93"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="114"/>
         <source>Please select a profile</source>
-        <translation>Bitte Profil ausw�hlen</translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="119"/>
         <source>Delete profile</source>
-        <translation>Profil l�schen</translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation>Profil endg�ltig l�schen?</translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -5957,7 +5956,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>L�schen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Done</source>
@@ -5968,24 +5967,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="93"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="114"/>
         <source>No profile selected</source>
-        <translation>Kein Profil ausgew�hlt</translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="77"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="93"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="114"/>
         <source>Please select a profile</source>
-        <translation>Bitte Profil ausw�hlen</translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="119"/>
         <source>Delete profile</source>
-        <translation>Profil l�schen</translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="119"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation>Profil endg�ltig l�schen?</translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -6142,7 +6141,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
         <source>Keypresses</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
@@ -6258,7 +6257,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Isle of Armor</source>
-        <translation>R�stungsinsel</translation>
+        <translation>Rüstungsinsel</translation>
     </message>
     <message>
         <source>Crown Tundra</source>
@@ -6306,7 +6305,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>Genderless</source>
@@ -6318,15 +6317,15 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Gender Ratio</source>
-        <translation>Geschlechterverh�ltnis</translation>
+        <translation>Geschlechterverhältnis</translation>
     </message>
     <message>
-        <source>Only ?</source>
-        <translation>Nur ?</translation>
+        <source>Only ♂</source>
+        <translation>Nur ♂</translation>
     </message>
     <message>
-        <source>Only ?</source>
-        <translation>Nur ?</translation>
+        <source>Only ♀</source>
+        <translation>Nur ♀</translation>
     </message>
     <message>
         <source>IV Count</source>
@@ -6346,7 +6345,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Gigantamax</source>
@@ -6470,7 +6469,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation>N�chstes</translation>
+        <translation>Nächstes</translation>
     </message>
     <message>
         <source>Previous 7</source>
@@ -6624,7 +6623,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Util/Researcher.cpp" line="345"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
-        <translation>Hex Box muss abgehakt sein, um Hexadezimalwerte f�r Nummer %1 zu verwenden</translation>
+        <translation>Hex Box muss abgehakt sein, um Hexadezimalwerte für Nummer %1 zu verwenden</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="409"/>
@@ -6735,7 +6734,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>RoamerMap</name>
     <message>
         <source>Roamer Map</source>
-        <translation>Karte der Wanderpok�mon</translation>
+        <translation>Karte der Wanderpokémon</translation>
     </message>
 </context>
 <context>
@@ -6772,12 +6771,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="95"/>
         <source>Please select a file to save the results to</source>
-        <translation>Bitte Datei zum speichern der Ergebnisse ausw�hlen</translation>
+        <translation>Bitte Datei zum speichern der Ergebnisse auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="104"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="104"/>
@@ -6787,12 +6786,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="112"/>
         <source>Invalid IV Cache</source>
-        <translation>Ung�ltiges IV Cache</translation>
+        <translation>Ungültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="112"/>
         <source>Profile does not have a valid IV Cache</source>
-        <translation>Profil hat kein g�ltiges IV Cache</translation>
+        <translation>Profil hat kein gültiges IV Cache</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/SHA1CacheFinder.cpp" line="151"/>
@@ -6808,7 +6807,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Possible Results:</source>
-        <translation>M�gliche Ergebnisse:</translation>
+        <translation>Mögliche Ergebnisse:</translation>
     </message>
     <message>
         <source>Elm</source>
@@ -6832,55 +6831,55 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
-        <source>P - It seems that Pok�mon that have been infected with Pok�rus level up better. We&apos;re not quite sure why...</source>
-        <translation>P - Pok�mon, die mit dem Pok�rus infiziert sind, scheinen schneller zu wachsen. Wenn ich nur w�sste, woran das liegt...</translation>
+        <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
+        <translation>P - Pokémon, die mit dem Pokérus infiziert sind, scheinen schneller zu wachsen. Wenn ich nur wüsste, woran das liegt...</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
-        <source>E - There are so many different ways that Pok�mon evolve, aren&apos;t there?! Some Pok�mon don&apos;t even evolve until they meet certain conditions first!</source>
-        <translation>E - Die Entwicklung der Pok�mon gibt uns noch immer viele R�tsel auf. Es scheint sogar Pok�mon zu geben, die sich unter sehr speziellen Voraussetzungen entwickeln!</translation>
+        <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
+        <translation>E - Die Entwicklung der Pokémon gibt uns noch immer viele Rätsel auf. Es scheint sogar Pokémon zu geben, die sich unter sehr speziellen Voraussetzungen entwickeln!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="36"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="110"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
         <source>Possible Results: %1</source>
-        <translation>M�gliche Ergebnisse: %1</translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="135"/>
-        <source>K - I expect there are some Pok�mon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
-        <translation>K - In der Kanto-Region gibt es noch viele Pok�mon, die ich noch nicht kenne. Wer wei�, vielleicht kennt man dort auch mir v�llig neue Entwicklungsmethoden! Halte also immer die Augen auf und beobachte alles genau!</translation>
+        <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
+        <translation>K - In der Kanto-Region gibt es noch viele Pokémon, die ich noch nicht kenne. Wer weiß, vielleicht kennt man dort auch mir völlig neue Entwicklungsmethoden! Halte also immer die Augen auf und beobachte alles genau!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="145"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
-        <translation>K - Ist das sch�n, dass du anrufst! Ich wollte dich auch gerade anrufen! Siehst du? Wir passen gut zusammen!</translation>
+        <translation>K - Ist das schön, dass du anrufst! Ich wollte dich auch gerade anrufen! Siehst du? Wir passen gut zusammen!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="146"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
-        <translation>E - Ich kriege jedes Mal G�nsehaut, wenn ich von deinen Abenteuern h�re!</translation>
+        <translation>E - Ich kriege jedes Mal Gänsehaut, wenn ich von deinen Abenteuern höre!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="147"/>
-        <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pok�mon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
-        <translation>P - Wie geht es dir? Was machst du gerade? Wo bist du? Wie viele Orden hast du jetzt? Wie viel Geld hast du gespart? Wie geht es deiner Mama? Hast du viele Pok�mon? Scheint morgen die Sonne? Aaargh, es gibt so viel, �ber das ich reden m�chte! Wir kommen ja gar nicht zum Reden!</translation>
+        <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
+        <translation>P - Wie geht es dir? Was machst du gerade? Wo bist du? Wie viele Orden hast du jetzt? Wie viel Geld hast du gespart? Wie geht es deiner Mama? Hast du viele Pokémon? Scheint morgen die Sonne? Aaargh, es gibt so viel, über das ich reden möchte! Wir kommen ja gar nicht zum Reden!</translation>
     </message>
 </context>
 <context>
     <name>SearchCoinFlips</name>
     <message>
         <source>Search Coin Flips</source>
-        <translation>M�nzwurf-Suche</translation>
+        <translation>Münzwurf-Suche</translation>
     </message>
     <message>
         <source>Possible Results:</source>
-        <translation>M�gliche Ergebnisse:</translation>
+        <translation>Mögliche Ergebnisse:</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -6896,14 +6895,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="37"/>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="106"/>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="112"/>
         <source>Possible Results: %1</source>
-        <translation>M�gliche Ergebnisse: %1</translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
 </context>
 <context>
@@ -6957,7 +6956,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Search Flips</source>
-        <translation>M�nzwurf-Suche</translation>
+        <translation>Münzwurf-Suche</translation>
     </message>
     <message>
         <source>Search</source>
@@ -6973,7 +6972,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Coin Flips:</source>
-        <translation>M�nzw�rfe:</translation>
+        <translation>Münzwürfe:</translation>
     </message>
     <message>
         <source>HGSS</source>
@@ -7005,24 +7004,24 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Roamers:</source>
-        <translation>Wanderpok�mon:</translation>
+        <translation>Wanderpokémon:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
         <source>Invalid selection</source>
-        <translation>Ung�ltige Auswahl</translation>
+        <translation>Ungültige Auswahl</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
         <source>Select a valid row</source>
-        <translation>G�ltige Reihe ausw�hlen</translation>
+        <translation>Gültige Reihe auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="187"/>
         <source>Coin Flips: %1</source>
-        <translation>M�nzw�rfe: %1</translation>
+        <translation>Münzwürfe: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="237"/>
@@ -7032,12 +7031,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>Roamers: %1</source>
-        <translation>Wanderpok�mon: %1</translation>
+        <translation>Wanderpokémon: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
         <source>No roamers</source>
-        <translation>Keine Wanderpok�mon</translation>
+        <translation>Keine Wanderpokémon</translation>
     </message>
 </context>
 <context>
@@ -7045,7 +7044,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.cpp" line="87"/>
         <source>No roamers</source>
-        <translation>Keine Wanderpok�mon</translation>
+        <translation>Keine Wanderpokémon</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7065,7 +7064,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Coin flips</source>
-        <translation>M�nzw�rfe</translation>
+        <translation>Münzwürfe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
@@ -7075,7 +7074,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Roamers</source>
-        <translation>Wanderpok�mon</translation>
+        <translation>Wanderpokémon</translation>
     </message>
 </context>
 <context>
@@ -7119,7 +7118,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>French</source>
-        <translation>Franz�sisch</translation>
+        <translation>Französisch</translation>
     </message>
     <message>
         <source>German</source>
@@ -7163,7 +7162,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Change</source>
-        <translation>�ndern</translation>
+        <translation>Ändern</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
@@ -7174,12 +7173,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Util/Settings.cpp" line="153"/>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Restart for changes to take effect. Restart now?</source>
-        <translation>Neu starten, damit �nderungen wirksam werden. Neustart ausf�hren?</translation>
+        <translation>Neu starten, damit Änderungen wirksam werden. Neustart ausführen?</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Style change</source>
-        <translation>Style �nderung</translation>
+        <translation>Style Änderung</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="126"/>
@@ -7193,7 +7192,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Table Header Size</source>
-        <translation>Tabellen-�berschriftsgr��e</translation>
+        <translation>Tabellen-Überschriftsgröße</translation>
     </message>
     <message>
         <source>Stretch to fit contents</source>
@@ -7223,7 +7222,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>Static3</name>
     <message>
         <source>Gen 3 Static</source>
-        <translation>Generation 3 Station�r</translation>
+        <translation>Generation 3 Stationär</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -7280,7 +7279,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen3/Static3.cpp" line="69"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -7308,11 +7307,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation>Legend�re</translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <source>Events</source>
@@ -7328,7 +7327,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation>Wanderpok�mon</translation>
+        <translation>Wanderpokémon</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -7339,7 +7338,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>Static4</name>
     <message>
         <source>Gen 4 Static</source>
-        <translation>Generation 4 Station�r</translation>
+        <translation>Generation 4 Stationär</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -7398,7 +7397,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Static4.cpp" line="73"/>
         <location filename="../Gen4/Static4.cpp" line="78"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -7428,13 +7427,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Static4.cpp" line="73"/>
         <location filename="../Gen4/Static4.cpp" line="78"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.cpp" line="81"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -7462,11 +7461,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation>Legend�re</translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <source>Events</source>
@@ -7474,7 +7473,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation>Wanderpok�mon</translation>
+        <translation>Wanderpokémon</translation>
     </message>
     <message>
         <source>Pokemon</source>
@@ -7498,14 +7497,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
 </context>
 <context>
     <name>Static5</name>
     <message>
         <source>Gen 5 Static</source>
-        <translation>Generation 5 Station�r</translation>
+        <translation>Generation 5 Stationär</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -7545,7 +7544,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation>Beschw�rungskraft</translation>
+        <translation>Beschwörungskraft</translation>
     </message>
     <message>
         <source>Generate</source>
@@ -7573,11 +7572,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation>Legend�re</translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <source>Events</source>
@@ -7585,7 +7584,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation>Wanderpok�mon</translation>
+        <translation>Wanderpokémon</translation>
     </message>
     <message>
         <source>Pokemon</source>
@@ -7605,7 +7604,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>Always</source>
@@ -7658,13 +7657,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="79"/>
         <location filename="../Gen5/Static5.cpp" line="84"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="79"/>
         <location filename="../Gen5/Static5.cpp" line="84"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -7681,7 +7680,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="345"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="345"/>
@@ -7691,13 +7690,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="453"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation>Einstellungen sind f�r schnelle IV/SHA Suche konfiguriert</translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="458"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation>Einstellungen sind f�r schnelle IV Suche konfiguriert.
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
@@ -7718,7 +7717,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="472"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation>Setze IV Filter auf h�ufig verwendete IV spreads</translation>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
     <message>
         <source>Curtis</source>
@@ -7733,7 +7732,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <name>Static8</name>
     <message>
         <source>Static Gen 8</source>
-        <translation>Generation 8 Station�r</translation>
+        <translation>Generation 8 Stationär</translation>
     </message>
     <message>
         <source>RNG Info</source>
@@ -7784,12 +7783,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="54"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="54"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -7820,15 +7819,15 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Stationary</source>
-        <translation>Station�r</translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <source>Roamers</source>
-        <translation>Wanderpok�mon</translation>
+        <translation>Wanderpokémon</translation>
     </message>
     <message>
         <source>Legends</source>
-        <translation>Legend�re</translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <source>Ramanas Park (Pure Space)</source>
@@ -7848,7 +7847,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>Shiny</source>
@@ -7860,7 +7859,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Zuf�llig</translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <source>IV Count</source>
@@ -7872,7 +7871,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Mythics</source>
-        <translation>Mysteri�se</translation>
+        <translation>Mysteriöse</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -7919,7 +7918,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="79"/>
@@ -7959,7 +7958,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="80"/>
@@ -8017,7 +8016,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="90"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="90"/>
@@ -8057,7 +8056,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
@@ -8067,7 +8066,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="91"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -8115,7 +8114,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="81"/>
@@ -8155,7 +8154,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
@@ -8165,7 +8164,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -8213,7 +8212,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="80"/>
@@ -8253,7 +8252,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Height</source>
-        <translation>Gr��e</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
@@ -8263,7 +8262,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/StaticModel8.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -8306,7 +8305,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="137"/>
@@ -8346,7 +8345,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/StaticModel3.hpp" line="138"/>
@@ -8404,7 +8403,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="159"/>
@@ -8449,7 +8448,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
@@ -8459,7 +8458,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="160"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -8512,7 +8511,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="145"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="146"/>
@@ -8552,7 +8551,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="153"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="154"/>
@@ -8562,7 +8561,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="155"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="156"/>
@@ -8577,7 +8576,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/StaticModel5.hpp" line="158"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
 <context>
@@ -8585,12 +8584,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="27"/>
         <source>Transfer Filters</source>
-        <translation>Filter �bertragen</translation>
+        <translation>Filter übertragen</translation>
     </message>
     <message>
         <location filename="../Controls/TabWidget.cpp" line="30"/>
         <source>Transfer Settings</source>
-        <translation>Einstellungen �bertragen</translation>
+        <translation>Einstellungen übertragen</translation>
     </message>
 </context>
 <context>
@@ -8626,7 +8625,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Strength Obtained</source>
-        <translation>St�rke erhalten</translation>
+        <translation>Stärke erhalten</translation>
     </message>
     <message>
         <source>Defog Obtained</source>
@@ -8649,7 +8648,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Story-Fortschritt</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -8732,12 +8731,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="57"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="57"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -8753,7 +8752,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Underground.cpp" line="59"/>
         <source>Super Luck</source>
-        <translation>Gl�ckspilz</translation>
+        <translation>Glückspilz</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="60"/>
@@ -8763,7 +8762,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Underground.cpp" line="61"/>
         <source>Hustle</source>
-        <translation>�bereifer</translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="62"/>
@@ -8860,7 +8859,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="82"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="82"/>
@@ -8900,12 +8899,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
         <source>Height</source>
-        <translation>Gr��e</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/UndergroundModel.hpp" line="83"/>
@@ -8944,13 +8943,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <location filename="../Gen3/Wild3.cpp" line="93"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <location filename="../Gen3/Wild3.cpp" line="93"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -8981,7 +8980,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen3/Wild3.cpp" line="84"/>
         <location filename="../Gen3/Wild3.cpp" line="95"/>
         <source>Hustle</source>
-        <translation>�bereifer</translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="85"/>
@@ -8998,7 +8997,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="105"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -9017,7 +9016,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fundort</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -9026,7 +9025,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Rock Smash</source>
-        <translation>Zertr�mmerer</translation>
+        <translation>Zertrümmerer</translation>
     </message>
     <message>
         <source>Surfing</source>
@@ -9165,14 +9164,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Day</source>
-        <translation>Tags�ber</translation>
+        <translation>Tagsüber</translation>
     </message>
     <message>
         <source>Night</source>
         <translation>Nachts</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -9226,7 +9225,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="76"/>
         <location filename="../Gen4/Wild4.cpp" line="94"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -9299,7 +9298,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Wild4.cpp" line="84"/>
         <location filename="../Gen4/Wild4.cpp" line="102"/>
         <source>Hustle</source>
-        <translation>�bereifer</translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="85"/>
@@ -9317,13 +9316,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Wild4.cpp" line="344"/>
         <location filename="../Gen4/Wild4.cpp" line="655"/>
         <source>Please select a single encounter slot for Poke Radar</source>
-        <translation>Bitte nur einen einzigen Encounter Slot f�r Pok�radar RNG ausw�hlen</translation>
+        <translation>Bitte nur einen einzigen Encounter Slot für Pokéradar RNG auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="360"/>
         <location filename="../Gen4/Wild4.cpp" line="671"/>
         <source>Please select a single encounter slot for Honey Tree</source>
-        <translation>Bitte nur einen einzigen Encounter Slot f�r Honigbaum RNG ausw�hlen</translation>
+        <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="699"/>
@@ -9333,7 +9332,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="699"/>
         <source>This search needs at least one IV at 31</source>
-        <translation>Diese Suche ben�tigt mindestens einen IV Wert auf 31</translation>
+        <translation>Diese Suche benötigt mindestens einen IV Wert auf 31</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="73"/>
@@ -9364,7 +9363,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="134"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten f�r Seed</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="343"/>
@@ -9372,16 +9371,16 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Wild4.cpp" line="654"/>
         <location filename="../Gen4/Wild4.cpp" line="670"/>
         <source>Too many slots selected</source>
-        <translation>Zu viele Slots ausgew�hlt</translation>
+        <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
         <source>Rock Smash</source>
-        <translation>Zertr�mmerer</translation>
+        <translation>Zertrümmerer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="76"/>
         <location filename="../Gen4/Wild4.cpp" line="94"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -9422,7 +9421,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Bug Catching Contest</source>
-        <translation>K�ferturnier</translation>
+        <translation>Käferturnier</translation>
     </message>
     <message>
         <source>Headbutt</source>
@@ -9450,7 +9449,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Leaf Green</source>
-        <translation>Blattgr�n</translation>
+        <translation>Blattgrün</translation>
     </message>
     <message>
         <source>Emerald</source>
@@ -9470,23 +9469,23 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Forest Block</source>
-        <translation>Wald Bl�cke</translation>
+        <translation>Wald Blöcke</translation>
     </message>
     <message>
         <source>Peak Block</source>
-        <translation>Gestein Bl�cke</translation>
+        <translation>Gestein Blöcke</translation>
     </message>
     <message>
         <source>Plains Block</source>
-        <translation>Feld Bl�cke</translation>
+        <translation>Feld Blöcke</translation>
     </message>
     <message>
         <source>Water Block</source>
-        <translation>Wasser Bl�cke</translation>
+        <translation>Wasser Blöcke</translation>
     </message>
     <message>
         <source>Mysterious Transmission</source>
-        <translation>Mysteri�se Wellen</translation>
+        <translation>Mysteriöse Wellen</translation>
     </message>
     <message>
         <source>Happiness</source>
@@ -9573,7 +9572,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Lucky Power</source>
-        <translation>Beschw�rungskraft</translation>
+        <translation>Beschwörungskraft</translation>
     </message>
     <message>
         <source>Generate</source>
@@ -9620,7 +9619,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fundort</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -9629,7 +9628,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Spring</source>
-        <translation>Fr�hling</translation>
+        <translation>Frühling</translation>
     </message>
     <message>
         <source>Summer</source>
@@ -9696,13 +9695,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="88"/>
         <location filename="../Gen5/Wild5.cpp" line="100"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="88"/>
         <location filename="../Gen5/Wild5.cpp" line="100"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -9715,7 +9714,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Wild5.cpp" line="90"/>
         <location filename="../Gen5/Wild5.cpp" line="102"/>
         <source>Hustle</source>
-        <translation>�bereifer</translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="91"/>
@@ -9761,7 +9760,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="367"/>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="367"/>
@@ -9771,13 +9770,13 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="466"/>
         <source>Settings are configured for fast IV/SHA searching</source>
-        <translation>Einstellungen sind f�r schnelle IV/SHA Suche konfiguriert</translation>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="471"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
-        <translation>Einstellungen sind f�r schnelle IV Suche konfiguriert.
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
 Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
@@ -9798,7 +9797,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="485"/>
         <source>Ensure IV filters are set to common spreads</source>
-        <translation>Setze IV Filter auf h�ufig verwendete IV spreads</translation>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
     </message>
     <message>
         <source>Levels</source>
@@ -9816,7 +9815,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -9853,7 +9852,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Day</source>
-        <translation>Tags�ber</translation>
+        <translation>Tagsüber</translation>
     </message>
     <message>
         <source>Night</source>
@@ -9889,7 +9888,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="67"/>
         <source>Flash Fire</source>
-        <translation>Feuerf�nger</translation>
+        <translation>Feuerfänger</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="68"/>
@@ -9919,7 +9918,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="60"/>
         <source>Super Luck</source>
-        <translation>Gl�ckspilz</translation>
+        <translation>Glückspilz</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="61"/>
@@ -9929,7 +9928,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="62"/>
         <source>Hustle</source>
-        <translation>�bereifer</translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="63"/>
@@ -9959,12 +9958,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="214"/>
         <source>Too many slots selected</source>
-        <translation>Zu viele Slots ausgew�hlt</translation>
+        <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="215"/>
         <source>Please select a single encounter slot for Honey Tree</source>
-        <translation>Bitte nur einen einzigen Encounter Slot f�r Honigbaum RNG ausw�hlen</translation>
+        <translation>Bitte nur einen einzigen Encounter Slot für Honigbaum RNG auswählen</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
@@ -9973,12 +9972,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
-        <source>? Lead</source>
+        <source>♂ Lead</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
-        <source>? Lead</source>
+        <source>♀ Lead</source>
         <translation></translation>
     </message>
     <message>
@@ -10007,7 +10006,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Rock Smash</source>
-        <translation>Zertr�mmerer</translation>
+        <translation>Zertrümmerer</translation>
     </message>
     <message>
         <source>Replacement</source>
@@ -10088,7 +10087,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="79"/>
@@ -10128,7 +10127,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="80"/>
@@ -10206,7 +10205,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="90"/>
@@ -10246,7 +10245,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
@@ -10256,7 +10255,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="91"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -10319,7 +10318,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
@@ -10359,7 +10358,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
@@ -10369,7 +10368,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -10432,7 +10431,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="80"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="80"/>
@@ -10477,7 +10476,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Height</source>
-        <translation>Gr��e</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
@@ -10487,7 +10486,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen8/WildModel8.hpp" line="81"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -10540,7 +10539,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="137"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="137"/>
@@ -10580,7 +10579,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="138"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen3/WildModel3.hpp" line="138"/>
@@ -10658,7 +10657,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="159"/>
@@ -10698,7 +10697,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
@@ -10708,7 +10707,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="160"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
 </context>
 <context>
@@ -10776,7 +10775,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="140"/>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="141"/>
@@ -10816,7 +10815,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
@@ -10826,7 +10825,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="142"/>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
@@ -10841,7 +10840,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="143"/>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
 </context>
  <context>
@@ -10892,7 +10891,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation>Anzahl Knopfdr�cke</translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <source>Game</source>
@@ -10968,7 +10967,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Spring</source>
-        <translation>Fr�hling</translation>
+        <translation>Frühling</translation>
     </message>
     <message>
         <source>Summer</source>
@@ -10995,7 +10994,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Fundort</translation>
     </message>
     <message>
-        <source>Pok�mon</source>
+        <source>Pokémon</source>
         <translation></translation>
     </message>
     <message>
@@ -11016,7 +11015,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Zur�cksetzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Any</source>
@@ -11056,11 +11055,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Select at least 1 Pickup Slot</source>
-        <translation>Mindestens einen Pickup slot ausw�hlen</translation>
+        <translation>Mindestens einen Pickup slot auswählen</translation>
     </message>
     <message>
         <source>Invalid date range</source>
-        <translation>Ung�ltige Datumsspanne</translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <source>Start date is after end date</source>
@@ -11132,7 +11131,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Ability</source>
-        <translation>F�higkeit</translation>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <source>HP</source>
@@ -11164,7 +11163,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Power</source>
-        <translation>St�rke</translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <source>Gender</source>
@@ -11172,7 +11171,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Characteristic</source>
-        <translation>Pers�nlichkeit</translation>
+        <translation>Persönlichkeit</translation>
     </message>
  </context>
  <context>
@@ -11219,7 +11218,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>Buttons</source>
-        <translation>Knopfdr�cke</translation>
+        <translation>Knopfdrücke</translation>
     </message>
  </context>
 </TS>
