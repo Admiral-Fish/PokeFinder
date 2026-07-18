@@ -228,38 +228,38 @@
         <translation type="unfinished">可能的结果:</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="150"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="141"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="143"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="154"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="145"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="160"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="151"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="161"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="162"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="153"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="212"/>
-        <location filename="../Util/AdvanceFinder.cpp" line="219"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="196"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="203"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished">可能的结果: %1</translation>
     </message>
@@ -529,82 +529,82 @@
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
@@ -627,97 +627,97 @@
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Date/Time</source>
         <translation>日期/时间</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Timer0</source>
         <translation>Timer0</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>

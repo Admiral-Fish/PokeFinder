@@ -19,9 +19,6 @@
      <property name="text">
       <string>Calls</string>
      </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroupType</string>
      </attribute>
@@ -31,6 +28,9 @@
     <widget class="QRadioButton" name="radioButtonChatot">
      <property name="text">
       <string>Chatot Pitches</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroupType</string>

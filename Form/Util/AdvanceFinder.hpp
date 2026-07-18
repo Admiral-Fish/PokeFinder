@@ -60,7 +60,6 @@ private:
     Ui::AdvanceFinder *ui;
 
     IndexFilterProxyModel *model;
-    IRNGDreamProvider *needle;
     IRNGProvider4 *callChatot;
     IRNGProvider5 *chatotNeedle;
     QTableView *sourceTableView;

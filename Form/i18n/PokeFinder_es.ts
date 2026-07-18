@@ -228,38 +228,38 @@
         <translation type="unfinished">Posible resultados:</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="150"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="141"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished">K - En Kanto todavía debe haber Pokémon desconocidos para mí. Tal vez haya hasta evoluciones que jamás haya visto. ¡Fíjate bien en todo lo que pasa a tu alrededor!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="143"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished">E - La evolución de los Pokémon tiene muchos secretos. Algunos solo evolucionan en circunstancias muy determinadas!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="154"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="145"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished">P - Los Pokémon infectados por el Pokérus se crían mucho mejor. Nadie sabe por qué...</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="160"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="151"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished">K - ¡Gracias por llamarme! Yo también estaba a punto de darte un toque. ¡Esto es telepatía!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="161"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished">E - ¡Oír lo de tus aventuras me alegra el alma! ¡Te lo aseguro!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="162"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="153"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished">P - ¿Cómo estás? ¿Qué estás haciendo? ¿Dónde estás? ¿Cuántas Medallas has conseguido? ¿Cuánto dinero has ahorrado? ¿Cómo está tu madre? ¿Tienes muchos Pokémon? ¿Va a hacer sol mañana? Aaarg... ¡Hay tantas cosas de las que quiero hablar! ¡Esto no lleva a ninguna parte!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="212"/>
-        <location filename="../Util/AdvanceFinder.cpp" line="219"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="196"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="203"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -529,82 +529,82 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="87"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="81"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="88"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="82"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
@@ -627,97 +627,97 @@
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Shiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>HP</source>
         <translation type="unfinished">PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="146"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="140"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpA</source>
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Spe</source>
         <translation type="unfinished">Velocidad</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="147"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="141"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Date/Time</source>
         <translation type="unfinished">Fecha/Hora</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Timer0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="148"/>
+        <location filename="../../Model/Gen5/DreamRadarModel.hpp" line="142"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>

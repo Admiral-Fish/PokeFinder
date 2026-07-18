@@ -36,7 +36,6 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
     model = new IndexFilterProxyModel(ui->tableView, generatorModel);
     ui->tableView->setModel(model);
 
-    needle = dynamic_cast<IRNGDreamProvider *>(generatorModel);
     callChatot = dynamic_cast<IRNGProvider4 *>(generatorModel);
     chatotNeedle = dynamic_cast<IRNGProvider5 *>(generatorModel);
 
@@ -46,20 +45,12 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
         ui->groupBoxCalls->hide();
         ui->radioButtonChatot->setChecked(true);
     }
-    if (callChatot == nullptr && chatotNeedle == nullptr)
-    {
-        ui->radioButtonChatot->hide();
-        ui->groupBoxChatot->hide();
-    }
-    if (needle == nullptr && chatotNeedle == nullptr)
+    else if (chatotNeedle == nullptr)
     {
         ui->radioButtonNeedle->hide();
         ui->groupBoxNeedle->hide();
     }
 
-    ui->radioButtonCalls->setChecked(callChatot);
-    ui->radioButtonChatot->setChecked(chatotNeedle);
-    ui->radioButtonNeedle->setChecked(needle);
     onModeChanged();
 
     using ChatotToken = AdvanceFinderLogic::ChatotToken;
@@ -196,14 +187,7 @@ void AdvanceFinder::search()
     {
         sequence = AdvanceFinderLogic::getNeedleSequence(tokens);
 
-        if (needle)
-        {
-            getter = [this](int row) { return needle->getNeedle(row); };
-        }
-        else
-        {
-            getter = [this](int row) { return chatotNeedle->getNeedle(row); };
-        }
+        getter = [this](int row) { return chatotNeedle->getNeedle(row); };
     }
 
     if (sequence.empty())

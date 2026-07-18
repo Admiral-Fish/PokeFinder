@@ -11,11 +11,4 @@ public:
     virtual u8 getNeedle(int row) const = 0;
 };
 
-class IRNGDreamProvider
-{
-public:
-    virtual ~IRNGDreamProvider() = default;
-    virtual u8 getNeedle(int row) const = 0;
-};
-
 #endif // IRNGPROVIDER5_HPP
