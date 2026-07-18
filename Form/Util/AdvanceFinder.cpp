@@ -43,13 +43,23 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *generatorModel, QTableView *sou
     {
         ui->radioButtonCalls->hide();
         ui->groupBoxCalls->hide();
-        ui->radioButtonChatot->setChecked(true);
     }
-    else if (chatotNeedle == nullptr)
+
+    if (callChatot == nullptr && chatotNeedle == nullptr)
+    {
+        ui->radioButtonChatot->hide();
+        ui->groupBoxChatot->hide();
+    }
+
+    if (chatotNeedle == nullptr)
     {
         ui->radioButtonNeedle->hide();
         ui->groupBoxNeedle->hide();
     }
+
+    ui->radioButtonCalls->setChecked(callChatot);
+    ui->radioButtonChatot->setChecked(!callChatot && chatotNeedle);
+    ui->radioButtonNeedle->setChecked(!callChatot && !chatotNeedle);
 
     onModeChanged();
 
@@ -168,6 +178,13 @@ void AdvanceFinder::search()
     {
         sequence = AdvanceFinderLogic::getCallSequence(tokens);
 
+        if (callChatot == nullptr)
+        {
+            model->setFilteredIndexes(QModelIndexList());
+            ui->labelPossibleResults->setText(tr("Possible Results: 0"));
+            return;
+        }
+
         getter = [this](int row) { return callChatot->getCall(row); };
     }
     else if (ui->radioButtonChatot->isChecked())
@@ -180,12 +197,26 @@ void AdvanceFinder::search()
         }
         else
         {
+            if (chatotNeedle == nullptr)
+            {
+                model->setFilteredIndexes(QModelIndexList());
+                ui->labelPossibleResults->setText(tr("Possible Results: 0"));
+                return;
+            }
+
             getter = [this](int row) { return chatotNeedle->getChatot(row); };
         }
     }
     else
     {
         sequence = AdvanceFinderLogic::getNeedleSequence(tokens);
+
+        if (chatotNeedle == nullptr)
+        {
+            model->setFilteredIndexes(QModelIndexList());
+            ui->labelPossibleResults->setText(tr("Possible Results: 0"));
+            return;
+        }
 
         getter = [this](int row) { return chatotNeedle->getNeedle(row); };
     }
@@ -222,9 +253,9 @@ void AdvanceFinder::jumpToAdvance()
 
 void AdvanceFinder::onModeChanged()
 {
-    bool calls = ui->radioButtonCalls->isChecked();
-    bool chatot = ui->radioButtonChatot->isChecked();
-    bool needle = ui->radioButtonNeedle->isChecked();
+    bool calls = ui->radioButtonCalls->isChecked() && callChatot;
+    bool chatot = ui->radioButtonChatot->isChecked() && (callChatot || chatotNeedle);
+    bool needle = ui->radioButtonNeedle->isChecked() && chatotNeedle;
 
     ui->groupBoxCalls->setVisible(calls);
     ui->groupBoxChatot->setVisible(chatot);

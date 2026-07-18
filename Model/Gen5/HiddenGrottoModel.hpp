@@ -145,7 +145,7 @@ private:
 /**
  * @brief Provides a table model implementation to show hidden grotto pokemon information for Gen 5
  */
-class HiddenGrottoGeneratorModel5 : public TableModel<State5>, IRNGProvider5
+class HiddenGrottoGeneratorModel5 : public TableModel<State5>, public IRNGProvider5
 {
     Q_OBJECT
 public:
