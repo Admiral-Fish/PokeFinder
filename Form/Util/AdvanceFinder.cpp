@@ -43,20 +43,17 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
 
     if (callChatot == nullptr || (profile->getVersion() & Game::HGSS) == Game::None)
     {
-        ui->radioButtonCalls->hide();
-        ui->groupBoxCalls->hide();
+        ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->tabCalls), false);
     }
 
     if (callChatot == nullptr && chatotNeedle == nullptr)
     {
-        ui->radioButtonChatot->hide();
-        ui->groupBoxChatot->hide();
+        ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->tabChatot), false);
     }
 
     if (chatotNeedle == nullptr)
     {
-        ui->radioButtonNeedle->hide();
-        ui->groupBoxNeedle->hide();
+        ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->tabNeedles), false);
     }
 
     onModeChanged();
@@ -100,7 +97,7 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
     connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &AdvanceFinder::irwin);
     irwin();
 
-    connect(ui->buttonGroupType, &QButtonGroup::buttonClicked, this, &AdvanceFinder::onModeChanged);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &AdvanceFinder::onModeChanged);
     connect(ui->lineEditSequence, &QLineEdit::textChanged, this, &AdvanceFinder::sequenceTextChanged);
     connect(ui->pushButtonJump, &QPushButton::clicked, this, &AdvanceFinder::jumpToAdvance);
     connect(ui->pushButtonRemove, &QPushButton::clicked, this, &AdvanceFinder::removeToken);
@@ -176,12 +173,12 @@ void AdvanceFinder::search()
 {
     AdvanceFinderLogic::Sequence sequence;
     std::function<u8(int)> getter;
-    if (ui->radioButtonCalls->isChecked())
+    if (ui->tabWidget->currentWidget() == ui->tabCalls)
     {
         sequence = AdvanceFinderLogic::getCallSequence(tokens);
         getter = [this](int row) { return callChatot->getCall(row); };
     }
-    else if (ui->radioButtonChatot->isChecked())
+    else if (ui->tabWidget->currentWidget() == ui->tabChatot)
     {
         sequence = AdvanceFinderLogic::getChatotSequence(tokens);
         if (callChatot)
@@ -231,14 +228,6 @@ void AdvanceFinder::jumpToAdvance()
 
 void AdvanceFinder::onModeChanged()
 {
-    bool calls = ui->radioButtonCalls->isChecked();
-    bool chatot = ui->radioButtonChatot->isChecked();
-    bool needle = ui->radioButtonNeedle->isChecked();
-
-    ui->groupBoxCalls->setVisible(calls);
-    ui->groupBoxChatot->setVisible(chatot);
-    ui->groupBoxNeedle->setVisible(needle);
-
     tokens.clear();
     ui->lineEditSequence->clear();
     search();
