@@ -14,7 +14,7 @@
    <string>Advance Finder</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
+   <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <widget class="QWidget" name="tabCalls">
       <attribute name="title">

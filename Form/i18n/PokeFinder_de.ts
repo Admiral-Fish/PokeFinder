@@ -120,14 +120,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chatot Pitches</source>
-        <translation type="unfinished">Plaudagei Tonhöhen</translation>
-    </message>
-    <message>
-        <source>Save Needles</source>
-        <translation type="unfinished">Speicherzeiger Pfeile</translation>
-    </message>
-    <message>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -228,40 +220,48 @@
         <translation type="unfinished">Mögliche Ergebnisse:</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="141"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="148"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished">K - In der Kanto-Region gibt es noch viele Pokémon, die ich noch nicht kenne. Wer weiß, vielleicht kennt man dort auch mir völlig neue Entwicklungsmethoden! Halte also immer die Augen auf und beobachte alles genau!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="143"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="150"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished">E - Die Entwicklung der Pokémon gibt uns noch immer viele Rätsel auf. Es scheint sogar Pokémon zu geben, die sich unter sehr speziellen Voraussetzungen entwickeln!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="145"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished">P - Pokémon, die mit dem Pokérus infiziert sind, scheinen schneller zu wachsen. Wenn ich nur wüsste, woran das liegt...</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="151"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="158"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished">K - Ist das schön, dass du anrufst! Ich wollte dich auch gerade anrufen! Siehst du? Wir passen gut zusammen!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="159"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished">E - Ich kriege jedes Mal Gänsehaut, wenn ich von deinen Abenteuern höre!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="153"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="160"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished">P - Wie geht es dir? Was machst du gerade? Wo bist du? Wie viele Orden hast du jetzt? Wie viel Geld hast du gespart? Wie geht es deiner Mama? Hast du viele Pokémon? Scheint morgen die Sonne? Aaargh, es gibt so viel, über das ich reden möchte! Wir kommen ja gar nicht zum Reden!</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="196"/>
-        <location filename="../Util/AdvanceFinder.cpp" line="203"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="200"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="207"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished">Mögliche Ergebnisse: %1</translation>
+    </message>
+    <message>
+        <source>Chatot</source>
+        <translation type="unfinished">Plaudagei</translation>
+    </message>
+    <message>
+        <source>Needles</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8172,102 +8172,102 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>StaticGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Advances</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Call</source>
         <translation>Anruf</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Chatot</source>
         <translation>Plaudagei</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Shiny</source>
         <translation>Schillernd</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Hidden</source>
         <translation>Kraftreserve</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Power</source>
         <translation>Stärke</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
@@ -8564,107 +8564,107 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>StaticSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Hour</source>
         <translation>Stunde</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Advances</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Shiny</source>
         <translation>Schillernd</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Delay</source>
         <translation type="unfinished">Delay</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Hidden</source>
         <translation>Kraftreserve</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Power</source>
         <translation>Stärke</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
@@ -10356,17 +10356,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -10813,17 +10813,17 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>Square</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>Star</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>

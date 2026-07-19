@@ -120,14 +120,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chatot Pitches</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save Needles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -228,40 +220,48 @@
         <translation type="unfinished">可能的结果:</translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="141"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="148"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="143"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="150"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="145"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="151"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="158"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="152"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="159"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="153"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="160"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/AdvanceFinder.cpp" line="196"/>
-        <location filename="../Util/AdvanceFinder.cpp" line="203"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="200"/>
+        <location filename="../Util/AdvanceFinder.cpp" line="207"/>
         <source>Possible Results: %1</source>
         <translation type="unfinished">可能的结果: %1</translation>
+    </message>
+    <message>
+        <source>Chatot</source>
+        <translation type="unfinished">音高</translation>
+    </message>
+    <message>
+        <source>Needles</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8170,102 +8170,102 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>StaticGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="62"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="60"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Call</source>
         <translation>电话</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Chatot</source>
         <translation>音高</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="109"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="110"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="112"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="111"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
@@ -8562,107 +8562,107 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>StaticSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="154"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Hour</source>
         <translation type="unfinished">小时</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Delay</source>
         <translation type="unfinished">Delay</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.hpp" line="181"/>
+        <location filename="../../Model/Gen4/StaticModel4.hpp" line="180"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
@@ -10353,17 +10353,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="73"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="70"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -10810,17 +10810,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="174"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="169"/>
         <source>No</source>
         <translation>否</translation>
     </message>

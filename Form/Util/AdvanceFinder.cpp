@@ -56,8 +56,6 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
         ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->tabNeedles), false);
     }
 
-    onModeChanged();
-
     using ChatotToken = AdvanceFinderLogic::ChatotToken;
     const std::array<std::pair<QPushButton *, ChatotToken>, 10> chatotButtons = { { { ui->pushButtonHigh, ChatotToken::High },
                                                                                     { ui->pushButtonMidHigh, ChatotToken::MidHigh },
