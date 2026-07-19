@@ -99,12 +99,12 @@ static bool contains(const std::array<u8, size> &locations, u8 location)
 
 static bool isDustCloudLocation(Game version, u8 location)
 {
-    constexpr std::array<u8, 35> bwLocations
-        = { 41, 42, 43, 44, 45, 46, 47, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,
-            63, 64, 65, 66, 67, 68, 69, 70, 71, 80, 81, 85, 86, 87, 96, 97, 98 };
-    constexpr std::array<u8, 35> bw2Locations
-        = { 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 36, 49, 50, 52, 71, 74, 75,
-            77, 80, 81, 82, 83, 85, 87, 90, 91, 92, 93, 94, 102, 103, 108, 109, 110 };
+    constexpr std::array<u8, 32> bwLocations
+        = { 41, 42, 43, 44, 45, 46, 47, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+            62, 63, 64, 65, 66, 67, 69, 71, 80, 81, 85, 86, 87, 96, 97, 98 };
+    constexpr std::array<u8, 32> bw2Locations
+        = { 20, 21, 22, 23, 24, 25, 26, 31, 33, 36, 49, 50, 52, 74, 75, 77,
+            80, 81, 82, 83, 85, 87, 90, 91, 92, 93, 94, 102, 103, 108, 109, 110 };
 
     return (version & Game::BW) != Game::None ? contains(bwLocations, location) : contains(bw2Locations, location);
 }
