@@ -207,7 +207,8 @@ void Pickup::setupPickupUi()
     ui->gridLayout_3->setColumnStretch(3, 0);
     ui->gridLayout_3->setAlignment(Qt::AlignTop);
     ui->gridLayout_19->setColumnStretch(0, 1);
-    ui->gridLayout_19->setColumnStretch(1, 3);
+    ui->gridLayout_19->setColumnStretch(1, 0);
+    ui->gridLayout_19->setColumnStretch(2, 3);
     ui->gridLayout_24->setColumnStretch(0, 1);
     ui->gridLayout_24->setColumnStretch(1, 0);
     ui->gridLayout_24->setColumnStretch(2, 0);
