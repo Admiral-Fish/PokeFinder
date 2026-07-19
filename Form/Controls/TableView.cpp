@@ -40,7 +40,7 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     horizontal->setSectionResizeMode(QHeaderView::Interactive);
 
     QHeaderView *vertical = this->verticalHeader();
-    vertical->setVisible(false);
+    vertical->hide();
 
     QTimer::singleShot(200, this, [horizontal] {
         QSettings setting;

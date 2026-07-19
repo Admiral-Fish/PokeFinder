@@ -203,13 +203,13 @@ void Static4::generatorPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->comboMenuGeneratorLead->clearSelection();
-            ui->labelGeneratorLead->setVisible(false);
-            ui->comboMenuGeneratorLead->setVisible(false);
+            ui->labelGeneratorLead->hide();
+            ui->comboMenuGeneratorLead->hide();
         }
         else
         {
-            ui->labelGeneratorLead->setVisible(true);
-            ui->comboMenuGeneratorLead->setVisible(true);
+            ui->labelGeneratorLead->show();
+            ui->comboMenuGeneratorLead->show();
 
             bool flag = staticTemplate->getInfo()->getFixedGender();
             ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmF), flag);
@@ -321,13 +321,13 @@ void Static4::searcherPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->comboMenuSearcherLead->clearSelection();
-            ui->labelSearcherLead->setVisible(false);
-            ui->comboMenuSearcherLead->setVisible(false);
+            ui->labelSearcherLead->hide();
+            ui->comboMenuSearcherLead->hide();
         }
         else
         {
-            ui->labelSearcherLead->setVisible(true);
-            ui->comboMenuSearcherLead->setVisible(true);
+            ui->labelSearcherLead->show();
+            ui->comboMenuSearcherLead->show();
 
             bool flag = staticTemplate->getInfo()->getFixedGender();
             ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);
