@@ -21,6 +21,21 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
+static QString getLuckyPowerText(u8 power)
+{
+    switch (power)
+    {
+    case 1:
+        return WildSearcherModel5::tr("Lucky Power ↑");
+    case 2:
+        return WildSearcherModel5::tr("Lucky Power ↑↑");
+    case 3:
+        return WildSearcherModel5::tr("Lucky Power ↑↑↑/S");
+    default:
+        return WildSearcherModel5::tr("None");
+    }
+}
+
 WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
@@ -106,13 +121,13 @@ void WildGeneratorModel5::setShowStats(bool flag)
     emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
 }
 
-WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
+WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false), showPassPower(false)
 {
 }
 
 int WildSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 23;
+    return 23 + (showPassPower ? 1 : 0);
 }
 
 QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
@@ -122,6 +137,18 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
+        if (showPassPower)
+        {
+            if (column == 1)
+            {
+                return getLuckyPowerText(state.getPassPower());
+            }
+            else if (column > 1)
+            {
+                column--;
+            }
+        }
+
         switch (column)
         {
         case 0:
@@ -189,6 +216,11 @@ QVariant WildSearcherModel5::headerData(int section, Qt::Orientation orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (!showPassPower && section >= 1)
+        {
+            section++;
+        }
+
         return header[section];
     }
     return QVariant();
@@ -197,5 +229,13 @@ QVariant WildSearcherModel5::headerData(int section, Qt::Orientation orientation
 void WildSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
+    int offset = showPassPower ? 1 : 0;
+    emit dataChanged(index(0, 10 + offset), index(rowCount() - 1, 15 + offset), { Qt::DisplayRole });
+}
+
+void WildSearcherModel5::setShowPassPower(bool flag)
+{
+    showPassPower = flag;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+    emit layoutChanged();
 }

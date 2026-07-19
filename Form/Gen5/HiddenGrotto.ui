@@ -103,27 +103,27 @@
                <widget class="ComboBox" name="comboBoxGrottoGeneratorGrottoPower">
                 <item>
                  <property name="text">
-                  <string notr="true">0</string>
+                  <string>None</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">1</string>
+                  <string>Grotto Power ↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">2</string>
+                  <string>Grotto Power ↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">3</string>
+                  <string>Grotto Power ↑↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>S/MAX</string>
+                  <string>Grotto Power S</string>
                  </property>
                 </item>
                </widget>
@@ -374,33 +374,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="ComboBox" name="comboBoxGrottoSearcherGrottoPower">
-                <item>
-                 <property name="text">
-                  <string notr="true">0</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">1</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">2</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">3</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>S/MAX</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="ComboMenu" name="comboBoxGrottoSearcherGrottoPower"/>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="labelGrottoSearcherStartDate">

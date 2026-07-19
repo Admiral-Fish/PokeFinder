@@ -135,8 +135,11 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    void setShowPassPower(bool flag);
+
 private:
     QStringList header = { tr("Seed"),
+                           tr("Pass Power"),
                            tr("Advances"),
                            tr("IV Advances"),
                            tr("PID"),
@@ -157,5 +160,6 @@ private:
                            tr("Timer0"),
                            tr("Buttons") };
     bool showStats;
+    bool showPassPower;
 };
 #endif // STATICMODEL5_HPP

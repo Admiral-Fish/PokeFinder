@@ -38,8 +38,8 @@ public:
      * @param specie Pokemon specie
      * @param gender Pokemon gender
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
-        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
+    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender, u8 passPower = 5) :
+        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), passPower(passPower), slot(slot)
     {
     }
 
@@ -53,7 +53,12 @@ public:
      * @param item Item number
      */
     HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
-        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
+        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), passPower(5), slot(slot)
+    {
+    }
+
+    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item, bool, u8 passPower) :
+        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), passPower(passPower), slot(slot)
     {
     }
 
@@ -109,6 +114,16 @@ public:
     }
 
     /**
+     * @brief Returns the pass power of the state
+     *
+     * @return Pass power
+     */
+    u8 getPassPower() const
+    {
+        return passPower;
+    }
+
+    /**
      * @brief getItem
      *
      * @return true State is a item
@@ -136,6 +151,7 @@ private:
     u8 chatot;
     u8 gender;
     u8 group;
+    u8 passPower;
     u8 slot;
 };
 

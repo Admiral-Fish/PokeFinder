@@ -161,6 +161,7 @@ void HiddenGrottoGeneratorTest::slot()
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
+        QCOMPARE(state.getPassPower(), 55);
         QVERIFY(state == j[i]);
     }
 }

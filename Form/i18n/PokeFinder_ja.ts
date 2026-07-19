@@ -3333,10 +3333,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>S/MAX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3476,6 +3472,23 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Levels</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Grotto Power ↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 <context>
     <name>HiddenGrottoGeneratorModel5</name>
@@ -3763,6 +3776,27 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grotto Power S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 <context>
     <name>IDModel3</name>
@@ -7721,6 +7755,11 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Yancy</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 <context>
     <name>Static8</name>
@@ -8572,6 +8611,15 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 <context>
     <name>TabWidget</name>
@@ -9796,6 +9844,23 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Levels</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 <context>
     <name>Wild8</name>
@@ -10835,5 +10900,22 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+
 </context>
 </TS>

@@ -34,6 +34,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/ComboMenu.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
 #include <Model/Gen5/WildModel5.hpp>
@@ -44,8 +45,27 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
+#include <vector>
 
 static const QString settingPrefix = QStringLiteral("static5");
+
+static std::vector<u8> getCheckedUChars(const ComboMenu *comboMenu)
+{
+    auto data = comboMenu->getCheckedData();
+    std::vector<u8> values;
+    values.reserve(data.size());
+    for (int value : data)
+    {
+        values.emplace_back(value);
+    }
+    return values;
+}
+
+static bool hasPassPower(const std::vector<u8> &powers)
+{
+    return std::ranges::find_if(powers, [](u8 power) { return power != 0; }) != powers.end();
+}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -85,7 +105,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
-                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+                                        { { tr("? Lead"), toInt(Lead::CuteCharmM) }, { tr("? Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
                                         { { tr("Hustle"), toInt(Lead::Hustle) },
                                           { tr("Pressure"), toInt(Lead::Pressure) },
@@ -97,7 +117,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
-                                       { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+                                       { { tr("? Lead"), toInt(Lead::CuteCharmM) }, { tr("? Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
                                        { { tr("Hustle"), toInt(Lead::Hustle) },
                                          { tr("Pressure"), toInt(Lead::Pressure) },
@@ -110,7 +130,13 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
+    ui->comboBoxSearcherLuckyPower->setMultiSelect(true);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("None"), 0);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("Lucky Power ↑"), 1);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("Lucky Power ↑↑"), 2);
+    ui->comboBoxSearcherLuckyPower->addAction(tr("Lucky Power ↑↑↑/S"), 3);
+    ui->comboBoxSearcherLuckyPower->setCheckedData({ 0 });
+    ui->comboBoxSearcherLuckyPower->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
     connect(adjacentSeeds, &QAction::triggered, this, &Wild5::openAdjacentSeeds);
@@ -384,10 +410,11 @@ void Wild5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPowers = getCheckedUChars(ui->comboBoxSearcherLuckyPower);
+    searcherModel->setShowPassPower((currentProfile->getVersion() & Game::BW2) != Game::None && hasPassPower(luckyPowers));
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPowers,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;

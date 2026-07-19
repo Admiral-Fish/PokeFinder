@@ -44,8 +44,11 @@ public:
      * @param info Pokemon information
      */
     State5(u16 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature,
-           u8 shiny, const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), ivAdvances(ivAdvances), chatot(prng / 82)
+           u8 shiny, const PersonalInfo *info, u8 passPower = 0) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
+        ivAdvances(ivAdvances),
+        passPower(passPower),
+        chatot(prng / 82)
     {
     }
 
@@ -69,8 +72,19 @@ public:
         return ivAdvances;
     }
 
+    /**
+     * @brief Returns the pass power of the state
+     *
+     * @return Pass power
+     */
+    u8 getPassPower() const
+    {
+        return passPower;
+    }
+
 private:
     u32 ivAdvances;
+    u8 passPower;
     u8 chatot;
 };
 

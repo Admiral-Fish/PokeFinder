@@ -21,6 +21,23 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
+static QString getGrottoPowerText(u8 power)
+{
+    switch (power)
+    {
+    case 15:
+        return HiddenGrottoSlotSearcherModel5::tr("Grotto Power ↑");
+    case 25:
+        return HiddenGrottoSlotSearcherModel5::tr("Grotto Power ↑↑");
+    case 35:
+        return HiddenGrottoSlotSearcherModel5::tr("Grotto Power ↑↑↑");
+    case 55:
+        return HiddenGrottoSlotSearcherModel5::tr("Grotto Power S");
+    default:
+        return HiddenGrottoSlotSearcherModel5::tr("None");
+    }
+}
+
 HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent)
 {
 }
@@ -70,13 +87,13 @@ QVariant HiddenGrottoSlotGeneratorModel5::headerData(int section, Qt::Orientatio
     return QVariant();
 }
 
-HiddenGrottoSlotSearcherModel5::HiddenGrottoSlotSearcherModel5(QObject *parent) : TableModel(parent)
+HiddenGrottoSlotSearcherModel5::HiddenGrottoSlotSearcherModel5(QObject *parent) : TableModel(parent), showPassPower(false)
 {
 }
 
 int HiddenGrottoSlotSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 7;
+    return 7 + (showPassPower ? 1 : 0);
 }
 
 QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role) const
@@ -86,6 +103,17 @@ QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role
         const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
+        if (showPassPower)
+        {
+            if (column == 1)
+            {
+                return getGrottoPowerText(state.getPassPower());
+            }
+            else if (column > 1)
+            {
+                column--;
+            }
+        }
         switch (column)
         {
         case 0:
@@ -121,9 +149,20 @@ QVariant HiddenGrottoSlotSearcherModel5::headerData(int section, Qt::Orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (!showPassPower && section >= 1)
+        {
+            section++;
+        }
         return header[section];
     }
     return QVariant();
+}
+
+void HiddenGrottoSlotSearcherModel5::setShowPassPower(bool flag)
+{
+    showPassPower = flag;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+    emit layoutChanged();
 }
 
 HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)

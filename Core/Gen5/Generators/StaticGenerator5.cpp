@@ -24,6 +24,9 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
+#include <iterator>
+#include <vector>
 
 static u8 gen(MT &rng)
 {
@@ -44,9 +47,22 @@ static u8 getPercentRand(BWRNG &rng, bool bw)
 
 StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                    const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    StaticGenerator5(initialAdvances, maxAdvances, offset, method, lead, std::vector<u8> { luckyPower }, staticTemplate, profile, filter)
 {
+}
+
+StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, const std::vector<u8> &luckyPowers,
+                                   const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
+    luckyPowers((profile.getVersion() & Game::BW) != Game::None ? std::vector<u8> { 0 } : luckyPowers)
+{
+    if (this->luckyPowers.empty())
+    {
+        this->luckyPowers.emplace_back(0);
+    }
+    std::ranges::sort(this->luckyPowers);
+    this->luckyPowers.erase(std::ranges::unique(this->luckyPowers).begin(), this->luckyPowers.end());
+
     if (staticTemplate.getCurtis())
     {
         tsv = 54118;
@@ -164,6 +180,40 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
 
 std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
+    std::vector<State5> states;
+    for (u8 activeLuckyPower : luckyPowers)
+    {
+        std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+        if (activeLuckyPower == 0)
+        {
+            powerIVs = ivs;
+        }
+        else
+        {
+            std::ranges::copy_if(ivs, std::back_inserter(powerIVs), [](const auto &iv) { return iv.first >= 2; });
+        }
+
+        auto powerStates = generateWild(seed, powerIVs, activeLuckyPower);
+        states.reserve(states.size() + powerStates.size());
+        for (const auto &state : powerStates)
+        {
+            auto duplicate = std::ranges::find_if(states, [&state](const State5 &other) {
+                return state.getAdvances() == other.getAdvances() && state.getIVAdvances() == other.getIVAdvances()
+                    && state.getPID() == other.getPID() && state.getShiny() == other.getShiny() && state.getNature() == other.getNature()
+                    && state.getAbility() == other.getAbility() && state.getIVs() == other.getIVs()
+                    && state.getGender() == other.getGender() && state.getLevel() == other.getLevel();
+            });
+            if (duplicate == states.end())
+            {
+                states.emplace_back(state);
+            }
+        }
+    }
+    return states;
+}
+
+std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs, u8 luckyPower) const
+{
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
@@ -241,10 +291,15 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         }
 
         u16 chatot = rng.nextUInt(0x1fff);
+        if (luckyPower != 0 && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         for (const auto &iv : ivs)
         {
             State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
+                         nature, shiny, info, luckyPower);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
