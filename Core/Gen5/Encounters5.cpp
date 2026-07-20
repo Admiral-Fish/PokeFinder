@@ -146,7 +146,7 @@ namespace Encounters5
         return &DREAMRADAR[index];
     }
 
-    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile, bool swarm)
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, const EncounterSettings5 &settings, const Profile5 *profile)
     {
         u32 length;
         const u8 *data;
@@ -176,9 +176,9 @@ namespace Encounters5
 
             const auto *entrySeason = &entry->seasons[0];
             bool seasons = entry->seasonCount > 1;
-            if (season < entry->seasonCount)
+            if (settings.season < entry->seasonCount)
             {
-                entrySeason = &entry->seasons[season];
+                entrySeason = &entry->seasons[settings.season];
             }
 
             std::array<Slot, 12> slots;
@@ -194,7 +194,7 @@ namespace Encounters5
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots,
-                                            swarm ? getSwarmSlot(version, entry->location) : Slot());
+                                            settings.swarm ? getSwarmSlot(version, entry->location) : Slot());
                 }
                 break;
             case Encounter::GrassDark:

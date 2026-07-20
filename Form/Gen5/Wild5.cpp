@@ -107,9 +107,6 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->checkBoxGeneratorSwarm->setText(tr("Swarm"));
-    ui->checkBoxSearcherSwarm->setText(tr("Swarm"));
-
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
@@ -259,8 +256,11 @@ void Wild5::generatorEncounterIndexChanged(int index)
             ui->checkBoxGeneratorSwarm->setChecked(false);
         }
 
-        u8 season = ui->comboBoxGeneratorSeason->currentIndex();
-        encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile, grass && ui->checkBoxGeneratorSwarm->isChecked());
+        EncounterSettings5 settings = { };
+        settings.swarm = ui->checkBoxGeneratorSwarm->isChecked();
+        settings.season = ui->comboBoxGeneratorSeason->currentIndex();
+
+        encounterGenerator = Encounters5::getEncounters(encounter, settings, currentProfile);
 
         std::vector<u16> locs;
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
@@ -483,8 +483,12 @@ void Wild5::searcherEncounterIndexChanged(int index)
             ui->checkBoxSearcherSwarm->setChecked(false);
         }
 
+        EncounterSettings5 settings = { };
+        settings.swarm = ui->checkBoxSearcherSwarm->isChecked();
+        settings.season = ui->comboBoxSearcherSeason->currentIndex();
+
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
-        encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile, grass && ui->checkBoxSearcherSwarm->isChecked());
+        encounterSearcher = Encounters5::getEncounters(encounter, settings, currentProfile);
 
         std::vector<u16> locs;
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });

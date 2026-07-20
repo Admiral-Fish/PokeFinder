@@ -30,6 +30,12 @@ class Profile5;
 class StaticTemplate5;
 enum class Encounter : u8;
 
+struct EncounterSettings5
+{
+    bool swarm;
+    u8 season;
+};
+
 namespace Encounters5
 {
     /**
@@ -54,13 +60,12 @@ namespace Encounters5
      * @brief Gets wild encounters for the \p encounter and \p profile
      *
      * @param encounter Encounter type
-     * @param season Season modifier
+     * @param settings Settings that impact wild encounter slots
      * @param profile Profile information
-     * @param swarm Whether to include swarm encounters
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile, bool swarm = false);
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, const EncounterSettings5 &settings, const Profile5 *profile);
 
     /**
      * @brief Gets hidden grotto encounters
