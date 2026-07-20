@@ -2770,6 +2770,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>Puissance cachée</translation>
     </message>
@@ -10476,6 +10480,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel5</name>
     <message>
+        <source>S</source>
+        <translation>S</translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="60"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
@@ -10932,6 +10940,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 </context>
 <context>
     <name>WildSearcherModel5</name>
+    <message>
+        <source>S</source>
+        <translation>S</translation>
+    </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="148"/>
         <source>Square</source>
