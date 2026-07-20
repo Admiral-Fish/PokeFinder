@@ -78,6 +78,11 @@ private slots:
     void generate();
 
     /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
+
+    /**
      * @brief Updates showing profile related information
      *
      * @param profile Selected profile

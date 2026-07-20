@@ -36,6 +36,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/HiddenGrottoModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -109,9 +110,14 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->comboMenuPokemonSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuPokemonSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewPokemonSearcher);
+    auto *grottoAdvanceFinder = ui->tableViewGrottoGenerator->addAction(tr("Advance Finder"));
+    connect(grottoAdvanceFinder, &QAction::triggered, this, &HiddenGrotto::openGrottoAdvanceFinder);
+
+    auto *pokemonAdvanceFinder = ui->tableViewPokemonGenerator->addAction(tr("Advance Finder"));
+    connect(pokemonAdvanceFinder, &QAction::triggered, this, &HiddenGrotto::openPokemonAdvanceFinder);
+
+    auto *adjacentSeeds = ui->tableViewPokemonSearcher->addAction(tr("Adjacent Seeds"));
     connect(adjacentSeeds, &QAction::triggered, this, &HiddenGrotto::openAdjacentSeeds);
-    ui->tableViewPokemonSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &HiddenGrotto::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &HiddenGrotto::profilesChanged);
@@ -456,6 +462,18 @@ void HiddenGrotto::openAdjacentSeeds()
 
     auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
+}
+
+void HiddenGrotto::openGrottoAdvanceFinder()
+{
+    auto *grottoAdvanceFinder = new AdvanceFinder(grottoGeneratorModel, ui->tableViewGrottoGenerator, currentProfile, this);
+    grottoAdvanceFinder->show();
+}
+
+void HiddenGrotto::openPokemonAdvanceFinder()
+{
+    auto *pokemonAdvanceFinder = new AdvanceFinder(pokemonGeneratorModel, ui->tableViewPokemonGenerator, currentProfile, this);
+    pokemonAdvanceFinder->show();
 }
 
 void HiddenGrotto::pokemonGenerate()

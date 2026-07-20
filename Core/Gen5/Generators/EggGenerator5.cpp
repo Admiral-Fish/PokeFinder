@@ -20,11 +20,11 @@
 #include "EggGenerator5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/States/EggState5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/Enum/Shiny.hpp>
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
@@ -174,7 +174,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
+        EggState5 state(rng.nextUInt(), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
                         Utilities::getShiny<true>(pid, tsv), inheritance, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
@@ -218,7 +218,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 pid = Utilities5::createPID(tsv, ability, 255, Shiny::Random, false, info->getGender(), go);
             }
 
-            state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
+            state.update(rng.nextUInt(), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
                          Utilities::getShiny<true>(pid, tsv));
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {

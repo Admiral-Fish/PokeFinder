@@ -34,8 +34,10 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/WildModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -50,7 +52,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
+    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -134,6 +136,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Wild4::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Wild4::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Wild4::profilesChanged);
@@ -377,7 +382,7 @@ void Wild4::generate()
     }
 
     generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    generatorModel->setGame(currentProfile->getVersion());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -603,6 +608,12 @@ void Wild4::generatorPokeRadarStateChanged(Qt::CheckState state)
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), state == Qt::Checked);
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Hustle), state == Qt::Checked); // Also handles Pressure and Vital Spirit
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
+}
+
+void Wild4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Wild4::profileChanged(const Profile4 &profile)

@@ -32,8 +32,10 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -47,7 +49,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator, Method::Method1);
+    generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -84,6 +86,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static4::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Static4::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Static4::profilesChanged);
@@ -154,10 +159,10 @@ void Static4::generate()
     }
 
     generatorModel->clearModel();
+    generatorModel->setGame(currentProfile->getVersion());
 
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
-    generatorModel->setMethod(staticTemplate->getMethod());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -218,6 +223,12 @@ void Static4::generatorPokemonIndexChanged(int index)
 
         ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxGeneratorShiny->findData(toInt(staticTemplate->getShiny())));
     }
+}
+
+void Static4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Static4::profileChanged(const Profile4 &profile)

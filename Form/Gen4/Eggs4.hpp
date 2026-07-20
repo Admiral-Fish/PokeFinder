@@ -84,9 +84,9 @@ private slots:
     void generate();
 
     /**
-     * @brief Searches egg encounters
+     * @brief Opens the advance finder dialog
      */
-    void search();
+    void openAdvanceFinder();
 
     /**
      * @brief Updates showing profile related information
@@ -94,6 +94,11 @@ private slots:
      * @param profile Selected profile
      */
     void profileChanged(const Profile4 &profile);
+
+    /**
+     * @brief Searches egg encounters
+     */
+    void search();
 
     /**
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.

@@ -27,7 +27,7 @@ EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel(parent)
 
 int EventGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -43,15 +43,17 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 4:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 4:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 6:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -62,20 +64,20 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 6:
         case 7:
         case 8:
         case 9:
         case 10:
         case 11:
-            return showStats ? state.getStat(column - 6) : state.getIV(column - 6);
         case 12:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 14:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 15:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 16:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
@@ -95,7 +97,7 @@ QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientati
 void EventGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 7), index(rowCount() - 1, 12), { Qt::DisplayRole });
 }
 
 EventSearcherModel5::EventSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
