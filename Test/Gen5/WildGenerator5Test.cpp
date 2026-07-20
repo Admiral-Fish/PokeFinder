@@ -88,8 +88,9 @@ void WildGenerator5Test::generate()
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
                      false, 0, 0, false, false, DSType::DS, Language::English);
+    EncounterSettings5 settings = { };
 
-    std::vector<EncounterArea5> encounterAreas = Encounters5::getEncounters(encounter, 0, &profile);
+    std::vector<EncounterArea5> encounterAreas = Encounters5::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea5 &encounterArea) { return encounterArea.getLocation() == location; });
 
