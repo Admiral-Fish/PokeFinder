@@ -181,7 +181,7 @@ namespace Encounters5
                 entrySeason = &entry->seasons[settings.season];
             }
 
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:
@@ -193,8 +193,11 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots,
-                                            settings.swarm ? getSwarmSlot(version, entry->location) : Slot());
+                    if (settings.swarm)
+                    {
+                        slots[12] = getSwarmSlot(version, entry->location);
+                    }
+                    encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::GrassDark:

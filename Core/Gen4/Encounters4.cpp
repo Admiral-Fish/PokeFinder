@@ -231,7 +231,7 @@ static u8 getTreeIDFromMapID(u8 location)
  * @param info Personal info array pointer
  * @param dual Dual slot game version
  */
-static void modifyDual(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, Game dual)
+static void modifyDual(std::array<Slot, 13> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, Game dual)
 {
     u16 specie1;
     u16 specie2;
@@ -277,7 +277,7 @@ static void modifyDual(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *e
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyGreatMarsh(std::array<Slot, 13> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location >= 23 && location <= 28 && replacement[0] != 0)
     {
@@ -295,7 +295,7 @@ static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16
  * @param info Personal info array pointer
  * @param radar Whether pokeradar is active or not
  */
-static void modifyRadar(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool radar)
+static void modifyRadar(std::array<Slot, 13> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool radar)
 {
     if (radar)
     {
@@ -314,7 +314,7 @@ static void modifyRadar(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *
  * @param info Personal info array pointer
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool swarm)
+static void modifySwarmDPPt(std::array<Slot, 13> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
     {
@@ -331,7 +331,7 @@ static void modifySwarmDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDP
  * @param info Personal info array pointer
  * @param time Time of day
  */
-static void modifyTimeDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, int time)
+static void modifyTimeDPPt(std::array<Slot, 13> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, int time)
 {
     u16 specie1;
     u16 specie2;
@@ -362,7 +362,7 @@ static void modifyTimeDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDPP
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyTrophyGarden(std::array<Slot, 13> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
     {
@@ -417,7 +417,7 @@ static std::vector<EncounterArea4> getDPPtHoney(Game version, const Profile4 *pr
     std::vector<EncounterArea4> encounters;
     for (size_t i = 0; i < length; i++)
     {
-        std::array<Slot, 12> slots;
+        std::array<Slot, 13> slots;
 
         int max = 12;
         u8 treeID = getTreeIDFromMapID(data[i].location);
@@ -496,7 +496,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
 
         for (size_t i = 0; i < length; i++)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:
@@ -598,7 +598,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
  * @param info Personal info array pointer
  * @param radio Radio station
  */
-static void modifyRadio(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, int radio)
+static void modifyRadio(std::array<Slot, 13> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, int radio)
 {
     u16 specie1;
     u16 specie2;
@@ -632,7 +632,7 @@ static void modifyRadio(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *
  * @param encounter Encounter type
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+static void modifySwarmHGSS(std::array<Slot, 13> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                             bool swarm)
 {
     if (swarm)
@@ -673,7 +673,7 @@ static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHG
     }
 }
 
-static void modifyTimeHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+static void modifyTimeHGSS(std::array<Slot, 13> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                            int time)
 {
     if (time == 0 || time == 1)
@@ -708,7 +708,7 @@ static std::vector<EncounterArea4> getHGSSBug(const Profile4 *profile, const Per
     std::vector<EncounterArea4> encounters;
     for (size_t i = profile->getNationalDex() ? 1 : 0; i < length; i++)
     {
-        std::array<Slot, 12> slots;
+        std::array<Slot, 13> slots;
         for (size_t j = 0; j < 10; j++)
         {
             const auto &slot = data[i].bug[j];
@@ -749,7 +749,7 @@ static std::vector<EncounterArea4> getHGSSHeadbutt(Game version, Encounter encou
     {
         if (encounter != Encounter::HeadbuttSpecial || data[i].hasSpecial)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
 
             auto *treeSlot = &data[i].slots[6 * tree];
             for (size_t j = 0; j < 6; j++)
@@ -784,7 +784,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, const Enco
     {
         size_t block = 0;
 
-        std::array<Slot, 12> slots;
+        std::array<Slot, 13> slots;
         switch (encounter)
         {
         case Encounter::Grass:
@@ -961,7 +961,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, co
 
         for (size_t i = 0; i < length; i++)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:

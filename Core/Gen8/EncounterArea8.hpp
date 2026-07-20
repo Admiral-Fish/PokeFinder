@@ -38,7 +38,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea8(u8 location, u8 rate, Encounter type, const std::array<Slot, 12> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    EncounterArea8(u8 location, u8 rate, Encounter type, const std::array<Slot, 13> &pokemon) : EncounterArea(location, rate, type, pokemon)
     {
     }
 

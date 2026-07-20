@@ -201,7 +201,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         u8 encounterSlot;
-        if (area.hasSwarm() && getPercentRand(go, bw) < 40)
+        if (area.getPokemon(12).getSpecie() != 0 && getPercentRand(go, bw) < 40)
         {
             encounterSlot = 12;
             go.advance(1);

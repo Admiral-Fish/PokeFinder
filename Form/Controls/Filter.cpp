@@ -453,7 +453,7 @@ void Filter::setEncounterSlots(u8 max) const
     std::vector<std::string> items;
     for (u8 i = 0; i < max; i++)
     {
-        items.emplace_back(i == 12 ? "Swarm" : std::to_string(i));
+        items.emplace_back(std::to_string(i));
     }
     ui->checkListEncounterSlot->addItems(items);
 }
