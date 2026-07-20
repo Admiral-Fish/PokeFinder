@@ -381,10 +381,10 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         bool phenomenon = canTriggerPhenomenon(area.getEncounter()) && BWRNG(rng).nextUInt(1000) < 100;
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            WildState5 state(chatot, phenomenon, phenomenonItem, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+            WildState5 state(prng, phenomenon, phenomenonItem, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
                              level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
             if ((!phenomenonItem && filter.compareState(static_cast<const WildState &>(state))) || phenomenonItem)
             {

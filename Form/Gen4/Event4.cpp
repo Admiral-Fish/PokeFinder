@@ -30,6 +30,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EventModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -82,6 +83,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 
     auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Event4::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Event4::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Event4::profilesChanged);
@@ -159,6 +163,12 @@ void Event4::generate()
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
+}
+
+void Event4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Event4::profileChanged(const Profile4 &profile)

@@ -28,6 +28,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/EggModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -45,7 +46,7 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new EggGeneratorModel4(ui->tableViewGenerator, Game::DPPt);
+    generatorModel = new EggGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new EggSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -83,6 +84,9 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Eggs4::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Eggs4::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Eggs4::profilesChanged);
@@ -160,10 +164,8 @@ void Eggs4::calcPoketch()
 
 void Eggs4::generate()
 {
-    if (!ui->eggSettingsGenerator->compatibleParents())
+    if (!ui->eggSettingsGenerator->isValid())
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
@@ -201,12 +203,21 @@ void Eggs4::generate()
     generatorModel->addItems(states);
 }
 
+void Eggs4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
+}
+
+void Eggs4::profileChanged(const Profile4 &profile)
+{
+    currentProfile = &profile;
+}
+
 void Eggs4::search()
 {
-    if (!ui->eggSettingsSearcher->compatibleParents())
+    if (!ui->eggSettingsSearcher->isValid())
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
@@ -255,11 +266,6 @@ void Eggs4::search()
 
     thread->start();
     timer->start(1000);
-}
-
-void Eggs4::profileChanged(const Profile4 &profile)
-{
-    currentProfile = &profile;
 }
 
 void Eggs4::seedToTime()

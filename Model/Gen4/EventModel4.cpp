@@ -22,13 +22,13 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), version(Game::DPPt), showStats(false)
+EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false)
 {
 }
 
 int EventGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    if ((version & Game::DPPt) != Game::None)
+    if (dppt)
     {
         return 10;
     }
@@ -82,7 +82,7 @@ QVariant EventGeneratorModel4::headerData(int section, Qt::Orientation orientati
 
 void EventGeneratorModel4::setGame(Game version)
 {
-    this->version = version;
+    dppt = (version & Game::DPPt) != Game::None;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -94,7 +94,7 @@ void EventGeneratorModel4::setShowStats(bool flag)
 
 int EventGeneratorModel4::getColumn(int column) const
 {
-    if ((version & Game::DPPt) != Game::None)
+    if (dppt)
     {
         return column > 0 ? column + 1 : column;
     }

@@ -22,12 +22,13 @@
 
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
+#include <Model/Gen5/IRNGProvider5.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 5
  */
-class WildGeneratorModel5 : public TableModel<WildState5>
+class WildGeneratorModel5 : public TableModel<WildState5>, public IRNGProvider5
 {
     Q_OBJECT
 public:
@@ -56,6 +57,26 @@ public:
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role) const override;
+
+    /**
+     * @brief Returns chatot pitch for given \p row
+     * 
+     * @return Row chatot pitch
+     */
+    u8 getChatot(int row) const override
+    {
+        return model[row].getChatot();
+    }
+
+    /**
+     * @brief Returns needle value for given \p row
+     * 
+     * @return Row needle value
+     */
+    u8 getNeedle(int row) const override
+    {
+        return model[row].getNeedle();
+    }
 
     /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
@@ -92,10 +113,10 @@ public slots:
     }
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Phenomenon"), tr("Item"),   tr("Slot"),
-                           tr("Level"),    tr("PID"),     tr("Shiny"),      tr("Nature"), tr("Ability"),
-                           tr("HP"),       tr("Atk"),     tr("Def"),        tr("SpA"),    tr("SpD"),
-                           tr("Spe"),      tr("Hidden"),  tr("Power"),      tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Phenomenon"), tr("Item"),   tr("Slot"),
+                           tr("Level"),    tr("PID"),    tr("Shiny"),  tr("Nature"),     tr("Ability"),
+                           tr("HP"),       tr("Atk"),    tr("Def"),    tr("SpA"),        tr("SpD"),
+                           tr("Spe"),      tr("Hidden"), tr("Power"),  tr("Gender"),     tr("Characteristic") };
     bool showStats;
     bool showPhenomenon;
 };
