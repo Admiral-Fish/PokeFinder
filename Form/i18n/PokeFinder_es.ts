@@ -9753,6 +9753,14 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Phenomenon</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adjacent Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Phenomenon</source>
         <translation type="unfinished"></translation>
     </message>

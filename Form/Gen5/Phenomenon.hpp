@@ -174,6 +174,16 @@ private slots:
     void generatorSeasonIndexChanged(int index);
 
     /**
+     * @brief Opens adjacent seeds for the selected searcher result
+     */
+    void openAdjacentSeeds();
+
+    /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
+
+    /**
      * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
      * settings.
      *

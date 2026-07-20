@@ -9748,6 +9748,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
 <context>
     <name>Phenomenon</name>
     <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adjacent Seeds</source>
+        <translation>Nahe Seeds</translation>
+    </message>
+    <message>
         <source>Phenomenon</source>
         <translation>Phänomen</translation>
     </message>
