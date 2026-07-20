@@ -5851,6 +5851,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Asse dei Ricordi</translation>
     </message>
     <message>
+        <source>N's Pokémon released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Shiny Charm</source>
         <translation>Cromamuleto</translation>
     </message>
@@ -6347,7 +6351,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Asse dei Ricordi</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
+        <source>N's Pokémon released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
         <source>Shiny Charm</source>
         <translation>Cromamuleto</translation>
     </message>

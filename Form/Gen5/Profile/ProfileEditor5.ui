@@ -270,6 +270,13 @@
      </property>
     </widget>
    </item>
+   <item row="1" column="6">
+    <widget class="QCheckBox" name="checkBoxNsPokemonReleased">
+     <property name="text">
+      <string>N's Pokémon released</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="7">
     <widget class="QCheckBox" name="checkBoxShinyCharm">
      <property name="text">
@@ -395,6 +402,7 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxMemoryLink</tabstop>
+  <tabstop>checkBoxNsPokemonReleased</tabstop>
   <tabstop>checkBoxShinyCharm</tabstop>
   <tabstop>checkBoxSkipLR</tabstop>
   <tabstop>lineEditIVCache</tabstop>

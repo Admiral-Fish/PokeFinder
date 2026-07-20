@@ -5851,6 +5851,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Mementolink</translation>
     </message>
     <message>
+        <source>N's Pokémon released</source>
+        <translation>Ns Pokémon freigelassen</translation>
+    </message>
+    <message>
         <source>Shiny Charm</source>
         <translation>Schillerpin</translation>
     </message>
@@ -6347,7 +6351,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Mementolink</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
+        <source>N's Pokémon released</source>
+        <translation>Ns Pokémon freigelassen</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
         <source>Shiny Charm</source>
         <translation>Schillerpin</translation>
     </message>

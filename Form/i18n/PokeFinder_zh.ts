@@ -5850,6 +5850,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>记忆连接</translation>
     </message>
     <message>
+        <source>N's Pokémon released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Shiny Charm</source>
         <translation>闪耀护符</translation>
     </message>
@@ -6346,7 +6350,12 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>记忆连接</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
+        <source>N's Pokémon released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
         <source>Shiny Charm</source>
         <translation>闪耀护符</translation>
     </message>

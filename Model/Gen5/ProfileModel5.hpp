@@ -70,7 +70,8 @@ public:
 private:
     QStringList header = { tr("Profile Name"), tr("Version"),    tr("Language"), tr("TID"),         tr("SID"),
                            tr("MAC Address"),  tr("DS Type"),    tr("VCount"),   tr("Timer0"),      tr("GxStat"),
-                           tr("VFrame"),       tr("Keypresses"), tr("Skip L/R"), tr("Memory Link"), tr("Shiny Charm") };
+                           tr("VFrame"),       tr("Keypresses"), tr("Skip L/R"), tr("Memory Link"),
+                           tr("N's Pokémon released"), tr("Shiny Charm") };
 };
 
 #endif // PROFILE5MODEL_HPP
