@@ -170,94 +170,94 @@ void Filter::disableControls(Controls control)
 {
     if ((control & Controls::Ability) != Controls::None)
     {
-        ui->labelAbility->setVisible(false);
-        ui->comboBoxAbility->setVisible(false);
+        ui->labelAbility->hide();
+        ui->comboBoxAbility->hide();
     }
 
     if ((control & Controls::DisableFilter) != Controls::None)
     {
-        ui->checkBoxDisableFilters->setVisible(false);
+        ui->checkBoxDisableFilters->hide();
     }
 
     if ((control & Controls::EncounterSlots) != Controls::None)
     {
-        ui->labelEncounterSlot->setVisible(false);
-        ui->checkListEncounterSlot->setVisible(false);
+        ui->labelEncounterSlot->hide();
+        ui->checkListEncounterSlot->hide();
     }
 
     if ((control & Controls::Gender) != Controls::None)
     {
-        ui->labelGender->setVisible(false);
-        ui->comboBoxGender->setVisible(false);
+        ui->labelGender->hide();
+        ui->comboBoxGender->hide();
     }
 
     if ((control & Controls::Height) != Controls::None)
     {
-        ui->labelHeight->setVisible(false);
-        ui->spinBoxHeightMin->setVisible(false);
-        ui->spinBoxHeightMax->setVisible(false);
+        ui->labelHeight->hide();
+        ui->spinBoxHeightMin->hide();
+        ui->spinBoxHeightMax->hide();
     }
 
     if ((control & Controls::HiddenPowers) != Controls::None)
     {
-        ui->labelHiddenPower->setVisible(false);
-        ui->checkListHiddenPower->setVisible(false);
+        ui->labelHiddenPower->hide();
+        ui->checkListHiddenPower->hide();
     }
 
     if ((control & Controls::IVs) != Controls::None)
     {
-        ui->labelHP->setVisible(false);
-        ui->spinBoxHPMin->setVisible(false);
-        ui->spinBoxHPMax->setVisible(false);
+        ui->labelHP->hide();
+        ui->spinBoxHPMin->hide();
+        ui->spinBoxHPMax->hide();
 
-        ui->labelAtk->setVisible(false);
-        ui->spinBoxAtkMin->setVisible(false);
-        ui->spinBoxAtkMax->setVisible(false);
+        ui->labelAtk->hide();
+        ui->spinBoxAtkMin->hide();
+        ui->spinBoxAtkMax->hide();
 
-        ui->labelDef->setVisible(false);
-        ui->spinBoxDefMin->setVisible(false);
-        ui->spinBoxDefMax->setVisible(false);
+        ui->labelDef->hide();
+        ui->spinBoxDefMin->hide();
+        ui->spinBoxDefMax->hide();
 
-        ui->labelSpA->setVisible(false);
-        ui->spinBoxSpAMin->setVisible(false);
-        ui->spinBoxSpAMax->setVisible(false);
+        ui->labelSpA->hide();
+        ui->spinBoxSpAMin->hide();
+        ui->spinBoxSpAMax->hide();
 
-        ui->labelSpD->setVisible(false);
-        ui->spinBoxSpDMin->setVisible(false);
-        ui->spinBoxSpDMax->setVisible(false);
+        ui->labelSpD->hide();
+        ui->spinBoxSpDMin->hide();
+        ui->spinBoxSpDMax->hide();
 
-        ui->labelSpe->setVisible(false);
-        ui->spinBoxSpeMin->setVisible(false);
-        ui->spinBoxSpeMax->setVisible(false);
+        ui->labelSpe->hide();
+        ui->spinBoxSpeMin->hide();
+        ui->spinBoxSpeMax->hide();
 
-        ui->checkBoxShowStats->setVisible(false);
-        ui->pushButtonIVCalculator->setVisible(false);
+        ui->checkBoxShowStats->hide();
+        ui->pushButtonIVCalculator->hide();
     }
 
     if ((control & Controls::Level) != Controls::None)
     {
-        ui->labelLevel->setVisible(false);
-        ui->spinBoxLevelMin->setVisible(false);
-        ui->spinBoxLevelMax->setVisible(false);
+        ui->labelLevel->hide();
+        ui->spinBoxLevelMin->hide();
+        ui->spinBoxLevelMax->hide();
     }
 
     if ((control & Controls::Natures) != Controls::None)
     {
-        ui->labelNature->setVisible(false);
-        ui->checkListNature->setVisible(false);
+        ui->labelNature->hide();
+        ui->checkListNature->hide();
     }
 
     if ((control & Controls::Shiny) != Controls::None)
     {
-        ui->labelShiny->setVisible(false);
-        ui->comboBoxShiny->setVisible(false);
+        ui->labelShiny->hide();
+        ui->comboBoxShiny->hide();
     }
 
     if ((control & Controls::Weight) != Controls::None)
     {
-        ui->labelWeight->setVisible(false);
-        ui->spinBoxWeightMin->setVisible(false);
-        ui->spinBoxWeightMax->setVisible(false);
+        ui->labelWeight->hide();
+        ui->spinBoxWeightMin->hide();
+        ui->spinBoxWeightMax->hide();
     }
 }
 

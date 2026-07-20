@@ -63,7 +63,8 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
 
     std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
 
-    RNGList<u8, MT, 8, gen> rngList(seed >> 32, initialAdvances + (bw ? 0 : 2) + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0));
+    RNGList<u8, MT, 8, gen> rngList(seed >> 32,
+                                    initialAdvances + (bw ? 0 : 2) + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0));
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         std::array<u8, 6> iv;
@@ -147,10 +148,10 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
         u8 nature = go.nextUInt(25);
 
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
+            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
                          nature, shiny, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
@@ -240,10 +241,10 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             nature = toInt(lead);
         }
 
-        u16 chatot = rng.nextUInt(0x1fff);
+        u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
-            State5 state(chatot, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
+            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
                          nature, shiny, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {

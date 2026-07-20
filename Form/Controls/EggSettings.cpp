@@ -248,32 +248,32 @@ void EggSettings::setup(Game game)
     {
         bool flag = (game & Game::Emerald) != Game::None;
 
-        ui->labelAbility->setVisible(false);
+        ui->labelAbility->hide();
         ui->labelItem->setVisible(flag);
         ui->labelNature->setVisible(flag);
 
-        ui->comboBoxParentAAbility->setVisible(false);
-        ui->comboBoxParentBAbility->setVisible(false);
+        ui->comboBoxParentAAbility->hide();
+        ui->comboBoxParentBAbility->hide();
         ui->comboBoxParentAItem->setVisible(flag);
         ui->comboBoxParentBItem->setVisible(flag);
         ui->comboBoxParentANature->setVisible(flag);
         ui->comboBoxParentBNature->setVisible(flag);
 
         max = 386;
-        ui->checkBoxMasuda->setVisible(false);
+        ui->checkBoxMasuda->hide();
     }
     else if ((game & Game::Gen4) != Game::None)
     {
-        ui->labelAbility->setVisible(false);
-        ui->labelItem->setVisible(false);
-        ui->labelNature->setVisible(false);
+        ui->labelAbility->hide();
+        ui->labelItem->hide();
+        ui->labelNature->hide();
 
-        ui->comboBoxParentAAbility->setVisible(false);
-        ui->comboBoxParentBAbility->setVisible(false);
-        ui->comboBoxParentAItem->setVisible(false);
-        ui->comboBoxParentBItem->setVisible(false);
-        ui->comboBoxParentANature->setVisible(false);
-        ui->comboBoxParentBNature->setVisible(false);
+        ui->comboBoxParentAAbility->hide();
+        ui->comboBoxParentBAbility->hide();
+        ui->comboBoxParentAItem->hide();
+        ui->comboBoxParentBItem->hide();
+        ui->comboBoxParentANature->hide();
+        ui->comboBoxParentBNature->hide();
 
         max = 493;
     }

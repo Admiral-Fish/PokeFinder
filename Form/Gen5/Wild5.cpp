@@ -36,6 +36,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -112,9 +113,11 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
-    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);
+
+    auto *adjacentSeeds = ui->tableViewSearcher->addAction(tr("Adjacent Seeds"));
     connect(adjacentSeeds, &QAction::triggered, this, &Wild5::openAdjacentSeeds);
-    ui->tableViewSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Wild5::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Wild5::profilesChanged);
@@ -307,6 +310,12 @@ void Wild5::openAdjacentSeeds()
 
     auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
+}
+
+void Wild5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Wild5::profileChanged(const Profile5 &profile)

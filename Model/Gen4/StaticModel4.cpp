@@ -18,25 +18,23 @@
  */
 
 #include "StaticModel4.hpp"
-#include <Core/Enum/Method.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
+StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false)
 {
 }
 
 int StaticGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::Method1:
-    case Method::MethodK:
-        return 17;
-    case Method::MethodJ:
         return 16;
-    default:
-        return 0;
+    }
+    else
+    {
+        return 17;
     }
 }
 
@@ -96,9 +94,9 @@ QVariant StaticGeneratorModel4::headerData(int section, Qt::Orientation orientat
     return QVariant();
 }
 
-void StaticGeneratorModel4::setMethod(Method method)
+void StaticGeneratorModel4::setGame(Game version)
 {
-    this->method = method;
+    dppt = (version & Game::DPPt) != Game::None;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -110,14 +108,13 @@ void StaticGeneratorModel4::setShowStats(bool flag)
 
 int StaticGeneratorModel4::getColumn(int column) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::Method1:
-    case Method::MethodK:
-    default:
-        return column;
-    case Method::MethodJ:
         return column > 0 ? column + 1 : column;
+    }
+    else
+    {
+        return column;
     }
 }
 

@@ -25,6 +25,7 @@ add_library(PokeFinderModel STATIC
     Gen4/EventModel4.hpp
     Gen4/IDModel4.cpp
     Gen4/IDModel4.hpp
+    Gen4/IRNGProvider4.hpp
     Gen4/ProfileModel4.cpp
     Gen4/ProfileModel4.hpp
     Gen4/SeedToTimeModel4.cpp
@@ -47,6 +48,7 @@ add_library(PokeFinderModel STATIC
     Gen5/IDModel5.hpp
     Gen5/PickupModel.cpp
     Gen5/PickupModel.hpp
+    Gen5/IRNGProvider5.hpp
     Gen5/ProfileModel5.cpp
     Gen5/ProfileModel5.hpp
     Gen5/ProfileSearcherModel5.cpp
