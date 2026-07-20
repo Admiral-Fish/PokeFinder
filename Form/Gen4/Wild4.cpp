@@ -124,8 +124,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->comboBoxSearcherDualSlot->setup(
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
-    ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
-    ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
+    ui->checkBoxGeneratorPokeRadarShiny->hide();
+    ui->checkBoxSearcherPokeRadarShiny->hide();
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -551,8 +551,8 @@ void Wild4::generatorLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->labelGeneratorTime->setVisible(true);
-            ui->comboBoxGeneratorTime->setVisible(true);
+            ui->labelGeneratorTime->show();
+            ui->comboBoxGeneratorTime->show();
         }
         else
         {
@@ -566,11 +566,11 @@ void Wild4::generatorLocationIndexChanged(int index)
 
         if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(true);
+            ui->checkBoxGeneratorFeebasTile->show();
         }
         else
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(false);
+            ui->checkBoxGeneratorFeebasTile->hide();
             ui->checkBoxGeneratorFeebasTile->setChecked(false);
         }
     }
@@ -911,8 +911,8 @@ void Wild4::searcherLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->labelSearcherTime->setVisible(true);
-            ui->comboBoxSearcherTime->setVisible(true);
+            ui->labelSearcherTime->show();
+            ui->comboBoxSearcherTime->show();
         }
         else if ((currentProfile->getVersion() & Game::HGSS) == Game::None)
         {
@@ -923,11 +923,11 @@ void Wild4::searcherLocationIndexChanged(int index)
 
         if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(true);
+            ui->checkBoxSearcherFeebasTile->show();
         }
         else
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(false);
+            ui->checkBoxSearcherFeebasTile->hide();
             ui->checkBoxSearcherFeebasTile->setChecked(false);
         }
     }

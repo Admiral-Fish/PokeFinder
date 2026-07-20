@@ -195,7 +195,7 @@ void GameCube::generatorPokemonIndexChanged(int index)
                                                                                     ui->comboBoxGeneratorPokemon->getCurrentInt());
             ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
 
-            ui->checkBoxGeneratorFirstShadowUnset->setVisible(false);
+            ui->checkBoxGeneratorFirstShadowUnset->hide();
         }
     }
 }
@@ -319,7 +319,7 @@ void GameCube::searcherPokemonIndexChanged(int index)
                                                                                     ui->comboBoxSearcherPokemon->getCurrentInt());
             ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
 
-            ui->checkBoxSearcherFirstShadowUnset->setVisible(false);
+            ui->checkBoxSearcherFirstShadowUnset->hide();
         }
     }
 }

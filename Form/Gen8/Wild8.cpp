@@ -302,11 +302,11 @@ void Wild8::locationIndexChanged(int index)
 
         if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxFeebasTile->setVisible(true);
+            ui->checkBoxFeebasTile->show();
         }
         else
         {
-            ui->checkBoxFeebasTile->setVisible(false);
+            ui->checkBoxFeebasTile->hide();
             ui->checkBoxFeebasTile->setChecked(false);
         }
     }
