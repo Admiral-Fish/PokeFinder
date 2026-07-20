@@ -353,64 +353,22 @@
              </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem1">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem1" />
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem2">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem2" />
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem3">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem3" />
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem4">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem4" />
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem5">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem5" />
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem6">
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="ComboBox" name="comboBoxGeneratorItem6" />
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonGeneratorClearItems">

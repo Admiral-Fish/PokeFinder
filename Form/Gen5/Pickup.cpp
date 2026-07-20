@@ -186,13 +186,6 @@ void Pickup::setupPickupUi()
 {
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
 
-    ui->gridLayout_2->setColumnStretch(2, 2);
-    ui->gridLayout_19->setColumnStretch(0, 1);
-    ui->gridLayout_19->setColumnStretch(2, 3);
-    ui->gridLayout_20->setColumnStretch(0, 1);
-    ui->gridLayout_20->setColumnStretch(2, 2);
-    ui->gridLayout_24->setColumnStretch(0, 1);
-
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
     ui->comboBoxGeneratorLocation->enableAutoComplete();
