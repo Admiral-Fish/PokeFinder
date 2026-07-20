@@ -48,6 +48,11 @@
 
 static const QString settingPrefix = QStringLiteral("static5");
 
+static bool isFishingEncounter(Encounter encounter)
+{
+    return encounter == Encounter::SuperRod;
+}
+
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
     ui->setupUi(this);
@@ -93,6 +98,9 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                           { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"),
                                         { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Encounter Modifier"),
+                                        { { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                          { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
@@ -105,6 +113,9 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Encounter Modifier"),
+                                       { { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                         { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
@@ -241,6 +252,8 @@ void Wild5::generatorEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
+
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !isFishingEncounter(encounter));
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -453,6 +466,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
+
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::SuctionCups), !isFishingEncounter(encounter));
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
