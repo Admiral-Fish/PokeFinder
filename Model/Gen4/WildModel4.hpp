@@ -21,14 +21,15 @@
 #define WILD4MODEL_HPP
 
 #include <Core/Gen4/States/WildState4.hpp>
+#include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
 
-enum class Method : u8;
+enum class Game : u32;
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 4
  */
-class WildGeneratorModel4 : public TableModel<WildGeneratorState4>
+class WildGeneratorModel4 : public TableModel<WildGeneratorState4>, public IRNGProvider4
 {
     Q_OBJECT
 public:
@@ -37,7 +38,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    WildGeneratorModel4(QObject *parent, Method method);
+    WildGeneratorModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -59,6 +60,26 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     /**
+     * @brief Returns Elm/Irwin call for given \p row
+     *
+     * @return Row Elm/Irwin call
+     */
+    u8 getCall(int row) const override
+    {
+        return model[row].getCall();
+    }
+
+    /**
+     * @brief Returns chatot pitch for given \p row
+     *
+     * @return Row chatot pitch
+     */
+    u8 getChatot(int row) const override
+    {
+        return model[row].getChatot();
+    }
+
+    /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
      *
      * @param section Column index
@@ -70,11 +91,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
-     * @brief Sets current \p method of the model
+     * @brief Sets current \p version of the model
      *
-     * @param method Method
+     * @param version Game version
      */
-    void setMethod(Method method);
+    void setGame(Game verson);
 
 public slots:
     /**
@@ -89,8 +110,8 @@ private:
         = { tr("Advances"), tr("Battle Advances"), tr("Call"),    tr("Chatot"), tr("Item"),          tr("Slot"), tr("Level"), tr("PID"),
             tr("Shiny"),    tr("Nature"),          tr("Ability"), tr("HP"),     tr("Atk"),           tr("Def"),  tr("SpA"),   tr("SpD"),
             tr("Spe"),      tr("Hidden"),          tr("Power"),   tr("Gender"), tr("Characteristic") };
+    bool dppt;
     bool showStats;
-    Method method;
 
     /**
      * @brief Gets modified column index based on model method
@@ -155,9 +176,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Seed"),   tr("Delay"), tr("Hour"),   tr("Advances"), tr("Item"),   tr("Slot"),   tr("Level"),
-                           tr("PID"),    tr("Shiny"), tr("Nature"), tr("Ability"),  tr("HP"),     tr("Atk"),    tr("Def"),
-                           tr("SpA"),    tr("SpD"),   tr("Spe"),    tr("Hidden"),   tr("Power"),  tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Seed"), tr("Delay"), tr("Hour"),   tr("Advances"), tr("Item"),  tr("Slot"),   tr("Level"),
+                           tr("PID"),  tr("Shiny"), tr("Nature"), tr("Ability"),  tr("HP"),    tr("Atk"),    tr("Def"),
+                           tr("SpA"),  tr("SpD"),   tr("Spe"),    tr("Hidden"),   tr("Power"), tr("Gender"), tr("Characteristic") };
     bool showStats;
 };
 

@@ -191,14 +191,14 @@ void ProfileEditor5::versionIndexChanged(int index)
         Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
         if ((version & Game::BW2) != Game::None)
         {
-            ui->checkBoxMemoryLink->setVisible(true);
-            ui->checkBoxShinyCharm->setVisible(true);
+            ui->checkBoxMemoryLink->show();
+            ui->checkBoxShinyCharm->show();
         }
         else
         {
-            ui->checkBoxMemoryLink->setVisible(false);
+            ui->checkBoxMemoryLink->hide();
             ui->checkBoxMemoryLink->setChecked(false);
-            ui->checkBoxShinyCharm->setVisible(false);
+            ui->checkBoxShinyCharm->hide();
             ui->checkBoxShinyCharm->setChecked(false);
         }
     }

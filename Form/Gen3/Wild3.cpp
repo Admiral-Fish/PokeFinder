@@ -241,26 +241,26 @@ void Wild3::generatorLocationIndexChanged(int index)
         if (area.feebasLocation(currentProfile->getVersion())
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(true);
+            ui->checkBoxGeneratorFeebasTile->show();
         }
         else
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(false);
+            ui->checkBoxGeneratorFeebasTile->hide();
             ui->checkBoxGeneratorFeebasTile->setChecked(false);
         }
 
         if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
         {
-            ui->labelGeneratorItem->setVisible(true);
-            ui->comboBoxGeneratorItem->setVisible(true);
-            ui->checkBoxGeneratorBike->setVisible(true);
+            ui->labelGeneratorItem->show();
+            ui->comboBoxGeneratorItem->show();
+            ui->checkBoxGeneratorBike->show();
         }
         else
         {
-            ui->labelGeneratorItem->setVisible(false);
-            ui->comboBoxGeneratorItem->setVisible(false);
+            ui->labelGeneratorItem->hide();
+            ui->comboBoxGeneratorItem->hide();
             ui->comboBoxGeneratorItem->setCurrentIndex(toInt(Item::None));
-            ui->checkBoxGeneratorBike->setVisible(false);
+            ui->checkBoxGeneratorBike->hide();
             ui->checkBoxGeneratorBike->setChecked(false);
         }
 
@@ -305,21 +305,21 @@ void Wild3::profileChanged(const Profile3 &profile)
 
     if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
     {
-        ui->labelGeneratorLead->setVisible(true);
-        ui->comboMenuGeneratorLead->setVisible(true);
+        ui->labelGeneratorLead->show();
+        ui->comboMenuGeneratorLead->show();
 
-        ui->labelSearcherLead->setVisible(true);
-        ui->comboMenuSearcherLead->setVisible(true);
+        ui->labelSearcherLead->show();
+        ui->comboMenuSearcherLead->show();
     }
     else
     {
         ui->comboMenuGeneratorLead->clearSelection();
-        ui->labelGeneratorLead->setVisible(false);
-        ui->comboMenuGeneratorLead->setVisible(false);
+        ui->labelGeneratorLead->hide();
+        ui->comboMenuGeneratorLead->hide();
 
         ui->comboMenuSearcherLead->clearSelection();
-        ui->labelSearcherLead->setVisible(false);
-        ui->comboMenuSearcherLead->setVisible(false);
+        ui->labelSearcherLead->hide();
+        ui->comboMenuSearcherLead->hide();
     }
 
     generatorEncounterIndexChanged(0);
@@ -423,26 +423,26 @@ void Wild3::searcherLocationIndexChanged(int index)
         if (area.feebasLocation(currentProfile->getVersion())
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(true);
+            ui->checkBoxSearcherFeebasTile->show();
         }
         else
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(false);
+            ui->checkBoxSearcherFeebasTile->hide();
             ui->checkBoxSearcherFeebasTile->setChecked(false);
         }
 
         if ((currentProfile->getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
         {
-            ui->labelSearcherItem->setVisible(true);
-            ui->comboBoxSearcherItem->setVisible(true);
-            ui->checkBoxSearcherBike->setVisible(true);
+            ui->labelSearcherItem->show();
+            ui->comboBoxSearcherItem->show();
+            ui->checkBoxSearcherBike->show();
         }
         else
         {
-            ui->labelSearcherItem->setVisible(false);
-            ui->comboBoxSearcherItem->setVisible(false);
+            ui->labelSearcherItem->hide();
+            ui->comboBoxSearcherItem->hide();
             ui->comboBoxSearcherItem->setCurrentIndex(toInt(Item::None));
-            ui->checkBoxSearcherBike->setVisible(false);
+            ui->checkBoxSearcherBike->hide();
             ui->checkBoxSearcherBike->setChecked(false);
         }
 

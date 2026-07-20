@@ -18,26 +18,23 @@
  */
 
 #include "WildModel4.hpp"
-#include <Core/Enum/Method.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
+WildGeneratorModel4::WildGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false)
 {
 }
 
 int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::MethodJ:
-    case Method::HoneyTree:
-    case Method::PokeRadar:
         return 20;
-    case Method::MethodK:
+    }
+    else
+    {
         return 21;
-    default:
-        return 0;
     }
 }
 
@@ -107,9 +104,9 @@ QVariant WildGeneratorModel4::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
-void WildGeneratorModel4::setMethod(Method method)
+void WildGeneratorModel4::setGame(Game version)
 {
-    this->method = method;
+    dppt = (version & Game::DPPt) != Game::None;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -121,14 +118,12 @@ void WildGeneratorModel4::setShowStats(bool flag)
 
 int WildGeneratorModel4::getColumn(int column) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::MethodJ:
-    case Method::HoneyTree:
-    case Method::PokeRadar:
         return column > 1 ? column + 1 : column;
-    case Method::MethodK:
-    default:
+    }
+    else
+    {
         return column;
     }
 }

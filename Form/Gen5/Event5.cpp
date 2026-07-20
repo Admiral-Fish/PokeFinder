@@ -32,8 +32,10 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/EventModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -73,6 +75,9 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Event5::openAdvanceFinder);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
@@ -261,6 +266,12 @@ void Event5::generatorImportEvent()
             return;
         }
     }
+}
+
+void Event5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Event5::profileChanged(const Profile5 &profile)

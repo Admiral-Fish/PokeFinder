@@ -31,29 +31,43 @@ public:
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param group Pokemon group
      * @param slot Pokemon slot
      * @param specie Pokemon specie
      * @param gender Pokemon gender
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
-        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
+        advances(advances),
+        data(specie),
+        item(false),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        gender(gender),
+        group(group),
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        slot(slot)
     {
     }
 
     /**
      * @brief Construct a new HiddenGrottoState object
      *
-     * @param prng PRNG call to determine Chatot pitch
+     * @param prng PRNG call to determine chatot pitch and needle
      * @param advances Advances of the state
      * @param group Item group
      * @param slot Item slot
      * @param item Item number
      */
-    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
-        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 item) :
+        advances(advances),
+        data(item),
+        item(true),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        gender(0),
+        group(group),
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        slot(slot)
     {
     }
 
@@ -120,6 +134,16 @@ public:
     }
 
     /**
+     * @brief Returns the needle value
+     *
+     * @return Needle value
+     */
+    u8 getNeedle() const
+    {
+        return needle;
+    }
+
+    /**
      * @brief Returns the slot of the state
      *
      * @return State slot
@@ -136,6 +160,7 @@ private:
     u8 chatot;
     u8 gender;
     u8 group;
+    u8 needle;
     u8 slot;
 };
 

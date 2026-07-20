@@ -285,6 +285,8 @@ add_library(PokeFinderCore STATIC
     RNG/Xorshift.hpp
     Util/DateTime.cpp
     Util/DateTime.hpp
+    Util/AdvanceSearcher.cpp
+    Util/AdvanceSearcher.hpp
     Util/EncounterSlot.cpp
     Util/EncounterSlot.hpp
     Util/IVChecker.cpp
