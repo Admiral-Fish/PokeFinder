@@ -35,7 +35,6 @@ class QPushButton;
 class QCheckBox;
 class QSpinBox;
 class SortFilterProxyModel;
-class TextBox;
 
 namespace Ui
 {
@@ -73,14 +72,6 @@ private:
     std::array<ComboBox *, 6> searcherItems;
     std::array<ComboBox *, 6> searcherItemCounts;
     std::array<QPushButton *, 6> searcherItemClearButtons;
-    TextBox *generatorIVAdvances;
-    ComboBox *generatorEncounter;
-    ComboBox *generatorSeason;
-    ComboBoxProxy *generatorLocation;
-    ComboBox *generatorPokemon;
-    ComboBox *searcherEncounter;
-    ComboBox *searcherSeason;
-    ComboBoxProxy *searcherLocation;
     std::vector<EncounterArea5> encounterGenerator;
     std::vector<EncounterArea5> encounterSearcher;
 

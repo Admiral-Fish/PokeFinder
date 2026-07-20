@@ -180,28 +180,6 @@ static std::optional<WildState5> generateWild(BWRNG &go, u32 advances, u64 seed,
 }
 
 PickupGenerator::PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots,
-                                 const Profile5 &profile, bool includeInvalid) :
-    initialAdvances(initialAdvances),
-    maxAdvances(maxAdvances),
-    pickupSlots(pickupSlots),
-    active({}),
-    profile(profile),
-    filter(createDefaultFilter()),
-    includeInvalid(includeInvalid)
-{
-    for (size_t i = 0; i < pickupSlots.size(); i++)
-    {
-        active[i] = pickupSlots[i].active;
-    }
-}
-
-PickupGenerator::PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots, const EncounterArea5 &area,
-                                 const Profile5 &profile, bool includeInvalid) :
-    PickupGenerator(initialAdvances, maxAdvances, pickupSlots, area, profile, createDefaultFilter(), includeInvalid)
-{
-}
-
-PickupGenerator::PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots,
                                  const std::vector<Request> &requests, const EncounterArea5 &area, const Profile5 &profile,
                                  bool includeInvalid) :
     PickupGenerator(initialAdvances, maxAdvances, pickupSlots, area, profile, createDefaultFilter(), includeInvalid)

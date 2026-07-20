@@ -36,7 +36,6 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
-#include <QSizePolicy>
 #include <QSignalBlocker>
 #include <QSpinBox>
 #include <QThread>
@@ -129,7 +128,7 @@ Pickup::Pickup(QWidget *parent) : QWidget(parent), ui(new Ui::Pickup)
     ui->tableViewSearcher->setModel(proxyModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
-    generatorIVAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorIVAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
@@ -185,49 +184,19 @@ void Pickup::updateProfiles()
 
 void Pickup::setupPickupUi()
 {
-    ui->groupBoxGeneratorRNGInfo->setMaximumWidth(240);
-    ui->groupBoxSearcherRNGInfo->setMaximumWidth(QWIDGETSIZE_MAX);
-    ui->groupBoxSearcherRNGInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    ui->groupBoxGeneratorSettings->setMinimumWidth(430);
-    ui->groupBoxGeneratorSettings->setMaximumWidth(660);
-    ui->groupBoxSearcherSettings->setMinimumWidth(430);
-    ui->groupBoxSearcherSettings->setMaximumWidth(620);
-    ui->groupBoxGeneratorFilters->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    ui->groupBoxSearcherFilters->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    ui->gridLayout_2->setColumnStretch(1, 0);
-    ui->gridLayout_2->setColumnStretch(2, 2);
-    ui->gridLayout_20->setColumnStretch(0, 1);
-    ui->gridLayout_20->setColumnStretch(1, 0);
-    ui->gridLayout_20->setColumnStretch(2, 2);
-    ui->gridLayout->setColumnStretch(1, 0);
-    ui->gridLayout->setColumnStretch(3, 0);
-    ui->gridLayout->setAlignment(Qt::AlignTop);
-    ui->gridLayout->setVerticalSpacing(10);
-    ui->gridLayout_3->setColumnStretch(1, 0);
-    ui->gridLayout_3->setColumnStretch(3, 0);
-    ui->gridLayout_3->setAlignment(Qt::AlignTop);
-    ui->gridLayout_19->setColumnStretch(0, 1);
-    ui->gridLayout_19->setColumnStretch(1, 0);
-    ui->gridLayout_19->setColumnStretch(2, 3);
-    ui->gridLayout_24->setColumnStretch(0, 1);
-    ui->gridLayout_24->setColumnStretch(1, 0);
-    ui->gridLayout_24->setColumnStretch(2, 0);
-
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
 
-    generatorIVAdvances = ui->textBoxGeneratorIVAdvances;
-    generatorEncounter = ui->comboBoxGeneratorEncounter;
-    generatorSeason = ui->comboBoxGeneratorSeason;
-    generatorLocation = ui->comboBoxGeneratorLocation;
-    generatorPokemon = ui->comboBoxGeneratorPokemon;
-    searcherEncounter = ui->comboBoxSearcherEncounter;
-    searcherSeason = ui->comboBoxSearcherSeason;
-    searcherLocation = ui->comboBoxSearcherLocation;
+    ui->gridLayout_2->setColumnStretch(2, 2);
+    ui->gridLayout_19->setColumnStretch(0, 1);
+    ui->gridLayout_19->setColumnStretch(2, 3);
+    ui->gridLayout_20->setColumnStretch(0, 1);
+    ui->gridLayout_20->setColumnStretch(2, 2);
+    ui->gridLayout_24->setColumnStretch(0, 1);
 
-    generatorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
-    searcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
-    generatorLocation->enableAutoComplete();
-    searcherLocation->enableAutoComplete();
+    ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
+    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::GrassDark), toInt(Encounter::Surfing) });
+    ui->comboBoxGeneratorLocation->enableAutoComplete();
+    ui->comboBoxSearcherLocation->enableAutoComplete();
 
     generatorSlots = { ui->checkBoxGeneratorSlot1, ui->checkBoxGeneratorSlot2, ui->checkBoxGeneratorSlot3, ui->checkBoxGeneratorSlot4,
                        ui->checkBoxGeneratorSlot5, ui->checkBoxGeneratorSlot6 };
@@ -248,9 +217,6 @@ void Pickup::setupPickupUi()
 
     for (int i = 0; i < 6; i++)
     {
-        generatorItems[i]->setMaximumWidth(260);
-        searcherItemCounts[i]->setMaximumWidth(45);
-
         connect(generatorSlots[i], &QCheckBox::toggled, this,
                 [=] { updateItemList(generatorSlots[i], generatorLevels[i], generatorItems[i]); });
         connect(generatorLevels[i], qOverload<int>(&QSpinBox::valueChanged), this,
@@ -277,12 +243,12 @@ void Pickup::setupPickupUi()
 
     updateSearcherItemLists();
 
-    connect(generatorEncounter, &QComboBox::currentIndexChanged, this, &Pickup::generatorEncounterIndexChanged);
-    connect(generatorSeason, &QComboBox::currentIndexChanged, this, &Pickup::generatorSeasonIndexChanged);
-    connect(generatorLocation, &QComboBox::currentIndexChanged, this, &Pickup::generatorLocationIndexChanged);
-    connect(generatorPokemon, &QComboBox::currentIndexChanged, this, &Pickup::generatorPokemonIndexChanged);
-    connect(searcherEncounter, &QComboBox::currentIndexChanged, this, &Pickup::searcherEncounterIndexChanged);
-    connect(searcherSeason, &QComboBox::currentIndexChanged, this, &Pickup::searcherSeasonIndexChanged);
+    connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Pickup::generatorEncounterIndexChanged);
+    connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Pickup::generatorSeasonIndexChanged);
+    connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &Pickup::generatorLocationIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Pickup::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherEncounter, &QComboBox::currentIndexChanged, this, &Pickup::searcherEncounterIndexChanged);
+    connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Pickup::searcherSeasonIndexChanged);
 }
 
 void Pickup::updateEncounterLocations(ComboBox *encounter, ComboBox *season, ComboBoxProxy *location, std::vector<EncounterArea5> &areas)
@@ -526,15 +492,15 @@ void Pickup::generate()
     }
 
     generatorModel->clearModel();
-    if (encounterGenerator.empty() || generatorLocation->currentIndex() < 0)
+    if (encounterGenerator.empty() || ui->comboBoxGeneratorLocation->currentIndex() < 0)
     {
         return;
     }
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     PickupGenerator generator(ui->textBoxGeneratorInitialAdvances->getUInt(), ui->textBoxGeneratorMaxAdvances->getUInt(), settings,
-                              encounterGenerator[generatorLocation->currentIndex()], *currentProfile, filter, true);
-    generatorModel->addItems(generator.generate(ui->textBoxGeneratorSeed->getULong(), generatorIVAdvances->getUInt()));
+                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter, true);
+    generatorModel->addItems(generator.generate(ui->textBoxGeneratorSeed->getULong(), ui->textBoxGeneratorIVAdvances->getUInt()));
 }
 
 void Pickup::search()
@@ -556,7 +522,7 @@ void Pickup::search()
         return;
     }
     searcherModel->clearModel();
-    if (encounterSearcher.empty() || searcherLocation->currentIndex() < 0)
+    if (encounterSearcher.empty() || ui->comboBoxSearcherLocation->currentIndex() < 0)
     {
         return;
     }
@@ -565,7 +531,7 @@ void Pickup::search()
     ui->pushButtonCancel->setEnabled(true);
 
     PickupGenerator generator(ui->textBoxSearcherInitialAdvances->getUInt(), ui->textBoxSearcherMaxAdvances->getUInt(), settings,
-                              getSearcherRequests(), encounterSearcher[searcherLocation->currentIndex()], *currentProfile);
+                              getSearcherRequests(), encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile);
     auto *searcher = new Searcher5<PickupGenerator, PickupState>(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
@@ -618,16 +584,16 @@ void Pickup::transferSettings(int index)
     {
         copySlots(generatorSlots, generatorLevels, searcherSlots, searcherLevels);
         updateSearcherItemLists();
-        searcherEncounter->setCurrentIndex(generatorEncounter->currentIndex());
-        searcherSeason->setCurrentIndex(generatorSeason->currentIndex());
-        searcherLocation->setCurrentIndexByData(generatorLocation->getCurrentUShort());
+        ui->comboBoxSearcherEncounter->setCurrentIndex(ui->comboBoxGeneratorEncounter->currentIndex());
+        ui->comboBoxSearcherSeason->setCurrentIndex(ui->comboBoxGeneratorSeason->currentIndex());
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(ui->comboBoxGeneratorLocation->getCurrentUShort());
     }
     else
     {
         copySlots(searcherSlots, searcherLevels, generatorSlots, generatorLevels);
-        generatorEncounter->setCurrentIndex(searcherEncounter->currentIndex());
-        generatorSeason->setCurrentIndex(searcherSeason->currentIndex());
-        generatorLocation->setCurrentIndexByData(searcherLocation->getCurrentUShort());
+        ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+        ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(ui->comboBoxSearcherLocation->getCurrentUShort());
     }
 }
 
@@ -635,8 +601,8 @@ void Pickup::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updateEncounterLocations(generatorEncounter, generatorSeason, generatorLocation, encounterGenerator);
-        generatorLocationIndexChanged(generatorLocation->currentIndex());
+        updateEncounterLocations(ui->comboBoxGeneratorEncounter, ui->comboBoxGeneratorSeason, ui->comboBoxGeneratorLocation, encounterGenerator);
+        generatorLocationIndexChanged(ui->comboBoxGeneratorLocation->currentIndex());
     }
 }
 
@@ -644,8 +610,8 @@ void Pickup::generatorSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updateEncounterLocations(generatorEncounter, generatorSeason, generatorLocation, encounterGenerator);
-        generatorLocationIndexChanged(generatorLocation->currentIndex());
+        updateEncounterLocations(ui->comboBoxGeneratorEncounter, ui->comboBoxGeneratorSeason, ui->comboBoxGeneratorLocation, encounterGenerator);
+        generatorLocationIndexChanged(ui->comboBoxGeneratorLocation->currentIndex());
     }
 }
 
@@ -659,26 +625,26 @@ void Pickup::generatorLocationIndexChanged(int index)
 
         ui->filterGenerator->setEncounterSlots(area.getCount());
 
-        generatorPokemon->clear();
-        generatorPokemon->addItem("-");
+        ui->comboBoxGeneratorPokemon->clear();
+        ui->comboBoxGeneratorPokemon->addItem("-");
         for (size_t i = 0; i < species.size(); i++)
         {
-            generatorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
     }
 }
 
 void Pickup::generatorPokemonIndexChanged(int index)
 {
-    if (index <= 0 || generatorLocation->currentIndex() < 0)
+    if (index <= 0 || ui->comboBoxGeneratorLocation->currentIndex() < 0)
     {
         ui->filterGenerator->resetEncounterSlots();
         ui->filterGenerator->setLevelRange(1, 100);
     }
     else
     {
-        u16 num = generatorPokemon->getCurrentUShort();
-        const auto &area = encounterGenerator[generatorLocation->currentIndex()];
+        u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
+        const auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
         auto flags = area.getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
 
@@ -691,7 +657,7 @@ void Pickup::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updateEncounterLocations(searcherEncounter, searcherSeason, searcherLocation, encounterSearcher);
+        updateEncounterLocations(ui->comboBoxSearcherEncounter, ui->comboBoxSearcherSeason, ui->comboBoxSearcherLocation, encounterSearcher);
     }
 }
 
@@ -699,6 +665,6 @@ void Pickup::searcherSeasonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updateEncounterLocations(searcherEncounter, searcherSeason, searcherLocation, encounterSearcher);
+        updateEncounterLocations(ui->comboBoxSearcherEncounter, ui->comboBoxSearcherSeason, ui->comboBoxSearcherLocation, encounterSearcher);
     }
 }

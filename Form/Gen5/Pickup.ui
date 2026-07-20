@@ -33,6 +33,12 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
@@ -107,10 +113,28 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>430</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>660</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="title">
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignTop</set>
+          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorPickupSlots">
             <property name="text">
@@ -310,7 +334,7 @@
        <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -329,22 +353,64 @@
              </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem1" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem1">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem2" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem2">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem3" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem3">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem4" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem4">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem5" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem5">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="ComboBox" name="comboBoxGeneratorItem6" />
+             <widget class="ComboBox" name="comboBoxGeneratorItem6">
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonGeneratorClearItems">
@@ -392,9 +458,9 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_20">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
+       <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -476,17 +542,32 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxSearcherSettings">
+       <widget class="QGroupBox" name="groupBoxSearcherSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>430</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>620</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="title">
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="alignment">
+           <set>Qt::AlignTop</set>
+          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherPickupSlots">
             <property name="text">
@@ -674,9 +755,9 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxSearcherFilters">
+       <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -703,7 +784,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem1" />
           </item>
           <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount1" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount1">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="1" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem1">
@@ -716,7 +804,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem2" />
           </item>
           <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount2" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount2">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="2" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem2">
@@ -729,7 +824,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem3" />
           </item>
           <item row="3" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount3" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount3">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="3" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem3">
@@ -742,7 +844,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem4" />
           </item>
           <item row="4" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount4" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount4">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="4" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem4">
@@ -755,7 +864,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem5" />
           </item>
           <item row="5" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount5" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount5">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="5" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem5">
@@ -768,7 +884,14 @@
            <widget class="ComboBox" name="comboBoxSearcherItem6" />
           </item>
           <item row="6" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherItemCount6" />
+           <widget class="ComboBox" name="comboBoxSearcherItemCount6">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="6" column="2">
            <widget class="QPushButton" name="pushButtonSearcherClearItem6">

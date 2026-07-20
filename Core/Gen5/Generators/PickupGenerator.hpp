@@ -46,10 +46,6 @@ public:
         u8 count;
     };
 
-    PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots, const Profile5 &profile,
-                    bool includeInvalid = false);
-    PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots, const EncounterArea5 &area,
-                    const Profile5 &profile, bool includeInvalid = false);
     PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots, const std::vector<Request> &requests,
                     const EncounterArea5 &area, const Profile5 &profile, bool includeInvalid = false);
     PickupGenerator(u32 initialAdvances, u32 maxAdvances, const std::array<Slot, 6> &pickupSlots, const EncounterArea5 &area,
