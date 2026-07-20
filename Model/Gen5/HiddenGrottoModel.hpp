@@ -58,10 +58,10 @@ public:
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role) const override;
-    
+
     /**
      * @brief Returns chatot pitch for given \p row
-     * 
+     *
      * @return Row chatot pitch
      */
     u8 getChatot(int row) const override
@@ -71,7 +71,7 @@ public:
 
     /**
      * @brief Returns needle value for given \p row
-     * 
+     *
      * @return Row needle value
      */
     u8 getNeedle(int row) const override
@@ -177,7 +177,7 @@ public:
 
     /**
      * @brief Returns chatot pitch for given \p row
-     * 
+     *
      * @return Row chatot pitch
      */
     u8 getChatot(int row) const override
@@ -187,7 +187,7 @@ public:
 
     /**
      * @brief Returns needle value for given \p row
-     * 
+     *
      * @return Row needle value
      */
     u8 getNeedle(int row) const override

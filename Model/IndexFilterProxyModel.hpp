@@ -72,7 +72,7 @@ public:
 protected:
     /**
      * @brief Checks if row should be displayed
-     * 
+     *
      * @param sourceRow Row to check
      * @param sourceParent Parent index of row
      */
