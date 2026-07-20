@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
@@ -1149,7 +1149,7 @@
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delay</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/EggModel4.hpp" line="208"/>
@@ -1514,7 +1514,7 @@
     </message>
     <message>
         <source>Redraws</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aufnahme Advances</translation>
     </message>
     <message>
         <source>Calibration</source>
@@ -2635,7 +2635,7 @@
     <message>
         <location filename="../../Model/Gen4/EventModel4.hpp" line="177"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delay</translation>
     </message>
 </context>
 <context>
@@ -5390,11 +5390,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TID</translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SID</translation>
     </message>
     <message>
         <source>Game</source>
@@ -5417,7 +5417,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TID</translation>
     </message>
     <message>
         <source>Manager</source>
@@ -5429,7 +5429,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SID</translation>
     </message>
     <message>
         <source>National Dex</source>
@@ -5462,11 +5462,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TID</translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SID</translation>
     </message>
     <message>
         <source>MAC Address</source>
@@ -5517,11 +5517,11 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <source>TID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TID</translation>
     </message>
     <message>
         <source>SID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SID</translation>
     </message>
     <message>
         <source>Game</source>
@@ -8621,7 +8621,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delay</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="179"/>

@@ -21,7 +21,7 @@
 #include "ui_AdvanceFinder.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
-#include <Core/Util/AdvanceFinderLogic.hpp>
+#include <Core/Util/AdvanceSearcher.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/Gen5/IRNGProvider5.hpp>
@@ -56,7 +56,7 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
         ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->tabNeedles), false);
     }
 
-    using ChatotToken = AdvanceFinderLogic::ChatotToken;
+    using ChatotToken = AdvanceSearcher::ChatotToken;
     const std::array<std::pair<QPushButton *, ChatotToken>, 10> chatotButtons = { { { ui->pushButtonHigh, ChatotToken::High },
                                                                                     { ui->pushButtonMidHigh, ChatotToken::MidHigh },
                                                                                     { ui->pushButtonMid, ChatotToken::Mid },
@@ -72,7 +72,7 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
         connect(button, &QPushButton::clicked, this, [=] { appendToken(button, static_cast<u8>(token)); });
     }
 
-    using NeedleToken = AdvanceFinderLogic::NeedleToken;
+    using NeedleToken = AdvanceSearcher::NeedleToken;
     const std::array<std::pair<QPushButton *, NeedleToken>, 9> needleButtons = { { { ui->pushButtonNeedle0, NeedleToken::Needle0 },
                                                                                    { ui->pushButtonNeedle1, NeedleToken::Needle1 },
                                                                                    { ui->pushButtonNeedle2, NeedleToken::Needle2 },
@@ -87,7 +87,7 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
         connect(button, &QPushButton::clicked, this, [=] { appendToken(button, static_cast<u8>(token)); });
     }
 
-    using CallToken = AdvanceFinderLogic::CallToken;
+    using CallToken = AdvanceSearcher::CallToken;
     connect(ui->pushButtonCallE, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallE, static_cast<u8>(CallToken::E)); });
     connect(ui->pushButtonCallK, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallK, static_cast<u8>(CallToken::K)); });
     connect(ui->pushButtonCallP, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallP, static_cast<u8>(CallToken::P)); });
@@ -169,16 +169,16 @@ void AdvanceFinder::sequenceTextChanged(const QString &text)
 
 void AdvanceFinder::search()
 {
-    AdvanceFinderLogic::Sequence sequence;
+    AdvanceSearcher::Sequence sequence;
     std::function<u8(int)> getter;
     if (ui->tabWidget->currentWidget() == ui->tabCalls)
     {
-        sequence = AdvanceFinderLogic::getCallSequence(tokens);
+        sequence = AdvanceSearcher::getCallSequence(tokens);
         getter = [this](int row) { return callChatot->getCall(row); };
     }
     else if (ui->tabWidget->currentWidget() == ui->tabChatot)
     {
-        sequence = AdvanceFinderLogic::getChatotSequence(tokens);
+        sequence = AdvanceSearcher::getChatotSequence(tokens);
         if (callChatot)
         {
             getter = [this](int row) { return callChatot->getChatot(row); };
@@ -190,7 +190,7 @@ void AdvanceFinder::search()
     }
     else
     {
-        sequence = AdvanceFinderLogic::getNeedleSequence(tokens);
+        sequence = AdvanceSearcher::getNeedleSequence(tokens);
         getter = [this](int row) { return chatotNeedle->getNeedle(row); };
     }
 
@@ -201,7 +201,7 @@ void AdvanceFinder::search()
         return;
     }
 
-    std::vector<size_t> matches = AdvanceFinderLogic::findMatches(model->sourceModel()->rowCount(), sequence, getter);
+    std::vector<size_t> matches = AdvanceSearcher::findMatches(model->sourceModel()->rowCount(), sequence, getter);
 
     model->setFilteredIndexes(matches.size() <= 5 ? matches : std::vector<size_t>());
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(matches.size()));

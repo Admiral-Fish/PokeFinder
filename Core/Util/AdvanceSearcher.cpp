@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AdvanceFinderLogic.hpp"
+#include "AdvanceSearcher.hpp"
 
-namespace AdvanceFinderLogic
+namespace AdvanceSearcher
 {
     Sequence getCallSequence(const std::vector<u8> &tokens)
     {

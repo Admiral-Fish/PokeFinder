@@ -17,15 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ADVANCEFINDERLOGIC_HPP
-#define ADVANCEFINDERLOGIC_HPP
+#ifndef ADVANCESEARCHER_HPP
+#define ADVANCESEARCHER_HPP
 
 #include <Core/Global.hpp>
 #include <functional>
 #include <utility>
 #include <vector>
 
-namespace AdvanceFinderLogic
+namespace AdvanceSearcher
 {
     using Range = std::pair<u8, u8>;
     using Sequence = std::vector<Range>;
@@ -104,4 +104,4 @@ namespace AdvanceFinderLogic
     std::vector<size_t> findMatches(size_t rowCount, const Sequence &sequence, const ValueGetter &getter);
 }
 
-#endif // ADVANCEFINDERLOGIC_HPP
+#endif // ADVANCESEARCHER_HPP
