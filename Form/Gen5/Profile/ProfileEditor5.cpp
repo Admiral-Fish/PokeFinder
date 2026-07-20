@@ -59,6 +59,13 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     connect(ui->pushButtonSelectSHACache, &QPushButton::clicked, this, &ProfileEditor5::selectSHACache);
     connect(ui->pushButtonClearIVCache, &QPushButton::clicked, this, &ProfileEditor5::clearIVCache);
     connect(ui->pushButtonClearSHACache, &QPushButton::clicked, this, &ProfileEditor5::clearSHACache);
+    connect(ui->checkBoxMemoryLink, &QCheckBox::toggled, this, [this](bool checked) {
+        ui->checkBoxNsPokemonReleased->setEnabled(checked);
+        if (!checked)
+        {
+            ui->checkBoxNsPokemonReleased->setChecked(false);
+        }
+    });
 
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
@@ -85,6 +92,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : Profi
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
+    ui->checkBoxNsPokemonReleased->setChecked(profile.getMemoryLink() && profile.getNsPokemonReleased());
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
 }
 
@@ -115,7 +123,8 @@ Profile5 ProfileEditor5::getProfile()
                     ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(), ui->textBoxVCount->getUChar(),
                     ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(),
                     ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxMemoryLink->isChecked(),
-                    ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>());
+                    ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>(),
+                    ui->checkBoxMemoryLink->isChecked() && ui->checkBoxNsPokemonReleased->isChecked());
 }
 
 void ProfileEditor5::clearIVCache()
@@ -192,12 +201,16 @@ void ProfileEditor5::versionIndexChanged(int index)
         if ((version & Game::BW2) != Game::None)
         {
             ui->checkBoxMemoryLink->show();
+            ui->checkBoxNsPokemonReleased->show();
+            ui->checkBoxNsPokemonReleased->setEnabled(ui->checkBoxMemoryLink->isChecked());
             ui->checkBoxShinyCharm->show();
         }
         else
         {
             ui->checkBoxMemoryLink->hide();
             ui->checkBoxMemoryLink->setChecked(false);
+            ui->checkBoxNsPokemonReleased->hide();
+            ui->checkBoxNsPokemonReleased->setChecked(false);
             ui->checkBoxShinyCharm->hide();
             ui->checkBoxShinyCharm->setChecked(false);
         }
