@@ -61,6 +61,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     grottoSearcherModel = new HiddenGrottoSlotSearcherModel5(ui->tableViewGrottoSearcher);
     grottoProxyModel = new SortFilterProxyModel(ui->tableViewGrottoSearcher, grottoSearcherModel);
+    grottoProxyModel->setSortRole(Qt::UserRole);
     ui->tableViewGrottoSearcher->setModel(grottoProxyModel);
 
     ui->textBoxGrottoGeneratorSeed->setValues(InputType::Seed64Bit);
@@ -343,12 +344,15 @@ void HiddenGrotto::grottoSearch()
     u32 initialAdvances = ui->textBoxGrottoSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGrottoSearcherMaxAdvances->getUInt();
     u8 powerLevel = ui->comboBoxGrottoSearcherGrottoPower->getCurrentUInt();
+    u16 item = ui->comboBoxGrottoSearcherItems->getCurrentUShort();
+    u8 itemAmount = static_cast<u8>(ui->spinBoxGrottoSearcherItemAmount->value());
 
     HiddenGrottoFilter filter(ui->checkListGrottoSearcherSlot->getCheckedArray<11>(),
                               ui->checkListGrottoSearcherGender->getCheckedArray<2>(),
                               ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, powerLevel,
-                                        encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
+                                        encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter, item,
+                                        itemAmount);
     auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();

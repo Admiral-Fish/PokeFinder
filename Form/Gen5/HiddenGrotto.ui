@@ -488,6 +488,25 @@
               <item row="2" column="1">
                <widget class="ComboBox" name="comboBoxGrottoSearcherItems"/>
               </item>
+              <item row="2" column="2">
+               <widget class="QSpinBox" name="spinBoxGrottoSearcherItemAmount">
+                <property name="maximumSize">
+                 <size>
+                  <width>55</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>99</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -1235,6 +1254,7 @@
   <tabstop>comboBoxGrottoSearcherLocation</tabstop>
   <tabstop>comboBoxGrottoSearcherPokemon</tabstop>
   <tabstop>comboBoxGrottoSearcherItems</tabstop>
+  <tabstop>spinBoxGrottoSearcherItemAmount</tabstop>
   <tabstop>checkListGrottoSearcherSlot</tabstop>
   <tabstop>checkListGrottoSearcherGroup</tabstop>
   <tabstop>checkListGrottoSearcherGender</tabstop>
