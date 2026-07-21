@@ -43,10 +43,10 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-    u64 tmp = (((PokeRNG::getMult() * first - second) >> 16) & 0xffff) * LAG1;
-    u64 lo = ((tmp + LOWER) >> 15) * LAG0;
-    u64 mi = lo + LAG0;
-    u64 up = ((tmp + UPPER) >> 15) * LAG0;
+    u64 tmp = ((PokeRNG::getMult() * first - second) >> 16) * LAG1;
+    u32 lo = ((tmp + LOWER) >> 15) * LAG0;
+    u32 mi = lo + LAG0;
+    u32 up = ((tmp + UPPER) >> 15) * LAG0;
 
     RecoverySeeds<6> seeds;
     for (u32 lbits = lo % LAG1; lbits < 0x10000; lbits += LAG1)
@@ -115,9 +115,9 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-    u64 tmp = (((first - second * MULT) >> 16) & 0xffff) * LAG0;
-    u64 lo = (tmp + LOWER) >> 15;
-    u64 up = (tmp + UPPER) >> 15;
+    u32 tmp = ((first - second * MULT) >> 16) * LAG0;
+    u32 lo = (tmp + LOWER) >> 15;
+    u32 up = (tmp + UPPER) >> 15;
 
     RecoverySeeds<6> seeds;
     for (u32 lbits = (lo * LAG1) % LAG0; lbits < 0x10000; lbits += LAG0)
@@ -263,7 +263,7 @@ namespace LCRNGReverse
         u32 first = pid << 16;
         u32 second = pid & 0xffff0000;
 
-        u32 tmp = (((first - second * PokeRNGR::getMult()) >> 16) & 0xffff) * LAG0;
+        u32 tmp = ((first - second * PokeRNGR::getMult()) >> 16) * LAG0;
         u32 lo = (tmp + LOWER) >> 16;
         u32 up = (tmp + UPPER) >> 16;
 
@@ -295,10 +295,10 @@ namespace LCRNGReverse
         u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
         u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-        u64 tmp = (((XDRNGR::getMult() * second - first) >> 16) & 0xffff) * LAG1;
-        u64 lo = ((tmp + LOWER) >> 15) * LAG0;
-        u64 mi = lo + LAG0;
-        u64 up = ((tmp + UPPER) >> 15) * LAG0;
+        u64 tmp = ((XDRNGR::getMult() * second - first) >> 16) * LAG1;
+        u32 lo = ((tmp + LOWER) >> 15) * LAG0;
+        u32 mi = lo + LAG0;
+        u32 up = ((tmp + UPPER) >> 15) * LAG0;
 
         RecoverySeeds<6> seeds;
         for (u32 lbits = lo % LAG1; lbits < 0x10000; lbits += LAG1)
@@ -353,9 +353,9 @@ namespace LCRNGReverse
         u32 first = pid & 0xffff0000;
         u32 second = pid << 16;
 
-        u64 tmp = (((first - second * XDRNGR::getMult()) >> 16) & 0xffff) * LAG0;
-        u64 lo = (tmp + LOWER) >> 16;
-        u64 up = (tmp + UPPER) >> 16;
+        u64 tmp = ((first - second * XDRNGR::getMult()) >> 16) * LAG0;
+        u32 lo = (tmp + LOWER) >> 16;
+        u32 up = (tmp + UPPER) >> 16;
 
         RecoverySeeds<2> seeds;
         for (u32 lbits = (lo * LAG1) % LAG0; lbits < 0x10000; lbits += LAG0)
