@@ -131,7 +131,31 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     connect(ui->comboBoxGrottoGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorUpdateFilter);
     connect(ui->comboBoxGrottoSearcherPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoSearcherUpdateFilter);
     connect(ui->comboBoxGrottoGeneratorItems, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoGeneratorUpdateFilter);
+    auto updateGrottoSearcherTarget = [=] {
+        bool itemTarget = ui->radioButtonGrottoSearcherItems->isChecked();
+        ui->comboBoxGrottoSearcherPokemon->setEnabled(!itemTarget);
+        ui->comboBoxGrottoSearcherItems->setEnabled(itemTarget);
+        ui->spinBoxGrottoSearcherItemAmount->setEnabled(itemTarget);
+        if (itemTarget)
+        {
+            ui->comboBoxGrottoSearcherPokemon->setCurrentIndex(0);
+        }
+        else
+        {
+            ui->comboBoxGrottoSearcherItems->setCurrentIndex(0);
+            ui->spinBoxGrottoSearcherItemAmount->setValue(1);
+        }
+        grottoSearcherUpdateFilter();
+    };
+    connect(ui->radioButtonGrottoSearcherPokemon, &QRadioButton::toggled, this, updateGrottoSearcherTarget);
+    connect(ui->radioButtonGrottoSearcherItems, &QRadioButton::toggled, this, updateGrottoSearcherTarget);
     connect(ui->comboBoxGrottoSearcherItems, &QComboBox::currentIndexChanged, this, &HiddenGrotto::grottoSearcherUpdateFilter);
+    connect(ui->comboBoxGrottoSearcherItems, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->comboBoxGrottoSearcherItems->getCurrentUShort() == 0)
+        {
+            ui->spinBoxGrottoSearcherItemAmount->setValue(1);
+        }
+    });
     connect(ui->comboBoxPokemonGeneratorGroup, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonGeneratorGroupIndexChanged);
     connect(ui->comboBoxPokemonSearcherGroup, &QComboBox::currentIndexChanged, this, &HiddenGrotto::pokemonSearcherGroupIndexChanged);
     connect(ui->comboBoxPokemonGeneratorLocation, &QComboBox::currentIndexChanged, this,
@@ -161,6 +185,9 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     updateProfiles();
     pokemonSearcherFastSearchChanged();
+    ui->radioButtonGrottoSearcherPokemon->setChecked(true);
+    ui->comboBoxGrottoSearcherItems->setEnabled(false);
+    ui->spinBoxGrottoSearcherItemAmount->setEnabled(false);
 
     QSettings setting;
     setting.beginGroup(settingPrefix);
@@ -344,8 +371,9 @@ void HiddenGrotto::grottoSearch()
     u32 initialAdvances = ui->textBoxGrottoSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGrottoSearcherMaxAdvances->getUInt();
     u8 powerLevel = ui->comboBoxGrottoSearcherGrottoPower->getCurrentUInt();
-    u16 item = ui->comboBoxGrottoSearcherItems->getCurrentUShort();
-    u8 itemAmount = static_cast<u8>(ui->spinBoxGrottoSearcherItemAmount->value());
+    bool itemTarget = ui->radioButtonGrottoSearcherItems->isChecked();
+    u16 item = itemTarget ? ui->comboBoxGrottoSearcherItems->getCurrentUShort() : 0;
+    u8 itemAmount = itemTarget ? static_cast<u8>(ui->spinBoxGrottoSearcherItemAmount->value()) : 1;
 
     HiddenGrottoFilter filter(ui->checkListGrottoSearcherSlot->getCheckedArray<11>(),
                               ui->checkListGrottoSearcherGender->getCheckedArray<2>(),
@@ -412,6 +440,8 @@ void HiddenGrotto::grottoSearcherLocationIndexChanged(int index)
         {
             ui->comboBoxGrottoSearcherItems->addItem(QString::fromStdString(itemNames[i]), item[i]);
         }
+
+        ui->spinBoxGrottoSearcherItemAmount->setValue(1);
     }
 }
 
@@ -421,8 +451,9 @@ void HiddenGrotto::grottoSearcherUpdateFilter()
     std::vector<bool> encounterSlots(11, false);
 
     const auto &area = encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()];
-    u16 specie = ui->comboBoxGrottoSearcherPokemon->getCurrentUShort();
-    u16 item = ui->comboBoxGrottoSearcherItems->getCurrentUShort();
+    bool itemTarget = ui->radioButtonGrottoSearcherItems->isChecked();
+    u16 specie = itemTarget ? 0 : ui->comboBoxGrottoSearcherPokemon->getCurrentUShort();
+    u16 item = itemTarget ? ui->comboBoxGrottoSearcherItems->getCurrentUShort() : 0;
 
     for (u8 group = 0; group < 4; group++)
     {
@@ -792,8 +823,19 @@ void HiddenGrotto::transferSettingsGrotto(int index)
     if (index == 0)
     {
         ui->comboBoxGrottoSearcherLocation->setCurrentIndex(ui->comboBoxGrottoGeneratorLocation->currentIndex());
-        ui->comboBoxGrottoSearcherPokemon->setCurrentIndex(ui->comboBoxGrottoGeneratorPokemon->currentIndex());
-        ui->comboBoxGrottoSearcherItems->setCurrentIndex(ui->comboBoxGrottoGeneratorItems->currentIndex());
+        if (ui->comboBoxGrottoGeneratorItems->currentIndex() != 0)
+        {
+            ui->radioButtonGrottoSearcherItems->setChecked(true);
+            ui->comboBoxGrottoSearcherPokemon->setCurrentIndex(0);
+            ui->comboBoxGrottoSearcherItems->setCurrentIndex(ui->comboBoxGrottoGeneratorItems->currentIndex());
+        }
+        else
+        {
+            ui->radioButtonGrottoSearcherPokemon->setChecked(true);
+            ui->comboBoxGrottoSearcherItems->setCurrentIndex(0);
+            ui->spinBoxGrottoSearcherItemAmount->setValue(1);
+            ui->comboBoxGrottoSearcherPokemon->setCurrentIndex(ui->comboBoxGrottoGeneratorPokemon->currentIndex());
+        }
     }
     else
     {

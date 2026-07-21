@@ -469,9 +469,12 @@
                <widget class="ComboBoxProxy" name="comboBoxGrottoSearcherLocation"/>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherPokemon">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherPokemon">
                 <property name="text">
                  <string>Pokemon</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -479,7 +482,7 @@
                <widget class="ComboBox" name="comboBoxGrottoSearcherPokemon"/>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherItems">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherItems">
                 <property name="text">
                  <string>Items</string>
                 </property>
@@ -1252,7 +1255,9 @@
   <tabstop>pushButtonGrottoSearch</tabstop>
   <tabstop>pushButtonGrottoCancel</tabstop>
   <tabstop>comboBoxGrottoSearcherLocation</tabstop>
+  <tabstop>radioButtonGrottoSearcherPokemon</tabstop>
   <tabstop>comboBoxGrottoSearcherPokemon</tabstop>
+  <tabstop>radioButtonGrottoSearcherItems</tabstop>
   <tabstop>comboBoxGrottoSearcherItems</tabstop>
   <tabstop>spinBoxGrottoSearcherItemAmount</tabstop>
   <tabstop>checkListGrottoSearcherSlot</tabstop>
