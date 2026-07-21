@@ -90,11 +90,6 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
-static bool isFishingEncounter(Encounter encounter)
-{
-    return encounter == Encounter::SuperRod;
-}
-
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
@@ -139,9 +134,9 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     auto modifiedSlots = area.getSlots(lead);
 
     u8 rate = area.getRate();
-    if (isFishingEncounter(area.getEncounter()) && lead == Lead::SuctionCups)
+    if (area.getEncounter() == Encounter::SuperRod && lead == Lead::SuctionCups)
     {
-        rate = std::min<u8>(rate * 2, 100);
+        rate *= 2;
     }
 
     u8 shinyRolls = 1;
@@ -199,7 +194,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             doubleBattle = true;
         }
 
-        if (isFishingEncounter(area.getEncounter()) && getPercentRand(go, bw) > rate)
+        if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
             rng.next();
             continue;
