@@ -48,7 +48,7 @@ public:
      * @param filter State filter
      */
     HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel, const HiddenGrottoArea &encounterArea,
-                              const Profile5 &profile, const HiddenGrottoFilter &filter);
+                              const Profile5 &profile, const HiddenGrottoFilter &filter, u16 item = 0, u8 minItemAmount = 1);
 
     /**
      * @brief Generates states
@@ -61,6 +61,8 @@ public:
 
 private:
     HiddenGrottoArea encounterArea;
+    u16 item;
+    u8 minItemAmount;
     u8 powerLevel;
 };
 

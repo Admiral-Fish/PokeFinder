@@ -55,8 +55,12 @@ static u8 gen(MT &rng)
 
 HiddenGrottoSlotGenerator::HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 powerLevel,
                                                      const HiddenGrottoArea &encounterArea, const Profile5 &profile,
-                                                     const HiddenGrottoFilter &filter) :
-    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter), encounterArea(encounterArea), powerLevel(powerLevel)
+                                                     const HiddenGrottoFilter &filter, u16 item, u8 minItemAmount) :
+    Generator(initialAdvances, maxAdvances, offset, Method::None, profile, filter),
+    encounterArea(encounterArea),
+    item(item),
+    minItemAmount(minItemAmount),
+    powerLevel(powerLevel)
 {
 }
 
@@ -65,6 +69,11 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
     u32 advances = Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
+    bool searchItemAmount = item != 0 && minItemAmount > 1;
+    u16 itemAmount = 0;
+    u32 lastItemAdvance = 0;
+    std::vector<u32> itemAdvances;
+    HiddenGrottoState firstItem(0, 0, 0, 0, 0);
 
     std::vector<HiddenGrottoState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -74,13 +83,23 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
-            u8 slot = encounterTable[go.nextUInt(100)];
+            u8 slot = 10;
+            u8 rolls = powerLevel == 5 ? 1 : 3;
+            for (u8 i = 0; i < rolls; i++)
+            {
+                slot = encounterTable[go.nextUInt(100)];
+                if (slot < 3)
+                {
+                    break;
+                }
+            }
+
             if (slot < 3) // Pokemon
             {
-                const auto &pokemon = encounterArea.getPokemon(group, slot);
+                auto pokemon = encounterArea.getPokemon(group, slot, profile.getVersion());
                 u8 gender = go.nextUInt(100) < pokemon.getGender();
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
-                if (filter.compareState(state))
+                if (!searchItemAmount && filter.compareState(state))
                 {
                     states.emplace_back(state);
                 }
@@ -91,7 +110,27 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
                 if (filter.compareState(state))
                 {
-                    states.emplace_back(state);
+                    if (searchItemAmount)
+                    {
+                        if (state.getData() == this->item)
+                        {
+                            u32 itemAdvance = state.getAdvances();
+                            if (itemAmount == 0 || itemAdvance > lastItemAdvance + 5)
+                            {
+                                if (itemAmount == 0)
+                                {
+                                    firstItem = state;
+                                }
+                                lastItemAdvance = itemAdvance;
+                                itemAdvances.emplace_back(itemAdvance);
+                                itemAmount++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        states.emplace_back(state);
+                    }
                 }
             }
             else // Hidden item
@@ -100,10 +139,37 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, item);
                 if (filter.compareState(state))
                 {
-                    states.emplace_back(state);
+                    if (searchItemAmount)
+                    {
+                        if (state.getData() == this->item)
+                        {
+                            u32 itemAdvance = state.getAdvances();
+                            if (itemAmount == 0 || itemAdvance > lastItemAdvance + 5)
+                            {
+                                if (itemAmount == 0)
+                                {
+                                    firstItem = state;
+                                }
+                                lastItemAdvance = itemAdvance;
+                                itemAdvances.emplace_back(itemAdvance);
+                                itemAmount++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        states.emplace_back(state);
+                    }
                 }
             }
         }
+    }
+
+    if (searchItemAmount && itemAmount >= minItemAmount)
+    {
+        firstItem.setAmount(itemAmount);
+        firstItem.setItemAdvances(itemAdvances);
+        states.emplace_back(firstItem);
     }
 
     return states;

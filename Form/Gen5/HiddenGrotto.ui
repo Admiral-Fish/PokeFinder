@@ -469,9 +469,12 @@
                <widget class="ComboBoxProxy" name="comboBoxGrottoSearcherLocation"/>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherPokemon">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherPokemon">
                 <property name="text">
                  <string>Pokemon</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -479,7 +482,7 @@
                <widget class="ComboBox" name="comboBoxGrottoSearcherPokemon"/>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherItems">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherItems">
                 <property name="text">
                  <string>Items</string>
                 </property>
@@ -487,6 +490,25 @@
               </item>
               <item row="2" column="1">
                <widget class="ComboBox" name="comboBoxGrottoSearcherItems"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QSpinBox" name="spinBoxGrottoSearcherItemAmount">
+                <property name="maximumSize">
+                 <size>
+                  <width>55</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>99</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -769,64 +791,33 @@
                <widget class="ComboBoxProxy" name="comboBoxPokemonGeneratorLocation"/>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="labelPokemonGeneratorGroup">
-                <property name="text">
-                 <string>Group</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxPokemonGeneratorGroup">
-                <item>
-                 <property name="text">
-                  <string notr="true">0</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">1</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">2</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">3</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="2" column="0">
                <widget class="QLabel" name="labelPokemonGeneratorPokemon">
                 <property name="text">
                  <string>Pokemon</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1" colspan="2">
+              <item row="1" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonGeneratorPokemon"/>
               </item>
-              <item row="3" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="labelPokemonGeneratorGender">
                 <property name="text">
                  <string>Gender</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="2">
+              <item row="2" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonGeneratorGender"/>
               </item>
-              <item row="4" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="labelPokemonGeneratorLevel">
                 <property name="text">
                  <string>Levels</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="3" column="1">
                <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMin">
                 <property name="enabled">
                  <bool>false</bool>
@@ -836,7 +827,7 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="2">
+              <item row="3" column="2">
                <widget class="QSpinBox" name="spinBoxPokemonGeneratorLevelMax">
                 <property name="enabled">
                  <bool>false</bool>
@@ -1011,6 +1002,9 @@
               <string>Settings</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_17">
+              <property name="verticalSpacing">
+               <number>10</number>
+              </property>
               <item row="0" column="0">
                <widget class="QLabel" name="labelPokemonSearcherLocation">
                 <property name="text">
@@ -1022,55 +1016,31 @@
                <widget class="ComboBoxProxy" name="comboBoxPokemonSearcherLocation"/>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="labelPokemonSearcherGroup">
-                <property name="text">
-                 <string>Group</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxPokemonSearcherGroup">
-                <item>
-                 <property name="text">
-                  <string notr="true">0</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">1</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">2</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">3</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="2" column="0">
                <widget class="QLabel" name="labelPokemonSearcherPokemon">
                 <property name="text">
                  <string>Pokemon</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1" colspan="2">
+              <item row="1" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonSearcherPokemon"/>
               </item>
-              <item row="3" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="labelPokemonSearcherGender">
                 <property name="text">
                  <string>Gender</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="2">
+              <item row="2" column="1" colspan="2">
                <widget class="ComboBox" name="comboBoxPokemonSearcherGender"/>
+              </item>
+              <item row="3" column="0" colspan="3">
+               <widget class="Line" name="line">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="labelPokemonSearcherLevel">
@@ -1100,7 +1070,7 @@
                </widget>
               </item>
               <item row="5" column="0" colspan="3">
-               <widget class="Line" name="line">
+               <widget class="Line" name="line_10">
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -1108,6 +1078,12 @@
               </item>
               <item row="6" column="0" colspan="3">
                <widget class="QLabel" name="labelPokemonSearcherIVFastSearch">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -1233,8 +1209,11 @@
   <tabstop>pushButtonGrottoSearch</tabstop>
   <tabstop>pushButtonGrottoCancel</tabstop>
   <tabstop>comboBoxGrottoSearcherLocation</tabstop>
+  <tabstop>radioButtonGrottoSearcherPokemon</tabstop>
   <tabstop>comboBoxGrottoSearcherPokemon</tabstop>
+  <tabstop>radioButtonGrottoSearcherItems</tabstop>
   <tabstop>comboBoxGrottoSearcherItems</tabstop>
+  <tabstop>spinBoxGrottoSearcherItemAmount</tabstop>
   <tabstop>checkListGrottoSearcherSlot</tabstop>
   <tabstop>checkListGrottoSearcherGroup</tabstop>
   <tabstop>checkListGrottoSearcherGender</tabstop>
@@ -1248,7 +1227,6 @@
   <tabstop>textBoxPokemonGeneratorOffset</tabstop>
   <tabstop>pushButtonPokemonGenerate</tabstop>
   <tabstop>comboBoxPokemonGeneratorLocation</tabstop>
-  <tabstop>comboBoxPokemonGeneratorGroup</tabstop>
   <tabstop>comboBoxPokemonGeneratorPokemon</tabstop>
   <tabstop>comboBoxPokemonGeneratorGender</tabstop>
   <tabstop>tableViewPokemonGenerator</tabstop>
@@ -1262,7 +1240,6 @@
   <tabstop>pushButtonPokemonSearch</tabstop>
   <tabstop>pushButtonPokemonCancel</tabstop>
   <tabstop>comboBoxPokemonSearcherLocation</tabstop>
-  <tabstop>comboBoxPokemonSearcherGroup</tabstop>
   <tabstop>comboBoxPokemonSearcherPokemon</tabstop>
   <tabstop>comboBoxPokemonSearcherGender</tabstop>
   <tabstop>tableViewPokemonSearcher</tabstop>

@@ -26,6 +26,7 @@
 #include <vector>
 
 class PersonalInfo;
+enum class Game : u32;
 
 /**
  * @brief Contains information that impact the generation of hidden grotto encounters
@@ -172,11 +173,31 @@ public:
     HiddenGrottoSlot getPokemon(u8 group, u8 index) const;
 
     /**
+     * @brief Returns the pokemon at the \p group and \p index for the selected game version
+     *
+     * @param group Pokemon group
+     * @param index Pokemon index
+     * @param version Game version
+     *
+     * @return Pokemon
+     */
+    HiddenGrottoSlot getPokemon(u8 group, u8 index, Game version) const;
+
+    /**
      * @brief Return vector of names of all pokemon slots
      *
      * @return Vector of pokemon name
      */
     std::vector<std::string> getSpecieNames() const;
+
+    /**
+     * @brief Return vector of names of all pokemon slots for the selected game version
+     *
+     * @param version Game version
+     *
+     * @return Vector of pokemon name
+     */
+    std::vector<std::string> getSpecieNames(Game version) const;
 
     /**
      * @brief Return the item numbers of unique item of the area
@@ -191,6 +212,15 @@ public:
      * @return Vector of pokemon species
      */
     std::vector<u16> getUniqueSpecies() const;
+
+    /**
+     * @brief Return the species numbers of unique pokemon of the area for the selected game version
+     *
+     * @param version Game version
+     *
+     * @return Vector of pokemon species
+     */
+    std::vector<u16> getUniqueSpecies(Game version) const;
 
 private:
     std::array<HiddenGrottoSlot, 12> pokemon;
