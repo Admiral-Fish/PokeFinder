@@ -96,7 +96,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
 
             if (slot < 3) // Pokemon
             {
-                const auto &pokemon = encounterArea.getPokemon(group, slot);
+                auto pokemon = encounterArea.getPokemon(group, slot, profile.getVersion());
                 u8 gender = go.nextUInt(100) < pokemon.getGender();
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
                 if (!searchItemAmount && filter.compareState(state))

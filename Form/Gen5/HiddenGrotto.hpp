@@ -154,13 +154,6 @@ private slots:
     void pokemonGenerate();
 
     /**
-     * @brief Updates the group listed
-     *
-     * @param index Group index
-     */
-    void pokemonGeneratorGroupIndexChanged(int index);
-
-    /**
      * @brief Updates the grotto listed
      *
      * @param index Location index
@@ -183,13 +176,6 @@ private slots:
      * @brief Updates fast search eligibility based on IV advances and IV filters.
      */
     void pokemonSearcherFastSearchChanged();
-
-    /**
-     * @brief Updates the group listed
-     *
-     * @param index Group index
-     */
-    void pokemonSearcherGroupIndexChanged(int index);
 
     /**
      * @brief Updates the grotto listed
