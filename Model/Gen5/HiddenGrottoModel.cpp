@@ -22,6 +22,28 @@
 #include <Core/Util/Utilities.hpp>
 #include <QStringList>
 
+namespace
+{
+    QString getPokemonSlotDisplay(const HiddenGrottoState &state)
+    {
+        constexpr u16 nidoranF = 29;
+        constexpr u16 nidoranM = 32;
+        constexpr u16 ditto = 132;
+        constexpr u16 metang = 375;
+        constexpr u16 bronzor = 436;
+
+        u16 specie = state.getData();
+        QString name = QString::fromStdString(Translator::getSpecie(specie));
+        if (specie == nidoranF || specie == nidoranM || specie == ditto || specie == metang || specie == bronzor)
+        {
+            return QString("%1 (%2)").arg(state.getSlot()).arg(name);
+        }
+
+        QString gender = QString::fromStdString(Translator::getGender(state.getGender()));
+        return QString("%1 (%2 %3)").arg(state.getSlot()).arg(name, gender);
+    }
+}
+
 HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent)
 {
 }
@@ -54,10 +76,7 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
             }
             else
             {
-                return QString("%1 (%2 %3)")
-                    .arg(state.getSlot())
-                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
-                         QString::fromStdString(Translator::getGender(state.getGender())));
+                return getPokemonSlotDisplay(state);
             }
         }
     }
@@ -116,10 +135,7 @@ QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role
             }
             else
             {
-                return QString("%1 (%2 %3)")
-                    .arg(state.getSlot())
-                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
-                         QString::fromStdString(Translator::getGender(state.getGender())));
+                return getPokemonSlotDisplay(state);
             }
         case 4:
             return state.getAmount();
