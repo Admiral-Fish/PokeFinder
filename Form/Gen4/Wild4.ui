@@ -206,13 +206,33 @@
            </widget>
           </item>
           <item row="4" column="0" colspan="2">
+           <widget class="QLabel" name="labelGeneratorLeadLevel">
+            <property name="text">
+             <string>Lead Level</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" colspan="2">
+           <widget class="QSpinBox" name="spinBoxGeneratorLeadLevel">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
            <widget class="QLabel" name="labelGeneratorTime">
             <property name="text">
              <string>Time</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2" colspan="2">
+          <item row="5" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxGeneratorTime">
             <property name="currentIndex">
              <number>1</number>
@@ -234,14 +254,14 @@
             </item>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="6" column="0" colspan="2">
            <widget class="QLabel" name="labelGeneratorHappiness">
             <property name="text">
              <string>Happiness</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2">
+          <item row="6" column="2" colspan="2">
            <widget class="ComboBox" name="comboBoxGeneratorHappiness">
             <item>
              <property name="text">
@@ -270,7 +290,7 @@
             </item>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
+          <item row="7" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxGeneratorDualSlot">
             <property name="text">
              <string>Dual Slot</string>
@@ -280,7 +300,7 @@
             </attribute>
            </widget>
           </item>
-          <item row="6" column="2" colspan="2">
+          <item row="7" column="2" colspan="2">
            <widget class="ComboBox" name="comboBoxGeneratorDualSlot">
             <item>
              <property name="text">
@@ -309,14 +329,14 @@
             </item>
            </widget>
           </item>
-          <item row="7" column="0" colspan="4">
+          <item row="8" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxGeneratorFeebasTile">
             <property name="text">
              <string>Feebas Tile</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="4">
+          <item row="9" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxGeneratorPokeRadar">
             <property name="text">
              <string>Poke Radar</string>
@@ -326,7 +346,7 @@
             </attribute>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="10" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxGeneratorRadio">
             <property name="text">
              <string>Radio</string>
@@ -336,7 +356,7 @@
             </attribute>
            </widget>
           </item>
-          <item row="9" column="2" colspan="2">
+          <item row="10" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxGeneratorRadio">
             <item>
              <property name="text">
@@ -355,7 +375,7 @@
             </item>
            </widget>
           </item>
-          <item row="10" column="0" colspan="4">
+          <item row="11" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxGeneratorSwarm">
             <property name="text">
              <string>Swarm</string>
@@ -365,7 +385,7 @@
             </attribute>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="12" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxGeneratorReplacement">
             <property name="text">
              <string>Replacement</string>
@@ -375,67 +395,67 @@
             </attribute>
            </widget>
           </item>
-          <item row="11" column="2">
+          <item row="12" column="2">
            <widget class="ComboBox" name="comboBoxGeneratorReplacement0"/>
           </item>
-          <item row="11" column="3">
+          <item row="12" column="3">
            <widget class="ComboBox" name="comboBoxGeneratorReplacement1"/>
           </item>
-          <item row="12" column="0">
+          <item row="13" column="0">
            <widget class="QLabel" name="labelGeneratorPlainsBlock">
             <property name="text">
              <string>Plains Block</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="13" column="1">
            <widget class="QSpinBox" name="spinBoxGeneratorPlainsBlock"/>
           </item>
-          <item row="12" column="2">
+          <item row="13" column="2">
            <widget class="QLabel" name="labelGeneratorForestBlock">
             <property name="text">
              <string>Forest Block</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="3">
+          <item row="13" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorForestBlock"/>
           </item>
-          <item row="13" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="labelGeneratorPeakBlock">
             <property name="text">
              <string>Peak Block</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="1">
+          <item row="14" column="1">
            <widget class="QSpinBox" name="spinBoxGeneratorPeakBlock"/>
           </item>
-          <item row="13" column="2">
+          <item row="14" column="2">
            <widget class="QLabel" name="labelGeneratorWaterBlock">
             <property name="text">
              <string>Water Block</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="3">
+          <item row="14" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorWaterBlock"/>
           </item>
-          <item row="14" column="0" colspan="4">
+          <item row="15" column="0" colspan="4">
            <widget class="Line" name="line">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="16" column="0">
            <widget class="QLabel" name="labelGeneratorLevel">
             <property name="text">
              <string>Levels</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="2">
+          <item row="16" column="2">
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMin">
             <property name="enabled">
              <bool>false</bool>
@@ -448,7 +468,7 @@
             </property>
            </widget>
           </item>
-          <item row="15" column="3">
+          <item row="16" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
             <property name="enabled">
              <bool>false</bool>
@@ -1029,6 +1049,7 @@
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>checkBoxGeneratorRockSmashPokemon</tabstop>
+  <tabstop>spinBoxGeneratorLeadLevel</tabstop>
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorHappiness</tabstop>
   <tabstop>comboBoxGeneratorDualSlot</tabstop>

@@ -136,7 +136,13 @@ static bool improvesRockSmashItem(Lead lead)
 
 static bool isRockSmashItemLead(Lead lead)
 {
-    return increasesRockSmashItemRate(lead) || improvesRockSmashItem(lead);
+    return increasesRockSmashItemRate(lead) || improvesRockSmashItem(lead) || lead == Lead::Intimidate;
+}
+
+static bool isRockSmashEncounterSuppressed(Lead lead, u8 leadLevel, u8 level, PokeRNG &rng, u32 *battleAdvances)
+{
+    return (lead == Lead::KeenEye || lead == Lead::Intimidate) && leadLevel > 5 && level <= leadLevel - 5
+        && rng.nextUShort(2, battleAdvances) == 0;
 }
 
 static u16 getRockSmashItem(u8 location, Game version, Lead lead, bool rockSmashPokemon, PokeRNG &rng, u32 *battleAdvances)
@@ -192,14 +198,15 @@ static u16 getRockSmashItem(u8 location, Game version, Lead lead, bool rockSmash
 }
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
-                               bool unownRadio, u8 happiness, bool rockSmashPokemon, const EncounterArea4 &area, const Profile4 &profile,
-                               const WildStateFilter &filter) :
+                               bool unownRadio, u8 happiness, bool rockSmashPokemon, u8 leadLevel, const EncounterArea4 &area,
+                               const Profile4 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
     rockSmashPokemon(rockSmashPokemon),
-    happiness(happiness)
+    happiness(happiness),
+    leadLevel(leadLevel)
 {
 }
 
@@ -458,6 +465,21 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
+
+        if (area.getEncounter() == Encounter::RockSmash && isRockSmashEncounterSuppressed(lead, leadLevel, level, go, &battleAdvances))
+        {
+            u16 item = getRockSmashItem(area.getLocation(), profile.getVersion(), lead, rockSmashPokemon, go, &battleAdvances);
+            if (item != 0)
+            {
+                const Slot &itemSlot = area.getPokemon(0);
+                std::array<u8, 6> ivs = {};
+                states.emplace_back(rng.nextUShort(), battleAdvances, initialAdvances + cnt, 0, ivs, 0, 0, 0, 0, 0, 0, item, 0, 0,
+                                    itemSlot.getInfo());
+            }
+
+            rng.next();
+            continue;
+        }
 
         bool cuteCharmFlag = false;
         if ((encounterLead == Lead::CuteCharmF || encounterLead == Lead::CuteCharmM) && !info->getFixedGender())

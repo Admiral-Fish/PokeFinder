@@ -121,7 +121,7 @@ void WildSearcher4Test::searchMethodJ()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodJ, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                 settings.dppt.feebasTile, false, false, 50, false, *encounterArea, profile, filter);
+                                 settings.dppt.feebasTile, false, false, 50, false, 0, *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), 0);
 
         QCOMPARE(generatorStates.size(), 1);
@@ -201,7 +201,7 @@ void WildSearcher4Test::searchMethodK()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodK, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                 false, false, false, 50, false, *encounterArea, profile, filter);
+                                 false, false, false, 50, false, 0, *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), 0);
 
         QCOMPARE(generatorStates.size(), 1);
@@ -277,7 +277,7 @@ void WildSearcher4Test::searchHoneyTree()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::HoneyTree, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                 false, false, false, 50, false, *encounterArea, profile, filter);
+                                 false, false, false, 50, false, 0, *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), index);
 
         QCOMPARE(generatorStates.size(), 1);
@@ -358,7 +358,7 @@ void WildSearcher4Test::searchPokeRadar()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::PokeRadar, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                 false, shiny, false, 50, false, *encounterArea, profile, filter);
+                                 false, shiny, false, 50, false, 0, *encounterArea, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), index);
 
         QCOMPARE(generatorStates.size(), 1);

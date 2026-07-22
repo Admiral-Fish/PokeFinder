@@ -112,7 +112,7 @@ void WildGenerator4Test::generateMethodJ()
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50, false, *encounterArea, profile,
+    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50, false, 0, *encounterArea, profile,
                              filter);
 
     auto states = generator.generate(seed, 0);
@@ -183,7 +183,7 @@ void WildGenerator4Test::generateMethodK()
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, false, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, false, 0, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0);
     std::vector<WildGeneratorState4> pokemonStates;
@@ -272,7 +272,7 @@ void WildGenerator4Test::generateHoneyTree()
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::HoneyTree, lead, false, false, false, 50, false, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::HoneyTree, lead, false, false, false, 50, false, 0, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());
@@ -342,7 +342,7 @@ void WildGenerator4Test::generatePokeRadar()
         encounterAreas, [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, false, shiny, false, 50, false, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, false, shiny, false, 50, false, 0, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());

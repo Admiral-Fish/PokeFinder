@@ -46,12 +46,14 @@ public:
      * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param happiness Encounter rate modifier for fishing in HGSS
      * @param rockSmashPokemon Whether the walking Pokemon uses Rock Smash in HGSS
+     * @param leadLevel Level of the lead pokemon for Keen Eye rock smash suppression
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
-                   u8 happiness, bool rockSmashPokemon, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+                   u8 happiness, bool rockSmashPokemon, u8 leadLevel, const EncounterArea4 &area, const Profile4 &profile,
+                   const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -69,6 +71,7 @@ private:
     bool unownRadio;
     bool rockSmashPokemon;
     u8 happiness;
+    u8 leadLevel;
 
     /**
      * @brief Generates states via Method J

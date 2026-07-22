@@ -103,6 +103,11 @@ private slots:
     void generatorEncounterUpdate();
 
     /**
+     * @brief Toggles Keen Eye lead level input based on the current lead
+     */
+    void generatorLeadIndexChanged();
+
+    /**
      * @brief Updates filters for Feebas selection
      *
      * @param state Checked state

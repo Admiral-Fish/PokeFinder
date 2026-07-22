@@ -59,6 +59,7 @@ enum class Lead : u8
     RockSmashSuctionCups,
     RockSmashSuperLuck,
     KeenEye,
+    Intimidate,
     SereneGrace,
 };
 
