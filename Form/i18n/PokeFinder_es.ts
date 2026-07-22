@@ -9862,6 +9862,34 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 3/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Step Encounter</source>
         <translation type="unfinished"></translation>
     </message>

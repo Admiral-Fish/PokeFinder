@@ -112,7 +112,7 @@
           <item row="6" column="0">
            <widget class="QLabel" name="labelGeneratorLuckyPower">
             <property name="text">
-             <string>Lucky Power</string>
+             <string>Pass Power</string>
             </property>
            </widget>
           </item>
@@ -120,22 +120,37 @@
            <widget class="ComboBox" name="comboBoxGeneratorLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">1</string>
+              <string>Lucky Power 1</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">2</string>
+              <string>Lucky Power 2</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">3/S</string>
+              <string>Lucky Power 3/S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 3</string>
              </property>
             </item>
            </widget>
@@ -412,7 +427,7 @@
           <item row="5" column="0">
            <widget class="QLabel" name="labelSearcherLuckyPower">
             <property name="text">
-             <string>Lucky Power</string>
+             <string>Pass Power</string>
             </property>
            </widget>
           </item>
@@ -420,22 +435,37 @@
            <widget class="ComboBox" name="comboBoxSearcherLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">1</string>
+              <string>Lucky Power 1</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">2</string>
+              <string>Lucky Power 2</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">3/S</string>
+              <string>Lucky Power 3/S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Encounter Power 3</string>
              </property>
             </item>
            </widget>

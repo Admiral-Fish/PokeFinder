@@ -9857,6 +9857,34 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Beschwörungskraft</translation>
     </message>
     <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power 1</source>
+        <translation>Beschwörungskraft 1</translation>
+    </message>
+    <message>
+        <source>Lucky Power 2</source>
+        <translation>Beschwörungskraft 2</translation>
+    </message>
+    <message>
+        <source>Lucky Power 3/S</source>
+        <translation>Beschwörungskraft 3/S</translation>
+    </message>
+    <message>
+        <source>Encounter Power 1</source>
+        <translation>Begegnungskraft 1</translation>
+    </message>
+    <message>
+        <source>Encounter Power 2</source>
+        <translation>Begegnungskraft 2</translation>
+    </message>
+    <message>
+        <source>Encounter Power 3</source>
+        <translation>Begegnungskraft 3</translation>
+    </message>
+    <message>
         <source>Step Encounter</source>
         <translation>Schritt-Begegnung</translation>
     </message>

@@ -70,6 +70,34 @@ static bool isStepModifier(Lead lead)
     return lead == Lead::ArenaTrap;
 }
 
+static u8 getLuckyPower(u8 passPower)
+{
+    u8 luckyPower = PassPower5::getLuckyPower(passPower);
+    return luckyPower <= PassPower5::Lucky3 ? luckyPower : PassPower5::None;
+}
+
+static u16 getEncounterPowerModifier(u8 passPower)
+{
+    switch (PassPower5::getEncounterPower(passPower))
+    {
+    case 1:
+        return 150;
+    case 2:
+        return 200;
+    case 3:
+        return 300;
+    default:
+        return 100;
+    }
+}
+
+static u16 getStepEncounterModifier(Lead lead, u8 passPower)
+{
+    u16 modifier = isStepModifier(lead) ? 200 : 100;
+    modifier = std::min<u16>(10000, modifier * getEncounterPowerModifier(passPower) / 100);
+    return modifier;
+}
+
 static u8 getMovingTrigger(BWRNG &rng, bool bw, Lead lead, Encounter encounter)
 {
     if (lead != Lead::None && lead != Lead::CompoundEyes && lead != Lead::SuctionCups && !(bw && isStepModifier(lead)))
@@ -126,14 +154,18 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
-WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 passPower,
                                bool searchMovingTrigger, bool requireMovingTrigger,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower),
+    passPower((profile.getVersion() & Game::BW) != Game::None ? PassPower5::combine(PassPower5::None, PassPower5::getEncounterPower(passPower)) : passPower),
     searchMovingTrigger(searchMovingTrigger),
     requireMovingTrigger(requireMovingTrigger)
 {
+    if (!searchMovingTrigger)
+    {
+        this->passPower = getLuckyPower(this->passPower);
+    }
 }
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
@@ -165,6 +197,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
+    u8 luckyPower = getLuckyPower(passPower);
     u32 advances = Utilities5::initialAdvances(seed, profile);
     u32 start = advances + initialAdvances;
     bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
@@ -268,7 +301,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(triggerGo) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
                                                : StepEncounter5::impossible;
         u8 movingSteps = searchMovingTrigger
-            ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger, isStepModifier(lead))
+            ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger,
+                                       getStepEncounterModifier(lead, passPower))
             : StepEncounter5::impossible;
         bool valid = !searchMovingTrigger || movingSteps != StepEncounter5::impossible;
         if (requireMovingTrigger && movingSteps == StepEncounter5::impossible)
