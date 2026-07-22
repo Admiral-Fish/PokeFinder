@@ -170,21 +170,21 @@ namespace LCRNGReverse
         };
 
         const s32 min[] = {
-            ((f[0] + UPPER[0]) >> 32) * R[0],
-            ((f[1] + UPPER[1]) >> 32) * R[1],
-            ((f[2] + LOWER[2]) >> 32) * R[2],
-            ((f[3] + LOWER[3]) >> 32) * R[3],
-            ((f[4] + LOWER[4]) >> 32) * R[4],
-            ((f[5] + UPPER[5]) >> 32) * R[5]
+            static_cast<s32>((f[0] + UPPER[0]) >> 32) * R[0],
+            static_cast<s32>((f[1] + UPPER[1]) >> 32) * R[1],
+            static_cast<s32>((f[2] + LOWER[2]) >> 32) * R[2],
+            static_cast<s32>((f[3] + LOWER[3]) >> 32) * R[3],
+            static_cast<s32>((f[4] + LOWER[4]) >> 32) * R[4],
+            static_cast<s32>((f[5] + UPPER[5]) >> 32) * R[5]
         };
 
         const s32 max[] = {
-            ((f[0] + LOWER[0]) >> 32) * R[0],
-            ((f[1] + LOWER[1]) >> 32) * R[1],
-            ((f[2] + UPPER[2]) >> 32) * R[2],
-            ((f[3] + UPPER[3]) >> 32) * R[3],
-            ((f[4] + UPPER[4]) >> 32) * R[4],
-            ((f[5] + LOWER[5]) >> 32) * R[5]
+            static_cast<s32>((f[0] + LOWER[0]) >> 32) * R[0],
+            static_cast<s32>((f[1] + LOWER[1]) >> 32) * R[1],
+            static_cast<s32>((f[2] + UPPER[2]) >> 32) * R[2],
+            static_cast<s32>((f[3] + UPPER[3]) >> 32) * R[3],
+            static_cast<s32>((f[4] + UPPER[4]) >> 32) * R[4],
+            static_cast<s32>((f[5] + LOWER[5]) >> 32) * R[5]
         };
         // clang-format on
 
