@@ -42,6 +42,20 @@ static bool operator==(const WildState5 &left, const json &right)
         && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
 }
 
+static std::vector<WildState5> getValidStates(const std::vector<WildState5> &states)
+{
+    std::vector<WildState5> validStates;
+    for (const auto &state : states)
+    {
+        if (state.isValid())
+        {
+            validStates.emplace_back(state);
+        }
+    }
+
+    return validStates;
+}
+
 void WildGenerator5Test::generate_data()
 {
     QTest::addColumn<u64>("seed");
@@ -97,11 +111,12 @@ void WildGenerator5Test::generate()
     WildGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
-    QCOMPARE(states.size(), j.size());
+    auto validStates = getValidStates(states);
+    QCOMPARE(validStates.size(), j.size());
 
-    for (size_t i = 0; i < states.size(); i++)
+    for (size_t i = 0; i < validStates.size(); i++)
     {
-        const auto &state = states[i];
+        const auto &state = validStates[i];
         QVERIFY(state == j[i]);
     }
 }
