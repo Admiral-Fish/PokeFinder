@@ -36,6 +36,7 @@
 #include <Form/Controls/Filter.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/WildModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAbstractItemView>
@@ -154,7 +155,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->profileDisplay->setup(settingPrefix, Game::Gen4);
 
-    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
+    generatorModel = new WildGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
     ui->comboBoxSearcherRadio->removeItem(3);
@@ -252,8 +253,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->comboBoxSearcherDualSlot->setup(
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
-    ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
-    ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
+    ui->checkBoxGeneratorPokeRadarShiny->hide();
+    ui->checkBoxSearcherPokeRadarShiny->hide();
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -264,6 +265,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Wild4::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Wild4::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Wild4::profilesChanged);
@@ -714,7 +718,7 @@ void Wild4::generate()
     }
 
     generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    generatorModel->setGame(currentProfile->getVersion());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -755,7 +759,6 @@ void Wild4::generatorEncounterIndexChanged(int index)
         bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
         bool grass = encounter == Encounter::Grass;
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
-        generatorModel->setMethod(hgss ? Method::MethodK : Method::MethodJ);
         bool stepEncounter = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::BugCatchingContest;
         bool swarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -914,8 +917,8 @@ void Wild4::generatorLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->labelGeneratorTime->setVisible(true);
-            ui->comboBoxGeneratorTime->setVisible(true);
+            ui->labelGeneratorTime->show();
+            ui->comboBoxGeneratorTime->show();
         }
         else
         {
@@ -929,11 +932,11 @@ void Wild4::generatorLocationIndexChanged(int index)
 
         if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(true);
+            ui->checkBoxGeneratorFeebasTile->show();
         }
         else
         {
-            ui->checkBoxGeneratorFeebasTile->setVisible(false);
+            ui->checkBoxGeneratorFeebasTile->hide();
             ui->checkBoxGeneratorFeebasTile->setChecked(false);
         }
     }
@@ -971,6 +974,12 @@ void Wild4::generatorPokeRadarStateChanged(Qt::CheckState state)
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), state == Qt::Checked);
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Hustle), state == Qt::Checked); // Also handles Pressure and Vital Spirit
     ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
+}
+
+void Wild4::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Wild4::profileChanged(const Profile4 &profile)
@@ -1294,8 +1303,8 @@ void Wild4::searcherLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->labelSearcherTime->setVisible(true);
-            ui->comboBoxSearcherTime->setVisible(true);
+            ui->labelSearcherTime->show();
+            ui->comboBoxSearcherTime->show();
         }
         else if ((currentProfile->getVersion() & Game::HGSS) == Game::None)
         {
@@ -1306,11 +1315,11 @@ void Wild4::searcherLocationIndexChanged(int index)
 
         if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(true);
+            ui->checkBoxSearcherFeebasTile->show();
         }
         else
         {
-            ui->checkBoxSearcherFeebasTile->setVisible(false);
+            ui->checkBoxSearcherFeebasTile->hide();
             ui->checkBoxSearcherFeebasTile->setChecked(false);
         }
     }

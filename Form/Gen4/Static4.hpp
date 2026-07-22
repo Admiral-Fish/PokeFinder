@@ -92,6 +92,11 @@ private slots:
     void generatorPokemonIndexChanged(int index);
 
     /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
+
+    /**
      * @brief Updates showing profile related information
      *
      * @param profile Selected profile

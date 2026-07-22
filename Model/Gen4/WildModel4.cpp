@@ -18,36 +18,34 @@
  */
 
 #include "WildModel4.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <QColor>
 #include <QFont>
 
-WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), showStepEncounter(false), method(method)
+WildGeneratorModel4::WildGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false), showStepEncounter(false)
 {
 }
 
 int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
     int extra = showStepEncounter ? 1 : 0;
-    switch (method)
+    if (dppt)
     {
-    case Method::MethodJ:
-    case Method::HoneyTree:
-    case Method::PokeRadar:
         return 20 + extra;
-    case Method::MethodK:
+    }
+    else
+    {
         return 21 + extra;
-    default:
-        return 0;
     }
 }
 
 QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    bool dpptStepEncounter = showStepEncounter && method != Method::MethodK;
+    bool dpptStepEncounter = showStepEncounter && dppt;
     if (showStepEncounter && !state.getStepEncounter())
     {
         if (role == Qt::FontRole)
@@ -132,10 +130,10 @@ QVariant WildGeneratorModel4::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
-void WildGeneratorModel4::setMethod(Method method)
+void WildGeneratorModel4::setGame(Game version)
 {
     beginResetModel();
-    this->method = method;
+    dppt = (version & Game::DPPt) != Game::None;
     endResetModel();
 }
 
@@ -149,22 +147,15 @@ void WildGeneratorModel4::setShowStepEncounter(bool flag)
 void WildGeneratorModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    int hp = showStepEncounter ? (method == Method::MethodK ? 12 : 11) : 11;
+    int hp = showStepEncounter ? dppt ? 11 : 12 : 11;
     emit dataChanged(index(0, hp), index(rowCount() - 1, hp + 5), { Qt::DisplayRole });
 }
 
 int WildGeneratorModel4::getColumn(int column) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::MethodJ:
-    case Method::HoneyTree:
-    case Method::PokeRadar:
         column = column > 1 ? column + 1 : column;
-        break;
-    case Method::MethodK:
-    default:
-        break;
     }
 
     return !showStepEncounter && column >= 4 ? column + 1 : column;

@@ -29,8 +29,10 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/EggModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -69,6 +71,9 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
+
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Eggs5::openAdvanceFinder);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Eggs5::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Eggs5::profilesChanged);
@@ -124,10 +129,9 @@ void Eggs5::updateProfiles()
 
 void Eggs5::generate()
 {
-    if (!ui->eggSettingsGenerator->compatibleParents())
+    bool hiddenAbility = !ui->filterGenerator->getDisableFilters() && ui->filterGenerator->getAbility() == 2;
+    if (!ui->eggSettingsGenerator->isValid(hiddenAbility))
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
@@ -157,6 +161,17 @@ void Eggs5::generate()
     generatorModel->addItems(states);
 }
 
+void Eggs5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
+}
+
+void Eggs5::profileChanged(const Profile5 &profile)
+{
+    currentProfile = &profile;
+}
+
 void Eggs5::search()
 {
     Date start = ui->dateEditSearcherStartDate->getDate();
@@ -168,10 +183,9 @@ void Eggs5::search()
         return;
     }
 
-    if (!ui->eggSettingsSearcher->compatibleParents())
+    bool hiddenAbility = ui->filterSearcher->getAbility() == 2;
+    if (!ui->eggSettingsSearcher->isValid(hiddenAbility))
     {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
         return;
     }
 
@@ -224,11 +238,6 @@ void Eggs5::search()
 
     thread->start();
     timer->start(1000);
-}
-
-void Eggs5::profileChanged(const Profile5 &profile)
-{
-    currentProfile = &profile;
 }
 
 void Eggs5::transferFilters(int index)

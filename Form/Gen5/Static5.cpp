@@ -34,6 +34,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/StaticModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -90,9 +91,11 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
 
-    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static5::openAdvanceFinder);
+
+    auto *adjacentSeeds = ui->tableViewSearcher->addAction(tr("Adjacent Seeds"));
     connect(adjacentSeeds, &QAction::triggered, this, &Static5::openAdjacentSeeds);
-    ui->tableViewSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Static5::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Static5::profilesChanged);
@@ -270,6 +273,12 @@ void Static5::openAdjacentSeeds()
 
     auto *window = new AdjacentSeeds(staticTemplate->getRoamer(), state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
+}
+
+void Static5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Static5::profileChanged(const Profile5 &profile)

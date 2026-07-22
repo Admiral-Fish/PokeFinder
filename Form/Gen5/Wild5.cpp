@@ -37,6 +37,7 @@
 #include <Form/Controls/Filter.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Tools/AdjacentSeeds.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
@@ -135,6 +136,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
                                         { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuGeneratorLead->addMenu(
+        tr("Encounter Modifier"), { { tr("Sticky Hold"), toInt(Lead::StickyHold) }, { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
                                         { { tr("Hustle"), toInt(Lead::Hustle) },
                                           { tr("Pressure"), toInt(Lead::Pressure) },
@@ -151,6 +154,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuSearcherLead->addMenu(
+        tr("Encounter Modifier"), { { tr("Sticky Hold"), toInt(Lead::StickyHold) }, { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
                                        { { tr("Hustle"), toInt(Lead::Hustle) },
                                          { tr("Pressure"), toInt(Lead::Pressure) },
@@ -169,9 +174,11 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
     ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
 
-    auto *adjacentSeeds = new QAction(tr("Adjacent Seeds"), ui->tableViewSearcher);
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);
+
+    auto *adjacentSeeds = ui->tableViewSearcher->addAction(tr("Adjacent Seeds"));
     connect(adjacentSeeds, &QAction::triggered, this, &Wild5::openAdjacentSeeds);
-    ui->tableViewSearcher->addAction(adjacentSeeds);
 
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &Wild5::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &Wild5::profilesChanged);
@@ -316,6 +323,10 @@ void Wild5::generatorEncounterIndexChanged(int index)
             ui->checkBoxGeneratorMovingTrigger->setChecked(false);
         }
 
+        bool fish = encounter == Encounter::SuperRod;
+
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !fish);
+
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
 
@@ -384,6 +395,12 @@ void Wild5::openAdjacentSeeds()
 
     auto *window = new AdjacentSeeds(false, state.getButtons(), state.getDateTime(), *currentProfile);
     window->show();
+}
+
+void Wild5::openAdvanceFinder()
+{
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
 void Wild5::profileChanged(const Profile5 &profile)
@@ -529,6 +546,10 @@ void Wild5::searcherEncounterIndexChanged(int index)
         {
             ui->checkBoxSearcherMovingTrigger->setChecked(false);
         }
+
+        bool fish = encounter == Encounter::SuperRod;
+
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::SuctionCups), !fish);
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);

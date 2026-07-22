@@ -93,6 +93,7 @@ set(PROJECT_UI
     Gen8/Wild8.ui
     MainWindow.ui
     Util/EncounterLookup.ui
+    Util/AdvanceFinder.ui
     Util/IVCalculator.ui
     Util/IVToPID.ui
     Util/Researcher.ui
@@ -235,6 +236,8 @@ set(PROJECT_SOURCES
     MainWindow.hpp
     Util/EncounterLookup.cpp
     Util/EncounterLookup.hpp
+    Util/AdvanceFinder.cpp
+    Util/AdvanceFinder.hpp
     Util/IVCalculator.cpp
     Util/IVCalculator.hpp
     Util/IVToPID.cpp

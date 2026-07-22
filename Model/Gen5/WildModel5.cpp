@@ -29,7 +29,7 @@ WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), 
 
 int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return showMovingTrigger ? 20 : 19;
+    return showMovingTrigger ? 21 : 20;
 }
 
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -52,13 +52,9 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         int column = index.column();
-        if (showMovingTrigger && column >= 2)
+        if (!showMovingTrigger && column >= 3)
         {
             column++;
-        }
-        else if (!showMovingTrigger && column >= 2)
-        {
-            column += 2;
         }
 
         if (showMovingTrigger && !state.isValid() && column > 3)
@@ -73,7 +69,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return state.getMovingTrigger();
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
             if (state.getMovingSteps() == 255)
             {
@@ -133,7 +129,7 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (!showMovingTrigger && section >= 2)
+        if (!showMovingTrigger && section >= 3)
         {
             section++;
         }
@@ -146,7 +142,7 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    int offset = showMovingTrigger ? -1 : -2;
+    int offset = showMovingTrigger ? 0 : -1;
     emit dataChanged(index(0, 11 + offset), index(rowCount() - 1, 16 + offset), { Qt::DisplayRole });
 }
 
