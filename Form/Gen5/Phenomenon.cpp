@@ -43,14 +43,11 @@
 #include <Model/Gen5/WildModel5.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
-#include <QButtonGroup>
 #include <QFileDialog>
 #include <QGridLayout>
-#include <QHBoxLayout>
 #include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
-#include <QRadioButton>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -142,44 +139,6 @@ Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon
     generatorSettingsLayout->addWidget(labelGeneratorItem, 4, 0);
     generatorSettingsLayout->addWidget(checkListGeneratorItem, 4, 1, 1, 2);
 
-    checkListSearcherItem = new CheckList(ui->groupBoxSearcherSettings);
-    checkListSearcherItem->setUncheckedText(tr("None"));
-    radioButtonSearcherPokemon = new QRadioButton(ui->groupBoxSearcherSettings);
-    radioButtonSearcherItem = new QRadioButton(ui->groupBoxSearcherSettings);
-    auto createSearcherFilterLabel = [](const QString &text, QRadioButton *button, QWidget *parent) {
-        auto *widget = new QWidget(parent);
-        auto *layout = new QHBoxLayout(widget);
-        auto *label = new QPushButton(text, widget);
-        label->setFlat(true);
-        label->setFocusPolicy(Qt::NoFocus);
-        label->setStyleSheet("QPushButton { border: none; text-align: left; padding: 0; background: transparent; }");
-        layout->setContentsMargins(0, 0, 0, 0);
-        layout->setSpacing(4);
-        layout->addWidget(label, 1);
-        layout->addWidget(button);
-        QObject::connect(label, &QPushButton::clicked, button, [button] { button->setChecked(true); });
-        return widget;
-    };
-    auto *labelSearcherPokemon = createSearcherFilterLabel(tr("Pokémon"), radioButtonSearcherPokemon, ui->groupBoxSearcherSettings);
-    labelSearcherItem = createSearcherFilterLabel(tr("Item"), radioButtonSearcherItem, ui->groupBoxSearcherSettings);
-    auto *searcherFilterGroup = new QButtonGroup(ui->groupBoxSearcherSettings);
-    searcherFilterGroup->setExclusive(true);
-    searcherFilterGroup->addButton(radioButtonSearcherPokemon);
-    searcherFilterGroup->addButton(radioButtonSearcherItem);
-    radioButtonSearcherPokemon->setChecked(true);
-    auto *searcherSettingsLayout = qobject_cast<QGridLayout *>(ui->groupBoxSearcherSettings->layout());
-    ui->labelSearcherPokemon->setVisible(false);
-    searcherSettingsLayout->removeWidget(ui->labelSearcherPokemon);
-    moveLayoutItem(searcherSettingsLayout, 7, 0, 8, 0, 1, 3);
-    moveLayoutItem(searcherSettingsLayout, 6, 0, 7, 0, 1, 3);
-    moveLayoutItem(searcherSettingsLayout, 5, 0, 6, 0);
-    moveLayoutItem(searcherSettingsLayout, 5, 1, 6, 1);
-    moveLayoutItem(searcherSettingsLayout, 5, 2, 6, 2);
-    moveLayoutItem(searcherSettingsLayout, 4, 0, 5, 0, 1, 3);
-    searcherSettingsLayout->addWidget(labelSearcherPokemon, 3, 0);
-    searcherSettingsLayout->addWidget(labelSearcherItem, 4, 0);
-    searcherSettingsLayout->addWidget(checkListSearcherItem, 4, 1, 1, 2);
-
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
     ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
 
@@ -250,8 +209,6 @@ Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherPokemonIndexChanged);
     connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Phenomenon::generatorSeasonIndexChanged);
     connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Phenomenon::searcherSeasonIndexChanged);
-    connect(radioButtonSearcherPokemon, &QRadioButton::toggled, this, &Phenomenon::updateSearcherFilterMode);
-    connect(radioButtonSearcherItem, &QRadioButton::toggled, this, &Phenomenon::updateSearcherFilterMode);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Phenomenon::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
@@ -370,43 +327,7 @@ bool Phenomenon::removeByGeneratorFilters(const WildState5 &state) const
 
 bool Phenomenon::removeBySearcherFilters(const WildState5 &state) const
 {
-    bool itemMode = radioButtonSearcherItem->isChecked();
-    if (state.getPhenomenonItem())
-    {
-        if (!itemMode)
-        {
-            return true;
-        }
-
-        if (checkListSearcherItem->getCheckState() == Qt::Unchecked)
-        {
-            return true;
-        }
-
-        auto items = checkListSearcherItem->getCheckedData();
-        return std::find(items.begin(), items.end(), state.getItem()) == items.end();
-    }
-
-    return itemMode;
-}
-
-void Phenomenon::updateSearcherFilterMode()
-{
-    bool itemMode = radioButtonSearcherItem->isChecked();
-    ui->comboBoxSearcherPokemon->setEnabled(!itemMode);
-    checkListSearcherItem->setEnabled(itemMode);
-
-    if (itemMode)
-    {
-        ui->filterSearcher->resetEncounterSlots();
-        ui->spinBoxSearcherLevelMin->setValue(0);
-        ui->spinBoxSearcherLevelMax->setValue(0);
-        ui->filterSearcher->setLevelRange(1, 100);
-    }
-    else
-    {
-        searcherPokemonIndexChanged(ui->comboBoxSearcherPokemon->currentIndex());
-    }
+    return state.getPhenomenonItem();
 }
 
 void Phenomenon::updateItemFilter(QWidget *itemLabel, CheckList *itemFilter, EncounterArea5 &area, bool checkAll)
@@ -424,18 +345,8 @@ void Phenomenon::updateItemFilter(QWidget *itemLabel, CheckList *itemFilter, Enc
     }
     else
     {
-        if (itemFilter == checkListSearcherItem && radioButtonSearcherItem->isChecked())
-        {
-            radioButtonSearcherPokemon->setChecked(true);
-        }
-
-        if (itemFilter == checkListSearcherItem)
-        {
-            radioButtonSearcherPokemon->setVisible(false);
-        }
         itemLabel->setVisible(false);
         itemFilter->setVisible(false);
-        updateSearcherFilterMode();
         return;
     }
 
@@ -450,11 +361,6 @@ void Phenomenon::updateItemFilter(QWidget *itemLabel, CheckList *itemFilter, Enc
 
     itemLabel->setVisible(true);
     itemFilter->setVisible(true);
-    if (itemFilter == checkListSearcherItem)
-    {
-        radioButtonSearcherPokemon->setVisible(true);
-    }
-    updateSearcherFilterMode();
 }
 
 void Phenomenon::generate()
@@ -677,8 +583,7 @@ void Phenomenon::search()
         return;
     }
 
-    bool itemMode = radioButtonSearcherItem->isChecked();
-    if (!itemMode && !ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
+    if (!ui->filterSearcher->isValid(ui->spinBoxSearcherLevelMin->value(), ui->spinBoxSearcherLevelMax->value()))
     {
         return;
     }
@@ -695,12 +600,12 @@ void Phenomenon::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
-    auto filter = itemMode ? getUnfilteredWildStateFilter() : ui->filterSearcher->getFilter<WildStateFilter, true>();
+    auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;
-    if (!itemMode && fastSearchEnabled())
+    if (fastSearchEnabled())
     {
         auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), CacheType::Normal, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
@@ -827,7 +732,6 @@ void Phenomenon::searcherLocationIndexChanged(int index)
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
         }
 
-        updateItemFilter(labelSearcherItem, checkListSearcherItem, area, false);
     }
 }
 
@@ -866,12 +770,10 @@ void Phenomenon::transferFilters(int index)
     if (index == 0)
     {
         ui->filterSearcher->copyFrom(ui->filterGenerator);
-        checkListSearcherItem->setChecks(checkListGeneratorItem->getChecked());
     }
     else
     {
         ui->filterGenerator->copyFrom(ui->filterSearcher);
-        checkListGeneratorItem->setChecks(checkListSearcherItem->getChecked());
     }
 }
 

@@ -28,7 +28,6 @@ class CheckList;
 class IVCache;
 class QLabel;
 class Profile5;
-class QRadioButton;
 class SHA1Cache;
 class SortFilterProxyModel;
 class WildState5;
@@ -84,11 +83,7 @@ private:
 
     IVCache *ivCache;
     CheckList *checkListGeneratorItem;
-    CheckList *checkListSearcherItem;
     QLabel *labelGeneratorItem;
-    QWidget *labelSearcherItem;
-    QRadioButton *radioButtonSearcherItem;
-    QRadioButton *radioButtonSearcherPokemon;
     Profile5 *currentProfile;
     SHA1Cache *shaCache;
     SortFilterProxyModel *proxyModel;
@@ -117,18 +112,13 @@ private:
     bool removeByGeneratorFilters(const WildState5 &state) const;
 
     /**
-     * @brief Checks whether a state should be removed based on the selected searcher filter mode
+     * @brief Checks whether a searcher state should be removed.
      *
      * @param state State to compare
      * @return true State should be removed
      * @return false State should be kept
      */
     bool removeBySearcherFilters(const WildState5 &state) const;
-
-    /**
-     * @brief Toggles searcher pokemon/item filter controls based on selected mode
-     */
-    void updateSearcherFilterMode();
 
     /**
      * @brief Updates item filter visibility and entries based on the encounter type
