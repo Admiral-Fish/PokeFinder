@@ -54,6 +54,12 @@ enum class Lead : u8
     ArenaTrap,
     Illuminate = ArenaTrap,
     NoGuard = ArenaTrap,
+
+    RockSmashMagnetPull,
+    RockSmashSuctionCups,
+    RockSmashSuperLuck,
+    KeenEye,
+    SereneGrace,
 };
 
 /**
