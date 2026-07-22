@@ -25,6 +25,7 @@
 #include <Model/TableModel.hpp>
 
 enum class Game : u32;
+enum class Method : u8;
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 4
@@ -97,6 +98,13 @@ public:
      */
     void setGame(Game verson);
 
+    /**
+     * @brief Sets flag that controls whether the model displays step encounter information
+     *
+     * @param flag Whether to show step encounter information or not
+     */
+    void setShowStepEncounter(bool flag);
+
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
@@ -106,12 +114,13 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Advances"), tr("Battle Advances"), tr("Call"),    tr("Chatot"), tr("Item"),          tr("Slot"), tr("Level"), tr("PID"),
-            tr("Shiny"),    tr("Nature"),          tr("Ability"), tr("HP"),     tr("Atk"),           tr("Def"),  tr("SpA"),   tr("SpD"),
-            tr("Spe"),      tr("Hidden"),          tr("Power"),   tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Battle Advances"), tr("Call"),   tr("Chatot"), tr("Steps"), tr("Item"),
+                           tr("Slot"),     tr("Level"),           tr("PID"),    tr("Shiny"),  tr("Nature"),    tr("Ability"),
+                           tr("HP"),       tr("Atk"),             tr("Def"),    tr("SpA"),    tr("SpD"),       tr("Spe"),
+                           tr("Hidden"),   tr("Power"),           tr("Gender"), tr("Characteristic") };
     bool dppt;
     bool showStats;
+    bool showStepEncounter;
 
     /**
      * @brief Gets modified column index based on model method
@@ -167,6 +176,13 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    /**
+     * @brief Sets current \p method of the model
+     *
+     * @param method Method
+     */
+    void setMethod(Method method);
+
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
@@ -175,11 +191,29 @@ public slots:
      */
     void setShowStats(bool flag);
 
+    /**
+     * @brief Sets flag that controls whether the model displays step encounter information
+     *
+     * @param flag Whether to show step encounter information or not
+     */
+    void setShowStepEncounter(bool flag);
+
+    /**
+     * @brief Sets flag that controls whether the model displays the step movement column
+     *
+     * @param flag Whether to show step movement information or not
+     */
+    void setShowStepMovement(bool flag);
+
 private:
-    QStringList header = { tr("Seed"), tr("Delay"), tr("Hour"),   tr("Advances"), tr("Item"),  tr("Slot"),   tr("Level"),
-                           tr("PID"),  tr("Shiny"), tr("Nature"), tr("Ability"),  tr("HP"),    tr("Atk"),    tr("Def"),
-                           tr("SpA"),  tr("SpD"),   tr("Spe"),    tr("Hidden"),   tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Seed"),   tr("Delay"), tr("Hour"),   tr("Advances"), tr("Steps"),  tr("Movement"),
+                           tr("Step Modifier"), tr("Item"), tr("Slot"),   tr("Level"), tr("PID"),    tr("Shiny"),
+                           tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),   tr("SpA"),
+                           tr("SpD"),    tr("Spe"),   tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
     bool showStats;
+    bool showStepEncounter;
+    bool showStepMovement;
+    Method method;
 };
 
 #endif // WILD4MODEL_HPP

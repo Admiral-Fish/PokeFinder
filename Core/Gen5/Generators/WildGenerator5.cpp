@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Shiny.hpp>
+#include <Core/Gen5/StepEncounter.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
@@ -59,6 +60,69 @@ static u8 getPercentRand(BWRNG &rng, bool bw)
     }
 }
 
+static u8 getMovingTrigger(BWRNG &rng)
+{
+    return (rng.nextUInt() >> 16) / 656;
+}
+
+static bool isStepModifier(Lead lead)
+{
+    return lead == Lead::ArenaTrap;
+}
+
+static u8 getLuckyPower(u8 passPower)
+{
+    u8 luckyPower = PassPower5::getLuckyPower(passPower);
+    return luckyPower <= PassPower5::Lucky3 ? luckyPower : PassPower5::None;
+}
+
+static u16 getEncounterPowerModifier(u8 passPower)
+{
+    switch (PassPower5::getEncounterPower(passPower))
+    {
+    case 1:
+        return 150;
+    case 2:
+        return 200;
+    case 3:
+        return 300;
+    default:
+        return 100;
+    }
+}
+
+static u16 getStepEncounterModifier(Lead lead, u8 passPower)
+{
+    u16 modifier = isStepModifier(lead) ? 200 : 100;
+    modifier = std::min<u16>(10000, modifier * getEncounterPowerModifier(passPower) / 100);
+    return modifier;
+}
+
+static u8 getMovingTrigger(BWRNG &rng, bool bw, Lead lead, Encounter encounter)
+{
+    if (lead != Lead::None && lead != Lead::CompoundEyes && lead != Lead::SuctionCups && !(bw && isStepModifier(lead)))
+    {
+        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        {
+            if (getPercentRand(rng, bw) >= 67)
+            {
+                getPercentRand(rng, bw);
+            }
+        }
+        else
+        {
+            getPercentRand(rng, bw);
+        }
+    }
+
+    if (encounter == Encounter::GrassDark)
+    {
+        getPercentRand(rng, bw);
+    }
+
+    return getMovingTrigger(rng);
+}
+
 static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const PersonalInfo *info)
 {
     constexpr u8 ItemTable[2][3] = { { 50, 55, 0 }, { 60, 80, 0 } };
@@ -90,11 +154,18 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
-WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 passPower,
+                               bool searchMovingTrigger, bool requireMovingTrigger,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    passPower((profile.getVersion() & Game::BW) != Game::None ? PassPower5::combine(PassPower5::None, PassPower5::getEncounterPower(passPower)) : passPower),
+    searchMovingTrigger(searchMovingTrigger),
+    requireMovingTrigger(requireMovingTrigger)
 {
+    if (!searchMovingTrigger)
+    {
+        this->passPower = getLuckyPower(this->passPower);
+    }
 }
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
@@ -126,11 +197,28 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
+    u8 luckyPower = getLuckyPower(passPower);
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances);
+    u32 start = advances + initialAdvances;
+    bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
+    bool bw = (profile.getVersion() & Game::BW) != Game::None;
+    BWRNG rng(seed, start);
+    BWRNG encounterRNG(seed, start + (searchMovingTrigger && bw2 ? 1 : 0));
+    u32 triggerOffset = 0;
+    if (searchMovingTrigger)
+    {
+        if (bw2)
+        {
+            triggerOffset = isStepModifier(lead) ? 0 : 1;
+        }
+        else if (bw && lead == Lead::None)
+        {
+            triggerOffset = 1;
+        }
+    }
+    BWRNG triggerRNG(seed, start + triggerOffset);
     auto jump = rng.getJump(offset);
 
-    bool bw = (profile.getVersion() & Game::BW) != Game::None;
     auto modifiedSlots = area.getSlots(lead);
 
     u8 rate = area.getRate();
@@ -156,14 +244,23 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, jump);
+        BWRNG go(searchMovingTrigger ? encounterRNG : rng, jump);
 
         bool cuteCharm = false;
         bool magnetStatic = false;
         bool pressure = false;
         bool sync = false;
 
-        if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        if (searchMovingTrigger && bw2 && lead == Lead::None)
+        {
+            getPercentRand(go, bw);
+            getPercentRand(go, bw);
+        }
+        else if (searchMovingTrigger && bw && lead == Lead::None)
+        {
+            getPercentRand(go, bw);
+        }
+        else if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups && (!searchMovingTrigger || !(bw && isStepModifier(lead))))
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
@@ -198,6 +295,27 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         {
             rng.next();
             continue;
+        }
+
+        BWRNG triggerGo(triggerRNG, jump);
+        u8 movingTrigger = searchMovingTrigger ? (bw2 ? getMovingTrigger(triggerGo) : getMovingTrigger(triggerGo, bw, lead, area.getEncounter()))
+                                               : StepEncounter5::impossible;
+        u8 movingSteps = searchMovingTrigger
+            ? StepEncounter5::getSteps(profile.getVersion(), area.getEncounter(), area.getRate(), movingTrigger,
+                                       getStepEncounterModifier(lead, passPower))
+            : StepEncounter5::impossible;
+        bool valid = !searchMovingTrigger || movingSteps != StepEncounter5::impossible;
+        if (requireMovingTrigger && movingSteps == StepEncounter5::impossible)
+        {
+            rng.nextUInt(0x1fff);
+            encounterRNG.next();
+            triggerRNG.next();
+            continue;
+        }
+
+        if (searchMovingTrigger && !bw2)
+        {
+            getMovingTrigger(go);
         }
 
         u8 encounterSlot;
@@ -247,11 +365,16 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
         u32 prng = rng.nextUInt();
+        if (searchMovingTrigger)
+        {
+            encounterRNG.next();
+            triggerRNG.next();
+        }
         for (const auto &iv : ivs)
         {
-            WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+            WildState5 state(prng, movingTrigger, movingSteps, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+                             level, nature, shiny, encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+            if (!valid || filter.compareState(static_cast<const WildState &>(state)))
             {
                 states.emplace_back(state);
             }

@@ -29,6 +29,8 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
+#include <optional>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
@@ -52,8 +54,452 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static bool isStepModifier(Lead lead)
+{
+    return lead == Lead::ArenaTrap;
+}
+
+enum HGSSSearcherStepOption : u8
+{
+    StepWhiteFlute = 1 << 0,
+    StepPokemonMarch = 1 << 1,
+    StepWalking = 1 << 2,
+    StepBiking = 1 << 3,
+    StepRunning = 1 << 4,
+    StepWalkingLongGrass = 1 << 5,
+    StepRunningLongGrass = 1 << 6,
+    StepPokemonLullaby = 1 << 7
+};
+
+enum HGSSStepModifier : u8
+{
+    NoStepModifier,
+    WhiteFluteStepModifier,
+    PokemonMarchStepModifier,
+    WhiteFlutePokemonMarchStepModifier,
+    PokemonLullabyStepModifier,
+    WhiteFlutePokemonLullabyStepModifier,
+    PokemonMarchLullabyStepModifier,
+    WhiteFlutePokemonMarchLullabyStepModifier
+};
+
+static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute);
+static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio);
+static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute);
+
+static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement)
+{
+    PokeRNG movementRNG(seed, targetAdvance);
+    PokeRNG encounterRNG(seed, targetAdvance + 1);
+    u8 movementRatio = movementRNG.nextUShort() / 0x290;
+    u8 encounterRatio = encounterRNG.nextUShort() / 0x290;
+    u16 movementRate = fastMovement ? 70 : 40;
+
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    return movementRatio < movementRate && encounterRatio < encounterRate;
+}
+
+static bool getHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Encounter encounter, Lead lead, bool whiteFlute, u8 movement,
+                                 u8 radio, u8 *movements)
+{
+    PokeRNG rng(seed, targetAdvance);
+    u8 movementRatio = rng.nextUShort(100);
+    u8 encounterRatio = rng.nextUShort(100);
+    encounterRate = modifyHGSSStepEncounterRate(encounterRate, lead, whiteFlute);
+    if (encounterRatio >= encounterRate)
+    {
+        return false;
+    }
+
+    u16 movementRate = getHGSSMovementRate(encounter, movement, radio);
+    if (movementRatio < movementRate)
+    {
+        *movements = 3;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 30, 100))
+    {
+        *movements = 4;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 40, 100))
+    {
+        *movements = 5;
+        return true;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 60, 100))
+    {
+        *movements = 6;
+        return true;
+    }
+
+    return false;
+}
+
+static bool hasLongGrass(Game version, Encounter encounter, u8 location)
+{
+    if (encounter == Encounter::BugCatchingContest)
+    {
+        return true;
+    }
+
+    if ((version & Game::HGSS) != Game::None)
+    {
+        return location == 23 || location == 24;
+    }
+
+    return location == 156 || location == 163;
+}
+
+static bool isBikeOnlyLocation(Game version, u8 location)
+{
+    return (version & Game::HGSS) != Game::None && location == 126;
+}
+
+static bool isBikeRestrictedLocation(Game version, Encounter encounter, u8 location)
+{
+    if ((version & Game::DPPt) != Game::None)
+    {
+        return location == 13 || location == 139 || location == 165 || location == 166;
+    }
+
+    if ((version & Game::HGSS) == Game::None)
+    {
+        return false;
+    }
+
+    return encounter == Encounter::BugCatchingContest || location == 6 || location == 11 || location == 28 || location == 29 || location == 30
+        || location == 89;
+}
+
+static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, const EncounterArea4 &area, const Profile4 &profile,
+                                     Lead lead, u8 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
+{
+    struct Candidate
+    {
+        u8 movement;
+        u8 modifier;
+        std::array<u8, 3> score;
+    };
+
+    std::vector<Candidate> candidates;
+    auto encounter = area.getEncounter();
+    u8 location = area.getLocation();
+    bool surf = encounter == Encounter::Surfing;
+    bool bikeRestricted = isBikeRestrictedLocation(profile.getVersion(), encounter, location);
+    bool longGrass = hasLongGrass(profile.getVersion(), encounter, location);
+
+    auto addMovement = [&](u8 currentMovement, u8 rank) {
+        std::array<u8, 2> modifiers = { static_cast<u8>(NoStepModifier), static_cast<u8>(WhiteFluteStepModifier) };
+        for (u8 currentModifier : modifiers)
+        {
+            bool usesWhiteFlute = currentModifier == WhiteFluteStepModifier;
+            if (usesWhiteFlute && (stepOptions & StepWhiteFlute) == 0)
+            {
+                continue;
+            }
+
+            u8 count = 1 + usesWhiteFlute;
+            std::array<u8, 3> score = { count, rank, static_cast<u8>(usesWhiteFlute ? 3 : 0xff) };
+            candidates.emplace_back(currentMovement, currentModifier, score);
+        }
+    };
+
+    if (surf)
+    {
+        if ((stepOptions & StepWalking) != 0)
+        {
+            addMovement(5, 0);
+        }
+    }
+    else
+    {
+        if ((stepOptions & StepWalking) != 0)
+        {
+            addMovement(0, 0);
+        }
+        if ((stepOptions & StepBiking) != 0 && !bikeRestricted)
+        {
+            addMovement(2, 1);
+        }
+        if (longGrass && (stepOptions & StepWalkingLongGrass) != 0)
+        {
+            addMovement(3, 2);
+        }
+    }
+
+    std::sort(candidates.begin(), candidates.end(), [](const Candidate &left, const Candidate &right) { return left.score < right.score; });
+
+    for (const auto &candidate : candidates)
+    {
+        bool whiteFlute = candidate.modifier == WhiteFluteStepModifier;
+        bool fastMovement = candidate.movement == 2 || candidate.movement == 3;
+        if (getStepEncounter(seed, targetAdvance, encounterRate, lead, whiteFlute, fastMovement))
+        {
+            *movements = getStepMovements(encounterRate, lead, whiteFlute);
+            *movement = candidate.movement;
+            *modifier = candidate.modifier;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+static bool getBestHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, const EncounterArea4 &area, const Profile4 &profile,
+                                     Lead lead, u8 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
+{
+    struct Candidate
+    {
+        u8 movement;
+        u8 modifier;
+        std::array<u8, 4> score;
+    };
+    struct Result
+    {
+        u8 movements;
+        u8 movement;
+        u8 modifier;
+        std::array<u8, 4> score;
+    };
+
+    std::vector<Candidate> candidates;
+    auto encounter = area.getEncounter();
+    u8 location = area.getLocation();
+    bool surf = encounter == Encounter::Surfing;
+    bool bikeOnly = isBikeOnlyLocation(profile.getVersion(), location);
+    bool bikeRestricted = isBikeRestrictedLocation(profile.getVersion(), encounter, location);
+    bool longGrass = hasLongGrass(profile.getVersion(), encounter, location);
+
+    auto addMovement = [&](u8 currentMovement, u8 rank) {
+        std::array<u8, 6> modifiers = {
+            static_cast<u8>(NoStepModifier),           static_cast<u8>(WhiteFluteStepModifier),
+            static_cast<u8>(PokemonMarchStepModifier), static_cast<u8>(PokemonLullabyStepModifier),
+            static_cast<u8>(WhiteFlutePokemonMarchStepModifier),
+            static_cast<u8>(WhiteFlutePokemonLullabyStepModifier)
+        };
+
+        for (u8 currentModifier : modifiers)
+        {
+            bool usesWhiteFlute = currentModifier == WhiteFluteStepModifier || currentModifier == WhiteFlutePokemonMarchStepModifier
+                || currentModifier == WhiteFlutePokemonLullabyStepModifier;
+            bool usesPokemonLullaby = currentModifier == PokemonLullabyStepModifier || currentModifier == WhiteFlutePokemonLullabyStepModifier;
+            bool usesPokemonMarch = currentModifier == PokemonMarchStepModifier || currentModifier == WhiteFlutePokemonMarchStepModifier;
+            if ((usesWhiteFlute && (stepOptions & StepWhiteFlute) == 0)
+                || (usesPokemonMarch && (stepOptions & StepPokemonMarch) == 0)
+                || (usesPokemonLullaby && (stepOptions & StepPokemonLullaby) == 0))
+            {
+                continue;
+            }
+
+            u8 count = 1 + usesWhiteFlute + usesPokemonMarch + usesPokemonLullaby;
+            std::array<u8, 4> score = { count, rank, 0xff, 0xff };
+            if (usesWhiteFlute)
+            {
+                score[2] = 5;
+            }
+            if (usesPokemonMarch)
+            {
+                score[usesWhiteFlute ? 3 : 2] = 6;
+            }
+            if (usesPokemonLullaby)
+            {
+                score[usesWhiteFlute ? 3 : 2] = 6;
+            }
+            candidates.emplace_back(currentMovement, currentModifier, score);
+        }
+    };
+
+    if (surf)
+    {
+        if ((stepOptions & StepWalking) != 0)
+        {
+            addMovement(5, 0);
+        }
+    }
+    else if (bikeOnly)
+    {
+        if ((stepOptions & StepBiking) != 0)
+        {
+            addMovement(2, 1);
+        }
+    }
+    else
+    {
+        if ((stepOptions & StepWalking) != 0)
+        {
+            addMovement(0, 0);
+        }
+        if ((stepOptions & StepBiking) != 0 && !bikeRestricted)
+        {
+            addMovement(2, 1);
+        }
+        if ((stepOptions & StepRunning) != 0)
+        {
+            addMovement(1, 2);
+        }
+        if (longGrass && (stepOptions & StepWalkingLongGrass) != 0)
+        {
+            addMovement(3, 3);
+        }
+        if (longGrass && (stepOptions & StepRunningLongGrass) != 0)
+        {
+            addMovement(4, 4);
+        }
+    }
+
+    auto combineRadioModifiers = [](u8 left, u8 right) {
+        bool whiteFlute = left == WhiteFluteStepModifier || left == WhiteFlutePokemonMarchStepModifier
+            || left == WhiteFlutePokemonLullabyStepModifier || left == WhiteFlutePokemonMarchLullabyStepModifier;
+        bool march = left == PokemonMarchStepModifier || left == WhiteFlutePokemonMarchStepModifier
+            || left == PokemonMarchLullabyStepModifier || left == WhiteFlutePokemonMarchLullabyStepModifier
+            || right == PokemonMarchStepModifier || right == WhiteFlutePokemonMarchStepModifier || right == PokemonMarchLullabyStepModifier
+            || right == WhiteFlutePokemonMarchLullabyStepModifier;
+        bool lullaby = left == PokemonLullabyStepModifier || left == WhiteFlutePokemonLullabyStepModifier
+            || left == PokemonMarchLullabyStepModifier || left == WhiteFlutePokemonMarchLullabyStepModifier
+            || right == PokemonLullabyStepModifier || right == WhiteFlutePokemonLullabyStepModifier || right == PokemonMarchLullabyStepModifier
+            || right == WhiteFlutePokemonMarchLullabyStepModifier;
+
+        if (whiteFlute && march && lullaby)
+        {
+            return static_cast<u8>(WhiteFlutePokemonMarchLullabyStepModifier);
+        }
+        if (march && lullaby)
+        {
+            return static_cast<u8>(PokemonMarchLullabyStepModifier);
+        }
+        return left;
+    };
+
+    std::optional<Result> best;
+    for (const auto &candidate : candidates)
+    {
+        bool whiteFlute = candidate.modifier == WhiteFluteStepModifier || candidate.modifier == WhiteFlutePokemonMarchStepModifier
+            || candidate.modifier == WhiteFlutePokemonLullabyStepModifier;
+        u8 radio = candidate.modifier == PokemonMarchStepModifier || candidate.modifier == WhiteFlutePokemonMarchStepModifier ? 4
+            : candidate.modifier == PokemonLullabyStepModifier || candidate.modifier == WhiteFlutePokemonLullabyStepModifier ? 5
+                                                                                                                            : 0;
+        u8 currentMovements;
+        if (getHGSSStepEncounter(seed, targetAdvance, encounterRate, encounter, lead, whiteFlute, candidate.movement, radio, &currentMovements))
+        {
+            bool lowAdvanceRadioSearch = targetAdvance <= 20 && (stepOptions & (StepPokemonMarch | StepPokemonLullaby)) != 0;
+            u8 modifierPriority = candidate.modifier == NoStepModifier ? 0 : whiteFlute ? 1 : 2;
+            std::array<u8, 4> score = lowAdvanceRadioSearch
+                ? std::array<u8, 4> { currentMovements, modifierPriority, candidate.score[0], candidate.score[1] }
+                : candidate.score;
+            if (!best || score < best->score)
+            {
+                best = Result { currentMovements, candidate.movement, candidate.modifier, score };
+            }
+            else if (score == best->score && currentMovements == best->movements && candidate.movement == best->movement)
+            {
+                best->modifier = combineRadioModifiers(best->modifier, candidate.modifier);
+            }
+        }
+    }
+
+    if (!best)
+    {
+        return false;
+    }
+
+    *movements = best->movements;
+    *movement = best->movement;
+    *modifier = best->modifier;
+    return true;
+}
+
+static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    u8 rate = encounterRate / 10;
+    if (rate > 8)
+    {
+        rate = 8;
+    }
+
+    return 8 - rate;
+}
+
+static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate += encounterRate / 2;
+    }
+
+    return std::min<u16>(encounterRate, 100);
+}
+
+static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
+{
+    u16 movementRate;
+    switch (movement)
+    {
+    case 1:
+        movementRate = 40;
+        break;
+    case 2:
+        movementRate = 70;
+        break;
+    case 3:
+        movementRate = 60;
+        break;
+    case 4:
+        movementRate = 80;
+        break;
+    case 5:
+        movementRate = 40;
+        break;
+    case 0:
+    default:
+        movementRate = encounter == Encounter::Surfing ? 40 : 20;
+        break;
+    }
+
+    if (radio == 4)
+    {
+        movementRate += 25;
+    }
+    else if (radio == 5)
+    {
+        movementRate -= 25;
+    }
+
+    return std::min<u16>(movementRate, 100);
+}
+
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                             const WildStateFilter &filter) :
+    WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, feebasTile, shiny, unownRadio, happiness, false, 0, area, profile,
+                  filter)
+{
+}
+
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
+                             bool shiny, bool unownRadio, u8 happiness, bool searchStepEncounter, u8 stepOptions, const EncounterArea4 &area,
+                             const Profile4 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     unlockedUnown(profile.getUnlockedUnownForms()),
@@ -68,8 +514,10 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
                || area.getEncounter() == Encounter::SuperRod)),
     feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
+    searchStepEncounter(searchStepEncounter),
     shiny(shiny),
     unownRadio(unownRadio),
+    stepOptions(stepOptions),
     modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::HGSS) != Game::None)
@@ -158,10 +606,11 @@ std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 
 std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vector<WildSearcherState4> &results) const
 {
     std::vector<WildSearcherState4> states;
+    u32 advanceOffset = searchStepEncounter ? 2 : 0;
 
     for (WildSearcherState4 result : results)
     {
-        PokeRNGR rng(result.getSeed(), minAdvance);
+        PokeRNGR rng(result.getSeed(), minAdvance + advanceOffset);
         u32 seed = rng.getSeed();
         for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
@@ -171,9 +620,33 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
             // Check if seed matches a valid gen 4 format
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
-                result.setSeed(seed);
-                result.setAdvances(cnt);
-                states.emplace_back(result);
+                bool validStepEncounter = true;
+                u8 movements = 0;
+                u8 stepMovement = 0;
+                u8 stepModifier = NoStepModifier;
+                if (searchStepEncounter)
+                {
+                    if (method == Method::MethodK)
+                    {
+                        validStepEncounter = getBestHGSSStepEncounter(seed, cnt, area.getRate(), area, profile, lead, stepOptions, &movements,
+                                                                      &stepMovement, &stepModifier);
+                    }
+                    else
+                    {
+                        validStepEncounter = getBestDPPtStepEncounter(seed, cnt, area.getRate(), area, profile, lead, stepOptions, &movements,
+                                                                      &stepMovement, &stepModifier);
+                    }
+                }
+
+                if (validStepEncounter)
+                {
+                    result.setSeed(seed);
+                    result.setAdvances(cnt);
+                    result.setMovements(movements);
+                    result.setMovement(stepMovement);
+                    result.setStepModifier(stepModifier);
+                    states.emplace_back(result);
+                }
             }
 
             seed = rng.next();

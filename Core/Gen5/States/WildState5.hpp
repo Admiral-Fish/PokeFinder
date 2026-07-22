@@ -32,6 +32,8 @@ public:
      * @brief Construct a new State5 object
      *
      * @param prng PRNG call to determine chatot pitch and needle
+     * @param movingTrigger Moving battle trigger ratio
+     * @param movingSteps Movement steps needed to trigger an encounter
      * @param advances Advances of the state
      * @param ivAdvances IV advances of the state
      * @param pid Pokemon PID
@@ -42,11 +44,16 @@ public:
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param info Pokemon information
+     * @param valid State can be hit
      */
-    WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-               u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+    WildState5(u32 prng, u8 movingTrigger, u8 movingSteps, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability,
+               u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info,
+               bool valid = true) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
+        movingTrigger(movingTrigger),
+        movingSteps(movingSteps),
+        valid(valid),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
@@ -73,6 +80,37 @@ public:
     }
 
     /**
+     * @brief Returns the moving battle trigger ratio
+     *
+     * @return Moving battle trigger ratio
+     */
+    u8 getMovingTrigger() const
+    {
+        return movingTrigger;
+    }
+
+    /**
+     * @brief Returns movement steps needed to trigger an encounter
+     *
+     * @return Movement steps needed to trigger an encounter
+     */
+    u8 getMovingSteps() const
+    {
+        return movingSteps;
+    }
+
+    /**
+     * @brief Determines if the state can be hit
+     *
+     * @return true State can be hit
+     * @return false State cannot be hit
+     */
+    bool isValid() const
+    {
+        return valid;
+    }
+
+    /**
      * @brief Returns the needle value
      *
      * @return Needle value
@@ -84,6 +122,9 @@ public:
 
 private:
     u32 ivAdvances;
+    u8 movingTrigger;
+    u8 movingSteps;
+    bool valid;
     u8 chatot;
     u8 needle;
 };

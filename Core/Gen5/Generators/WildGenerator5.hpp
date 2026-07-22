@@ -27,6 +27,34 @@
 
 class WildState5;
 
+namespace PassPower5
+{
+    constexpr u8 None = 0;
+    constexpr u8 Lucky1 = 1;
+    constexpr u8 Lucky2 = 2;
+    constexpr u8 Lucky3 = 3;
+
+    constexpr u8 EncounterShift = 4;
+    constexpr u8 Encounter1 = 1 << EncounterShift;
+    constexpr u8 Encounter2 = 2 << EncounterShift;
+    constexpr u8 Encounter3 = 3 << EncounterShift;
+
+    constexpr u8 getLuckyPower(u8 passPower)
+    {
+        return passPower & 0xf;
+    }
+
+    constexpr u8 getEncounterPower(u8 passPower)
+    {
+        return passPower >> EncounterShift;
+    }
+
+    constexpr u8 combine(u8 luckyPower, u8 encounterPower)
+    {
+        return luckyPower | (encounterPower << EncounterShift);
+    }
+}
+
 class WildGenerator5 : public WildGenerator<EncounterArea5, Profile5, WildStateFilter>
 {
 public:
@@ -38,13 +66,15 @@ public:
      * @param offset Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
-     * @param luckyPower Lucky power level
+     * @param passPower Pass power
+     * @param searchMovingTrigger Calculate moving battle trigger ratio
+     * @param requireMovingTrigger Only return states with a possible moving battle trigger
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower, const EncounterArea5 &area,
-                   const Profile5 &profile, const WildStateFilter &filter);
+    WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 passPower, bool searchMovingTrigger,
+                   bool requireMovingTrigger, const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
@@ -68,7 +98,9 @@ public:
     std::vector<WildState5> generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
 
 private:
-    u8 luckyPower;
+    u8 passPower;
+    bool searchMovingTrigger;
+    bool requireMovingTrigger;
 };
 
 #endif // WILDGENERATOR5_HPP
