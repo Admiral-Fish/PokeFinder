@@ -8,6 +8,7 @@
 28,Revitalizzante
 29,Revitalizzante max
 33,Latte Mumu
+39,Etere Max
 43,Succo di bacca
 44,Cenere magica
 50,Caramella rara
@@ -39,6 +40,11 @@
 96,Fertilidro
 97,Fertilsaldo
 98,Fertilcolla
+99,Radifossile
+100,Fossilunghia
+101,Helixfossile
+102,Domofossile
+103,Ambra Antica
 106,Osso raro
 107,Pietrabrillo
 108,Neropietra

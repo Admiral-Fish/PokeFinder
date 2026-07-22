@@ -9339,6 +9339,41 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>Wild4</name>
     <message>
+        <location filename="../Gen4/Wild4.ui" line="210"/>
+        <source>Lead Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui" line="203"/>
+        <source>Walking Pokemon uses Rock Smash?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="85"/>
+        <source>Item Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="86"/>
+        <source>Intimidate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="87"/>
+        <source>Keen Eye</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="89"/>
+        <source>Serene Grace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="91"/>
+        <source>Super Luck</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen4/Wild4.cpp" line="140"/>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
