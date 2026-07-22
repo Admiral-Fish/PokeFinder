@@ -37,7 +37,7 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
     const auto &state = model[index.row()];
     if (!state.isValid())
     {
-        if (role == Qt::FontRole)
+        if (role == Qt::FontRole && index.column() != 2)
         {
             QFont font;
             font.setItalic(true);
@@ -52,7 +52,7 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
     if (role == Qt::DisplayRole)
     {
         int column = index.column();
-        if (!state.isValid() && column > 1)
+        if (!state.isValid() && column > 2)
         {
             return "-";
         }
