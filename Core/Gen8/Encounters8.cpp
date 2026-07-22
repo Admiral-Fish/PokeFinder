@@ -427,7 +427,7 @@ static u8 getTreeIDFromMapID(u8 location)
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyGreatMarsh(std::array<Slot, 13> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location >= 23 && location <= 28 && replacement[0] != 0)
     {
@@ -445,7 +445,7 @@ static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16
  * @param info Personal info array pointer
  * @param radar Whether pokeradar is active or not
  */
-static void modifyRadar(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool radar)
+static void modifyRadar(std::array<Slot, 13> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool radar)
 {
     if (radar)
     {
@@ -464,7 +464,7 @@ static void modifyRadar(std::array<Slot, 12> &mons, const WildEncounter8 *entry,
  * @param info Personal info array pointer
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarm(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool swarm)
+static void modifySwarm(std::array<Slot, 13> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
     {
@@ -481,7 +481,7 @@ static void modifySwarm(std::array<Slot, 12> &mons, const WildEncounter8 *entry,
  * @param info Personal info array pointer
  * @param time Time of day
  */
-static void modifyTime(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, int time)
+static void modifyTime(std::array<Slot, 13> &mons, const WildEncounter8 *entry, const PersonalInfo *info, int time)
 {
     u16 specie1;
     u16 specie2;
@@ -512,7 +512,7 @@ static void modifyTime(std::array<Slot, 12> &mons, const WildEncounter8 *entry, 
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyTrophyGarden(std::array<Slot, 13> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
     {
@@ -572,7 +572,7 @@ static std::vector<EncounterArea8> getBDSPHoney(Game version, const Profile8 *pr
 
         // While we technically have 18 slots with the number of duplicates it will always be below 12
         int count = 0;
-        std::array<Slot, 12> slots;
+        std::array<Slot, 13> slots;
         for (int j = 0; j < max; j++)
         {
             const auto &slot = data[i].slots[j];
@@ -622,7 +622,7 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, Game version, co
 
         for (size_t i = 0; i < length; i++)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:

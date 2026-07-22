@@ -137,6 +137,8 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild5::searcherPokemonIndexChanged);
     connect(ui->comboBoxGeneratorSeason, &QComboBox::currentIndexChanged, this, &Wild5::generatorSeasonIndexChanged);
     connect(ui->comboBoxSearcherSeason, &QComboBox::currentIndexChanged, this, &Wild5::searcherSeasonIndexChanged);
+    connect(ui->checkBoxGeneratorSwarm, &QCheckBox::checkStateChanged, this, [=] { generatorEncounterIndexChanged(0); });
+    connect(ui->checkBoxSearcherSwarm, &QCheckBox::checkStateChanged, this, [=] { searcherEncounterIndexChanged(0); });
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel5::setShowStats);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
@@ -245,13 +247,21 @@ void Wild5::generatorEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
-
+        bool grass = encounter == Encounter::Grass;
         bool fish = encounter == Encounter::SuperRod;
 
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !fish);
+        ui->checkBoxGeneratorSwarm->setVisible(grass);
+        if (!grass && ui->checkBoxGeneratorSwarm->isChecked())
+        {
+            ui->checkBoxGeneratorSwarm->setChecked(false);
+        }
 
-        u8 season = ui->comboBoxGeneratorSeason->currentIndex();
-        encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
+        EncounterSettings5 settings = { };
+        settings.swarm = ui->checkBoxGeneratorSwarm->isChecked();
+        settings.season = ui->comboBoxGeneratorSeason->currentIndex();
+
+        encounterGenerator = Encounters5::getEncounters(encounter, settings, currentProfile);
 
         std::vector<u16> locs;
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
@@ -461,13 +471,23 @@ void Wild5::searcherEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
+        bool grass = encounter == Encounter::Grass;
+
+        ui->checkBoxSearcherSwarm->setVisible(grass);
+        if (!grass && ui->checkBoxSearcherSwarm->isChecked())
+        {
+            ui->checkBoxSearcherSwarm->setChecked(false);
+        }
+
+        EncounterSettings5 settings = { };
+        settings.swarm = ui->checkBoxSearcherSwarm->isChecked();
+        settings.season = ui->comboBoxSearcherSeason->currentIndex();
 
         bool fish = encounter == Encounter::SuperRod;
 
         ui->comboMenuSearcherLead->hideAction(toInt(Lead::SuctionCups), !fish);
 
-        u8 season = ui->comboBoxSearcherSeason->currentIndex();
-        encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);
+        encounterSearcher = Encounters5::getEncounters(encounter, settings, currentProfile);
 
         std::vector<u16> locs;
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea5 &area) { return area.getLocation(); });
@@ -578,6 +598,7 @@ void Wild5::transferSettings(int index)
         ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
         ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
         ui->comboBoxSearcherSeason->setCurrentIndex(ui->comboBoxGeneratorSeason->currentIndex());
+        ui->checkBoxSearcherSwarm->setChecked(ui->checkBoxGeneratorSwarm->isChecked());
     }
     else
     {
@@ -585,5 +606,6 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
+        ui->checkBoxGeneratorSwarm->setChecked(ui->checkBoxSearcherSwarm->isChecked());
     }
 }

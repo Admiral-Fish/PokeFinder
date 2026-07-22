@@ -18,6 +18,7 @@
  */
 
 #include "StateFilter.hpp"
+#include <algorithm>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
@@ -182,7 +183,7 @@ bool StateFilter::compareState(const State8 &state) const
 
 WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
                                  const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
-                                 const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots) :
+                                 const std::array<bool, 16> &powers, const std::array<bool, 13> &encounterSlots) :
     StateFilter(gender, ability, shiny, levelMin, levelMax, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
     encounterSlots(encounterSlots)
 {
@@ -190,7 +191,7 @@ WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u
 
 bool WildStateFilter::compareEncounterSlot(u8 encounterSlot) const
 {
-    return skip || encounterSlots[encounterSlot];
+    return skip || (encounterSlot < encounterSlots.size() && encounterSlots[encounterSlot]);
 }
 
 bool WildStateFilter::compareState(const WildGeneratorState &state) const

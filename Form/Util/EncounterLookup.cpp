@@ -247,20 +247,29 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters5(Game version, 
         = { Encounter::Grass,   Encounter::GrassDark,      Encounter::GrassRustling, Encounter::SuperRod, Encounter::SuperRodRippling,
             Encounter::Surfing, Encounter::SurfingRippling };
     auto seasons = { 0, 1, 2, 3 };
+    auto swarms = { false, true };
+
+    EncounterSettings5 settings = { };
 
     for (auto type : types)
     {
         for (auto season : seasons)
         {
-            auto areas = Encounters5::getEncounters(type, season, &profile);
-            for (const auto &area : areas)
+            settings.season = season;
+            for (auto swarm : swarms)
             {
-                auto pokemon = area.getPokemon();
-                if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                settings.swarm = swarm;
+
+                auto areas = Encounters5::getEncounters(type, settings, &profile);
+                for (const auto &area : areas)
                 {
-                    std::pair<u8, u8> range = area.getLevelRange(specie);
-                    QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
-                    encounters.insert(std::make_pair(area.getLocation(), info));
+                    auto pokemon = area.getPokemon();
+                    if (std::ranges::any_of(pokemon, [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                    {
+                        std::pair<u8, u8> range = area.getLevelRange(specie);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
+                        encounters.insert(std::make_pair(area.getLocation(), info));
+                    }
                 }
             }
         }

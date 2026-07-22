@@ -2770,6 +2770,10 @@
         <translation>Slot Incontro</translation>
     </message>
     <message>
+        <source>Swarm</source>
+        <translation>Comparse Massiccie</translation>
+    </message>
+    <message>
         <source>Hidden Power</source>
         <translation>Introforza</translation>
     </message>
@@ -10491,6 +10495,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>WildGeneratorModel5</name>
     <message>
+        <source>S</source>
+        <translation>S</translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="60"/>
         <source>Square</source>
         <translation>Quadrato</translation>
@@ -10947,6 +10955,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>WildSearcherModel5</name>
+    <message>
+        <source>S</source>
+        <translation>S</translation>
+    </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="148"/>
         <source>Square</source>

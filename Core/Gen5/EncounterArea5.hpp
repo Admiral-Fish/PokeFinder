@@ -37,7 +37,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 12> &pokemon) :
+    EncounterArea5(u8 location, u8 rate, bool season, Encounter encounter, const std::array<Slot, 13> &pokemon) :
         EncounterArea(location, rate, encounter, pokemon), season(season)
     {
     }

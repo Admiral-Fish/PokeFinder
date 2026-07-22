@@ -61,7 +61,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 12> &pokemon);
+    EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 13> &pokemon);
 
     /**
      * @brief Calculates the level of a pokemon that has a range
@@ -130,7 +130,7 @@ public:
      *
      * @return Pokemon list
      */
-    const std::array<Slot, 12> &getPokemon() const
+    const std::array<Slot, 13> &getPokemon() const
     {
         return pokemon;
     }
@@ -190,7 +190,7 @@ public:
     std::vector<u16> getUniqueSpecies() const;
 
 protected:
-    std::array<Slot, 12> pokemon;
+    std::array<Slot, 13> pokemon;
     Encounter encounter;
     u8 location;
     u8 rate;

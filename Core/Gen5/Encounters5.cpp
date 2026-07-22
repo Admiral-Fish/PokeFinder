@@ -89,6 +89,47 @@ struct WildEncounterGrotto
 };
 static_assert(sizeof(WildEncounterGrotto) == 138);
 
+struct SwarmEncounter
+{
+    Game version;
+    u8 location;
+    u16 specie;
+    u8 minLevel;
+    u8 maxLevel;
+};
+
+constexpr SwarmEncounter swarms[] = {
+    { Game::BW, 101, 46, 15, 55 },    { Game::BW, 106, 56, 15, 55 },    { Game::BW, 77, 83, 15, 55 },
+    { Game::BW, 102, 84, 15, 55 },    { Game::BW, 109, 102, 15, 55 },   { Game::BW, 88, 161, 15, 55 },
+    { Game::BW, 104, 193, 15, 55 },   { Game::BW, 107, 204, 15, 55 },   { Game::BW, 95, 228, 15, 55 },
+    { Game::BW, 83, 235, 15, 55 },    { Game::BW, 99, 236, 15, 55 },    { Game::Black, 95, 261, 15, 55 },
+    { Game::BW, 101, 285, 15, 55 },   { Game::Black, 84, 311, 15, 55 }, { Game::White, 84, 312, 15, 55 },
+    { Game::Black, 79, 313, 15, 55 }, { Game::White, 79, 314, 15, 55 }, { Game::BW, 103, 353, 15, 55 },
+    { Game::BW, 78, 360, 15, 55 },    { Game::BW, 82, 449, 15, 55 },    { Game::BW, 93, 453, 15, 55 },
+
+    { Game::BW2, 124, 22, 40, 55 },      { Game::BW2, 123, 79, 40, 55 },      { Game::BW2, 99, 83, 40, 55 },
+    { Game::BW2, 120, 84, 40, 55 },      { Game::BW2, 6, 97, 40, 55 },        { Game::BW2, 129, 122, 40, 55 },
+    { Game::BW2, 111, 162, 40, 55 },     { Game::Black2, 130, 166, 40, 55 },  { Game::White2, 130, 168, 40, 55 },
+    { Game::BW2, 106, 177, 40, 55 },     { Game::BW2, 129, 185, 40, 55 },     { Game::BW2, 127, 187, 40, 55 },
+    { Game::BW2, 116, 195, 40, 55 },     { Game::BW2, 125, 204, 40, 55 },     { Game::BW2, 121, 277, 40, 55 },
+    { Game::BW2, 119, 284, 40, 55 },     { Game::Black2, 107, 311, 40, 55 },  { Game::White2, 107, 312, 40, 55 },
+    { Game::Black2, 101, 313, 40, 55 },  { Game::White2, 101, 314, 40, 55 },  { Game::BW2, 118, 317, 40, 55 },
+    { Game::BW2, 48, 332, 40, 55 },      { Game::BW2, 11, 450, 40, 55 },
+};
+
+static Slot getSwarmSlot(Game version, u8 location)
+{
+    for (const auto &swarm : swarms)
+    {
+        if ((swarm.version & version) != Game::None && swarm.location == location)
+        {
+            return Slot(swarm.specie, swarm.minLevel, swarm.maxLevel, PersonalLoader::getPersonal(version, swarm.specie));
+        }
+    }
+
+    return {};
+}
+
 namespace Encounters5
 {
     const DreamRadarTemplate *getDreamRadarEncounters(int *size)
@@ -105,7 +146,7 @@ namespace Encounters5
         return &DREAMRADAR[index];
     }
 
-    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile)
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, const EncounterSettings5 &settings, const Profile5 *profile)
     {
         u32 length;
         const u8 *data;
@@ -135,12 +176,12 @@ namespace Encounters5
 
             const auto *entrySeason = &entry->seasons[0];
             bool seasons = entry->seasonCount > 1;
-            if (season < entry->seasonCount)
+            if (settings.season < entry->seasonCount)
             {
-                entrySeason = &entry->seasons[season];
+                entrySeason = &entry->seasons[settings.season];
             }
 
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:
@@ -151,6 +192,10 @@ namespace Encounters5
                         const auto &slot = entrySeason->grass[i];
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                    }
+                    if (settings.swarm)
+                    {
+                        slots[12] = getSwarmSlot(version, entry->location);
                     }
                     encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots);
                 }
