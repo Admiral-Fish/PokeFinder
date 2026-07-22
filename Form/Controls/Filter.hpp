@@ -132,13 +132,15 @@ public:
     {
         if constexpr (wild)
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers(), getEncounterSlots());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers(), getEncounterSlots());
         }
         else
         {
-            return FilterType(getGender(), getAbility(), getShiny(), getHeightMin(), getHeightMax(), getWeightMin(), getWeightMax(),
-                              getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(), getHiddenPowers());
+            return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers());
         }
     }
 
@@ -171,6 +173,20 @@ public:
     std::array<bool, 16> getHiddenPowers() const;
 
     /**
+     * @brief Gets max level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMax() const;
+
+    /**
+     * @brief Gets min level to filter by
+     *
+     * @return Level value
+     */
+    u8 getLevelMin() const;
+
+    /**
      * @brief Gets upper bound IVs to filter by
      *
      * @return Array of maximum IVs
@@ -200,8 +216,22 @@ public:
 
     /**
      * @brief Determines if Filter is valid based on current selections
+     *
+     * @return true Filter is valid
+     * @return false Filter is not valid
      */
     bool isValid() const;
+
+    /**
+     * @brief Determines if Filter is valid based on current selections. Additionally checks against input level range
+     * 
+     * @param min Minimum level
+     * @param max Maximum level
+     *
+     * @return true Filter is valid
+     * @return false Filter is not valid
+     */
+    bool isValid(u32 min, u32 max) const;
 
     /**
      * @brief Unchecks all encounter slots
@@ -214,6 +244,14 @@ public:
      * @param max Number of encounter slots
      */
     void setEncounterSlots(u8 max) const;
+
+    /**
+     * @brief Sets level range
+     *
+     * @param min Minimum level
+     * @param max Maximum level
+     */
+    void setLevelRange(u32 min, u32 max);
 
     /**
      * @brief Sets encounter slots that are checked and not checked

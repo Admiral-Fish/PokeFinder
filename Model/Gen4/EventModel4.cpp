@@ -22,13 +22,13 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), version(Game::DPPt), showStats(false)
+EventGeneratorModel4::EventGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false)
 {
 }
 
 int EventGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    if ((version & Game::DPPt) != Game::None)
+    if (dppt)
     {
         return 10;
     }
@@ -82,7 +82,7 @@ QVariant EventGeneratorModel4::headerData(int section, Qt::Orientation orientati
 
 void EventGeneratorModel4::setGame(Game version)
 {
-    this->version = version;
+    dppt = (version & Game::DPPt) != Game::None;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -94,7 +94,7 @@ void EventGeneratorModel4::setShowStats(bool flag)
 
 int EventGeneratorModel4::getColumn(int column) const
 {
-    if ((version & Game::DPPt) != Game::None)
+    if (dppt)
     {
         return column > 0 ? column + 1 : column;
     }
@@ -110,7 +110,7 @@ EventSearcherModel4::EventSearcherModel4(QObject *parent) : TableModel(parent), 
 
 int EventSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return 10;
+    return 11;
 }
 
 QVariant EventSearcherModel4::data(const QModelIndex &index, int role) const
@@ -124,17 +124,19 @@ QVariant EventSearcherModel4::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return state.getAdvances();
+            return state.getSeed() & 0xffff;
         case 2:
+            return state.getAdvances();
         case 3:
         case 4:
         case 5:
         case 6:
         case 7:
-            return showStats ? state.getStat(column - 2) : state.getIV(column - 2);
         case 8:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 3) : state.getIV(column - 3);
         case 9:
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+        case 10:
             return state.getHiddenPowerStrength();
         }
     }
@@ -154,5 +156,5 @@ QVariant EventSearcherModel4::headerData(int section, Qt::Orientation orientatio
 void EventSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 2), index(rowCount() - 1, 7), { Qt::DisplayRole });
+    emit dataChanged(index(0, 3), index(rowCount() - 1, 8), { Qt::DisplayRole });
 }

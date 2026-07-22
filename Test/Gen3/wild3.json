@@ -1328,6 +1328,92 @@
                 ]
             },
             {
+                "name": "Emerald Route 111 Rock Smash Bike",
+                "seed": 1908874352,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
+                "bike": true,
+                "location": 6,
+                "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 5,
+                        "advances": 5,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 13,
+                        "hiddenPowerStrength": 48,
+                        "ivs": [
+                            30,
+                            8,
+                            30,
+                            7,
+                            1,
+                            31
+                        ],
+                        "level": 8,
+                        "nature": 10,
+                        "pid": 3783075935,
+                        "shiny": 0,
+                        "specie": 74,
+                        "stats": [
+                            26,
+                            16,
+                            23,
+                            10,
+                            9,
+                            11
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Emerald Route 111 Rock Smash White Flute",
+                "seed": 1908874352,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
+                "item": "WhiteFlute",
+                "location": 6,
+                "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 5,
+                        "advances": 5,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 13,
+                        "hiddenPowerStrength": 48,
+                        "ivs": [
+                            30,
+                            8,
+                            30,
+                            7,
+                            1,
+                            31
+                        ],
+                        "level": 8,
+                        "nature": 10,
+                        "pid": 3783075935,
+                        "shiny": 0,
+                        "specie": 74,
+                        "stats": [
+                            26,
+                            16,
+                            23,
+                            10,
+                            9,
+                            11
+                        ]
+                    }
+                ]
+            },
+            {
                 "name": "Emerald Route 111 Surf",
                 "seed": 2386092940,
                 "version": "Emerald",
@@ -4345,6 +4431,58 @@
                 "lead": "None",
                 "location": 6,
                 "results": 2
+            },
+            {
+                "name": "Emerald Route 111 Rock Smash Bike",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
+                "bike": true,
+                "location": 6,
+                "results": 1
+            },
+            {
+                "name": "Emerald Route 111 Rock Smash White Flute",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
+                "item": "WhiteFlute",
+                "location": 6,
+                "results": 3
             },
             {
                 "name": "Emerald Route 111 Surf",

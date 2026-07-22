@@ -41,9 +41,9 @@ class Wild4 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -67,11 +67,10 @@ public slots:
 private:
     Ui::Wild4 *ui;
 
-    Profile4 *currentProfile;
+    const Profile4 *currentProfile;
     SortFilterProxyModel *proxyModel;
     std::vector<EncounterArea4> encounterGenerator;
     std::vector<EncounterArea4> encounterSearcher;
-    std::vector<Profile4> profiles;
     WildGeneratorModel4 *generatorModel;
     WildSearcherModel4 *searcherModel;
 
@@ -132,17 +131,16 @@ private slots:
     void generatorPokeRadarStateChanged(Qt::CheckState state);
 
     /**
-     * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
-     * settings.
-     *
-     * @param index Profile index
+     * @brief Opens the advance finder dialog
      */
-    void profileIndexChanged(int index);
+    void openAdvanceFinder();
 
     /**
-     * @brief Opens the profile manager
+     * @brief Updates showing profile related information
+     *
+     * @param profile Selected profile
      */
-    void profileManager();
+    void profileChanged(const Profile4 &profile);
 
     /**
      * @brief Searches static encounters from the provided IVs

@@ -29,9 +29,11 @@ ComboBoxProxy::ComboBoxProxy(QWidget *parent) : QComboBox(parent)
     setModel(proxyModel);
 }
 
-void ComboBoxProxy::addItem(const QString &string)
+void ComboBoxProxy::addItem(const QString &string, const QVariant &data)
 {
     QStandardItem *item = new QStandardItem(string);
+    item->setData(data);
+
     model->appendRow(item);
 }
 
@@ -40,6 +42,23 @@ void ComboBoxProxy::addItems(const std::vector<std::string> &strings, bool sort)
     for (const auto &string : strings)
     {
         addItem(QString::fromStdString(string));
+    }
+
+    if (sort)
+    {
+        proxyModel->sort(0);
+
+        // Set index back to 0 after sorting
+        QModelIndex index = proxyModel->mapToSource(proxyModel->index(0, 0));
+        setCurrentIndex(index.row());
+    }
+}
+
+void ComboBoxProxy::addItems(const std::vector<std::string> &strings, const std::vector<u16> &data, bool sort)
+{
+    for (int i = 0; i < strings.size() && i < data.size(); i++)
+    {
+        addItem(QString::fromStdString(strings[i]), data[i]);
     }
 
     if (sort)
@@ -62,11 +81,34 @@ void ComboBoxProxy::enableAutoComplete()
 {
     setEditable(true);
     setInsertPolicy(QComboBox::NoInsert);
+    completer()->setFilterMode(Qt::MatchContains);
     completer()->setCompletionMode(QCompleter::PopupCompletion);
+}
+
+u16 ComboBoxProxy::getCurrentUShort() const
+{
+    QModelIndex index = proxyModel->mapToSource(proxyModel->index(QComboBox::currentIndex(), 0));
+    QStandardItem *item = model->itemFromIndex(index);
+    return item ? item->data().toUInt() : -1;
 }
 
 void ComboBoxProxy::setCurrentIndex(int index)
 {
     QModelIndex modelIndex = proxyModel->mapFromSource(model->index(index, 0));
     QComboBox::setCurrentIndex(modelIndex.row());
+}
+
+void ComboBoxProxy::setCurrentIndexByData(u16 data)
+{
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        QModelIndex index = model->index(i, 0);
+        QStandardItem *item = model->itemFromIndex(index);
+        if (item->data() == data)
+        {
+            index = proxyModel->mapFromSource(index);
+            QComboBox::setCurrentIndex(index.row());
+            break;
+        }
+    }
 }

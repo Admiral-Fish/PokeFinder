@@ -19,6 +19,7 @@
 
 #include "WildGenerator3Test.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Item.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
@@ -50,6 +51,8 @@ void WildGenerator3Test::generate_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<bool>("feebasTile");
+    QTest::addColumn<bool>("bike");
+    QTest::addColumn<Item>("item");
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
@@ -58,7 +61,8 @@ void WildGenerator3Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["encounter"].get<Encounter>()
-            << d["lead"].get<Lead>() << d.value("feebasTile", false) << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["lead"].get<Lead>() << d.value("feebasTile", false) << d.value("bike", false) << d.value("item", Item::None)
+            << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -70,6 +74,8 @@ void WildGenerator3Test::generate()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(bool, feebasTile);
+    QFETCH(bool, bike);
+    QFETCH(Item, item);
     QFETCH(int, location);
     QFETCH(std::string, results);
 
@@ -99,8 +105,8 @@ void WildGenerator3Test::generate()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, *encounterArea, profile, filter);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildGenerator3 generator(0, 9, 0, method, lead, settings.feebasTile, bike, item, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());

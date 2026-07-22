@@ -33,15 +33,19 @@
 #include <QFile>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("raid");
+
 Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfile(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
+    ui->profileDisplay->setup(settingPrefix, Game::SwSh);
+
     model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
     ui->filter->enableHiddenAbility();
 
     ui->comboBoxAbilityType->setup({ 0, 1, 2, 3, 4 });
@@ -55,8 +59,8 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
 
     ui->comboBoxShinyType->setup({ 0, 1, 2 }); // Random, Non-shiny, shiny
 
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Raids::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Raids::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Raids::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Raids::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Raids::generate);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Raids::locationIndexChanged);
     connect(ui->comboBoxDen, &QComboBox::currentIndexChanged, this, &Raids::denIndexChanged);
@@ -70,7 +74,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     specieIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("raid");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("seed"))
     {
         ui->textBoxSeed->setText(setting.value("seed").toString());
@@ -84,8 +88,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
 Raids::~Raids()
 {
     QSettings setting;
-    setting.beginGroup("raid");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.setValue("seed", ui->textBoxSeed->text());
     setting.endGroup();
@@ -95,24 +98,7 @@ Raids::~Raids()
 
 void Raids::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader8::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile &profile) { return (profile.getVersion() & Game::SwSh) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::Sword, 12345, 54321, false, false, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("raid/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Raids::denIndexChanged(int index)
@@ -233,23 +219,9 @@ void Raids::locationIndexChanged(int index)
     }
 }
 
-void Raids::profileIndexChanged(int index)
+void Raids::profileChanged(const Profile8 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Raids::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void Raids::rarityIndexChange(int index)

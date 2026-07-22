@@ -13,78 +13,9 @@
   <property name="windowTitle">
    <string>Gen 4 Wild</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_9">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_7">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QLabel" name="labelProfileNationalDex">
-        <property name="text">
-         <string>National Dex</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileNationalDexValue"/>
-      </item>
-     </layout>
+    <widget class="ProfileDisplay4" name="profileDisplay" native="true">
     </widget>
    </item>
    <item row="1" column="0">
@@ -93,13 +24,13 @@
       <attribute name="title">
        <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_11">
+      <layout class="QGridLayout" name="gridLayout_1">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorLead">
             <property name="text">
@@ -151,7 +82,7 @@
           <item row="4" column="1">
            <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
-             <string notr="true">100000</string>
+             <string notr="true">1000</string>
             </property>
            </widget>
           </item>
@@ -180,7 +111,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_10">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="labelGeneratorEncounter">
             <property name="text">
@@ -276,6 +207,9 @@
           </item>
           <item row="3" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxGeneratorTime">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
             <item>
              <property name="text">
               <string>Morning</string>
@@ -480,6 +414,43 @@
           <item row="12" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorWaterBlock"/>
           </item>
+          <item row="13" column="0" colspan="4">
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="labelGeneratorLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="3">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -494,7 +465,7 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0" rowspan="2">
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
@@ -510,13 +481,13 @@
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherLead">
             <property name="text">
@@ -619,7 +590,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="labelSearcherEncounter">
             <property name="text">
@@ -715,6 +686,9 @@
           </item>
           <item row="3" column="2" colspan="2">
            <widget class="QComboBox" name="comboBoxSearcherTime">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
             <item>
              <property name="text">
               <string>Morning</string>
@@ -919,6 +893,40 @@
           <item row="12" column="3">
            <widget class="QSpinBox" name="spinBoxSearcherWaterBlock"/>
           </item>
+          <item row="13" column="0" colspan="4">
+           <widget class="Line" name="line_1">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="labelSearcherLevel">
+            <property name="text">
+             <string>Levels</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="3">
+           <widget class="QSpinBox" name="spinBoxSearcherLevelMax">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -933,7 +941,7 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0" rowspan="2">
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
@@ -963,11 +971,6 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
@@ -982,6 +985,12 @@
    <class>TabWidget</class>
    <extends>QTabWidget</extends>
    <header>Form/Controls/TabWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProfileDisplay4</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen4/Profile/ProfileDisplay4.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1001,8 +1010,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>comboMenuGeneratorLead</tabstop>
   <tabstop>checkBoxGeneratorPokeRadarShiny</tabstop>
@@ -1016,8 +1023,8 @@
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorHappiness</tabstop>
-  <tabstop>checkBoxGeneratorDualSlot</tabstop>
   <tabstop>comboBoxGeneratorDualSlot</tabstop>
+  <tabstop>checkBoxGeneratorDualSlot</tabstop>
   <tabstop>checkBoxGeneratorFeebasTile</tabstop>
   <tabstop>checkBoxGeneratorPokeRadar</tabstop>
   <tabstop>checkBoxGeneratorRadio</tabstop>
@@ -1030,6 +1037,8 @@
   <tabstop>spinBoxGeneratorForestBlock</tabstop>
   <tabstop>spinBoxGeneratorPeakBlock</tabstop>
   <tabstop>spinBoxGeneratorWaterBlock</tabstop>
+  <tabstop>spinBoxGeneratorLevelMin</tabstop>
+  <tabstop>spinBoxGeneratorLevelMax</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboMenuSearcherLead</tabstop>
   <tabstop>checkBoxSearcherPokeRadarShiny</tabstop>
@@ -1058,6 +1067,8 @@
   <tabstop>spinBoxSearcherForestBlock</tabstop>
   <tabstop>spinBoxSearcherPeakBlock</tabstop>
   <tabstop>spinBoxSearcherWaterBlock</tabstop>
+  <tabstop>spinBoxSearcherLevelMin</tabstop>
+  <tabstop>spinBoxSearcherLevelMax</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

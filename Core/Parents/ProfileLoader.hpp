@@ -20,6 +20,7 @@
 #ifndef PROFILELOADER_HPP
 #define PROFILELOADER_HPP
 
+#include <Core/Global.hpp>
 #include <string>
 #include <vector>
 
@@ -27,6 +28,7 @@ class Profile3;
 class Profile4;
 class Profile5;
 class Profile8;
+enum class Game : u32;
 
 namespace ProfileLoader
 {
@@ -53,9 +55,11 @@ namespace ProfileLoader3
     /**
      * @brief Reads profiles from stored json file
      *
+     * @param version Game version to filter by
+     *
      * @return Vector of profiles
      */
-    std::vector<Profile3> getProfiles();
+    std::vector<Profile3> getProfiles(Game version);
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -85,9 +89,11 @@ namespace ProfileLoader4
     /**
      * @brief Reads profiles from stored json file
      *
+     * @param version Game version to filter by
+     *
      * @return Vector of profiles
      */
-    std::vector<Profile4> getProfiles();
+    std::vector<Profile4> getProfiles(Game version);
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -117,9 +123,11 @@ namespace ProfileLoader5
     /**
      * @brief Reads profiles from stored json file
      *
+     * @param version Game version to filter by
+     *
      * @return Vector of profiles
      */
-    std::vector<Profile5> getProfiles();
+    std::vector<Profile5> getProfiles(Game version);
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -149,9 +157,11 @@ namespace ProfileLoader8
     /**
      * @brief Reads profiles from stored json file
      *
+     * @param version Game version to filter by
+     *
      * @return Vector of profiles
      */
-    std::vector<Profile8> getProfiles();
+    std::vector<Profile8> getProfiles(Game version);
 
     /**
      * @brief Deletes a profile from the stored json file

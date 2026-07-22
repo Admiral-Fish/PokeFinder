@@ -38,10 +38,14 @@
 #include <QThread>
 #include <QTimer>
 
+static const QString settingPrefix = QStringLiteral("gamecube");
+
 GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::GC);
 
     generatorModel = new GameCubeGeneratorModel(ui->tableViewGenerator);
     searcherModel = new GameCubeSearcherModel(ui->tableViewSearcher);
@@ -55,18 +59,19 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
+                                        | Controls::Weight);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
 
+    connect(ui->profileDisplay, &ProfileDisplay3::profileChanged, this, &GameCube::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay3::profilesChanged, this, &GameCube::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &GameCube::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &GameCube::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &GameCube::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &GameCube::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &GameCube::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &GameCube::searcherCategoryIndexChanged);
@@ -79,17 +84,18 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     searcherCategoryIndexChanged(0);
 
     QSettings setting;
-    if (setting.contains("gamecube/geometry"))
+    setting.beginGroup(settingPrefix);
+    if (setting.contains("geometry"))
     {
-        this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
+        this->restoreGeometry(setting.value("geometry").toByteArray());
     }
+    setting.endGroup();
 }
 
 GameCube::~GameCube()
 {
     QSettings setting;
-    setting.beginGroup("gamecube");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -98,23 +104,7 @@ GameCube::~GameCube()
 
 void GameCube::updateProfiles()
 {
-    profiles = { Profile3("-", Game::Gales, 12345, 54321, false) };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::None; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("gamecube/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void GameCube::generate()
@@ -205,31 +195,14 @@ void GameCube::generatorPokemonIndexChanged(int index)
                                                                                     ui->comboBoxGeneratorPokemon->getCurrentInt());
             ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
 
-            ui->checkBoxGeneratorFirstShadowUnset->setVisible(false);
+            ui->checkBoxGeneratorFirstShadowUnset->hide();
         }
     }
 }
 
-void GameCube::profileIndexChanged(int index)
+void GameCube::profileChanged(const Profile3 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
-    }
-}
-
-void GameCube::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
 
 void GameCube::search()
@@ -254,17 +227,9 @@ void GameCube::search()
     auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;
-    if (method != Method::Channel)
+    for (u8 i = 0; i < 6; i++)
     {
-        for (u8 i = 0; i < 6; i++)
-        {
-            maxProgress *= max[i] - min[i] + 1;
-        }
-    }
-    else
-    {
-        maxProgress *= max[4] - min[4] + 1;
-        maxProgress *= 0x7ffffff;
+        maxProgress *= max[i] - min[i] + 1;
     }
     searcher->setMaxProgress(maxProgress);
 
@@ -354,7 +319,7 @@ void GameCube::searcherPokemonIndexChanged(int index)
                                                                                     ui->comboBoxSearcherPokemon->getCurrentInt());
             ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
 
-            ui->checkBoxSearcherFirstShadowUnset->setVisible(false);
+            ui->checkBoxSearcherFirstShadowUnset->hide();
         }
     }
 }

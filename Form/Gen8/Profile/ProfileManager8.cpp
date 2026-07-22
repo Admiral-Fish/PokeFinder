@@ -19,6 +19,7 @@
 
 #include "ProfileManager8.hpp"
 #include "ui_ProfileManager8.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen8/Profile/ProfileEditor8.hpp>
 #include <Model/Gen8/ProfileModel8.hpp>
@@ -32,7 +33,7 @@ ProfileManager8::ProfileManager8(QWidget *parent) : QWidget(parent), ui(new Ui::
     setAttribute(Qt::WA_DeleteOnClose);
 
     model = new ProfileModel8(ui->tableView);
-    model->addItems(ProfileLoader8::getProfiles());
+    model->addItems(ProfileLoader8::getProfiles(Game::Gen8));
     ui->tableView->setModel(model);
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager8::create);
@@ -64,7 +65,7 @@ void ProfileManager8::create()
         Profile8 profile = dialog->getProfile();
         ProfileLoader8::addProfile(profile);
         model->addItem(profile);
-        emit profilesModified(8);
+        emit profilesChanged(8);
     }
 }
 
@@ -81,7 +82,7 @@ void ProfileManager8::duplicate()
     const Profile8 &profile = model->getItem(row);
     ProfileLoader8::addProfile(profile);
     model->addItem(profile);
-    emit profilesModified(8);
+    emit profilesChanged(8);
 }
 
 void ProfileManager8::edit()
@@ -101,7 +102,7 @@ void ProfileManager8::edit()
         Profile8 update = dialog->getProfile();
         ProfileLoader8::updateProfile(update, original);
         model->updateItem(update, row);
-        emit profilesModified(8);
+        emit profilesChanged(8);
     }
 }
 
@@ -122,6 +123,6 @@ void ProfileManager8::remove()
         Profile8 profile = model->getItem(row);
         ProfileLoader8::removeProfile(profile);
         model->removeItem(row);
-        emit profilesModified(8);
+        emit profilesChanged(8);
     }
 }

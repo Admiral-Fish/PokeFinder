@@ -5,7 +5,7 @@ import os
 import pathlib
 import re
 
-FILES = ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method", "Shiny")
+FILES = ("Buttons", "DSType", "Encounter", "Game", "Item", "Language", "Lead", "Method", "Shiny")
 PARENT = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
 
 

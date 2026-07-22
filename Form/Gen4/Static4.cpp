@@ -32,18 +32,24 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
+#include <QAction>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+
+static const QString settingPrefix = QStringLiteral("static4");
 
 Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator, Method::Method1);
+    ui->profileDisplay->setup(settingPrefix, Game::Gen4);
+
+    generatorModel = new StaticGeneratorModel4(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel4(ui->tableViewSearcher);
     proxyModel = new SortFilterProxyModel(ui->tableViewSearcher, searcherModel);
 
@@ -60,8 +66,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
+                                        | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
@@ -80,12 +87,15 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
 
+    auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
+    connect(advanceFinder, &QAction::triggered, this, &Static4::openAdvanceFinder);
+
+    connect(ui->profileDisplay, &ProfileDisplay4::profileChanged, this, &Static4::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay4::profilesChanged, this, &Static4::profilesChanged);
     connect(ui->tabRNGSelector, &TabWidget::transferFilters, this, &Static4::transferFilters);
     connect(ui->tabRNGSelector, &TabWidget::transferSettings, this, &Static4::transferSettings);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static4::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static4::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static4::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static4::searcherCategoryIndexChanged);
@@ -98,7 +108,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     searcherCategoryIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("static4");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("minDelay"))
     {
         ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
@@ -130,7 +140,6 @@ Static4::~Static4()
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
     setting.setValue("minAdvance", ui->textBoxSearcherMinAdvance->text());
     setting.setValue("maxAdvance", ui->textBoxSearcherMaxAdvance->text());
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -139,21 +148,7 @@ Static4::~Static4()
 
 void Static4::updateProfiles()
 {
-    profiles = ProfileLoader4::getProfiles();
-    profiles.insert(profiles.begin(), Profile4("None", Game::Diamond, 12345, 54321, false));
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static4/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Static4::generate()
@@ -164,10 +159,10 @@ void Static4::generate()
     }
 
     generatorModel->clearModel();
+    generatorModel->setGame(currentProfile->getVersion());
 
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
-    generatorModel->setMethod(staticTemplate->getMethod());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -213,13 +208,13 @@ void Static4::generatorPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->comboMenuGeneratorLead->clearSelection();
-            ui->labelGeneratorLead->setVisible(false);
-            ui->comboMenuGeneratorLead->setVisible(false);
+            ui->labelGeneratorLead->hide();
+            ui->comboMenuGeneratorLead->hide();
         }
         else
         {
-            ui->labelGeneratorLead->setVisible(true);
-            ui->comboMenuGeneratorLead->setVisible(true);
+            ui->labelGeneratorLead->show();
+            ui->comboMenuGeneratorLead->show();
 
             bool flag = staticTemplate->getInfo()->getFixedGender();
             ui->comboMenuGeneratorLead->hideAction(toInt(Lead::CuteCharmF), flag);
@@ -230,32 +225,24 @@ void Static4::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static4::profileIndexChanged(int index)
+void Static4::openAdvanceFinder()
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-
-        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
-
-        // Game Corner
-        ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
-        ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
-
-        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
-        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
-    }
+    auto *advanceFinder = new AdvanceFinder(generatorModel, ui->tableViewGenerator, currentProfile, this);
+    advanceFinder->show();
 }
 
-void Static4::profileManager()
+void Static4::profileChanged(const Profile4 &profile)
 {
-    auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
+
+    bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
+
+    // Game Corner
+    ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
+    ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
+
+    generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+    searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
 }
 
 void Static4::search()
@@ -345,13 +332,13 @@ void Static4::searcherPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->comboMenuSearcherLead->clearSelection();
-            ui->labelSearcherLead->setVisible(false);
-            ui->comboMenuSearcherLead->setVisible(false);
+            ui->labelSearcherLead->hide();
+            ui->comboMenuSearcherLead->hide();
         }
         else
         {
-            ui->labelSearcherLead->setVisible(true);
-            ui->comboMenuSearcherLead->setVisible(true);
+            ui->labelSearcherLead->show();
+            ui->comboMenuSearcherLead->show();
 
             bool flag = staticTemplate->getInfo()->getFixedGender();
             ui->comboMenuSearcherLead->hideAction(toInt(Lead::CuteCharmF), flag);

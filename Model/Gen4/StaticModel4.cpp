@@ -18,25 +18,23 @@
  */
 
 #include "StaticModel4.hpp"
-#include <Core/Enum/Method.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
+StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent) : TableModel(parent), dppt(true), showStats(false)
 {
 }
 
 int StaticGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::Method1:
-    case Method::MethodK:
-        return 17;
-    case Method::MethodJ:
         return 16;
-    default:
-        return 0;
+    }
+    else
+    {
+        return 17;
     }
 }
 
@@ -79,7 +77,7 @@ QVariant StaticGeneratorModel4::data(const QModelIndex &index, int role) const
         case 15:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 16:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();
@@ -96,9 +94,9 @@ QVariant StaticGeneratorModel4::headerData(int section, Qt::Orientation orientat
     return QVariant();
 }
 
-void StaticGeneratorModel4::setMethod(Method method)
+void StaticGeneratorModel4::setGame(Game version)
 {
-    this->method = method;
+    dppt = (version & Game::DPPt) != Game::None;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -110,14 +108,13 @@ void StaticGeneratorModel4::setShowStats(bool flag)
 
 int StaticGeneratorModel4::getColumn(int column) const
 {
-    switch (method)
+    if (dppt)
     {
-    case Method::Method1:
-    case Method::MethodK:
-    default:
-        return column;
-    case Method::MethodJ:
         return column > 0 ? column + 1 : column;
+    }
+    else
+    {
+        return column;
     }
 }
 
@@ -127,7 +124,7 @@ StaticSearcherModel4::StaticSearcherModel4(QObject *parent) : TableModel(parent)
 
 int StaticSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 18;
 }
 
 QVariant StaticSearcherModel4::data(const QModelIndex &index, int role) const
@@ -141,33 +138,37 @@ QVariant StaticSearcherModel4::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return state.getAdvances();
+            return state.getSeed() & 0xffff;
         case 2:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return (state.getSeed() >> 16) & 0xff;
         case 3:
+            return state.getAdvances();
+        case 4:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 5:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 4:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
-        case 5:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 6:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
         case 11:
-            return showStats ? state.getStat(column - 6) : state.getIV(column - 6);
         case 12:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 13:
-            return state.getHiddenPowerStrength();
+            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return state.getHiddenPowerStrength();
+        case 16:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 17:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();
@@ -185,5 +186,5 @@ QVariant StaticSearcherModel4::headerData(int section, Qt::Orientation orientati
 void StaticSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 6), index(rowCount() - 1, 11), { Qt::DisplayRole });
+    emit dataChanged(index(0, 8), index(rowCount() - 1, 13), { Qt::DisplayRole });
 }

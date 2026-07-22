@@ -34,3 +34,11 @@ DateTime DateTimeEdit::getDateTime() const
     int md = time().msecsSinceStartOfDay() / 1000;
     return DateTime(jd, md);
 }
+
+void DateTimeEdit::setDateTime(const DateTime &dateTime)
+{
+    Date date = dateTime.getDate();
+    Time time = dateTime.getTime();
+    setDate(QDate(date.year(), date.month(), date.day()));
+    setTime(QTime(time.hour(), time.minute(), time.second()));
+}

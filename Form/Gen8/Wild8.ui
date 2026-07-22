@@ -13,13 +13,17 @@
   <property name="windowTitle">
    <string>Wild Gen 8</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_5">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="ProfileDisplay8" name="profileDisplay" native="true">
+    </widget>
+   </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
      <property name="title">
       <string>RNG Info</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayout_1">
       <item row="0" column="0">
        <widget class="QLabel" name="labelLead">
         <property name="text">
@@ -112,72 +116,9 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0" rowspan="2">
        <widget class="Filter" name="filter" native="true"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGame">
-        <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
      </layout>
     </widget>
@@ -187,7 +128,7 @@
      <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
        <widget class="QLabel" name="labelEncounter">
         <property name="text">
@@ -323,6 +264,40 @@
       <item row="7" column="2">
        <widget class="ComboBox" name="comboBoxReplacement1"/>
       </item>
+      <item row="8" column="0" colspan="3">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="labelLevel">
+        <property name="text">
+         <string>Levels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QSpinBox" name="spinBoxLevelMin">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QSpinBox" name="spinBoxLevelMax">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -351,19 +326,23 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Form/Controls/ComboMenu.hpp</header>
+   <class>ProfileDisplay8</class>
+   <extends>QWidget</extends>
+   <header>Form/Gen8/Profile/ProfileDisplay8.hpp</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>ComboBoxProxy</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>comboMenuLead</tabstop>
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
@@ -381,6 +360,8 @@
   <tabstop>checkBoxReplacement</tabstop>
   <tabstop>comboBoxReplacement0</tabstop>
   <tabstop>comboBoxReplacement1</tabstop>
+  <tabstop>spinBoxLevelMin</tabstop>
+  <tabstop>spinBoxLevelMax</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

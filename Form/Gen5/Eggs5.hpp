@@ -40,9 +40,9 @@ class Eggs5 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -76,9 +76,8 @@ private:
 
     EggGeneratorModel5 *generatorModel;
     EggSearcherModel5 *searcherModel;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     SortFilterProxyModel *proxyModel;
-    std::vector<Profile5> profiles;
 
 private slots:
     /**
@@ -87,21 +86,21 @@ private slots:
     void generate();
 
     /**
+     * @brief Opens the advance finder dialog
+     */
+    void openAdvanceFinder();
+
+    /**
+     * @brief Updates showing profile related information
+     *
+     * @param profile Selected profile
+     */
+    void profileChanged(const Profile5 &profile);
+
+    /**
      * @brief Searches egg encounters from date range
      */
     void search();
-
-    /**
-     * @brief Updates displayed information for a profile
-     *
-     * @param index Profile index
-     */
-    void profileIndexChanged(int index);
-
-    /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
 
     /**
      * @brief Transfers the filters from the active tab to the inactive tab

@@ -39,8 +39,7 @@ static std::vector<PIDToIVState> calcMethod124(u32 pid)
     {
         u32 seed = PokeRNGR(seeds[i]).next();
 
-        PokeRNG forward(seeds[i]);
-        forward.advance(1);
+        PokeRNG forward(seeds[i], 1);
 
         u16 iv1 = forward.nextUShort(); // Method 1/4
         u16 iv2 = forward.nextUShort(); // Method 1/2
@@ -75,8 +74,7 @@ static std::vector<PIDToIVState> calcMethodChannel(u32 pid)
         u16 sid = backward.nextUShort();
         u32 seed = backward.next();
 
-        XDRNG forward(seed);
-        forward.advance(1);
+        XDRNG forward(seed, 1);
 
         u16 high = forward.nextUShort();
         u16 low = forward.nextUShort();
@@ -109,8 +107,7 @@ static std::vector<PIDToIVState> calcMethodChannel(u32 pid)
         u16 sid = backward.nextUShort();
         u32 seed = backward.next();
 
-        XDRNG forward(seed);
-        forward.advance(1);
+        XDRNG forward(seed, 1);
 
         u16 high = forward.nextUShort();
         u16 low = forward.nextUShort();
@@ -153,8 +150,7 @@ static std::vector<PIDToIVState> calcMethodXDColo(u32 pid)
     auto seeds = LCRNGReverse::recoverXDRNGPID(pid);
     for (int i = 0; i < seeds.count; i++)
     {
-        XDRNGR backward(seeds[i]);
-        backward.advance(1);
+        XDRNGR backward(seeds[i], 1);
 
         u16 iv2 = backward.nextUShort();
         u16 iv1 = backward.nextUShort();

@@ -41,9 +41,9 @@ class Event5 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits that the profiles have been modified
+     * @brief Emits that the profiles have been changed
      */
-    void profilesModified(int);
+    void profilesChanged(int);
 
 public:
     /**
@@ -77,9 +77,8 @@ private:
 
     EventGeneratorModel5 *generatorModel;
     EventSearcherModel5 *searcherModel;
-    Profile5 *currentProfile;
+    const Profile5 *currentProfile;
     SortFilterProxyModel *proxyModel;
-    std::vector<Profile5> profiles;
 
     /**
      * @brief Loads UI settings for a wondercard
@@ -107,16 +106,16 @@ private slots:
     void generatorImportEvent();
 
     /**
-     * @brief Updates displayed information for a profile
-     *
-     * @param index Profile index
+     * @brief Opens the advance finder dialog
      */
-    void profileIndexChanged(int index);
+    void openAdvanceFinder();
 
     /**
-     * @brief Opens the profile manager
+     * @brief Updates showing profile related information
+     *
+     * @param profile Selected profile
      */
-    void profileManager();
+    void profileChanged(const Profile5 &profile);
 
     /**
      * @brief Searches static encounters from date range

@@ -93,36 +93,42 @@ void EggSettings::contextMenuEvent(QContextMenuEvent *event)
     QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
-bool EggSettings::compatibleParents() const
+bool EggSettings::isValid(bool hiddenAbility) const
 {
+    // Gender compatability
     u8 parent1 = ui->comboBoxParentAGender->currentIndex();
     u8 parent2 = ui->comboBoxParentBGender->currentIndex();
-
-    // Male/Female
-    if ((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0))
+    if (!((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0) || // Male/Female
+          (parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3) || // Ditto/Female
+          (parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0) || // Male/Ditto
+          (parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))) // Genderless/Ditto
     {
-        return true;
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
+        box.exec();
+        return false;
     }
 
-    // Ditto/Female
-    if ((parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3))
+    // Hidden ability compatability
+    if (hiddenAbility)
     {
-        return true;
+        u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
+        u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
+
+        bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
+        if ((game & Game::Gen8) != Game::None) 
+        {
+            hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
+        }
+
+        if (!hiddenAbilityCompatible)
+        {
+            QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Parents incompatible for breeding Hidden Ability!"));
+            box.exec();
+            return false;
+        }
     }
 
-    // Male/Ditto
-    if ((parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0))
-    {
-        return true;
-    }
-
-    // Genderless/Ditto
-    if ((parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))
-    {
-        return true;
-    }
-
-    return false;
+    return true;
 }
 
 void EggSettings::copyFrom(const EggSettings *other)
@@ -235,37 +241,39 @@ bool EggSettings::reorderParents()
 
 void EggSettings::setup(Game game)
 {
+    this->game = game;
+
     u16 max = 0;
     if ((game & Game::Gen3) != Game::None)
     {
         bool flag = (game & Game::Emerald) != Game::None;
 
-        ui->labelAbility->setVisible(false);
+        ui->labelAbility->hide();
         ui->labelItem->setVisible(flag);
         ui->labelNature->setVisible(flag);
 
-        ui->comboBoxParentAAbility->setVisible(false);
-        ui->comboBoxParentBAbility->setVisible(false);
+        ui->comboBoxParentAAbility->hide();
+        ui->comboBoxParentBAbility->hide();
         ui->comboBoxParentAItem->setVisible(flag);
         ui->comboBoxParentBItem->setVisible(flag);
         ui->comboBoxParentANature->setVisible(flag);
         ui->comboBoxParentBNature->setVisible(flag);
 
         max = 386;
-        ui->checkBoxMasuda->setVisible(false);
+        ui->checkBoxMasuda->hide();
     }
     else if ((game & Game::Gen4) != Game::None)
     {
-        ui->labelAbility->setVisible(false);
-        ui->labelItem->setVisible(false);
-        ui->labelNature->setVisible(false);
+        ui->labelAbility->hide();
+        ui->labelItem->hide();
+        ui->labelNature->hide();
 
-        ui->comboBoxParentAAbility->setVisible(false);
-        ui->comboBoxParentBAbility->setVisible(false);
-        ui->comboBoxParentAItem->setVisible(false);
-        ui->comboBoxParentBItem->setVisible(false);
-        ui->comboBoxParentANature->setVisible(false);
-        ui->comboBoxParentBNature->setVisible(false);
+        ui->comboBoxParentAAbility->hide();
+        ui->comboBoxParentBAbility->hide();
+        ui->comboBoxParentAItem->hide();
+        ui->comboBoxParentBItem->hide();
+        ui->comboBoxParentANature->hide();
+        ui->comboBoxParentBNature->hide();
 
         max = 493;
     }

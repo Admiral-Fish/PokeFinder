@@ -23,7 +23,9 @@
 #include <Core/Global.hpp>
 #include <QDialog>
 
-class SeedTimeCalibrate4;
+class IndexFilterProxyModel;
+class SeedToTimeCalibrateModel4;
+typedef QList<QModelIndex> QModelIndexList;
 
 namespace Ui
 {
@@ -40,9 +42,10 @@ public:
     /**
      * @brief Construct a new SearchCalls object
      *
+     * @param model Input model to search
      * @param parent Parent widget, which takes memory ownership
      */
-    SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
+    SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the SearchCalls object
@@ -50,17 +53,23 @@ public:
     ~SearchCalls() override;
 
     /**
-     * @brief Returns possible matching results based on input Elm/Irwin calls
+     * @brief Returns possible matching indexes based on input Elm/Irwin calls
      *
-     * @return Vector of possible results
+     * @return Vector of possible indexes
      */
-    std::vector<bool> getResults() const;
+    QModelIndexList getIndexes() const;
 
 private:
     Ui::SearchCalls *ui;
 
-    std::vector<bool> possible;
-    const std::vector<SeedTimeCalibrate4> &data;
+    IndexFilterProxyModel *previewModel;
+    SeedToTimeCalibrateModel4 *model;
+    QModelIndexList indexes;
+
+    /**
+     * @brief Updates preview table with possible matching results
+     */
+    void updatePreview();
 
 private slots:
     /**
@@ -69,6 +78,11 @@ private slots:
      * @param text Current Elm/Irwin calls text
      */
     void callsTextChanged(const QString &text);
+
+    /**
+     * @brief Clears all Elm/Irwin calls from the string
+     */
+    void clear();
 
     /**
      * @brief Adds the Elm/Irwin E call to the string
@@ -94,6 +108,11 @@ private slots:
      * @brief Adds the Elm/Irwin P call to the string
      */
     void p();
+
+    /**
+     * @brief Removes the last Elm/Irwin call from the string
+     */
+    void remove();
 };
 
 #endif // SEARCHCALLS_HPP

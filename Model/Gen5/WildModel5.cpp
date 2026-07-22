@@ -29,7 +29,7 @@ WildGeneratorModel5::WildGeneratorModel5(QObject *parent) : TableModel(parent), 
 
 int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 19;
+    return 20;
 }
 
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -64,23 +64,25 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
         case 1:
             return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
         case 2:
-            return QString::fromStdString(Translator::getItem(state.getItem()));
+            return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
+            return QString::fromStdString(Translator::getItem(state.getItem()));
+        case 4:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 4:
-            return state.getLevel();
         case 5:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 6:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 7:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 7:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 9:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1: %2")
@@ -91,21 +93,21 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 9:
         case 10:
         case 11:
         case 12:
         case 13:
         case 14:
-            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
         case 16:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 17:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return state.getHiddenPowerStrength();
         case 18:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 19:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         }
     }
 
@@ -124,7 +126,7 @@ QVariant WildGeneratorModel5::headerData(int section, Qt::Orientation orientatio
 void WildGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount() - 1, 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 10), index(rowCount() - 1, 15), { Qt::DisplayRole });
 }
 
 WildSearcherModel5::WildSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
@@ -193,7 +195,7 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         case 18:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 19:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen5));
         case 20:
             return QString::fromStdString(display.getDateTime().toString());
         case 21:

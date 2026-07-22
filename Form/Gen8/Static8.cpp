@@ -32,10 +32,14 @@
 #include <QMessageBox>
 #include <QSettings>
 
+static const QString settingPrefix = QStringLiteral("static8");
+
 Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    ui->profileDisplay->setup(settingPrefix, Game::BDSP);
 
     model = new StaticModel8(ui->tableView);
     ui->tableView->setModel(model);
@@ -53,13 +57,13 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static8::profileIndexChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Static8::profileChanged);
+    connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Static8::profilesChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
     connect(ui->comboBoxCategory, &QComboBox::currentIndexChanged, this, &Static8::categoryIndexChanged);
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Static8::pokemonIndexChanged);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 
     updateProfiles();
@@ -67,7 +71,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     pokemonIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("static8");
+    setting.beginGroup(settingPrefix);
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -78,8 +82,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 Static8::~Static8()
 {
     QSettings setting;
-    setting.beginGroup("static8");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup(settingPrefix);
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -88,25 +91,7 @@ Static8::~Static8()
 
 void Static8::updateProfiles()
 {
-    profiles.clear();
-    auto completeProfiles = ProfileLoader8::getProfiles();
-    std::ranges::copy_if(completeProfiles, std::back_inserter(profiles),
-                         [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
-
-    ui->comboBoxProfiles->clear();
-
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static8/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
+    ui->profileDisplay->updateProfiles();
 }
 
 void Static8::categoryIndexChanged(int index)
@@ -177,21 +162,7 @@ void Static8::pokemonIndexChanged(int index)
     }
 }
 
-void Static8::profileIndexChanged(int index)
+void Static8::profileChanged(const Profile8 &profile)
 {
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Static8::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
+    currentProfile = &profile;
 }
