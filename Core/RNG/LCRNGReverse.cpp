@@ -155,7 +155,7 @@ namespace LCRNGReverse
     RecoverySeeds<12> recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
     {
         // First row of the BKZ-reduced matrix
-        constexpr s64 R[] = { -2528644, -24142902, 52961366, 7565619, 24945956, -99942057 };
+        constexpr s32 R[] = { -2528644, -24142902, 52961366, 7565619, 24945956, -99942057 };
         constexpr s64 LOWER[] = { 0x2AB966D1C2, 0x2169A3AA47, -0x5049D5FDC, -0x2AACDA387, 0xFE7FFFFFF, -0x898000001 };
         constexpr s64 UPPER[] = { 0x2E8966D1C3, 0x23D9A3AA48, -0x3549D5FDB, -0xDACDA386, 0x1098000000, -0x7E8000000 };
 
@@ -169,7 +169,7 @@ namespace LCRNGReverse
             (-27 * (s64)hp + 18 * (s64)def + 8 * (s64)spe + (s64)spa) << 27
         };
 
-        const s64 min[] = {
+        const s32 min[] = {
             ((f[0] + UPPER[0]) >> 32) * R[0],
             ((f[1] + UPPER[1]) >> 32) * R[1],
             ((f[2] + LOWER[2]) >> 32) * R[2],
@@ -178,7 +178,7 @@ namespace LCRNGReverse
             ((f[5] + UPPER[5]) >> 32) * R[5]
         };
 
-        const s64 max[] = {
+        const s32 max[] = {
             ((f[0] + LOWER[0]) >> 32) * R[0],
             ((f[1] + LOWER[1]) >> 32) * R[1],
             ((f[2] + UPPER[2]) >> 32) * R[2],
@@ -189,21 +189,21 @@ namespace LCRNGReverse
         // clang-format on
 
         RecoverySeeds<12> seeds;
-        for (s64 x5 = min[5]; x5 <= max[5]; x5 += -R[5])
+        for (s32 x5 = min[5]; x5 <= max[5]; x5 += -R[5])
         {
-            for (s64 x4 = min[4]; x4 <= max[4]; x4 += R[4])
+            for (s32 x4 = min[4]; x4 <= max[4]; x4 += R[4])
             {
-                s64 l4 = x5 + x4;
-                for (s64 x2 = min[2]; x2 <= max[2]; x2 += R[2])
+                s32 l4 = x5 + x4;
+                for (s32 x2 = min[2]; x2 <= max[2]; x2 += R[2])
                 {
-                    s64 l2 = l4 + x2;
-                    for (s64 x3 = min[3]; x3 <= max[3]; x3 += R[3])
+                    s32 l2 = l4 + x2;
+                    for (s32 x3 = min[3]; x3 <= max[3]; x3 += R[3])
                     {
-                        s64 l3 = l2 + x3;
-                        for (s64 x1 = min[1]; x1 <= max[1]; x1 += -R[1])
+                        s32 l3 = l2 + x3;
+                        for (s32 x1 = min[1]; x1 <= max[1]; x1 += -R[1])
                         {
-                            s64 l1 = l3 + x1;
-                            for (s64 x0 = min[0]; x0 <= max[0]; x0 += -R[0])
+                            s32 l1 = l3 + x1;
+                            for (s32 x0 = min[0]; x0 <= max[0]; x0 += -R[0])
                             {
                                 u32 seed = static_cast<u32>(l1 + x0);
                                 if ((seed >> 27) != hp)
