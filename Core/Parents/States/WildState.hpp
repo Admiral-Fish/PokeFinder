@@ -148,8 +148,8 @@ public:
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, bool valid = true) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances), valid(valid)
     {
     }
 
@@ -172,8 +172,8 @@ public:
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, bool valid = true) :
+        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances), valid(valid)
     {
     }
 
@@ -187,8 +187,20 @@ public:
         return advances;
     }
 
+    /**
+     * @brief Determines if the state can be hit
+     *
+     * @return true State can be hit
+     * @return false State cannot be hit
+     */
+    bool isValid() const
+    {
+        return valid;
+    }
+
 protected:
     u32 advances;
+    bool valid;
 };
 
 /**

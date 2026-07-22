@@ -92,6 +92,10 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         // RSE uses the main rng to check for rock smash encounters
         if (rock && go.nextUShort(2880) >= rate)
         {
+            const Slot &slot = area.getPokemon(0);
+            const PersonalInfo *info = slot.getInfo();
+            std::array<u8, 6> ivs = {};
+            states.emplace_back(initialAdvances + cnt, 0, ivs, 0, 0, 0, 0, 0, 0, 0, slot.getSpecie(), slot.getForm(), info, false);
             continue;
         }
 
