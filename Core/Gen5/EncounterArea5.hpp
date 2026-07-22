@@ -66,15 +66,14 @@ public:
             u8 max = level;
             for (u8 i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
             {
-                const Slot &other = pokemon[i];
-                if (other.getMinLevel() != other.getMaxLevel())
+                if (pokemon[i].getMinLevel() != pokemon[i].getMaxLevel())
                 {
                     diff = true;
                 }
 
-                if (slot.getSpecie() == other.getSpecie())
+                if (slot.getSpecie() == pokemon[i].getSpecie())
                 {
-                    max = std::max(max, other.getMaxLevel());
+                    max = std::max(max, pokemon[i].getMaxLevel());
                 }
             }
 

@@ -83,7 +83,7 @@ void WildGenerator5Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,

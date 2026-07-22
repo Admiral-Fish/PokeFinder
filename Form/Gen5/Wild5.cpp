@@ -229,12 +229,7 @@ void Wild5::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
 
-    WildStateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                           ui->filterGenerator->getLevelMin(), ui->filterGenerator->getLevelMax(), ui->filterGenerator->getHeightMin(),
-                           ui->filterGenerator->getHeightMax(), ui->filterGenerator->getWeightMin(), ui->filterGenerator->getWeightMax(),
-                           ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                           ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
-                           ui->filterGenerator->getWildEncounterSlots());
+    auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
@@ -412,12 +407,7 @@ void Wild5::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
-    WildStateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
-                           ui->filterSearcher->getLevelMin(), ui->filterSearcher->getLevelMax(), ui->filterSearcher->getHeightMin(),
-                           ui->filterSearcher->getHeightMax(), ui->filterSearcher->getWeightMin(), ui->filterSearcher->getWeightMax(),
-                           ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
-                           ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
-                           ui->filterSearcher->getWildEncounterSlots());
+    auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
