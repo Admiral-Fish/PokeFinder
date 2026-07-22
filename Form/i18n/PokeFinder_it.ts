@@ -10032,6 +10032,18 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>Wild5</name>
     <message>
+        <source>Encounter Modifier</source>
+        <translation>Modificatore Incontro</translation>
+    </message>
+    <message>
+        <source>Sticky Hold</source>
+        <translation>Antifurto</translation>
+    </message>
+    <message>
+        <source>Suction Cups</source>
+        <translation>Ventose</translation>
+    </message>
+    <message>
         <location filename="../Gen5/Wild5.cpp" line="116"/>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
