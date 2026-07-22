@@ -58,6 +58,11 @@
 
 namespace
 {
+    bool supportsEncounterModifier(Encounter encounter)
+    {
+        return encounter == Encounter::DustCloud || encounter == Encounter::FlyingShadow;
+    }
+
     WildStateFilter getUnfilteredWildStateFilter()
     {
         std::array<u8, 6> ivMin {};
@@ -182,6 +187,15 @@ Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
                                         { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Encounter Modifier"),
+                                        { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                          { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                          { tr("No Guard"), toInt(Lead::NoGuard) },
+                                          { tr("Quick Feet"), toInt(Lead::QuickFeet) },
+                                          { tr("Stench"), toInt(Lead::Stench) },
+                                          { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                          { tr("Suction Cups"), toInt(Lead::SuctionCups) },
+                                          { tr("White Smoke"), toInt(Lead::WhiteSmoke) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
                                         { { tr("Hustle"), toInt(Lead::Hustle) },
                                           { tr("Pressure"), toInt(Lead::Pressure) },
@@ -194,6 +208,15 @@ Phenomenon::Phenomenon(QWidget *parent) : QWidget(parent), ui(new Ui::Phenomenon
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Encounter Modifier"),
+                                       { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                         { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                         { tr("No Guard"), toInt(Lead::NoGuard) },
+                                         { tr("Quick Feet"), toInt(Lead::QuickFeet) },
+                                         { tr("Stench"), toInt(Lead::Stench) },
+                                         { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                         { tr("Suction Cups"), toInt(Lead::SuctionCups) },
+                                         { tr("White Smoke"), toInt(Lead::WhiteSmoke) } });
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
                                        { { tr("Hustle"), toInt(Lead::Hustle) },
                                          { tr("Pressure"), toInt(Lead::Pressure) },
@@ -492,6 +515,9 @@ void Phenomenon::generatorEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
+        bool encounterModifier = supportsEncounterModifier(encounter);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::ArenaTrap), !encounterModifier);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !encounterModifier);
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);
@@ -737,6 +763,9 @@ void Phenomenon::searcherEncounterIndexChanged(int index)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
+        bool encounterModifier = supportsEncounterModifier(encounter);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::ArenaTrap), !encounterModifier);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::SuctionCups), !encounterModifier);
 
         u8 season = ui->comboBoxSearcherSeason->currentIndex();
         encounterSearcher = Encounters5::getEncounters(encounter, season, currentProfile);

@@ -102,6 +102,16 @@ static bool canYieldPhenomenonItem(Encounter encounter)
     return encounter == Encounter::DustCloud || encounter == Encounter::FlyingShadow;
 }
 
+static u16 getPhenomenonRate(Encounter encounter)
+{
+    return encounter == Encounter::FlyingShadow ? 150 : 100;
+}
+
+static bool skipsLeadCheck(Encounter encounter, Lead lead)
+{
+    return lead == Lead::CompoundEyes || lead == Lead::SuctionCups || (canTriggerPhenomenon(encounter) && lead == Lead::ArenaTrap);
+}
+
 static bool checkFlyingShadowBattle(BWRNG &rng)
 {
     return ((static_cast<u64>(rng.nextUInt()) * 1000) >> 32) < 200;
@@ -256,7 +266,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             phenomenonItem = getPercentRand(go, bw) >= battleRate;
         }
 
-        if (area.getEncounter() == Encounter::FlyingShadow && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        if (area.getEncounter() == Encounter::FlyingShadow && !skipsLeadCheck(area.getEncounter(), lead))
         {
             if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
             {
@@ -283,7 +293,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
                 }
             }
         }
-        else if (!phenomenonItem && lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        else if (!phenomenonItem && !skipsLeadCheck(area.getEncounter(), lead))
         {
             // Failed cute charm continues to check for other leads
             if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
@@ -380,7 +390,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             item = getItem(go, bw, lead, area.getEncounter(), info);
         }
 
-        bool phenomenon = canTriggerPhenomenon(area.getEncounter()) && BWRNG(rng).nextUInt(1000) < 100;
+        bool phenomenon = canTriggerPhenomenon(area.getEncounter()) && BWRNG(rng).nextUInt(1000) < getPhenomenonRate(area.getEncounter());
         u32 prng = rng.nextUInt();
         for (const auto &iv : ivs)
         {
