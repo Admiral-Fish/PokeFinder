@@ -17,58 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LEAD_HPP
-#define LEAD_HPP
+#include "PhenomenonFilter.hpp"
+#include <Core/Gen5/States/PhenomenonState.hpp>
+#include <algorithm>
 
-#include <Core/Global.hpp>
-
-/**
- * @brief Enum to encompass different leads
- */
-enum class Lead : u8
+PhenomenonFilter::PhenomenonFilter(bool encounter, const std::vector<u16> &items) : encounter(encounter), items(items)
 {
-    None = 255,
-
-    Synchronize = 0,
-    SynchronizeEnd = 24,
-
-    CuteCharmF,
-    CuteCharmM,
-
-    MagnetPull,
-    Static,
-    Harvest,
-    FlashFire,
-    StormDrain,
-
-    Pressure,
-    Hustle = Pressure,
-    VitalSpirit = Pressure,
-
-    SuctionCups,
-    StickyHold = SuctionCups,
-
-    CompoundEyes,
-    SuperLuck = CompoundEyes,
-
-    ArenaTrap,
-    Illuminate = ArenaTrap,
-    NoGuard = ArenaTrap,
-    QuickFeet = ArenaTrap,
-    Stench = ArenaTrap,
-    WhiteSmoke = ArenaTrap,
-};
-
-/**
- * @brief Converts enum to number
- *
- * @param lead Input lead
- *
- * @return Converted number
- */
-constexpr u8 toInt(Lead lead)
-{
-    return static_cast<u8>(lead);
 }
 
-#endif // LEAD_HPP
+bool PhenomenonFilter::compareState(const PhenomenonState &state) const
+{
+    if (state.getItem() && (encounter || std::find(items.begin(), items.end(), state.getData()) == items.end()))
+    {
+        return false;
+    }
+
+    return true;
+}

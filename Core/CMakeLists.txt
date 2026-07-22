@@ -148,6 +148,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Keypresses.hpp
     Gen5/Filters/HiddenGrottoFilter.cpp
     Gen5/Filters/HiddenGrottoFilter.hpp
+    Gen5/Filters/PhenomenonFilter.cpp
+    Gen5/Filters/PhenomenonFilter.hpp
     Gen5/Generators/DreamRadarGenerator.cpp
     Gen5/Generators/DreamRadarGenerator.hpp
     Gen5/Generators/EggGenerator5.cpp
@@ -160,6 +162,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/HiddenGrottoGenerator.hpp
     Gen5/Generators/IDGenerator5.cpp
     Gen5/Generators/IDGenerator5.hpp
+    Gen5/Generators/PhenomenonGenerator.cpp
+    Gen5/Generators/PhenomenonGenerator.hpp
     Gen5/Generators/StaticGenerator5.cpp
     Gen5/Generators/StaticGenerator5.hpp
     Gen5/Generators/WildGenerator5.cpp
@@ -171,6 +175,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Nazos.cpp
     Gen5/Nazos.hpp
     Gen5/PGF.hpp
+    Gen5/PhenomenonArea.cpp
+    Gen5/PhenomenonArea.hpp
     Gen5/Profile5.cpp
     Gen5/Profile5.hpp
     Gen5/Searchers/IDSearcher5.cpp
@@ -191,6 +197,7 @@ add_library(PokeFinderCore STATIC
     Gen5/States/EggState5.hpp
     Gen5/States/EventState5.hpp
     Gen5/States/HiddenGrottoState.hpp
+    Gen5/States/PhenomenonState.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp

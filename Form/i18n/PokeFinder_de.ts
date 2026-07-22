@@ -4958,6 +4958,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation></translation>
     </message>
     <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
         <source>Adjacent Seeds</source>
         <translation>Nahe Seeds</translation>
     </message>
@@ -9742,6 +9746,291 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
 </context>
 <context>
+    <name>Phenomenon</name>
+    <message>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adjacent Seeds</source>
+        <translation>Nahe Seeds</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
+        <source>Rustling Grass</source>
+        <translation>Raschelndes Gras</translation>
+    </message>
+    <message>
+        <source>Dust Cloud</source>
+        <translation>Staubwolke</translation>
+    </message>
+    <message>
+        <source>Rippling Surfing</source>
+        <translation>Schatten auf dem Wasser</translation>
+    </message>
+    <message>
+        <source>Rippling Fishing</source>
+        <translation>Angel im Schatten auf dem Wasser</translation>
+    </message>
+    <message>
+        <source>Flying Shadow</source>
+        <translation>Schatten fliegender Pokémon</translation>
+    </message>
+    <message>
+        <source>Item</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Kein Item</translation>
+    </message>
+    <message>
+        <source>Pokémon</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Profil</translation>
+    </message>
+    <message>
+        <source>Manager</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>TID</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>SID</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>MAC Address</source>
+        <translation>MAC Adresse</translation>
+    </message>
+    <message>
+        <source>DS Type</source>
+        <translation>DS Typ</translation>
+    </message>
+    <message>
+        <source>VCount</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Timer0</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>GxStat</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>VFrame</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Keypresses</source>
+        <translation>Knopfdrücke</translation>
+    </message>
+    <message>
+        <source>Game</source>
+        <translation>Spiel</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>RNG Info</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Lead</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>IV Advances</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Initial Advances</source>
+        <translation>Minimale Advances</translation>
+    </message>
+    <message>
+        <source>Max Advances</source>
+        <translation>Maximale Advances</translation>
+    </message>
+    <message>
+        <source>Offset</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Lucky Power</source>
+        <translation>Beschwörungskraft</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>Generieren</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Encounter</source>
+        <translation>Begegnungsart</translation>
+    </message>
+    <message>
+        <source>Season</source>
+        <translation>Jahreszeit</translation>
+    </message>
+    <message>
+        <source>Spring</source>
+        <translation>Frühling</translation>
+    </message>
+    <message>
+        <source>Summer</source>
+        <translation>Sommer</translation>
+    </message>
+    <message>
+        <source>Autumn</source>
+        <translation>Herbst</translation>
+    </message>
+    <message>
+        <source>Winter</source>
+        <translation>Winter</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Fundort</translation>
+    </message>
+    <message>
+        <source>Levels</source>
+        <translation>Level</translation>
+    </message>
+    <message>
+        <source>Filters</source>
+        <translation>Filter</translation>
+    </message>
+    <message>
+        <source>Searcher</source>
+        <translation>Sucher</translation>
+    </message>
+    <message>
+        <source>Initial IV Advances</source>
+        <translation>Minimale IV Advances</translation>
+    </message>
+    <message>
+        <source>Max IV Advances</source>
+        <translation>Maximale IV Advances</translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation>Startdatum</translation>
+    </message>
+    <message>
+        <source>End Date</source>
+        <translation>Enddatum</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Suchen</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Compound Eyes</source>
+        <translation>Facettenauge</translation>
+    </message>
+    <message>
+        <source>Cute Charm</source>
+        <translation>Charmebolzen</translation>
+    </message>
+    <message>
+        <source>♂ Lead</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>♀ Lead</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Level Modifier</source>
+        <translation>Level Modifizierer</translation>
+    </message>
+    <message>
+        <source>Hustle</source>
+        <translation>Übereifer</translation>
+    </message>
+    <message>
+        <source>Pressure</source>
+        <translation>Erzwinger</translation>
+    </message>
+    <message>
+        <source>Vital Spirit</source>
+        <translation>Munterkeit</translation>
+    </message>
+    <message>
+        <source>Slot Modifier</source>
+        <translation>Slot Modifizierer</translation>
+    </message>
+    <message>
+        <source>Magnet Pull</source>
+        <translation>Magnetfalle</translation>
+    </message>
+    <message>
+        <source>Static</source>
+        <translation>Statik</translation>
+    </message>
+    <message>
+        <source>Synchronize</source>
+        <translation>Synchro</translation>
+    </message>
+    <message>
+        <source>Invalid date range</source>
+        <translation>Ungültige Datumsspanne</translation>
+    </message>
+    <message>
+        <source>Start date is after end date</source>
+        <translation>Startdatum ist nach Enddatum</translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV/SHA searching</source>
+        <translation>Einstellungen sind für schnelle IV/SHA Suche konfiguriert</translation>
+    </message>
+    <message>
+        <source>Settings are configured for fast IV searching.
+Profile is missing or has an incompatible SHA cache.</source>
+        <translation>Einstellungen sind für schnelle IV Suche konfiguriert.
+Profil hat kein oder ein inkompatibles SHA Cache.</translation>
+    </message>
+    <message>
+        <source>Profile does not have a IV cache file configured</source>
+        <translation>Profil hat keine IV cache Datei Konfiguriert</translation>
+    </message>
+    <message>
+        <source>Settings are not configured for fast searching</source>
+        <translation>Schnellsuche ist aufgrund der IV Advances oder IV Filter deaktiviert</translation>
+    </message>
+    <message>
+        <source>Keep initial/max advances below %1/%2</source>
+        <translation>Lasse Minimale/Maximale IV Advances unter %1/%2</translation>
+    </message>
+    <message>
+        <source>Ensure IV filters are set to common spreads</source>
+        <translation>Setze IV Filter auf häufig verwendete IV spreads</translation>
+    </message>
+</context>
+<context>
     <name>Wild5</name>
     <message>
         <source>Encounter Modifier</source>
@@ -9825,24 +10114,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Dunkles Gras</translation>
     </message>
     <message>
-        <source>Rustling Grass</source>
-        <translation>Raschelndes Gras</translation>
-    </message>
-    <message>
         <source>Surfing</source>
         <translation>Surfen</translation>
     </message>
     <message>
-        <source>Rippling Surfing</source>
-        <translation>Schatten auf dem Wasser</translation>
-    </message>
-    <message>
         <source>Fishing</source>
         <translation>Angeln</translation>
-    </message>
-    <message>
-        <source>Rippling Fishing</source>
-        <translation>Angel im Schatten auf dem Wasser</translation>
     </message>
     <message>
         <source>Location</source>
@@ -9962,7 +10239,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Wild5.cpp" line="94"/>
         <location filename="../Gen5/Wild5.cpp" line="106"/>
         <source>Slot Modifier</source>
-        <translation></translation>
+        <translation>Slot Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="95"/>
@@ -10108,7 +10385,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="65"/>
         <source>Slot Modifier</source>
-        <translation>Modifizierer</translation>
+        <translation>Slot Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="66"/>
@@ -10605,6 +10882,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
 </context>
 <context>
     <name>WildModel8</name>
@@ -11076,6 +11361,14 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
+    </message>
+    <message>
+        <source>Phenomenon</source>
+        <translation>Phänomen</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
     </message>
 </context>
 </TS>

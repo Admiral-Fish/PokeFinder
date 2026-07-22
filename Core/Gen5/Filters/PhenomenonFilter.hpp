@@ -17,58 +17,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LEAD_HPP
-#define LEAD_HPP
+#ifndef PHENOMENONFILTER_HPP
+#define PHENOMENONFILTER_HPP
 
 #include <Core/Global.hpp>
+#include <vector>
 
-/**
- * @brief Enum to encompass different leads
- */
-enum class Lead : u8
+class PhenomenonState;
+
+class PhenomenonFilter
 {
-    None = 255,
+public:
+    /**
+     * @brief Construct a new PhenomenonFilter object
+     *
+     * @param encounter Encounter to filter by
+     * @param items Items to filter by
+     */
+    PhenomenonFilter(bool encounter, const std::vector<u16> &items);
 
-    Synchronize = 0,
-    SynchronizeEnd = 24,
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const PhenomenonState &state) const;
 
-    CuteCharmF,
-    CuteCharmM,
-
-    MagnetPull,
-    Static,
-    Harvest,
-    FlashFire,
-    StormDrain,
-
-    Pressure,
-    Hustle = Pressure,
-    VitalSpirit = Pressure,
-
-    SuctionCups,
-    StickyHold = SuctionCups,
-
-    CompoundEyes,
-    SuperLuck = CompoundEyes,
-
-    ArenaTrap,
-    Illuminate = ArenaTrap,
-    NoGuard = ArenaTrap,
-    QuickFeet = ArenaTrap,
-    Stench = ArenaTrap,
-    WhiteSmoke = ArenaTrap,
+private:
+    std::vector<u16> items;
+    bool encounter;
 };
 
-/**
- * @brief Converts enum to number
- *
- * @param lead Input lead
- *
- * @return Converted number
- */
-constexpr u8 toInt(Lead lead)
-{
-    return static_cast<u8>(lead);
-}
-
-#endif // LEAD_HPP
+#endif // PHENOMENONFILTER_HPP

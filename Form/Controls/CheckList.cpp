@@ -70,7 +70,7 @@ public:
     }
 };
 
-CheckList::CheckList(QWidget *parent) : QComboBox(parent), full(true)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent), uncheckedText(tr("Any")), full(true)
 {
     setEditable(true);
     lineEdit()->setReadOnly(true);
@@ -165,6 +165,11 @@ std::vector<u16> CheckList::getCheckedData() const
     return data;
 }
 
+Qt::CheckState CheckList::getCheckState() const
+{
+    return checkState();
+}
+
 void CheckList::resetChecks()
 {
     for (int i = 0; i < model->rowCount(); i++)
@@ -172,6 +177,12 @@ void CheckList::resetChecks()
         auto *item = model->item(i);
         item->setCheckState(Qt::Unchecked);
     }
+}
+
+void CheckList::setUncheckedText(const QString &text)
+{
+    uncheckedText = text;
+    updateText();
 }
 
 void CheckList::setChecks(const std::vector<bool> &flags)
@@ -321,7 +332,7 @@ void CheckList::updateText()
         text = tr("Any");
         break;
     case Qt::Unchecked:
-        text = full ? tr("Any") : tr("None");
+        text = full ? uncheckedText : tr("None");
         break;
     case Qt::PartiallyChecked:
         for (int i = 0; i < proxyModel->rowCount(); i++)

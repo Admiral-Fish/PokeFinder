@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
-    <height>293</height>
+    <width>359</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowIcon">
@@ -143,13 +143,20 @@
          </widget>
         </item>
         <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonPhenomenon">
+          <property name="text">
+           <string>Phenomenon</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
          <widget class="QPushButton" name="pushButtonStatic5">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="7" column="0">
          <widget class="QPushButton" name="pushButtonWild5">
           <property name="text">
            <string>Wild</string>
@@ -223,7 +230,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>358</width>
+     <width>359</width>
      <height>22</height>
     </rect>
    </property>
