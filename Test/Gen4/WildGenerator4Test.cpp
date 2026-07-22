@@ -46,6 +46,16 @@ static bool operator==(const WildGeneratorState4 &left, const json &right)
         && left.getCall() == right["call"].get<u8>() && left.getChatot() == right["chatot"].get<u8>();
 }
 
+static bool isRockSmashItemState(const WildGeneratorState4 &state)
+{
+    constexpr std::array<u16, 8> cianwoodItems = { 39, 28, 93, 72, 73, 75, 74, 91 };
+
+    return state.getSpecie() == 0 && state.getPID() == 0 && state.getAbility() == 0 && state.getGender() == 0 && state.getLevel() == 0
+        && state.getNature() == 0 && state.getShiny() == 0 && state.getEncounterSlot() == 0 && state.getForm() == 0
+        && state.getIVs() == std::array<u8, 6> {}
+        && std::ranges::find(cianwoodItems, state.getItem()) != cianwoodItems.end();
+}
+
 void WildGenerator4Test::generateMethodJ_data()
 {
     QTest::addColumn<u32>("seed");
@@ -176,11 +186,34 @@ void WildGenerator4Test::generateMethodK()
     WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, false, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0);
-    QCOMPARE(states.size(), j.size());
-
-    for (size_t i = 0; i < states.size(); i++)
+    std::vector<WildGeneratorState4> pokemonStates;
+    std::vector<WildGeneratorState4> itemStates;
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
+        if (state.getSpecie() == 0)
+        {
+            itemStates.emplace_back(state);
+        }
+        else
+        {
+            pokemonStates.emplace_back(state);
+        }
+    }
+
+    size_t expectedItemStates
+        = seed == 3537031890 && version == Game::HeartGold && encounter == Encounter::RockSmash && lead == Lead::None && location == 51 ? 1
+                                                                                                                                       : 0;
+    QCOMPARE(pokemonStates.size(), j.size());
+    QCOMPARE(itemStates.size(), expectedItemStates);
+
+    for (const auto &state : itemStates)
+    {
+        QVERIFY(isRockSmashItemState(state));
+    }
+
+    for (size_t i = 0; i < pokemonStates.size(); i++)
+    {
+        const auto &state = pokemonStates[i];
         QVERIFY(state == j[i]);
     }
 }
