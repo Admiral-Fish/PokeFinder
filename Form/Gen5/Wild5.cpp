@@ -168,10 +168,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
-    ui->comboBoxGeneratorLuckyPower->setup(
-        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
-    ui->comboBoxSearcherLuckyPower->setup(
-        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
+    ui->comboBoxGeneratorLuckyPower->setup({ PassPower5::None, PassPower5::Lucky1, PassPower5::Lucky2, PassPower5::Lucky3,
+                                             PassPower5::Encounter1, PassPower5::Encounter2, PassPower5::Encounter3 });
+    ui->comboBoxSearcherLuckyPower->setup({ PassPower5::None, PassPower5::Lucky1, PassPower5::Lucky2, PassPower5::Lucky3,
+                                            PassPower5::Encounter1, PassPower5::Encounter2, PassPower5::Encounter3 });
 
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);

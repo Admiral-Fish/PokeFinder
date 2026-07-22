@@ -73,25 +73,31 @@ namespace StepEncounter5
         return &patterns[rate - 1];
     }
 
-    inline u8 getSteps(u8 ratio, const Pattern &pattern, u8 multiplier = 1)
+    inline u8 getSteps(u8 ratio, const Pattern &pattern, u16 modifier = 100)
     {
-        if (ratio > pattern.max * multiplier)
+        u16 max = std::min<u16>(100, pattern.max * modifier / 100);
+        if (ratio > max)
         {
             return impossible;
         }
 
-        u8 needed = std::max<u8>(1, (ratio + multiplier - 1) / multiplier);
+        u8 needed = std::max<u8>(1, (ratio * 100 + modifier - 1) / modifier);
         u8 steps = pattern.safety + std::max<u8>(1, ((needed - 1 + pattern.up - 1) / pattern.up) * pattern.interval);
         return steps - 1;
     }
 
-    inline u8 getSteps(Game version, Encounter encounter, u8 rate, u8 ratio, bool stepModifier = false)
+    inline u8 getSteps(Game version, Encounter encounter, u8 rate, u8 ratio, u16 modifier = 100)
     {
         if ((version & Game::BW) != Game::None
             && (encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing))
         {
-            u16 threshold = stepModifier ? rate * 2 : rate;
-            return ratio <= threshold ? (ratio <= 1 ? 0 : 1) : impossible;
+            if (ratio <= 1)
+            {
+                return 0;
+            }
+
+            u16 threshold = std::min<u16>(100, rate * modifier / 100);
+            return ratio <= threshold ? 1 : impossible;
         }
 
         const Pattern *pattern = getPattern(version, encounter, rate);
@@ -100,7 +106,7 @@ namespace StepEncounter5
             return impossible;
         }
 
-        return getSteps(ratio, *pattern, stepModifier ? 2 : 1);
+        return getSteps(ratio, *pattern, modifier);
     }
 }
 

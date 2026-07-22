@@ -47,7 +47,6 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    bool dpptStepEncounter = showStepEncounter && method != Method::MethodK;
     if (showStepEncounter && !state.getStepEncounter())
     {
         if (role == Qt::FontRole)
@@ -65,7 +64,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         int column = getColumn(index.column());
-        if (dpptStepEncounter && !state.getStepEncounter() && column > 4)
+        if (showStepEncounter && !state.getStepEncounter() && column > 4)
         {
             return "-";
         }
