@@ -25,7 +25,7 @@
 
 namespace LeadDisplay
 {
-    QString getLeadName(u64 leadMask);
+    QString getLeadName(u64 leadMask, bool showSynchronizeNature = true);
 }
 
 #endif // LEADDISPLAY_HPP

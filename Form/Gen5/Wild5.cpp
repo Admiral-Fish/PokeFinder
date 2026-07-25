@@ -45,6 +45,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <vector>
 
 static const QString settingPrefix = QStringLiteral("static5");
 
@@ -110,6 +111,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->comboMenuSearcherLead->setMultiSelect(true);
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -400,11 +402,15 @@ void Wild5::search()
     u32 maxIVAdvances = ui->textBoxSearcherMaxIVAdvances->getUInt();
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    std::vector<Lead> leads;
+    for (int data : ui->comboMenuSearcherLead->getCheckedData())
+    {
+        leads.emplace_back(static_cast<Lead>(data));
+    }
     u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, leads, luckyPower,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;

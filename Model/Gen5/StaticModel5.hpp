@@ -158,6 +158,7 @@ public slots:
 
 private:
     QStringList header = { tr("Seed"),
+                           tr("Lead"),
                            tr("Advances"),
                            tr("IV Advances"),
                            tr("PID"),

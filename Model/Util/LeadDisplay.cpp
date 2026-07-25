@@ -39,7 +39,7 @@ namespace
 
 namespace LeadDisplay
 {
-    QString getLeadName(u64 leadMask)
+    QString getLeadName(u64 leadMask, bool showSynchronizeNature)
     {
         if (leadMask == 0)
         {
@@ -54,7 +54,11 @@ namespace LeadDisplay
 
         constexpr u64 synchronizeMask = (1ULL << 25) - 1;
         u64 synchronize = leadMask & synchronizeMask;
-        if (synchronize == synchronizeMask)
+        if (synchronize != 0 && !showSynchronizeNature)
+        {
+            leads.append(trLead("Synchronize"));
+        }
+        else if (synchronize == synchronizeMask)
         {
             leads.append(QString("%1: %2").arg(trLead("Synchronize"), trLead("Any Nature")));
         }
