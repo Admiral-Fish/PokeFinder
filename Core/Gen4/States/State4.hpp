@@ -96,7 +96,7 @@ public:
      */
     SearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                    const PersonalInfo *info) :
-        SearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, info)
+        SearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, info), advances(0)
     {
     }
 

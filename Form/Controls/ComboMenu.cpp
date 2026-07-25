@@ -18,12 +18,17 @@
  */
 
 #include "ComboMenu.hpp"
+#include <QEvent>
 #include <QMenu>
+#include <QMouseEvent>
+#include <QStringList>
+#include <algorithm>
 
-ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QActionGroup(this)), topMenu(new QMenu(this))
+ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QActionGroup(this)), topMenu(new QMenu(this)), multiSelect(false)
 {
     actionGroup->setExclusive(true);
     QToolButton::setMenu(topMenu);
+    topMenu->installEventFilter(this);
 
     setPopupMode(QToolButton::InstantPopup);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -38,7 +43,12 @@ void ComboMenu::addAction(const QString &actionText, int data, QMenu *menu)
     action->setData(data);
 
     actionGroup->addAction(action);
-    if (actionGroup->actions().size() == 1)
+    if (multiSelect)
+    {
+        action->setChecked(actionGroup->actions().size() == 1);
+        updateMultiSelectText();
+    }
+    else if (actionGroup->actions().size() == 1)
     {
         action->setChecked(true);
         actionChanged(action);
@@ -52,6 +62,7 @@ void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> 
     std::ranges::sort(indices, [&actions](int i, int j) { return actions[i] < actions[j]; });
 
     QMenu *menu = topMenu->addMenu(menuText);
+    configureSubMenu(menu);
     for (int i : indices)
     {
         addAction(QString::fromStdString(actions[i]), i, menu);
@@ -61,6 +72,7 @@ void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> 
 void ComboMenu::addMenu(const QString &menuText, const std::vector<std::pair<QString, int>> &actions)
 {
     QMenu *menu = topMenu->addMenu(menuText);
+    configureSubMenu(menu);
     for (const auto &action : actions)
     {
         addAction(action.first, action.second, menu);
@@ -69,9 +81,67 @@ void ComboMenu::addMenu(const QString &menuText, const std::vector<std::pair<QSt
 
 void ComboMenu::clearSelection()
 {
+    if (multiSelect)
+    {
+        bool first = true;
+        for (auto *action : actionGroup->actions())
+        {
+            action->setChecked(first && action->isVisible());
+            first = false;
+        }
+        updateMultiSelectText();
+        return;
+    }
+
     QAction *action = actionGroup->actions().constFirst();
     action->setChecked(true);
     actionChanged(action);
+}
+
+std::vector<int> ComboMenu::getCheckedData() const
+{
+    auto actions = actionGroup->actions();
+    std::vector<int> data;
+    if (!multiSelect)
+    {
+        data.emplace_back(actionGroup->checkedAction()->data().toInt());
+        return data;
+    }
+
+    int visible = std::ranges::count_if(actions, [](const QAction *action) { return action->isVisible(); });
+    int checked = std::ranges::count_if(actions, [](const QAction *action) { return action->isVisible() && action->isChecked(); });
+    bool all = checked == 0 || checked == visible;
+    for (const auto *action : actions)
+    {
+        if (action->isVisible() && (all || action->isChecked()))
+        {
+            data.emplace_back(action->data().toInt());
+        }
+    }
+
+    return data;
+}
+
+void ComboMenu::setCheckedData(const std::vector<int> &data)
+{
+    for (auto *action : actionGroup->actions())
+    {
+        bool checked = std::ranges::contains(data, action->data().toInt());
+        action->setChecked(checked);
+    }
+
+    if (multiSelect)
+    {
+        updateMultiSelectText();
+    }
+    else
+    {
+        QAction *action = actionGroup->checkedAction();
+        if (action != nullptr)
+        {
+            actionChanged(action);
+        }
+    }
 }
 
 void ComboMenu::hideAction(const QVariant &data, bool hide)
@@ -101,10 +171,89 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
             menu->menuAction()->setVisible(visible);
         }
     }
+
+    if (multiSelect)
+    {
+        updateMultiSelectText();
+    }
+}
+
+void ComboMenu::setMultiSelect(bool flag)
+{
+    multiSelect = flag;
+    actionGroup->setExclusive(!flag);
+    setSizePolicy(multiSelect ? QSizePolicy::Ignored : QSizePolicy::Preferred, QSizePolicy::Fixed);
+
+    if (multiSelect)
+    {
+        bool first = true;
+        for (auto *action : actionGroup->actions())
+        {
+            action->setChecked(first && action->isVisible());
+            first = false;
+        }
+
+        for (QObject *object : topMenu->children())
+        {
+            auto *menu = qobject_cast<QMenu *>(object);
+            if (menu != nullptr)
+            {
+                configureSubMenu(menu);
+            }
+        }
+
+        updateMultiSelectText();
+    }
+}
+
+bool ComboMenu::eventFilter(QObject *object, QEvent *event)
+{
+    auto *menu = qobject_cast<QMenu *>(object);
+    if (multiSelect && menu != nullptr && event->type() == QEvent::MouseButtonRelease)
+    {
+        auto *mouseEvent = static_cast<QMouseEvent *>(event);
+        QAction *action = menu->actionAt(mouseEvent->pos());
+        if (action == nullptr)
+        {
+            return QToolButton::eventFilter(object, event);
+        }
+
+        if (action->menu() != nullptr)
+        {
+            auto menuActions = action->menu()->actions();
+            bool checked = !std::ranges::all_of(menuActions, [](const QAction *menuAction) {
+                return !menuAction->isVisible() || menuAction->isChecked();
+            });
+            for (auto *menuAction : menuActions)
+            {
+                if (menuAction->isVisible())
+                {
+                    menuAction->setChecked(checked);
+                }
+            }
+            updateMultiSelectText();
+            return true;
+        }
+
+        if (action->isCheckable())
+        {
+            action->setChecked(!action->isChecked());
+            updateMultiSelectText();
+            return true;
+        }
+    }
+
+    return QToolButton::eventFilter(object, event);
 }
 
 void ComboMenu::actionChanged(QAction *action)
 {
+    if (multiSelect)
+    {
+        updateMultiSelectText();
+        return;
+    }
+
     auto *parent = qobject_cast<QMenu *>(action->parent());
     if (parent != nullptr && !parent->title().isEmpty())
     {
@@ -114,4 +263,79 @@ void ComboMenu::actionChanged(QAction *action)
     {
         setText(action->text());
     }
+}
+
+void ComboMenu::updateMultiSelectText()
+{
+    auto actions = actionGroup->actions();
+    int visible = std::ranges::count_if(actions, [](const QAction *action) { return action->isVisible(); });
+    int checked = std::ranges::count_if(actions, [](const QAction *action) { return action->isVisible() && action->isChecked(); });
+
+    for (QObject *object : topMenu->children())
+    {
+        auto *menu = qobject_cast<QMenu *>(object);
+        if (menu != nullptr)
+        {
+            auto menuActions = menu->actions();
+            bool hasVisible = std::ranges::any_of(menuActions, [](const QAction *action) { return action->isVisible(); });
+            bool allChecked = hasVisible && std::ranges::all_of(menuActions, [](const QAction *action) {
+                return !action->isVisible() || action->isChecked();
+            });
+            menu->menuAction()->setChecked(allChecked);
+        }
+    }
+
+    if (checked == 0 || checked == visible)
+    {
+        setText(tr("Any"));
+        setToolTip(text());
+        return;
+    }
+
+    QStringList text;
+    for (const auto *action : actions)
+    {
+        if (action->isVisible() && action->isChecked())
+        {
+            auto *parent = qobject_cast<QMenu *>(action->parent());
+            if (parent != nullptr && !parent->title().isEmpty())
+            {
+                text.append(QString("%1: %2").arg(parent->title(), action->text()));
+            }
+            else
+            {
+                text.append(action->text());
+            }
+        }
+    }
+
+    setText(text.join(", "));
+    setToolTip(text.join(", "));
+}
+
+void ComboMenu::configureSubMenu(QMenu *menu)
+{
+    if (!multiSelect)
+    {
+        return;
+    }
+
+    if (menu->property("comboMenuMultiSelect").toBool())
+    {
+        return;
+    }
+
+    menu->setProperty("comboMenuMultiSelect", true);
+    menu->installEventFilter(this);
+    menu->menuAction()->setCheckable(true);
+    connect(menu->menuAction(), &QAction::triggered, this, [=](bool checked) {
+        for (auto *action : menu->actions())
+        {
+            if (action->isVisible())
+            {
+                action->setChecked(checked);
+            }
+        }
+        updateMultiSelectText();
+    });
 }

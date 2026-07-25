@@ -24,6 +24,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
+#include <vector>
 
 class WildSearcherState;
 enum class Item : u8;
@@ -49,6 +50,9 @@ public:
     WildSearcher3(Method method, Lead lead, bool feebasTile, bool bike, Item item, const EncounterArea3 &area,
                   const Profile3 &profile, const WildStateFilter &filter);
 
+    WildSearcher3(Method method, const std::vector<Lead> &leads, bool feebasTile, bool bike, Item item, const EncounterArea3 &area,
+                  const Profile3 &profile, const WildStateFilter &filter);
+
     /**
      * @brief Starts the search
      *
@@ -63,6 +67,7 @@ private:
     bool feebasTile;
     bool ivAdvance;
     Item item;
+    std::vector<Lead> leads;
     ModifiedSlots modifiedSlots;
 
     /**

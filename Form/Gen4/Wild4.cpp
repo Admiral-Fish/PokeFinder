@@ -107,6 +107,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+    ui->comboMenuSearcherLead->setMultiSelect(true);
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::HoneyTree), toInt(Encounter::RockSmash),
                                             toInt(Encounter::BugCatchingContest), toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt),
@@ -722,14 +723,18 @@ void Wild4::search()
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    std::vector<Lead> leads;
+    for (int data : ui->comboMenuSearcherLead->getCheckedData())
+    {
+        leads.emplace_back(static_cast<Lead>(data));
+    }
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
     bool unownRadio = ui->checkBoxSearcherRadio->isChecked() && ui->comboBoxSearcherRadio->currentIndex() == 2;
     u8 happiness = ui->comboBoxSearcherHappiness->getCurrentUChar();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, feebas, shiny, unownRadio, happiness, area,
+    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, leads, feebas, shiny, unownRadio, happiness, area,
                                        *currentProfile, filter);
 
     int maxProgress = 1;

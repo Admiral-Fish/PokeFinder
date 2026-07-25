@@ -70,6 +70,8 @@ add_library(PokeFinderModel STATIC
     IndexFilterProxyModel.hpp
     SortFilterProxyModel.hpp
     TableModel.hpp
+    Util/LeadDisplay.cpp
+    Util/LeadDisplay.hpp
     Util/IVToPIDModel.cpp
     Util/IVToPIDModel.hpp
     Util/ResearcherModel.cpp

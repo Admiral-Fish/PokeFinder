@@ -24,6 +24,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
+#include <vector>
 
 class WildSearcherState4;
 
@@ -53,6 +54,10 @@ public:
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
                   bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, const std::vector<Lead> &leads,
+                  bool feebasTile, bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                  const WildStateFilter &filter);
+
     /**
      * @brief Starts the search
      *
@@ -75,6 +80,8 @@ private:
     bool safari;
     bool shiny;
     bool unownRadio;
+    u8 happiness;
+    std::vector<Lead> leads;
     ModifiedSlots modifiedSlots;
 
     /**

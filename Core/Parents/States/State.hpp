@@ -20,9 +20,50 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
+#include <Core/Enum/Lead.hpp>
 #include <Core/Global.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <array>
+
+constexpr u64 getLeadFlag(Lead lead)
+{
+    if (lead == Lead::None)
+    {
+        return 1ULL << 63;
+    }
+    if (lead <= Lead::SynchronizeEnd)
+    {
+        return 1ULL << toInt(lead);
+    }
+
+    switch (lead)
+    {
+    case Lead::CuteCharmF:
+        return 1ULL << 25;
+    case Lead::CuteCharmM:
+        return 1ULL << 26;
+    case Lead::MagnetPull:
+        return 1ULL << 27;
+    case Lead::Static:
+        return 1ULL << 28;
+    case Lead::Harvest:
+        return 1ULL << 29;
+    case Lead::FlashFire:
+        return 1ULL << 30;
+    case Lead::StormDrain:
+        return 1ULL << 31;
+    case Lead::Pressure:
+        return 1ULL << 32;
+    case Lead::SuctionCups:
+        return 1ULL << 33;
+    case Lead::CompoundEyes:
+        return 1ULL << 34;
+    case Lead::ArenaTrap:
+        return 1ULL << 35;
+    default:
+        return 0;
+    }
+}
 
 /**
  * @brief Parent state that contains all the common information for a Pokemon across each game
@@ -280,8 +321,8 @@ public:
      * @param info Pokemon information
      */
     GeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                   const PersonalInfo *info) :
-        State(pid, ivs, ability, gender, level, nature, shiny, info), advances(advances)
+                   const PersonalInfo *info, Lead lead = Lead::None) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), advances(advances), lead(lead), leadMask(getLeadFlag(lead))
     {
     }
 
@@ -300,8 +341,8 @@ public:
      * @param info Pokemon information
      */
     GeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                   const PersonalInfo *info) :
-        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), advances(advances)
+                   const PersonalInfo *info, Lead lead = Lead::None) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), advances(advances), lead(lead), leadMask(getLeadFlag(lead))
     {
     }
 
@@ -315,8 +356,34 @@ public:
         return advances;
     }
 
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    u64 getLeadMask() const
+    {
+        return leadMask;
+    }
+
+    void addLead(Lead value)
+    {
+        if (lead == Lead::None)
+        {
+            lead = value;
+        }
+        leadMask |= getLeadFlag(value);
+    }
+
+    void setLeadMask(u64 mask)
+    {
+        leadMask = mask;
+    }
+
 protected:
     u32 advances;
+    Lead lead;
+    u64 leadMask;
 };
 
 /**
@@ -337,8 +404,8 @@ public:
      * @param info Pokemon information
      */
     SearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                  const PersonalInfo *info) :
-        State(pid, ivs, ability, gender, level, nature, shiny, info), seed(seed)
+                  const PersonalInfo *info, Lead lead = Lead::None) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), seed(seed), lead(lead), leadMask(getLeadFlag(lead))
     {
     }
 
@@ -352,8 +419,34 @@ public:
         return seed;
     }
 
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    u64 getLeadMask() const
+    {
+        return leadMask;
+    }
+
+    void addLead(Lead value)
+    {
+        if (lead == Lead::None)
+        {
+            lead = value;
+        }
+        leadMask |= getLeadFlag(value);
+    }
+
+    void setLeadMask(u64 mask)
+    {
+        leadMask = mask;
+    }
+
 protected:
     u32 seed;
+    Lead lead;
+    u64 leadMask;
 };
 
 #endif // STATE_HPP

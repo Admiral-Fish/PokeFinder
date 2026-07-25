@@ -44,8 +44,8 @@ public:
      * @param info Pokemon information
      */
     State5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-           const PersonalInfo *info) :
-        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
+           const PersonalInfo *info, Lead lead = Lead::None) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info, lead),
         ivAdvances(ivAdvances),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
