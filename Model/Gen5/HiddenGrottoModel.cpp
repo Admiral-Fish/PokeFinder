@@ -21,6 +21,32 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
+namespace
+{
+    bool shouldShowSlotGender(u16 specie)
+    {
+        return specie != 29 && specie != 32 && specie != 132 && specie != 375 && specie != 436;
+    }
+
+    QString getSlotText(const HiddenGrottoState &state)
+    {
+        if (state.getItem())
+        {
+            return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
+        }
+
+        QString specie = QString::fromStdString(Translator::getSpecie(state.getData()));
+        if (!shouldShowSlotGender(state.getData()))
+        {
+            return QString("%1 (%2)").arg(state.getSlot()).arg(specie);
+        }
+
+        return QString("%1 (%2 %3)")
+            .arg(state.getSlot())
+            .arg(specie, QString::fromStdString(Translator::getGender(state.getGender())));
+    }
+}
+
 HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent)
 {
 }
@@ -47,17 +73,7 @@ QVariant HiddenGrottoSlotGeneratorModel5::data(const QModelIndex &index, int rol
         case 3:
             return state.getGroup();
         case 4:
-            if (state.getItem())
-            {
-                return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
-            }
-            else
-            {
-                return QString("%1 (%2 %3)")
-                    .arg(state.getSlot())
-                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
-                         QString::fromStdString(Translator::getGender(state.getGender())));
-            }
+            return getSlotText(state);
         }
     }
     return QVariant();
@@ -109,17 +125,7 @@ QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role
         case 2:
             return state.getGroup();
         case 3:
-            if (state.getItem())
-            {
-                return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
-            }
-            else
-            {
-                return QString("%1 (%2 %3)")
-                    .arg(state.getSlot())
-                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
-                         QString::fromStdString(Translator::getGender(state.getGender())));
-            }
+            return getSlotText(state);
         case 4:
             return state.getAmount();
         case 5:
