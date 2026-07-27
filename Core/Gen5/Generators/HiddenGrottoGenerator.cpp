@@ -74,11 +74,27 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
-            u8 slot = encounterTable[go.nextUInt(100)];
+            u8 slot = 10;
+            u8 rolls = powerLevel == 5 ? 1 : 3;
+            for (u8 i = 0; i < rolls; i++)
+            {
+                u8 nextSlot = encounterTable[go.nextUInt(100)];
+                if (nextSlot != 10)
+                {
+                    slot = nextSlot;
+                }
+
+                if (slot < 3)
+                {
+                    break;
+                }
+            }
+
+            u8 gender = go.nextUInt(100);
             if (slot < 3) // Pokemon
             {
                 const auto &pokemon = encounterArea.getPokemon(group, slot);
-                u8 gender = go.nextUInt(100) < pokemon.getGender();
+                gender = gender < pokemon.getGender();
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
                 if (filter.compareState(state))
                 {
