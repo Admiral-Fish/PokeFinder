@@ -78,12 +78,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
             u8 rolls = powerLevel == 5 ? 1 : 3;
             for (u8 i = 0; i < rolls; i++)
             {
-                u8 nextSlot = encounterTable[go.nextUInt(100)];
-                if (nextSlot != 10)
-                {
-                    slot = nextSlot;
-                }
-
+                slot = encounterTable[go.nextUInt(100)];
                 if (slot < 3)
                 {
                     break;
