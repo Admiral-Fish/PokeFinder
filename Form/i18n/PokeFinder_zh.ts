@@ -3946,6 +3946,11 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">Slot</translation>
     </message>
     <message>
+        <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="143"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/HiddenGrottoModel.hpp" line="142"/>
         <source>Date/Time</source>
         <translation>日期/时间</translation>

@@ -469,9 +469,12 @@
                <widget class="ComboBoxProxy" name="comboBoxGrottoSearcherLocation"/>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherPokemon">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherPokemon">
                 <property name="text">
                  <string>Pokemon</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -479,7 +482,7 @@
                <widget class="ComboBox" name="comboBoxGrottoSearcherPokemon"/>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="labelGrottoSearcherItems">
+               <widget class="QRadioButton" name="radioButtonGrottoSearcherItems">
                 <property name="text">
                  <string>Items</string>
                 </property>
@@ -487,6 +490,25 @@
               </item>
               <item row="2" column="1">
                <widget class="ComboBox" name="comboBoxGrottoSearcherItems"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QSpinBox" name="spinBoxGrottoSearcherItemAmount">
+                <property name="maximumSize">
+                 <size>
+                  <width>55</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>99</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1233,8 +1255,11 @@
   <tabstop>pushButtonGrottoSearch</tabstop>
   <tabstop>pushButtonGrottoCancel</tabstop>
   <tabstop>comboBoxGrottoSearcherLocation</tabstop>
+  <tabstop>radioButtonGrottoSearcherPokemon</tabstop>
   <tabstop>comboBoxGrottoSearcherPokemon</tabstop>
+  <tabstop>radioButtonGrottoSearcherItems</tabstop>
   <tabstop>comboBoxGrottoSearcherItems</tabstop>
+  <tabstop>spinBoxGrottoSearcherItemAmount</tabstop>
   <tabstop>checkListGrottoSearcherSlot</tabstop>
   <tabstop>checkListGrottoSearcherGroup</tabstop>
   <tabstop>checkListGrottoSearcherGender</tabstop>
