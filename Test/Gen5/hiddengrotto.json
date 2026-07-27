@@ -632,33 +632,6 @@
             "location": 45,
             "results": [
                 {
-                    "advances": 42,
-                    "chatot": 51,
-                    "data": 17,
-                    "gender": 0,
-                    "group": 3,
-                    "item": true,
-                    "slot": 6
-                },
-                {
-                    "advances": 44,
-                    "chatot": 38,
-                    "data": 4,
-                    "gender": 0,
-                    "group": 1,
-                    "item": true,
-                    "slot": 6
-                },
-                {
-                    "advances": 45,
-                    "chatot": 27,
-                    "data": 507,
-                    "gender": 0,
-                    "group": 1,
-                    "item": false,
-                    "slot": 1
-                },
-                {
                     "advances": 46,
                     "chatot": 40,
                     "data": 507,
@@ -751,11 +724,11 @@
                 {
                     "advances": 60,
                     "chatot": 29,
-                    "data": 87,
+                    "data": 95,
                     "gender": 0,
                     "group": 0,
                     "item": true,
-                    "slot": 9
+                    "slot": 10
                 },
                 {
                     "advances": 61,
@@ -805,11 +778,11 @@
                 {
                     "advances": 73,
                     "chatot": 53,
-                    "data": 87,
+                    "data": 95,
                     "gender": 0,
                     "group": 0,
                     "item": true,
-                    "slot": 9
+                    "slot": 10
                 },
                 {
                     "advances": 74,
@@ -832,20 +805,20 @@
                 {
                     "advances": 80,
                     "chatot": 38,
-                    "data": 17,
+                    "data": 98,
                     "gender": 0,
                     "group": 3,
                     "item": true,
-                    "slot": 6
+                    "slot": 10
                 },
                 {
                     "advances": 82,
                     "chatot": 27,
-                    "data": 4,
+                    "data": 96,
                     "gender": 0,
                     "group": 1,
                     "item": true,
-                    "slot": 6
+                    "slot": 10
                 },
                 {
                     "advances": 83,
@@ -886,11 +859,11 @@
                 {
                     "advances": 89,
                     "chatot": 52,
-                    "data": 3,
+                    "data": 95,
                     "gender": 0,
                     "group": 0,
                     "item": true,
-                    "slot": 5
+                    "slot": 10
                 },
                 {
                     "advances": 90,
@@ -931,11 +904,11 @@
                 {
                     "advances": 95,
                     "chatot": 18,
-                    "data": 73,
+                    "data": 96,
                     "gender": 0,
                     "group": 1,
                     "item": true,
-                    "slot": 8
+                    "slot": 10
                 },
                 {
                     "advances": 96,
@@ -1188,6 +1161,15 @@
                     "group": 2,
                     "item": true,
                     "slot": 9
+                },
+                {
+                    "advances": 142,
+                    "chatot": 36,
+                    "data": 17,
+                    "gender": 0,
+                    "group": 3,
+                    "item": true,
+                    "slot": 6
                 }
             ]
         }
