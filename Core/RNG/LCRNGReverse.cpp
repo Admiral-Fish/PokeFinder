@@ -169,7 +169,7 @@ namespace LCRNGReverse
             (-27 * (s64)hp + 18 * (s64)def + 8 * (s64)spe + (s64)spa) << 27
         };
 
-        const s32 min[] = {
+        const s64 min[] = {
             static_cast<s32>((f[0] + UPPER[0]) >> 32) * R[0],
             static_cast<s32>((f[1] + UPPER[1]) >> 32) * R[1],
             static_cast<s32>((f[2] + LOWER[2]) >> 32) * R[2],
@@ -178,7 +178,7 @@ namespace LCRNGReverse
             static_cast<s32>((f[5] + UPPER[5]) >> 32) * R[5]
         };
 
-        const s32 max[] = {
+        const s64 max[] = {
             static_cast<s32>((f[0] + LOWER[0]) >> 32) * R[0],
             static_cast<s32>((f[1] + LOWER[1]) >> 32) * R[1],
             static_cast<s32>((f[2] + UPPER[2]) >> 32) * R[2],
@@ -189,21 +189,21 @@ namespace LCRNGReverse
         // clang-format on
 
         RecoverySeeds<12> seeds;
-        for (s32 x5 = min[5]; x5 <= max[5]; x5 += -R[5])
+        for (s64 x5 = min[5]; x5 <= max[5]; x5 += -R[5])
         {
-            for (s32 x4 = min[4]; x4 <= max[4]; x4 += R[4])
+            for (s64 x4 = min[4]; x4 <= max[4]; x4 += R[4])
             {
-                s32 l4 = x5 + x4;
-                for (s32 x2 = min[2]; x2 <= max[2]; x2 += R[2])
+                s64 l4 = x5 + x4;
+                for (s64 x2 = min[2]; x2 <= max[2]; x2 += R[2])
                 {
-                    s32 l2 = l4 + x2;
-                    for (s32 x3 = min[3]; x3 <= max[3]; x3 += R[3])
+                    s64 l2 = l4 + x2;
+                    for (s64 x3 = min[3]; x3 <= max[3]; x3 += R[3])
                     {
-                        s32 l3 = l2 + x3;
-                        for (s32 x1 = min[1]; x1 <= max[1]; x1 += -R[1])
+                        s64 l3 = l2 + x3;
+                        for (s64 x1 = min[1]; x1 <= max[1]; x1 += -R[1])
                         {
-                            s32 l1 = l3 + x1;
-                            for (s32 x0 = min[0]; x0 <= max[0]; x0 += -R[0])
+                            s64 l1 = l3 + x1;
+                            for (s64 x0 = min[0]; x0 <= max[0]; x0 += -R[0])
                             {
                                 u32 seed = static_cast<u32>(l1 + x0);
                                 if ((seed >> 27) != hp)
