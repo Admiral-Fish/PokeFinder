@@ -22,10 +22,13 @@
 
 #include <Core/Global.hpp>
 #include <QWidget>
+#include <array>
+#include <vector>
 
 class AdjacentSeedsModel;
 class DateTime;
 class Profile5;
+class SortFilterProxyModel;
 enum class Buttons : u16;
 
 namespace Ui
@@ -87,7 +90,9 @@ private:
     Ui::AdjacentSeeds *ui;
 
     AdjacentSeedsModel *model;
+    SortFilterProxyModel *proxyModel;
     const Profile5 *currentProfile;
+    std::vector<int> columnWidths;
 
 private slots:
     /**
@@ -99,6 +104,18 @@ private slots:
      * @brief Opens IV Calculator for IV search method
      */
     void openIVCalculator();
+
+    /**
+     * @brief Resets IV filters to defaults
+     */
+    void resetIVs();
+
+    /**
+     * @brief Updates min/max IV values based upon calculation from IV Calculator
+     *
+     * @param ivs Possible IV ranges
+     */
+    void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 
     /**
      * @brief Updates showing profile related information
