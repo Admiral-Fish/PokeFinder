@@ -22,6 +22,7 @@
 
 #include <Core/Global.hpp>
 #include <QComboBox>
+#include <QString>
 
 class CheckListProxyModel;
 class QListView;
@@ -113,9 +114,23 @@ public:
     std::vector<u16> getCheckedData() const;
 
     /**
+     * @brief Determines the current check state of the check boxes
+     *
+     * @return Checked if all check boxes are checked, PartiallyChecked if some check boxes are checked, and Unchecked otherwise
+     */
+    Qt::CheckState getCheckState() const;
+
+    /**
      * @brief Sets all check boxes to be unchecked
      */
     void resetChecks();
+
+    /**
+     * @brief Sets the displayed text when no check boxes are checked
+     *
+     * @param text Text to display
+     */
+    void setUncheckedText(const QString &text);
 
     /**
      * @brief Sets which of the check boxes are checked
@@ -160,6 +175,7 @@ public:
 private:
     QStandardItemModel *model;
     CheckListProxyModel *proxyModel;
+    QString uncheckedText;
     bool full;
 
     /**

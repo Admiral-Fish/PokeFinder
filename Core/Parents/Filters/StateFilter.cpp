@@ -292,3 +292,45 @@ bool WildStateFilter::compareState(const WildState8 &state) const
 
     return true;
 }
+
+bool WildStateFilter::hasFilters() const
+{
+    if (skip || ability != 255 || gender != 255 || shiny != 255)
+    {
+        return !skip;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        if (ivMin[i] != 0 || ivMax[i] != 31)
+        {
+            return true;
+        }
+    }
+
+    for (bool nature : natures)
+    {
+        if (!nature)
+        {
+            return true;
+        }
+    }
+
+    for (bool power : powers)
+    {
+        if (!power)
+        {
+            return true;
+        }
+    }
+
+    for (bool encounterSlot : encounterSlots)
+    {
+        if (!encounterSlot)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}

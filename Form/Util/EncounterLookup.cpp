@@ -84,6 +84,10 @@ QString EncounterLookup::getEncounterString(Encounter type)
     case Encounter::GrassDark:
     case Encounter::GrassRustling:
         return tr("Grass");
+    case Encounter::DustCloud:
+        return tr("Dust Cloud");
+    case Encounter::FlyingShadow:
+        return tr("Flying Shadow");
     case Encounter::Surfing:
     case Encounter::SurfingRippling:
         return tr("Surfing");
@@ -244,8 +248,9 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters5(Game version, 
 
     // Encounter variables to iterate through
     auto types
-        = { Encounter::Grass,   Encounter::GrassDark,      Encounter::GrassRustling, Encounter::SuperRod, Encounter::SuperRodRippling,
-            Encounter::Surfing, Encounter::SurfingRippling };
+        = { Encounter::Grass,      Encounter::GrassDark,    Encounter::GrassRustling, Encounter::DustCloud,
+            Encounter::FlyingShadow, Encounter::SuperRod,    Encounter::SuperRodRippling,
+            Encounter::Surfing,    Encounter::SurfingRippling };
     auto seasons = { 0, 1, 2, 3 };
 
     for (auto type : types)

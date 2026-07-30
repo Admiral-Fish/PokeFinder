@@ -22,29 +22,30 @@
 
 #include <QMainWindow>
 
+class Eggs3;
+class GameCube;
+class IDs3;
 class Static3;
 class Wild3;
-class GameCube;
-class Eggs3;
-class IDs3;
-class Static4;
-class Wild4;
 class Eggs4;
 class Event4;
 class IDs4;
-class Static5;
+class Static4;
+class Wild4;
+class Eggs5;
 class Event5;
 class DreamRadar;
 class HiddenGrotto;
-class Eggs5;
 class IDs5;
+class Phenomenon;
+class Static5;
 class Wild5;
+class Eggs8;
+class Event8;
+class IDs8;
+class Raids;
 class Static8;
 class Wild8;
-class Event8;
-class Raids;
-class Eggs8;
-class IDs8;
 class Underground;
 class QActionGroup;
 
@@ -117,6 +118,7 @@ private:
     Event5 *event5 = nullptr;
     HiddenGrotto *hiddenGrotto = nullptr;
     IDs5 *ids5 = nullptr;
+    Phenomenon *phenomenon = nullptr;
     Static5 *static5 = nullptr;
     Wild5 *wild5 = nullptr;
 
@@ -271,6 +273,11 @@ private slots:
      * @brief Opens the Gen 5 IDs window
      */
     void openIDs5();
+
+    /**
+     * @brief Opens the Gen 5 Phenomenon window
+     */
+    void openPhenomenon();
 
     /**
      * @brief Opens the Gen 5 Static window
