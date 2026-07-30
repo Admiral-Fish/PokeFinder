@@ -65,6 +65,36 @@ private:
 };
 
 /**
+ * @brief Hidden grotto multi item generator for Gen 5
+ */
+class HiddenGrottoItemGenerator
+{
+public:
+    /**
+     * @brief Construct a new HiddenGrottoItemGenerator object
+     *
+     * @param generator Hidden grotto slot generator
+     * @param item Item to search for
+     * @param amount Minimum number of items
+     */
+    HiddenGrottoItemGenerator(const HiddenGrottoSlotGenerator &generator, u16 item, u8 amount);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<HiddenGrottoState> generate(u64 seed) const;
+
+private:
+    HiddenGrottoSlotGenerator generator;
+    u16 item;
+    u8 amount;
+};
+
+/**
  * @brief Hidden grotto pokemon generator for Gen 5
  */
 class HiddenGrottoGenerator : public Generator<Profile5, StateFilter>

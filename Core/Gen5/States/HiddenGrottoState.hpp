@@ -21,6 +21,7 @@
 #define HIDDENGROTTOSTATE_HPP
 
 #include <Core/Global.hpp>
+#include <vector>
 
 /**
  * @brief State class for Gen5 hidden grottos
@@ -40,8 +41,10 @@ public:
      */
     HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
         advances(advances),
+        itemAdvances(),
         data(specie),
         item(false),
+        amount(1),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         gender(gender),
         group(group),
@@ -61,8 +64,10 @@ public:
      */
     HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 item) :
         advances(advances),
+        itemAdvances(),
         data(item),
         item(true),
+        amount(1),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         gender(0),
         group(group),
@@ -79,6 +84,16 @@ public:
     u32 getAdvances() const
     {
         return advances;
+    }
+
+    /**
+     * @brief Returns the number of matching items represented by this state
+     *
+     * @return Matching item amount
+     */
+    u16 getAmount() const
+    {
+        return amount;
     }
 
     /**
@@ -134,6 +149,16 @@ public:
     }
 
     /**
+     * @brief Returns each matching item advance represented by this state
+     *
+     * @return Matching item advances
+     */
+    const std::vector<u32> &getItemAdvances() const
+    {
+        return itemAdvances;
+    }
+
+    /**
      * @brief Returns the needle value
      *
      * @return Needle value
@@ -153,10 +178,23 @@ public:
         return slot;
     }
 
+    /**
+     * @brief Sets the matching item advances represented by this state
+     *
+     * @param itemAdvances Matching item advances
+     */
+    void setItemAdvances(const std::vector<u32> &itemAdvances)
+    {
+        this->itemAdvances = itemAdvances;
+        amount = static_cast<u16>(itemAdvances.size());
+    }
+
 private:
     u32 advances;
+    std::vector<u32> itemAdvances;
     u16 data;
     bool item;
+    u16 amount;
     u8 chatot;
     u8 gender;
     u8 group;

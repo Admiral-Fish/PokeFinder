@@ -77,7 +77,7 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
             u8 slot = encounterTable[go.nextUInt(100)];
             if (slot < 3) // Pokemon
             {
-                const auto &pokemon = encounterArea.getPokemon(group, slot);
+                auto pokemon = encounterArea.getPokemon(group, slot, profile.getVersion());
                 u8 gender = go.nextUInt(100) < pokemon.getGender();
                 HiddenGrottoState state(prng, advances + initialAdvances + cnt, group, slot, pokemon.getSpecie(), gender);
                 if (filter.compareState(state))
@@ -107,6 +107,46 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
     }
 
     return states;
+}
+
+HiddenGrottoItemGenerator::HiddenGrottoItemGenerator(const HiddenGrottoSlotGenerator &generator, u16 item, u8 amount) :
+    generator(generator), item(item), amount(amount)
+{
+}
+
+std::vector<HiddenGrottoState> HiddenGrottoItemGenerator::generate(u64 seed) const
+{
+    auto states = generator.generate(seed);
+    std::vector<u32> advances;
+    std::vector<HiddenGrottoState> result;
+
+    for (const auto &state : states)
+    {
+        if (!state.getItem() || state.getData() != item)
+        {
+            continue;
+        }
+
+        if (advances.empty() || state.getAdvances() > advances.back() + 5)
+        {
+            if (advances.empty())
+            {
+                result.emplace_back(state);
+            }
+            advances.emplace_back(state.getAdvances());
+        }
+    }
+
+    if (advances.size() >= amount)
+    {
+        result.front().setItemAdvances(advances);
+    }
+    else
+    {
+        result.clear();
+    }
+
+    return result;
 }
 
 HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, u8 gender,
