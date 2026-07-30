@@ -26,33 +26,58 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
+
+static bool sameTarget(const SearcherState4 &left, const SearcherState4 &right)
+{
+    return left.getSeed() == right.getSeed() && left.getPID() == right.getPID() && left.getIVs() == right.getIVs()
+        && left.getAbility() == right.getAbility() && left.getGender() == right.getGender() && left.getLevel() == right.getLevel()
+        && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
+}
+
+static void mergeLeadState(std::vector<SearcherState4> &states, const SearcherState4 &newState)
+{
+    auto state = std::find_if(states.begin(), states.end(), [&newState](const auto &state) { return sameTarget(state, newState); });
+    if (state != states.end())
+    {
+        state->setLeadMask(state->getLeadMask() | newState.getLeadMask());
+    }
+    else
+    {
+        states.emplace_back(newState);
+    }
+}
+
+static bool hasLead(const std::vector<Lead> &leads, Lead lead)
+{
+    return std::find(leads.begin(), leads.end(), lead) != leads.end();
+}
+
+static constexpr u64 synchronizeMask()
+{
+    return (1ULL << 25) - 1;
+}
 
 StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
                                  const Profile4 &profile, const StateFilter &filter) :
-    StaticSearcher(method, lead, profile, filter),
+    StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, std::vector<Lead> { lead }, profile, filter)
+{
+}
+
+StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method,
+                                 const std::vector<Lead> &leads, const Profile4 &profile, const StateFilter &filter) :
+    StaticSearcher(method, leads.empty() ? Lead::None : leads[0], profile, filter),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
-    buffer(0)
+    leads(leads.empty() ? std::vector<Lead> { Lead::None } : leads)
 {
 }
 
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
     searching = true;
-
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
-    {
-        if (staticTemplate->getInfo()->getFixedGender())
-        {
-            lead = Lead::None;
-        }
-        else if (lead == Lead::CuteCharmF)
-        {
-            buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
-        }
-    }
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -202,86 +227,95 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
     for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
-        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+
+        if ((hasLead(leads, Lead::CuteCharmF) || hasLead(leads, Lead::CuteCharmM)) && !info->getFixedGender())
         {
-            u8 nature = rng.nextUShort<false>(25);
-            if (rng.nextUShort<false>(3) != 0)
+            PokeRNGR cuteCharm(rng);
+            u8 nature = cuteCharm.nextUShort<false>(25);
+            if (cuteCharm.nextUShort<false>(3) != 0 && filter.compareNature(nature))
             {
-                if (!filter.compareNature(nature))
+                u32 seed = cuteCharm.next();
+                if (hasLead(leads, Lead::CuteCharmF))
                 {
-                    continue;
+                    u32 pid = nature + 25 * ((info->getGender() / 25) + 1);
+                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                                         Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(Lead::CuteCharmF));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
                 }
 
-                u32 pid = nature + buffer;
-                SearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                if (hasLead(leads, Lead::CuteCharmM))
+                {
+                    u32 pid = nature;
+                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                                         Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(Lead::CuteCharmM));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
+            }
+        }
+
+        u32 pid = rng.nextUShort() << 16;
+        pid |= rng.nextUShort();
+
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        u8 huntNature;
+        u16 nextRNG = rng.nextUShort();
+        u16 nextRNG2 = rng.nextUShort();
+
+        do
+        {
+            if (hasLead(leads, Lead::None) && (nextRNG / 0xa3e) == nature)
+            {
+                SearcherState4 state(rng.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
                                      Utilities::getShiny<true>(pid, tsv), info);
+                state.setLeadMask(getLeadFlag(Lead::None));
                 if (filter.compareState(static_cast<const SearcherState &>(state)))
                 {
-                    states.emplace_back(state);
+                    mergeLeadState(states, state);
                 }
             }
-        }
-        else
-        {
-            u32 pid = rng.nextUShort() << 16;
-            pid |= rng.nextUShort();
 
-            u8 nature = pid % 25;
-            if (!filter.compareNature(nature))
+            if (hasLead(leads, Lead::Synchronize))
             {
-                continue;
+                if ((nextRNG >> 15) == 0)
+                {
+                    SearcherState4 state(rng.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                         nature, Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(static_cast<Lead>(nature)));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
+
+                if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == nature)
+                {
+                    SearcherState4 state(PokeRNGR(rng).next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                         nature, Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(synchronizeMask());
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
             }
 
-            u8 huntNature;
-            u16 nextRNG = rng.nextUShort();
-            u16 nextRNG2 = rng.nextUShort();
-
-            do
-            {
-                u32 seed[2];
-                bool valid[2] = { false, false };
-
-                if (lead == Lead::None)
-                {
-                    if ((nextRNG / 0xa3e) == nature)
-                    {
-                        seed[0] = rng.getSeed();
-                        valid[0] = true;
-                    }
-                }
-                else if (lead == Lead::Synchronize)
-                {
-                    if ((nextRNG >> 15) == 0)
-                    {
-                        seed[0] = rng.getSeed();
-                        valid[0] = true;
-                    }
-
-                    if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == nature)
-                    {
-                        seed[1] = PokeRNGR(rng).next();
-                        valid[1] = true;
-                    }
-                }
-
-                for (int i = 0; i < 2; i++)
-                {
-                    if (valid[i])
-                    {
-                        SearcherState4 state(seed[i], pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
-                                             nature, Utilities::getShiny<true>(pid, tsv), info);
-                        if (filter.compareState(static_cast<const SearcherState &>(state)))
-                        {
-                            states.emplace_back(state);
-                        }
-                    }
-                }
-
-                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
-                nextRNG = rng.nextUShort();
-                nextRNG2 = rng.nextUShort();
-            } while (huntNature != nature);
-        }
+            huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+            nextRNG = rng.nextUShort();
+            nextRNG2 = rng.nextUShort();
+        } while (huntNature != nature);
     }
 
     return states;
@@ -298,86 +332,95 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
     for (int i = 0; i < seeds.count; i++)
     {
         PokeRNGR rng(seeds[i]);
-        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+
+        if ((hasLead(leads, Lead::CuteCharmF) || hasLead(leads, Lead::CuteCharmM)) && !info->getFixedGender())
         {
-            u8 nature = rng.nextUShort(25);
-            if (rng.nextUShort(3) != 0)
+            PokeRNGR cuteCharm(rng);
+            u8 nature = cuteCharm.nextUShort(25);
+            if (cuteCharm.nextUShort(3) != 0 && filter.compareNature(nature))
             {
-                if (!filter.compareNature(nature))
+                u32 seed = cuteCharm.next();
+                if (hasLead(leads, Lead::CuteCharmF))
                 {
-                    continue;
+                    u32 pid = nature + 25 * ((info->getGender() / 25) + 1);
+                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                                         Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(Lead::CuteCharmF));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
                 }
 
-                u32 pid = nature + buffer;
-                SearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                if (hasLead(leads, Lead::CuteCharmM))
+                {
+                    u32 pid = nature;
+                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                                         Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(Lead::CuteCharmM));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
+            }
+        }
+
+        u32 pid = rng.nextUShort() << 16;
+        pid |= rng.nextUShort();
+
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        u8 huntNature;
+        u16 nextRNG = rng.nextUShort();
+        u16 nextRNG2 = rng.nextUShort();
+
+        do
+        {
+            if (hasLead(leads, Lead::None) && (nextRNG % 25) == nature)
+            {
+                SearcherState4 state(rng.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
                                      Utilities::getShiny<true>(pid, tsv), info);
+                state.setLeadMask(getLeadFlag(Lead::None));
                 if (filter.compareState(static_cast<const SearcherState &>(state)))
                 {
-                    states.emplace_back(state);
+                    mergeLeadState(states, state);
                 }
             }
-        }
-        else
-        {
-            u32 pid = rng.nextUShort() << 16;
-            pid |= rng.nextUShort();
 
-            u8 nature = pid % 25;
-            if (!filter.compareNature(nature))
+            if (hasLead(leads, Lead::Synchronize))
             {
-                continue;
+                if ((nextRNG % 2) == 0)
+                {
+                    SearcherState4 state(rng.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                         nature, Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(getLeadFlag(static_cast<Lead>(nature)));
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
+
+                if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
+                {
+                    SearcherState4 state(PokeRNGR(rng).next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                         nature, Utilities::getShiny<true>(pid, tsv), info);
+                    state.setLeadMask(synchronizeMask());
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    {
+                        mergeLeadState(states, state);
+                    }
+                }
             }
 
-            u8 huntNature;
-            u16 nextRNG = rng.nextUShort();
-            u16 nextRNG2 = rng.nextUShort();
-
-            do
-            {
-                u32 seed[2];
-                bool valid[2] = { false, false };
-
-                if (lead == Lead::None)
-                {
-                    if ((nextRNG % 25) == nature)
-                    {
-                        seed[0] = rng.getSeed();
-                        valid[0] = true;
-                    }
-                }
-                else if (lead == Lead::Synchronize)
-                {
-                    if ((nextRNG % 2) == 0)
-                    {
-                        seed[0] = rng.getSeed();
-                        valid[0] = true;
-                    }
-
-                    if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
-                    {
-                        seed[1] = PokeRNGR(rng).next();
-                        valid[1] = true;
-                    }
-                }
-
-                for (int i = 0; i < 2; i++)
-                {
-                    if (valid[i])
-                    {
-                        SearcherState4 state(seed[i], pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
-                                             nature, Utilities::getShiny<true>(pid, tsv), info);
-                        if (filter.compareState(static_cast<const SearcherState &>(state)))
-                        {
-                            states.emplace_back(state);
-                        }
-                    }
-                }
-
-                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
-                nextRNG = rng.nextUShort();
-                nextRNG2 = rng.nextUShort();
-            } while (huntNature != nature);
-        }
+            huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+            nextRNG = rng.nextUShort();
+            nextRNG2 = rng.nextUShort();
+        } while (huntNature != nature);
     }
 
     return states;

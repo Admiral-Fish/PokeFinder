@@ -24,6 +24,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
+#include <vector>
 
 class WildState5;
 
@@ -45,6 +46,9 @@ public:
      */
     WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower, const EncounterArea5 &area,
                    const Profile5 &profile, const WildStateFilter &filter);
+
+    WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const std::vector<Lead> &leads, u8 luckyPower,
+                   const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
@@ -68,6 +72,7 @@ public:
     std::vector<WildState5> generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
 
 private:
+    std::vector<Lead> leads;
     u8 luckyPower;
 };
 

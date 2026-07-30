@@ -148,8 +148,9 @@ public:
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, Lead lead = Lead::None) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances), lead(lead),
+        leadMask(getLeadFlag(lead))
     {
     }
 
@@ -172,8 +173,9 @@ public:
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, Lead lead = Lead::None) :
+        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances), lead(lead),
+        leadMask(getLeadFlag(lead))
     {
     }
 
@@ -187,8 +189,34 @@ public:
         return advances;
     }
 
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    u64 getLeadMask() const
+    {
+        return leadMask;
+    }
+
+    void addLead(Lead value)
+    {
+        if (lead == Lead::None)
+        {
+            lead = value;
+        }
+        leadMask |= getLeadFlag(value);
+    }
+
+    void setLeadMask(u64 mask)
+    {
+        leadMask = mask;
+    }
+
 protected:
     u32 advances;
+    Lead lead;
+    u64 leadMask;
 };
 
 /**
@@ -215,8 +243,9 @@ public:
      * @param info Pokemon information
      */
     WildSearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                      u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), seed(seed)
+                      u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, Lead lead = Lead::None) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), seed(seed), lead(lead),
+        leadMask(getLeadFlag(lead))
     {
     }
 
@@ -230,8 +259,34 @@ public:
         return seed;
     }
 
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    u64 getLeadMask() const
+    {
+        return leadMask;
+    }
+
+    void addLead(Lead value)
+    {
+        if (lead == Lead::None)
+        {
+            lead = value;
+        }
+        leadMask |= getLeadFlag(value);
+    }
+
+    void setLeadMask(u64 mask)
+    {
+        leadMask = mask;
+    }
+
 protected:
     u32 seed;
+    Lead lead;
+    u64 leadMask;
 };
 
 #endif // WILDSTATE_HPP

@@ -98,6 +98,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+    ui->comboMenuSearcherLead->setMultiSelect(true);
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
@@ -341,13 +342,17 @@ void Wild3::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    std::vector<Lead> leads;
+    for (int data : ui->comboMenuSearcherLead->getCheckedData())
+    {
+        leads.emplace_back(static_cast<Lead>(data));
+    }
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
     bool bike = ui->checkBoxSearcherBike->isChecked();
     auto item = ui->comboBoxSearcherItem->getEnum<Item>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, lead, feebas, bike, item, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
+    auto *searcher = new WildSearcher3(method, leads, feebas, bike, item, encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()],
                                        *currentProfile, filter);
 
     int maxProgress = 1;

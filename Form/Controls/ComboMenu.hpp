@@ -23,6 +23,7 @@
 #include <Core/Global.hpp>
 #include <QActionGroup>
 #include <QToolButton>
+#include <vector>
 
 /**
  * @brief Provides exclusion item selection via menu selection where sub menus can act as combo boxes
@@ -69,6 +70,20 @@ public:
     void clearSelection();
 
     /**
+     * @brief Gets checked action data
+     *
+     * @return Checked action data
+     */
+    std::vector<int> getCheckedData() const;
+
+    /**
+     * @brief Sets checked action data
+     *
+     * @param data Action data values to check
+     */
+    void setCheckedData(const std::vector<int> &data);
+
+    /**
      * @brief Gets current selected index data as templated enum type
      *
      * @tparam Enum Enum type to convert data too
@@ -99,9 +114,31 @@ public:
      */
     void hideAction(const QVariant &data, bool hide);
 
+    /**
+     * @brief Sets whether multiple actions can be selected
+     *
+     * @param flag Whether multiple actions can be selected
+     */
+    void setMultiSelect(bool flag);
+
 private:
+    bool eventFilter(QObject *object, QEvent *event) override;
+
     QActionGroup *actionGroup;
     QMenu *topMenu;
+    bool multiSelect;
+
+    /**
+     * @brief Updates display text for multi-select mode
+     */
+    void updateMultiSelectText();
+
+    /**
+     * @brief Adds multi-select toggling behavior to a sub menu
+     *
+     * @param menu Sub menu to configure
+     */
+    void configureSubMenu(QMenu *menu);
 
 private slots:
     /**

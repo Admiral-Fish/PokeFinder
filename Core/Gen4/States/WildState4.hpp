@@ -117,7 +117,7 @@ public:
      */
     WildSearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                        u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
-        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info)
+        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(0)
     {
     }
 

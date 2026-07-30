@@ -24,6 +24,7 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 static u8 gen(MT &rng)
 {
@@ -42,9 +43,55 @@ static u8 getPercentRand(BWRNG &rng, bool bw)
     }
 }
 
+static bool matches(const State5 &left, const State5 &right)
+{
+    bool sameNature = left.getSynchronize() && right.getSynchronize() ? true : left.getNature() == right.getNature();
+    return left.getAdvances() == right.getAdvances() && left.getIVAdvances() == right.getIVAdvances() && left.getPID() == right.getPID()
+        && left.getAbility() == right.getAbility() && left.getGender() == right.getGender() && left.getLevel() == right.getLevel()
+        && sameNature && left.getShiny() == right.getShiny() && left.getSynchronize() == right.getSynchronize()
+        && left.getIVs() == right.getIVs();
+}
+
+static void addState(std::vector<State5> &states, const State5 &state, Lead lead)
+{
+    auto iter = std::ranges::find_if(states, [&state](const State5 &other) { return matches(state, other); });
+    if (iter != states.end())
+    {
+        if (lead == Lead::None)
+        {
+            iter->setLeadMask(getLeadFlag(Lead::None));
+        }
+        else if ((iter->getLeadMask() & getLeadFlag(Lead::None)) == 0)
+        {
+            iter->addLead(lead);
+        }
+    }
+    else
+    {
+        states.emplace_back(state);
+    }
+}
+
 StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
                                    const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
+    leads({ lead }),
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+{
+    if (staticTemplate.getCurtis())
+    {
+        tsv = 54118;
+    }
+    else if (staticTemplate.getYancy())
+    {
+        tsv = 10303;
+    }
+}
+
+StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const std::vector<Lead> &leads, u8 luckyPower,
+                                   const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, method, leads.empty() ? Lead::None : leads.front(), staticTemplate, profile, filter),
+    leads(leads.empty() ? std::vector<Lead> { Lead::None } : leads),
     luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
 {
     if (staticTemplate.getCurtis())
@@ -189,68 +236,72 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, jump);
-
-        bool cuteCharm = false;
-        bool sync = false;
-
-        // Failed cute charm continues to check for other leads
-        if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
+        u32 prng = BWRNG(rng).nextUInt();
+        for (Lead currentLead : leads)
         {
-            cuteCharm = true;
-        }
-        else
-        {
-            bool flag = getPercentRand(go, bw) >= 50;
-            if (lead <= Lead::SynchronizeEnd)
+            BWRNG go(rng, jump);
+
+            bool cuteCharm = false;
+            bool sync = false;
+
+            // Failed cute charm continues to check for other leads
+            if ((currentLead == Lead::CuteCharmM || currentLead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
             {
-                sync = flag;
+                cuteCharm = true;
+            }
+            else
+            {
+                bool flag = getPercentRand(go, bw) >= 50;
+                if (currentLead <= Lead::SynchronizeEnd)
+                {
+                    sync = flag;
+                }
+            }
+
+            // If the pokemon has a fixed gender ratio don't let anything override it
+            u8 gender = 255;
+            if (!info->getFixedGender())
+            {
+                gender = staticTemplate.getGender();
+
+                // Only override the gender with cutecharm if the template doesn't have a forced gender
+                if (cuteCharm && gender == 255)
+                {
+                    gender = currentLead == Lead::CuteCharmF ? 0 : 1;
+                }
+            }
+
+            u32 pid;
+            for (u8 i = 0; i < shinyRolls; i++)
+            {
+                pid = Utilities5::createPID(tsv, 2, gender, staticTemplate.getShiny(), true, info->getGender(), go);
+                if (Utilities::isShiny<true>(pid, tsv))
+                {
+                    break;
+                }
+            }
+
+            u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
+            gender = Utilities::getGender(pid, info);
+            u8 shiny = Utilities::getShiny<true>(pid, tsv);
+
+            u8 nature = go.nextUInt(25);
+            if (sync)
+            {
+                nature = toInt(currentLead);
+            }
+
+            for (const auto &iv : ivs)
+            {
+                State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
+                             nature, shiny, info, currentLead, sync);
+                if (filter.compareState(static_cast<const State &>(state)))
+                {
+                    addState(states, state, currentLead);
+                }
             }
         }
-
-        // If the pokemon has a fixed gender ratio don't let anything override it
-        u8 gender = 255;
-        if (!info->getFixedGender())
-        {
-            gender = staticTemplate.getGender();
-
-            // Only override the gender with cutecharm if the template doesn't have a forced gender
-            if (cuteCharm && gender == 255)
-            {
-                gender = lead == Lead::CuteCharmF ? 0 : 1;
-            }
-        }
-
-        u32 pid;
-        for (u8 i = 0; i < shinyRolls; i++)
-        {
-            pid = Utilities5::createPID(tsv, 2, gender, staticTemplate.getShiny(), true, info->getGender(), go);
-            if (Utilities::isShiny<true>(pid, tsv))
-            {
-                break;
-            }
-        }
-
-        u8 ability = staticTemplate.getAbility() == 2 ? 2 : (pid >> 16) & 1;
-        gender = Utilities::getGender(pid, info);
-        u8 shiny = Utilities::getShiny<true>(pid, tsv);
-
-        u8 nature = go.nextUInt(25);
-        if (sync)
-        {
-            nature = toInt(lead);
-        }
-
-        u32 prng = rng.nextUInt();
-        for (const auto &iv : ivs)
-        {
-            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
-            if (filter.compareState(static_cast<const State &>(state)))
-            {
-                states.emplace_back(state);
-            }
-        }
+        rng.next();
     }
 
     return states;

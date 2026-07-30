@@ -23,6 +23,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
+#include <vector>
 
 class SearcherState4;
 class StaticTemplate4;
@@ -48,6 +49,9 @@ public:
     StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
                     const StateFilter &filter);
 
+    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, const std::vector<Lead> &leads,
+                    const Profile4 &profile, const StateFilter &filter);
+
     /**
      * @brief Starts the search
      *
@@ -62,7 +66,7 @@ private:
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
-    u8 buffer;
+    std::vector<Lead> leads;
 
     /**
      * @brief Searches for matching states from provided IVs

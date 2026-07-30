@@ -79,6 +79,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+    ui->comboMenuSearcherLead->setMultiSelect(true);
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
@@ -264,13 +265,17 @@ void Static4::search()
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
-    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
+    std::vector<Lead> leads;
+    for (int data : ui->comboMenuSearcherLead->getCheckedData())
+    {
+        leads.emplace_back(static_cast<Lead>(data));
+    }
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher
-        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, *currentProfile, filter);
+        = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), leads, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
