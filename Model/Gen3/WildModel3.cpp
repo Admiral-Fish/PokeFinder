@@ -19,6 +19,8 @@
 
 #include "WildModel3.hpp"
 #include <Core/Util/Translator.hpp>
+#include <QColor>
+#include <QFont>
 
 WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel(parent), showStats(false)
 {
@@ -31,10 +33,29 @@ int WildGeneratorModel3::columnCount(const QModelIndex &parent) const
 
 QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
 {
+    const auto &state = model[index.row()];
+    if (!state.isValid())
+    {
+        if (role == Qt::FontRole)
+        {
+            QFont font;
+            font.setItalic(true);
+            return font;
+        }
+        else if (role == Qt::ForegroundRole)
+        {
+            return QColor(128, 128, 128);
+        }
+    }
+
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model[index.row()];
         int column = index.column();
+        if (!state.isValid() && column > 0)
+        {
+            return "-";
+        }
+
         switch (column)
         {
         case 0:

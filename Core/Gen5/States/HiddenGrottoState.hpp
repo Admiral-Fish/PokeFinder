@@ -29,6 +29,25 @@ class HiddenGrottoState
 {
 public:
     /**
+     * @brief Construct a new empty HiddenGrottoState object
+     *
+     * @param prng PRNG call to determine Chatot pitch
+     * @param advances Advances of the state
+     */
+    HiddenGrottoState(u32 prng, u32 advances) :
+        advances(advances),
+        data(0),
+        item(false),
+        valid(false),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        gender(0),
+        group(0),
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        slot(0)
+    {
+    }
+
+    /**
      * @brief Construct a new HiddenGrottoState object
      *
      * @param prng PRNG call to determine chatot pitch and needle
@@ -42,6 +61,7 @@ public:
         advances(advances),
         data(specie),
         item(false),
+        valid(true),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         gender(gender),
         group(group),
@@ -63,6 +83,7 @@ public:
         advances(advances),
         data(item),
         item(true),
+        valid(true),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         gender(0),
         group(group),
@@ -134,6 +155,17 @@ public:
     }
 
     /**
+     * @brief Determines if the state can be hit
+     *
+     * @return true State can be hit
+     * @return false State cannot be hit
+     */
+    bool isValid() const
+    {
+        return valid;
+    }
+
+    /**
      * @brief Returns the needle value
      *
      * @return Needle value
@@ -157,6 +189,7 @@ private:
     u32 advances;
     u16 data;
     bool item;
+    bool valid;
     u8 chatot;
     u8 gender;
     u8 group;

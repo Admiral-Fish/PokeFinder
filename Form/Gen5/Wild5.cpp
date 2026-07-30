@@ -45,6 +45,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("static5");
 
@@ -236,6 +237,10 @@ void Wild5::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
+    if (ui->filterGenerator->hasActiveFilters(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
+    {
+        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
+    }
     generatorModel->addItems(states);
 }
 

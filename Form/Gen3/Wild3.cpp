@@ -40,6 +40,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("wild3");
 
@@ -195,6 +196,10 @@ void Wild3::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
+    if (ui->filterGenerator->hasActiveFilters(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
+    {
+        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
+    }
     generatorModel->addItems(states);
 }
 
