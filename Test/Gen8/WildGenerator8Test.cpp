@@ -86,7 +86,7 @@ void WildGenerator8Test::generateWild()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
@@ -154,7 +154,7 @@ void WildGenerator8Test::generateHoneyTree()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile8 profile("", Game::BD, 12345, 54321, false, false, false);

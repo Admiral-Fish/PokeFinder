@@ -201,7 +201,12 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         u8 encounterSlot;
-        if (magnetStatic && !modifiedSlots.empty())
+        if (area.getPokemon(12).getSpecie() != 0 && getPercentRand(go, bw) < 40)
+        {
+            encounterSlot = 12;
+            go.advance(1);
+        }
+        else if (magnetStatic && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
         }

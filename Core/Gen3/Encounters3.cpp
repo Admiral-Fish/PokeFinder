@@ -100,7 +100,7 @@ namespace Encounters3
         std::vector<EncounterArea3> encounters;
         for (size_t i = 0; i < length; i++)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             switch (encounter)
             {
             case Encounter::Grass:
@@ -214,7 +214,7 @@ namespace Encounters3
         std::vector<EncounterArea> encounters;
         for (size_t i = 0; i < length; i++)
         {
-            std::array<Slot, 12> slots;
+            std::array<Slot, 13> slots;
             for (size_t j = 0; j < 3; j++)
             {
                 const auto &slot = data[i].spot[j];

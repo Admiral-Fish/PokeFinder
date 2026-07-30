@@ -26,7 +26,7 @@
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 
-EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 12> &pokemon) :
+EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 13> &pokemon) :
     location(location), rate(rate), encounter(encounter), pokemon(pokemon)
 {
 }
@@ -97,7 +97,7 @@ ModifiedSlots EncounterArea::getSlots(Lead lead) const
     }
 
     u8 i = 0;
-    for (i = 0; i < pokemon.size() && pokemon[i].getInfo() != nullptr; i++)
+    for (i = 0; i < 12 && pokemon[i].getInfo() != nullptr; i++)
     {
         const PersonalInfo *info = pokemon[i].getInfo();
         if (info->getType(0) == type || info->getType(1) == type)

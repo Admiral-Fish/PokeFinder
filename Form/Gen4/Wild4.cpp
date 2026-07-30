@@ -342,7 +342,7 @@ void Wild4::generate()
         if (ui->checkBoxGeneratorPokeRadar->isChecked())
         {
             method = Method::PokeRadar;
-            std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
+            std::array<bool, 13> encounters = ui->filterGenerator->getEncounterSlots();
             if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
@@ -358,7 +358,7 @@ void Wild4::generate()
         else if (encounter == Encounter::HoneyTree)
         {
             method = Method::HoneyTree;
-            std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
+            std::array<bool, 13> encounters = ui->filterGenerator->getEncounterSlots();
             if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
@@ -659,7 +659,7 @@ void Wild4::search()
         if (ui->checkBoxSearcherPokeRadar->isChecked())
         {
             method = Method::PokeRadar;
-            std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
+            std::array<bool, 13> encounters = ui->filterSearcher->getEncounterSlots();
             if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
@@ -675,7 +675,7 @@ void Wild4::search()
         else if (encounter == Encounter::HoneyTree)
         {
             method = Method::HoneyTree;
-            std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
+            std::array<bool, 13> encounters = ui->filterSearcher->getEncounterSlots();
             if (std::ranges::count(encounters, true) != 1)
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Too many slots selected"),
