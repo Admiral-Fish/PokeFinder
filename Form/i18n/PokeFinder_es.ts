@@ -9742,6 +9742,58 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Step Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>White Flute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pokemon March</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pokemon Lullaby</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Biking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking / Running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking / Running in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Step Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Levels</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9807,6 +9859,38 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <source>Lucky Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pass Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lucky Power 3/S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encounter Power 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Step Encounter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10491,6 +10575,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
+    <message>
+        <source>Steps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildGeneratorModel5</name>
@@ -10608,6 +10696,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
+    </message>
+    <message>
+        <source>Steps</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10948,6 +11040,66 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Characteristic</source>
         <translation type="unfinished">Característica</translation>
     </message>
+    <message>
+        <source>Steps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Step Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Biking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Surfing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking / Running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking / Running in Long Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>White Flute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pokemon March</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pokemon Lullaby</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lullaby</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildSearcherModel5</name>
@@ -10974,6 +11126,11 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
         <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
+        <source>Steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

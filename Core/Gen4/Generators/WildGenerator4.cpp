@@ -28,6 +28,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
 {
@@ -76,14 +77,151 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static bool isStepModifier(Lead lead)
+{
+    return lead == Lead::ArenaTrap;
+}
+
+static bool getStepEncounter(u8 movementRatio, u8 encounterRatio, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement)
+{
+    u16 movementRate = fastMovement ? 70 : 40;
+
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    return movementRatio < movementRate && encounterRatio < encounterRate;
+}
+
+static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate = (encounterRate * 3) / 2;
+    }
+
+    u8 rate = encounterRate / 10;
+    if (rate > 8)
+    {
+        rate = 8;
+    }
+
+    return 8 - rate;
+}
+
+static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute)
+{
+    if (isStepModifier(lead))
+    {
+        encounterRate *= 2;
+    }
+    if (whiteFlute)
+    {
+        encounterRate += encounterRate / 2;
+    }
+
+    return std::min<u16>(encounterRate, 100);
+}
+
+static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio)
+{
+    u16 movementRate;
+    switch (movement)
+    {
+    case 1: // Running
+        movementRate = 40;
+        break;
+    case 2: // Biking
+        movementRate = 70;
+        break;
+    case 3: // Walking long grass
+        movementRate = 60;
+        break;
+    case 4: // Running long grass
+        movementRate = 80;
+        break;
+    case 5: // Surfing
+        movementRate = 40;
+        break;
+    case 0:
+    default:
+        movementRate = encounter == Encounter::Surfing ? 40 : 20;
+        break;
+    }
+
+    if (radio == 4)
+    {
+        movementRate += 25;
+    }
+    else if (radio == 5)
+    {
+        movementRate -= 25;
+    }
+
+    return std::min<u16>(movementRate, 100);
+}
+
+static u8 getHGSSStepMovements(u8 movementRatio, u8 encounterRatio, u16 encounterRate, Encounter encounter, Lead lead, bool whiteFlute,
+                               u8 movement, u8 radio)
+{
+    encounterRate = modifyHGSSStepEncounterRate(encounterRate, lead, whiteFlute);
+    if (encounterRatio >= encounterRate)
+    {
+        return 0xff;
+    }
+
+    u16 movementRate = getHGSSMovementRate(encounter, movement, radio);
+    if (movementRatio < movementRate)
+    {
+        return 3;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 30, 100))
+    {
+        return 4;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 40, 100))
+    {
+        return 5;
+    }
+    if (movementRatio < std::min<u16>(movementRate + 60, 100))
+    {
+        return 6;
+    }
+
+    return 0xff;
+}
+
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
-                               bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
-                               const WildStateFilter &filter) :
+                               bool unownRadio, u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement, u8 movement,
+                               u8 radio,
+                               const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
+    searchStepEncounter(searchStepEncounter),
+    whiteFlute(whiteFlute),
+    fastMovement(fastMovement),
+    movement(movement),
+    radio(radio),
     happiness(happiness)
+{
+}
+
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
+                               bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                               const WildStateFilter &filter) :
+    WildGenerator4(initialAdvances, maxAdvances, offset, method, lead, feebasTile, shiny, unownRadio, happiness, false, false, false, 0, 0,
+                   area, profile, filter)
 {
 }
 
@@ -120,14 +258,25 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
 
     PokeRNG rng(seed, initialAdvances);
-    auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+    u8 movements = searchStepEncounter ? getStepMovements(area.getRate(), lead, whiteFlute) : 0;
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
-        PokeRNG go(rng, jump);
+        u32 targetAdvance = initialAdvances + offset + cnt;
+        u32 payloadAdvance = targetAdvance + (searchStepEncounter ? 2 : 0);
+        u32 battleAdvances = battleAdvancesConst + payloadAdvance;
+        PokeRNG go(seed, payloadAdvance);
+        bool stepEncounter = false;
+        if (searchStepEncounter)
+        {
+            PokeRNG movementRNG(seed, targetAdvance);
+            PokeRNG encounterRNG(seed, targetAdvance + 1);
+            u8 movementRatio = movementRNG.nextUShort() / 0x290;
+            u8 encounterRatio = encounterRNG.nextUShort() / 0x290;
+            stepEncounter = getStepEncounter(movementRatio, encounterRatio, area.getRate(), lead, whiteFlute, fastMovement);
+        }
 
         // Fishing nibble check
         if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
@@ -239,7 +388,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info);
+                                  slot.getSpecie(), form, info, stepEncounter, movements);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
@@ -276,11 +425,22 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     auto jump = rng.getJump(offset);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
-
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
+        bool stepEncounter = false;
+        u8 movements = 0;
+        u8 movementRatio = 0;
+        u8 encounterRatio = 0;
+
+        if (searchStepEncounter)
+        {
+            movementRatio = go.nextUShort(100, &battleAdvances);
+            encounterRatio = go.nextUShort(100, &battleAdvances);
+            movements = getHGSSStepMovements(movementRatio, encounterRatio, area.getRate(), area.getEncounter(), lead, whiteFlute, movement, radio);
+            stepEncounter = movements != 0xff;
+        }
 
         // Rock smash/fishing nibble check
         if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
@@ -469,7 +629,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info);
+                                  slot.getSpecie(), form, info, stepEncounter, stepEncounter ? movements : 0, movementRatio, encounterRatio);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);

@@ -50,6 +50,10 @@ public:
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
+                   u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement, u8 movement, u8 radio, const EncounterArea4 &area,
+                   const Profile4 &profile, const WildStateFilter &filter);
+
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
                    u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
@@ -66,6 +70,11 @@ private:
     bool feebasTile;
     bool shiny;
     bool unownRadio;
+    bool searchStepEncounter;
+    bool whiteFlute;
+    bool fastMovement;
+    u8 movement;
+    u8 radio;
     u8 happiness;
 
     /**
