@@ -169,12 +169,12 @@ namespace LCRNGReverse
         constexpr s64 UPPER[] = { 0x2E8966D1C3, 0x23D9A3AA48, -0x3549D5FDB, -0xDACDA386, 0x1098000000, -0x7E8000000 };
 
         const s64 f[] = { 
-            static_cast<u64>(-10 * hp + 23 * atk - def - 15 * spe + 52 * spa - 53 * spd) << 27,
-            static_cast<u64>(-14 * hp + 7 * atk - 18 * def - 21 * spe - 26 * spa - 24 * spd) << 27,
-            static_cast<u64>(24 * hp - 5 * atk + 22 * def + 15 * spe - 5 * spa - 15 * spd) << 27,
-            static_cast<u64>(-5 * hp - 24 * atk + 26 * def - 12 * spe + 9 * spa + 14 * spd) << 27,
-            static_cast<u64>(27 * atk - 18 * spe - 8 * spa - spd) << 27,
-            static_cast<u64>(-27 * hp + 18 * def + 8 * spe + spa) << 27
+            static_cast<s64>(-10 * hp + 23 * atk - def - 15 * spe + 52 * spa - 53 * spd) << 27,
+            static_cast<s64>(-14 * hp + 7 * atk - 18 * def - 21 * spe - 26 * spa - 24 * spd) << 27,
+            static_cast<s64>(24 * hp - 5 * atk + 22 * def + 15 * spe - 5 * spa - 15 * spd) << 27,
+            static_cast<s64>(-5 * hp - 24 * atk + 26 * def - 12 * spe + 9 * spa + 14 * spd) << 27,
+            static_cast<s64>(27 * atk - 18 * spe - 8 * spa - spd) << 27,
+            static_cast<s64>(-27 * hp + 18 * def + 8 * spe + spa) << 27
         };
 
         const u32 min[] = { 
