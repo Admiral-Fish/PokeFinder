@@ -154,7 +154,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
     }
 
-    bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased() && area.getEncounter() != Encounter::SuperRod;
+    bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased()
+        && (area.getEncounter() != Encounter::SuperRod && area.getEncounter() != Encounter::SuperRodRippling);
 
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
