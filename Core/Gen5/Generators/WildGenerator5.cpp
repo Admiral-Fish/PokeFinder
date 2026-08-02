@@ -154,6 +154,9 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
     }
 
+    bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased()
+        && (area.getEncounter() != Encounter::SuperRod && area.getEncounter() != Encounter::SuperRodRippling);
+
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
@@ -193,6 +196,11 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
         {
             doubleBattle = true;
+        }
+
+        if (nsPokemonReleasedOffset)
+        {
+            go.next();
         }
 
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
