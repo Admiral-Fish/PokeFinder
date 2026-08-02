@@ -390,7 +390,7 @@ namespace ProfileLoader5
             DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, ivCache, shaCache, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
-                            timer0Max, memoryLink, shinyCharm, dsType, language, nsPokemonReleased);
+                            timer0Max, memoryLink, nsPokemonReleased, shinyCharm, dsType, language);
         }
 
     }

@@ -106,6 +106,13 @@ private slots:
     void okay();
 
     /**
+     * @brief Toggles whether N's Pokemon Released is enabled based on memory link
+     *
+     * @param checked Current check status of memory link
+     */
+    void memoryLinkToggled(bool checked);
+
+    /**
      * @brief Prompts user to select IV cache
      */
     void selectIVCache();

@@ -70,7 +70,7 @@ void SHA1Test::hash()
     QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
                      language);
 
     auto buttons = Keypresses::getKeypresses(profile);
@@ -127,7 +127,7 @@ void SHA1Test::hashTime()
     QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
                      language);
 
     auto buttons = Keypresses::getKeypresses(profile);
@@ -183,7 +183,7 @@ void SHA1SSETest::hash()
     QFETCH(DSType, dsType);
     QFETCH(SeedSSE, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
                      language);
 
     auto buttons = Keypresses::getKeypresses(profile);
@@ -240,7 +240,7 @@ void SHA1SSETest::hashTime()
     QFETCH(DSType, dsType);
     QFETCH(SeedSSE, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
                      language);
 
     auto buttons = Keypresses::getKeypresses(profile);

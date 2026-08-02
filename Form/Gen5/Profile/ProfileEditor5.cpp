@@ -54,18 +54,12 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     connect(ui->pushButtonAccept, &QPushButton::clicked, this, &ProfileEditor5::okay);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor5::reject);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);
+    connect(ui->checkBoxMemoryLink, &QCheckBox::toggled, this, &ProfileEditor5::memoryLinkToggled);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor5::versionIndexChanged);
     connect(ui->pushButtonSelectIVCache, &QPushButton::clicked, this, &ProfileEditor5::selectIVCache);
     connect(ui->pushButtonSelectSHACache, &QPushButton::clicked, this, &ProfileEditor5::selectSHACache);
     connect(ui->pushButtonClearIVCache, &QPushButton::clicked, this, &ProfileEditor5::clearIVCache);
     connect(ui->pushButtonClearSHACache, &QPushButton::clicked, this, &ProfileEditor5::clearSHACache);
-    connect(ui->checkBoxMemoryLink, &QCheckBox::toggled, this, [this](bool checked) {
-        ui->checkBoxNsPokemonReleased->setEnabled(checked);
-        if (!checked)
-        {
-            ui->checkBoxNsPokemonReleased->setChecked(false);
-        }
-    });
 
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
@@ -123,8 +117,8 @@ Profile5 ProfileEditor5::getProfile()
                     ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(), ui->textBoxVCount->getUChar(),
                     ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(),
                     ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxMemoryLink->isChecked(),
-                    ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>(),
-                    ui->checkBoxMemoryLink->isChecked() && ui->checkBoxNsPokemonReleased->isChecked());
+                    ui->checkBoxMemoryLink->isChecked() && ui->checkBoxNsPokemonReleased->isChecked(), ui->checkBoxShinyCharm->isChecked(),
+                    ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>());
 }
 
 void ProfileEditor5::clearIVCache()
@@ -157,6 +151,15 @@ void ProfileEditor5::okay()
     }
 
     done(QDialog::Accepted);
+}
+
+void ProfileEditor5::memoryLinkToggled(bool checked)
+{
+    ui->checkBoxNsPokemonReleased->setEnabled(checked);
+    if (!checked)
+    {
+        ui->checkBoxNsPokemonReleased->setChecked(false);
+    }
 }
 
 void ProfileEditor5::selectIVCache()

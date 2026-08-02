@@ -5847,7 +5847,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Mementolink</translation>
     </message>
     <message>
-        <source>N's Pokémon released</source>
+        <source>N&apos;s Pokémon released</source>
         <translation>Ns Pokémon freigelassen</translation>
     </message>
     <message>
@@ -5855,42 +5855,42 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Schillerpin</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
         <source>Enter a profile name</source>
         <translation>Profilname eingeben</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="145"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
         <source>Missing name</source>
         <translation>Fehlender Name</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="155"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="167"/>
         <source>Open IV Cache</source>
         <translation>IV Cache öffnen</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
         <source>Invalid IV Cache</source>
         <translation>Ungültiges IV Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="164"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation>Datei ist kein gültiges IV Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="172"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
         <source>Open SHA1 Cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="180"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="192"/>
         <source>Invalid SHA Cache</source>
         <translation>Ungültiges SHA Cache</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="181"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="193"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation>Datei ist kein gültiges SHA Cache oder wurde nicht aus dem Profil erstellt</translation>
     </message>
@@ -6266,6 +6266,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
@@ -6273,6 +6274,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -6347,8 +6349,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Mementolink</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="74"/>
-        <source>N's Pokémon released</source>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="73"/>
+        <source>N&apos;s Pokémon released</source>
         <translation>Ns Pokémon freigelassen</translation>
     </message>
     <message>

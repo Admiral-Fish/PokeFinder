@@ -91,11 +91,6 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
-static bool usesNsPokemonReleasedOffset(Encounter encounter)
-{
-    return encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing;
-}
-
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
@@ -159,18 +154,12 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
     }
 
+    bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased() && area.getEncounter() != Encounter::SuperRod;
+
     std::vector<WildState5> states;
-    bool nsPokemonReleasedOffset
-        = profile.getMemoryLink() && profile.getNsPokemonReleased() && usesNsPokemonReleasedOffset(area.getEncounter());
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG rowRng(rng, jump);
-        BWRNG payloadRng = rng;
-        if (nsPokemonReleasedOffset)
-        {
-            payloadRng.next();
-        }
-        BWRNG go(payloadRng, jump);
+        BWRNG go(rng, jump);
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -186,17 +175,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             }
             else
             {
-                bool flag;
-                if (nsPokemonReleasedOffset && lead <= Lead::SynchronizeEnd)
-                {
-                    flag = getPercentRand(rowRng, bw) >= 50;
-                    getPercentRand(go, bw);
-                }
-                else
-                {
-                    flag = getPercentRand(go, bw) >= 50;
-                }
-
+                bool flag = getPercentRand(go, bw) >= 50;
                 if (lead == Lead::MagnetPull || lead == Lead::Static)
                 {
                     magnetStatic = flag;
@@ -216,6 +195,11 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
         {
             doubleBattle = true;
+        }
+
+        if (nsPokemonReleasedOffset)
+        {
+            go.next();
         }
 
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
