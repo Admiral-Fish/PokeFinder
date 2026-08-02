@@ -15,8 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="TabWidget" name="tabRNGSelector">
@@ -120,7 +119,7 @@
            <widget class="ComboBox" name="comboBoxGeneratorLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
@@ -413,7 +412,7 @@
            <widget class="ComboBox" name="comboBoxSearcherLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>

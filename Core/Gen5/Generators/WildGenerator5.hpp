@@ -26,6 +26,7 @@
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class WildState5;
+enum class PassPower : u8;
 
 class WildGenerator5 : public WildGenerator<EncounterArea5, Profile5, WildStateFilter>
 {
@@ -43,7 +44,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower, const EncounterArea5 &area,
+    WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower, const EncounterArea5 &area,
                    const Profile5 &profile, const WildStateFilter &filter);
 
     /**
@@ -68,7 +69,7 @@ public:
     std::vector<WildState5> generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
 
 private:
-    u8 luckyPower;
+    PassPower luckyPower;
 };
 
 #endif // WILDGENERATOR5_HPP

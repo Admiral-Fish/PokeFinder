@@ -26,6 +26,7 @@
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class State5;
+enum class PassPower : u8;
 
 /**
  * @brief Static encounter generator for Gen5
@@ -46,7 +47,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+    StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                      const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter);
 
     /**
@@ -71,7 +72,7 @@ public:
     std::vector<State5> generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const;
 
 private:
-    u8 luckyPower;
+    PassPower luckyPower;
 
     /**
      * @brief Generates states

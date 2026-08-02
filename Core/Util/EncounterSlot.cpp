@@ -19,6 +19,7 @@
 
 #include "EncounterSlot.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <array>
 
 /**
@@ -153,18 +154,18 @@ namespace EncounterSlot
         }
     }
 
-    u8 bwSlot(u8 rand, Encounter encounter, u8 luckyPower)
+    u8 bwSlot(u8 rand, Encounter encounter, PassPower luckyPower)
     {
         switch (encounter)
         {
         case Encounter::SuperRod:
         case Encounter::SuperRodRippling:
-            return fishBW[luckyPower][rand];
+            return fishBW[toInt(luckyPower)][rand];
         case Encounter::Surfing:
         case Encounter::SurfingRippling:
-            return surfBW[luckyPower][rand];
+            return surfBW[toInt(luckyPower)][rand];
         default:
-            return grassBW[luckyPower][rand];
+            return grassBW[toInt(luckyPower)][rand];
         }
     }
 

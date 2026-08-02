@@ -15,8 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
@@ -103,7 +102,7 @@
                <widget class="ComboBox" name="comboBoxGrottoGeneratorGrottoPower">
                 <item>
                  <property name="text">
-                  <string notr="true">0</string>
+                  <string>None</string>
                  </property>
                 </item>
                 <item>
@@ -123,7 +122,7 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>S/MAX</string>
+                  <string notr="true">S</string>
                  </property>
                 </item>
                </widget>
@@ -377,7 +376,7 @@
                <widget class="ComboBox" name="comboBoxGrottoSearcherGrottoPower">
                 <item>
                  <property name="text">
-                  <string notr="true">0</string>
+                  <string>None</string>
                  </property>
                 </item>
                 <item>
@@ -397,7 +396,7 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>S/MAX</string>
+                  <string notr="true">S</string>
                  </property>
                 </item>
                </widget>

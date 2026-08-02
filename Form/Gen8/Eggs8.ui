@@ -14,6 +14,9 @@
    <string>Gen 8 Eggs</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="ProfileDisplay8" name="profileDisplay" native="true"/>
+   </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
      <property name="title">
@@ -146,11 +149,6 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView"/>
-   </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="ProfileDisplay8" name="profileDisplay" native="true">
-     <layout class="QGridLayout" name="gridLayout_4"/>
-    </widget>
    </item>
   </layout>
  </widget>

@@ -21,6 +21,7 @@
 #include "ui_Static5.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/IVCache.hpp>
@@ -85,8 +86,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
@@ -208,7 +209,7 @@ void Static5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxGeneratorLuckyPower->getEnum<PassPower>();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
@@ -371,7 +372,7 @@ void Static5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
