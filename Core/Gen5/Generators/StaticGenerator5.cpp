@@ -19,6 +19,7 @@
 
 #include "StaticGenerator5.hpp"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/States/State5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
@@ -42,10 +43,10 @@ static u8 getPercentRand(BWRNG &rng, bool bw)
     }
 }
 
-StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                                    const StaticTemplate5 &staticTemplate, const Profile5 &profile, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, offset, method, lead, staticTemplate, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? PassPower::None : luckyPower)
 {
     if (staticTemplate.getCurtis())
     {
@@ -180,7 +181,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             shinyRolls += 2;
         }
 
-        if (luckyPower == 3)
+        if (luckyPower == PassPower::Level3)
         {
             shinyRolls++;
         }

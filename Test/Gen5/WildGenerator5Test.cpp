@@ -48,6 +48,7 @@ void WildGenerator5Test::generate_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<Game>("version");
+    QTest::addColumn<PassPower>("luckyPower");
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
@@ -56,7 +57,7 @@ void WildGenerator5Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u64>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["version"].get<Game>()
-            << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["luckyPower"].get<PassPower>() << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -66,6 +67,7 @@ void WildGenerator5Test::generate()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(Game, version);
+    QFETCH(PassPower, luckyPower);
     QFETCH(int, location);
     QFETCH(std::string, results);
 
@@ -94,7 +96,7 @@ void WildGenerator5Test::generate()
         encounterAreas, [location](const EncounterArea5 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, *encounterArea, profile, filter);
+    WildGenerator5 generator(0, 9, 0, Method::Method5, lead, luckyPower, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());

@@ -3482,8 +3482,8 @@
 <context>
     <name>HiddenGrotto</name>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="113"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="116"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="115"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="118"/>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3518,10 +3518,6 @@
     <message>
         <source>Grotto Power</source>
         <translation>Potere Meandro</translation>
-    </message>
-    <message>
-        <source>S/MAX</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -3576,63 +3572,63 @@
         <translation>Filtri</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="107"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="110"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="109"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="112"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="108"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="111"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="110"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="113"/>
         <source>Synchronize</source>
         <translation>Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="119"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="121"/>
         <source>Adjacent Seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="334"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="568"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="570"/>
         <source>Invalid date range</source>
         <translation>Intervallo di date non valido</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="334"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="568"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="570"/>
         <source>Start date is after end date</source>
         <translation>La data iniziale è successiva alla data finale</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="651"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="653"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="656"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="658"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV.
 Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="663"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="665"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="668"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="670"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="669"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="671"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="670"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="672"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
@@ -7701,7 +7697,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>Static5</name>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="94"/>
+        <location filename="../Gen5/Static5.cpp" line="95"/>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7846,79 +7842,79 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="78"/>
-        <location filename="../Gen5/Static5.cpp" line="83"/>
+        <location filename="../Gen5/Static5.cpp" line="79"/>
+        <location filename="../Gen5/Static5.cpp" line="84"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="79"/>
-        <location filename="../Gen5/Static5.cpp" line="84"/>
+        <location filename="../Gen5/Static5.cpp" line="80"/>
+        <location filename="../Gen5/Static5.cpp" line="85"/>
         <source>Cute Charm</source>
         <translation>Incantevole</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="80"/>
-        <location filename="../Gen5/Static5.cpp" line="85"/>
+        <location filename="../Gen5/Static5.cpp" line="81"/>
+        <location filename="../Gen5/Static5.cpp" line="86"/>
         <source>♂ Lead</source>
         <translation>Leader ♂</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="80"/>
-        <location filename="../Gen5/Static5.cpp" line="85"/>
+        <location filename="../Gen5/Static5.cpp" line="81"/>
+        <location filename="../Gen5/Static5.cpp" line="86"/>
         <source>♀ Lead</source>
         <translation>Leader ♀</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="81"/>
-        <location filename="../Gen5/Static5.cpp" line="86"/>
+        <location filename="../Gen5/Static5.cpp" line="82"/>
+        <location filename="../Gen5/Static5.cpp" line="87"/>
         <source>Synchronize</source>
         <translation>Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="97"/>
+        <location filename="../Gen5/Static5.cpp" line="98"/>
         <source>Adjacent Seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="354"/>
+        <location filename="../Gen5/Static5.cpp" line="355"/>
         <source>Invalid date range</source>
         <translation>Intervallo di date non valido</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="354"/>
+        <location filename="../Gen5/Static5.cpp" line="355"/>
         <source>Start date is after end date</source>
         <translation>La data iniziale è successiva alla data finale</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="462"/>
+        <location filename="../Gen5/Static5.cpp" line="463"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="467"/>
+        <location filename="../Gen5/Static5.cpp" line="468"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV.
 Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="474"/>
+        <location filename="../Gen5/Static5.cpp" line="475"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="479"/>
+        <location filename="../Gen5/Static5.cpp" line="480"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="480"/>
+        <location filename="../Gen5/Static5.cpp" line="481"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="481"/>
+        <location filename="../Gen5/Static5.cpp" line="482"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>
@@ -9744,19 +9740,25 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>Wild5</name>
     <message>
+        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="106"/>
         <source>Encounter Modifier</source>
         <translation>Modificatore Incontro</translation>
     </message>
     <message>
+        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="106"/>
         <source>Sticky Hold</source>
         <translation>Antifurto</translation>
     </message>
     <message>
+        <location filename="../Gen5/Wild5.cpp" line="92"/>
+        <location filename="../Gen5/Wild5.cpp" line="106"/>
         <source>Suction Cups</source>
         <translation>Ventose</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="116"/>
+        <location filename="../Gen5/Wild5.cpp" line="123"/>
         <source>Advance Finder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9905,127 +9907,127 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="86"/>
-        <location filename="../Gen5/Wild5.cpp" line="98"/>
+        <location filename="../Gen5/Wild5.cpp" line="87"/>
+        <location filename="../Gen5/Wild5.cpp" line="101"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="87"/>
-        <location filename="../Gen5/Wild5.cpp" line="99"/>
+        <location filename="../Gen5/Wild5.cpp" line="88"/>
+        <location filename="../Gen5/Wild5.cpp" line="102"/>
         <source>Compound Eyes</source>
         <translation>Insettocchi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="88"/>
-        <location filename="../Gen5/Wild5.cpp" line="100"/>
+        <location filename="../Gen5/Wild5.cpp" line="89"/>
+        <location filename="../Gen5/Wild5.cpp" line="103"/>
         <source>Cute Charm</source>
         <translation>Incantevole</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="89"/>
-        <location filename="../Gen5/Wild5.cpp" line="101"/>
+        <location filename="../Gen5/Wild5.cpp" line="90"/>
+        <location filename="../Gen5/Wild5.cpp" line="104"/>
         <source>♂ Lead</source>
         <translation>Leader ♂</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="89"/>
-        <location filename="../Gen5/Wild5.cpp" line="101"/>
+        <location filename="../Gen5/Wild5.cpp" line="90"/>
+        <location filename="../Gen5/Wild5.cpp" line="104"/>
         <source>♀ Lead</source>
         <translation>Leader ♀</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="90"/>
-        <location filename="../Gen5/Wild5.cpp" line="102"/>
+        <location filename="../Gen5/Wild5.cpp" line="93"/>
+        <location filename="../Gen5/Wild5.cpp" line="107"/>
         <source>Level Modifier</source>
         <translation>Modificatore Livello</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="91"/>
-        <location filename="../Gen5/Wild5.cpp" line="103"/>
+        <location filename="../Gen5/Wild5.cpp" line="94"/>
+        <location filename="../Gen5/Wild5.cpp" line="108"/>
         <source>Hustle</source>
         <translation>Tuttafretta</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="92"/>
-        <location filename="../Gen5/Wild5.cpp" line="104"/>
+        <location filename="../Gen5/Wild5.cpp" line="95"/>
+        <location filename="../Gen5/Wild5.cpp" line="109"/>
         <source>Pressure</source>
         <translation>Pressione</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="93"/>
-        <location filename="../Gen5/Wild5.cpp" line="105"/>
+        <location filename="../Gen5/Wild5.cpp" line="96"/>
+        <location filename="../Gen5/Wild5.cpp" line="110"/>
         <source>Vital Spirit</source>
         <translation>Spiritovivo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="94"/>
-        <location filename="../Gen5/Wild5.cpp" line="106"/>
+        <location filename="../Gen5/Wild5.cpp" line="97"/>
+        <location filename="../Gen5/Wild5.cpp" line="111"/>
         <source>Slot Modifier</source>
         <translation>Modificatore Slot</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="95"/>
-        <location filename="../Gen5/Wild5.cpp" line="107"/>
+        <location filename="../Gen5/Wild5.cpp" line="98"/>
+        <location filename="../Gen5/Wild5.cpp" line="112"/>
         <source>Magnet Pull</source>
         <translation>Magnetismo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="95"/>
-        <location filename="../Gen5/Wild5.cpp" line="107"/>
+        <location filename="../Gen5/Wild5.cpp" line="98"/>
+        <location filename="../Gen5/Wild5.cpp" line="112"/>
         <source>Static</source>
         <translation>Statico</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="96"/>
-        <location filename="../Gen5/Wild5.cpp" line="108"/>
+        <location filename="../Gen5/Wild5.cpp" line="99"/>
+        <location filename="../Gen5/Wild5.cpp" line="113"/>
         <source>Synchronize</source>
         <translation>Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="119"/>
+        <location filename="../Gen5/Wild5.cpp" line="126"/>
         <source>Adjacent Seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="376"/>
+        <location filename="../Gen5/Wild5.cpp" line="387"/>
         <source>Invalid date range</source>
         <translation>Intervallo di date non valido</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="376"/>
+        <location filename="../Gen5/Wild5.cpp" line="387"/>
         <source>Start date is after end date</source>
         <translation>La data iniziale è successiva alla data finale</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="475"/>
+        <location filename="../Gen5/Wild5.cpp" line="490"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV/SHA</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="480"/>
+        <location filename="../Gen5/Wild5.cpp" line="495"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation>Le impostazioni sono configurate per la ricerca rapida IV.
 Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="487"/>
+        <location filename="../Gen5/Wild5.cpp" line="502"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation>Il profilo non ha un file IV cache configurato</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="492"/>
+        <location filename="../Gen5/Wild5.cpp" line="507"/>
         <source>Settings are not configured for fast searching</source>
         <translation>Le impostazioni non sono configurate per la ricerca rapida</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="493"/>
+        <location filename="../Gen5/Wild5.cpp" line="508"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation>Mantieni gli avanzamenti iniziali/massimi sotto %1/%2</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="494"/>
+        <location filename="../Gen5/Wild5.cpp" line="509"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation>Assicurati che i filtri IV siano impostati per spread comuni</translation>
     </message>

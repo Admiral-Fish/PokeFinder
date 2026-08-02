@@ -23,6 +23,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
@@ -114,8 +115,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
 
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);
@@ -229,7 +232,7 @@ void Wild5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxGeneratorLuckyPower->getEnum<PassPower>();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
@@ -401,7 +404,7 @@ void Wild5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,

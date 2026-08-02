@@ -23,6 +23,7 @@
 #include <Core/Global.hpp>
 
 enum class Encounter : u8;
+enum class PassPower : u8;
 
 namespace EncounterSlot
 {
@@ -65,7 +66,7 @@ namespace EncounterSlot
      *
      * @return Encounter slot
      */
-    u8 bwSlot(u8 rand, Encounter encounter, u8 luckyPower);
+    u8 bwSlot(u8 rand, Encounter encounter, PassPower luckyPower);
 
     /**
      * @brief Calculates the encounter slot for BDSP
