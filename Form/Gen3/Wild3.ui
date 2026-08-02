@@ -19,8 +19,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ProfileDisplay3" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay3" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="TabWidget" name="tabRNGSelector">

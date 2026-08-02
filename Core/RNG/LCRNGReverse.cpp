@@ -43,10 +43,10 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-    u64 tmp = (((PokeRNG::getMult() * first - second) >> 16) & 0xffff) * LAG1;
-    u64 lo = ((tmp + LOWER) >> 15) * LAG0;
-    u64 mi = lo + LAG0;
-    u64 up = ((tmp + UPPER) >> 15) * LAG0;
+    u64 tmp = ((PokeRNG::getMult() * first - second) >> 16) * LAG1;
+    u32 lo = ((tmp + LOWER) >> 15) * LAG0;
+    u32 mi = lo + LAG0;
+    u32 up = ((tmp + UPPER) >> 15) * LAG0;
 
     RecoverySeeds<6> seeds;
     for (u32 lbits = lo % LAG1; lbits < 0x10000; lbits += LAG1)
@@ -115,9 +115,9 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-    u64 tmp = (((first - second * MULT) >> 16) & 0xffff) * LAG0;
-    u64 lo = (tmp + LOWER) >> 15;
-    u64 up = (tmp + UPPER) >> 15;
+    u32 tmp = ((first - second * MULT) >> 16) * LAG0;
+    u32 lo = (tmp + LOWER) >> 15;
+    u32 up = (tmp + UPPER) >> 15;
 
     RecoverySeeds<6> seeds;
     for (u32 lbits = (lo * LAG1) % LAG0; lbits < 0x10000; lbits += LAG0)
@@ -152,60 +152,68 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u
 
 namespace LCRNGReverse
 {
-    RecoverySeeds<12> recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
+    RecoverySeeds<12> recoverChannelIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     {
+        // clang-format off
+
         // First row of the BKZ-reduced matrix
-        constexpr s64 R[] = { -2528644, -24142902, 52961366, 7565619, 24945956, -99942057 };
+        constexpr u32 R[] = {
+            0xFFD96A7C, // -2528644
+            0xFE8F9BCA, // -24142902
+            0x03282056, // 52961366
+            0x00737133, // 7565619
+            0x017CA524, // 24945956
+            0xFA0B0157  // -99942057
+        };
         constexpr s64 LOWER[] = { 0x2AB966D1C2, 0x2169A3AA47, -0x5049D5FDC, -0x2AACDA387, 0xFE7FFFFFF, -0x898000001 };
         constexpr s64 UPPER[] = { 0x2E8966D1C3, 0x23D9A3AA48, -0x3549D5FDB, -0xDACDA386, 0x1098000000, -0x7E8000000 };
 
-        // clang-format off
         const s64 f[] = { 
-            (-10 * (s64)hp + 23 * (s64)atk - (s64)def - 15 * (s64)spe + 52 * (s64)spa - 53 * (s64)spd) << 27,
-            (-14 * (s64)hp + 7 * (s64)atk - 18 * (s64)def - 21 * (s64)spe - 26 * (s64)spa - 24 * (s64)spd) << 27,
-            (24 * (s64)hp - 5 * (s64)atk + 22 * (s64)def + 15 * (s64)spe - 5 * (s64)spa - 15 * (s64)spd) << 27,
-            (-5 * (s64)hp - 24 * (s64)atk + 26 * (s64)def - 12 * (s64)spe + 9 * (s64)spa + 14 * (s64)spd) << 27,
-            (27 * (s64)atk - 18 * (s64)spe - 8 * (s64)spa - (s64)spd) << 27,
-            (-27 * (s64)hp + 18 * (s64)def + 8 * (s64)spe + (s64)spa) << 27
+            static_cast<s64>(-10 * hp + 23 * atk - def - 15 * spe + 52 * spa - 53 * spd) << 27,
+            static_cast<s64>(-14 * hp + 7 * atk - 18 * def - 21 * spe - 26 * spa - 24 * spd) << 27,
+            static_cast<s64>(24 * hp - 5 * atk + 22 * def + 15 * spe - 5 * spa - 15 * spd) << 27,
+            static_cast<s64>(-5 * hp - 24 * atk + 26 * def - 12 * spe + 9 * spa + 14 * spd) << 27,
+            static_cast<s64>(27 * atk - 18 * spe - 8 * spa - spd) << 27,
+            static_cast<s64>(-27 * hp + 18 * def + 8 * spe + spa) << 27
         };
 
-        const s64 min[] = {
-            ((f[0] + UPPER[0]) >> 32) * R[0],
-            ((f[1] + UPPER[1]) >> 32) * R[1],
-            ((f[2] + LOWER[2]) >> 32) * R[2],
-            ((f[3] + LOWER[3]) >> 32) * R[3],
-            ((f[4] + LOWER[4]) >> 32) * R[4],
-            ((f[5] + UPPER[5]) >> 32) * R[5]
+        const u32 min[] = { 
+            static_cast<u32>((f[0] + UPPER[0]) >> 32) * R[0],
+            static_cast<u32>((f[1] + UPPER[1]) >> 32) * R[1],
+            static_cast<u32>((f[2] + LOWER[2]) >> 32) * R[2],
+            static_cast<u32>((f[3] + LOWER[3]) >> 32) * R[3],
+            static_cast<u32>((f[4] + LOWER[4]) >> 32) * R[4],
+            static_cast<u32>((f[5] + UPPER[5]) >> 32) * R[5]
         };
 
-        const s64 max[] = {
-            ((f[0] + LOWER[0]) >> 32) * R[0],
-            ((f[1] + LOWER[1]) >> 32) * R[1],
-            ((f[2] + UPPER[2]) >> 32) * R[2],
-            ((f[3] + UPPER[3]) >> 32) * R[3],
-            ((f[4] + UPPER[4]) >> 32) * R[4],
-            ((f[5] + LOWER[5]) >> 32) * R[5]
+        const u32 max[] = {
+            static_cast<u32>((f[0] + LOWER[0]) >> 32) * R[0] - R[0],
+            static_cast<u32>((f[1] + LOWER[1]) >> 32) * R[1] - R[1],
+            static_cast<u32>((f[2] + UPPER[2]) >> 32) * R[2] + R[2],
+            static_cast<u32>((f[3] + UPPER[3]) >> 32) * R[3] + R[3],
+            static_cast<u32>((f[4] + UPPER[4]) >> 32) * R[4] + R[4],
+            static_cast<u32>((f[5] + LOWER[5]) >> 32) * R[5] - R[5]
         };
         // clang-format on
 
         RecoverySeeds<12> seeds;
-        for (s64 x5 = min[5]; x5 <= max[5]; x5 += -R[5])
+        for (u32 x5 = min[5]; x5 != max[5]; x5 -= R[5])
         {
-            for (s64 x4 = min[4]; x4 <= max[4]; x4 += R[4])
+            for (u32 x4 = min[4]; x4 != max[4]; x4 += R[4])
             {
-                s64 l4 = x5 + x4;
-                for (s64 x2 = min[2]; x2 <= max[2]; x2 += R[2])
+                u32 l4 = x5 + x4;
+                for (u32 x2 = min[2]; x2 != max[2]; x2 += R[2])
                 {
-                    s64 l2 = l4 + x2;
-                    for (s64 x3 = min[3]; x3 <= max[3]; x3 += R[3])
+                    u32 l2 = l4 + x2;
+                    for (u32 x3 = min[3]; x3 != max[3]; x3 += R[3])
                     {
-                        s64 l3 = l2 + x3;
-                        for (s64 x1 = min[1]; x1 <= max[1]; x1 += -R[1])
+                        u32 l3 = l2 + x3;
+                        for (u32 x1 = min[1]; x1 != max[1]; x1 -= R[1])
                         {
-                            s64 l1 = l3 + x1;
-                            for (s64 x0 = min[0]; x0 <= max[0]; x0 += -R[0])
+                            u32 l1 = l3 + x1;
+                            for (u32 x0 = min[0]; x0 != max[0]; x0 -= R[0])
                             {
-                                u32 seed = static_cast<u32>(l1 + x0);
+                                u32 seed = l1 + x0;
                                 if ((seed >> 27) != hp)
                                 {
                                     continue;
@@ -263,7 +271,7 @@ namespace LCRNGReverse
         u32 first = pid << 16;
         u32 second = pid & 0xffff0000;
 
-        u32 tmp = (((first - second * PokeRNGR::getMult()) >> 16) & 0xffff) * LAG0;
+        u32 tmp = ((first - second * PokeRNGR::getMult()) >> 16) * LAG0;
         u32 lo = (tmp + LOWER) >> 16;
         u32 up = (tmp + UPPER) >> 16;
 
@@ -295,10 +303,10 @@ namespace LCRNGReverse
         u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
         u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-        u64 tmp = (((XDRNGR::getMult() * second - first) >> 16) & 0xffff) * LAG1;
-        u64 lo = ((tmp + LOWER) >> 15) * LAG0;
-        u64 mi = lo + LAG0;
-        u64 up = ((tmp + UPPER) >> 15) * LAG0;
+        u64 tmp = ((XDRNGR::getMult() * second - first) >> 16) * LAG1;
+        u32 lo = ((tmp + LOWER) >> 15) * LAG0;
+        u32 mi = lo + LAG0;
+        u32 up = ((tmp + UPPER) >> 15) * LAG0;
 
         RecoverySeeds<6> seeds;
         for (u32 lbits = lo % LAG1; lbits < 0x10000; lbits += LAG1)
@@ -353,9 +361,9 @@ namespace LCRNGReverse
         u32 first = pid & 0xffff0000;
         u32 second = pid << 16;
 
-        u64 tmp = (((first - second * XDRNGR::getMult()) >> 16) & 0xffff) * LAG0;
-        u64 lo = (tmp + LOWER) >> 16;
-        u64 up = (tmp + UPPER) >> 16;
+        u64 tmp = ((first - second * XDRNGR::getMult()) >> 16) * LAG0;
+        u32 lo = (tmp + LOWER) >> 16;
+        u32 up = (tmp + UPPER) >> 16;
 
         RecoverySeeds<2> seeds;
         for (u32 lbits = (lo * LAG1) % LAG0; lbits < 0x10000; lbits += LAG0)

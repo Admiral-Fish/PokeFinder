@@ -57,6 +57,7 @@ add_library(PokeFinderCore STATIC
     Enum/Language.hpp
     Enum/Lead.hpp
     Enum/Method.hpp
+    Enum/PassPower.hpp
     Enum/ShadowType.hpp
     Enum/Shiny.hpp
     Gen3/EncounterArea3.cpp

@@ -21,6 +21,7 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
@@ -95,10 +96,10 @@ static bool usesNsPokemonReleasedOffset(Encounter encounter)
     return encounter == Encounter::Grass || encounter == Encounter::GrassDark || encounter == Encounter::Surfing;
 }
 
-WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? PassPower::None : luckyPower)
 {
 }
 
@@ -152,7 +153,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             shinyRolls += 2;
         }
 
-        if (luckyPower == 3)
+        if (luckyPower == PassPower::Level3)
         {
             shinyRolls++;
         }
