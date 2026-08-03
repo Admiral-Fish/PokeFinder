@@ -208,8 +208,8 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
        <widget class="IDsFilter" name="idFilter" native="true"/>
       </item>
      </layout>
