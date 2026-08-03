@@ -29,14 +29,12 @@
 #include <Form/Util/IVCalculator.hpp>
 #include <Model/Gen5/AdjacentSeedsModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
-#include <QHeaderView>
 #include <QMessageBox>
 #include <QSettings>
 #include <QSpinBox>
+#include <QStringList>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
-#include <QStringList>
-#include <QTimer>
 #include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("adjacentSeeds");
@@ -128,16 +126,6 @@ void AdjacentSeeds::updateProfiles()
 
 void AdjacentSeeds::generate()
 {
-    QHeaderView *header = ui->tableView->horizontalHeader();
-    if (columnWidths.empty())
-    {
-        columnWidths.reserve(header->count());
-        for (int i = 0; i < header->count(); i++)
-        {
-            columnWidths.emplace_back(header->sectionSize(i));
-        }
-    }
-
     std::array<QSpinBox *, 6> minIVWidgets
         = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
     std::array<QSpinBox *, 6> maxIVWidgets
@@ -153,9 +141,6 @@ void AdjacentSeeds::generate()
         }
     }
 
-    ui->tableView->setSortingEnabled(false);
-    ui->tableView->horizontalHeader()->setSortIndicator(-1, Qt::AscendingOrder);
-    proxyModel->sort(-1);
     model->clearModel();
 
     DateTime dateTime = ui->dateTimeEdit->getDateTime();
@@ -169,8 +154,7 @@ void AdjacentSeeds::generate()
     std::erase_if(states, [=](const AdjacentSeedsState &state) {
         for (size_t i = 0; i < minIVWidgets.size(); i++)
         {
-            if (state.getIV(static_cast<u8>(i)) < minIVWidgets[i]->value()
-                || state.getIV(static_cast<u8>(i)) > maxIVWidgets[i]->value())
+            if (state.getIV(static_cast<u8>(i)) < minIVWidgets[i]->value() || state.getIV(static_cast<u8>(i)) > maxIVWidgets[i]->value())
             {
                 return true;
             }
@@ -178,13 +162,6 @@ void AdjacentSeeds::generate()
         return false;
     });
     model->addItems(states);
-    ui->tableView->setSortingEnabled(true);
-    QTimer::singleShot(0, this, [=] {
-        for (int i = 0; i < std::min(header->count(), static_cast<int>(columnWidths.size())); i++)
-        {
-            header->resizeSection(i, columnWidths[i]);
-        }
-    });
 
     if (model->rowCount() > 0)
     {

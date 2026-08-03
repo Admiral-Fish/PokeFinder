@@ -90,9 +90,8 @@ private:
     Ui::AdjacentSeeds *ui;
 
     AdjacentSeedsModel *model;
-    SortFilterProxyModel *proxyModel;
     const Profile5 *currentProfile;
-    std::vector<int> columnWidths;
+    SortFilterProxyModel *proxyModel;
 
 private slots:
     /**
