@@ -137,7 +137,8 @@ public:
                   int destinationChild) override
     {
         if (sourceParent.isValid() || destinationParent.isValid() || count < 1 || sourceRow < 0 || sourceRow + count > rowCount()
-            || destinationChild < 0 || destinationChild > rowCount() || (destinationChild >= sourceRow && destinationChild <= sourceRow + count))
+            || destinationChild < 0 || destinationChild > rowCount()
+            || (destinationChild >= sourceRow && destinationChild <= sourceRow + count))
         {
             return false;
         }
@@ -181,7 +182,7 @@ public:
             return nullptr;
         }
 
-        std::vector<int> rows;
+        QList<int> rows;
         rows.reserve(indexes.size());
         for (const auto &index : indexes)
         {
@@ -192,11 +193,7 @@ public:
 
         QByteArray data;
         QDataStream stream(&data, QIODevice::WriteOnly);
-        stream << static_cast<int>(rows.size());
-        for (int row : rows)
-        {
-            stream << row;
-        }
+        stream << rows;
 
         auto *mime = new QMimeData;
         mime->setData("application/x-pokefinder-table-row", data);
@@ -229,22 +226,8 @@ public:
 
         QByteArray encoded = data->data("application/x-pokefinder-table-row");
         QDataStream stream(&encoded, QIODevice::ReadOnly);
-        int size;
-        stream >> size;
-        if (size < 1)
-        {
-            return false;
-        }
-
-        std::vector<int> rows(size);
-        for (int &sourceRow : rows)
-        {
-            stream >> sourceRow;
-            if (sourceRow < 0 || sourceRow >= rowCount())
-            {
-                return false;
-            }
-        }
+        QList<int> rows;
+        stream >> rows;
 
         int destinationRow = row;
         if (destinationRow == -1)
@@ -295,7 +278,8 @@ public:
             }
         }
 
-        destinationRow -= static_cast<int>(std::ranges::count_if(rows, [destinationRow](int sourceRow) { return sourceRow < destinationRow; }));
+        destinationRow
+            -= static_cast<int>(std::ranges::count_if(rows, [destinationRow](int sourceRow) { return sourceRow < destinationRow; }));
         remaining.insert(remaining.begin() + destinationRow, std::make_move_iterator(moved.begin()), std::make_move_iterator(moved.end()));
         model = std::move(remaining);
 
