@@ -26,7 +26,7 @@
 /**
  * @brief Provides extended combo box functionality for data types and enums
  */
-class ComboBox : public QComboBox
+class ComboBox final : public QComboBox
 {
     Q_OBJECT
 public:

@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 3 GameCube
  */
-class GameCubeGeneratorModel : public TableModel<GeneratorState>
+class GameCubeGeneratorModel final : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:
@@ -81,7 +81,7 @@ private:
     bool showStats;
 };
 
-class GameCubeSearcherModel : public TableModel<SearcherState>
+class GameCubeSearcherModel final : public TableModel<SearcherState>
 {
     Q_OBJECT
 public:

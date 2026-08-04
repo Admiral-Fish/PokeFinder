@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show profile information for Gen 8
  */
-class ProfileModel8 : public TableModel<Profile8>
+class ProfileModel8 final : public TableModel<Profile8>
 {
     Q_OBJECT
 public:

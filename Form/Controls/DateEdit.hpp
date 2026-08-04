@@ -27,7 +27,7 @@ class Date;
 /**
  * @brief Utility class that converts QDate to internally used Date class
  */
-class DateEdit : public QDateEdit
+class DateEdit final : public QDateEdit
 {
     Q_OBJECT
 public:

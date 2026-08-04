@@ -37,7 +37,7 @@ enum class Language : u8;
 /**
  * @brief Provides dialog to view/edit fields of a profile
  */
-class ProfileEditor5 : public QDialog
+class ProfileEditor5 final : public QDialog
 {
     Q_OBJECT
 public:

@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show profile information for Gen 5
  */
-class ProfileModel5 : public TableModel<Profile5>
+class ProfileModel5 final : public TableModel<Profile5>
 {
     Q_OBJECT
 public:
