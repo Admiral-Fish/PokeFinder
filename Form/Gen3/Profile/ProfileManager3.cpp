@@ -23,7 +23,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen3/Profile/ProfileEditor3.hpp>
 #include <Model/Gen3/ProfileModel3.hpp>
-#include <QAbstractItemView>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -50,10 +49,10 @@ ProfileManager3::ProfileManager3(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->pushButtonDuplicate, &QPushButton::clicked, this, &ProfileManager3::duplicate);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager3::remove);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager3::close);
-    connect(model, &QAbstractItemModel::rowsMoved, this,
-            [this] { ProfileLoader3::setProfiles(model->getModel()); emit profilesChanged(3); });
-    connect(model, &QAbstractItemModel::modelReset, this,
-            [this] { ProfileLoader3::setProfiles(model->getModel()); emit profilesChanged(3); });
+    connect(model, &ProfileModel3::rowsMoved, this, [this] {
+        ProfileLoader3::setProfiles(model->getModel());
+        emit profilesChanged(3);
+    });
 
     QSettings setting;
     if (setting.contains("profileManager3/geometry"))

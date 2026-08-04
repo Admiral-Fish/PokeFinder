@@ -23,7 +23,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Form/Gen4/Profile/ProfileEditor4.hpp>
 #include <Model/Gen4/ProfileModel4.hpp>
-#include <QAbstractItemView>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -51,10 +50,10 @@ ProfileManager4::ProfileManager4(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->pushButtonDuplicate, &QPushButton::clicked, this, &ProfileManager4::duplicate);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager4::remove);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager4::close);
-    connect(model, &QAbstractItemModel::rowsMoved, this,
-            [this] { ProfileLoader4::setProfiles(model->getModel()); emit profilesChanged(4); });
-    connect(model, &QAbstractItemModel::modelReset, this,
-            [this] { ProfileLoader4::setProfiles(model->getModel()); emit profilesChanged(4); });
+    connect(model, &ProfileModel4::rowsMoved, this, [this] {
+        ProfileLoader4::setProfiles(model->getModel());
+        emit profilesChanged(4);
+    });
 
     QSettings setting;
     if (setting.contains("profileManager4/geometry"))

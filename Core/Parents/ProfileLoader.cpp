@@ -179,12 +179,7 @@ namespace ProfileLoader3
     void setProfiles(const std::vector<Profile3> &profiles)
     {
         json j = readJson();
-        auto &gen3 = j["gen3"];
-        gen3 = json::array();
-        for (const auto &profile : profiles)
-        {
-            gen3.emplace_back(getJson(profile));
-        }
+        j["gen3"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
         writeJson(j);
     }
 
@@ -282,12 +277,7 @@ namespace ProfileLoader4
     void setProfiles(const std::vector<Profile4> &profiles)
     {
         json j = readJson();
-        auto &gen4 = j["gen4"];
-        gen4 = json::array();
-        for (const auto &profile : profiles)
-        {
-            gen4.emplace_back(getJson(profile));
-        }
+        j["gen4"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
         writeJson(j);
     }
 
@@ -436,12 +426,7 @@ namespace ProfileLoader5
     void setProfiles(const std::vector<Profile5> &profiles)
     {
         json j = readJson();
-        auto &gen5 = j["gen5"];
-        gen5 = json::array();
-        for (const auto &profile : profiles)
-        {
-            gen5.emplace_back(getJson(profile));
-        }
+        j["gen5"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
         writeJson(j);
     }
 
@@ -544,12 +529,7 @@ namespace ProfileLoader8
     void setProfiles(const std::vector<Profile8> &profiles)
     {
         json j = readJson();
-        auto &gen8 = j["gen8"];
-        gen8 = json::array();
-        for (const auto &profile : profiles)
-        {
-            gen8.emplace_back(getJson(profile));
-        }
+        j["gen8"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
         writeJson(j);
     }
 
