@@ -21,12 +21,7 @@
 #define TABLEMODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QDataStream>
-#include <QIODevice>
-#include <QMimeData>
 #include <algorithm>
-#include <iterator>
-#include <vector>
 
 /**
  * @brief Provides a templated implementation for children to add/edit/remove their data to a table model
@@ -136,154 +131,26 @@ public:
     bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent,
                   int destinationChild) override
     {
-        if (sourceParent.isValid() || destinationParent.isValid() || count < 1 || sourceRow < 0 || sourceRow + count > rowCount()
-            || destinationChild < 0 || destinationChild > rowCount()
-            || (destinationChild >= sourceRow && destinationChild <= sourceRow + count))
+        if (sourceParent.isValid() || destinationParent.isValid() || count != 1 || sourceRow < 0 || sourceRow >= rowCount()
+            || destinationChild < 0 || destinationChild > rowCount() || sourceRow == destinationChild || sourceRow == destinationChild - 1)
         {
             return false;
         }
 
         beginMoveRows(sourceParent, sourceRow, sourceRow + count - 1, destinationParent, destinationChild);
 
-        std::vector<Item> items(std::make_move_iterator(model.begin() + sourceRow),
-                                std::make_move_iterator(model.begin() + sourceRow + count));
-        model.erase(model.begin() + sourceRow, model.begin() + sourceRow + count);
         if (sourceRow < destinationChild)
         {
-            destinationChild -= count;
+            // Moving down: rotate items leftward between source and target
+            std::rotate(model.begin() + sourceRow, model.begin() + sourceRow + 1, model.begin() + destinationChild);
         }
-        model.insert(model.begin() + destinationChild, std::make_move_iterator(items.begin()), std::make_move_iterator(items.end()));
+        else
+        {
+            // Moving up: rotate items rightward between target and source
+            std::rotate(model.begin() + destinationChild, model.begin() + sourceRow, model.begin() + sourceRow + 1);
+        }
 
         endMoveRows();
-        return true;
-    }
-
-    /**
-     * @brief Returns model MIME types for drag and drop
-     *
-     * @return MIME type list
-     */
-    QStringList mimeTypes() const override
-    {
-        return { "application/x-pokefinder-table-row" };
-    }
-
-    /**
-     * @brief Returns MIME data for the dragged row
-     *
-     * @param indexes Selected indexes
-     *
-     * @return MIME data containing the dragged row
-     */
-    QMimeData *mimeData(const QModelIndexList &indexes) const override
-    {
-        if (indexes.isEmpty())
-        {
-            return nullptr;
-        }
-
-        QList<int> rows;
-        rows.reserve(indexes.size());
-        for (const auto &index : indexes)
-        {
-            rows.emplace_back(index.row());
-        }
-        std::ranges::sort(rows);
-        rows.erase(std::ranges::unique(rows).begin(), rows.end());
-
-        QByteArray data;
-        QDataStream stream(&data, QIODevice::WriteOnly);
-        stream << rows;
-
-        auto *mime = new QMimeData;
-        mime->setData("application/x-pokefinder-table-row", data);
-        return mime;
-    }
-
-    /**
-     * @brief Handles dropped row data
-     *
-     * @param data MIME data
-     * @param action Drop action
-     * @param row Destination row
-     * @param column Unused destination column
-     * @param parent Destination parent
-     *
-     * @return true Data was dropped
-     * @return false Invalid drop
-     */
-    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override
-    {
-        if (action == Qt::IgnoreAction)
-        {
-            return true;
-        }
-
-        if (action != Qt::MoveAction || column > 0 || !data->hasFormat("application/x-pokefinder-table-row"))
-        {
-            return false;
-        }
-
-        QByteArray encoded = data->data("application/x-pokefinder-table-row");
-        QDataStream stream(&encoded, QIODevice::ReadOnly);
-        QList<int> rows;
-        stream >> rows;
-
-        int destinationRow = row;
-        if (destinationRow == -1)
-        {
-            destinationRow = parent.isValid() ? parent.row() : rowCount();
-        }
-        if (destinationRow < 0 || destinationRow > rowCount())
-        {
-            return false;
-        }
-
-        bool contiguous = true;
-        for (size_t i = 1; i < rows.size(); i++)
-        {
-            if (rows[i] != rows[i - 1] + 1)
-            {
-                contiguous = false;
-                break;
-            }
-        }
-
-        if (contiguous)
-        {
-            return moveRows(QModelIndex(), rows.front(), static_cast<int>(rows.size()), QModelIndex(), destinationRow);
-        }
-
-        if (std::ranges::find(rows, destinationRow) != rows.end())
-        {
-            return false;
-        }
-
-        beginResetModel();
-
-        std::vector<Item> moved;
-        moved.reserve(rows.size());
-        for (int sourceRow : rows)
-        {
-            moved.emplace_back(std::move(model[sourceRow]));
-        }
-
-        std::vector<Item> remaining;
-        remaining.reserve(model.size() - rows.size());
-        for (int i = 0; i < rowCount(); i++)
-        {
-            if (!std::ranges::binary_search(rows, i))
-            {
-                remaining.emplace_back(std::move(model[i]));
-            }
-        }
-
-        destinationRow
-            -= static_cast<int>(std::ranges::count_if(rows, [destinationRow](int sourceRow) { return sourceRow < destinationRow; }));
-        remaining.insert(remaining.begin() + destinationRow, std::make_move_iterator(moved.begin()), std::make_move_iterator(moved.end()));
-        model = std::move(remaining);
-
-        endResetModel();
         return true;
     }
 

@@ -36,6 +36,7 @@ ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::
     model = new ProfileModel5(ui->tableView);
     model->addItems(ProfileLoader5::getProfiles(Game::Gen5));
     ui->tableView->setModel(model);
+
     ui->tableView->setAcceptDrops(true);
     ui->tableView->setDefaultDropAction(Qt::MoveAction);
     ui->tableView->setDragDropMode(QAbstractItemView::InternalMove);
@@ -43,7 +44,7 @@ ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::
     ui->tableView->setDragEnabled(true);
     ui->tableView->setDropIndicatorShown(true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager5::create);
     connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager5::edit);

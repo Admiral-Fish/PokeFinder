@@ -74,7 +74,15 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
 Qt::ItemFlags ProfileModel5::flags(const QModelIndex &index) const
 {
     Qt::ItemFlags flags = TableModel::flags(index);
-    return flags | Qt::ItemIsDropEnabled | (index.isValid() ? Qt::ItemIsDragEnabled : Qt::NoItemFlags);
+    if (index.isValid())
+    {
+        flags = (flags | Qt::ItemIsDragEnabled) & ~Qt::ItemIsDropEnabled;
+    }
+    else
+    {
+        flags |= Qt::ItemIsDropEnabled;
+    }
+    return flags;
 }
 
 QVariant ProfileModel5::headerData(int section, Qt::Orientation orientation, int role) const
