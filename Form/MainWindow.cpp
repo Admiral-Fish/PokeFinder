@@ -35,6 +35,7 @@
 #include <Form/Gen4/Eggs4.hpp>
 #include <Form/Gen4/Event4.hpp>
 #include <Form/Gen4/IDs4.hpp>
+#include <Form/Gen4/PokeRadar.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/ChainedSID.hpp>
@@ -99,6 +100,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonEvent4, &QPushButton::clicked, this, &MainWindow::openEvent4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
+    connect(ui->pushButtonPokeRadar, &QPushButton::clicked, this, &MainWindow::openPokeRadar);
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionIVstoPID4, &QAction::triggered, this, &MainWindow::openIVToPID);
@@ -169,6 +171,7 @@ MainWindow::~MainWindow()
     delete egg4;
     delete event4;
     delete ids4;
+    delete pokeRadar;
     delete static4;
     delete wild4;
 
@@ -365,6 +368,18 @@ void MainWindow::openProfileManager4() const
     auto *manager = new ProfileManager4();
     connect(manager, &ProfileManager4::profilesChanged, this, &MainWindow::updateProfiles);
     manager->show();
+}
+
+void MainWindow::openPokeRadar()
+{
+    if (!pokeRadar)
+    {
+        pokeRadar = new PokeRadar();
+        connect(pokeRadar, &PokeRadar::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged4, pokeRadar, &PokeRadar::updateProfiles);
+    }
+    pokeRadar->show();
+    pokeRadar->raise();
 }
 
 void MainWindow::openStatic4()

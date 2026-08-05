@@ -62,6 +62,24 @@ public:
      */
     std::vector<WildGeneratorState4> generate(u32 seed, u8 index) const;
 
+    /**
+     * @brief Generates states via Poke Radar without an active chain
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState4> generatePokeRadar(u32 seed) const;
+
+    /**
+     * @brief Generates states via Poke Radar chained shiny without an active chain
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState4> generatePokeRadarShiny(u32 seed) const;
+
 private:
     bool feebasTile;
     bool shiny;

@@ -29,6 +29,7 @@ class Eggs3;
 class IDs3;
 class Static4;
 class Wild4;
+class PokeRadar;
 class Eggs4;
 class Event4;
 class IDs4;
@@ -108,6 +109,7 @@ private:
     Eggs4 *egg4 = nullptr;
     Event4 *event4 = nullptr;
     IDs4 *ids4 = nullptr;
+    PokeRadar *pokeRadar = nullptr;
     Static4 *static4 = nullptr;
     Wild4 *wild4 = nullptr;
 
@@ -225,6 +227,11 @@ private slots:
      * @brief Opens the Gen 4 Profile Manager window
      */
     void openProfileManager4() const;
+
+    /**
+     * @brief Opens the Gen 4 Poke Radar window
+     */
+    void openPokeRadar();
 
     /**
      * @brief Opens the Gen 4 Static window

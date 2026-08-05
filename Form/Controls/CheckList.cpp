@@ -151,6 +151,17 @@ std::vector<bool> CheckList::getChecked() const
     return result;
 }
 
+std::vector<bool> CheckList::getExplicitChecked() const
+{
+    std::vector<bool> result;
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        auto *item = model->item(i);
+        result.emplace_back(item->checkState() == Qt::Checked);
+    }
+    return result;
+}
+
 std::vector<u16> CheckList::getCheckedData() const
 {
     auto checked = getChecked();

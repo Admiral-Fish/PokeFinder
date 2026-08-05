@@ -1055,6 +1055,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
                 {
                 case Lead::None:
                 case Lead::CompoundEyes:
+                case Lead::MagnetPull:
+                case Lead::Static:
                     if ((nextRNG / 0xa3e) == nature)
                     {
                         seed = test.getSeed();

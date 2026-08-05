@@ -23,6 +23,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <QClipboard>
+#include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMouseEvent>
@@ -106,6 +107,7 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(pasteAction, &QAction::triggered, this, &Filter::setIVsFromClipBoard);
 
     connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
+    connect(ui->checkBoxDisableFilters, &QCheckBox::stateChanged, this, [=](int state) { emit disableFiltersChanged(state == Qt::Checked); });
     connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
@@ -259,6 +261,19 @@ void Filter::disableControls(Controls control)
         ui->spinBoxWeightMin->hide();
         ui->spinBoxWeightMax->hide();
     }
+}
+
+void Filter::addCustomControlAfterShiny(const QString &text, QWidget *widget)
+{
+    auto *label = new QLabel(text, this);
+    widget->setParent(this);
+
+    ui->gridLayout_1->addWidget(label, 8, 0);
+    ui->gridLayout_1->addWidget(widget, 8, 1, 1, 2);
+    ui->gridLayout_1->addWidget(ui->labelWeight, 9, 0);
+    ui->gridLayout_1->addWidget(ui->spinBoxWeightMin, 9, 1);
+    ui->gridLayout_1->addWidget(ui->spinBoxWeightMax, 9, 2);
+    ui->gridLayout_1->addWidget(ui->checkBoxDisableFilters, 10, 0, 1, 3);
 }
 
 void Filter::enableHiddenAbility()

@@ -660,6 +660,78 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
     return states;
 }
 
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter());
+        if (!filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort<false>(25, &battleAdvances);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &battleAdvances);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u32 pid;
+        do
+        {
+            u16 low = go.nextUShort(&battleAdvances);
+            u16 high = go.nextUShort(&battleAdvances);
+            pid = (high << 16) | low;
+        } while (pid % 25 != nature);
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv),
+                                  encounterSlot, item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
 std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed, u8 index) const
 {
     std::vector<WildGeneratorState4> states;
@@ -740,6 +812,73 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv), index,
                                   item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter());
+        if (!filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+
+        auto shinyPID = [this, &go, &battleAdvances]() {
+            u16 low = go.nextUShort(8, &battleAdvances);
+            u16 high = go.nextUShort(8, &battleAdvances);
+            for (int i = 3; i < 16; i++)
+            {
+                low |= (go.nextUShort(&battleAdvances) & 1) << i;
+            }
+            high |= (tsv ^ low) & 0xfff8;
+            return static_cast<u32>((high << 16) | low);
+        };
+
+        u32 pid = shinyPID();
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv),
+                                  encounterSlot, item, slot.getSpecie(), 0, info);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
