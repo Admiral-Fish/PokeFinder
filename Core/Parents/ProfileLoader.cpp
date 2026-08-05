@@ -176,6 +176,13 @@ namespace ProfileLoader3
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
+    void setProfiles(const std::vector<Profile3> &profiles)
+    {
+        json j = readJson();
+        j["gen3"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
+    }
+
     void removeProfile(const Profile3 &remove)
     {
         json j = readJson();
@@ -265,6 +272,13 @@ namespace ProfileLoader4
         const auto &gen4 = j["gen4"];
         return gen4 | std::views::filter([version](const json &j) { return (j.value("version", Game::Diamond) & version) != Game::None; })
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
+    }
+
+    void setProfiles(const std::vector<Profile4> &profiles)
+    {
+        json j = readJson();
+        j["gen4"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
     }
 
     void addProfile(const Profile4 &profile)
@@ -411,6 +425,13 @@ namespace ProfileLoader5
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
+    void setProfiles(const std::vector<Profile5> &profiles)
+    {
+        json j = readJson();
+        j["gen5"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
+    }
+
     void removeProfile(const Profile5 &remove)
     {
         json j = readJson();
@@ -505,6 +526,13 @@ namespace ProfileLoader8
         const auto &gen8 = j["gen8"];
         return gen8 | std::views::filter([version](const json &j) { return (j.value("version", Game::BD) & version) != Game::None; })
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
+    }
+
+    void setProfiles(const std::vector<Profile8> &profiles)
+    {
+        json j = readJson();
+        j["gen8"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
     }
 
     void removeProfile(const Profile8 &remove)
