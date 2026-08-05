@@ -54,7 +54,7 @@ public:
             allowedIndexes.insert(QPersistentModelIndex(index));
         }
 
-        endFilterChange();
+        invalidateRowsFilter();
     }
 
     /**
@@ -72,7 +72,7 @@ public:
             allowedIndexes.insert(QPersistentModelIndex(sourceModel()->index(row, 0)));
         }
 
-        endFilterChange();
+        invalidateRowsFilter();
     }
 
 protected:
