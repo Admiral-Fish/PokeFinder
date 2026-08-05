@@ -93,7 +93,7 @@ jobs:
             -DTEST=ON \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-            ${{ matrix.platform-name == 'macOS' && '-DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"' || '' }}
+            ${{ matrix.platform-name == 'macOS' && '-DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0' || '' }}
 
       - name: Build PokeFinder
         run: cmake --build build
