@@ -3,11 +3,17 @@
 3,Super Ball
 4,Poké Ball
 17,Poción
+18,Antídoto
+23,Restau. Todo
 25,Hiperpoción
 26,Superpoción
+27,Cura Total
 28,Revivir
 29,Revivir Máximo
 33,Leche Mu-mu
+38,Éter
+40,Elixir
+41,Elixir Máx.
 43,Zumo de Baya
 44,Ceniza Sagrada
 50,Caramelo Raro
@@ -19,6 +25,7 @@
 75,Parte Verde
 76,Superrepelente
 77,Repelente Máximo
+78,Cuerda Huida
 79,Repelente
 80,Piedra Solar
 81,Piedra Lunar
@@ -124,6 +131,7 @@
 322,Electrizador
 323,Magmatizador
 326,Garra Afilada
+537,Escama Bella
 541,Globo Helio
 545,Tubérculo
 546,Pila

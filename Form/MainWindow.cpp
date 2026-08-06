@@ -45,6 +45,7 @@
 #include <Form/Gen5/Event5.hpp>
 #include <Form/Gen5/HiddenGrotto.hpp>
 #include <Form/Gen5/IDs5.hpp>
+#include <Form/Gen5/Pickup.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen5/Static5.hpp>
@@ -111,6 +112,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
+    connect(ui->pushButtonPickup, &QPushButton::clicked, this, &MainWindow::openPickup);
     connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
     connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
     connect(ui->actionAdjacentSeed, &QAction::triggered, this, &MainWindow::openAdjacentSeed);
@@ -177,6 +179,7 @@ MainWindow::~MainWindow()
     delete event5;
     delete hiddenGrotto;
     delete ids5;
+    delete pickup;
     delete static5;
     delete wild5;
 
@@ -515,6 +518,29 @@ void MainWindow::openIDs5()
     {
         ids5->show();
         ids5->raise();
+    }
+}
+
+void MainWindow::openPickup()
+{
+    if (!pickup)
+    {
+        pickup = new Pickup();
+        connect(pickup, &Pickup::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged5, pickup, &Pickup::updateProfiles);
+    }
+
+    if (!pickup->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one"));
+        msg.exec();
+        pickup->close();
+    }
+    else
+    {
+        pickup->show();
+        pickup->raise();
     }
 }
 

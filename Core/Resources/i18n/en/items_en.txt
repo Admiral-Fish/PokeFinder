@@ -3,11 +3,17 @@
 3,Great Ball
 4,Poké Ball
 17,Potion
+18,Antidote
+23,Full Restore
 25,Hyper Potion
 26,Super Potion
+27,Full Heal
 28,Revive
 29,Max Revive
 33,Moomoo Milk
+38,Ether
+40,Elixir
+41,Max Elixir
 43,Berry Juice
 44,Sacred Ash
 50,Rare Candy
@@ -19,6 +25,7 @@
 75,Green Shard
 76,Super Repel
 77,Max Repel
+78,Escape Rope
 79,Repel
 80,Sun Stone
 81,Moon Stone
@@ -124,6 +131,7 @@
 322,Electirizer
 323,Magmarizer
 326,Razor Claw
+537,Prism Scale
 541,Air Balloon
 545,Absorb Bulb
 546,Cell Battery

@@ -3,11 +3,17 @@
 3,Superball
 4,Pokéball
 17,Trank
+18,Gegengift
+23,Top-Genesung
 25,Hypertrank
 26,Supertrank
+27,Hyperheiler
 28,Beleber
 29,Top-Beleber
 33,Kuhmuh-Milch
+38,Äther
+40,Elixier
+41,Top-Elixier
 43,Beerensaft
 44,Zauberasche
 50,Sonderbonbon
@@ -19,6 +25,7 @@
 75,Grünstück
 76,Superschutz
 77,Top-Schutz
+78,Fluchtseil
 79,Schutz
 80,Sonnenstein
 81,Mondstein
@@ -124,6 +131,7 @@
 322,Stromisierer
 323,Magmaisierer
 326,Scharfklaue
+537,Schönschuppe
 541,Luftballon
 545,Knolle
 546,Akku

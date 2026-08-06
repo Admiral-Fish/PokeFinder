@@ -67,6 +67,7 @@ set(PROJECT_UI
     Gen4/Tools/SeedToTime4.ui
     Gen4/Wild4.ui
     Gen5/DreamRadar.ui
+    Gen5/Pickup.ui
     Gen5/HiddenGrotto.ui
     Gen5/Eggs5.ui
     Gen5/Event5.ui
@@ -190,6 +191,8 @@ set(PROJECT_SOURCES
     Gen5/Event5.hpp
     Gen5/HiddenGrotto.cpp
     Gen5/HiddenGrotto.hpp
+    Gen5/Pickup.cpp
+    Gen5/Pickup.hpp
     Gen5/IDs5.cpp
     Gen5/IDs5.hpp
     Gen5/Profile/ProfileCalibrator5.cpp
