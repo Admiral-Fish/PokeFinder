@@ -46,6 +46,11 @@ bool PokeRadarTile::hasGrass() const
     return grass;
 }
 
+bool PokeRadarTile::hasMark() const
+{
+    return mark != PokeRadarTileMark::None;
+}
+
 void PokeRadarTile::setMark(PokeRadarTileMark mark, bool continues)
 {
     if (!center)
@@ -110,7 +115,14 @@ void PokeRadarTile::updateColor()
     }
     else if (center || !grass)
     {
-        setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #303030; border: 1px solid black; }"));
+        if (center)
+        {
+            setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #c04040; border: 1px solid black; }"));
+        }
+        else
+        {
+            setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #303030; border: 1px solid black; }"));
+        }
     }
     else
     {

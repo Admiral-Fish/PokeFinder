@@ -20,6 +20,7 @@
 #include "PokeRadar.hpp"
 
 #include "PokeRadarTile.hpp"
+#include "PokeRadarGrass.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
@@ -49,12 +50,14 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDialog>
 #include <QEvent>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QLabel>
+#include <QMenu>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QItemSelectionModel>
@@ -76,12 +79,88 @@
 
 static const QString settingPrefix = QStringLiteral("pokeRadar");
 
+static constexpr std::array<u16, 46> radarLocations = {
+    139, 8,   9,   137, 134, 134, 136, 13,  140, 141, 142, 144, 143, 146, 145, 147,
+    148, 149, 150, 157, 156, 159, 158, 160, 161, 162, 162, 163, 164, 165, 166, 167,
+    169, 170, 171, 172, 181, 173, 174, 175, 182, 59,  56,  117, 7,   138
+};
+
+static std::vector<EncounterArea4> getRadarEncounters(const std::vector<EncounterArea4> &encounters)
+{
+    std::vector<EncounterArea4> radarEncounters;
+    for (u16 location : radarLocations)
+    {
+        auto area = std::ranges::find_if(encounters, [location](const EncounterArea4 &encounter) { return encounter.getLocation() == location; });
+        if (area != encounters.end())
+        {
+            radarEncounters.emplace_back(*area);
+        }
+    }
+    return radarEncounters;
+}
+
+static std::vector<std::string> getRadarLocationNames(const std::vector<EncounterArea4> &encounters, Game version)
+{
+    std::vector<u16> locs;
+    std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
+
+    auto names = Translator::getLocations(locs, version);
+    int lakeVerityCount = 0;
+    int route213Count = 0;
+    for (int i = 0; i < encounters.size() && i < names.size(); i++)
+    {
+        u16 location = encounters[i].getLocation();
+        if (location == 134)
+        {
+            names[i] = lakeVerityCount++ == 0 ? "Lake Verity (Small field)" : "Lake Verity (Large field)";
+        }
+        else if (location == 162 && route213Count++ == 1)
+        {
+            names[i] += " (On the Hill)";
+        }
+    }
+
+    return names;
+}
+
+static u8 getRadarLocationOccurrence(const std::vector<EncounterArea4> &encounters, int locationIndex)
+{
+    if (locationIndex < 0 || locationIndex >= encounters.size())
+    {
+        return 1;
+    }
+
+    u8 occurrence = 0;
+    u16 location = encounters[locationIndex].getLocation();
+    for (int i = 0; i <= locationIndex; i++)
+    {
+        if (encounters[i].getLocation() == location)
+        {
+            occurrence++;
+        }
+    }
+
+    return std::max<u8>(occurrence, 1);
+}
+
+static int getGrassFieldIndex(const PokeRadarControls &controls, const QPoint &position)
+{
+    return position.y() * controls.fieldWidth + position.x();
+}
+
+static bool isValidGrassFieldPosition(const PokeRadarControls &controls, const QPoint &position)
+{
+    return position.x() >= 0 && position.x() < controls.fieldWidth && position.y() >= 0 && position.y() < controls.fieldHeight;
+}
+
 PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
 {
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowTitle(tr("Gen 4 Poke Radar"));
     generator.grass.fill(nullptr);
+    setupGrassField(generator, 36, 36);
     searcher.grass.fill(nullptr);
+    setupGrassField(searcher, 9, 9);
 
     auto *mainLayout = new QGridLayout(this);
 
@@ -196,9 +275,28 @@ bool PokeRadar::eventFilter(QObject *object, QEvent *event)
             auto *mouseEvent = static_cast<QMouseEvent *>(event);
             if (mouseEvent->button() == Qt::LeftButton)
             {
+                bool searcherTile = tile->property("radarSearcher").toBool();
+                int x = tile->property("radarColumn").toInt();
+                int y = tile->property("radarRow").toInt();
                 grassPaintValue = !tile->hasGrass();
                 paintingGrass = true;
                 tile->setGrass(grassPaintValue);
+                storeGrassTile(searcherTile ? searcher : generator, x, y, grassPaintValue);
+                return true;
+            }
+            if (mouseEvent->button() == Qt::RightButton && !tile->property("radarSearcher").toBool() && generator.currentPosition
+                && !(tile->property("radarColumn").toInt() == 4 && tile->property("radarRow").toInt() == 4)
+                && (tile->hasGrass() || tile->hasMark()))
+            {
+                int column = tile->property("radarColumn").toInt();
+                int row = tile->property("radarRow").toInt();
+                QString coordinate = QString("%1%2").arg(QChar('A' + column)).arg(row);
+                QMenu menu(this);
+                QAction *action = menu.addAction(tr("Mark %1 as new Position").arg(coordinate));
+                if (menu.exec(mouseEvent->globalPosition().toPoint()) == action)
+                {
+                    moveGeneratorPositionToVisibleTile(column, row);
+                }
                 return true;
             }
         }
@@ -207,6 +305,8 @@ bool PokeRadar::eventFilter(QObject *object, QEvent *event)
             if (QApplication::mouseButtons() & Qt::LeftButton)
             {
                 tile->setGrass(grassPaintValue);
+                storeGrassTile(tile->property("radarSearcher").toBool() ? searcher : generator, tile->property("radarColumn").toInt(),
+                               tile->property("radarRow").toInt(), grassPaintValue);
             }
             else
             {
@@ -222,6 +322,8 @@ bool PokeRadar::eventFilter(QObject *object, QEvent *event)
                 if (auto *hoveredTile = qobject_cast<PokeRadarTile *>(QApplication::widgetAt(mouseEvent->globalPosition().toPoint())))
                 {
                     hoveredTile->setGrass(grassPaintValue);
+                    storeGrassTile(hoveredTile->property("radarSearcher").toBool() ? searcher : generator,
+                                   hoveredTile->property("radarColumn").toInt(), hoveredTile->property("radarRow").toInt(), grassPaintValue);
                 }
                 return true;
             }
@@ -572,6 +674,20 @@ QGroupBox *PokeRadar::createGrassTiles(PokeRadarControls &controls, bool searche
         buttonLayout->addWidget(removeMarking);
     }
     layout->addLayout(buttonLayout);
+    if (!searcherTab)
+    {
+        auto *positionLayout = new QHBoxLayout;
+        controls.choosePosition = new QPushButton(tr("Choose Position"), grassBox);
+        controls.resetToPosition = new QPushButton(tr("Reset Position"), grassBox);
+        positionLayout->addWidget(controls.choosePosition);
+        positionLayout->addWidget(controls.resetToPosition);
+        layout->addLayout(positionLayout);
+    }
+    else
+    {
+        controls.choosePosition = nullptr;
+        controls.resetToPosition = nullptr;
+    }
     layout->addStretch(1);
 
     auto *control = &controls;
@@ -579,6 +695,12 @@ QGroupBox *PokeRadar::createGrassTiles(PokeRadarControls &controls, bool searche
     if (removeMarking != nullptr)
     {
         connect(removeMarking, &QPushButton::clicked, this, &PokeRadar::clearGrassMarks);
+    }
+    if (!searcherTab)
+    {
+        connect(controls.choosePosition, &QPushButton::clicked, this, &PokeRadar::choosePosition);
+        connect(controls.resetToPosition, &QPushButton::clicked, this, &PokeRadar::resetToPosition);
+        setGeneratorPosition(QPoint(controls.fieldWidth / 2, controls.fieldHeight / 2), true);
     }
 
     grassBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
@@ -736,13 +858,185 @@ void PokeRadar::markPatches(const PokeRadarState &state, bool showContinue)
     }
 }
 
+void PokeRadar::choosePosition()
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle(tr("Choose Position"));
+
+    auto *layout = new QVBoxLayout(&dialog);
+    auto *grid = new QWidget(&dialog);
+    auto *gridLayout = new QGridLayout(grid);
+    gridLayout->setContentsMargins(6, 6, 6, 6);
+    gridLayout->setHorizontalSpacing(1);
+    gridLayout->setVerticalSpacing(1);
+    gridLayout->setSizeConstraint(QLayout::SetFixedSize);
+    grid->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+    std::optional<QPoint> selectedPosition = generator.currentPosition ? generator.currentPosition : generator.startPosition;
+    QPushButton *selectedButton = nullptr;
+    const QString normalStyle = QStringLiteral("QPushButton { background-color: #5a5a5a; border: 1px solid black; }");
+    const QString inactiveStyle = QStringLiteral("QPushButton { background-color: #303030; border: 1px solid black; }");
+    const QString selectedStyle = QStringLiteral("QPushButton { background-color: #c04040; border: 1px solid black; }");
+    int tileSize = generator.fieldHeight > 36 ? 15 : 20;
+
+    for (int y = 0; y < generator.fieldHeight; y++)
+    {
+        for (int x = 0; x < generator.fieldWidth; x++)
+        {
+            auto *button = new QPushButton(&dialog);
+            button->setFixedSize(tileSize, tileSize);
+            button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+            bool grass = generator.fieldGrass[getGrassFieldIndex(generator, QPoint(x, y))];
+            button->setEnabled(grass);
+            button->setStyleSheet(grass ? normalStyle : inactiveStyle);
+            if (selectedPosition && selectedPosition->x() == x && selectedPosition->y() == y)
+            {
+                selectedButton = button;
+                button->setStyleSheet(selectedStyle);
+            }
+
+            gridLayout->addWidget(button, y, x);
+            connect(button, &QPushButton::clicked, &dialog, [button, &selectedButton, &selectedPosition, normalStyle, selectedStyle, x, y] {
+                if (selectedButton != nullptr)
+                {
+                    selectedButton->setStyleSheet(normalStyle);
+                }
+                selectedButton = button;
+                selectedPosition = QPoint(x, y);
+                selectedButton->setStyleSheet(selectedStyle);
+            });
+        }
+    }
+
+    layout->addWidget(grid, 0, Qt::AlignCenter);
+
+    auto *buttonLayout = new QHBoxLayout;
+    auto *cancel = new QPushButton(tr("Cancel"), &dialog);
+    auto *save = new QPushButton(tr("Save Position"), &dialog);
+    buttonLayout->addStretch(1);
+    buttonLayout->addWidget(cancel);
+    buttonLayout->addWidget(save);
+    layout->addLayout(buttonLayout);
+
+    connect(cancel, &QPushButton::clicked, &dialog, &QDialog::reject);
+    connect(save, &QPushButton::clicked, &dialog, [this, &dialog, &selectedPosition] {
+        if (selectedPosition)
+        {
+            setGeneratorPosition(*selectedPosition, true);
+            dialog.accept();
+        }
+    });
+
+    dialog.exec();
+}
+
+void PokeRadar::moveGeneratorPositionToTile(int x, int y)
+{
+    QPoint position = *generator.currentPosition + QPoint(x - 4, y - 4);
+    if (!isValidGrassFieldPosition(generator, position))
+    {
+        return;
+    }
+
+    setGeneratorPosition(position, false);
+}
+
+void PokeRadar::moveGeneratorPositionToVisibleTile(int x, int y)
+{
+    auto *tile = generator.grass[y * 9 + x];
+    if (!tile->hasGrass() && !tile->hasMark())
+    {
+        return;
+    }
+
+    moveGeneratorPositionToTile(x, y);
+}
+
 void PokeRadar::resetGrass(PokeRadarControls &controls)
 {
-    for (auto *tile : controls.grass)
+    if (&controls == &searcher && currentProfile != nullptr && controls.fieldLocation != 0xffff)
     {
-        tile->setGrass(true);
-        tile->clearMark();
+        controls.fieldGrass = getPokeRadarGrassField(controls.fieldLocation, controls.fieldLocationOccurrence, currentProfile->getVersion());
+        QPoint start = getPokeRadarGrassFieldStart(controls.fieldLocation, controls.fieldLocationOccurrence, currentProfile->getVersion());
+        controls.startPosition = start;
+        controls.currentPosition = start;
+        updateGrassFromField(controls);
     }
+    else if (&controls == &generator && controls.currentPosition)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            for (int x = 0; x < 9; x++)
+            {
+                storeGrassTile(controls, x, y, true);
+            }
+        }
+        updateGrassFromField(controls);
+    }
+    else
+    {
+        for (auto *tile : controls.grass)
+        {
+            tile->setGrass(true);
+            tile->clearMark();
+        }
+    }
+}
+
+void PokeRadar::resetToPosition()
+{
+    if (generator.startPosition)
+    {
+        setGeneratorPosition(*generator.startPosition, false);
+    }
+}
+
+void PokeRadar::setGeneratorPosition(const QPoint &position, bool updateStart)
+{
+    if (!isValidGrassFieldPosition(generator, position))
+    {
+        return;
+    }
+
+    bool hadPosition = generator.currentPosition.has_value();
+    if (hadPosition && isValidGrassFieldPosition(generator, *generator.currentPosition))
+    {
+        generator.fieldGrass[getGrassFieldIndex(generator, *generator.currentPosition)] = true;
+    }
+    generator.currentPosition = position;
+    generator.fieldGrass[getGrassFieldIndex(generator, position)] = true;
+    if (updateStart)
+    {
+        generator.startPosition = position;
+        if (!hadPosition)
+        {
+            for (int y = 0; y < 9; y++)
+            {
+                for (int x = 0; x < 9; x++)
+                {
+                    if (x != 4 || y != 4)
+                    {
+                        storeGrassTile(generator, x, y, generator.grass[y * 9 + x]->hasGrass());
+                    }
+                }
+            }
+        }
+    }
+    if (generator.resetToPosition != nullptr)
+    {
+        generator.resetToPosition->setEnabled(generator.startPosition.has_value());
+    }
+    updateGrassFromField(generator);
+}
+
+void PokeRadar::setupGrassField(PokeRadarControls &controls, int width, int height, u16 location, int locationOccurrence)
+{
+    controls.fieldWidth = width;
+    controls.fieldHeight = height;
+    controls.fieldLocation = location;
+    controls.fieldLocationOccurrence = locationOccurrence;
+    controls.fieldVersion = currentProfile == nullptr ? Game::None : currentProfile->getVersion();
+    controls.fieldGrass.assign(width * height, true);
 }
 
 void PokeRadar::setupGrassGrid(PokeRadarControls &controls, QGridLayout *layout)
@@ -775,10 +1069,25 @@ void PokeRadar::setupGrassGrid(PokeRadarControls &controls, QGridLayout *layout)
             auto *tile = new PokeRadarTile(x == 4 && y == 4, this);
             tile->setProperty("radarColumn", x);
             tile->setProperty("radarRow", y);
+            tile->setProperty("radarSearcher", searcherTab);
             tile->installEventFilter(this);
             layout->addWidget(tile, y + 1, x + 1, Qt::AlignCenter);
             controls.grass[y * 9 + x] = tile;
         }
+    }
+}
+
+void PokeRadar::storeGrassTile(PokeRadarControls &controls, int x, int y, bool grass)
+{
+    if (!controls.currentPosition || (x == 4 && y == 4))
+    {
+        return;
+    }
+
+    QPoint position = *controls.currentPosition + QPoint(x - 4, y - 4);
+    if (isValidGrassFieldPosition(controls, position))
+    {
+        controls.fieldGrass[getGrassFieldIndex(controls, position)] = grass;
     }
 }
 
@@ -798,6 +1107,7 @@ void PokeRadar::toggleGrassColumn(PokeRadarControls &controls, int column)
     for (int y = 0; y < 9; y++)
     {
         controls.grass[y * 9 + column]->setGrass(!allSelected);
+        storeGrassTile(controls, column, y, !allSelected);
     }
 }
 
@@ -817,6 +1127,32 @@ void PokeRadar::toggleGrassRow(PokeRadarControls &controls, int row)
     for (int x = 0; x < 9; x++)
     {
         controls.grass[row * 9 + x]->setGrass(!allSelected);
+        storeGrassTile(controls, x, row, !allSelected);
+    }
+}
+
+void PokeRadar::updateGrassFromField(PokeRadarControls &controls)
+{
+    if (!controls.currentPosition)
+    {
+        return;
+    }
+
+    if (&controls == &generator)
+    {
+        clearGrassMarks();
+    }
+
+    for (int y = 0; y < 9; y++)
+    {
+        for (int x = 0; x < 9; x++)
+        {
+            auto *tile = controls.grass[y * 9 + x];
+            QPoint position = *controls.currentPosition + QPoint(x - 4, y - 4);
+            bool valid = isValidGrassFieldPosition(controls, position);
+            tile->setGrass(valid && controls.fieldGrass[getGrassFieldIndex(controls, position)]);
+            tile->clearMark();
+        }
     }
 }
 
@@ -1018,15 +1354,23 @@ void PokeRadar::updateEncounters(PokeRadarControls &controls, std::vector<Encoun
     }
 
     u16 currentLocation = controls.location->getCurrentUShort();
+    int currentLocationIndex = controls.location->currentIndex();
     QVariant currentSlot;
     if (controls.slot != nullptr)
     {
         currentSlot = controls.slot->currentData();
     }
 
-    encounters = Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(controls, getSelectedRadar(controls)), currentProfile);
+    encounters = getRadarEncounters(Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(controls, getSelectedRadar(controls)), currentProfile));
     updateLocations(controls, encounters);
-    controls.location->setCurrentIndexByData(currentLocation);
+    if (currentLocationIndex >= 0 && currentLocationIndex < encounters.size() && encounters[currentLocationIndex].getLocation() == currentLocation)
+    {
+        controls.location->setCurrentIndex(currentLocationIndex);
+    }
+    else
+    {
+        controls.location->setCurrentIndexByData(currentLocation);
+    }
 
     if (controls.slot != nullptr)
     {
@@ -1039,7 +1383,7 @@ void PokeRadar::updateLocations(PokeRadarControls &controls, const std::vector<E
     controls.location->clear();
     std::vector<u16> locs;
     std::ranges::transform(encounters, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
-    controls.location->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs);
+    controls.location->addItems(getRadarLocationNames(encounters, currentProfile->getVersion()), locs, false);
 
     updatePokemon(controls, encounters);
 }
@@ -1067,6 +1411,27 @@ void PokeRadar::updatePokemon(PokeRadarControls &controls, const std::vector<Enc
     }
 
     const auto &area = encounters[controls.location->currentIndex()];
+    int locationIndex = controls.location->currentIndex();
+    u8 locationOccurrence = getRadarLocationOccurrence(encounters, locationIndex);
+    QSize fieldSize = getPokeRadarGrassFieldSize(area.getLocation(), locationOccurrence, currentProfile->getVersion());
+    if (fieldSize.width() != controls.fieldWidth || fieldSize.height() != controls.fieldHeight || controls.fieldLocation != area.getLocation()
+        || controls.fieldLocationOccurrence != locationOccurrence || controls.fieldVersion != currentProfile->getVersion())
+    {
+        setupGrassField(controls, fieldSize.width(), fieldSize.height(), area.getLocation(), locationOccurrence);
+        controls.fieldGrass = getPokeRadarGrassField(area.getLocation(), locationOccurrence, currentProfile->getVersion());
+        QPoint start = getPokeRadarGrassFieldStart(area.getLocation(), locationOccurrence, currentProfile->getVersion());
+        if (&controls == &generator)
+        {
+            setGeneratorPosition(start, true);
+        }
+        else
+        {
+            controls.startPosition = start;
+            controls.currentPosition = start;
+            updateGrassFromField(controls);
+        }
+    }
+
     updateMinimumGraceSteps(controls, encounters);
     auto species = area.getUniqueSpecies();
     auto names = area.getSpecieNames();

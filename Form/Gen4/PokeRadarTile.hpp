@@ -38,6 +38,7 @@ public:
 
     void clearMark();
     bool hasGrass() const;
+    bool hasMark() const;
     void setMark(PokeRadarTileMark mark, bool continues = false);
     void setGrass(bool grass);
 

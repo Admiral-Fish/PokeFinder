@@ -20,6 +20,7 @@
 #ifndef POKERADAR_HPP
 #define POKERADAR_HPP
 
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generators/PokeRadarGenerator.hpp>
@@ -27,6 +28,7 @@
 #include <QWidget>
 #include <array>
 #include <optional>
+#include <QPoint>
 #include <vector>
 
 class ComboBox;
@@ -82,7 +84,17 @@ struct PokeRadarControls
     TextBox *maxDelay;
     QPushButton *button;
     QPushButton *cancel;
+    QPushButton *choosePosition;
+    QPushButton *resetToPosition;
     QProgressBar *progressBar;
+    std::vector<bool> fieldGrass;
+    int fieldWidth = 36;
+    int fieldHeight = 36;
+    u16 fieldLocation = 0xffff;
+    int fieldLocationOccurrence = -1;
+    Game fieldVersion = Game::None;
+    std::optional<QPoint> startPosition;
+    std::optional<QPoint> currentPosition;
     bool hasRun = false;
 };
 
@@ -131,10 +143,18 @@ private:
     void jumpToBattleAdv();
     void markSelectedPatches(const PokeRadarControls &controls);
     void markPatches(const PokeRadarState &state, bool showContinue);
+    void choosePosition();
+    void moveGeneratorPositionToTile(int x, int y);
+    void moveGeneratorPositionToVisibleTile(int x, int y);
     void resetGrass(PokeRadarControls &controls);
+    void resetToPosition();
+    void setGeneratorPosition(const QPoint &position, bool updateStart);
+    void setupGrassField(PokeRadarControls &controls, int width, int height, u16 location = 0xffff, int locationOccurrence = -1);
     void setupGrassGrid(PokeRadarControls &controls, QGridLayout *layout);
+    void storeGrassTile(PokeRadarControls &controls, int x, int y, bool grass);
     void toggleGrassColumn(PokeRadarControls &controls, int column);
     void toggleGrassRow(PokeRadarControls &controls, int row);
+    void updateGrassFromField(PokeRadarControls &controls);
     std::vector<WildGeneratorState4> getPokemonStates(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters,
                                                        PokeRadarChainType chainType, bool useChainSlot, bool ignoreFilters = false);
     std::vector<PokeRadarState> getStates(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters,
