@@ -44,6 +44,10 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
     {
         const auto &state = model[index.row()];
         int column = getColumn(index.column());
+        if (state.getSpecie() == 0 && column > 4)
+        {
+            return QString("-");
+        }
         switch (column)
         {
         case 0:

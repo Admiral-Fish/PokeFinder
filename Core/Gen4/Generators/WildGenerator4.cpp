@@ -28,6 +28,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
 
 static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
 {
@@ -76,14 +77,136 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+struct RockSmashItemData
+{
+    constexpr RockSmashItemData(u8 odds, u8 type) : odds(odds), type(type)
+    {
+    }
+
+    u8 odds;
+    u8 type;
+};
+
+static RockSmashItemData getRockSmashItemData(u8 location)
+{
+    switch (location)
+    {
+    case 5: // Violet City
+    case 69: // Dark Cave (Route 31)
+        return { 50, 0 };
+    case 9: // Ruins of Alph (Outside)
+        return { 30, 1 };
+    case 51: // Cianwood City
+    case 63: // Ice Path B3F
+    case 93: // Route 19
+    case 140: // Cerulean Cave 2F
+        return { 20, 0 };
+    case 80: // Mt. Silver Cave 2F
+    case 98: // Vermilion City
+    case 139: // Cerulean Cave 1F
+        return { 25, 0 };
+    case 83: // Cliff Cave
+        return { 25, 2 };
+    case 109: // Rock Tunnel B1F
+    case 141: // Cerulean Cave B1F
+        return { 30, 0 };
+    case 113: // Route 3
+    case 135: // Victory Road 3F
+        return { 10, 0 };
+    default:
+        return { 0, 0 };
+    }
+}
+
+static u8 getRockSmashItemIndex(u8 rand)
+{
+    constexpr std::array<u8, 8> ranges = { 25, 45, 55, 65, 75, 85, 95, 100 };
+    return std::upper_bound(ranges.begin(), ranges.end(), rand) - ranges.begin();
+}
+
+static bool increasesRockSmashItemRate(Lead lead)
+{
+    return lead == Lead::RockSmashMagnetPull || lead == Lead::RockSmashSuctionCups || lead == Lead::KeenEye;
+}
+
+static bool improvesRockSmashItem(Lead lead)
+{
+    return lead == Lead::RockSmashSuperLuck || lead == Lead::SereneGrace;
+}
+
+static bool isRockSmashItemLead(Lead lead)
+{
+    return increasesRockSmashItemRate(lead) || improvesRockSmashItem(lead) || lead == Lead::Intimidate;
+}
+
+static bool isRockSmashEncounterSuppressed(Lead lead, u8 leadLevel, u8 level, PokeRNG &rng, u32 *battleAdvances)
+{
+    return (lead == Lead::KeenEye || lead == Lead::Intimidate) && leadLevel > 5 && level <= leadLevel - 5
+        && rng.nextUShort(2, battleAdvances) == 0;
+}
+
+static u16 getRockSmashItem(u8 location, Game version, Lead lead, bool rockSmashPokemon, PokeRNG &rng, u32 *battleAdvances)
+{
+    RockSmashItemData data = getRockSmashItemData(location);
+    if (data.odds == 0)
+    {
+        return 0;
+    }
+
+    if (increasesRockSmashItemRate(lead))
+    {
+        data.odds += 5;
+    }
+    if (rockSmashPokemon)
+    {
+        data.odds += 5;
+    }
+    data.odds = std::min<u8>(data.odds, 100);
+
+    if (rng.nextUShort(100, battleAdvances) >= data.odds)
+    {
+        return 0;
+    }
+
+    u8 index = getRockSmashItemIndex(rng.nextUShort(100, battleAdvances));
+    if (improvesRockSmashItem(lead) && index < 7)
+    {
+        index++;
+    }
+
+    constexpr std::array<u16, 8> defaultItems = { 39, 28, 93, 72, 73, 75, 74, 91 };
+    constexpr std::array<u16, 8> ruinsHG = { 72, 74, 101, 39, 73, 75, 103, 29 };
+    constexpr std::array<u16, 8> ruinsSS = { 73, 75, 102, 39, 72, 74, 103, 29 };
+    constexpr std::array<u16, 8> cliffHG = { 39, 88, 89, 72, 74, 100, 100, 106 };
+    constexpr std::array<u16, 8> cliffSS = { 39, 88, 89, 73, 75, 99, 99, 106 };
+
+    switch (data.type)
+    {
+    case 1:
+    {
+        const auto &items = (version & Game::HeartGold) != Game::None ? ruinsHG : ruinsSS;
+        return items[index];
+    }
+    case 2:
+    {
+        const auto &items = (version & Game::HeartGold) != Game::None ? cliffHG : cliffSS;
+        return items[index];
+    }
+    default:
+        return defaultItems[index];
+    }
+}
+
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny,
-                               bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
-                               const WildStateFilter &filter) :
+                               bool unownRadio, u8 happiness, bool rockSmashPokemon, u8 leadLevel, const EncounterArea4 &area,
+                               const Profile4 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
     feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
-    happiness(happiness)
+    rockSmashPokemon(rockSmashPokemon),
+    happiness(happiness),
+    leadLevel(leadLevel)
 {
 }
 
@@ -253,20 +376,22 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 {
     std::vector<WildGeneratorState4> states;
 
+    Lead encounterLead = area.getEncounter() == Encounter::RockSmash && isRockSmashItemLead(lead) ? Lead::None : lead;
+
     u16 rate = area.getRate();
     if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
     {
         rate += happiness;
-        if (lead == Lead::SuctionCups)
+        if (encounterLead == Lead::SuctionCups)
         {
             rate *= 2;
         }
     }
-    else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
+    else if (encounterLead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
     {
         rate *= 2;
     }
-    auto modifiedSlots = area.getSlots(lead);
+    auto modifiedSlots = area.getSlots(encounterLead);
     bool safari = area.safariZone(profile.getVersion());
 
     auto unlockedUnown = profile.getUnlockedUnownForms();
@@ -287,12 +412,26 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
              || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort(100, &battleAdvances) >= rate)
         {
+            if (area.getEncounter() == Encounter::RockSmash)
+            {
+                u16 item = getRockSmashItem(area.getLocation(), profile.getVersion(), lead, rockSmashPokemon, go, &battleAdvances);
+                if (item != 0)
+                {
+                    const Slot &slot = area.getPokemon(0);
+                    std::array<u8, 6> ivs = {};
+                    states.emplace_back(rng.nextUShort(), battleAdvances, initialAdvances + cnt, 0, ivs, 0, 0, 0, 0, 0, 0, item, 0, 0,
+                                        slot.getInfo());
+                    continue;
+                }
+            }
+
             rng.next();
             continue;
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
+        if ((encounterLead == Lead::MagnetPull || encounterLead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0
+            && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count, &battleAdvances)];
         }
@@ -317,18 +456,33 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         u8 level;
         if (area.getEncounter() == Encounter::Grass || safari)
         {
-            level = area.calculateLevel<false, true>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+            level = area.calculateLevel<false, true>(encounterSlot, go, &battleAdvances, encounterLead == Lead::Pressure);
         }
         else
         {
-            level = area.calculateLevel<true, true>(encounterSlot, go, &battleAdvances, lead == Lead::Pressure);
+            level = area.calculateLevel<true, true>(encounterSlot, go, &battleAdvances, encounterLead == Lead::Pressure);
         }
 
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
+        if (area.getEncounter() == Encounter::RockSmash && isRockSmashEncounterSuppressed(lead, leadLevel, level, go, &battleAdvances))
+        {
+            u16 item = getRockSmashItem(area.getLocation(), profile.getVersion(), lead, rockSmashPokemon, go, &battleAdvances);
+            if (item != 0)
+            {
+                const Slot &itemSlot = area.getPokemon(0);
+                std::array<u8, 6> ivs = {};
+                states.emplace_back(rng.nextUShort(), battleAdvances, initialAdvances + cnt, 0, ivs, 0, 0, 0, 0, 0, 0, item, 0, 0,
+                                    itemSlot.getInfo());
+            }
+
+            rng.next();
+            continue;
+        }
+
         bool cuteCharmFlag = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        if ((encounterLead == Lead::CuteCharmF || encounterLead == Lead::CuteCharmM) && !info->getFixedGender())
         {
             cuteCharmFlag = go.nextUShort(3, &battleAdvances) != 0;
         }
@@ -347,7 +501,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             u8 buffer = 0;
-            if (lead == Lead::CuteCharmF)
+            if (encounterLead == Lead::CuteCharmF)
             {
                 buffer = 25 * ((info->getGender() / 25) + 1);
             }
@@ -362,9 +516,9 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             {
                 for (u8 i = 0; i < 4; i++)
                 {
-                    if (lead <= Lead::SynchronizeEnd)
+                    if (encounterLead <= Lead::SynchronizeEnd)
                     {
-                        nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort(25, &battleAdvances);
+                        nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(encounterLead) : go.nextUShort(25, &battleAdvances);
                     }
                     else
                     {
@@ -410,9 +564,9 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             }
             else
             {
-                if (lead <= Lead::SynchronizeEnd)
+                if (encounterLead <= Lead::SynchronizeEnd)
                 {
-                    nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort(25, &battleAdvances);
+                    nature = go.nextUShort(2, &battleAdvances) == 0 ? toInt(encounterLead) : go.nextUShort(25, &battleAdvances);
                 }
                 else
                 {
@@ -445,7 +599,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        u16 item = getItem(go.nextUShort(100, &battleAdvances), lead, info);
+        u16 item = getItem(go.nextUShort(100, &battleAdvances), encounterLead, info);
 
         u8 form = 0;
         if (slot.getSpecie() == 201 && !unlockedUnown.empty())
