@@ -46,7 +46,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("static5");
 
@@ -83,7 +82,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                            toInt(Encounter::SuperRodRippling) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls( Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -240,10 +239,6 @@ void Wild5::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
-    if (ui->filterGenerator->hasActiveFilters(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
-    {
-        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
-    }
     generatorModel->addItems(states);
 }
 

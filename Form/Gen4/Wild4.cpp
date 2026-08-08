@@ -42,7 +42,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("wild4");
 
@@ -71,7 +70,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -400,10 +399,6 @@ void Wild4::generate()
                              encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed, fixedSlot);
-    if (ui->filterGenerator->hasActiveFilters(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
-    {
-        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
-    }
     generatorModel->addItems(states);
 }
 

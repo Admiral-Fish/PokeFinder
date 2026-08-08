@@ -157,7 +157,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
         }
 
-        if (valid && !filter.compareEncounterSlot(encounterSlot))
+        if (!filter.compareEncounterSlot(encounterSlot))
         {
             rng.next();
             continue;
@@ -192,7 +192,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
             nature = go.nextUShort<false>(25, &battleAdvances);
         }
 
-        if (valid && !filter.compareNature(nature))
+        if (!filter.compareNature(nature))
         {
             rng.next();
             continue;
@@ -240,7 +240,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
                                   slot.getSpecie(), form, info, valid);
-        if (!valid || filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -308,7 +308,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             }
         }
 
-        if (valid && !filter.compareEncounterSlot(encounterSlot))
+        if (!filter.compareEncounterSlot(encounterSlot))
         {
             rng.next();
             continue;
@@ -340,7 +340,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         if (cuteCharmFlag)
         {
             nature = go.nextUShort(25, &battleAdvances);
-            if (valid && !filter.compareNature(nature))
+            if (!filter.compareNature(nature))
             {
                 rng.next();
                 continue;
@@ -402,7 +402,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
                     }
                 }
 
-                if (valid && !filter.compareNature(nature))
+                if (!filter.compareNature(nature))
                 {
                     rng.next();
                     continue;
@@ -419,7 +419,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
                     nature = go.nextUShort(25, &battleAdvances);
                 }
 
-                if (valid && !filter.compareNature(nature))
+                if (!filter.compareNature(nature))
                 {
                     rng.next();
                     continue;
@@ -470,7 +470,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
                                   slot.getSpecie(), form, info, valid);
-        if (!valid || filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }

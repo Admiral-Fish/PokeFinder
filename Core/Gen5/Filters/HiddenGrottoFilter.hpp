@@ -33,8 +33,9 @@ public:
      * @param encounterSlots Encounter slots to filter by
      * @param genders Genders to filter by
      * @param groups Groups to filter by
+     * @param invalid If invalid states should be skipped
      */
-    HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders, const std::array<bool, 4> &groups);
+    HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders, const std::array<bool, 4> &groups, bool invalid);
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -47,6 +48,7 @@ public:
     bool compareState(const HiddenGrottoState &state) const;
 
 private:
+    bool invalid;
     std::array<bool, 11> encounterSlots;
     std::array<bool, 2> genders;
     std::array<bool, 4> groups;

@@ -27,7 +27,6 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QRegularExpression>
-#include <algorithm>
 
 /**
  * @brief Updates min/max values based on control keys selected
@@ -205,6 +204,11 @@ void Filter::disableControls(Controls control)
         ui->checkListHiddenPower->hide();
     }
 
+    if ((control & Controls::Invalid) != Controls::None)
+    {
+        ui->checkBoxHideInvalid->setVisible(false);
+    }
+
     if ((control & Controls::IVs) != Controls::None)
     {
         ui->labelHP->hide();
@@ -277,59 +281,6 @@ bool Filter::getDisableFilters() const
     return ui->checkBoxDisableFilters->isChecked();
 }
 
-bool Filter::hasActiveFilters(u8 encounterSlots) const
-{
-    if (getDisableFilters())
-    {
-        return false;
-    }
-
-    if (getAbility() != 255 || getGender() != 255 || getShiny() != 255)
-    {
-        return true;
-    }
-
-    if (getHeightMin() != 0 || getHeightMax() != 255 || getWeightMin() != 0 || getWeightMax() != 255)
-    {
-        return true;
-    }
-
-    auto min = getMinIVs();
-    auto max = getMaxIVs();
-    for (size_t i = 0; i < min.size(); i++)
-    {
-        if (min[i] != 0 || max[i] != 31)
-        {
-            return true;
-        }
-    }
-
-    auto natures = getNatures();
-    if (std::ranges::find(natures, false) != natures.end())
-    {
-        return true;
-    }
-
-    auto hiddenPowers = getHiddenPowers();
-    if (std::ranges::find(hiddenPowers, false) != hiddenPowers.end())
-    {
-        return true;
-    }
-
-    if (encounterSlots != 0)
-    {
-        auto encounterSlotChecks = getEncounterSlots();
-        encounterSlots = std::min(encounterSlots, static_cast<u8>(encounterSlotChecks.size()));
-        auto end = encounterSlotChecks.begin() + encounterSlots;
-        if (std::ranges::find(encounterSlotChecks.begin(), end, false) != end)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 std::array<bool, 12> Filter::getEncounterSlots() const
 {
     // Encounter slot can vary depending on the encounter type, with the highest number being 12 currently
@@ -355,6 +306,11 @@ u8 Filter::getHeightMin() const
 std::array<bool, 16> Filter::getHiddenPowers() const
 {
     return ui->checkListHiddenPower->getCheckedArray<16>();
+}
+
+bool Filter::getHideInvalid() const
+{
+    return ui->checkBoxHideInvalid->isChecked();
 }
 
 u8 Filter::getLevelMax() const

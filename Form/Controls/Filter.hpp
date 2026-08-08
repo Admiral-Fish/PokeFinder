@@ -103,16 +103,6 @@ public:
     bool getDisableFilters() const;
 
     /**
-     * @brief Checks if any real filter is currently active
-     *
-     * @param encounterSlots Number of encounter slots to consider. Use 0 to ignore encounter slot filtering.
-     *
-     * @return true At least 1 filter is active
-     * @return false No filters are active or filters are disabled
-     */
-    bool hasActiveFilters(u8 encounterSlots = 0) const;
-
-    /**
      * @brief Gets encounter slots to filter by
      *
      * @return Array of encounter slots
@@ -133,7 +123,7 @@ public:
         if constexpr (wild)
         {
             return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
-                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getWeightMin(), getWeightMax(), getHideInvalid(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getEncounterSlots());
         }
         else
@@ -171,6 +161,14 @@ public:
      * @return Array of hidden powers
      */
     std::array<bool, 16> getHiddenPowers() const;
+
+    /**
+     * @brief Checks if invalid states should be ignored
+     *
+     * @return true Invalid are disabled
+     * @return false Invalid are not disabled
+     */
+    bool getHideInvalid() const;
 
     /**
      * @brief Gets max level to filter by

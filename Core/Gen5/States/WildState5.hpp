@@ -42,6 +42,7 @@ public:
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param info Pokemon information
+     * @param valid Whether state is valid to encounter or not
      */
     WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, bool valid = true) :

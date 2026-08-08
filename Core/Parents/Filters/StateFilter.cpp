@@ -18,12 +18,12 @@
  */
 
 #include "StateFilter.hpp"
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
-StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
-                         const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax,
+                         bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                          const std::array<bool, 16> &powers) :
     skip(skip),
     natures(natures),
@@ -180,10 +180,13 @@ bool StateFilter::compareState(const State8 &state) const
     return true;
 }
 
-WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
-                                 const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
-                                 const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots) :
-    StateFilter(gender, ability, shiny, levelMin, levelMax, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures, powers),
+WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin,
+                                 u8 weightMax, bool invalid, bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax,
+                                 const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
+                                 const std::array<bool, 12> &encounterSlots) :
+    StateFilter(gender, ability, shiny, levelMin, levelMax, heightMin, heightMax, weightMin, weightMax, skip, ivMin, ivMax, natures,
+                powers),
+    invalid(invalid),
     encounterSlots(encounterSlots)
 {
 }
@@ -200,10 +203,17 @@ bool WildStateFilter::compareState(const WildGeneratorState &state) const
         return true;
     }
 
+    if (invalid && !state.isValid())
+    {
+        return false;
+    }
+
     if (ability != 255 && ability != state.getAbility())
     {
         return false;
     }
+
+    if (!encounterSlots[state.getEncounterSlot()]);
 
     if (gender != 255 && gender != state.getGender())
     {
@@ -267,15 +277,9 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
     return true;
 }
 
-bool WildStateFilter::compareState(const WildState &state) const
-{
-    return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
-}
-
-
 bool WildStateFilter::compareState(const WildState8 &state) const
 {
-    if (!compareState(static_cast<const WildState &>(state)))
+    if (!compareState(static_cast<const WildGeneratorState &>(state)))
     {
         return false;
     }

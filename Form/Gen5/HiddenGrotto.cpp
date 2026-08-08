@@ -46,13 +46,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
-
-template <size_t size>
-static bool hasUnchecked(const std::array<bool, size> &values)
-{
-    return std::ranges::find(values, false) != values.end();
-}
 
 static const QString settingPrefix = QStringLiteral("hiddenGrotto");
 
@@ -106,9 +99,9 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->textBoxPokemonSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->filterPokemonGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
-                                                | Controls::Shiny | Controls::Weight);
-    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                               | Controls::Height | Controls::Shiny | Controls::Weight);
+                                                | Controls::Invalid | Controls::Shiny | Controls::Weight);
+    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
+                                               | Controls::Searcher | Controls::Shiny | Controls::Weight);
 
     ui->comboBoxPokemonGeneratorLocation->enableAutoComplete();
     ui->comboBoxPokemonSearcherLocation->enableAutoComplete();
@@ -255,17 +248,11 @@ void HiddenGrotto::grottoGenerate()
 
     HiddenGrottoFilter filter(ui->checkListGrottoGeneratorSlot->getCheckedArray<11>(),
                               ui->checkListGrottoGeneratorGender->getCheckedArray<2>(),
-                              ui->checkListGrottoGeneratorGroup->getCheckedArray<4>());
+                              ui->checkListGrottoGeneratorGroup->getCheckedArray<4>(), ui->checkBoxGrottoGeneratorHideInvalid->isChecked());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, offset, grottoPower,
                                         encounter[ui->comboBoxGrottoGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
-    if (hasUnchecked(ui->checkListGrottoGeneratorSlot->getCheckedArray<11>())
-        || hasUnchecked(ui->checkListGrottoGeneratorGender->getCheckedArray<2>())
-        || hasUnchecked(ui->checkListGrottoGeneratorGroup->getCheckedArray<4>()))
-    {
-        std::erase_if(states, [](const auto &state) { return !state.isValid(); });
-    }
     grottoGeneratorModel->addItems(states);
 }
 
@@ -361,7 +348,7 @@ void HiddenGrotto::grottoSearch()
 
     HiddenGrottoFilter filter(ui->checkListGrottoSearcherSlot->getCheckedArray<11>(),
                               ui->checkListGrottoSearcherGender->getCheckedArray<2>(),
-                              ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
+                              ui->checkListGrottoSearcherGroup->getCheckedArray<4>(), true);
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, grottoPower,
                                         encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
     auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);

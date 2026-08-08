@@ -21,8 +21,8 @@
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
 
 HiddenGrottoFilter::HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders,
-                                       const std::array<bool, 4> &groups) :
-    encounterSlots(encounterSlots), genders(genders), groups(groups)
+                                       const std::array<bool, 4> &groups, bool invalid) :
+    invalid(invalid), encounterSlots(encounterSlots), genders(genders), groups(groups)
 {
 }
 
@@ -40,6 +40,11 @@ bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state) const
     }
 
     if (!groups[state.getGroup()])
+    {
+        return false;
+    }
+
+    if (invalid && !state.isValid())
     {
         return false;
     }

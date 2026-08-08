@@ -109,7 +109,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     {
         std::array<u8, 6> iv;
         std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if (area.getEncounter() == Encounter::SuperRod || filter.compareIV(iv))
+        if (filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -260,7 +260,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         {
             WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
                              encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
-            if (!valid || filter.compareState(static_cast<const WildState &>(state)))
+            if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
             {
                 states.emplace_back(state);
             }
