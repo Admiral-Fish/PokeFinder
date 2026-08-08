@@ -39,21 +39,8 @@ static bool operator==(const WildState5 &left, const json &right)
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
-}
-
-static std::vector<WildState5> getValidStates(const std::vector<WildState5> &states)
-{
-    std::vector<WildState5> validStates;
-    for (const auto &state : states)
-    {
-        if (state.isValid())
-        {
-            validStates.emplace_back(state);
-        }
-    }
-
-    return validStates;
+        && left.getAdvances() == right["advances"].get<u32>() && left.isValid() == right["valid"].get<bool>()
+        && left.getChatot() == right["chatot"].get<u8>();
 }
 
 void WildGenerator5Test::generate_data()
@@ -109,16 +96,15 @@ void WildGenerator5Test::generate()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const EncounterArea5 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, false, min, max, natures, powers, encounterSlots);
     WildGenerator5 generator(0, 9, 0, Method::Method5, lead, luckyPower, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
-    auto validStates = getValidStates(states);
-    QCOMPARE(validStates.size(), j.size());
+    QCOMPARE(states.size(), j.size());
 
-    for (size_t i = 0; i < validStates.size(); i++)
+    for (size_t i = 0; i < states.size(); i++)
     {
-        const auto &state = validStates[i];
+        const auto &state = states[i];
         QVERIFY(state == j[i]);
     }
 }

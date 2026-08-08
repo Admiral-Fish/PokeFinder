@@ -32,8 +32,8 @@ static bool operator==(const HiddenGrottoState &left, const json &right)
 {
     return left.getAdvances() == right["advances"].get<u32>() && left.getData() == right["data"].get<u16>()
         && left.getItem() == right["item"].get<bool>() && left.getChatot() == right["chatot"].get<u8>()
-        && left.getGender() == right["gender"].get<u8>() && left.getGroup() == right["group"].get<u8>()
-        && left.getSlot() == right["slot"].get<u8>();
+        && left.isValid() == right["valid"].get<bool>() && left.getGender() == right["gender"].get<u8>()
+        && left.getGroup() == right["group"].get<u8>() && left.getSlot() == right["slot"].get<u8>();
 }
 
 static bool operator==(const State5 &left, const json &right)
@@ -45,20 +45,6 @@ static bool operator==(const State5 &left, const json &right)
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
-}
-
-static std::vector<HiddenGrottoState> getValidStates(const std::vector<HiddenGrottoState> &states)
-{
-    std::vector<HiddenGrottoState> validStates;
-    for (const auto &state : states)
-    {
-        if (state.isValid())
-        {
-            validStates.emplace_back(state);
-        }
-    }
-
-    return validStates;
 }
 
 void HiddenGrottoGeneratorTest::pokemon_data()
@@ -166,16 +152,15 @@ void HiddenGrottoGeneratorTest::slot()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const HiddenGrottoArea &encounterArea) { return encounterArea.getLocation() == location; });
 
-    HiddenGrottoFilter filter(encounterSlots, genders, groups);
+    HiddenGrottoFilter filter(encounterSlots, genders, groups, false);
     HiddenGrottoSlotGenerator generator(0, 99, 0, grottoPower, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);
-    auto validStates = getValidStates(states);
-    QCOMPARE(validStates.size(), j.size());
+    QCOMPARE(states.size(), j.size());
 
-    for (size_t i = 0; i < validStates.size(); i++)
+    for (size_t i = 0; i < states.size(); i++)
     {
-        const auto &state = validStates[i];
+        const auto &state = states[i];
         QVERIFY(state == j[i]);
     }
 }

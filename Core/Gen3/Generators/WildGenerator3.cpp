@@ -94,6 +94,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         {
             continue;
         }
+
         u8 encounterSlot;
         if (feebas && go.nextUShort(100) < 50)
         {
