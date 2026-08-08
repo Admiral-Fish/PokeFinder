@@ -27,7 +27,7 @@
 /**
  * @brief Provides a table model implementation to show dream radar encounter information for Gen 5
  */
-class DreamRadarGeneratorModel5 : public TableModel<DreamRadarState>
+class DreamRadarGeneratorModel5 final : public TableModel<DreamRadarState>
 {
     Q_OBJECT
 public:
@@ -86,7 +86,7 @@ private:
 /**
  * @brief Provides a table model implementation to show dream radar encounter information for Gen 5
  */
-class DreamRadarSearcherModel5 : public TableModel<SearcherState5<DreamRadarState>>
+class DreamRadarSearcherModel5 final : public TableModel<SearcherState5<DreamRadarState>>
 {
     Q_OBJECT
 public:

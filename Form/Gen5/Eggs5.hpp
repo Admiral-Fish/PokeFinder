@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG eggs in Gen 5 games
  */
-class Eggs5 : public QWidget
+class Eggs5 final : public QWidget
 {
     Q_OBJECT
 signals:

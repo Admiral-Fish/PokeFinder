@@ -32,7 +32,7 @@ namespace Ui
 /**
  * @brief Provides interface to view/edit/delete existing profiles and create new ones
  */
-class ProfileManager8 : public QWidget
+class ProfileManager8 final : public QWidget
 {
     Q_OBJECT
 signals:

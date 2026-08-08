@@ -36,7 +36,7 @@ namespace Ui
 /**
  * @brief Provides settings to calibrate nearby seeds
  */
-class AdjacentSeeds : public QWidget
+class AdjacentSeeds final : public QWidget
 {
     Q_OBJECT
 signals:

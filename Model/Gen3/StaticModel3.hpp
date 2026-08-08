@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 3
  */
-class StaticGeneratorModel3 : public TableModel<GeneratorState>
+class StaticGeneratorModel3 final : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:

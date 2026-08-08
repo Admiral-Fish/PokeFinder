@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG raid encounters in Gen 8 games
  */
-class Raids : public QWidget
+class Raids final : public QWidget
 {
     Q_OBJECT
 signals:

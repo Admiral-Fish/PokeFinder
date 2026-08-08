@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG Poke Spot encounters in GameCube games
  */
-class PokeSpot : public QWidget
+class PokeSpot final : public QWidget
 {
     Q_OBJECT
 signals:

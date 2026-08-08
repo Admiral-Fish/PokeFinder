@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show profile calibration information for Gen 5
  */
-class ProfileSearcherModel5 : public TableModel<ProfileSearcherState5>
+class ProfileSearcherModel5 final : public TableModel<ProfileSearcherState5>
 {
     Q_OBJECT
 public:

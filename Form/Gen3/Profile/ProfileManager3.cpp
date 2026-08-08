@@ -35,11 +35,24 @@ ProfileManager3::ProfileManager3(QWidget *parent) : QWidget(parent), ui(new Ui::
     model->addItems(ProfileLoader3::getProfiles(Game::Gen3));
     ui->tableView->setModel(model);
 
+    ui->tableView->setAcceptDrops(true);
+    ui->tableView->setDefaultDropAction(Qt::MoveAction);
+    ui->tableView->setDragDropMode(QAbstractItemView::InternalMove);
+    ui->tableView->setDragDropOverwriteMode(false);
+    ui->tableView->setDragEnabled(true);
+    ui->tableView->setDropIndicatorShown(true);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager3::create);
     connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager3::edit);
     connect(ui->pushButtonDuplicate, &QPushButton::clicked, this, &ProfileManager3::duplicate);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager3::remove);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager3::close);
+    connect(model, &ProfileModel3::rowsMoved, this, [this] {
+        ProfileLoader3::setProfiles(model->getModel());
+        emit profilesChanged(3);
+    });
 
     QSettings setting;
     if (setting.contains("profileManager3/geometry"))

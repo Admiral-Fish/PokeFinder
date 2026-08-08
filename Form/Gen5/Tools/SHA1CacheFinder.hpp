@@ -32,7 +32,7 @@ namespace Ui
 /**
  * @brief Provides settings to generate a SHA1 seed cache
  */
-class SHA1CacheFinder: public QWidget
+class SHA1CacheFinder final : public QWidget
 {
     Q_OBJECT
 signals:

@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Provides selection of filters for TID/SID RNG
  */
-class IDsFilter : public QWidget
+class IDsFilter final : public QWidget
 {
     Q_OBJECT
 public:

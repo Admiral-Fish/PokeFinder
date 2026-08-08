@@ -13,12 +13,11 @@
   <property name="windowTitle">
    <string>Gen 4 Eggs</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="ProfileDisplay4" name="profileDisplay" native="true">
-    </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="ProfileDisplay4" name="profileDisplay" native="true"/>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="TabWidget" name="tabEggSelection">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -134,8 +133,8 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_1">
+          <item>
            <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
           </item>
          </layout>
@@ -152,8 +151,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="3" colspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
@@ -285,8 +284,8 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
            <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
           </item>
          </layout>
@@ -303,8 +302,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0" rowspan="3" colspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
@@ -344,15 +343,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>Form/Controls/TabWidget.hpp</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>EggSettings</class>
    <extends>QWidget</extends>
    <header>Form/Controls/EggSettings.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

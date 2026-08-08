@@ -26,7 +26,7 @@ ProfileModel5::ProfileModel5(QObject *parent) : TableModel(parent)
 
 int ProfileModel5::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;
 }
 
 QVariant ProfileModel5::data(const QModelIndex &index, int role) const
@@ -65,10 +65,26 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 13:
             return profile.getMemoryLink() ? tr("Yes") : tr("No");
         case 14:
+            return profile.getNsPokemonReleased() ? tr("Yes") : tr("No");
+        case 15:
             return profile.getShinyCharm() ? tr("Yes") : tr("No");
         }
     }
     return QVariant();
+}
+
+Qt::ItemFlags ProfileModel5::flags(const QModelIndex &index) const
+{
+    Qt::ItemFlags flags = TableModel::flags(index);
+    if (index.isValid())
+    {
+        flags = (flags | Qt::ItemIsDragEnabled) & ~Qt::ItemIsDropEnabled;
+    }
+    else
+    {
+        flags |= Qt::ItemIsDropEnabled;
+    }
+    return flags;
 }
 
 QVariant ProfileModel5::headerData(int section, Qt::Orientation orientation, int role) const
@@ -78,4 +94,14 @@ QVariant ProfileModel5::headerData(int section, Qt::Orientation orientation, int
         return header[section];
     }
     return QVariant();
+}
+
+Qt::DropActions ProfileModel5::supportedDragActions() const
+{
+    return Qt::MoveAction;
+}
+
+Qt::DropActions ProfileModel5::supportedDropActions() const
+{
+    return Qt::MoveAction;
 }

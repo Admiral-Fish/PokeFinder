@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Provides settings to filter results on
  */
-class Filter : public QWidget
+class Filter final : public QWidget
 {
     Q_OBJECT
 signals:

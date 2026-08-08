@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG wild encounters in Gen 8 games
  */
-class Wild8 : public QWidget
+class Wild8 final : public QWidget
 {
     Q_OBJECT
 signals:

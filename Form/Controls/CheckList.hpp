@@ -27,7 +27,7 @@ class CheckListProxyModel;
 class QListView;
 class QStandardItemModel;
 
-class CheckList : public QComboBox
+class CheckList final : public QComboBox
 {
     Q_OBJECT
 public:

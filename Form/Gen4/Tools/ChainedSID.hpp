@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Allows computing SID from chained shiny Pokemon
  */
-class ChainedSID : public QWidget
+class ChainedSID final : public QWidget
 {
     Q_OBJECT
 public:

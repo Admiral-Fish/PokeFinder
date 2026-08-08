@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG static encounters in Gen 8 games
  */
-class Static8 : public QWidget
+class Static8 final : public QWidget
 {
     Q_OBJECT
 signals:

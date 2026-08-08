@@ -28,7 +28,7 @@
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 5
  */
-class EventGeneratorModel5 : public TableModel<EventState5>, public IRNGProvider5
+class EventGeneratorModel5 final : public TableModel<EventState5>, public IRNGProvider5
 {
     Q_OBJECT
 public:
@@ -107,7 +107,7 @@ private:
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 5
  */
-class EventSearcherModel5 : public TableModel<SearcherState5<EventState5>>
+class EventSearcherModel5 final : public TableModel<SearcherState5<EventState5>>
 {
     Q_OBJECT
 public:

@@ -29,7 +29,7 @@ enum class Game : u32;
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 4
  */
-class WildGeneratorModel4 : public TableModel<WildGeneratorState4>, public IRNGProvider4
+class WildGeneratorModel4 final : public TableModel<WildGeneratorState4>, public IRNGProvider4
 {
     Q_OBJECT
 public:
@@ -126,7 +126,7 @@ private:
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 4
  */
-class WildSearcherModel4 : public TableModel<WildSearcherState4>
+class WildSearcherModel4 final : public TableModel<WildSearcherState4>
 {
     Q_OBJECT
 public:

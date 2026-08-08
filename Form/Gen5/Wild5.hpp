@@ -38,7 +38,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG wild encounters in Gen 5 games
  */
-class Wild5 : public QWidget
+class Wild5 final : public QWidget
 {
     Q_OBJECT
 signals:

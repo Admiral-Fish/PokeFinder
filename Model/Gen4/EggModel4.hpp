@@ -29,7 +29,7 @@ enum class Game : u32;
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 4
  */
-class EggGeneratorModel4 : public TableModel<EggGeneratorState4>, public IRNGProvider4
+class EggGeneratorModel4 final : public TableModel<EggGeneratorState4>, public IRNGProvider4
 {
     Q_OBJECT
 public:
@@ -148,7 +148,7 @@ private:
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 4
  */
-class EggSearcherModel4 : public TableModel<EggSearcherState4>
+class EggSearcherModel4 final : public TableModel<EggSearcherState4>
 {
     Q_OBJECT
 public:

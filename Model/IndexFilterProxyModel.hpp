@@ -25,7 +25,7 @@
 /**
  * @brief Provides a proxy to filter data from a table model by indexes
  */
-class IndexFilterProxyModel : public QSortFilterProxyModel
+class IndexFilterProxyModel final : public QSortFilterProxyModel
 {
 public:
     /**

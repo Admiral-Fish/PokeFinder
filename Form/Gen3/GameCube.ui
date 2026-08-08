@@ -13,12 +13,11 @@
   <property name="windowTitle">
    <string>GameCube RNG</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="ProfileDisplay3" name="profileDisplay" native="true">
-    </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="ProfileDisplay3" name="profileDisplay" native="true"/>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -173,8 +172,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_1">
+          <item>
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
@@ -195,15 +194,15 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="QCheckBox" name="checkBoxSearcherFirstShadowUnset">
             <property name="text">
              <string>First Shadow Unset</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -304,8 +303,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
@@ -334,14 +333,14 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>
@@ -350,15 +349,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>Form/Controls/TabWidget.hpp</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ProfileDisplay3</class>
    <extends>QWidget</extends>
    <header>Form/Gen3/Profile/ProfileDisplay3.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/TabWidget.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

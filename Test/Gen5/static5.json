@@ -3097,6 +3097,7 @@
             "seed": 0,
             "lead": "None",
             "version": "Black",
+            "luckyPower": "None",
             "category": 3,
             "pokemon": 0,
             "results": [
@@ -3407,6 +3408,7 @@
             "seed": 0,
             "lead": "None",
             "version": "Black2",
+            "luckyPower": "None",
             "category": 3,
             "pokemon": 10,
             "results": [
@@ -3717,6 +3719,7 @@
             "seed": 0,
             "lead": "None",
             "version": "Black2",
+            "luckyPower": "None",
             "category": 3,
             "pokemon": 17,
             "results": [
@@ -4027,6 +4030,7 @@
             "seed": 0,
             "lead": "Synchronize",
             "version": "Black",
+            "luckyPower": "None",
             "category": 4,
             "pokemon": 0,
             "results": [
@@ -4337,6 +4341,7 @@
             "seed": 0,
             "lead": "None",
             "version": "Black",
+            "luckyPower": "None",
             "category": 4,
             "pokemon": 3,
             "results": [
@@ -4647,6 +4652,7 @@
             "seed": 0,
             "lead": "CuteCharmF",
             "version": "Black2",
+            "luckyPower": "None",
             "category": 4,
             "pokemon": 15,
             "results": [
@@ -4953,10 +4959,322 @@
             ]
         },
         {
+            "name": "Heatran Lucky Power 3",
+            "seed": 0,
+            "lead": "None",
+            "version": "Black2",
+            "luckyPower": "Level3",
+            "category": 4,
+            "pokemon": 15,
+            "results": [
+                {
+                    "ability": 0,
+                    "abilityIndex": 18,
+                    "advances": 46,
+                    "characteristic": 22,
+                    "chatot": 40,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 0,
+                    "pid": 1689394930,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        145,
+                        162,
+                        200,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 47,
+                    "characteristic": 7,
+                    "chatot": 55,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 10,
+                    "pid": 2244597635,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        130,
+                        162,
+                        200,
+                        160,
+                        140
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 48,
+                    "characteristic": 17,
+                    "chatot": 39,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 1,
+                    "pid": 4005103545,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        159,
+                        145,
+                        200,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 49,
+                    "characteristic": 7,
+                    "chatot": 2,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 24,
+                    "pid": 2433719171,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        145,
+                        162,
+                        200,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 18,
+                    "advances": 50,
+                    "characteristic": 7,
+                    "chatot": 43,
+                    "gender": 1,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 14,
+                    "pid": 4271269493,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        145,
+                        162,
+                        200,
+                        144,
+                        140
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 51,
+                    "characteristic": 17,
+                    "chatot": 6,
+                    "gender": 1,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 1,
+                    "pid": 2546407467,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        159,
+                        145,
+                        200,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 18,
+                    "advances": 52,
+                    "characteristic": 7,
+                    "chatot": 99,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 4,
+                    "pid": 2383296959,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        159,
+                        162,
+                        200,
+                        144,
+                        128
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 18,
+                    "advances": 53,
+                    "characteristic": 17,
+                    "chatot": 59,
+                    "gender": 1,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 0,
+                    "pid": 750536468,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        145,
+                        162,
+                        200,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 54,
+                    "characteristic": 17,
+                    "chatot": 5,
+                    "gender": 1,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 15,
+                    "pid": 2281511253,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        130,
+                        162,
+                        220,
+                        160,
+                        128
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 18,
+                    "advances": 55,
+                    "characteristic": 17,
+                    "chatot": 17,
+                    "gender": 1,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 49,
+                    "ivs": [
+                        22,
+                        27,
+                        19,
+                        27,
+                        17,
+                        27
+                    ],
+                    "level": 68,
+                    "nature": 10,
+                    "pid": 2642215467,
+                    "shiny": 0,
+                    "stats": [
+                        216,
+                        130,
+                        162,
+                        200,
+                        160,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Zoroark",
             "seed": 0,
             "lead": "CuteCharmF",
             "version": "Black2",
+            "luckyPower": "None",
             "category": 5,
             "pokemon": 0,
             "results": [

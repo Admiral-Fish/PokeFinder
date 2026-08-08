@@ -32,7 +32,7 @@ class Profile8;
 /**
  * @brief Provides dialog to view/edit fields of a profile
  */
-class ProfileEditor8 : public QDialog
+class ProfileEditor8 final : public QDialog
 {
     Q_OBJECT
 public:
