@@ -107,22 +107,22 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">1</string>
+                  <string>Grotto Power ↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">2</string>
+                  <string>Grotto Power ↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">3</string>
+                  <string>Grotto Power ↑↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">S</string>
+                  <string>Grotto Power S</string>
                  </property>
                 </item>
                </widget>
@@ -381,22 +381,22 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">1</string>
+                  <string>Grotto Power ↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">2</string>
+                  <string>Grotto Power ↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">3</string>
+                  <string>Grotto Power ↑↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">S</string>
+                  <string>Grotto Power S</string>
                  </property>
                 </item>
                </widget>

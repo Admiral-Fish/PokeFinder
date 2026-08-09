@@ -87,7 +87,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
             iv[5] = rngList.next();
         }
 
-        if (filter.compareIV(iv))
+        if (filter.compareIV(iv) && (luckyPower == PassPower::None || !staticTemplate.getWild() || initialAdvances + cnt >= 2))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -243,6 +243,11 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         }
 
         u32 prng = rng.nextUInt();
+        if (luckyPower != PassPower::None && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         for (const auto &iv : ivs)
         {
             State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),

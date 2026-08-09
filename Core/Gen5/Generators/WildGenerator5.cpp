@@ -109,7 +109,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     {
         std::array<u8, 6> iv;
         std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if (filter.compareIV(iv))
+        if (filter.compareIV(iv) && (luckyPower == PassPower::None || initialAdvances + cnt >= 2))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -256,6 +256,11 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
 
         u32 prng = rng.nextUInt();
+        if (luckyPower != PassPower::None && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         for (const auto &iv : ivs)
         {
             WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,

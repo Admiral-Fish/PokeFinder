@@ -3520,6 +3520,22 @@
         <translation>Lichtungskraft</translation>
     </message>
     <message>
+        <source>Grotto Power ↑</source>
+        <translation>Lichtungskraft +</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑</source>
+        <translation>Lichtungskraft ++</translation>
+    </message>
+    <message>
+        <source>Grotto Power ↑↑↑</source>
+        <translation>Lichtungskraft +++</translation>
+    </message>
+    <message>
+        <source>Grotto Power S</source>
+        <translation>Lichtungskraft S</translation>
+    </message>
+    <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -7757,6 +7773,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Beschwörungskraft</translation>
     </message>
     <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
+    </message>
+    <message>
         <source>Generate</source>
         <translation>Generieren</translation>
     </message>
@@ -9816,6 +9836,18 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Lucky Power</source>
         <translation>Beschwörungskraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑</source>
+        <translation>Beschwörungskraft +</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑</source>
+        <translation>Beschwörungskraft ++</translation>
+    </message>
+    <message>
+        <source>Lucky Power ↑↑↑/S</source>
+        <translation>Beschwörungskraft +++/S</translation>
     </message>
     <message>
         <source>Generate</source>

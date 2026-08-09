@@ -82,6 +82,11 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
     {
         BWRNG go(rng, jump);
         u32 prng = rng.nextUInt();
+        if (grottoPower != PassPower::None && initialAdvances + cnt < 4)
+        {
+            continue;
+        }
+
         if (go.nextUInt(100) < thresh)
         {
             u8 group = go.nextUInt(4);
