@@ -171,6 +171,13 @@ public:
     bool getHideInvalid() const;
 
     /**
+     * @brief Sets visibility of the hide invalid checkbox
+     *
+     * @param visible If the checkbox should be visible
+     */
+    void setHideInvalidVisible(bool visible);
+
+    /**
      * @brief Gets max level to filter by
      *
      * @return Level value

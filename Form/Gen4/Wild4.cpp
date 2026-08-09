@@ -417,6 +417,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
         bool honey = encounter == Encounter::HoneyTree;
 
+        ui->filterGenerator->setHideInvalidVisible(fish || (hgss && encounter == Encounter::RockSmash));
+
         ui->labelGeneratorHappiness->setVisible(hgss && fish);
         ui->comboBoxGeneratorHappiness->setVisible(hgss && fish);
 

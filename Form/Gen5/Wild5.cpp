@@ -252,6 +252,7 @@ void Wild5::generatorEncounterIndexChanged(int index)
         bool fish = encounter == Encounter::SuperRod;
 
         ui->comboMenuGeneratorLead->hideAction(toInt(Lead::SuctionCups), !fish);
+        ui->filterGenerator->setHideInvalidVisible(fish);
 
         u8 season = ui->comboBoxGeneratorSeason->currentIndex();
         encounterGenerator = Encounters5::getEncounters(encounter, season, currentProfile);

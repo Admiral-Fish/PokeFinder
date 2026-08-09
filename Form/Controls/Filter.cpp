@@ -313,6 +313,11 @@ bool Filter::getHideInvalid() const
     return ui->checkBoxHideInvalid->isChecked();
 }
 
+void Filter::setHideInvalidVisible(bool visible)
+{
+    ui->checkBoxHideInvalid->setVisible(visible);
+}
+
 u8 Filter::getLevelMax() const
 {
     return static_cast<u8>(ui->spinBoxLevelMax->value());
