@@ -43,9 +43,21 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
+#include <vector>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("static5");
+
+static std::vector<PassPower> getPassPowers(const std::vector<u16> &data)
+{
+    std::vector<PassPower> passPowers;
+    passPowers.reserve(data.size());
+    for (u16 power : data)
+    {
+        passPowers.emplace_back(static_cast<PassPower>(power));
+    }
+    return passPowers;
+}
 
 Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -87,7 +99,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
-    ui->comboBoxSearcherLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->addItem(tr("None"), toInt(PassPower::None));
+    ui->comboBoxSearcherLuckyPower->addItem(tr("Lucky Power 3"), toInt(PassPower::Level3));
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
@@ -372,13 +385,13 @@ void Static5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
+    auto luckyPowers = getPassPowers(ui->comboBoxSearcherLuckyPower->getCheckedData());
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
-    StaticGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower, *staticTemplate, *currentProfile,
+    StaticGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPowers, *staticTemplate, *currentProfile,
                                filter);
 
     SearcherBase5<StaticGenerator5, State5> *searcher;

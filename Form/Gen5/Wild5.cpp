@@ -45,9 +45,21 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
+#include <vector>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("static5");
+
+static std::vector<PassPower> getPassPowers(const std::vector<u16> &data)
+{
+    std::vector<PassPower> passPowers;
+    passPowers.reserve(data.size());
+    for (u16 power : data)
+    {
+        passPowers.emplace_back(static_cast<PassPower>(power));
+    }
+    return passPowers;
+}
 
 Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(nullptr), shaCache(nullptr)
 {
@@ -117,8 +129,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
 
     ui->comboBoxGeneratorLuckyPower->setup(
         { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
-    ui->comboBoxSearcherLuckyPower->setup(
-        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->addItem(tr("None"), toInt(PassPower::None));
+    ui->comboBoxSearcherLuckyPower->addItem(tr("Lucky Power 1"), toInt(PassPower::Level1));
+    ui->comboBoxSearcherLuckyPower->addItem(tr("Lucky Power 2"), toInt(PassPower::Level2));
+    ui->comboBoxSearcherLuckyPower->addItem(tr("Lucky Power 3"), toInt(PassPower::Level3));
 
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);
@@ -404,10 +418,10 @@ void Wild5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
+    auto luckyPowers = getPassPowers(ui->comboBoxSearcherLuckyPower->getCheckedData());
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
+    WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPowers,
                              encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()], *currentProfile, filter);
 
     SearcherBase5<WildGenerator5, WildState5> *searcher;

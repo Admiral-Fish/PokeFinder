@@ -91,10 +91,44 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
+static std::vector<PassPower> normalizeLuckyPowers(std::vector<PassPower> luckyPowers, const Profile5 &profile)
+{
+    if ((profile.getVersion() & Game::BW) != Game::None)
+    {
+        return { PassPower::None };
+    }
+
+    if (luckyPowers.empty())
+    {
+        luckyPowers.emplace_back(PassPower::None);
+    }
+
+    std::ranges::sort(luckyPowers, {}, [](PassPower power) { return toInt(power); });
+    auto unique = std::ranges::unique(luckyPowers);
+    luckyPowers.erase(unique.begin(), unique.end());
+    return luckyPowers;
+}
+
+static bool compareStateTarget(const WildState5 &left, const WildState5 &right)
+{
+    return left.getAdvances() == right.getAdvances() && left.getIVAdvances() == right.getIVAdvances() && left.getPID() == right.getPID()
+        && left.getAbility() == right.getAbility() && left.getGender() == right.getGender() && left.getLevel() == right.getLevel()
+        && left.getNature() == right.getNature() && left.getShiny() == right.getShiny()
+        && left.getEncounterSlot() == right.getEncounterSlot() && left.getItem() == right.getItem() && left.getSpecie() == right.getSpecie()
+        && left.getForm() == right.getForm() && left.getIVs() == right.getIVs();
+}
+
 WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
+    WildGenerator5(initialAdvances, maxAdvances, offset, method, lead, std::vector<PassPower> { luckyPower }, area, profile, filter)
+{
+}
+
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead,
+                               const std::vector<PassPower> &luckyPowers, const EncounterArea5 &area, const Profile5 &profile,
+                               const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? PassPower::None : luckyPower)
+    luckyPowers(normalizeLuckyPowers(luckyPowers, profile))
 {
 }
 
@@ -140,17 +174,12 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         rate *= 2;
     }
 
-    u8 shinyRolls = 1;
+    u8 baseShinyRolls = 1;
     if ((profile.getVersion() & Game::BW2) != Game::None)
     {
         if (profile.getShinyCharm())
         {
-            shinyRolls += 2;
-        }
-
-        if (luckyPower == PassPower::Level3)
-        {
-            shinyRolls++;
+            baseShinyRolls += 2;
         }
     }
 
@@ -160,111 +189,120 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, jump);
+        BWRNG base(rng, jump);
+        u32 prng = rng.nextUInt();
+        std::vector<WildState5> candidates;
 
-        bool cuteCharm = false;
-        bool magnetStatic = false;
-        bool pressure = false;
-        bool sync = false;
-
-        if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
+        for (PassPower luckyPower : luckyPowers)
         {
-            // Failed cute charm continues to check for other leads
-            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
+            BWRNG go(base);
+
+            bool cuteCharm = false;
+            bool magnetStatic = false;
+            bool pressure = false;
+            bool sync = false;
+
+            if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
             {
-                cuteCharm = true;
+                // Failed cute charm continues to check for other leads
+                if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
+                {
+                    cuteCharm = true;
+                }
+                else
+                {
+                    bool flag = getPercentRand(go, bw) >= 50;
+                    if (lead == Lead::MagnetPull || lead == Lead::Static)
+                    {
+                        magnetStatic = flag;
+                    }
+                    else if (lead == Lead::Pressure)
+                    {
+                        pressure = flag;
+                    }
+                    else if (lead <= Lead::SynchronizeEnd)
+                    {
+                        sync = flag;
+                    }
+                }
+            }
+
+            bool doubleBattle = false;
+            if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
+            {
+                doubleBattle = true;
+            }
+
+            if (nsPokemonReleasedOffset)
+            {
+                go.next();
+            }
+
+            if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
+            {
+                continue;
+            }
+
+            u8 encounterSlot;
+            if (magnetStatic && !modifiedSlots.empty())
+            {
+                encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
             }
             else
             {
-                bool flag = getPercentRand(go, bw) >= 50;
-                if (lead == Lead::MagnetPull || lead == Lead::Static)
-                {
-                    magnetStatic = flag;
-                }
-                else if (lead == Lead::Pressure)
-                {
-                    pressure = flag;
-                }
-                else if (lead <= Lead::SynchronizeEnd)
-                {
-                    sync = flag;
-                }
+                encounterSlot = EncounterSlot::bwSlot(getPercentRand(go, bw), area.getEncounter(), luckyPower);
             }
-        }
 
-        bool doubleBattle = false;
-        if (area.getEncounter() == Encounter::GrassDark && getPercentRand(go, bw) < 40)
-        {
-            doubleBattle = true;
-        }
+            u8 level = area.calculateLevel(encounterSlot, getPercentRand(go, bw), pressure);
 
-        if (nsPokemonReleasedOffset)
-        {
-            go.next();
-        }
-
-        if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
-        {
-            rng.next();
-            continue;
-        }
-
-        u8 encounterSlot;
-        if (magnetStatic && !modifiedSlots.empty())
-        {
-            encounterSlot = modifiedSlots[getEncounterRand(go, modifiedSlots.count, bw)];
-        }
-        else
-        {
-            encounterSlot = EncounterSlot::bwSlot(getPercentRand(go, bw), area.getEncounter(), luckyPower);
-        }
-
-        u8 level = area.calculateLevel(encounterSlot, getPercentRand(go, bw), pressure);
-
-        // RNG calls for left encounter slot and level
-        if (doubleBattle)
-        {
-            go.advance(2);
-        }
-
-        const Slot &slot = area.getPokemon(encounterSlot);
-        const PersonalInfo *info = slot.getInfo();
-
-        u32 pid;
-        for (u8 i = 0; i < shinyRolls; i++)
-        {
-            // Only allow cute charm if the target isn't fixed gender
-            u8 gender = cuteCharm && !info->getFixedGender() ? (lead == Lead::CuteCharmF ? 0 : 1) : 255;
-
-            pid = Utilities5::createPID(tsv, 2, gender, Shiny::Random, true, info->getGender(), go);
-            if (Utilities::isShiny<true>(pid, tsv))
+            // RNG calls for left encounter slot and level
+            if (doubleBattle)
             {
-                break;
+                go.advance(2);
             }
-        }
 
-        u8 ability = (pid >> 16) & 1;
-        u8 gender = Utilities::getGender(pid, info);
-        u8 shiny = Utilities::getShiny<true>(pid, tsv);
+            const Slot &slot = area.getPokemon(encounterSlot);
+            const PersonalInfo *info = slot.getInfo();
 
-        u8 nature = go.nextUInt(25);
-        if (sync)
-        {
-            nature = toInt(lead);
-        }
-
-        u16 item = getItem(go, bw, lead, area.getEncounter(), info);
-
-        u32 prng = rng.nextUInt();
-        for (const auto &iv : ivs)
-        {
-            WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+            u8 shinyRolls = baseShinyRolls + (luckyPower == PassPower::Level3 ? 1 : 0);
+            u32 pid;
+            for (u8 i = 0; i < shinyRolls; i++)
             {
-                states.emplace_back(state);
+                // Only allow cute charm if the target isn't fixed gender
+                u8 gender = cuteCharm && !info->getFixedGender() ? (lead == Lead::CuteCharmF ? 0 : 1) : 255;
+
+                pid = Utilities5::createPID(tsv, 2, gender, Shiny::Random, true, info->getGender(), go);
+                if (Utilities::isShiny<true>(pid, tsv))
+                {
+                    break;
+                }
+            }
+
+            u8 ability = (pid >> 16) & 1;
+            u8 gender = Utilities::getGender(pid, info);
+            u8 shiny = Utilities::getShiny<true>(pid, tsv);
+
+            u8 nature = go.nextUInt(25);
+            if (sync)
+            {
+                nature = toInt(lead);
+            }
+
+            u16 item = getItem(go, bw, lead, area.getEncounter(), info);
+
+            for (const auto &iv : ivs)
+            {
+                WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
+                                 encounterSlot, item, slot.getSpecie(), slot.getForm(), info, luckyPower);
+                if (filter.compareState(static_cast<const WildState &>(state))
+                    && std::ranges::none_of(candidates, [&state](const WildState5 &candidate) { return compareStateTarget(state, candidate); }))
+                {
+                    candidates.emplace_back(state);
+                }
             }
         }
+
+        states.insert(states.end(), candidates.begin(), candidates.end());
     }
 
     return states;

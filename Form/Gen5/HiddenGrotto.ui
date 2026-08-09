@@ -373,33 +373,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="ComboBox" name="comboBoxGrottoSearcherGrottoPower">
-                <item>
-                 <property name="text">
-                  <string>None</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">1</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">2</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">3</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">S</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="CheckList" name="comboBoxGrottoSearcherGrottoPower"/>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="labelGrottoSearcherStartDate">

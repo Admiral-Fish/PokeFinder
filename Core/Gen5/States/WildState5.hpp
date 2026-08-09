@@ -20,6 +20,7 @@
 #ifndef WILDSTATE5_HPP
 #define WILDSTATE5_HPP
 
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Parents/States/WildState.hpp>
 
 /**
@@ -44,11 +45,12 @@ public:
      * @param info Pokemon information
      */
     WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-               u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+               u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, PassPower passPower = PassPower::None) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         ivAdvances(ivAdvances),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        passPower(passPower)
     {
     }
 
@@ -82,10 +84,21 @@ public:
         return needle;
     }
 
+    /**
+     * @brief Returns the pass power used for the state
+     *
+     * @return Pass power
+     */
+    PassPower getPassPower() const
+    {
+        return passPower;
+    }
+
 private:
     u32 ivAdvances;
     u8 chatot;
     u8 needle;
+    PassPower passPower;
 };
 
 #endif // WILDSTATE5_HPP
