@@ -20,6 +20,7 @@
 #ifndef HIDDENGROTTOSTATE_HPP
 #define HIDDENGROTTOSTATE_HPP
 
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Global.hpp>
 
 /**
@@ -38,7 +39,7 @@ public:
      * @param specie Pokemon specie
      * @param gender Pokemon gender
      */
-    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender, PassPower passPower = PassPower::None) :
         advances(advances),
         data(specie),
         item(false),
@@ -46,6 +47,7 @@ public:
         gender(gender),
         group(group),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        passPower(passPower),
         slot(slot)
     {
     }
@@ -59,7 +61,7 @@ public:
      * @param slot Item slot
      * @param item Item number
      */
-    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 item) :
+    HiddenGrottoState(u32 prng, u32 advances, u8 group, u8 slot, u16 item, PassPower passPower = PassPower::None) :
         advances(advances),
         data(item),
         item(true),
@@ -67,6 +69,7 @@ public:
         gender(0),
         group(group),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        passPower(passPower),
         slot(slot)
     {
     }
@@ -153,6 +156,16 @@ public:
         return slot;
     }
 
+    /**
+     * @brief Returns the pass power used for the state
+     *
+     * @return Pass power
+     */
+    PassPower getPassPower() const
+    {
+        return passPower;
+    }
+
 private:
     u32 advances;
     u16 data;
@@ -161,6 +174,7 @@ private:
     u8 gender;
     u8 group;
     u8 needle;
+    PassPower passPower;
     u8 slot;
 };
 

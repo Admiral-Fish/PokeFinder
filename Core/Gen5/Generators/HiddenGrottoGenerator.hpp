@@ -25,6 +25,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+#include <vector>
 
 class HiddenGrottoState;
 class State5;
@@ -51,6 +52,9 @@ public:
     HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, PassPower grottoPower, const HiddenGrottoArea &encounterArea,
                               const Profile5 &profile, const HiddenGrottoFilter &filter);
 
+    HiddenGrottoSlotGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, const std::vector<PassPower> &grottoPowers,
+                              const HiddenGrottoArea &encounterArea, const Profile5 &profile, const HiddenGrottoFilter &filter);
+
     /**
      * @brief Generates states
      *
@@ -62,7 +66,7 @@ public:
 
 private:
     HiddenGrottoArea encounterArea;
-    PassPower grottoPower;
+    std::vector<PassPower> grottoPowers;
 };
 
 /**

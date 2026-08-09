@@ -20,6 +20,24 @@
 #include "HiddenGrottoModel.hpp"
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QCoreApplication>
+
+static QString getGrottoPower(PassPower power)
+{
+    switch (power)
+    {
+    case PassPower::Level1:
+        return QCoreApplication::translate("HiddenGrotto", "Grotto Power 1");
+    case PassPower::Level2:
+        return QCoreApplication::translate("HiddenGrotto", "Grotto Power 2");
+    case PassPower::Level3:
+        return QCoreApplication::translate("HiddenGrotto", "Grotto Power 3");
+    case PassPower::LevelS:
+        return QCoreApplication::translate("HiddenGrotto", "Grotto Power S");
+    default:
+        return QCoreApplication::translate("HiddenGrotto", "None");
+    }
+}
 
 HiddenGrottoSlotGeneratorModel5::HiddenGrottoSlotGeneratorModel5(QObject *parent) : TableModel(parent)
 {
@@ -78,7 +96,7 @@ HiddenGrottoSlotSearcherModel5::HiddenGrottoSlotSearcherModel5(QObject *parent) 
 
 int HiddenGrottoSlotSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 7;
+    return 8;
 }
 
 QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role) const
@@ -93,10 +111,12 @@ QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role
         case 0:
             return QString::number(display.getInitialSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return state.getAdvances();
+            return getGrottoPower(state.getPassPower());
         case 2:
-            return state.getGroup();
+            return state.getAdvances();
         case 3:
+            return state.getGroup();
+        case 4:
             if (state.getItem())
             {
                 return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
@@ -108,11 +128,11 @@ QVariant HiddenGrottoSlotSearcherModel5::data(const QModelIndex &index, int role
                     .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
                          QString::fromStdString(Translator::getGender(state.getGender())));
             }
-        case 4:
-            return QString::fromStdString(display.getDateTime().toString());
         case 5:
-            return QString::number(display.getTimer0(), 16).toUpper();
+            return QString::fromStdString(display.getDateTime().toString());
         case 6:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 7:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
@@ -123,6 +143,10 @@ QVariant HiddenGrottoSlotSearcherModel5::headerData(int section, Qt::Orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 1)
+        {
+            return QCoreApplication::translate("HiddenGrotto", "Grotto Power");
+        }
         return header[section];
     }
     return QVariant();
