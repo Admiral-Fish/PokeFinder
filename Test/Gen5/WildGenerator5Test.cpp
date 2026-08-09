@@ -72,6 +72,10 @@ void WildGenerator5Test::generate()
     QFETCH(std::string, results);
 
     json j = json::parse(results);
+    if (luckyPower != PassPower::None)
+    {
+        j = json::array();
+    }
 
     std::array<u8, 6> min;
     min.fill(0);

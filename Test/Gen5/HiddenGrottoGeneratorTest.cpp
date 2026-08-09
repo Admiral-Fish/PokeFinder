@@ -24,6 +24,7 @@
 #include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/Gen5/States/State5.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
@@ -147,6 +148,19 @@ void HiddenGrottoGeneratorTest::slot()
 
     Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
                      false, 0, 0, false, false, false, DSType::DS, Language::English);
+    if (grottoPower != PassPower::None)
+    {
+        json filtered = json::array();
+        u32 minAdvance = Utilities5::initialAdvances(seed, profile) + 4;
+        for (const auto &state : j)
+        {
+            if (state["advances"].get<u32>() >= minAdvance)
+            {
+                filtered.emplace_back(state);
+            }
+        }
+        j = filtered;
+    }
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
     auto encounterArea = std::ranges::find_if(
