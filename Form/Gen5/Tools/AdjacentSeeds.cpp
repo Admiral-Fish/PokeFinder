@@ -141,6 +141,8 @@ void AdjacentSeeds::generate()
         }
     }
 
+    ui->tableView->horizontalHeader()->setSortIndicator(-1, Qt::AscendingOrder);
+    proxyModel->sort(-1);
     model->clearModel();
 
     DateTime dateTime = ui->dateTimeEdit->getDateTime();
