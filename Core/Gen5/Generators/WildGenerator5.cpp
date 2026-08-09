@@ -127,6 +127,20 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
+    std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+    const auto *validIVs = &ivs;
+    if (luckyPower != PassPower::None)
+    {
+        for (const auto &iv : ivs)
+        {
+            if (iv.first >= 2)
+            {
+                powerIVs.emplace_back(iv);
+            }
+        }
+        validIVs = &powerIVs;
+    }
+
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
@@ -261,7 +275,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             continue;
         }
 
-        for (const auto &iv : ivs)
+        for (const auto &iv : *validIVs)
         {
             WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
                              encounterSlot, item, slot.getSpecie(), slot.getForm(), info);

@@ -166,6 +166,20 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
 
 std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<std::pair<u32, std::array<u8, 6>>> &ivs) const
 {
+    std::vector<std::pair<u32, std::array<u8, 6>>> powerIVs;
+    const auto *validIVs = &ivs;
+    if (luckyPower != PassPower::None)
+    {
+        for (const auto &iv : ivs)
+        {
+            if (iv.first >= 2)
+            {
+                powerIVs.emplace_back(iv);
+            }
+        }
+        validIVs = &powerIVs;
+    }
+
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances);
     auto jump = rng.getJump(offset);
@@ -248,7 +262,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             continue;
         }
 
-        for (const auto &iv : ivs)
+        for (const auto &iv : *validIVs)
         {
             State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
                          nature, shiny, info);
