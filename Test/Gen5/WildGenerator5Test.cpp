@@ -25,6 +25,7 @@
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
@@ -106,4 +107,51 @@ void WildGenerator5Test::generate()
         const auto &state = states[i];
         QVERIFY(state == j[i]);
     }
+}
+
+void WildGenerator5Test::luckyPowerAdvances_data()
+{
+    QTest::addColumn<PassPower>("luckyPower");
+
+    QTest::newRow("Lucky Power 1") << PassPower::Level1;
+    QTest::newRow("Lucky Power 2") << PassPower::Level2;
+    QTest::newRow("Lucky Power 3") << PassPower::Level3;
+}
+
+void WildGenerator5Test::luckyPowerAdvances()
+{
+    QFETCH(PassPower, luckyPower);
+
+    std::array<u8, 6> min;
+    min.fill(0);
+
+    std::array<u8, 6> max;
+    max.fill(31);
+
+    std::array<bool, 25> natures;
+    natures.fill(true);
+
+    std::array<bool, 16> powers;
+    powers.fill(true);
+
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
+
+    Profile5 profile("-", Game::Black2, 12345, 54321, "", "", 0,
+                     { false, false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0, false, false, false,
+                     DSType::DS, Language::English);
+
+    auto encounterAreas = Encounters5::getEncounters(Encounter::Grass, 0, &profile);
+    auto encounterArea = std::ranges::find_if(
+        encounterAreas, [](const EncounterArea5 &area) { return area.getLocation() == 49; });
+
+    WildStateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers, encounterSlots);
+    WildGenerator5 generator(3, 1, 0, Method::Method5, Lead::None, luckyPower, *encounterArea, profile, filter);
+
+    constexpr u64 seed = 0;
+    auto states = generator.generate(seed, 1, 1);
+
+    QCOMPARE(states.size(), 1);
+    QCOMPARE(states[0].getIVAdvances(), 2);
+    QCOMPARE(states[0].getAdvances(), Utilities5::initialAdvances(seed, profile) + 4);
 }
