@@ -171,7 +171,6 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     for (u32 cnt = start; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
-        u32 prng = rng.nextUInt();
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -265,6 +264,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
+        u32 prng = rng.nextUInt();
 
         for (const auto &iv : *validIVs)
         {
