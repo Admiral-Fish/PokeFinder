@@ -66,7 +66,8 @@ HiddenGrottoSlotGenerator::HiddenGrottoSlotGenerator(u32 initialAdvances, u32 ma
 std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) const
 {
     u32 advances = Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
-    BWRNG rng(seed, advances + initialAdvances);
+    u32 start = grottoPower != PassPower::None && initialAdvances < 4 ? 4 - initialAdvances : 0;
+    BWRNG rng(seed, advances + initialAdvances + start);
     auto jump = rng.getJump(offset);
 
     u8 rolls = 1;
@@ -78,14 +79,10 @@ std::vector<HiddenGrottoState> HiddenGrottoSlotGenerator::generate(u64 seed) con
     }
 
     std::vector<HiddenGrottoState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = start; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
         u32 prng = rng.nextUInt();
-        if (grottoPower != PassPower::None && initialAdvances + cnt < 4)
-        {
-            continue;
-        }
 
         if (go.nextUInt(100) < thresh)
         {

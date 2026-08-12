@@ -109,7 +109,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, 
     {
         std::array<u8, 6> iv;
         std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if (filter.compareIV(iv) && (luckyPower == PassPower::None || initialAdvances + cnt >= 2))
+        if (filter.compareIV(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -131,18 +131,14 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     const auto *validIVs = &ivs;
     if (luckyPower != PassPower::None)
     {
-        for (const auto &iv : ivs)
-        {
-            if (iv.first >= 2)
-            {
-                powerIVs.emplace_back(iv);
-            }
-        }
+        powerIVs = ivs;
+        std::erase_if(powerIVs, [](const auto &iv) { return iv.first < 2; });
         validIVs = &powerIVs;
     }
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances);
+    u32 start = luckyPower != PassPower::None && initialAdvances < 4 ? 4 - initialAdvances : 0;
+    BWRNG rng(seed, advances + initialAdvances + start);
     auto jump = rng.getJump(offset);
 
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
@@ -172,9 +168,10 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         && (area.getEncounter() != Encounter::SuperRod && area.getEncounter() != Encounter::SuperRodRippling);
 
     std::vector<WildState5> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = start; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
+        u32 prng = rng.nextUInt();
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -268,12 +265,6 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         }
 
         u16 item = getItem(go, bw, lead, area.getEncounter(), info);
-
-        u32 prng = rng.nextUInt();
-        if (luckyPower != PassPower::None && initialAdvances + cnt < 4)
-        {
-            continue;
-        }
 
         for (const auto &iv : *validIVs)
         {
