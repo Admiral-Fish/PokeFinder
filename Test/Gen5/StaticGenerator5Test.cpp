@@ -23,6 +23,7 @@
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/States/State5.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
@@ -123,10 +124,6 @@ void StaticGenerator5Test::generateWild()
     QFETCH(std::string, results);
 
     json j = json::parse(results);
-    if (luckyPower != PassPower::None)
-    {
-        j = json::array();
-    }
 
     std::array<u8, 6> min;
     min.fill(0);
@@ -155,4 +152,34 @@ void StaticGenerator5Test::generateWild()
         const auto &state = states[i];
         QVERIFY(state == j[i]);
     }
+}
+
+void StaticGenerator5Test::luckyPowerAdvances()
+{
+    std::array<u8, 6> min;
+    min.fill(0);
+
+    std::array<u8, 6> max;
+    max.fill(31);
+
+    std::array<bool, 25> natures;
+    natures.fill(true);
+
+    std::array<bool, 16> powers;
+    powers.fill(true);
+
+    Profile5 profile("-", Game::Black2, 12345, 54321, "", "", 0,
+                     { false, false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0, false, false, false,
+                     DSType::DS, Language::English);
+
+    const StaticTemplate5 *staticTemplate = Encounters5::getStaticEncounter(4, 15);
+    StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
+    StaticGenerator5 generator(3, 1, 0, Method::Method5, Lead::None, PassPower::Level3, *staticTemplate, profile, filter);
+
+    constexpr u64 seed = 0;
+    auto states = generator.generate(seed, 1, 1);
+
+    QCOMPARE(states.size(), 1);
+    QCOMPARE(states[0].getIVAdvances(), 2);
+    QCOMPARE(states[0].getAdvances(), Utilities5::initialAdvances(seed, profile) + 4);
 }
