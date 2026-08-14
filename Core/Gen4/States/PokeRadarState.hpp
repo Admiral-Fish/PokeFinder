@@ -51,6 +51,9 @@ public:
         chatot(((prng % 8192) * 100) >> 13),
         noGraceSkip(0),
         graceSkip(0),
+        displayBattleAdvances(false),
+        battleAdvances(0),
+        displayedPatchAdvances(0),
         patchesVisible(true),
         patches(patches)
     {
@@ -65,6 +68,9 @@ public:
         chatot(state.chatot),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        displayBattleAdvances(state.displayBattleAdvances),
+        battleAdvances(state.battleAdvances),
+        displayedPatchAdvances(state.displayedPatchAdvances),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         pokemon(pokemon)
@@ -80,6 +86,9 @@ public:
         chatot(pokemon.getChatot()),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        displayBattleAdvances(state.displayBattleAdvances),
+        battleAdvances(state.battleAdvances),
+        displayedPatchAdvances(state.displayedPatchAdvances),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         pokemon(pokemon)
@@ -95,6 +104,9 @@ public:
         chatot(((prng % 8192) * 100) >> 13),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        displayBattleAdvances(state.displayBattleAdvances),
+        battleAdvances(state.battleAdvances),
+        displayedPatchAdvances(state.displayedPatchAdvances),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         searcherPokemon(pokemon)
@@ -157,6 +169,27 @@ public:
         graceSkip = grace;
     }
 
+    u32 getDisplayedBattleAdvances() const
+    {
+        return displayBattleAdvances ? battleAdvances : pokemon.value().getBattleAdvances();
+    }
+
+    void setDisplayedBattleAdvances(u32 advances)
+    {
+        displayBattleAdvances = true;
+        battleAdvances = advances;
+    }
+
+    u32 getDisplayedPatchAdvances() const
+    {
+        return displayedPatchAdvances;
+    }
+
+    void setDisplayedPatchAdvances(u32 advances)
+    {
+        displayedPatchAdvances = advances;
+    }
+
     const std::array<PokeRadarPatch, 4> &getPatches() const
     {
         return patches;
@@ -191,6 +224,9 @@ private:
     u8 chatot;
     u8 noGraceSkip;
     u8 graceSkip;
+    bool displayBattleAdvances;
+    u32 battleAdvances;
+    u32 displayedPatchAdvances;
     bool patchesVisible;
     std::array<PokeRadarPatch, 4> patches;
     std::optional<WildGeneratorState4> pokemon;

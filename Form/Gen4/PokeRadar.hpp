@@ -85,7 +85,6 @@ struct PokeRadarControls
     QPushButton *button;
     QPushButton *cancel;
     QPushButton *choosePosition;
-    QPushButton *resetToPosition;
     QProgressBar *progressBar;
     std::vector<bool> fieldGrass;
     int fieldWidth = 36;
@@ -144,10 +143,9 @@ private:
     void markSelectedPatches(const PokeRadarControls &controls);
     void markPatches(const PokeRadarState &state, bool showContinue);
     void choosePosition();
-    void moveGeneratorPositionToTile(int x, int y);
+    bool moveGeneratorPositionToTile(int x, int y);
     void moveGeneratorPositionToVisibleTile(int x, int y);
     void resetGrass(PokeRadarControls &controls);
-    void resetToPosition();
     void setGeneratorPosition(const QPoint &position, bool updateStart);
     void setupGrassField(PokeRadarControls &controls, int width, int height, u16 location = 0xffff, int locationOccurrence = -1);
     void setupGrassGrid(PokeRadarControls &controls, QGridLayout *layout);
@@ -156,14 +154,15 @@ private:
     void toggleGrassRow(PokeRadarControls &controls, int row);
     void updateGrassFromField(PokeRadarControls &controls);
     std::vector<WildGeneratorState4> getPokemonStates(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters,
-                                                       PokeRadarChainType chainType, bool useChainSlot, bool ignoreFilters = false);
+                                                       PokeRadarChainType chainType, bool useChainSlot, bool ignoreFilters = false,
+                                                       u32 extraAdvances = 0);
     std::vector<PokeRadarState> getStates(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters,
                                            std::optional<PokeRadarChainType> chainTypeOverride = std::nullopt);
     void updateEncounterSlots(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters);
-    void updateEncounters(PokeRadarControls &controls, std::vector<EncounterArea4> &encounters);
+    void updateEncounters(PokeRadarControls &controls, std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
     void updateMinimumGraceSteps(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters);
-    void updateLocations(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters);
-    void updatePokemon(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters);
+    void updateLocations(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
+    void updatePokemon(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
 
 private slots:
     void generate();

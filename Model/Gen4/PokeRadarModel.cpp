@@ -30,7 +30,7 @@ PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) : TableModel(pa
 
 int PokeRadarModel4::columnCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : searcher ? 29 : showContinue ? 25 : 24;
+    return parent.isValid() ? 0 : searcher ? 29 : 26;
 }
 
 QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
@@ -81,7 +81,7 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     }
 
     column = mapGeneratorColumn(column);
-    if ((column == 1 || column > 7) && !state.hasPokemon())
+    if ((column == 1 || column == 2 || column > 7) && !state.hasPokemon())
     {
         return QStringLiteral("-");
     }
@@ -91,20 +91,21 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     case 0:
         return state.getAdvances();
     case 1:
-        return state.getPokemon().getBattleAdvances();
+        return state.getDisplayedBattleAdvances();
     case 2:
-        return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
+        return state.getDisplayedPatchAdvances();
     case 3:
-        return getSkip(state);
+        return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
     case 4:
-        return getCoordinates(state, 0);
+        return getSkip(state);
     case 5:
-        return getCoordinates(state, 1);
+        return getCoordinates(state, 0);
     case 6:
-        return getCoordinates(state, 2);
+        return getCoordinates(state, 1);
     case 7:
-        return getCoordinates(state, 3);
+        return getCoordinates(state, 2);
     case 8:
+        return getCoordinates(state, 3);
     case 9:
     case 10:
     case 11:
@@ -121,7 +122,8 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     case 22:
     case 23:
     case 24:
-        return getPokemonData(state, column - 8);
+    case 25:
+        return getPokemonData(state, column - 9);
     }
 
     return QVariant();
@@ -171,52 +173,54 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
             return tr("Advances");
         case 1:
             return tr("Battle Adv");
-    case 2:
-        return tr("Chatot");
-    case 3:
-        return tr("Skip");
-    case 4:
-        return tr("Regular");
-    case 5:
-        return tr("Strong");
-    case 6:
-        return tr("Continue");
-    case 7:
-        return tr("Shiny");
-    case 8:
-        return tr("Item");
-    case 9:
-        return tr("Slot");
-    case 10:
-        return tr("Level");
-    case 11:
-        return tr("PID");
-    case 12:
-        return tr("Shiny");
-    case 13:
-        return tr("Nature");
-    case 14:
-        return tr("Ability");
-    case 15:
-        return tr("HP");
-    case 16:
-        return tr("Atk");
-    case 17:
-        return tr("Def");
-    case 18:
-        return tr("SpA");
-    case 19:
-        return tr("SpD");
-    case 20:
-        return tr("Spe");
-    case 21:
-        return tr("Hidden");
-    case 22:
-        return tr("Power");
-    case 23:
-        return tr("Gender");
-    case 24:
-        return tr("Characteristic");
+        case 2:
+            return tr("Patch Adv");
+        case 3:
+            return tr("Chatot");
+        case 4:
+            return tr("Skip");
+        case 5:
+            return tr("Regular");
+        case 6:
+            return tr("Strong");
+        case 7:
+            return tr("Continue");
+        case 8:
+            return tr("Shiny");
+        case 9:
+            return tr("Item");
+        case 10:
+            return tr("Slot");
+        case 11:
+            return tr("Level");
+        case 12:
+            return tr("PID");
+        case 13:
+            return tr("Shiny");
+        case 14:
+            return tr("Nature");
+        case 15:
+            return tr("Ability");
+        case 16:
+            return tr("HP");
+        case 17:
+            return tr("Atk");
+        case 18:
+            return tr("Def");
+        case 19:
+            return tr("SpA");
+        case 20:
+            return tr("SpD");
+        case 21:
+            return tr("Spe");
+        case 22:
+            return tr("Hidden");
+        case 23:
+            return tr("Power");
+        case 24:
+            return tr("Gender");
+        case 25:
+            return tr("Characteristic");
         }
     }
 
@@ -325,7 +329,7 @@ QVariant PokeRadarModel4::getPokemonHeader(int section) const
 
 int PokeRadarModel4::mapGeneratorColumn(int column) const
 {
-    return !searcher && !showContinue && column >= 6 ? column + 1 : column;
+    return column;
 }
 
 QString PokeRadarModel4::getSkip(const PokeRadarState &state) const
@@ -380,18 +384,11 @@ void PokeRadarModel4::setShowStats(bool flag)
         return;
     }
 
-    int first = searcher ? 19 : showContinue ? 15 : 14;
+    int first = searcher ? 19 : 15;
     emit dataChanged(index(0, first), index(rowCount() - 1, first + 5), { Qt::DisplayRole });
 }
 
 void PokeRadarModel4::setShowContinue(bool flag)
 {
-    if (searcher || showContinue == flag)
-    {
-        return;
-    }
-
-    beginResetModel();
     showContinue = flag;
-    endResetModel();
 }

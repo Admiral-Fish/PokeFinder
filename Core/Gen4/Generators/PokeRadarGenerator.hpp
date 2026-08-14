@@ -53,6 +53,8 @@ public:
     std::vector<PokeRadarState> generate(u32 seed) const;
     PokeRadarState generate(u32 seed, u32 advances, u32 patchAdvances) const;
     PokeRadarState generatePrevious(u32 seed, u32 advances) const;
+    u32 getAdvanceConsumption(u32 seed, u32 advances, PokeRadarResult result) const;
+    u32 getPostBattleAdvanceConsumption(const std::array<PokeRadarPatch, 4> &patches) const;
 
 private:
     PokeRadarPatch buildPatch(u8 ring, u8 rand) const;

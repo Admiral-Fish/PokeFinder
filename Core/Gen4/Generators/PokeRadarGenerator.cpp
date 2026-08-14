@@ -89,6 +89,60 @@ PokeRadarState PokeRadarGenerator::generatePrevious(u32 seed, u32 advances) cons
     return PokeRadarState(display.nextUShort(), advances == 0 ? 0 : advances - 1, generatePatches(go));
 }
 
+u32 PokeRadarGenerator::getAdvanceConsumption(u32 seed, u32 advances, PokeRadarResult patchResult) const
+{
+    constexpr std::array<u8, 4> ringTileCount = { 32, 24, 16, 8 };
+    constexpr std::array<u8, 4> ratesDefeat = { 88, 68, 48, 28 };
+    constexpr std::array<u8, 4> ratesCapture = { 98, 78, 58, 38 };
+
+    PokeRNG go(seed, advances);
+    std::array<PokeRadarPatch, 4> patches;
+    u32 consumed = 0;
+
+    for (u8 ring = 0; ring < 4; ring++)
+    {
+        patches[ring] = buildPatch(ring, go.nextUShort<false>(ringTileCount[ring]));
+        consumed++;
+    }
+
+    if (patchResult != PokeRadarResult::ManualActivation)
+    {
+        go.nextUShort();
+        consumed++;
+    }
+
+    const auto &continueRates = patchResult == PokeRadarResult::Capture ? ratesCapture : ratesDefeat;
+    const u16 effectiveChain = chainCount == 0 && patchResult != PokeRadarResult::ManualActivation ? 1 : chainCount;
+    for (auto &patch : patches)
+    {
+        if (!patch.active)
+        {
+            continue;
+        }
+
+        bool rolledContinue = go.nextUShort<false>(100) < continueRates[patch.ring];
+        consumed++;
+        if (rolledContinue && effectiveChain != 0)
+        {
+            u16 shinyRate = std::max<u16>(8200 - std::min<u16>(effectiveChain, 40) * 200, 200);
+            go.nextUShort<false>(shinyRate);
+            consumed++;
+        }
+        else if (!rolledContinue)
+        {
+            go.nextUShort<false>(100);
+            consumed++;
+        }
+    }
+
+    return consumed;
+}
+
+u32 PokeRadarGenerator::getPostBattleAdvanceConsumption(const std::array<PokeRadarPatch, 4> &patches) const
+{
+    return static_cast<u32>(std::ranges::count_if(patches, [](const PokeRadarPatch &patch) { return patch.active; })) * 2;
+}
+
 PokeRadarPatch PokeRadarGenerator::buildPatch(u8 ring, u8 rand) const
 {
     u8 size = 9 - ring * 2;
