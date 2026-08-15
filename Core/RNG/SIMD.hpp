@@ -805,6 +805,12 @@ inline bool hasAVX2()
     return (info[1] & (1 << 5)) != 0;
 }
 
+#if defined(__GNUC__) || defined(__clang__)
+#define VECTOR_TARGET_AVX2 __attribute__((target("avx,avx2")))
+#else
+#define VECTOR_TARGET_AVX2 // Resolves to nothing on MSVC
+#endif
+
 union alignas(32) vuint256 {
     vuint32x8 uint256;
     u64 uint64[4];
@@ -820,6 +826,7 @@ union alignas(32) vuint256 {
      *
      * @param x Initalization number
      */
+    VECTOR_TARGET_AVX2
     vuint256(u32 x)
     {
         uint256 = _mm256_set1_epi32(x);
@@ -830,6 +837,7 @@ union alignas(32) vuint256 {
      *
      * @param i Index
      */
+    VECTOR_TARGET_AVX2
     inline u32 &operator[](int i)
     {
         return uint32[i];
@@ -840,6 +848,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise NOT vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator~() const
     {
         vuint256 ret;
@@ -854,6 +863,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise ADD vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator+(vuint256 y) const
     {
         vuint256 ret;
@@ -868,6 +878,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise left shift vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator<<(int shift) const
     {
         vuint256 ret;
@@ -882,6 +893,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise right shift vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator>>(int shift) const
     {
         vuint256 ret;
@@ -896,6 +908,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed equality vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator==(vuint256 y) const
     {
         vuint256 ret;
@@ -910,6 +923,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise AND vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator&(vuint256 y) const
     {
         vuint256 ret;
@@ -924,6 +938,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise XOR vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator^(vuint256 y) const
     {
         vuint256 ret;
@@ -938,6 +953,7 @@ union alignas(32) vuint256 {
      *
      * @return Computed bitwise OR vector
      */
+    VECTOR_TARGET_AVX2
     inline vuint256 operator|(vuint256 y) const
     {
         vuint256 ret;
@@ -953,6 +969,7 @@ union alignas(32) vuint256 {
  *
  * @return Computed byteswap vector
  */
+VECTOR_TARGET_AVX2
 inline vuint256 v32x8_byteswap(vuint256 x)
 {
     vuint256 ret;
@@ -969,6 +986,7 @@ inline vuint256 v32x8_byteswap(vuint256 x)
  *
  * @return Loaded vector
  */
+VECTOR_TARGET_AVX2
 inline vuint256 v32x8_load(const u32 *address)
 {
     vuint256 ret;
@@ -985,6 +1003,7 @@ inline vuint256 v32x8_load(const u32 *address)
  * @return Computed bitwise rotate left vector
  */
 template <int rotate>
+VECTOR_TARGET_AVX2
 inline vuint256 v32x8_rotl(vuint256 x)
 {
     return (x << rotate) | (x >> (32 - rotate));
@@ -999,6 +1018,7 @@ inline vuint256 v32x8_rotl(vuint256 x)
  * @return Computed bitwise rotate right vector
  */
 template <int rotate>
+VECTOR_TARGET_AVX2
 inline vuint256 v32x8_rotr(vuint256 x)
 {
     return (x >> rotate) | (x << (32 - rotate));
