@@ -27,11 +27,15 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <array>
+#include <atomic>
+#include <mutex>
 #include <set>
 #include <tuple>
 #include <vector>
 
 enum class Lead : u8;
+class WildSearcherState4;
+class WildSearcher4;
 
 class PokeRadarSearcher : public Searcher<Profile4, PokeRadarState>
 {
@@ -39,15 +43,15 @@ public:
     PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u32 minPatchDistance, u32 maxPatchDistance,
                       u16 maxChain, u8 chainSlot, Lead lead, PokeRadarChainType chainType, const std::array<bool, 81> &grass,
                       const std::array<bool, 12> &encounterSlots, const EncounterArea4 &area, const Profile4 &profile,
-                      const WildStateFilter &filter);
+                      const WildStateFilter &filter, bool specificSynchronize = false);
 
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
     int getProgress() const;
 
 private:
-    void addPatchMatches(const WildGeneratorState4 &pokemon, u32 seed, u16 chainMin, u16 chainMax);
-    std::vector<WildGeneratorState4> generatePokemon(u32 seed, bool chain) const;
+    void addPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
+    void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
     bool isShinyPatchType() const;
     bool patchMatchesType(const PokeRadarState &state) const;
 
@@ -60,11 +64,15 @@ private:
     u16 maxChain;
     u8 chainSlot;
     Lead lead;
+    bool specificSynchronize;
     PokeRadarChainType chainType;
     std::array<bool, 81> grass;
     std::array<bool, 12> encounterSlots;
     EncounterArea4 area;
     WildStateFilter filter;
+    std::atomic<u64> currentPhaseProgress;
+    mutable std::mutex currentSearcherMutex;
+    WildSearcher4 *currentSearcher;
     std::set<std::tuple<u32, u32, u32, u16, u8, u32>> resultKeys;
 };
 

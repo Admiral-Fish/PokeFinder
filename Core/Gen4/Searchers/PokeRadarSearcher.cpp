@@ -21,15 +21,26 @@
 
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen4/Generators/WildGenerator4.hpp>
+#include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <mutex>
 #include <vector>
 
+static bool isPokeRadarChainLead(Lead lead)
+{
+    return lead <= Lead::SynchronizeEnd || lead == Lead::CuteCharmF || lead == Lead::CuteCharmM;
+}
+
+static Lead getPokeRadarSearcherLead(Lead lead, bool chain)
+{
+    return !chain || isPokeRadarChainLead(lead) ? lead : Lead::None;
+}
+
 PokeRadarSearcher::PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u32 minPatchDistance,
                                      u32 maxPatchDistance, u16 maxChain, u8 chainSlot, Lead lead, PokeRadarChainType chainType,
                                      const std::array<bool, 81> &grass, const std::array<bool, 12> &encounterSlots,
-                                     const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+                                     const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter,
+                                     bool specificSynchronize) :
     Searcher(Method::PokeRadar, profile),
     minAdvance(minAdvance),
     maxAdvance(maxAdvance),
@@ -40,63 +51,123 @@ PokeRadarSearcher::PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDela
     maxChain(maxChain),
     chainSlot(chainSlot),
     lead(lead),
+    specificSynchronize(specificSynchronize),
     chainType(chainType),
     grass(grass),
     encounterSlots(encounterSlots),
     area(area),
-    filter(filter)
+    filter(filter),
+    currentPhaseProgress(0),
+    currentSearcher(nullptr)
 {
-    setMaxProgress(static_cast<u64>(maxDelay - minDelay + 1) * 24);
+    setMaxProgress(1);
 }
 
 void PokeRadarSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
-    (void)min;
-    (void)max;
 
-    for (u8 hour = 0; hour < 24; hour++)
+    u64 slotCount = 0;
+    for (bool slot : encounterSlots)
     {
-        for (u32 delay = minDelay; delay <= maxDelay; delay++)
+        slotCount += slot;
+    }
+    if (slotCount == 0)
+    {
+        slotCount = encounterSlots.size();
+    }
+
+    setMaxProgress(((slotCount + (maxChain == 0 ? 0 : 1)) * 2 * 100) + 1);
+    progress = 0;
+
+    searchPokemon(min, max, false);
+
+    if (searching && maxChain != 0)
+    {
+        searchPokemon(min, max, true);
+    }
+
+    if (searching)
+    {
+        progress = maxProgress;
+    }
+}
+
+void PokeRadarSearcher::searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain)
+{
+    Lead effectiveLead = getPokeRadarSearcherLead(lead, chain);
+    u64 ivCombinations = 1;
+    for (size_t i = 0; i < min.size(); i++)
+    {
+        ivCombinations *= max[i] - min[i] + 1;
+    }
+
+    bool allSlots = true;
+    for (bool slot : encounterSlots)
+    {
+        allSlots &= !slot;
+    }
+
+    WildSearcher4 wildSearcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::PokeRadar, effectiveLead, false, isShinyPatchType(),
+                               false, 0, area, profile, filter, specificSynchronize && effectiveLead <= Lead::SynchronizeEnd);
+
+    u8 startSlot = chain ? chainSlot : 0;
+    u8 endSlot = chain ? chainSlot + 1 : static_cast<u8>(encounterSlots.size());
+    for (u8 slot = startSlot; slot < endSlot; slot++)
+    {
+        if (!searching)
+        {
+            return;
+        }
+
+        if (!allSlots && !encounterSlots[slot])
+        {
+            continue;
+        }
+
+        currentPhaseProgress = 0;
+        wildSearcher.setMaxProgress(ivCombinations);
+        {
+            std::lock_guard<std::mutex> guard(currentSearcherMutex);
+            currentSearcher = &wildSearcher;
+        }
+        wildSearcher.startSearch(min, max, slot);
+        {
+            std::lock_guard<std::mutex> guard(currentSearcherMutex);
+            currentSearcher = nullptr;
+        }
+
+        progress += 100;
+        auto pokemon = wildSearcher.getResults();
+        for (size_t i = 0; i < pokemon.size(); i++)
         {
             if (!searching)
             {
                 return;
             }
 
-            u32 seed = (hour << 16) | delay;
+            currentPhaseProgress = (i * 100) / pokemon.size();
+            addPatchMatches(pokemon[i], chain ? 1 : 0, chain ? maxChain : 0);
+        }
 
-            for (const auto &pokemon : generatePokemon(seed, false))
-            {
-                if (!searching)
-                {
-                    return;
-                }
-
-                addPatchMatches(pokemon, seed, 0, 0);
-            }
-
-            if (maxChain != 0)
-            {
-                for (const auto &pokemon : generatePokemon(seed, true))
-                {
-                    if (!searching)
-                    {
-                        return;
-                    }
-
-                    addPatchMatches(pokemon, seed, 1, maxChain);
-                }
-            }
-
-            progress++;
+        currentPhaseProgress = 0;
+        progress += 100;
+        if (progress > maxProgress)
+        {
+            progress = maxProgress;
         }
     }
+
 }
 
 void PokeRadarSearcher::cancelSearch()
 {
     SearcherBase<PokeRadarState>::cancelSearch();
+    std::lock_guard<std::mutex> guard(currentSearcherMutex);
+    if (currentSearcher != nullptr)
+    {
+        currentSearcher->cancelSearch();
+    }
 }
 
 int PokeRadarSearcher::getProgress() const
@@ -106,24 +177,29 @@ int PokeRadarSearcher::getProgress() const
         return 100;
     }
 
-    return static_cast<int>((progress * 100) / maxProgress);
-}
-
-std::vector<WildGeneratorState4> PokeRadarSearcher::generatePokemon(u32 seed, bool chain) const
-{
-    std::vector<WildGeneratorState4> pokemon;
-    for (u8 offset = 1; offset <= 3; offset++)
+    u64 currentProgress = 0;
     {
-        WildGenerator4 generator(minAdvance, maxAdvance, offset, Method::PokeRadar, lead, false, isShinyPatchType(), false, 0, area, profile, filter);
-        auto states = chain ? generator.generate(seed, chainSlot)
-                            : isShinyPatchType() ? generator.generatePokeRadarShiny(seed) : generator.generatePokeRadar(seed);
-        pokemon.insert(pokemon.end(), states.begin(), states.end());
+        std::lock_guard<std::mutex> guard(currentSearcherMutex);
+        if (currentSearcher != nullptr)
+        {
+            currentProgress = currentSearcher->getProgress();
+        }
+    }
+    if (currentProgress == 0)
+    {
+        currentProgress = currentPhaseProgress;
     }
 
-    return pokemon;
+    u64 value = ((progress + currentProgress) * 100) / maxProgress;
+    if (value > 100)
+    {
+        value = 100;
+    }
+
+    return static_cast<int>(value);
 }
 
-void PokeRadarSearcher::addPatchMatches(const WildGeneratorState4 &pokemon, u32 seed, u16 chainMin, u16 chainMax)
+void PokeRadarSearcher::addPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax)
 {
     if (pokemon.getAdvances() < minPatchDistance)
     {
@@ -133,7 +209,7 @@ void PokeRadarSearcher::addPatchMatches(const WildGeneratorState4 &pokemon, u32 
     u32 start = pokemon.getAdvances() > maxPatchDistance ? pokemon.getAdvances() - maxPatchDistance : 0;
     u32 end = pokemon.getAdvances() - minPatchDistance;
 
-    for (u32 patchAdvances = start; patchAdvances <= end; patchAdvances++)
+    for (u32 patchAdvances = end;; patchAdvances--)
     {
         if (!searching)
         {
@@ -148,30 +224,36 @@ void PokeRadarSearcher::addPatchMatches(const WildGeneratorState4 &pokemon, u32 
             }
 
             PokeRadarGenerator radar(patchAdvances, 0, chain, chainType, PokeRadarResult::ManualActivation, grass);
-            PokeRadarState patchState = radar.generate(seed).front();
+            PokeRadarState patchState = radar.generate(pokemon.getSeed()).front();
             if (patchMatchesType(patchState))
             {
-                const Slot &slot = area.getPokemon(pokemon.getEncounterSlot());
-                WildSearcherState4 actual(seed, pokemon.getPID(), pokemon.getIVs(), pokemon.getAbility(), pokemon.getGender(),
-                                          pokemon.getLevel(), pokemon.getNature(), pokemon.getShiny(), pokemon.getEncounterSlot(),
-                                          pokemon.getItem(), pokemon.getSpecie(), pokemon.getForm(), slot.getInfo());
-                actual.setAdvances(pokemon.getAdvances());
+                auto [noGraceSkip, graceSkip] = PokeRadarGenerator::getSkips(pokemon.getSeed(), pokemon.getAdvances());
+                if (noGraceSkip != 0 && graceSkip != 0)
+                {
+                    return;
+                }
 
-                PokeRNG rng(seed, pokemon.getAdvances());
+                PokeRNG rng(pokemon.getSeed(), pokemon.getAdvances());
                 std::lock_guard<std::mutex> guard(mutex);
-                auto key = std::make_tuple(seed, pokemon.getAdvances(), patchState.getAdvances(), chain, pokemon.getEncounterSlot(),
+                auto key = std::make_tuple(pokemon.getSeed(), pokemon.getAdvances(), patchState.getAdvances(), chain, pokemon.getEncounterSlot(),
                                            pokemon.getPID());
                 if (!resultKeys.insert(key).second)
                 {
-                    break;
+                    return;
                 }
 
-                PokeRadarState result(patchState, actual, rng.nextUShort(), chain);
-                auto [noGraceSkip, graceSkip] = PokeRadarGenerator::getSkips(seed, result.getAdvances());
+                PokeRadarState result(patchState, pokemon, rng.nextUShort(), chain);
+                result.setDisplayPatchType(chainType == PokeRadarChainType::Strong || chainType == PokeRadarChainType::StrongShiny,
+                                           isShinyPatchType());
                 result.setSkip(noGraceSkip, graceSkip);
                 results.emplace_back(result);
-                break;
+                return;
             }
+        }
+
+        if (patchAdvances == start)
+        {
+            break;
         }
     }
 }

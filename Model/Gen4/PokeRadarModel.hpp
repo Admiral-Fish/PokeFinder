@@ -48,6 +48,7 @@ public:
 
 private:
     QString getCoordinates(const PokeRadarState &state, int type) const;
+    QString getSearcherCoordinates(const PokeRadarState &state) const;
     QString getSkip(const PokeRadarState &state) const;
     QVariant getPokemonData(const PokeRadarState &state, int column) const;
     QVariant getPokemonHeader(int section) const;

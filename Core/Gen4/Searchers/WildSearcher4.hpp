@@ -51,7 +51,8 @@ public:
      * @param filter State filter
      */
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
-                  bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+                  bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter,
+                  bool specificSynchronize = false);
 
     /**
      * @brief Starts the search
@@ -74,6 +75,7 @@ private:
     bool feebasTile;
     bool safari;
     bool shiny;
+    bool specificSynchronize;
     bool unownRadio;
     ModifiedSlots modifiedSlots;
 

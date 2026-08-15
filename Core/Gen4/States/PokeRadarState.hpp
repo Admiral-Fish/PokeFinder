@@ -54,6 +54,9 @@ public:
         displayBattleAdvances(false),
         battleAdvances(0),
         displayedPatchAdvances(0),
+        displayPatchType(false),
+        displayPatchStrong(false),
+        displayPatchShiny(false),
         patchesVisible(true),
         patches(patches)
     {
@@ -71,6 +74,9 @@ public:
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
+        displayPatchType(state.displayPatchType),
+        displayPatchStrong(state.displayPatchStrong),
+        displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         pokemon(pokemon)
@@ -89,6 +95,9 @@ public:
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
+        displayPatchType(state.displayPatchType),
+        displayPatchStrong(state.displayPatchStrong),
+        displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         pokemon(pokemon)
@@ -107,6 +116,9 @@ public:
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
+        displayPatchType(state.displayPatchType),
+        displayPatchStrong(state.displayPatchStrong),
+        displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
         patches(state.patches),
         searcherPokemon(pokemon)
@@ -190,6 +202,28 @@ public:
         displayedPatchAdvances = advances;
     }
 
+    bool hasDisplayPatchType() const
+    {
+        return displayPatchType;
+    }
+
+    bool getDisplayPatchStrong() const
+    {
+        return displayPatchStrong;
+    }
+
+    bool getDisplayPatchShiny() const
+    {
+        return displayPatchShiny;
+    }
+
+    void setDisplayPatchType(bool strong, bool shiny)
+    {
+        displayPatchType = true;
+        displayPatchStrong = strong;
+        displayPatchShiny = shiny;
+    }
+
     const std::array<PokeRadarPatch, 4> &getPatches() const
     {
         return patches;
@@ -227,6 +261,9 @@ private:
     bool displayBattleAdvances;
     u32 battleAdvances;
     u32 displayedPatchAdvances;
+    bool displayPatchType;
+    bool displayPatchStrong;
+    bool displayPatchShiny;
     bool patchesVisible;
     std::array<PokeRadarPatch, 4> patches;
     std::optional<WildGeneratorState4> pokemon;

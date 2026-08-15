@@ -636,7 +636,7 @@ static constexpr std::array<RadarGrassFieldData, 48> radarGrassFields = {{
         "...........#######"
         "...........#######" },
     // Route 226
-    { 181, 1, Game::DPPt, 16, 15, 6, 5,
+    { 181, 1, Game::DPPt, 16, 15, 7, 5,
         ".......#####...."
         "...#########...."
         "##############.."
@@ -715,7 +715,7 @@ static constexpr std::array<RadarGrassFieldData, 48> radarGrassFields = {{
         ".....###......###..."
         ".....###......###..." },
     // Sendoff Spring
-    { 59, 1, Game::DPPt, 18, 10, 6, 4,
+    { 59, 1, Game::DPPt, 18, 10, 5, 4,
         "############..##.."
         "############..##.."
         "##################"

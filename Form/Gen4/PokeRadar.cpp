@@ -76,9 +76,13 @@
 #include <iterator>
 #include <memory>
 #include <ranges>
+#include <utility>
 #include <unordered_map>
 
 static const QString settingPrefix = QStringLiteral("pokeRadar");
+
+static constexpr u16 trophyGardenLocation = 117;
+static constexpr int maxPokeRadarChain = 40;
 
 static constexpr std::array<u16, 46> radarLocations = {
     139, 8,   9,   137, 134, 134, 136, 13,  140, 141, 142, 144, 143, 146, 145, 147,
@@ -152,6 +156,27 @@ static int getGrassFieldIndex(const PokeRadarControls &controls, const QPoint &p
 static bool isValidGrassFieldPosition(const PokeRadarControls &controls, const QPoint &position)
 {
     return position.x() >= 0 && position.x() < controls.fieldWidth && position.y() >= 0 && position.y() < controls.fieldHeight;
+}
+
+static bool isPokeRadarChainLead(Lead lead)
+{
+    return lead <= Lead::SynchronizeEnd || lead == Lead::CuteCharmF || lead == Lead::CuteCharmM;
+}
+
+static Lead getPokeRadarGeneratorLead(const PokeRadarControls &controls)
+{
+    if (controls.lead == nullptr)
+    {
+        return Lead::None;
+    }
+
+    Lead lead = controls.lead->getEnum<Lead>();
+    if (controls.chainCount->value() == 0 || isPokeRadarChainLead(lead) || lead == Lead::CompoundEyes)
+    {
+        return lead;
+    }
+
+    return Lead::None;
 }
 
 PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
@@ -240,7 +265,7 @@ PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
         QSignalBlocker pokemonBlocker(generator.pokemon);
         updateEncounters(generator, generatorEncounters, false);
     });
-    connect(static_cast<QComboBox *>(searcher.patchTypes)->model(), &QAbstractItemModel::dataChanged, this, [this] {
+    connect(searcher.patchTypes, &QComboBox::currentIndexChanged, this, [this] {
         updateEncounters(searcher, searcherEncounters);
     });
     connect(generator.swarm, &QCheckBox::stateChanged, this, [this] { updateEncounters(generator, generatorEncounters); });
@@ -249,6 +274,32 @@ PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
     connect(searcher.dualSlot, &QCheckBox::stateChanged, this, [this] { updateEncounters(searcher, searcherEncounters); });
     connect(generator.dualSlotGame, &QComboBox::currentIndexChanged, this, [this] { updateEncounters(generator, generatorEncounters); });
     connect(searcher.dualSlotGame, &QComboBox::currentIndexChanged, this, [this] { updateEncounters(searcher, searcherEncounters); });
+    connect(generator.replacement, &QCheckBox::stateChanged, this, [this] { updateEncounters(generator, generatorEncounters); });
+    connect(searcher.replacement, &QCheckBox::stateChanged, this, [this] { updateEncounters(searcher, searcherEncounters); });
+    connect(generator.replacement0, &QComboBox::currentIndexChanged, this, [this] {
+        if (generator.replacement->isChecked())
+        {
+            updateEncounters(generator, generatorEncounters);
+        }
+    });
+    connect(generator.replacement1, &QComboBox::currentIndexChanged, this, [this] {
+        if (generator.replacement->isChecked())
+        {
+            updateEncounters(generator, generatorEncounters);
+        }
+    });
+    connect(searcher.replacement0, &QComboBox::currentIndexChanged, this, [this] {
+        if (searcher.replacement->isChecked())
+        {
+            updateEncounters(searcher, searcherEncounters);
+        }
+    });
+    connect(searcher.replacement1, &QComboBox::currentIndexChanged, this, [this] {
+        if (searcher.replacement->isChecked())
+        {
+            updateEncounters(searcher, searcherEncounters);
+        }
+    });
 
     QSettings setting;
     if (setting.contains(settingPrefix + "/geometry"))
@@ -388,6 +439,11 @@ EncounterSettings4 PokeRadar::getEncounterSettings(const PokeRadarControls &cont
     EncounterSettings4 settings = {};
     settings.dppt.dual = controls.dualSlot->isChecked() ? controls.dualSlotGame->getEnum<Game>() : Game::None;
     settings.dppt.replacement = {};
+    if (controls.replacement->isChecked() && controls.location->getCurrentUShort() == trophyGardenLocation)
+    {
+        settings.dppt.replacement[0] = controls.replacement0->getCurrentUShort();
+        settings.dppt.replacement[1] = controls.replacement1->count() > 0 ? controls.replacement1->getCurrentUShort() : 0;
+    }
     settings.dppt.feebasTile = false;
     settings.dppt.radar = radar;
     settings.time = controls.time->currentIndex();
@@ -438,6 +494,27 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     controls.maxAdvances->setValues(InputType::Advance32Bit);
     controls.maxAdvances->setText(searcherTab ? QStringLiteral("1000") : QStringLiteral("10000"));
     controls.lead = nullptr;
+    auto setupLead = [this](ComboMenu *lead, bool generatorTab) {
+        lead->addAction(tr("None"), toInt(Lead::None));
+        lead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
+        lead->addMenu(tr("Cute Charm"),
+                      { { tr("Cute Charm: \u2640 Lead"), toInt(Lead::CuteCharmF) },
+                        { tr("Cute Charm: \u2642 Lead"), toInt(Lead::CuteCharmM) } });
+        lead->addMenu(tr("Level Modifier"),
+                      { { tr("Hustle"), toInt(Lead::Hustle) },
+                        { tr("Pressure"), toInt(Lead::Pressure) },
+                        { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
+        lead->addMenu(tr("Slot Modifier"), { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
+        if (generatorTab)
+        {
+            lead->addMenu(tr("Synchronize"), Translator::getNatures());
+        }
+        else
+        {
+            lead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+        }
+    };
+
     if (searcherTab)
     {
         controls.minDelay = new TextBox(rngInfo);
@@ -447,18 +524,14 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
         controls.maxDelay->setValues(InputType::Delay);
         controls.maxDelay->setText(QStringLiteral("5000"));
         controls.lead = new ComboMenu(rngInfo);
-        controls.lead->addAction(tr("None"), toInt(Lead::None));
-        controls.lead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-        controls.lead->addMenu(tr("Cute Charm"),
-                               { { tr("Cute Charm: \u2640 Lead"), toInt(Lead::CuteCharmF) },
-                                 { tr("Cute Charm: \u2642 Lead"), toInt(Lead::CuteCharmM) } });
-        controls.lead->addMenu(tr("Slot Modifier"), { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-        controls.lead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+        setupLead(controls.lead, false);
     }
     else
     {
         controls.seed = new TextBox(rngInfo);
         controls.seed->setValues(InputType::Seed32Bit);
+        controls.lead = new ComboMenu(rngInfo);
+        setupLead(controls.lead, true);
     }
     controls.minPatchDistance = nullptr;
     controls.maxPatchDistance = nullptr;
@@ -473,6 +546,7 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     }
     controls.chainCount = new QSpinBox(rngInfo);
     controls.chainCount->setRange(0, 999);
+    controls.chainCount->setKeyboardTracking(false);
     controls.chainType = nullptr;
     if (!searcherTab)
     {
@@ -493,36 +567,35 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
 
     if (searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Min Delay"), rngInfo), 0, 0);
-        layout->addWidget(controls.minDelay, 0, 1);
-        layout->addWidget(new QLabel(tr("Max Delay"), rngInfo), 1, 0);
-        layout->addWidget(controls.maxDelay, 1, 1);
+        layout->addWidget(new QLabel(tr("Lead"), rngInfo), 0, 0);
+        layout->addWidget(controls.lead, 0, 1);
+        layout->addWidget(new QLabel(tr("Min Delay"), rngInfo), 1, 0);
+        layout->addWidget(controls.minDelay, 1, 1);
+        layout->addWidget(new QLabel(tr("Max Delay"), rngInfo), 2, 0);
+        layout->addWidget(controls.maxDelay, 2, 1);
     }
     else
     {
-        layout->addWidget(new QLabel(tr("Seed"), rngInfo), 0, 0);
-        layout->addWidget(controls.seed, 0, 1);
+        layout->addWidget(new QLabel(tr("Lead"), rngInfo), 0, 0);
+        layout->addWidget(controls.lead, 0, 1);
+        layout->addWidget(new QLabel(tr("Seed"), rngInfo), 1, 0);
+        layout->addWidget(controls.seed, 1, 1);
     }
-    layout->addWidget(new QLabel(searcherTab ? tr("Min Advance") : tr("Initial Advances"), rngInfo), searcherTab ? 2 : 1, 0);
-    layout->addWidget(controls.initialAdvances, searcherTab ? 2 : 1, 1);
-    layout->addWidget(new QLabel(searcherTab ? tr("Max Advance") : tr("Max Advances"), rngInfo), searcherTab ? 3 : 2, 0);
-    layout->addWidget(controls.maxAdvances, searcherTab ? 3 : 2, 1);
-    if (searcherTab)
-    {
-        layout->addWidget(new QLabel(tr("Lead"), rngInfo), 4, 0);
-        layout->addWidget(controls.lead, 4, 1);
-    }
-    layout->addWidget(new QLabel(searcherTab ? tr("Max Chain") : tr("Chain"), rngInfo), searcherTab ? 5 : 3, 0);
-    layout->addWidget(controls.chainCount, searcherTab ? 5 : 3, 1);
+    layout->addWidget(new QLabel(searcherTab ? tr("Min Advance") : tr("Initial Advances"), rngInfo), searcherTab ? 3 : 2, 0);
+    layout->addWidget(controls.initialAdvances, searcherTab ? 3 : 2, 1);
+    layout->addWidget(new QLabel(searcherTab ? tr("Max Advance") : tr("Max Advances"), rngInfo), searcherTab ? 4 : 3, 0);
+    layout->addWidget(controls.maxAdvances, searcherTab ? 4 : 3, 1);
+    layout->addWidget(new QLabel(searcherTab ? tr("Max Chain") : tr("Chain"), rngInfo), 5, 0);
+    layout->addWidget(controls.chainCount, 5, 1);
     if (!searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Chain Type"), rngInfo), 4, 0);
-        layout->addWidget(controls.chainType, 4, 1);
+        layout->addWidget(new QLabel(tr("Chain Type"), rngInfo), 6, 0);
+        layout->addWidget(controls.chainType, 6, 1);
     }
     if (!searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Activation"), rngInfo), 5, 0);
-        layout->addWidget(controls.result, 5, 1);
+        layout->addWidget(new QLabel(tr("Activation"), rngInfo), 7, 0);
+        layout->addWidget(controls.result, 7, 1);
     }
     else
     {
@@ -546,16 +619,29 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     {
         controls.cancel = nullptr;
         controls.progressBar = nullptr;
-        layout->addWidget(controls.button, 7, 0, 1, 2);
+        layout->addWidget(controls.button, 9, 0, 1, 2);
     }
 
     auto *control = &controls;
     connect(controls.chainCount, qOverload<int>(&QSpinBox::valueChanged), this,
             [this, control, searcherTab](int value) {
+                if (value > maxPokeRadarChain)
+                {
+                    control->chainCount->setValue(maxPokeRadarChain);
+                    return;
+                }
+
                 if (!searcherTab)
                 {
                     control->model->setShowContinue(value != 0);
                     control->tableView->setColumnHidden(7, value == 0);
+                }
+                else if (control->slot != nullptr)
+                {
+                    control->slot->setEnabled(value != 0);
+                    control->pokemon->setEnabled(value == 0);
+                    updateSearcherPatchTypes();
+                    updateEncounters(searcher, searcherEncounters);
                 }
             });
     connect(controls.button, &QPushButton::clicked, this, searcherTab ? &PokeRadar::search : &PokeRadar::generate);
@@ -575,6 +661,12 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     controls.time->addItem(tr("Day"), 0);
     controls.time->addItem(tr("Night"), 1);
     controls.time->addItem(tr("Morning"), 2);
+    controls.replacement = new QCheckBox(tr("Replacement"), settings);
+    controls.replacement0 = new ComboBox(settings);
+    controls.replacement1 = new ComboBox(settings);
+    controls.replacement->setVisible(false);
+    controls.replacement0->setVisible(false);
+    controls.replacement1->setVisible(false);
     controls.dualSlot = new QCheckBox(tr("Dual Slot"), settings);
     controls.dualSlotGame = new ComboBox(settings);
     controls.dualSlotGame->addItem(tr("Ruby"), static_cast<int>(Game::Ruby));
@@ -587,12 +679,13 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     controls.patchTypes = nullptr;
     if (searcherTab)
     {
-        controls.patchTypes = new CheckList(settings);
+        controls.patchTypes = new ComboBox(settings);
         controls.patchTypes->addItem(tr("Regular"), static_cast<int>(PokeRadarChainType::Regular));
         controls.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
-        controls.patchTypes->addItem(tr("Regular Shiny"), static_cast<int>(PokeRadarChainType::RegularShiny));
-        controls.patchTypes->addItem(tr("Strong Shiny"), static_cast<int>(PokeRadarChainType::StrongShiny));
-        controls.patchTypes->setToolTip(tr("Click holding ctrl to reset"));
+        controls.result = new ComboBox(settings);
+        controls.result->addItem(tr("Manual"), static_cast<int>(PokeRadarResult::ManualActivation));
+        controls.result->addItem(tr("Defeat"), static_cast<int>(PokeRadarResult::Defeat));
+        controls.result->addItem(tr("Capture"), static_cast<int>(PokeRadarResult::Capture));
     }
     controls.levelMin = new QSpinBox(settings);
     controls.levelMin->setRange(0, 100);
@@ -614,24 +707,34 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     layout->addWidget(controls.dualSlot, 3, 0);
     layout->addWidget(controls.dualSlotGame, 3, 1);
     layout->addWidget(controls.swarm, 3, 2);
-    layout->addWidget(new QLabel(tr("Chain Slot"), settings), 4, 0);
-    layout->addWidget(controls.slot, 4, 1, 1, 3);
+    layout->addWidget(controls.replacement, 4, 0);
+    layout->addWidget(controls.replacement0, 4, 1);
+    layout->addWidget(controls.replacement1, 4, 2);
+    layout->addWidget(new QLabel(tr("Chain Slot"), settings), 5, 0);
+    layout->addWidget(controls.slot, 5, 1, 1, 3);
+    if (searcherTab)
+    {
+        controls.slot->setEnabled(controls.chainCount->value() != 0);
+        controls.pokemon->setEnabled(controls.chainCount->value() == 0);
+    }
 
     auto *line = new QFrame(settings);
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
     if (searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Patch"), settings), 5, 0);
-        layout->addWidget(controls.patchTypes, 5, 1, 1, 3);
-        layout->addWidget(line, 6, 0, 1, 4);
+        layout->addWidget(new QLabel(tr("Patch"), settings), 6, 0);
+        layout->addWidget(controls.patchTypes, 6, 1);
+        layout->addWidget(new QLabel(tr("Activation"), settings), 6, 2, Qt::AlignRight);
+        layout->addWidget(controls.result, 6, 3);
+        layout->addWidget(line, 7, 0, 1, 4);
     }
     else
     {
-        layout->addWidget(line, 5, 0, 1, 4);
+        layout->addWidget(line, 6, 0, 1, 4);
     }
 
-    int levelRow = searcherTab ? 7 : 6;
+    int levelRow = searcherTab ? 8 : 7;
     layout->addWidget(new QLabel(tr("Levels"), settings), levelRow, 0);
     layout->addWidget(controls.levelMin, levelRow, 1);
     layout->addWidget(controls.levelMax, levelRow, 2);
@@ -718,8 +821,7 @@ bool PokeRadar::getSelectedRadar(const PokeRadarControls &controls) const
 {
     if (controls.patchTypes != nullptr)
     {
-        auto checked = controls.patchTypes->getChecked();
-        return checked[static_cast<int>(PokeRadarChainType::Strong)] || checked[static_cast<int>(PokeRadarChainType::StrongShiny)];
+        return getSelectedRadar(controls.patchTypes->getEnum<PokeRadarChainType>());
     }
 
     if (controls.chainType == nullptr)
@@ -737,6 +839,11 @@ bool PokeRadar::getSelectedRadar(PokeRadarChainType chainType) const
 
 bool PokeRadar::getSelectedShiny(const PokeRadarControls &controls) const
 {
+    if (controls.patchTypes != nullptr)
+    {
+        return getSelectedShiny(controls.patchTypes->getEnum<PokeRadarChainType>());
+    }
+
     if (controls.chainType == nullptr)
     {
         return false;
@@ -1155,7 +1262,7 @@ std::vector<WildGeneratorState4> PokeRadar::getPokemonStates(PokeRadarControls &
     }
 
     auto encounterSlots = controls.filter->getEncounterSlots();
-    if (std::ranges::none_of(encounterSlots, [](bool checked) { return checked; }))
+    if (ignoreFilters || std::ranges::none_of(encounterSlots, [](bool checked) { return checked; }))
     {
         encounterSlots.fill(true);
     }
@@ -1178,7 +1285,8 @@ std::vector<WildGeneratorState4> PokeRadar::getPokemonStates(PokeRadarControls &
                            ignoreFilters ? natures : controls.filter->getNatures(), ignoreFilters ? powers : controls.filter->getHiddenPowers(),
                            encounterSlots);
     WildGenerator4 generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, 1, Method::PokeRadar,
-                             Lead::None, false, getSelectedShiny(chainType), false, 0, *areaIter, *currentProfile, filter);
+                             getPokeRadarGeneratorLead(controls), false, getSelectedShiny(chainType), false, 0, *areaIter, *currentProfile,
+                             filter);
 
     if (!useChainSlot || controls.chainCount->value() == 0)
     {
@@ -1226,7 +1334,8 @@ std::vector<PokeRadarState> PokeRadar::getStates(PokeRadarControls &controls, co
                              previous, getGrass(controls));
     auto patchStates = radar.generate(controls.seed->getUInt());
 
-    std::vector<WildGeneratorState4> pokemonStates = getPokemonStates(controls, encounters, chainType, true, true, extraAdvances);
+    std::vector<WildGeneratorState4> pokemonStates
+        = getPokemonStates(controls, encounters, chainType, true, controls.filter->getDisableFilters(), extraAdvances);
 
     bool shiftPatchDisplay = chainCount != 0 && previous != PokeRadarResult::ManualActivation;
     std::unordered_map<u32, PokeRadarState> battlePatchStates;
@@ -1315,7 +1424,11 @@ void PokeRadar::updateEncounterSlots(PokeRadarControls &controls, const std::vec
     if (controls.slot != nullptr)
     {
         controls.slot->setCurrentIndex(std::max(0, controls.slot->findData(currentSlot)));
-        controls.slot->setEnabled(true);
+        controls.slot->setEnabled(&controls != &searcher || controls.chainCount->value() != 0);
+    }
+    if (&controls == &searcher)
+    {
+        controls.pokemon->setEnabled(controls.chainCount->value() == 0);
     }
 
     if (controls.pokemon->currentIndex() <= 0)
@@ -1362,6 +1475,8 @@ void PokeRadar::updateEncounters(PokeRadarControls &controls, std::vector<Encoun
     {
         currentSlot = controls.slot->currentData();
     }
+    QVariant currentReplacement0 = controls.replacement0->currentData();
+    QVariant currentReplacement1 = controls.replacement1->currentData();
 
     encounters = getRadarEncounters(Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(controls, getSelectedRadar(controls)), currentProfile));
     QSignalBlocker locationBlocker(controls.location);
@@ -1376,6 +1491,13 @@ void PokeRadar::updateEncounters(PokeRadarControls &controls, std::vector<Encoun
     }
 
     updatePokemon(controls, encounters, updateGrassField);
+
+    {
+        QSignalBlocker replacement0Blocker(controls.replacement0);
+        QSignalBlocker replacement1Blocker(controls.replacement1);
+        controls.replacement0->setCurrentIndex(std::max(0, controls.replacement0->findData(currentReplacement0)));
+        controls.replacement1->setCurrentIndex(std::max(0, controls.replacement1->findData(currentReplacement1)));
+    }
 
     if (controls.slot != nullptr)
     {
@@ -1414,26 +1536,72 @@ void PokeRadar::updatePokemon(PokeRadarControls &controls, const std::vector<Enc
     }
 
     const auto &area = encounters[controls.location->currentIndex()];
+    bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+    controls.replacement->setVisible(trophyGarden);
+    controls.replacement0->setVisible(trophyGarden);
+    controls.replacement1->setVisible(trophyGarden);
+    if (trophyGarden)
+    {
+        QSignalBlocker replacement0Blocker(controls.replacement0);
+        QSignalBlocker replacement1Blocker(controls.replacement1);
+
+        controls.replacement0->clear();
+        controls.replacement1->clear();
+        for (u16 specie : Encounters4::getTrophyGardenPokemon(currentProfile))
+        {
+            const auto &name = Translator::getSpecie(specie);
+            controls.replacement0->addItem(QString::fromStdString(name), specie);
+            controls.replacement1->addItem(QString::fromStdString(name), specie);
+        }
+    }
     int locationIndex = controls.location->currentIndex();
     u8 locationOccurrence = getRadarLocationOccurrence(encounters, locationIndex);
     QSize fieldSize = getPokeRadarGrassFieldSize(area.getLocation(), locationOccurrence, currentProfile->getVersion());
-    if (updateGrassField
-        && (fieldSize.width() != controls.fieldWidth || fieldSize.height() != controls.fieldHeight || controls.fieldLocation != area.getLocation()
-            || controls.fieldLocationOccurrence != locationOccurrence || controls.fieldVersion != currentProfile->getVersion()))
+    if (&controls == &searcher)
+    {
+        if (updateGrassField
+            && (controls.fieldWidth != 9 || controls.fieldHeight != 9 || controls.fieldLocation != area.getLocation()
+                || controls.fieldLocationOccurrence != locationOccurrence || controls.fieldVersion != currentProfile->getVersion()))
+        {
+            setupGrassField(controls, 9, 9, area.getLocation(), locationOccurrence);
+            controls.startPosition = QPoint(4, 4);
+            controls.currentPosition = QPoint(4, 4);
+
+            if (area.getLocation() == 134 && locationOccurrence == 1)
+            {
+                static constexpr std::array<std::pair<int, int>, 14> unreachable = { {
+                    { 0, 0 },
+                    { 0, 1 },
+                    { 0, 2 },
+                    { 0, 3 },
+                    { 1, 0 },
+                    { 1, 1 },
+                    { 2, 0 },
+                    { 6, 8 },
+                    { 7, 7 },
+                    { 7, 8 },
+                    { 8, 5 },
+                    { 8, 6 },
+                    { 8, 7 },
+                    { 8, 8 },
+                } };
+                for (const auto &position : unreachable)
+                {
+                    controls.fieldGrass[getGrassFieldIndex(controls, QPoint(position.first, position.second))] = false;
+                }
+            }
+
+            updateGrassFromField(controls);
+        }
+    }
+    else if (updateGrassField
+             && (fieldSize.width() != controls.fieldWidth || fieldSize.height() != controls.fieldHeight || controls.fieldLocation != area.getLocation()
+                 || controls.fieldLocationOccurrence != locationOccurrence || controls.fieldVersion != currentProfile->getVersion()))
     {
         setupGrassField(controls, fieldSize.width(), fieldSize.height(), area.getLocation(), locationOccurrence);
         controls.fieldGrass = getPokeRadarGrassField(area.getLocation(), locationOccurrence, currentProfile->getVersion());
         QPoint start = getPokeRadarGrassFieldStart(area.getLocation(), locationOccurrence, currentProfile->getVersion());
-        if (&controls == &generator)
-        {
-            setGeneratorPosition(start, true);
-        }
-        else
-        {
-            controls.startPosition = start;
-            controls.currentPosition = start;
-            updateGrassFromField(controls);
-        }
+        setGeneratorPosition(start, true);
     }
 
     updateMinimumGraceSteps(controls, encounters);
@@ -1445,6 +1613,33 @@ void PokeRadar::updatePokemon(PokeRadarControls &controls, const std::vector<Enc
     }
 
     updateEncounterSlots(controls, encounters);
+}
+
+void PokeRadar::updateSearcherPatchTypes()
+{
+    if (searcher.patchTypes == nullptr)
+    {
+        return;
+    }
+
+    QSignalBlocker blocker(searcher.patchTypes);
+    auto current = searcher.patchTypes->currentData();
+    bool chained = searcher.chainCount->value() != 0;
+
+    searcher.patchTypes->clear();
+    if (chained)
+    {
+        searcher.patchTypes->addItem(tr("Regular Shiny"), static_cast<int>(PokeRadarChainType::RegularShiny));
+        searcher.patchTypes->addItem(tr("Strong Shiny"), static_cast<int>(PokeRadarChainType::StrongShiny));
+    }
+    else
+    {
+        searcher.patchTypes->addItem(tr("Regular"), static_cast<int>(PokeRadarChainType::Regular));
+        searcher.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
+    }
+
+    int index = searcher.patchTypes->findData(current);
+    searcher.patchTypes->setCurrentIndex(index >= 0 ? index : 0);
 }
 
 void PokeRadar::generate()
@@ -1501,62 +1696,60 @@ void PokeRadar::search()
         return;
     }
 
-    auto checked = searcher.patchTypes->getChecked();
-    if (std::ranges::none_of(checked, [](bool value) { return value; }))
-    {
-        QMessageBox::warning(this, tr("Invalid Settings"), tr("Select at least one patch type."));
-        return;
-    }
-
     auto min = searcher.filter->getMinIVs();
     auto max = searcher.filter->getMaxIVs();
     auto *radarSearchers = new std::vector<PokeRadarSearcher *>;
     auto *cancelled = new std::atomic_bool(false);
 
-    for (u8 i = 0; i < checked.size(); i++)
+    auto chainType = searcher.patchTypes->getEnum<PokeRadarChainType>();
+    auto encounters = Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(searcher, getSelectedRadar(chainType)), currentProfile);
+    if (searcher.location->currentIndex() >= 0)
     {
-        if (!checked[i])
-        {
-            continue;
-        }
-
-        auto chainType = static_cast<PokeRadarChainType>(i);
-        auto encounters = Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(searcher, getSelectedRadar(chainType)), currentProfile);
-        if (searcher.location->currentIndex() < 0)
-        {
-            continue;
-        }
-
         u16 location = searcher.location->getCurrentUShort();
         auto areaIter = std::ranges::find_if(encounters, [location](const EncounterArea4 &encounter) { return encounter.getLocation() == location; });
-        if (areaIter == encounters.end())
+        if (areaIter != encounters.end())
         {
-            continue;
-        }
+            auto encounterSlots = searcher.filter->getEncounterSlots();
+            if (std::ranges::none_of(encounterSlots, [](bool slot) { return slot; }))
+            {
+                encounterSlots.fill(true);
+            }
+            auto searchSlots = encounterSlots;
+            if (getSelectedShiny(chainType) && searcher.chainCount->value() != 0)
+            {
+                searchSlots.fill(false);
+                searchSlots[searcher.slot->getCurrentUChar()] = true;
+            }
 
-        auto encounterSlots = searcher.filter->getEncounterSlots();
-        if (std::ranges::none_of(encounterSlots, [](bool slot) { return slot; }))
-        {
-            encounterSlots.fill(true);
-        }
-        auto searchSlots = encounterSlots;
-        if (getSelectedShiny(chainType) && searcher.chainCount->value() != 0)
-        {
-            searchSlots.fill(false);
-            searchSlots[searcher.slot->getCurrentUChar()] = true;
-        }
+            WildStateFilter filter(searcher.filter->getGender(), searcher.filter->getAbility(), searcher.filter->getShiny(),
+                                   searcher.filter->getLevelMin(), searcher.filter->getLevelMax(), searcher.filter->getHeightMin(),
+                                   searcher.filter->getHeightMax(), searcher.filter->getWeightMin(), searcher.filter->getWeightMax(),
+                                   searcher.filter->getDisableFilters(), searcher.filter->getMinIVs(), searcher.filter->getMaxIVs(),
+                                   searcher.filter->getNatures(), searcher.filter->getHiddenPowers(), searchSlots);
 
-        WildStateFilter filter(searcher.filter->getGender(), searcher.filter->getAbility(), searcher.filter->getShiny(),
-                               searcher.filter->getLevelMin(), searcher.filter->getLevelMax(), searcher.filter->getHeightMin(),
-                               searcher.filter->getHeightMax(), searcher.filter->getWeightMin(), searcher.filter->getWeightMax(),
-                               searcher.filter->getDisableFilters(), searcher.filter->getMinIVs(), searcher.filter->getMaxIVs(),
-                               searcher.filter->getNatures(), searcher.filter->getHiddenPowers(), encounterSlots);
+            std::vector<std::pair<Lead, bool>> leads = { { searcher.lead->getEnum<Lead>(), false } };
+            if (leads[0].first == Lead::Synchronize)
+            {
+                leads.clear();
+                auto natures = searcher.filter->getNatures();
+                for (u8 nature = 0; nature < natures.size(); nature++)
+                {
+                    if (natures[nature])
+                    {
+                        leads.emplace_back(static_cast<Lead>(nature), true);
+                    }
+                }
+            }
 
-        radarSearchers->emplace_back(new PokeRadarSearcher(searcher.initialAdvances->getUInt(), searcher.maxAdvances->getUInt(),
-                                                           searcher.minDelay->getUInt(), searcher.maxDelay->getUInt(), minDistance,
-                                                           maxDistance, searcher.chainCount->value(), searcher.slot->getCurrentUChar(),
-                                                           searcher.lead->getEnum<Lead>(), chainType, getGrass(searcher), searchSlots, *areaIter, *currentProfile,
-                                                           filter));
+            for (const auto &[lead, specificSynchronize] : leads)
+            {
+                radarSearchers->emplace_back(new PokeRadarSearcher(searcher.initialAdvances->getUInt(), searcher.maxAdvances->getUInt(),
+                                                                   searcher.minDelay->getUInt(), searcher.maxDelay->getUInt(), minDistance,
+                                                                   maxDistance, searcher.chainCount->value(), searcher.slot->getCurrentUChar(),
+                                                                   lead, chainType, getGrass(searcher), searchSlots, *areaIter, *currentProfile,
+                                                                   filter, specificSynchronize));
+            }
+        }
     }
 
     if (radarSearchers->empty())

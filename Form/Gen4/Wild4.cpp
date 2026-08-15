@@ -124,9 +124,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->comboBoxSearcherDualSlot->setup(
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
-    ui->checkBoxGeneratorPokeRadar->hide();
     ui->checkBoxGeneratorPokeRadarShiny->hide();
-    ui->checkBoxSearcherPokeRadar->hide();
     ui->checkBoxSearcherPokeRadarShiny->hide();
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
@@ -429,8 +427,12 @@ void Wild4::generatorEncounterIndexChanged(int index)
             ui->checkBoxGeneratorDualSlot->setChecked(false);
         }
 
-        ui->checkBoxGeneratorPokeRadar->setChecked(false);
-        ui->checkBoxGeneratorPokeRadarShiny->setChecked(false);
+        ui->checkBoxGeneratorPokeRadar->setVisible(!hgss && grass);
+        if (!ui->checkBoxGeneratorPokeRadar->isVisible())
+        {
+            ui->checkBoxGeneratorPokeRadar->setChecked(false);
+            ui->checkBoxGeneratorPokeRadarShiny->setChecked(false);
+        }
 
         ui->checkBoxGeneratorRadio->setVisible(hgss && grass);
         ui->comboBoxGeneratorRadio->setVisible(hgss && grass);
@@ -785,8 +787,12 @@ void Wild4::searcherEncounterIndexChanged(int index)
             ui->checkBoxSearcherDualSlot->setChecked(false);
         }
 
-        ui->checkBoxSearcherPokeRadar->setChecked(false);
-        ui->checkBoxSearcherPokeRadarShiny->setChecked(false);
+        ui->checkBoxSearcherPokeRadar->setVisible(!hgss && grass);
+        if (!ui->checkBoxSearcherPokeRadar->isVisible())
+        {
+            ui->checkBoxSearcherPokeRadar->setChecked(false);
+            ui->checkBoxSearcherPokeRadarShiny->setChecked(false);
+        }
 
         ui->checkBoxSearcherRadio->setVisible(hgss && grass);
         ui->comboBoxSearcherRadio->setVisible(hgss && grass);

@@ -30,7 +30,7 @@ PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) : TableModel(pa
 
 int PokeRadarModel4::columnCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : searcher ? 29 : 26;
+    return parent.isValid() ? 0 : searcher ? 26 : 26;
 }
 
 QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
@@ -44,7 +44,7 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     int column = index.column();
     if (searcher)
     {
-        if (column < 12)
+        if (column < 9)
         {
             switch (column)
             {
@@ -65,19 +65,13 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
             case 6:
                 return state.getChain();
             case 7:
-                return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
-            case 8:
                 return getSkip(state);
-            case 9:
-                return getCoordinates(state, 0);
-            case 10:
-                return getCoordinates(state, 1);
-            case 11:
-                return getCoordinates(state, 3);
+            case 8:
+                return getSearcherCoordinates(state);
             }
         }
 
-        return getPokemonData(state, column - 12);
+        return getPokemonData(state, column - 9);
     }
 
     column = mapGeneratorColumn(column);
@@ -152,17 +146,11 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
             case 6:
                 return tr("Chain");
             case 7:
-                return tr("Chatot");
-            case 8:
                 return tr("Skip");
-            case 9:
-                return tr("Regular");
-            case 10:
-                return tr("Strong");
-            case 11:
-                return tr("Shiny");
+            case 8:
+                return tr("Patch");
             default:
-                return getPokemonHeader(section - 12);
+                return getPokemonHeader(section - 9);
             }
         }
 
@@ -340,7 +328,7 @@ QString PokeRadarModel4::getSkip(const PokeRadarState &state) const
         return format(state.getNoGraceSkip());
     }
 
-    return QStringLiteral("%1 / %2").arg(format(state.getNoGraceSkip()), format(state.getGraceSkip()));
+    return QStringLiteral("%1 / %2").arg(format(state.getGraceSkip()), format(state.getNoGraceSkip()));
 }
 
 QString PokeRadarModel4::getCoordinates(const PokeRadarState &state, int type) const
@@ -376,6 +364,33 @@ QString PokeRadarModel4::getCoordinates(const PokeRadarState &state, int type) c
     return coordinates.empty() ? QStringLiteral("-") : coordinates.join(QStringLiteral(", "));
 }
 
+QString PokeRadarModel4::getSearcherCoordinates(const PokeRadarState &state) const
+{
+    if (!state.getPatchesVisible() || !state.hasDisplayPatchType())
+    {
+        return QStringLiteral("-");
+    }
+
+    std::vector<PokeRadarPatch> patches;
+    for (const auto &patch : state.getPatches())
+    {
+        if (patch.active && patch.strong == state.getDisplayPatchStrong() && patch.shiny == state.getDisplayPatchShiny())
+        {
+            patches.emplace_back(patch);
+        }
+    }
+
+    std::ranges::sort(patches, {}, [](const PokeRadarPatch &patch) { return std::pair { patch.y, patch.x }; });
+
+    QStringList coordinates;
+    for (const auto &patch : patches)
+    {
+        coordinates.append(QString("%1%2").arg(QChar('A' + patch.x)).arg(patch.y));
+    }
+
+    return coordinates.empty() ? QStringLiteral("-") : coordinates.join(QStringLiteral(", "));
+}
+
 void PokeRadarModel4::setShowStats(bool flag)
 {
     showStats = flag;
@@ -384,7 +399,7 @@ void PokeRadarModel4::setShowStats(bool flag)
         return;
     }
 
-    int first = searcher ? 19 : 15;
+    int first = 16;
     emit dataChanged(index(0, first), index(rowCount() - 1, first + 5), { Qt::DisplayRole });
 }
 

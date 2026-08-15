@@ -124,6 +124,7 @@ public:
     {
         this->specie = specie;
         this->info = info;
+        form = 0;
     }
 
 private:

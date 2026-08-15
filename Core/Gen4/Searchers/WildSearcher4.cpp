@@ -54,7 +54,7 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
-                             const WildStateFilter &filter) :
+                             const WildStateFilter &filter, bool specificSynchronize) :
     WildSearcher(method, lead, area, profile, filter),
     unlockedUnown(profile.getUnlockedUnownForms()),
     undiscoveredUnown(profile.getUndiscoveredUnownForms(unlockedUnown)),
@@ -69,6 +69,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
     shiny(shiny),
+    specificSynchronize(specificSynchronize),
     unownRadio(unownRadio),
     modifiedSlots(area.getSlots(lead))
 {
@@ -172,7 +173,19 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
                 result.setSeed(seed);
-                result.setAdvances(cnt);
+                if (method == Method::PokeRadar)
+                {
+                    if (cnt == 0)
+                    {
+                        seed = rng.next();
+                        continue;
+                    }
+                    result.setAdvances(cnt - 1);
+                }
+                else
+                {
+                    result.setAdvances(cnt);
+                }
                 states.emplace_back(result);
             }
 
@@ -291,6 +304,11 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
             pid |= rng.nextUShort();
 
             u8 nature = pid % 25;
+            if (specificSynchronize && nature != toInt(lead))
+            {
+                continue;
+            }
+
             if (!filter.compareNature(nature))
             {
                 continue;
@@ -1051,19 +1069,16 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
 
                 bool valid = false;
                 u32 seed;
-                switch (lead)
+                if (lead == Lead::None || lead == Lead::CompoundEyes || lead == Lead::MagnetPull || lead == Lead::Static)
                 {
-                case Lead::None:
-                case Lead::CompoundEyes:
-                case Lead::MagnetPull:
-                case Lead::Static:
                     if ((nextRNG / 0xa3e) == nature)
                     {
                         seed = test.getSeed();
                         valid = true;
                     }
-                    break;
-                case Lead::Synchronize:
+                }
+                else if (lead <= Lead::SynchronizeEnd)
+                {
                     if ((nextRNG / 0x8000) == 0)
                     {
                         seed = test.getSeed();
@@ -1074,9 +1089,6 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
                         seed = test.next();
                         valid = true;
                     }
-                    break;
-                default:
-                    break;
                 }
 
                 if (valid)
@@ -1137,12 +1149,17 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
 
         u32 pid = shinyPID(rng);
         u8 nature = pid % 25;
+        if (specificSynchronize && nature != toInt(lead))
+        {
+            continue;
+        }
+
         if (!filter.compareNature(nature))
         {
             continue;
         }
 
-        if (lead == Lead::Synchronize || cuteCharm)
+        if (lead <= Lead::SynchronizeEnd || cuteCharm)
         {
             u8 huntNature;
             u8 gender = (pid & 0xff) < info->getGender();
@@ -1151,7 +1168,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
                 PokeRNGR test(rng);
 
                 bool valid = false;
-                if (lead == Lead::Synchronize)
+                if (lead <= Lead::SynchronizeEnd)
                 {
                     valid = test.nextUShort<false>(2) == 0;
                 }

@@ -66,11 +66,14 @@ struct PokeRadarControls
     ComboBoxProxy *location;
     ComboBox *pokemon;
     ComboBox *time;
+    QCheckBox *replacement;
+    ComboBox *replacement0;
+    ComboBox *replacement1;
     QCheckBox *swarm;
     QCheckBox *dualSlot;
     ComboBox *dualSlotGame;
     ComboBox *slot;
-    CheckList *patchTypes;
+    ComboBox *patchTypes;
     CheckList *patchFilter;
     QSpinBox *levelMin;
     QSpinBox *levelMax;
@@ -163,6 +166,7 @@ private:
     void updateMinimumGraceSteps(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters);
     void updateLocations(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
     void updatePokemon(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
+    void updateSearcherPatchTypes();
 
 private slots:
     void generate();

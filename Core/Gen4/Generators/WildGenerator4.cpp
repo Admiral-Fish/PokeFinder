@@ -760,13 +760,29 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         PokeRNG go(rng, jump);
 
         auto shinyPID = [this, &go, &battleAdvances]() {
-            u16 low = go.nextUShort(8, &battleAdvances);
-            u16 high = go.nextUShort(8, &battleAdvances);
-            for (int i = 3; i < 16; i++)
+            u16 low = go.nextUShort(&battleAdvances) & 7;
+            u16 high = go.nextUShort(&battleAdvances) & 7;
+            u16 shinyValue = tsv >> 3;
+            for (int i = 0; i < 13; i++)
             {
-                low |= (go.nextUShort(&battleAdvances) & 1) << i;
+                u16 pidBit = 1 << (i + 3);
+                if (shinyValue & (1 << i))
+                {
+                    if (go.nextUShort(&battleAdvances) & 1)
+                    {
+                        low |= pidBit;
+                    }
+                    else
+                    {
+                        high |= pidBit;
+                    }
+                }
+                else if (go.nextUShort(&battleAdvances) & 1)
+                {
+                    low |= pidBit;
+                    high |= pidBit;
+                }
             }
-            high |= (tsv ^ low) & 0xfff8;
             return static_cast<u32>((high << 16) | low);
         };
 
@@ -846,13 +862,29 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         const PersonalInfo *info = slot.getInfo();
 
         auto shinyPID = [this, &go, &battleAdvances]() {
-            u16 low = go.nextUShort(8, &battleAdvances);
-            u16 high = go.nextUShort(8, &battleAdvances);
-            for (int i = 3; i < 16; i++)
+            u16 low = go.nextUShort(&battleAdvances) & 7;
+            u16 high = go.nextUShort(&battleAdvances) & 7;
+            u16 shinyValue = tsv >> 3;
+            for (int i = 0; i < 13; i++)
             {
-                low |= (go.nextUShort(&battleAdvances) & 1) << i;
+                u16 pidBit = 1 << (i + 3);
+                if (shinyValue & (1 << i))
+                {
+                    if (go.nextUShort(&battleAdvances) & 1)
+                    {
+                        low |= pidBit;
+                    }
+                    else
+                    {
+                        high |= pidBit;
+                    }
+                }
+                else if (go.nextUShort(&battleAdvances) & 1)
+                {
+                    low |= pidBit;
+                    high |= pidBit;
+                }
             }
-            high |= (tsv ^ low) & 0xfff8;
             return static_cast<u32>((high << 16) | low);
         };
 
