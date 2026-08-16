@@ -6028,7 +6028,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplica</translation>
     </message>
 </context>
 <context>
@@ -6079,7 +6079,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplica</translation>
     </message>
 </context>
 <context>
@@ -6130,7 +6130,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplica</translation>
     </message>
 </context>
 <context>
@@ -6181,7 +6181,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplica</translation>
     </message>
 </context>
 <context>
