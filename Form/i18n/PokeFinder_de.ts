@@ -2835,80 +2835,80 @@
         <translation>IVs aus der Zwischenablage einfügen</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="361"/>
-        <location filename="../Controls/Filter.cpp" line="368"/>
-        <location filename="../Controls/Filter.cpp" line="375"/>
-        <location filename="../Controls/Filter.cpp" line="382"/>
-        <location filename="../Controls/Filter.cpp" line="389"/>
-        <location filename="../Controls/Filter.cpp" line="396"/>
-        <location filename="../Controls/Filter.cpp" line="403"/>
-        <location filename="../Controls/Filter.cpp" line="410"/>
-        <location filename="../Controls/Filter.cpp" line="417"/>
+        <location filename="../Controls/Filter.cpp" line="351"/>
+        <location filename="../Controls/Filter.cpp" line="358"/>
+        <location filename="../Controls/Filter.cpp" line="365"/>
+        <location filename="../Controls/Filter.cpp" line="372"/>
+        <location filename="../Controls/Filter.cpp" line="379"/>
+        <location filename="../Controls/Filter.cpp" line="386"/>
+        <location filename="../Controls/Filter.cpp" line="393"/>
+        <location filename="../Controls/Filter.cpp" line="400"/>
+        <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Invalid filter settings</source>
         <translation>Ungültige Filter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="403"/>
+        <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
         <translation>Level Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="410"/>
+        <location filename="../Controls/Filter.cpp" line="400"/>
         <source>Height minimum is greater than maximum</source>
         <translation>Größen Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="439"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Level filter outside of encounters level range</source>
         <translation>Level filter außerhalb der Levelspanne</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="361"/>
+        <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
         <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="368"/>
+        <location filename="../Controls/Filter.cpp" line="358"/>
         <source>Atk minimum is greater than maximum</source>
         <translation>Angr Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="375"/>
+        <location filename="../Controls/Filter.cpp" line="365"/>
         <source>Def minimum is greater than maximum</source>
         <translation>Vert Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="382"/>
+        <location filename="../Controls/Filter.cpp" line="372"/>
         <source>SpA minimum is greater than maximum</source>
         <translation>SpAng Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="389"/>
+        <location filename="../Controls/Filter.cpp" line="379"/>
         <source>SpD minimum is greater than maximum</source>
         <translation>SpVer Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="396"/>
+        <location filename="../Controls/Filter.cpp" line="386"/>
         <source>Spe minimum is greater than maximum</source>
         <translation>Init Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="417"/>
+        <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Weight minimum is greater than maximum</source>
         <translation>KP Mininum ist Größer als Maximum</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="439"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Invalid level</source>
         <translation>Ungültiges level</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="563"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>Invalid Format</source>
         <translation>Ungültiges Format</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="563"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation>Der Text in der Zwischenablage hat ein ungültiges Format</translation>
     </message>
@@ -2954,10 +2954,6 @@
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide Invalid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

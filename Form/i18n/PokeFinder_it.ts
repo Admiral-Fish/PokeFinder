@@ -2835,80 +2835,80 @@
         <translation>Incolla le IVs dagli appunti</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="361"/>
-        <location filename="../Controls/Filter.cpp" line="368"/>
-        <location filename="../Controls/Filter.cpp" line="375"/>
-        <location filename="../Controls/Filter.cpp" line="382"/>
-        <location filename="../Controls/Filter.cpp" line="389"/>
-        <location filename="../Controls/Filter.cpp" line="396"/>
-        <location filename="../Controls/Filter.cpp" line="403"/>
-        <location filename="../Controls/Filter.cpp" line="410"/>
-        <location filename="../Controls/Filter.cpp" line="417"/>
+        <location filename="../Controls/Filter.cpp" line="351"/>
+        <location filename="../Controls/Filter.cpp" line="358"/>
+        <location filename="../Controls/Filter.cpp" line="365"/>
+        <location filename="../Controls/Filter.cpp" line="372"/>
+        <location filename="../Controls/Filter.cpp" line="379"/>
+        <location filename="../Controls/Filter.cpp" line="386"/>
+        <location filename="../Controls/Filter.cpp" line="393"/>
+        <location filename="../Controls/Filter.cpp" line="400"/>
+        <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Invalid filter settings</source>
         <translation>Impostazioni del filtro non valide</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="403"/>
+        <location filename="../Controls/Filter.cpp" line="393"/>
         <source>Level minimum is greater than maximum</source>
         <translation>Il livello minimo è maggiore del massimo</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="410"/>
+        <location filename="../Controls/Filter.cpp" line="400"/>
         <source>Height minimum is greater than maximum</source>
         <translation>L&apos;altezza minima è maggiore della massima</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="439"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Level filter outside of encounters level range</source>
         <translation>Filtri del livello al di fuori dall&apos;intervallo del livello degli incontri</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="361"/>
+        <location filename="../Controls/Filter.cpp" line="351"/>
         <source>HP minimum is greater than maximum</source>
         <translation>I PS minimi sono maggiori dei massimi</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="368"/>
+        <location filename="../Controls/Filter.cpp" line="358"/>
         <source>Atk minimum is greater than maximum</source>
         <translation>L&apos;Att minimo è maggiore del massimo</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="375"/>
+        <location filename="../Controls/Filter.cpp" line="365"/>
         <source>Def minimum is greater than maximum</source>
         <translation>La Dif minima è maggiore della massima</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="382"/>
+        <location filename="../Controls/Filter.cpp" line="372"/>
         <source>SpA minimum is greater than maximum</source>
         <translation>L&apos;AttSp minimo è maggiore del massimo</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="389"/>
+        <location filename="../Controls/Filter.cpp" line="379"/>
         <source>SpD minimum is greater than maximum</source>
         <translation>La DifSp minima è maggiore della massima</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="396"/>
+        <location filename="../Controls/Filter.cpp" line="386"/>
         <source>Spe minimum is greater than maximum</source>
         <translation>La Vel minima è maggiore della massima</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="417"/>
+        <location filename="../Controls/Filter.cpp" line="407"/>
         <source>Weight minimum is greater than maximum</source>
         <translation>Il peso minimo è maggiore del massimo</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="439"/>
+        <location filename="../Controls/Filter.cpp" line="429"/>
         <source>Invalid level</source>
         <translation>Livello non valido</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="563"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>Invalid Format</source>
         <translation>Formato non valido</translation>
     </message>
     <message>
-        <location filename="../Controls/Filter.cpp" line="563"/>
+        <location filename="../Controls/Filter.cpp" line="553"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation>Il testo negli appunti non corrisponde al formato previsto.</translation>
     </message>
@@ -2955,10 +2955,6 @@
     <message>
         <source>Level</source>
         <translation>Livello</translation>
-    </message>
-    <message>
-        <source>Hide Invalid</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
