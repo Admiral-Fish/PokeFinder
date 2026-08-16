@@ -20,10 +20,11 @@
 #ifndef SIMD_HPP
 #define SIMD_HPP
 
+#include <Core/Config.hpp>
 #include <Core/Global.hpp>
 #include <array>
 
-#if defined(SIMD) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
+#if defined(ENABLE_SIMD) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
 #define SIMD_X86
 #include <immintrin.h>
 #include <smmintrin.h>

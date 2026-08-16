@@ -7,7 +7,7 @@ endif()
 project(PokeFinder VERSION 4.3.2)
 
 option(TEST "Run Tests" OFF)
-option(SIMD "Enable SIMD" ON)
+option(ENABLE_SIMD "Enable SIMD" ON)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
