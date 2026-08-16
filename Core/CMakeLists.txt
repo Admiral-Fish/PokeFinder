@@ -265,6 +265,8 @@ add_library(PokeFinderCore STATIC
     Parents/States/State.hpp
     Parents/States/WildState.hpp
     Parents/StaticTemplate.hpp
+    RNG/Jump.cpp
+    RNG/Jump.hpp
     RNG/LCRNG.hpp
     RNG/LCRNGReverse.cpp
     RNG/LCRNGReverse.hpp
@@ -319,10 +321,10 @@ if (SIMD)
             # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
             target_compile_options(PokeFinderCore PRIVATE
                 "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
-                "SHELL:-Xarch_x86_64 -mavx" "SHELL:-Xarch_x86_64 -mavx2")
+                "SHELL:-Xarch_x86_64 -mpclmul")
         elseif ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES)
             # x86_64 only: Add
-            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+            target_compile_options(PokeFinderCore PRIVATE -msse4.2 -mpclmul)
         endif()
         # arm64-only: NEON is always enabled by default, no explicit flag needed.
     elseif (MINGW OR UNIX)
@@ -330,7 +332,7 @@ if (SIMD)
         get_target_arch(ARCH)
 
         if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+            target_compile_options(PokeFinderCore PRIVATE -msse4.2 -mpclmul)
         elseif (ARCH STREQUAL "arm")
             target_compile_options(PokeFinderCore PRIVATE -mfpu=neon)
         endif ()
