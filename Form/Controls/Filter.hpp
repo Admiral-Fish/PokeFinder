@@ -214,7 +214,7 @@ public:
 
     /**
      * @brief Determines if Filter is valid based on current selections. Additionally checks against input level range
-     * 
+     *
      * @param min Minimum level
      * @param max Maximum level
      *

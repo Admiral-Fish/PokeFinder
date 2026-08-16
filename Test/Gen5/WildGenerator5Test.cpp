@@ -39,7 +39,8 @@ static bool operator==(const WildState5 &left, const json &right)
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.isValid() == right["valid"].get<bool>()
+        && left.getChatot() == right["chatot"].get<u8>();
 }
 
 void WildGenerator5Test::generate_data()

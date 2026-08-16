@@ -75,7 +75,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherItem->setup({ toInt(Item::None), toInt(Item::BlackFlute), toInt(Item::CleanseTag), toInt(Item::WhiteFlute) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),

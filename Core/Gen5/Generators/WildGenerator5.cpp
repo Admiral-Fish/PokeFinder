@@ -161,6 +161,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
+        bool valid = true;
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -205,8 +206,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
-            rng.next();
-            continue;
+            valid = false;
         }
 
         u8 encounterSlot;
@@ -259,8 +259,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         for (const auto &iv : ivs)
         {
             WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+            if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
             {
                 states.emplace_back(state);
             }

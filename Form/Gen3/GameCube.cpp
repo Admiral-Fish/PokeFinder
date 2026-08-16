@@ -59,9 +59,8 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                        | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();

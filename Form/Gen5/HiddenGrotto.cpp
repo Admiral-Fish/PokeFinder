@@ -100,8 +100,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->filterPokemonGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
                                                 | Controls::Shiny | Controls::Weight);
-    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                               | Controls::Height | Controls::Shiny | Controls::Weight);
+    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
+                                               | Controls::Searcher | Controls::Shiny | Controls::Weight);
 
     ui->comboBoxPokemonGeneratorLocation->enableAutoComplete();
     ui->comboBoxPokemonSearcherLocation->enableAutoComplete();
