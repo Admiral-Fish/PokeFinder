@@ -183,12 +183,15 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/IDSearcher5.hpp
     Gen5/Searchers/IVCacheSearcher.cpp
     Gen5/Searchers/IVCacheSearcher.hpp
+    Gen5/Searchers/IVSearcher5.cpp
     Gen5/Searchers/IVSearcher5.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
     Gen5/Searchers/SHA1CacheSearcher.cpp
     Gen5/Searchers/SHA1CacheSearcher.hpp
+    Gen5/Searchers/SearcherBase5.cpp
     Gen5/Searchers/SearcherBase5.hpp
+    Gen5/Searchers/Searcher5.cpp
     Gen5/Searchers/Searcher5.hpp
     Gen5/SHA1Cache.cpp
     Gen5/SHA1Cache.hpp

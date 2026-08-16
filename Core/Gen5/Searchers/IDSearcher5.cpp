@@ -18,6 +18,7 @@
  */
 
 #include "IDSearcher5.hpp"
+#include <Core/RNG/SHA1.hpp>
 
 std::vector<SearcherState5<IDState>> IDSearcher5::search(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
                                                          u8 maxSecond)
