@@ -5,59 +5,59 @@
     <name>AdjacentSeeds</name>
     <message>
         <source>Adjacent Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Adiacenti</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Impostazioni</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Encounter</source>
-        <translation type="unfinished">Incontro</translation>
+        <translation>Incontro</translation>
     </message>
     <message>
         <source>IV Calculator</source>
-        <translation type="unfinished">Calcolatore IV</translation>
+        <translation>Calcolatore IV</translation>
     </message>
     <message>
         <source>Date/Time</source>
-        <translation type="unfinished">Data/Ora</translation>
+        <translation>Data/Ora</translation>
     </message>
     <message>
         <source>Seconds +/-</source>
-        <translation type="unfinished"></translation>
+        <translation>Secondi +/-</translation>
     </message>
     <message>
         <source>Generate</source>
-        <translation type="unfinished">Genera</translation>
+        <translation>Genera</translation>
     </message>
     <message>
         <source>Max IV Advances</source>
-        <translation type="unfinished">Avanzamenti IV Massimi</translation>
+        <translation>Avanzamenti IV Massimi</translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation type="unfinished">Pressione Tasti</translation>
+        <translation>Pressione Tasti</translation>
     </message>
     <message>
         <source>Initial IV Advances</source>
-        <translation type="unfinished">Avanzamenti IV Iniziali</translation>
+        <translation>Avanzamenti IV Iniziali</translation>
     </message>
     <message>
         <source>Wild / Static / Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>Selvatico / Statico / Meandro</translation>
     </message>
     <message>
         <source>Roamer</source>
-        <translation type="unfinished"></translation>
+        <translation>Errante</translation>
     </message>
     <message>
         <source>Chatot Pitches</source>
-        <translation type="unfinished"></translation>
+        <translation>Toni Chatot</translation>
     </message>
     <message>
         <source>Save Needles</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancette Salvataggio</translation>
     </message>
 </context>
 <context>
@@ -70,7 +70,7 @@
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Data/Ora</translation>
+        <translation>Data/Ora</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
@@ -80,84 +80,84 @@
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>IV Advance</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzamento IV</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>HP</source>
-        <translation type="unfinished">PS</translation>
+        <translation>PS</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>Atk</source>
-        <translation type="unfinished">Att</translation>
+        <translation>Att</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>Def</source>
-        <translation type="unfinished">Dif</translation>
+        <translation>Dif</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>SpA</source>
-        <translation type="unfinished">AttSp</translation>
+        <translation>AttSp</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>SpD</source>
-        <translation type="unfinished">DifSp</translation>
+        <translation>DifSp</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/AdjacentSeedsModel.hpp" line="72"/>
         <source>Spe</source>
-        <translation type="unfinished">Vel</translation>
+        <translation>Vel</translation>
     </message>
 </context>
 <context>
     <name>AdvanceFinder</name>
     <message>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Alto</translation>
     </message>
     <message>
         <source>Mid-High</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio-Alto</translation>
     </message>
     <message>
         <source>Mid</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio</translation>
     </message>
     <message>
         <source>Mid-Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio-Basso</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Basso</translation>
     </message>
     <message>
         <source>High / Mid-High</source>
-        <translation type="unfinished"></translation>
+        <translation>Alto / Medio-Alto</translation>
     </message>
     <message>
         <source>Mid-High / Mid</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio-Alto / Medio</translation>
     </message>
     <message>
         <source>Mid / Mid-Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio / Medio-Basso</translation>
     </message>
     <message>
         <source>Mid-Low / Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio-Basso / Basso</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation type="unfinished">Qualsiasi</translation>
+        <translation>Qualsiasi</translation>
     </message>
     <message>
         <source>↖</source>
@@ -193,7 +193,7 @@
     </message>
     <message>
         <source>Calls</source>
-        <translation type="unfinished">Chiamate</translation>
+        <translation>Chiamate</translation>
     </message>
     <message>
         <source>Elm</source>
@@ -201,59 +201,59 @@
     </message>
     <message>
         <source>Irwin</source>
-        <translation type="unfinished">Ramon</translation>
+        <translation>Ramon</translation>
     </message>
     <message>
         <source>Jump to Advance</source>
-        <translation type="unfinished"></translation>
+        <translation>Salta all&apos;Avanzamento</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Rimuovi</translation>
+        <translation>Rimuovi</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">Pulisci</translation>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <source>Possible Results:</source>
-        <translation type="unfinished">Risultati Possibili:</translation>
+        <translation>Risultati Possibili:</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="148"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
-        <translation type="unfinished">K - Nella regione di Kanto ci sono dei Pokémon a me ancora sconosciuti. E con dei meccanismi evolutivi a dir poco insospettabili! Conto su di te! Sarai i miei occhi vigili sulla regione di Kanto!</translation>
+        <translation>K - Nella regione di Kanto ci sono dei Pokémon a me ancora sconosciuti. E con dei meccanismi evolutivi a dir poco insospettabili! Conto su di te! Sarai i miei occhi vigili sulla regione di Kanto!</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="150"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
-        <translation type="unfinished">E - L&apos;evoluzione dei Pokémon non finirà mai di sorprendermi! Pare che alcuni Pokémon si evolvano solo in alcune condizioni particolari!</translation>
+        <translation>E - L&apos;evoluzione dei Pokémon non finirà mai di sorprendermi! Pare che alcuni Pokémon si evolvano solo in alcune condizioni particolari!</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="152"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
-        <translation type="unfinished">P - Un Pokémon infettato dal Pokérus evolve più facilmente. Tuttavia, non ne comprendo il motivo...</translation>
+        <translation>P - Un Pokémon infettato dal Pokérus evolve più facilmente. Tuttavia, non ne comprendo il motivo...</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="158"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
-        <translation type="unfinished">K - Grazie per aver chiamato! Pensa che stavo per chiamarti io! Che intesa, non credi?!</translation>
+        <translation>K - Grazie per aver chiamato! Pensa che stavo per chiamarti io! Che intesa, non credi?!</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="159"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
-        <translation type="unfinished">E - Sentire delle tue gesta mi fa proprio esaltare! Non sai quanto!</translation>
+        <translation>E - Sentire delle tue gesta mi fa proprio esaltare! Non sai quanto!</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="160"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
-        <translation type="unfinished">P - Come stai? Che cosa stavi facendo? Dove sei? Quante Medaglie hai ora? Quanti soldi hai risparmiato? Come sta la mamma? Hai catturato molti Pokémon? Pensi che farà caldo domani? Ah! Voglio parlare di troppe cose! È meglio che mi dia una calmata!</translation>
+        <translation>P - Come stai? Che cosa stavi facendo? Dove sei? Quante Medaglie hai ora? Quanti soldi hai risparmiato? Come sta la mamma? Hai catturato molti Pokémon? Pensi che farà caldo domani? Ah! Voglio parlare di troppe cose! È meglio che mi dia una calmata!</translation>
     </message>
     <message>
         <location filename="../Util/AdvanceFinder.cpp" line="200"/>
         <location filename="../Util/AdvanceFinder.cpp" line="207"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished">Risultati Possibili: %1</translation>
+        <translation>Risultati Possibili: %1</translation>
     </message>
     <message>
         <source>Chatot</source>
@@ -261,7 +261,7 @@
     </message>
     <message>
         <source>Needles</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancette</translation>
     </message>
 </context>
 <context>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../Controls/CheckList.cpp" line="324"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
 </context>
 <context>
@@ -1495,7 +1495,7 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="125"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
-        <translation type="unfinished"></translation>
+        <translation>Genitori incompatibili per il passaggio dell&apos;Abilità Nascosta!</translation>
     </message>
 </context>
 <context>
@@ -1594,7 +1594,7 @@
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="87"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 4 Eggs</source>
@@ -1693,7 +1693,7 @@
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="74"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 5 Eggs</source>
@@ -2000,7 +2000,7 @@
     <message>
         <location filename="../Gen4/Event4.cpp" line="87"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Wondercard IVs</source>
@@ -2093,7 +2093,7 @@
     <message>
         <location filename="../Gen5/Event5.cpp" line="79"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 5 Event</source>
@@ -3485,11 +3485,11 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="115"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="118"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Hidden Grotto</source>
-        <translation>Meandri Nascosti</translation>
+        <translation>Meandro Nascosto</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -3586,7 +3586,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="121"/>
         <source>Adjacent Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Adiacenti</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="336"/>
@@ -4898,7 +4898,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Hidden Grotto</source>
-        <translation>Meandri Nascosti</translation>
+        <translation>Meandro Nascosto</translation>
     </message>
     <message>
         <source>Gen 8</source>
@@ -4955,7 +4955,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Adjacent Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Adiacenti</translation>
     </message>
 </context>
 <context>
@@ -5374,15 +5374,15 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <name>ProfileDisplay3</name>
     <message>
         <source>Profile Display 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista Profilo 3</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profilo</translation>
+        <translation>Profilo</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished">Gestore</translation>
+        <translation>Gestore</translation>
     </message>
     <message>
         <source>TID</source>
@@ -5394,22 +5394,22 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Gioco</translation>
+        <translation>Gioco</translation>
     </message>
     <message>
         <source>Emerald</source>
-        <translation type="unfinished">Smeraldo</translation>
+        <translation>Smeraldo</translation>
     </message>
 </context>
 <context>
     <name>ProfileDisplay4</name>
     <message>
         <source>Profile Display 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista Profilo 4</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profilo</translation>
+        <translation>Profilo</translation>
     </message>
     <message>
         <source>TID</source>
@@ -5417,11 +5417,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished">Gestore</translation>
+        <translation>Gestore</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Gioco</translation>
+        <translation>Gioco</translation>
     </message>
     <message>
         <source>SID</source>
@@ -5429,12 +5429,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>National Dex</source>
-        <translation type="unfinished">Dex Nazionale</translation>
+        <translation>Dex Nazionale</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileDisplay4.cpp" line="81"/>
@@ -5446,15 +5446,15 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <name>ProfileDisplay5</name>
     <message>
         <source>Profile Display 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista Profilo 5</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profilo</translation>
+        <translation>Profilo</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished">Gestore</translation>
+        <translation>Gestore</translation>
     </message>
     <message>
         <source>TID</source>
@@ -5466,11 +5466,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>MAC Address</source>
-        <translation type="unfinished">Indirizzo MAC</translation>
+        <translation>Indirizzo MAC</translation>
     </message>
     <message>
         <source>DS Type</source>
-        <translation type="unfinished">Modello DS</translation>
+        <translation>Modello DS</translation>
     </message>
     <message>
         <source>VCount</source>
@@ -5490,26 +5490,26 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Keypresses</source>
-        <translation type="unfinished">Pressione Tasti</translation>
+        <translation>Pressione Tasti</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Gioco</translation>
+        <translation>Gioco</translation>
     </message>
 </context>
 <context>
     <name>ProfileDisplay8</name>
     <message>
         <source>Profile Display 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista Profilo 8</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished">Profilo</translation>
+        <translation>Profilo</translation>
     </message>
     <message>
         <source>Manager</source>
-        <translation type="unfinished">Gestore</translation>
+        <translation>Gestore</translation>
     </message>
     <message>
         <source>TID</source>
@@ -5521,26 +5521,26 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Gioco</translation>
+        <translation>Gioco</translation>
     </message>
     <message>
         <source>National Dex</source>
-        <translation type="unfinished">Dex Nazionale</translation>
+        <translation>Dex Nazionale</translation>
     </message>
     <message>
         <source>Oval Charm</source>
-        <translation type="unfinished">Ovamuleto</translation>
+        <translation>Ovamuleto</translation>
     </message>
     <message>
         <source>Shiny Charm</source>
-        <translation type="unfinished">Cromamuleto</translation>
+        <translation>Cromamuleto</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
         <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="88"/>
         <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="89"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileDisplay8.cpp" line="87"/>
@@ -5848,7 +5848,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>N&apos;s Pokémon released</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokémon di N liberati</translation>
     </message>
     <message>
         <source>Shiny Charm</source>
@@ -6351,7 +6351,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="96"/>
         <source>N&apos;s Pokémon released</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokémon di N liberati</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="97"/>
@@ -7027,11 +7027,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Rimuovi</translation>
+        <translation>Rimuovi</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">Pulisci</translation>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
@@ -7091,11 +7091,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Rimuovi</translation>
+        <translation>Rimuovi</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">Pulisci</translation>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="37"/>
@@ -7274,7 +7274,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen4/SeedToTimeModel4.hpp" line="120"/>
         <source>Roamers</source>
-        <translation type="unfinished">Erranti</translation>
+        <translation>Erranti</translation>
     </message>
 </context>
 <context>
@@ -7539,7 +7539,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen4/Static4.cpp" line="89"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 4 Static</source>
@@ -7710,7 +7710,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="94"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 5 Static</source>
@@ -7885,7 +7885,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen5/Static5.cpp" line="97"/>
         <source>Adjacent Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Adiacenti</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="354"/>
@@ -8593,7 +8593,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
         <source>Hour</source>
-        <translation type="unfinished">Ora</translation>
+        <translation>Ora</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/StaticModel4.hpp" line="178"/>
@@ -9348,7 +9348,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="140"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 4 Wild</source>
@@ -9771,7 +9771,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="123"/>
         <source>Advance Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova Avanzamento</translation>
     </message>
     <message>
         <source>Gen 5 Wild</source>
@@ -9998,7 +9998,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="126"/>
         <source>Adjacent Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed Adiacenti</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="387"/>
@@ -10860,7 +10860,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
         <source>Hour</source>
-        <translation type="unfinished">Ora</translation>
+        <translation>Ora</translation>
     </message>
     <message>
         <location filename="../../Model/Gen4/WildModel4.hpp" line="179"/>
