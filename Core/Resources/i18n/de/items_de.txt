@@ -8,6 +8,7 @@
 28,Beleber
 29,Top-Beleber
 33,Kuhmuh-Milch
+39,Top-Äther
 43,Beerensaft
 44,Zauberasche
 50,Sonderbonbon
@@ -39,6 +40,11 @@
 96,Feuchtmulch
 97,Stabilmulch
 98,Neumulch
+99,Wurzelfossil
+100,Klauenfossil
+101,Helixfossil
+102,Domfossil
+103,Altbernstein
 106,Steinknochen
 107,Leuchtstein
 108,Finsterstein

@@ -8,6 +8,7 @@
 28,Revivir
 29,Revivir Máximo
 33,Leche Mu-mu
+39,Éter Máx.
 43,Zumo de Baya
 44,Ceniza Sagrada
 50,Caramelo Raro
@@ -39,6 +40,11 @@
 96,Abono Lento
 97,Abono Fijador
 98,Abono Brote
+99,Fósil Raíz
+100,Fósil Garra
+101,Fósil Helix
+102,Fósil Domo
+103,Ámbar Viejo
 106,Hueso Raro
 107,Piedra Día
 108,Piedra Noche
