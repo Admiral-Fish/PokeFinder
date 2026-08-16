@@ -33,9 +33,8 @@ public:
      * @param encounterSlots Encounter slots to filter by
      * @param genders Genders to filter by
      * @param groups Groups to filter by
-     * @param invalid If invalid states should be skipped
      */
-    HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders, const std::array<bool, 4> &groups, bool invalid);
+    HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders, const std::array<bool, 4> &groups);
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -52,6 +51,14 @@ private:
     std::array<bool, 11> encounterSlots;
     std::array<bool, 2> genders;
     std::array<bool, 4> groups;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 #endif // HIDDENGROTTOFILTER_HPP

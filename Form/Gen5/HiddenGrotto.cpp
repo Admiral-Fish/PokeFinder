@@ -248,7 +248,7 @@ void HiddenGrotto::grottoGenerate()
 
     HiddenGrottoFilter filter(ui->checkListGrottoGeneratorSlot->getCheckedArray<11>(),
                               ui->checkListGrottoGeneratorGender->getCheckedArray<2>(),
-                              ui->checkListGrottoGeneratorGroup->getCheckedArray<4>(), ui->checkBoxGrottoGeneratorHideInvalid->isChecked());
+                              ui->checkListGrottoGeneratorGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, offset, grottoPower,
                                         encounter[ui->comboBoxGrottoGeneratorLocation->currentIndex()], *currentProfile, filter);
 
@@ -348,7 +348,7 @@ void HiddenGrotto::grottoSearch()
 
     HiddenGrottoFilter filter(ui->checkListGrottoSearcherSlot->getCheckedArray<11>(),
                               ui->checkListGrottoSearcherGender->getCheckedArray<2>(),
-                              ui->checkListGrottoSearcherGroup->getCheckedArray<4>(), true);
+                              ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, grottoPower,
                                         encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
     auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);

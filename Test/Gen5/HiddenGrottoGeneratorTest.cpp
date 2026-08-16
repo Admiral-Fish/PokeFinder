@@ -152,7 +152,7 @@ void HiddenGrottoGeneratorTest::slot()
     auto encounterArea = std::ranges::find_if(
         encounterAreas, [location](const HiddenGrottoArea &encounterArea) { return encounterArea.getLocation() == location; });
 
-    HiddenGrottoFilter filter(encounterSlots, genders, groups, false);
+    HiddenGrottoFilter filter(encounterSlots, genders, groups);
     HiddenGrottoSlotGenerator generator(0, 99, 0, grottoPower, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed);

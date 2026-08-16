@@ -312,13 +312,6 @@
                 </item>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QCheckBox" name="checkBoxGrottoGeneratorHideInvalid">
-                <property name="text">
-                 <string>Hide Invalid</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>
@@ -1229,7 +1222,6 @@
   <tabstop>checkListGrottoGeneratorSlot</tabstop>
   <tabstop>checkListGrottoGeneratorGroup</tabstop>
   <tabstop>checkListGrottoGeneratorGender</tabstop>
-  <tabstop>checkBoxGrottoGeneratorHideInvalid</tabstop>
   <tabstop>tableViewGrottoGenerator</tabstop>
   <tabstop>textBoxGrottoSearcherInitialAdvances</tabstop>
   <tabstop>textBoxGrottoSearcherMaxAdvances</tabstop>

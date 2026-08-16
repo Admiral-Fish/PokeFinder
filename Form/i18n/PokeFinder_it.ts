@@ -3660,10 +3660,6 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <source>Levels</source>
         <translation>Livelli</translation>
     </message>
-    <message>
-        <source>Hide Invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>HiddenGrottoGeneratorModel5</name>
