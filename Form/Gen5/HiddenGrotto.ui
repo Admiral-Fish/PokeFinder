@@ -1155,16 +1155,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/CheckList.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
@@ -1175,15 +1165,15 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
   <customwidget>
    <class>ComboBoxProxy</class>
@@ -1197,13 +1187,24 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>ProfileDisplay5</class>
    <extends>QWidget</extends>
    <header>Form/Gen5/Profile/ProfileDisplay5.hpp</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>DateEdit</class>
-   <extends>QWidget</extends>
+   <extends>QDateEdit</extends>
    <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
