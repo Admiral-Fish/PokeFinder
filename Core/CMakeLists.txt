@@ -320,8 +320,7 @@ if (SIMD)
             # arm64 always has NEON; -mfpu= is ARMv7-only and must not be passed.
             # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
             target_compile_options(PokeFinderCore PRIVATE
-                "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
-                "SHELL:-Xarch_x86_64 -mpclmul")
+                "SHELL:-Xarch_x86_64 -msse4.2" "SHELL:-Xarch_x86_64 -mpclmul")
         elseif ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES)
             # x86_64 only: Add
             target_compile_options(PokeFinderCore PRIVATE -msse4.2 -mpclmul)
