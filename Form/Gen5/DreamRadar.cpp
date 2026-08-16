@@ -114,8 +114,8 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Invalid | Controls::Shiny
-                                         | Controls::Weight | Controls::Wild);
+    ui->filterGenerator->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Shiny | Controls::Weight
+                                         | Controls::Wild);
     ui->filterSearcher->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Searcher | Controls::Shiny
                                         | Controls::Weight | Controls::Wild);
 

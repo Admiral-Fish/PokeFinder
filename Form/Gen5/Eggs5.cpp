@@ -62,7 +62,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::Height | Controls::Invalid | Controls::Weight | Controls::Wild);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
     ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->eggSettingsGenerator->setup(Game::Gen5);

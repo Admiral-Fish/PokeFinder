@@ -63,7 +63,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
                                  { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->filter->disableControls(Controls::Invalid | Controls::Wild);
+    ui->filter->disableControls(Controls::Wild);
 
     ui->comboBoxLocation->enableAutoComplete();
 

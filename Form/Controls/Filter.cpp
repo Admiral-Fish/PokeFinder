@@ -204,11 +204,6 @@ void Filter::disableControls(Controls control)
         ui->checkListHiddenPower->hide();
     }
 
-    if ((control & Controls::Invalid) != Controls::None)
-    {
-        ui->checkBoxHideInvalid->setVisible(false);
-    }
-
     if ((control & Controls::IVs) != Controls::None)
     {
         ui->labelHP->hide();
@@ -306,16 +301,6 @@ u8 Filter::getHeightMin() const
 std::array<bool, 16> Filter::getHiddenPowers() const
 {
     return ui->checkListHiddenPower->getCheckedArray<16>();
-}
-
-bool Filter::getHideInvalid() const
-{
-    return ui->checkBoxHideInvalid->isChecked();
-}
-
-void Filter::setHideInvalidVisible(bool visible)
-{
-    ui->checkBoxHideInvalid->setVisible(visible);
 }
 
 u8 Filter::getLevelMax() const

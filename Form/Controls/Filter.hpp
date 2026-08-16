@@ -123,7 +123,7 @@ public:
         if constexpr (wild)
         {
             return FilterType(getGender(), getAbility(), getShiny(), getLevelMin(), getLevelMax(), getHeightMin(), getHeightMax(),
-                              getWeightMin(), getWeightMax(), getHideInvalid(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getWeightMin(), getWeightMax(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getEncounterSlots());
         }
         else
@@ -161,21 +161,6 @@ public:
      * @return Array of hidden powers
      */
     std::array<bool, 16> getHiddenPowers() const;
-
-    /**
-     * @brief Checks if invalid states should be ignored
-     *
-     * @return true Invalid are disabled
-     * @return false Invalid are not disabled
-     */
-    bool getHideInvalid() const;
-
-    /**
-     * @brief Sets visibility of the hide invalid checkbox
-     *
-     * @param visible If the checkbox should be visible
-     */
-    void setHideInvalidVisible(bool visible);
 
     /**
      * @brief Gets max level to filter by
@@ -229,7 +214,7 @@ public:
 
     /**
      * @brief Determines if Filter is valid based on current selections. Additionally checks against input level range
-     * 
+     *
      * @param min Minimum level
      * @param max Maximum level
      *

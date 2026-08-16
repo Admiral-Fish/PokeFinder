@@ -34,13 +34,12 @@ enum class Controls : u16
     Gender = 1 << 3,
     Height = 1 << 4,
     HiddenPowers = 1 << 5,
-    Invalid = 1 << 6,
-    IVs = 1 << 7,
-    Level = 1 << 8,
-    Natures = 1 << 9,
-    Shiny = 1 << 10,
-    Weight = 1 << 11,
-    Searcher = DisableFilter | Invalid,
+    IVs = 1 << 6,
+    Level = 1 << 7,
+    Natures = 1 << 8,
+    Shiny = 1 << 9,
+    Weight = 1 << 10,
+    Searcher = DisableFilter,
     Wild = EncounterSlots | Level
 };
 

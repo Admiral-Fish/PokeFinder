@@ -62,7 +62,7 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
     ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
 
-    ui->filterGenerator->disableControls(Controls::Height | Controls::Invalid | Controls::Weight | Controls::Wild);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
     ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);

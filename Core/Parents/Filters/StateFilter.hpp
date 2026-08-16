@@ -168,6 +168,14 @@ protected:
     u8 shiny;
     u8 weightMax;
     u8 weightMin;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 /**
@@ -188,7 +196,6 @@ public:
      * @param heightMax Maximum height threshold
      * @param weightMin Minimum weight threshold
      * @param weightMax Maximum weight threshold
-     * @param invalid If invalid states should be skipped
      * @param skip If filters should be skipped
      * @param min Minimum IV thresholds
      * @param max Maximum IV thresholds
@@ -196,8 +203,8 @@ public:
      * @param powers Hidden powers to filter by
      */
     WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax,
-                    bool invalid, bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax,
-                    const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots);
+                    bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+                    const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots);
 
     /**
      * @brief Determines if the \p encounterSlot meets the filter criteria
@@ -248,6 +255,14 @@ public:
 protected:
     bool invalid;
     std::array<bool, 12> encounterSlots;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 #endif // STATEFILTER_HPP
