@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>682</width>
-    <height>463</height>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -124,11 +124,191 @@
         </item>
        </widget>
       </item>
+      <item row="2" column="0" colspan="10">
+       <widget class="Line" name="lineIVSeparator">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="10">
+       <layout class="QGridLayout" name="gridLayoutIVs">
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelHP">
+          <property name="text">
+           <string>HP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelAtk">
+          <property name="text">
+           <string>Atk</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="labelDef">
+          <property name="text">
+           <string>Def</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="labelSpAtk">
+          <property name="text">
+           <string>SpAtk</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLabel" name="labelSpDef">
+          <property name="text">
+           <string>SpDef</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QLabel" name="labelSpe">
+          <property name="text">
+           <string>Spe</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelMinIVs">
+          <property name="text">
+           <string>Min IVs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBoxHPMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="spinBoxAtkMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QSpinBox" name="spinBoxDefMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QSpinBox" name="spinBoxSpAMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QSpinBox" name="spinBoxSpDMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="QSpinBox" name="spinBoxSpeMin">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelMaxIVs">
+          <property name="text">
+           <string>Max IVs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="spinBoxHPMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinBoxAtkMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QSpinBox" name="spinBoxDefMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QSpinBox" name="spinBoxSpAMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="5">
+         <widget class="QSpinBox" name="spinBoxSpDMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="6">
+         <widget class="QSpinBox" name="spinBoxSpeMax">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+          <property name="value">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="7" rowspan="2">
+         <widget class="QPushButton" name="pushButtonResetIVs">
+          <property name="text">
+           <string>Reset IVs</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="TableView" name="tableView"/>
+    <widget class="TableView" name="tableView">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item row="3" column="0">
     <widget class="QComboBox" name="comboBoxPreviewMode">

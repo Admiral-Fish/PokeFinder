@@ -57,8 +57,8 @@ namespace AdjacentSeedsCalculator
     std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
                                              const DateTime &dateTime, const Profile5 &profile)
     {
-        u32 timer0Min = profile.getTimer0Min();
-        u32 timer0Max = profile.getTimer0Max();
+        u32 timer0Min = profile.getTimer0Min() == 0 ? 0 : profile.getTimer0Min() - 1;
+        u32 timer0Max = profile.getTimer0Max() + 1;
 
         u32 rangeSeconds = seconds * 2 + 1;
         u32 timer0Count = timer0Max - timer0Min + 1;
