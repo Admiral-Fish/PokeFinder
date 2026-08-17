@@ -24,6 +24,7 @@
 #include <Core/Global.hpp>
 #include <array>
 #include <optional>
+#include <vector>
 
 struct PokeRadarPatch
 {
@@ -145,9 +146,29 @@ public:
         return patchAdvances;
     }
 
+    const std::vector<u32> &getBattleStartAdvances() const
+    {
+        return battleStartAdvances;
+    }
+
+    bool hasBattleStartAdvances() const
+    {
+        return !battleStartAdvances.empty();
+    }
+
+    void setBattleStartAdvances(const std::vector<u32> &advances)
+    {
+        battleStartAdvances = advances;
+    }
+
     u32 getDistance() const
     {
         return distance;
+    }
+
+    void setDistance(u32 value)
+    {
+        distance = value;
     }
 
     u16 getChain() const
@@ -265,6 +286,7 @@ private:
     bool displayPatchStrong;
     bool displayPatchShiny;
     bool patchesVisible;
+    std::vector<u32> battleStartAdvances;
     std::array<PokeRadarPatch, 4> patches;
     std::optional<WildGeneratorState4> pokemon;
     std::optional<WildSearcherState4> searcherPokemon;

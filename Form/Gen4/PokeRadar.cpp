@@ -179,6 +179,79 @@ static Lead getPokeRadarGeneratorLead(const PokeRadarControls &controls)
     return Lead::None;
 }
 
+static bool setComboBoxData(QComboBox *comboBox, const QVariant &data)
+{
+    if (comboBox == nullptr)
+    {
+        return false;
+    }
+
+    int index = comboBox->findData(data);
+    if (index < 0)
+    {
+        return false;
+    }
+
+    comboBox->setCurrentIndex(index);
+    return true;
+}
+
+static QAction *findComboMenuAction(QMenu *menu, int data)
+{
+    if (menu == nullptr)
+    {
+        return nullptr;
+    }
+
+    for (QAction *action : menu->actions())
+    {
+        if (action->menu() != nullptr)
+        {
+            if (QAction *child = findComboMenuAction(action->menu(), data))
+            {
+                return child;
+            }
+        }
+        else if (action->data().toInt() == data)
+        {
+            return action;
+        }
+    }
+
+    return nullptr;
+}
+
+static void setComboMenuData(ComboMenu *comboMenu, int data)
+{
+    if (comboMenu == nullptr)
+    {
+        return;
+    }
+
+    if (QAction *action = findComboMenuAction(comboMenu->menu(), data))
+    {
+        action->setChecked(true);
+        action->trigger();
+    }
+}
+
+static void transferLead(ComboMenu *target, ComboMenu *source, bool targetIsSearcher)
+{
+    if (target == nullptr || source == nullptr)
+    {
+        return;
+    }
+
+    Lead lead = source->getEnum<Lead>();
+    int data = toInt(lead);
+    if (targetIsSearcher && lead <= Lead::SynchronizeEnd)
+    {
+        data = toInt(Lead::Synchronize);
+    }
+
+    setComboMenuData(target, data);
+}
+
 PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
 {
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -252,6 +325,8 @@ PokeRadar::PokeRadar(QWidget *parent) : QWidget(parent), currentProfile(nullptr)
 
     connect(profileDisplay, &ProfileDisplay4::profileChanged, this, &PokeRadar::profileChanged);
     connect(profileDisplay, &ProfileDisplay4::profilesChanged, this, &PokeRadar::profilesChanged);
+    connect(tabRNGSelector, &TabWidget::transferFilters, this, &PokeRadar::transferFilters);
+    connect(tabRNGSelector, &TabWidget::transferSettings, this, &PokeRadar::transferSettings);
     connect(generator.location, &QComboBox::currentIndexChanged, this, [this] { updatePokemon(generator, generatorEncounters); });
     connect(searcher.location, &QComboBox::currentIndexChanged, this, [this] { updatePokemon(searcher, searcherEncounters); });
     connect(generator.pokemon, &QComboBox::currentIndexChanged, this, [this](int) { updateEncounterSlots(generator, generatorEncounters); });
@@ -434,6 +509,63 @@ void PokeRadar::updateProfiles()
     profileDisplay->updateProfiles();
 }
 
+void PokeRadar::transferFilters(int index)
+{
+    if (index == 0)
+    {
+        searcher.filter->copyFrom(generator.filter);
+    }
+    else
+    {
+        generator.filter->copyFrom(searcher.filter);
+    }
+}
+
+void PokeRadar::transferSettings(int index)
+{
+    PokeRadarControls &source = index == 0 ? generator : searcher;
+    PokeRadarControls &target = index == 0 ? searcher : generator;
+    std::vector<EncounterArea4> &targetEncounters = index == 0 ? searcherEncounters : generatorEncounters;
+    bool targetIsSearcher = index == 0;
+
+    transferLead(target.lead, source.lead, targetIsSearcher);
+    target.initialAdvances->setText(source.initialAdvances->text());
+    target.maxAdvances->setText(source.maxAdvances->text());
+    target.chainCount->setValue(source.chainCount->value());
+
+    target.time->setCurrentIndex(source.time->currentIndex());
+    target.dualSlot->setCheckState(source.dualSlot->checkState());
+    target.dualSlotGame->setCurrentIndex(source.dualSlotGame->currentIndex());
+    target.swarm->setCheckState(source.swarm->checkState());
+    target.replacement->setCheckState(source.replacement->checkState());
+    target.replacement0->setCurrentIndex(source.replacement0->currentIndex());
+    target.replacement1->setCurrentIndex(source.replacement1->currentIndex());
+
+    if (source.chainType != nullptr && target.patchTypes != nullptr)
+    {
+        setComboBoxData(target.patchTypes, source.chainType->currentData());
+    }
+    else if (source.patchTypes != nullptr && target.chainType != nullptr)
+    {
+        setComboBoxData(target.chainType, source.patchTypes->currentData());
+    }
+
+    target.location->setCurrentIndex(source.location->currentIndex());
+    target.pokemon->setCurrentIndex(source.pokemon->currentIndex());
+    target.slot->setCurrentIndex(source.slot->currentIndex());
+
+    if (source.result != nullptr && target.result != nullptr)
+    {
+        setComboBoxData(target.result, source.result->currentData());
+    }
+
+    target.levelMin->setValue(source.levelMin->value());
+    target.levelMax->setValue(source.levelMax->value());
+    target.minimumGraceSteps->setValue(source.minimumGraceSteps->value());
+
+    updateEncounterSlots(target, targetEncounters);
+}
+
 EncounterSettings4 PokeRadar::getEncounterSettings(const PokeRadarControls &controls, bool radar) const
 {
     EncounterSettings4 settings = {};
@@ -522,7 +654,7 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
         controls.minDelay->setText(QStringLiteral("600"));
         controls.maxDelay = new TextBox(rngInfo);
         controls.maxDelay->setValues(InputType::Delay);
-        controls.maxDelay->setText(QStringLiteral("5000"));
+        controls.maxDelay->setText(QStringLiteral("3000"));
         controls.lead = new ComboMenu(rngInfo);
         setupLead(controls.lead, false);
     }
@@ -539,10 +671,10 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     {
         controls.minPatchDistance = new QSpinBox(rngInfo);
         controls.minPatchDistance->setRange(0, 999999);
-        controls.minPatchDistance->setValue(1);
+        controls.minPatchDistance->setValue(20);
         controls.maxPatchDistance = new QSpinBox(rngInfo);
         controls.maxPatchDistance->setRange(0, 999999);
-        controls.maxPatchDistance->setValue(20);
+        controls.maxPatchDistance->setValue(100);
     }
     controls.chainCount = new QSpinBox(rngInfo);
     controls.chainCount->setRange(0, 999);
@@ -640,6 +772,14 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
                 {
                     control->slot->setEnabled(value != 0);
                     control->pokemon->setEnabled(value == 0);
+                    if (control->result != nullptr)
+                    {
+                        control->result->setEnabled(value != 0);
+                        if (value == 0)
+                        {
+                            control->result->setCurrentIndex(control->result->findData(static_cast<int>(PokeRadarResult::ManualActivation)));
+                        }
+                    }
                     updateSearcherPatchTypes();
                     updateEncounters(searcher, searcherEncounters);
                 }
@@ -686,6 +826,7 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
         controls.result->addItem(tr("Manual"), static_cast<int>(PokeRadarResult::ManualActivation));
         controls.result->addItem(tr("Defeat"), static_cast<int>(PokeRadarResult::Defeat));
         controls.result->addItem(tr("Capture"), static_cast<int>(PokeRadarResult::Capture));
+        controls.result->setEnabled(controls.chainCount->value() != 0);
     }
     controls.levelMin = new QSpinBox(settings);
     controls.levelMin->setRange(0, 100);
@@ -1382,8 +1523,8 @@ std::vector<PokeRadarState> PokeRadar::getStates(PokeRadarControls &controls, co
         {
             u32 battleAdvances = pokemon.getBattleAdvances();
             combined.setDisplayedBattleAdvances(battleAdvances);
-            combined.setDisplayedPatchAdvances(previous == PokeRadarResult::ManualActivation
-                                                  ? radar.getAdvanceConsumption(controls.seed->getUInt(), battleAdvances, previous)
+            combined.setDisplayedPatchAdvances(chainCount == 0 && previous == PokeRadarResult::ManualActivation
+                                                  ? radar.getAdvanceConsumption(controls.seed->getUInt(), patchAdvances, previous)
                                                   : 4 + radar.getPostBattleAdvanceConsumption(combined.getPatches()));
         }
         if (matchesPatchFilter(controls, combined))
@@ -1680,6 +1821,11 @@ void PokeRadar::search()
         return;
     }
 
+    auto chainType = searcher.patchTypes->getEnum<PokeRadarChainType>();
+    PokeRadarResult activation = searcher.chainCount->value() == 0 ? PokeRadarResult::ManualActivation : searcher.result->getEnum<PokeRadarResult>();
+    bool postBattleSearch = activation != PokeRadarResult::ManualActivation;
+    searcher.model->setShowSearcherBattleAdvances(postBattleSearch);
+
     u32 minDistance = searcher.minPatchDistance->value();
     u32 maxDistance = searcher.maxPatchDistance->value();
     if (minDistance > maxDistance)
@@ -1689,7 +1835,7 @@ void PokeRadar::search()
     }
 
     u32 maxAdvances = searcher.maxAdvances->getUInt();
-    if (maxAdvances < minDistance)
+    if (!postBattleSearch && maxAdvances < minDistance)
     {
         QMessageBox::warning(this, tr("Invalid Settings"),
                              tr("The searched advances end before the minimum patch distance can be reached."));
@@ -1701,7 +1847,6 @@ void PokeRadar::search()
     auto *radarSearchers = new std::vector<PokeRadarSearcher *>;
     auto *cancelled = new std::atomic_bool(false);
 
-    auto chainType = searcher.patchTypes->getEnum<PokeRadarChainType>();
     auto encounters = Encounters4::getEncounters(Encounter::Grass, getEncounterSettings(searcher, getSelectedRadar(chainType)), currentProfile);
     if (searcher.location->currentIndex() >= 0)
     {
@@ -1746,8 +1891,8 @@ void PokeRadar::search()
                 radarSearchers->emplace_back(new PokeRadarSearcher(searcher.initialAdvances->getUInt(), searcher.maxAdvances->getUInt(),
                                                                    searcher.minDelay->getUInt(), searcher.maxDelay->getUInt(), minDistance,
                                                                    maxDistance, searcher.chainCount->value(), searcher.slot->getCurrentUChar(),
-                                                                   lead, chainType, getGrass(searcher), searchSlots, *areaIter, *currentProfile,
-                                                                   filter, specificSynchronize));
+                                                                   lead, chainType, activation, getGrass(searcher), searchSlots, *areaIter,
+                                                                   *currentProfile, filter, specificSynchronize));
             }
         }
     }

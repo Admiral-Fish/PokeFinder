@@ -24,7 +24,12 @@
 #include <QStringList>
 #include <algorithm>
 
-PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) : TableModel(parent), searcher(searcher), showContinue(true), showStats(false)
+PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) :
+    TableModel(parent),
+    searcher(searcher),
+    showSearcherBattleAdvances(false),
+    showContinue(true),
+    showStats(false)
 {
 }
 
@@ -59,6 +64,15 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
             case 3:
                 return state.getAdvances();
             case 4:
+                if (showSearcherBattleAdvances && state.hasBattleStartAdvances())
+                {
+                    QStringList advances;
+                    for (u32 advance : state.getBattleStartAdvances())
+                    {
+                        advances.append(QString::number(advance));
+                    }
+                    return advances.join(QStringLiteral(", "));
+                }
                 return state.getPatchAdvances();
             case 5:
                 return state.getDistance();
@@ -140,7 +154,7 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
             case 3:
                 return tr("Advances");
             case 4:
-                return tr("Patch Adv");
+                return showSearcherBattleAdvances ? tr("Battle Adv") : tr("Patch Adv");
             case 5:
                 return tr("Distance");
             case 6:
@@ -401,6 +415,21 @@ void PokeRadarModel4::setShowStats(bool flag)
 
     int first = 16;
     emit dataChanged(index(0, first), index(rowCount() - 1, first + 5), { Qt::DisplayRole });
+}
+
+void PokeRadarModel4::setShowSearcherBattleAdvances(bool flag)
+{
+    if (showSearcherBattleAdvances == flag)
+    {
+        return;
+    }
+
+    showSearcherBattleAdvances = flag;
+    emit headerDataChanged(Qt::Horizontal, 4, 4);
+    if (rowCount() != 0)
+    {
+        emit dataChanged(index(0, 4), index(rowCount() - 1, 4), { Qt::DisplayRole });
+    }
 }
 
 void PokeRadarModel4::setShowContinue(bool flag)

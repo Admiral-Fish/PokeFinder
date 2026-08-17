@@ -31,6 +31,7 @@
 #include <mutex>
 #include <set>
 #include <tuple>
+#include <unordered_map>
 #include <vector>
 
 enum class Lead : u8;
@@ -41,16 +42,31 @@ class PokeRadarSearcher : public Searcher<Profile4, PokeRadarState>
 {
 public:
     PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u32 minPatchDistance, u32 maxPatchDistance,
-                      u16 maxChain, u8 chainSlot, Lead lead, PokeRadarChainType chainType, const std::array<bool, 81> &grass,
-                      const std::array<bool, 12> &encounterSlots, const EncounterArea4 &area, const Profile4 &profile,
-                      const WildStateFilter &filter, bool specificSynchronize = false);
+                      u16 maxChain, u8 chainSlot, Lead lead, PokeRadarChainType chainType, PokeRadarResult result,
+                      const std::array<bool, 81> &grass, const std::array<bool, 12> &encounterSlots, const EncounterArea4 &area,
+                      const Profile4 &profile, const WildStateFilter &filter, bool specificSynchronize = false);
 
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
     int getProgress() const;
 
 private:
+    struct BattleStart
+    {
+        u32 startAdvance;
+        u32 postBattleAdvance;
+    };
+
+    struct PostBattlePatch
+    {
+        PokeRadarState state;
+        std::vector<BattleStart> battleStarts;
+    };
+
     void addPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
+    void addManualPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
+    void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
+    const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain);
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
     bool isShinyPatchType() const;
     bool patchMatchesType(const PokeRadarState &state) const;
@@ -66,6 +82,7 @@ private:
     Lead lead;
     bool specificSynchronize;
     PokeRadarChainType chainType;
+    PokeRadarResult result;
     std::array<bool, 81> grass;
     std::array<bool, 12> encounterSlots;
     EncounterArea4 area;
@@ -73,6 +90,7 @@ private:
     std::atomic<u64> currentPhaseProgress;
     mutable std::mutex currentSearcherMutex;
     WildSearcher4 *currentSearcher;
+    std::unordered_map<u64, std::vector<PostBattlePatch>> postBattlePatches;
     std::set<std::tuple<u32, u32, u32, u16, u8, u32>> resultKeys;
 };
 

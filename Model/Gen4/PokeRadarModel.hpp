@@ -43,6 +43,7 @@ public:
     }
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    void setShowSearcherBattleAdvances(bool flag);
     void setShowContinue(bool flag);
     void setShowStats(bool flag);
 
@@ -55,6 +56,7 @@ private:
     int mapGeneratorColumn(int column) const;
 
     bool searcher;
+    bool showSearcherBattleAdvances;
     bool showContinue;
     bool showStats;
 };

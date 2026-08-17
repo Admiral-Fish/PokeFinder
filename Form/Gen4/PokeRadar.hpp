@@ -167,6 +167,8 @@ private:
     void updateLocations(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
     void updatePokemon(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField = true);
     void updateSearcherPatchTypes();
+    void transferFilters(int index);
+    void transferSettings(int index);
 
 private slots:
     void generate();

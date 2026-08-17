@@ -684,6 +684,23 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed) con
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
+        u8 buffer = 0;
+        bool cuteCharm = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        {
+            cuteCharm = true;
+            if (lead == Lead::CuteCharmF)
+            {
+                buffer = 25 * ((info->getGender() / 25) + 1);
+            }
+        }
+
+        bool cuteCharmFlag = false;
+        if (cuteCharm)
+        {
+            cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
+        }
+
         u8 nature;
         if (lead <= Lead::SynchronizeEnd)
         {
@@ -701,12 +718,19 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed) con
         }
 
         u32 pid;
-        do
+        if (cuteCharmFlag)
         {
-            u16 low = go.nextUShort(&battleAdvances);
-            u16 high = go.nextUShort(&battleAdvances);
-            pid = (high << 16) | low;
-        } while (pid % 25 != nature);
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort(&battleAdvances);
+                u16 high = go.nextUShort(&battleAdvances);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
 
         u16 iv1 = go.nextUShort(&battleAdvances);
         u16 iv2 = go.nextUShort(&battleAdvances);
@@ -861,6 +885,16 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
+        bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
+
+        auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+            if (lead == Lead::CuteCharmF)
+            {
+                return (pid & 0xff) >= info->getGender();
+            }
+            return (pid & 0xff) < info->getGender();
+        };
+
         auto shinyPID = [this, &go, &battleAdvances]() {
             u16 low = go.nextUShort(&battleAdvances) & 7;
             u16 high = go.nextUShort(&battleAdvances) & 7;
@@ -888,7 +922,26 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
             return static_cast<u32>((high << 16) | low);
         };
 
-        u32 pid = shinyPID();
+        u32 pid;
+        if (cuteCharm && go.nextUShort<false>(3, &battleAdvances) != 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (!cuteCharmCheck(info, pid));
+        }
+        else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &battleAdvances) == 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (pid % 25 != toInt(lead));
+        }
+        else
+        {
+            pid = shinyPID();
+        }
+
         u8 nature = pid % 25;
         if (!filter.compareNature(nature))
         {
