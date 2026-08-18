@@ -361,19 +361,19 @@ void HiddenGrotto::grottoSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         grottoSearcherModel->addItems(searcher->getResults());
         ui->progressBarGrotto->setValue(searcher->getProgress());
     });
 
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonGrottoSearch->setEnabled(true);
         ui->pushButtonGrottoCancel->setEnabled(false);
         grottoSearcherModel->addItems(searcher->getResults());
@@ -621,18 +621,18 @@ void HiddenGrotto::pokemonSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         pokemonSearcherModel->addItems(searcher->getResults());
         ui->progressBarPokemon->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonPokemonSearch->setEnabled(true);
         ui->pushButtonPokemonCancel->setEnabled(false);
         pokemonSearcherModel->addItems(searcher->getResults());

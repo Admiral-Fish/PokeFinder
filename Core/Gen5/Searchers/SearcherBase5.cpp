@@ -52,12 +52,12 @@ void SearcherBase5<Generator, State>::startSearch(int threads, const Date &start
     {
         if (i == threads - 1)
         {
-            threadContainer[i] = std::thread([=] { search(day, end); });
+            threadContainer[i] = std::thread([this, day, end] { search(day, end); });
         }
         else
         {
             Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([=] { search(day, mid); });
+            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
         }
     }
 

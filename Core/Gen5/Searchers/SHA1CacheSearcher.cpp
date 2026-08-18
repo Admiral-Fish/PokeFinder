@@ -66,12 +66,12 @@ void SHA1CacheSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer[i] = std::thread([=] { search(day, end); });
+            threadContainer[i] = std::thread([this, day] { search(day, end); });
         }
         else
         {
             Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([=] { search(day, mid); });
+            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
         }
     }
 

@@ -25,10 +25,10 @@
 TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
 {
     auto *filters = addAction(tr("Transfer Filters"));
-    connect(filters, &QAction::triggered, this, [=] { emit transferFilters(currentIndex()); });
+    connect(filters, &QAction::triggered, this, [this] { emit transferFilters(currentIndex()); });
 
     auto *settings = addAction(tr("Transfer Settings"));
-    connect(settings, &QAction::triggered, this, [=] { emit transferSettings(currentIndex()); });
+    connect(settings, &QAction::triggered, this, [this] { emit transferSettings(currentIndex()); });
 }
 
 void TabWidget::contextMenuEvent(QContextMenuEvent *event)

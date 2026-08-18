@@ -244,18 +244,18 @@ void Eggs4::search()
     auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile);
     searcher->setMaxProgress(256 * 24 * (maxDelay - minDelay + 1));
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator); });
+    auto *thread = QThread::create([searcher, generator] { searcher->startSearch(generator); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());

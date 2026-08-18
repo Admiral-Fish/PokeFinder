@@ -92,7 +92,7 @@ void ProfileDisplay3::profileIndexChanged(int index)
 void ProfileDisplay3::profileManager()
 {
     auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::profilesChanged, this, [=](int num) {
+    connect(manager, &ProfileManager3::profilesChanged, this, [this](int num) {
         updateProfiles();
         emit profilesChanged(num);
     });

@@ -687,7 +687,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
 
-        auto shinyPID = [this, &go, &battleAdvances]() {
+        auto shinyPID = [this, &go, &battleAdvances] {
             u16 low = go.nextUShort(8, &battleAdvances);
             u16 high = go.nextUShort(8, &battleAdvances);
             for (int i = 3; i < 16; i++)
