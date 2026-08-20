@@ -531,7 +531,6 @@ void PokeRadar::transferSettings(int index)
     transferLead(target.lead, source.lead, targetIsSearcher);
     target.initialAdvances->setText(source.initialAdvances->text());
     target.maxAdvances->setText(source.maxAdvances->text());
-    target.chainCount->setValue(source.chainCount->value());
 
     target.time->setCurrentIndex(source.time->currentIndex());
     target.dualSlot->setCheckState(source.dualSlot->checkState());
@@ -624,7 +623,7 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     controls.initialAdvances->setText(QStringLiteral("0"));
     controls.maxAdvances = new TextBox(rngInfo);
     controls.maxAdvances->setValues(InputType::Advance32Bit);
-    controls.maxAdvances->setText(searcherTab ? QStringLiteral("1000") : QStringLiteral("10000"));
+    controls.maxAdvances->setText(QStringLiteral("1000"));
     controls.lead = nullptr;
     auto setupLead = [this](ComboMenu *lead, bool generatorTab) {
         lead->addAction(tr("None"), toInt(Lead::None));
@@ -1208,6 +1207,44 @@ void PokeRadar::moveGeneratorPositionToVisibleTile(int x, int y)
 
 void PokeRadar::resetGrass(PokeRadarControls &controls)
 {
+    if (&controls == &searcher)
+    {
+        setupGrassField(controls, 9, 9, controls.fieldLocation, controls.fieldLocationOccurrence);
+        controls.startPosition = QPoint(4, 4);
+        controls.currentPosition = QPoint(4, 4);
+
+        if (controls.fieldLocation == 134 && controls.fieldLocationOccurrence == 1)
+        {
+            static constexpr std::array<std::pair<int, int>, 14> unreachable = { {
+                { 0, 0 },
+                { 0, 1 },
+                { 0, 2 },
+                { 0, 3 },
+                { 1, 0 },
+                { 1, 1 },
+                { 2, 0 },
+                { 6, 8 },
+                { 7, 7 },
+                { 7, 8 },
+                { 8, 5 },
+                { 8, 6 },
+                { 8, 7 },
+                { 8, 8 },
+            } };
+            for (const auto &position : unreachable)
+            {
+                controls.fieldGrass[getGrassFieldIndex(controls, QPoint(position.first, position.second))] = false;
+            }
+        }
+
+        updateGrassFromField(controls);
+        for (auto *tile : controls.grass)
+        {
+            tile->clearMark();
+        }
+        return;
+    }
+
     if (currentProfile != nullptr && controls.fieldLocation != 0xffff)
     {
         controls.fieldGrass = getPokeRadarGrassField(controls.fieldLocation, controls.fieldLocationOccurrence, currentProfile->getVersion());
