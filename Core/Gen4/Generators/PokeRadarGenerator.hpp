@@ -21,11 +21,18 @@
 #define POKERADARGENERATOR_HPP
 
 #include <Core/Gen4/States/PokeRadarState.hpp>
+#include <Core/Gen4/EncounterArea4.hpp>
+#include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen4/States/WildState4.hpp>
 #include <Core/Global.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <array>
+#include <optional>
 #include <utility>
 #include <vector>
+
+enum class Lead : u8;
 
 enum class PokeRadarChainType : u8
 {
@@ -60,6 +67,30 @@ private:
     PokeRadarChainType chainType;
     PokeRadarResult result;
     std::array<bool, 81> grass;
+};
+
+class PokeRadarPokemonGenerator
+{
+public:
+    PokeRadarPokemonGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, bool shiny, const EncounterArea4 &area,
+                              const Profile4 &profile, const WildStateFilter &filter);
+
+    std::vector<WildGeneratorState4> generate(u32 seed) const;
+    std::vector<WildGeneratorState4> generate(u32 seed, u8 index) const;
+
+private:
+    std::vector<WildGeneratorState4> generateNormal(u32 seed, std::optional<u8> index) const;
+    std::vector<WildGeneratorState4> generateShiny(u32 seed, std::optional<u8> index) const;
+
+    u32 initialAdvances;
+    u32 maxAdvances;
+    u32 offset;
+    Lead lead;
+    bool shiny;
+    EncounterArea4 area;
+    Profile4 profile;
+    WildStateFilter filter;
+    u16 tsv;
 };
 
 #endif // POKERADARGENERATOR_HPP

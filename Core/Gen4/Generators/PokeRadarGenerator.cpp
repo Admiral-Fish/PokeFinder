@@ -19,8 +19,59 @@
 
 #include "PokeRadarGenerator.hpp"
 
+#include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
+
+static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
+{
+    u32 advances = 0;
+
+    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+    {
+        advances += 1;
+    }
+
+    if ((version & Game::DP) != Game::None)
+    {
+        advances += 4;
+    }
+
+    if (!area.greatMarsh(version) && !area.safariZone(version))
+    {
+        advances += 1;
+    }
+
+    return advances;
+}
+
+static u16 getRadarItem(u8 rand, Lead lead, const PersonalInfo *info)
+{
+    constexpr u8 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
+
+    if (info->getItem(0) == info->getItem(1) && info->getItem(0) != 0)
+    {
+        return info->getItem(0);
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][0])
+    {
+        return 0;
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][1])
+    {
+        return info->getItem(0);
+    }
+    else
+    {
+        return info->getItem(1);
+    }
+}
 
 PokeRadarGenerator::PokeRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 chainCount, PokeRadarChainType chainType,
                                        PokeRadarResult result, const std::array<bool, 81> &grass) :
@@ -223,4 +274,234 @@ std::array<PokeRadarPatch, 4> PokeRadarGenerator::generatePatches(PokeRNG &go) c
 bool PokeRadarGenerator::isGrass(u8 x, u8 y) const
 {
     return (x != 4 || y != 4) && grass[y * 9 + x];
+}
+
+PokeRadarPokemonGenerator::PokeRadarPokemonGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Lead lead, bool shiny,
+                                                     const EncounterArea4 &area, const Profile4 &profile,
+                                                     const WildStateFilter &filter) :
+    initialAdvances(initialAdvances),
+    maxAdvances(maxAdvances),
+    offset(offset),
+    lead(lead),
+    shiny(shiny),
+    area(area),
+    profile(profile),
+    filter(filter),
+    tsv(profile.getTID() ^ profile.getSID())
+{
+}
+
+std::vector<WildGeneratorState4> PokeRadarPokemonGenerator::generate(u32 seed) const
+{
+    return shiny ? generateShiny(seed, std::nullopt) : generateNormal(seed, std::nullopt);
+}
+
+std::vector<WildGeneratorState4> PokeRadarPokemonGenerator::generate(u32 seed, u8 index) const
+{
+    return shiny ? generateShiny(seed, index) : generateNormal(seed, index);
+}
+
+std::vector<WildGeneratorState4> PokeRadarPokemonGenerator::generateNormal(u32 seed, std::optional<u8> index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 encounterSlot = index.value_or(EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter()));
+        if (!index.has_value() && !filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+
+        u8 buffer = 0;
+        bool cuteCharm = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        {
+            cuteCharm = true;
+            if (lead == Lead::CuteCharmF)
+            {
+                buffer = 25 * ((info->getGender() / 25) + 1);
+            }
+        }
+
+        bool cuteCharmFlag = false;
+        if (cuteCharm)
+        {
+            cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
+        }
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &battleAdvances) == 0 ? toInt(lead) : go.nextUShort<false>(25, &battleAdvances);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &battleAdvances);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u32 pid;
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort(&battleAdvances);
+                u16 high = go.nextUShort(&battleAdvances);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getRadarItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv),
+                                  encounterSlot, item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> PokeRadarPokemonGenerator::generateShiny(u32 seed, std::optional<u8> index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(offset);
+    u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
+        PokeRNG go(rng, jump);
+
+        u8 encounterSlot = index.value_or(EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter()));
+        if (!index.has_value() && !filter.compareEncounterSlot(encounterSlot))
+        {
+            rng.next();
+            continue;
+        }
+
+        const Slot &slot = area.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+        bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
+
+        auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+            if (lead == Lead::CuteCharmF)
+            {
+                return (pid & 0xff) >= info->getGender();
+            }
+            return (pid & 0xff) < info->getGender();
+        };
+
+        auto shinyPID = [this, &go, &battleAdvances]() {
+            u16 low = go.nextUShort(&battleAdvances) & 7;
+            u16 high = go.nextUShort(&battleAdvances) & 7;
+            u16 shinyValue = tsv >> 3;
+            for (int i = 0; i < 13; i++)
+            {
+                u16 pidBit = 1 << (i + 3);
+                if (shinyValue & (1 << i))
+                {
+                    if (go.nextUShort(&battleAdvances) & 1)
+                    {
+                        low |= pidBit;
+                    }
+                    else
+                    {
+                        high |= pidBit;
+                    }
+                }
+                else if (go.nextUShort(&battleAdvances) & 1)
+                {
+                    low |= pidBit;
+                    high |= pidBit;
+                }
+            }
+            return static_cast<u32>((high << 16) | low);
+        };
+
+        u32 pid;
+        if (cuteCharm && go.nextUShort<false>(3, &battleAdvances) != 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (!cuteCharmCheck(info, pid));
+        }
+        else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &battleAdvances) == 0)
+        {
+            do
+            {
+                pid = shinyPID();
+            } while (pid % 25 != toInt(lead));
+        }
+        else
+        {
+            pid = shinyPID();
+        }
+
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        u16 iv1 = go.nextUShort(&battleAdvances);
+        u16 iv2 = go.nextUShort(&battleAdvances);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        u16 item = getRadarItem(go.nextUShort(100, &battleAdvances), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
+                                  Utilities::getGender(pid, info), slot.getMaxLevel(), nature, Utilities::getShiny<true>(pid, tsv),
+                                  encounterSlot, item, slot.getSpecie(), 0, info);
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
 }

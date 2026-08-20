@@ -27,7 +27,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generators/PokeRadarGenerator.hpp>
-#include <Core/Gen4/Generators/WildGenerator4.hpp>
+#include <Core/Gen4/Generators/PokeRadarGenerator.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/PokeRadarSearcher.hpp>
 #include <Core/Util/Translator.hpp>
@@ -1671,14 +1671,13 @@ std::vector<WildGeneratorState4> PokeRadar::getPokemonStates(PokeRadarControls &
                            ignoreFilters ? ivMin : controls.filter->getMinIVs(), ignoreFilters ? ivMax : controls.filter->getMaxIVs(),
                            ignoreFilters ? natures : controls.filter->getNatures(), ignoreFilters ? powers : controls.filter->getHiddenPowers(),
                            encounterSlots);
-    WildGenerator4 generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, 1, Method::PokeRadar,
-                             getPokeRadarGeneratorLead(controls), false, getSelectedShiny(chainType), false, 0, *areaIter, *currentProfile,
-                             filter);
+    PokeRadarPokemonGenerator generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, 1,
+                                        getPokeRadarGeneratorLead(controls), getSelectedShiny(chainType), *areaIter, *currentProfile,
+                                        filter);
 
     if (!useChainSlot || controls.chainCount->value() == 0)
     {
-        return getSelectedShiny(chainType) ? generator.generatePokeRadarShiny(controls.seed->getUInt())
-                                           : generator.generatePokeRadar(controls.seed->getUInt());
+        return generator.generate(controls.seed->getUInt());
     }
 
     for (u8 slot = 0; slot < encounterSlots.size(); slot++)

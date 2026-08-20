@@ -37,7 +37,6 @@
 
 enum class Lead : u8;
 class WildSearcherState4;
-class WildSearcher4;
 
 class PokeRadarSearcher : public Searcher<Profile4, PokeRadarState>
 {
@@ -68,7 +67,15 @@ private:
     void addManualPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
     void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
     const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain);
+    u32 calculatePokemonBattleAdvances(u32 seed, u32 advances, Lead effectiveLead, bool shiny) const;
+    std::vector<WildSearcherState4> searchInitialSeeds(const std::vector<WildSearcherState4> &states) const;
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
+    std::vector<WildSearcherState4> searchPokemonIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index, Lead effectiveLead,
+                                                     bool shiny, bool applyFilter) const;
+    std::vector<WildSearcherState4> searchPokemonNormalIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
+                                                           Lead effectiveLead, bool applyFilter) const;
+    std::vector<WildSearcherState4> searchPokemonShinyIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
+                                                          Lead effectiveLead, bool applyFilter) const;
     std::optional<WildSearcherState4> validateChainZeroPokemon(const WildSearcherState4 &pokemon, bool allSlots) const;
     bool isShinyPatchType() const;
     bool patchMatchesType(const PokeRadarState &state) const;
@@ -90,8 +97,6 @@ private:
     EncounterArea4 area;
     WildStateFilter filter;
     std::atomic<u64> currentPhaseProgress;
-    mutable std::mutex currentSearcherMutex;
-    WildSearcher4 *currentSearcher;
     std::unordered_map<u64, std::vector<PostBattlePatch>> postBattlePatches;
     std::set<std::tuple<u32, u32, u32, u16, u8, u32>> resultKeys;
 };
