@@ -34,9 +34,6 @@ private slots:
 
     void generateHoneyTree_data();
     void generateHoneyTree();
-
-    void generatePokeRadar_data();
-    void generatePokeRadar();
 };
 
 #endif // WILDGENERATOR4TEST_HPP

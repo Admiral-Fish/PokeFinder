@@ -40,13 +40,16 @@ public:
     bool hasGrass() const;
     bool hasMark() const;
     void setMark(PokeRadarTileMark mark, bool continues = false);
+    void setSplitMark(PokeRadarTileMark leftMark, PokeRadarTileMark rightMark);
     void setGrass(bool grass);
 
 private:
     bool center;
     bool grass;
     bool continues;
+    bool split;
     PokeRadarTileMark mark;
+    PokeRadarTileMark rightMark;
 
     void mousePressEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;

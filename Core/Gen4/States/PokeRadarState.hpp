@@ -22,6 +22,7 @@
 
 #include <Core/Gen4/States/WildState4.hpp>
 #include <Core/Global.hpp>
+#include <algorithm>
 #include <array>
 #include <optional>
 #include <vector>
@@ -35,6 +36,13 @@ struct PokeRadarPatch
     bool strong;
     bool shiny;
     bool continueChain;
+};
+
+enum class PokeRadarResult : u8
+{
+    Defeat,
+    Capture,
+    ManualActivation
 };
 
 /**
@@ -59,7 +67,9 @@ public:
         displayPatchStrong(false),
         displayPatchShiny(false),
         patchesVisible(true),
-        patches(patches)
+        battlePatchesVisible(true),
+        patches(patches),
+        battlePatches(patches)
     {
     }
 
@@ -79,7 +89,11 @@ public:
         displayPatchStrong(state.displayPatchStrong),
         displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
+        battlePatchesVisible(state.battlePatchesVisible),
+        results(state.results),
+        resultPatches(state.resultPatches),
         patches(state.patches),
+        battlePatches(state.battlePatches),
         pokemon(pokemon)
     {
     }
@@ -100,7 +114,11 @@ public:
         displayPatchStrong(state.displayPatchStrong),
         displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
+        battlePatchesVisible(state.battlePatchesVisible),
+        results(state.results),
+        resultPatches(state.resultPatches),
         patches(state.patches),
+        battlePatches(state.battlePatches),
         pokemon(pokemon)
     {
     }
@@ -121,7 +139,11 @@ public:
         displayPatchStrong(state.displayPatchStrong),
         displayPatchShiny(state.displayPatchShiny),
         patchesVisible(state.patchesVisible),
+        battlePatchesVisible(state.battlePatchesVisible),
+        results(state.results),
+        resultPatches(state.resultPatches),
         patches(state.patches),
+        battlePatches(state.battlePatches),
         searcherPokemon(pokemon)
     {
     }
@@ -134,6 +156,16 @@ public:
     void setPatchesVisible(bool visible)
     {
         patchesVisible = visible;
+    }
+
+    bool getBattlePatchesVisible() const
+    {
+        return battlePatchesVisible;
+    }
+
+    void setBattlePatchesVisible(bool visible)
+    {
+        battlePatchesVisible = visible;
     }
 
     u32 getAdvances() const
@@ -154,6 +186,34 @@ public:
     bool hasBattleStartAdvances() const
     {
         return !battleStartAdvances.empty();
+    }
+
+    const std::vector<PokeRadarResult> &getResults() const
+    {
+        return results;
+    }
+
+    void setResults(const std::vector<PokeRadarResult> &results)
+    {
+        this->results = results;
+    }
+
+    void addResult(PokeRadarResult result)
+    {
+        if (std::ranges::find(results, result) == results.end())
+        {
+            results.emplace_back(result);
+        }
+    }
+
+    const std::optional<std::array<PokeRadarPatch, 4>> &getResultPatches(PokeRadarResult result) const
+    {
+        return resultPatches[static_cast<size_t>(result)];
+    }
+
+    void setResultPatches(PokeRadarResult result, const std::array<PokeRadarPatch, 4> &patches)
+    {
+        resultPatches[static_cast<size_t>(result)] = patches;
     }
 
     void setBattleStartAdvances(const std::vector<u32> &advances)
@@ -250,6 +310,16 @@ public:
         return patches;
     }
 
+    const std::array<PokeRadarPatch, 4> &getBattlePatches() const
+    {
+        return battlePatches;
+    }
+
+    void setBattlePatches(const std::array<PokeRadarPatch, 4> &patches)
+    {
+        battlePatches = patches;
+    }
+
     bool hasPokemon() const
     {
         return pokemon.has_value() || searcherPokemon.has_value();
@@ -286,8 +356,12 @@ private:
     bool displayPatchStrong;
     bool displayPatchShiny;
     bool patchesVisible;
+    bool battlePatchesVisible;
     std::vector<u32> battleStartAdvances;
+    std::vector<PokeRadarResult> results;
+    std::array<std::optional<std::array<PokeRadarPatch, 4>>, 3> resultPatches;
     std::array<PokeRadarPatch, 4> patches;
+    std::array<PokeRadarPatch, 4> battlePatches;
     std::optional<WildGeneratorState4> pokemon;
     std::optional<WildSearcherState4> searcherPokemon;
 };

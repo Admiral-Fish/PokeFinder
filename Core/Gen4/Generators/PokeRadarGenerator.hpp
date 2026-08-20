@@ -35,13 +35,6 @@ enum class PokeRadarChainType : u8
     StrongShiny
 };
 
-enum class PokeRadarResult : u8
-{
-    Defeat,
-    Capture,
-    ManualActivation
-};
-
 class PokeRadarGenerator
 {
 public:

@@ -19,15 +19,35 @@
 
 #include "PokeRadarTile.hpp"
 
+#include <QColor>
 #include <QMouseEvent>
 #include <QPainter>
+
+static QColor getMarkColor(PokeRadarTileMark mark)
+{
+    switch (mark)
+    {
+    case PokeRadarTileMark::Regular:
+        return QColor(QStringLiteral("#7fbd73"));
+    case PokeRadarTileMark::Strong:
+        return QColor(QStringLiteral("#1f5f2f"));
+    case PokeRadarTileMark::Shiny:
+        return QColor(QStringLiteral("#d9c63f"));
+    case PokeRadarTileMark::None:
+        return QColor(QStringLiteral("#5a5a5a"));
+    }
+
+    return QColor(QStringLiteral("#5a5a5a"));
+}
 
 PokeRadarTile::PokeRadarTile(bool center, QWidget *parent) :
     QFrame(parent),
     center(center),
     grass(!center),
     continues(false),
-    mark(PokeRadarTileMark::None)
+    split(false),
+    mark(PokeRadarTileMark::None),
+    rightMark(PokeRadarTileMark::None)
 {
     setFrameShape(QFrame::StyledPanel);
     setFixedSize(22, 22);
@@ -37,7 +57,9 @@ PokeRadarTile::PokeRadarTile(bool center, QWidget *parent) :
 void PokeRadarTile::clearMark()
 {
     continues = false;
+    split = false;
     mark = PokeRadarTileMark::None;
+    rightMark = PokeRadarTileMark::None;
     updateColor();
 }
 
@@ -48,7 +70,7 @@ bool PokeRadarTile::hasGrass() const
 
 bool PokeRadarTile::hasMark() const
 {
-    return mark != PokeRadarTileMark::None;
+    return mark != PokeRadarTileMark::None || split;
 }
 
 void PokeRadarTile::setMark(PokeRadarTileMark mark, bool continues)
@@ -56,7 +78,21 @@ void PokeRadarTile::setMark(PokeRadarTileMark mark, bool continues)
     if (!center)
     {
         this->continues = continues;
+        split = false;
         this->mark = mark;
+        rightMark = PokeRadarTileMark::None;
+        updateColor();
+    }
+}
+
+void PokeRadarTile::setSplitMark(PokeRadarTileMark leftMark, PokeRadarTileMark rightMark)
+{
+    if (!center)
+    {
+        continues = false;
+        split = true;
+        mark = leftMark;
+        this->rightMark = rightMark;
         updateColor();
     }
 }
@@ -69,7 +105,9 @@ void PokeRadarTile::setGrass(bool grass)
         if (!grass)
         {
             continues = false;
+            split = false;
             mark = PokeRadarTileMark::None;
+            rightMark = PokeRadarTileMark::None;
         }
         updateColor();
     }
@@ -91,7 +129,19 @@ void PokeRadarTile::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
 
-    if (mark == PokeRadarTileMark::Shiny || (mark != PokeRadarTileMark::None && continues))
+    if (split)
+    {
+        QPainter painter(this);
+        QRect inner = rect().adjusted(1, 1, -1, -1);
+        QRect left = inner;
+        left.setWidth(inner.width() / 2);
+        QRect right = inner;
+        right.setLeft(left.right() + 1);
+        painter.fillRect(left, getMarkColor(mark));
+        painter.fillRect(right, getMarkColor(rightMark));
+    }
+
+    if (!split && (mark == PokeRadarTileMark::Shiny || (mark != PokeRadarTileMark::None && continues)))
     {
         QPainter painter(this);
         painter.setPen(palette().color(QPalette::WindowText));
@@ -101,7 +151,11 @@ void PokeRadarTile::paintEvent(QPaintEvent *event)
 
 void PokeRadarTile::updateColor()
 {
-    if (mark == PokeRadarTileMark::Shiny)
+    if (split)
+    {
+        setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #5a5a5a; border: 1px solid black; }"));
+    }
+    else if (mark == PokeRadarTileMark::Shiny)
     {
         setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #d9c63f; border: 1px solid black; }"));
     }

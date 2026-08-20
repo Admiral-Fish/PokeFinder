@@ -29,6 +29,7 @@
 #include <array>
 #include <atomic>
 #include <mutex>
+#include <optional>
 #include <set>
 #include <tuple>
 #include <unordered_map>
@@ -68,6 +69,7 @@ private:
     void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
     const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain);
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
+    std::optional<WildSearcherState4> validateChainZeroPokemon(const WildSearcherState4 &pokemon, bool allSlots) const;
     bool isShinyPatchType() const;
     bool patchMatchesType(const PokeRadarState &state) const;
 

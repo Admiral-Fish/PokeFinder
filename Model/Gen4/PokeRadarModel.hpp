@@ -24,6 +24,7 @@
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
 #include <QString>
+#include <array>
 
 class PokeRadarModel4 : public TableModel<PokeRadarState>, public IRNGProvider4
 {
@@ -44,11 +45,12 @@ public:
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     void setShowSearcherBattleAdvances(bool flag);
-    void setShowContinue(bool flag);
     void setShowStats(bool flag);
 
 private:
     QString getCoordinates(const PokeRadarState &state, int type) const;
+    QString getCoordinates(const std::array<PokeRadarPatch, 4> &patches, bool visible, int type) const;
+    QString getResults(const PokeRadarState &state) const;
     QString getSearcherCoordinates(const PokeRadarState &state) const;
     QString getSkip(const PokeRadarState &state) const;
     QVariant getPokemonData(const PokeRadarState &state, int column) const;
@@ -57,7 +59,6 @@ private:
 
     bool searcher;
     bool showSearcherBattleAdvances;
-    bool showContinue;
     bool showStats;
 };
 

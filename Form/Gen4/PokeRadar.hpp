@@ -63,6 +63,7 @@ struct PokeRadarControls
     QSpinBox *chainCount;
     ComboBox *chainType;
     ComboBox *result;
+    CheckList *results;
     ComboBoxProxy *location;
     ComboBox *pokemon;
     ComboBox *time;
@@ -142,9 +143,11 @@ private:
     bool getSelectedShiny(PokeRadarChainType chainType) const;
     bool matchesPatchFilter(const PokeRadarControls &controls, const PokeRadarState &state) const;
     void clearGrassMarks();
+    void clearGrassMarks(const PokeRadarControls &controls);
     void jumpToBattleAdv();
-    void markSelectedPatches(const PokeRadarControls &controls);
-    void markPatches(const PokeRadarState &state, bool showContinue);
+    void markSearcherPatches();
+    void markSelectedPatches(const PokeRadarControls &controls, bool battle);
+    void markPatches(const PokeRadarState &state, bool battle, bool showContinue);
     void choosePosition();
     bool moveGeneratorPositionToTile(int x, int y);
     void moveGeneratorPositionToVisibleTile(int x, int y);

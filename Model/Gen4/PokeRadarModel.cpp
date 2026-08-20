@@ -28,14 +28,13 @@ PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) :
     TableModel(parent),
     searcher(searcher),
     showSearcherBattleAdvances(false),
-    showContinue(true),
     showStats(false)
 {
 }
 
 int PokeRadarModel4::columnCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : searcher ? 26 : 26;
+    return parent.isValid() ? 0 : searcher ? 27 : 30;
 }
 
 QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
@@ -49,7 +48,7 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     int column = index.column();
     if (searcher)
     {
-        if (column < 9)
+        if (column < 10)
         {
             switch (column)
             {
@@ -82,14 +81,16 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
                 return getSkip(state);
             case 8:
                 return getSearcherCoordinates(state);
+            case 9:
+                return getResults(state);
             }
         }
 
-        return getPokemonData(state, column - 9);
+        return getPokemonData(state, column - 10);
     }
 
     column = mapGeneratorColumn(column);
-    if ((column == 1 || column == 2 || column > 7) && !state.hasPokemon())
+    if ((column == 1 || column == 2 || column > 12) && !state.hasPokemon())
     {
         return QStringLiteral("-");
     }
@@ -99,9 +100,9 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     case 0:
         return state.getAdvances();
     case 1:
-        return state.getDisplayedBattleAdvances();
-    case 2:
         return state.getDisplayedPatchAdvances();
+    case 2:
+        return state.getDisplayedBattleAdvances();
     case 3:
         return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
     case 4:
@@ -115,9 +116,13 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     case 8:
         return getCoordinates(state, 3);
     case 9:
+        return getCoordinates(state.getBattlePatches(), state.getBattlePatchesVisible(), 0);
     case 10:
+        return getCoordinates(state.getBattlePatches(), state.getBattlePatchesVisible(), 1);
     case 11:
+        return getCoordinates(state.getBattlePatches(), state.getBattlePatchesVisible(), 2);
     case 12:
+        return getCoordinates(state.getBattlePatches(), state.getBattlePatchesVisible(), 3);
     case 13:
     case 14:
     case 15:
@@ -131,7 +136,11 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     case 23:
     case 24:
     case 25:
-        return getPokemonData(state, column - 9);
+    case 26:
+    case 27:
+    case 28:
+    case 29:
+        return getPokemonData(state, column - 13);
     }
 
     return QVariant();
@@ -163,8 +172,10 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
                 return tr("Skip");
             case 8:
                 return tr("Patch");
+            case 9:
+                return tr("Activation");
             default:
-                return getPokemonHeader(section - 9);
+                return getPokemonHeader(section - 10);
             }
         }
 
@@ -174,9 +185,9 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
         case 0:
             return tr("Advances");
         case 1:
-            return tr("Battle Adv");
-        case 2:
             return tr("Patch Adv");
+        case 2:
+            return tr("Battle Adv");
         case 3:
             return tr("Chatot");
         case 4:
@@ -190,38 +201,46 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
         case 8:
             return tr("Shiny");
         case 9:
-            return tr("Item");
+            return tr("Battle Reg");
         case 10:
-            return tr("Slot");
+            return tr("Battle Str");
         case 11:
-            return tr("Level");
+            return tr("Battle Cont");
         case 12:
-            return tr("PID");
+            return tr("Battle Shiny");
         case 13:
-            return tr("Shiny");
+            return tr("Item");
         case 14:
-            return tr("Nature");
+            return tr("Slot");
         case 15:
-            return tr("Ability");
+            return tr("Level");
         case 16:
-            return tr("HP");
+            return tr("PID");
         case 17:
-            return tr("Atk");
+            return tr("Shiny");
         case 18:
-            return tr("Def");
+            return tr("Nature");
         case 19:
-            return tr("SpA");
+            return tr("Ability");
         case 20:
-            return tr("SpD");
+            return tr("HP");
         case 21:
-            return tr("Spe");
+            return tr("Atk");
         case 22:
-            return tr("Hidden");
+            return tr("Def");
         case 23:
-            return tr("Power");
+            return tr("SpA");
         case 24:
-            return tr("Gender");
+            return tr("SpD");
         case 25:
+            return tr("Spe");
+        case 26:
+            return tr("Hidden");
+        case 27:
+            return tr("Power");
+        case 28:
+            return tr("Gender");
+        case 29:
             return tr("Characteristic");
         }
     }
@@ -347,13 +366,18 @@ QString PokeRadarModel4::getSkip(const PokeRadarState &state) const
 
 QString PokeRadarModel4::getCoordinates(const PokeRadarState &state, int type) const
 {
-    if (!state.getPatchesVisible())
+    return getCoordinates(state.getPatches(), state.getPatchesVisible(), type);
+}
+
+QString PokeRadarModel4::getCoordinates(const std::array<PokeRadarPatch, 4> &statePatches, bool visible, int type) const
+{
+    if (!visible)
     {
         return QStringLiteral("-");
     }
 
     std::vector<PokeRadarPatch> patches;
-    for (const auto &patch : state.getPatches())
+    for (const auto &patch : statePatches)
     {
         if (!patch.active)
         {
@@ -376,6 +400,28 @@ QString PokeRadarModel4::getCoordinates(const PokeRadarState &state, int type) c
     }
 
     return coordinates.empty() ? QStringLiteral("-") : coordinates.join(QStringLiteral(", "));
+}
+
+QString PokeRadarModel4::getResults(const PokeRadarState &state) const
+{
+    QStringList results;
+    for (PokeRadarResult result : state.getResults())
+    {
+        switch (result)
+        {
+        case PokeRadarResult::ManualActivation:
+            results.append(tr("Manual"));
+            break;
+        case PokeRadarResult::Capture:
+            results.append(tr("Capture"));
+            break;
+        case PokeRadarResult::Defeat:
+            results.append(tr("Defeat"));
+            break;
+        }
+    }
+
+    return results.empty() ? QStringLiteral("-") : results.join(QStringLiteral(" / "));
 }
 
 QString PokeRadarModel4::getSearcherCoordinates(const PokeRadarState &state) const
@@ -413,7 +459,7 @@ void PokeRadarModel4::setShowStats(bool flag)
         return;
     }
 
-    int first = 16;
+    int first = searcher ? 17 : 20;
     emit dataChanged(index(0, first), index(rowCount() - 1, first + 5), { Qt::DisplayRole });
 }
 
@@ -430,9 +476,4 @@ void PokeRadarModel4::setShowSearcherBattleAdvances(bool flag)
     {
         emit dataChanged(index(0, 4), index(rowCount() - 1, 4), { Qt::DisplayRole });
     }
-}
-
-void PokeRadarModel4::setShowContinue(bool flag)
-{
-    showContinue = flag;
 }

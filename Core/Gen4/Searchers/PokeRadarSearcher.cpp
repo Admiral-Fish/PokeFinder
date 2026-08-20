@@ -23,7 +23,11 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <limits>
 #include <mutex>
@@ -38,6 +42,28 @@ static bool isPokeRadarChainLead(Lead lead)
 static Lead getPokeRadarSearcherLead(Lead lead, bool chain)
 {
     return !chain || isPokeRadarChainLead(lead) ? lead : Lead::None;
+}
+
+static u16 getRadarItem(u8 rand, Lead lead, const PersonalInfo *info)
+{
+    constexpr u8 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
+
+    if (info->getItem(0) == info->getItem(1) && info->getItem(0) != 0)
+    {
+        return info->getItem(0);
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][0])
+    {
+        return 0;
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][1])
+    {
+        return info->getItem(0);
+    }
+    else
+    {
+        return info->getItem(1);
+    }
 }
 
 PokeRadarSearcher::PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u32 minPatchDistance,
@@ -152,7 +178,18 @@ void PokeRadarSearcher::searchPokemon(const std::array<u8, 6> &min, const std::a
             }
 
             currentPhaseProgress = (i * 100) / pokemon.size();
-            addPatchMatches(pokemon[i], chain ? 1 : 0, chain ? maxChain : 0);
+            if (!chain)
+            {
+                auto state = validateChainZeroPokemon(pokemon[i], allSlots);
+                if (state.has_value())
+                {
+                    addPatchMatches(*state, 0, 0);
+                }
+            }
+            else
+            {
+                addPatchMatches(pokemon[i], 1, maxChain);
+            }
         }
 
         currentPhaseProgress = 0;
@@ -163,6 +200,94 @@ void PokeRadarSearcher::searchPokemon(const std::array<u8, 6> &min, const std::a
         }
     }
 
+}
+
+std::optional<WildSearcherState4> PokeRadarSearcher::validateChainZeroPokemon(const WildSearcherState4 &pokemon, bool allSlots) const
+{
+    if (pokemon.getAdvances() == 0)
+    {
+        return std::nullopt;
+    }
+
+    PokeRNG go(pokemon.getSeed(), pokemon.getAdvances());
+
+    u8 encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100), area.getEncounter());
+    if (!allSlots && !encounterSlots[encounterSlot])
+    {
+        return std::nullopt;
+    }
+
+    const Slot &slot = area.getPokemon(encounterSlot);
+    const PersonalInfo *info = slot.getInfo();
+
+    u8 buffer = 0;
+    bool cuteCharm = false;
+    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+    {
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 * ((info->getGender() / 25) + 1);
+        }
+    }
+
+    bool cuteCharmFlag = false;
+    if (cuteCharm)
+    {
+        cuteCharmFlag = go.nextUShort<false>(3) != 0;
+    }
+
+    u8 nature;
+    if (lead <= Lead::SynchronizeEnd)
+    {
+        nature = go.nextUShort<false>(2) == 0 ? toInt(lead) : go.nextUShort<false>(25);
+    }
+    else
+    {
+        nature = go.nextUShort<false>(25);
+    }
+
+    u32 pid;
+    if (cuteCharmFlag)
+    {
+        pid = buffer + nature;
+    }
+    else
+    {
+        do
+        {
+            u16 low = go.nextUShort();
+            u16 high = go.nextUShort();
+            pid = (high << 16) | low;
+        } while (pid % 25 != nature);
+    }
+
+    u16 iv1 = go.nextUShort();
+    u16 iv2 = go.nextUShort();
+    std::array<u8, 6> ivs;
+    ivs[0] = iv1 & 31;
+    ivs[1] = (iv1 >> 5) & 31;
+    ivs[2] = (iv1 >> 10) & 31;
+    ivs[3] = (iv2 >> 5) & 31;
+    ivs[4] = (iv2 >> 10) & 31;
+    ivs[5] = iv2 & 31;
+
+    u16 item = getRadarItem(go.nextUShort(100), lead, info);
+    WildSearcherState4 state(pokemon.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
+                             Utilities::getShiny<true>(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
+    state.setAdvances(pokemon.getAdvances() - 1);
+
+    if (state.getPID() != pokemon.getPID() || state.getIVs() != pokemon.getIVs())
+    {
+        return std::nullopt;
+    }
+
+    if (!filter.compareState(static_cast<const WildSearcherState &>(state)))
+    {
+        return std::nullopt;
+    }
+
+    return state;
 }
 
 void PokeRadarSearcher::cancelSearch()
