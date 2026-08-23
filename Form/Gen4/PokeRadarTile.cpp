@@ -27,7 +27,7 @@ static QColor getMarkColor(PokeRadarTileMark mark)
 {
     switch (mark)
     {
-    case PokeRadarTileMark::Regular:
+    case PokeRadarTileMark::Weak:
         return QColor(QStringLiteral("#7fbd73"));
     case PokeRadarTileMark::Strong:
         return QColor(QStringLiteral("#1f5f2f"));
@@ -71,6 +71,16 @@ bool PokeRadarTile::hasGrass() const
 bool PokeRadarTile::hasMark() const
 {
     return mark != PokeRadarTileMark::None || split;
+}
+
+bool PokeRadarTile::isContinueMark() const
+{
+    return continues;
+}
+
+PokeRadarTileMark PokeRadarTile::getMark() const
+{
+    return mark;
 }
 
 void PokeRadarTile::setMark(PokeRadarTileMark mark, bool continues)
@@ -163,7 +173,7 @@ void PokeRadarTile::updateColor()
     {
         setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #1f5f2f; border: 1px solid black; }"));
     }
-    else if (mark == PokeRadarTileMark::Regular)
+    else if (mark == PokeRadarTileMark::Weak)
     {
         setStyleSheet(QStringLiteral("PokeRadarTile { background-color: #7fbd73; border: 1px solid black; }"));
     }

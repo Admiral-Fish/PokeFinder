@@ -36,9 +36,9 @@ enum class Lead : u8;
 
 enum class PokeRadarChainType : u8
 {
-    Regular,
+    Weak,
     Strong,
-    RegularShiny,
+    WeakShiny,
     StrongShiny
 };
 
@@ -52,13 +52,13 @@ public:
 
     std::vector<PokeRadarState> generate(u32 seed) const;
     PokeRadarState generate(u32 seed, u32 advances, u32 patchAdvances) const;
-    PokeRadarState generatePrevious(u32 seed, u32 advances) const;
+    PokeRadarState generatePrevious(u32 seed, u32 advances, u32 typeAdvances = 0) const;
     u32 getAdvanceConsumption(u32 seed, u32 advances, PokeRadarResult result) const;
     u32 getPostBattleAdvanceConsumption(const std::array<PokeRadarPatch, 4> &patches) const;
 
 private:
     PokeRadarPatch buildPatch(u8 ring, u8 rand) const;
-    std::array<PokeRadarPatch, 4> generatePatches(PokeRNG &rng) const;
+    std::array<PokeRadarPatch, 4> generatePatches(PokeRNG &rng, u32 typeAdvances = 0) const;
     bool isGrass(u8 x, u8 y) const;
 
     u32 initialAdvances;

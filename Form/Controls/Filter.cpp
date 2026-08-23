@@ -178,6 +178,7 @@ void Filter::disableControls(Controls control)
 
     if ((control & Controls::DisableFilter) != Controls::None)
     {
+        ui->checkBoxDisableFilters->setChecked(false);
         ui->checkBoxDisableFilters->hide();
     }
 

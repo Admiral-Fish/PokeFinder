@@ -161,9 +161,9 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
             case 2:
                 return tr("Hour");
             case 3:
-                return tr("Advances");
+                return tr("Target Advance");
             case 4:
-                return showSearcherBattleAdvances ? tr("Battle Adv") : tr("Patch Adv");
+                return tr("Patch");
             case 5:
                 return tr("Distance");
             case 6:
@@ -193,7 +193,7 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
         case 4:
             return tr("Skip");
         case 5:
-            return tr("Regular");
+            return tr("Weak");
         case 6:
             return tr("Strong");
         case 7:
@@ -201,7 +201,7 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
         case 8:
             return tr("Shiny");
         case 9:
-            return tr("Battle Reg");
+            return tr("Battle Weak");
         case 10:
             return tr("Battle Str");
         case 11:

@@ -124,7 +124,7 @@ PokeRadarState PokeRadarGenerator::generate(u32 seed, u32 advances, u32 patchAdv
     return PokeRadarState(display.nextUShort(), advances, generatePatches(go));
 }
 
-PokeRadarState PokeRadarGenerator::generatePrevious(u32 seed, u32 advances) const
+PokeRadarState PokeRadarGenerator::generatePrevious(u32 seed, u32 advances, u32 typeAdvances) const
 {
     PokeRNG display(seed);
     PokeRNG go(seed);
@@ -137,7 +137,7 @@ PokeRadarState PokeRadarGenerator::generatePrevious(u32 seed, u32 advances) cons
     {
         go.jump(advances - 1);
     }
-    return PokeRadarState(display.nextUShort(), advances == 0 ? 0 : advances - 1, generatePatches(go));
+    return PokeRadarState(display.nextUShort(), advances == 0 ? 0 : advances - 1, generatePatches(go, typeAdvances));
 }
 
 u32 PokeRadarGenerator::getAdvanceConsumption(u32 seed, u32 advances, PokeRadarResult patchResult) const
@@ -222,7 +222,7 @@ PokeRadarPatch PokeRadarGenerator::buildPatch(u8 ring, u8 rand) const
     return patch;
 }
 
-std::array<PokeRadarPatch, 4> PokeRadarGenerator::generatePatches(PokeRNG &go) const
+std::array<PokeRadarPatch, 4> PokeRadarGenerator::generatePatches(PokeRNG &go, u32 typeAdvances) const
 {
     constexpr std::array<u8, 4> ringTileCount = { 32, 24, 16, 8 };
     std::array<PokeRadarPatch, 4> patches;
@@ -232,6 +232,8 @@ std::array<PokeRadarPatch, 4> PokeRadarGenerator::generatePatches(PokeRNG &go) c
     {
         patches[ring] = buildPatch(ring, go.nextUShort<false>(ringTileCount[ring]));
     }
+
+    go.jump(typeAdvances);
 
     if (effectiveResult != PokeRadarResult::ManualActivation)
     {

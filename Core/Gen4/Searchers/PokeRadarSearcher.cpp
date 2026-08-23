@@ -58,6 +58,21 @@ static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
     return advances;
 }
 
+static u32 getPostBattlePatchAdvances(u32 battleAdvances, Game version)
+{
+    if ((version & Game::DP) != Game::None && battleAdvances >= 4)
+    {
+        battleAdvances -= 4;
+    }
+
+    return battleAdvances;
+}
+
+static u32 getPostBattlePatchTypeAdvances(Game version)
+{
+    return (version & Game::DP) != Game::None ? 4 : 0;
+}
+
 static bool isPokeRadarChainLead(Lead lead)
 {
     return lead <= Lead::SynchronizeEnd || lead == Lead::CuteCharmF || lead == Lead::CuteCharmM;
@@ -246,22 +261,24 @@ void PokeRadarSearcher::searchPokemon(const std::array<u8, 6> &min, const std::a
 
 }
 
-std::vector<WildSearcherState4> PokeRadarSearcher::searchInitialSeeds(const std::vector<WildSearcherState4> &states) const
+std::vector<WildSearcherState4> PokeRadarSearcher::searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset) const
 {
     std::vector<WildSearcherState4> results;
+    u32 startAdvance = minAdvance + displayAdvanceOffset;
+    u32 endAdvance = maxAdvance + displayAdvanceOffset;
 
     for (WildSearcherState4 state : states)
     {
-        PokeRNGR rng(state.getSeed(), minAdvance);
+        PokeRNGR rng(state.getSeed(), startAdvance);
         u32 seed = rng.getSeed();
-        for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
+        for (u32 cnt = startAdvance; cnt <= endAdvance; cnt++)
         {
             u8 hour = (seed >> 16) & 0xff;
             u16 delay = seed & 0xffff;
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
                 state.setSeed(seed);
-                state.setAdvances(cnt);
+                state.setAdvances(cnt - displayAdvanceOffset);
                 results.emplace_back(state);
             }
 
@@ -276,7 +293,8 @@ std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonIVs(u8 hp, u8 at
                                                                     Lead effectiveLead, bool shiny, bool applyFilter) const
 {
     return searchInitialSeeds(shiny ? searchPokemonShinyIVs(hp, atk, def, spa, spd, spe, index, effectiveLead, applyFilter)
-                                    : searchPokemonNormalIVs(hp, atk, def, spa, spd, spe, index, effectiveLead, applyFilter));
+                                    : searchPokemonNormalIVs(hp, atk, def, spa, spd, spe, index, effectiveLead, applyFilter),
+                              shiny && applyFilter ? 2 : 0);
 }
 
 std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonNormalIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
@@ -867,24 +885,27 @@ const std::vector<PokeRadarSearcher::PostBattlePatch> &PokeRadarSearcher::getPos
             break;
         }
 
-        u32 battleAdvances = calculatePokemonBattleAdvances(seed, advances, effectiveLead, isShinyPatchType());
-        PokeRadarState patchState = radar.generatePrevious(seed, battleAdvances);
+        u32 battleAdvances = calculatePokemonBattleAdvances(seed, advances, effectiveLead, false);
+        u32 battlePatchAdvances = getPostBattlePatchAdvances(battleAdvances, profile.getVersion());
+        u32 battlePatchTypeAdvances = getPostBattlePatchTypeAdvances(profile.getVersion());
+        PokeRadarState patchState = radar.generatePrevious(seed, battlePatchAdvances, battlePatchTypeAdvances);
         if (!patchMatchesType(patchState))
         {
             continue;
         }
 
-        u32 patchAdvances = patchState.getAdvances();
         u32 postBattleAdvance = battleAdvances + 4 + radar.getPostBattleAdvanceConsumption(patchState.getPatches());
+        u32 displayAdvance = advances == 0 ? 0 : advances - 1;
+        u32 patchAdvances = patchState.getAdvances();
         auto found = indexByPatchAdvance.find(patchAdvances);
         if (found == indexByPatchAdvance.end())
         {
             indexByPatchAdvance.emplace(patchAdvances, patches.size());
-            patches.emplace_back(PostBattlePatch { patchState, { { advances, postBattleAdvance } } });
+            patches.emplace_back(PostBattlePatch { patchState, { { displayAdvance, postBattleAdvance } } });
         }
         else
         {
-            patches[found->second].battleStarts.emplace_back(BattleStart { advances, postBattleAdvance });
+            patches[found->second].battleStarts.emplace_back(BattleStart { displayAdvance, postBattleAdvance });
         }
     }
 
@@ -904,7 +925,7 @@ const std::vector<PokeRadarSearcher::PostBattlePatch> &PokeRadarSearcher::getPos
 
 bool PokeRadarSearcher::isShinyPatchType() const
 {
-    return chainType == PokeRadarChainType::RegularShiny || chainType == PokeRadarChainType::StrongShiny;
+    return chainType == PokeRadarChainType::WeakShiny || chainType == PokeRadarChainType::StrongShiny;
 }
 
 bool PokeRadarSearcher::patchMatchesType(const PokeRadarState &state) const

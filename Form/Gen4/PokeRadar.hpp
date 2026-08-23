@@ -147,7 +147,8 @@ private:
     void jumpToBattleAdv();
     void markSearcherPatches();
     void markSelectedPatches(const PokeRadarControls &controls, bool battle);
-    void markPatches(const PokeRadarState &state, bool battle, bool showContinue);
+    void markPatches(const PokeRadarState &state, bool battle, bool showContinue,
+                     std::optional<PokeRadarChainType> forceContinueChainType = std::nullopt);
     void choosePosition();
     bool moveGeneratorPositionToTile(int x, int y);
     void moveGeneratorPositionToVisibleTile(int x, int y);

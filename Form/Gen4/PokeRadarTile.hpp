@@ -25,7 +25,7 @@
 enum class PokeRadarTileMark
 {
     None,
-    Regular,
+    Weak,
     Strong,
     Shiny
 };
@@ -39,6 +39,8 @@ public:
     void clearMark();
     bool hasGrass() const;
     bool hasMark() const;
+    bool isContinueMark() const;
+    PokeRadarTileMark getMark() const;
     void setMark(PokeRadarTileMark mark, bool continues = false);
     void setSplitMark(PokeRadarTileMark leftMark, PokeRadarTileMark rightMark);
     void setGrass(bool grass);

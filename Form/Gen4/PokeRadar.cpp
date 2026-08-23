@@ -150,6 +150,21 @@ static u8 getRadarLocationOccurrence(const std::vector<EncounterArea4> &encounte
     return std::max<u8>(occurrence, 1);
 }
 
+static u32 getPostBattlePatchAdvances(u32 battleAdvances, Game version)
+{
+    if ((version & Game::DP) != Game::None && battleAdvances >= 4)
+    {
+        battleAdvances -= 4;
+    }
+
+    return battleAdvances;
+}
+
+static u32 getPostBattlePatchTypeAdvances(Game version)
+{
+    return (version & Game::DP) != Game::None ? 4 : 0;
+}
+
 static int getGrassFieldIndex(const PokeRadarControls &controls, const QPoint &position)
 {
     return position.y() * controls.fieldWidth + position.x();
@@ -334,7 +349,7 @@ static std::string getSearcherResultKey(const PokeRadarState &state)
 
 static PokeRadarTileMark getTileMark(const PokeRadarPatch &patch)
 {
-    return patch.shiny ? PokeRadarTileMark::Shiny : patch.strong ? PokeRadarTileMark::Strong : PokeRadarTileMark::Regular;
+    return patch.shiny ? PokeRadarTileMark::Shiny : patch.strong ? PokeRadarTileMark::Strong : PokeRadarTileMark::Weak;
 }
 
 static std::optional<PokeRadarPatch> getPatchAt(const std::array<PokeRadarPatch, 4> &patches, u8 x, u8 y)
@@ -652,6 +667,7 @@ void PokeRadar::transferFilters(int index)
     if (index == 0)
     {
         searcher.filter->copyFrom(generator.filter);
+        searcher.filter->disableControls(Controls::DisableFilter);
     }
     else
     {
@@ -702,12 +718,16 @@ QGroupBox *PokeRadar::createFilters(PokeRadarControls &controls, bool searcherTa
     controls.patchFilter = nullptr;
     controls.filter = new Filter(filters);
     controls.filter->disableControls(Controls::Height | Controls::Weight);
+    if (searcherTab)
+    {
+        controls.filter->disableControls(Controls::DisableFilter);
+    }
 
     if (!searcherTab)
     {
         controls.patchFilter = new CheckList(controls.filter);
         controls.patchFilter->addItem(tr("None"));
-        controls.patchFilter->addItem(tr("Regular"));
+        controls.patchFilter->addItem(tr("Weak"));
         controls.patchFilter->addItem(tr("Strong"));
         controls.patchFilter->addItem(tr("Shiny"));
         controls.filter->addCustomControlAfterShiny(tr("Patch"), controls.patchFilter);
@@ -794,9 +814,9 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     if (!searcherTab)
     {
         controls.chainType = new ComboBox(rngInfo);
-        controls.chainType->addItem(tr("Regular"), static_cast<int>(PokeRadarChainType::Regular));
+        controls.chainType->addItem(tr("Weak"), static_cast<int>(PokeRadarChainType::Weak));
         controls.chainType->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
-        controls.chainType->addItem(tr("Regular Shiny"), static_cast<int>(PokeRadarChainType::RegularShiny));
+        controls.chainType->addItem(tr("Weak Shiny"), static_cast<int>(PokeRadarChainType::WeakShiny));
         controls.chainType->addItem(tr("Strong Shiny"), static_cast<int>(PokeRadarChainType::StrongShiny));
     }
     controls.result = nullptr;
@@ -880,7 +900,7 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
                         control->results->setEnabled(value != 0);
                         if (value == 0)
                         {
-                            control->results->setChecks(std::vector<bool> { true, false, false });
+                            control->results->setChecks(std::vector<bool> { false, false, false });
                         }
                     }
                     updateSearcherPatchTypes();
@@ -930,13 +950,13 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     else
     {
         controls.patchTypes = new ComboBox(settings);
-        controls.patchTypes->addItem(tr("Regular"), static_cast<int>(PokeRadarChainType::Regular));
+        controls.patchTypes->addItem(tr("Weak"), static_cast<int>(PokeRadarChainType::Weak));
         controls.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
         controls.results = new CheckList(settings);
         controls.results->addItem(tr("Manual"), static_cast<int>(PokeRadarResult::ManualActivation));
         controls.results->addItem(tr("Capture"), static_cast<int>(PokeRadarResult::Capture));
         controls.results->addItem(tr("Defeat"), static_cast<int>(PokeRadarResult::Defeat));
-        controls.results->setChecks(std::vector<bool> { true, false, false });
+        controls.results->setChecks(std::vector<bool> { false, false, false });
         controls.results->setEnabled(controls.chainCount->value() != 0);
     }
     controls.levelMin = new QSpinBox(settings);
@@ -1111,7 +1131,7 @@ bool PokeRadar::getSelectedShiny(const PokeRadarControls &controls) const
 
 bool PokeRadar::getSelectedShiny(PokeRadarChainType chainType) const
 {
-    return chainType == PokeRadarChainType::RegularShiny || chainType == PokeRadarChainType::StrongShiny;
+    return chainType == PokeRadarChainType::WeakShiny || chainType == PokeRadarChainType::StrongShiny;
 }
 
 bool PokeRadar::matchesPatchFilter(const PokeRadarControls &controls, const PokeRadarState &state) const
@@ -1127,28 +1147,37 @@ bool PokeRadar::matchesPatchFilter(const PokeRadarControls &controls, const Poke
         return true;
     }
 
-    if (!state.getPatchesVisible())
-    {
-        return checked[0];
-    }
-
-    bool hasActivePatch = false;
-    for (const auto &patch : state.getPatches())
-    {
-        if (!patch.active)
+    auto matchesPatches = [&checked](const std::array<PokeRadarPatch, 4> &patches, bool visible) -> bool {
+        if (!visible)
         {
-            continue;
+            return checked[0] != 0;
         }
 
-        hasActivePatch = true;
-        if ((checked[1] && !patch.strong && !patch.shiny) || (checked[2] && patch.strong && !patch.shiny)
-            || (checked[3] && patch.shiny))
+        bool hasActivePatch = false;
+        for (const auto &patch : patches)
         {
-            return true;
+            if (!patch.active)
+            {
+                continue;
+            }
+
+            hasActivePatch = true;
+            if ((checked[1] && !patch.strong && !patch.shiny) || (checked[2] && patch.strong && !patch.shiny)
+                || (checked[3] && patch.shiny))
+            {
+                return true;
+            }
         }
+
+        return checked[0] && !hasActivePatch;
+    };
+
+    if (matchesPatches(state.getPatches(), state.getPatchesVisible()))
+    {
+        return true;
     }
 
-    return checked[0] && !hasActivePatch;
+    return matchesPatches(state.getBattlePatches(), state.getBattlePatchesVisible());
 }
 
 void PokeRadar::clearGrassMarks()
@@ -1214,7 +1243,9 @@ void PokeRadar::markSelectedPatches(const PokeRadarControls &controls, bool batt
         return;
     }
 
-    markPatches(controls.model->getItem(index.row()), battle, battle || controls.chainCount->value() != 0);
+    bool forceManualChainStart = !battle && controls.chainCount->value() == 0;
+    markPatches(controls.model->getItem(index.row()), battle, battle || controls.chainCount->value() != 0 || forceManualChainStart,
+                forceManualChainStart ? std::make_optional(controls.chainType->getEnum<PokeRadarChainType>()) : std::nullopt);
 }
 
 void PokeRadar::markSearcherPatches()
@@ -1289,7 +1320,7 @@ void PokeRadar::markSearcherPatches()
     }
 }
 
-void PokeRadar::markPatches(const PokeRadarState &state, bool battle, bool showContinue)
+void PokeRadar::markPatches(const PokeRadarState &state, bool battle, bool showContinue, std::optional<PokeRadarChainType> forceContinueChainType)
 {
     clearGrassMarks();
     bool visible = battle ? state.getBattlePatchesVisible() : state.getPatchesVisible();
@@ -1299,6 +1330,11 @@ void PokeRadar::markPatches(const PokeRadarState &state, bool battle, bool showC
     }
 
     const auto &patches = battle ? state.getBattlePatches() : state.getPatches();
+    auto matchesForceType = [this, forceContinueChainType](const PokeRadarPatch &patch) {
+        return forceContinueChainType
+            && patch.strong == getSelectedRadar(*forceContinueChainType)
+            && patch.shiny == getSelectedShiny(*forceContinueChainType);
+    };
     for (const auto &patch : patches)
     {
         if (!patch.active)
@@ -1306,8 +1342,8 @@ void PokeRadar::markPatches(const PokeRadarState &state, bool battle, bool showC
             continue;
         }
 
-        PokeRadarTileMark mark = patch.shiny ? PokeRadarTileMark::Shiny : patch.strong ? PokeRadarTileMark::Strong : PokeRadarTileMark::Regular;
-        generator.grass[patch.y * 9 + patch.x]->setMark(mark, showContinue && patch.continueChain);
+        PokeRadarTileMark mark = patch.shiny ? PokeRadarTileMark::Shiny : patch.strong ? PokeRadarTileMark::Strong : PokeRadarTileMark::Weak;
+        generator.grass[patch.y * 9 + patch.x]->setMark(mark, showContinue && (forceContinueChainType ? matchesForceType(patch) : patch.continueChain));
     }
 }
 
@@ -1326,11 +1362,92 @@ void PokeRadar::choosePosition()
     grid->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     std::optional<QPoint> selectedPosition = generator.currentPosition ? generator.currentPosition : generator.startPosition;
+    std::optional<QPoint> markedPosition = generator.currentPosition;
     QPushButton *selectedButton = nullptr;
     const QString normalStyle = QStringLiteral("QPushButton { background-color: #5a5a5a; border: 1px solid black; }");
     const QString inactiveStyle = QStringLiteral("QPushButton { background-color: #303030; border: 1px solid black; }");
     const QString selectedStyle = QStringLiteral("QPushButton { background-color: #c04040; border: 1px solid black; }");
+    const QString weakStyle = QStringLiteral("QPushButton { background-color: #7fbd73; border: 1px solid black; }");
+    const QString strongStyle = QStringLiteral("QPushButton { background-color: #1f5f2f; border: 1px solid black; }");
+    const QString shinyStyle = QStringLiteral("QPushButton { background-color: #d9c63f; border: 1px solid black; }");
     int tileSize = generator.fieldHeight > 36 ? 15 : 20;
+    std::vector<QPushButton *> buttons(generator.fieldWidth * generator.fieldHeight, nullptr);
+    std::vector<PokeRadarTileMark> marks(generator.fieldWidth * generator.fieldHeight, PokeRadarTileMark::None);
+    std::vector<bool> continues(generator.fieldWidth * generator.fieldHeight, false);
+
+    auto updateMarks = [&] {
+        std::ranges::fill(marks, PokeRadarTileMark::None);
+        std::ranges::fill(continues, false);
+        if (!markedPosition)
+        {
+            return;
+        }
+
+        for (int y = 0; y < 9; y++)
+        {
+            for (int x = 0; x < 9; x++)
+            {
+                auto *tile = generator.grass[y * 9 + x];
+                if (!tile->hasMark())
+                {
+                    continue;
+                }
+
+                QPoint position = *markedPosition + QPoint(x - 4, y - 4);
+                if (!isValidGrassFieldPosition(generator, position))
+                {
+                    continue;
+                }
+
+                int index = getGrassFieldIndex(generator, position);
+                marks[index] = tile->getMark();
+                continues[index] = tile->isContinueMark();
+            }
+        }
+    };
+    auto updateButton = [&](QPushButton *button, int x, int y) {
+        int index = getGrassFieldIndex(generator, QPoint(x, y));
+        button->setText(QString());
+        if (selectedPosition && selectedPosition->x() == x && selectedPosition->y() == y)
+        {
+            button->setStyleSheet(selectedStyle);
+            selectedButton = button;
+        }
+        else if (!generator.fieldGrass[index])
+        {
+            button->setStyleSheet(inactiveStyle);
+        }
+        else if (marks[index] == PokeRadarTileMark::Shiny)
+        {
+            button->setText(QStringLiteral("S"));
+            button->setStyleSheet(shinyStyle);
+        }
+        else if (marks[index] == PokeRadarTileMark::Strong)
+        {
+            button->setText(continues[index] ? QStringLiteral("C") : QString());
+            button->setStyleSheet(strongStyle);
+        }
+        else if (marks[index] == PokeRadarTileMark::Weak)
+        {
+            button->setText(continues[index] ? QStringLiteral("C") : QString());
+            button->setStyleSheet(weakStyle);
+        }
+        else
+        {
+            button->setStyleSheet(normalStyle);
+        }
+    };
+    auto updateButtons = [&] {
+        selectedButton = nullptr;
+        for (int y = 0; y < generator.fieldHeight; y++)
+        {
+            for (int x = 0; x < generator.fieldWidth; x++)
+            {
+                updateButton(buttons[y * generator.fieldWidth + x], x, y);
+            }
+        }
+    };
+    updateMarks();
 
     for (int y = 0; y < generator.fieldHeight; y++)
     {
@@ -1341,22 +1458,29 @@ void PokeRadar::choosePosition()
             button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
             bool grass = generator.fieldGrass[getGrassFieldIndex(generator, QPoint(x, y))];
             button->setEnabled(grass);
-            button->setStyleSheet(grass ? normalStyle : inactiveStyle);
-            if (selectedPosition && selectedPosition->x() == x && selectedPosition->y() == y)
-            {
-                selectedButton = button;
-                button->setStyleSheet(selectedStyle);
-            }
+            buttons[y * generator.fieldWidth + x] = button;
+            button->setProperty("radarColumn", x);
+            button->setProperty("radarRow", y);
+            updateButton(button, x, y);
 
             gridLayout->addWidget(button, y, x);
-            connect(button, &QPushButton::clicked, &dialog, [button, &selectedButton, &selectedPosition, normalStyle, selectedStyle, x, y] {
+            connect(button, &QPushButton::clicked, &dialog,
+                    [button, &selectedButton, &selectedPosition, &updateButton, x, y] {
+                QPushButton *oldButton = selectedButton;
+                int oldX = -1;
+                int oldY = -1;
                 if (selectedButton != nullptr)
                 {
-                    selectedButton->setStyleSheet(normalStyle);
+                    oldX = selectedButton->property("radarColumn").toInt();
+                    oldY = selectedButton->property("radarRow").toInt();
+                }
+                selectedPosition = QPoint(x, y);
+                if (oldButton != nullptr)
+                {
+                    updateButton(oldButton, oldX, oldY);
                 }
                 selectedButton = button;
-                selectedPosition = QPoint(x, y);
-                selectedButton->setStyleSheet(selectedStyle);
+                updateButton(button, x, y);
             });
         }
     }
@@ -1364,13 +1488,20 @@ void PokeRadar::choosePosition()
     layout->addWidget(grid, 0, Qt::AlignCenter);
 
     auto *buttonLayout = new QHBoxLayout;
+    auto *removeMarking = new QPushButton(tr("Remove marking"), &dialog);
     auto *cancel = new QPushButton(tr("Cancel"), &dialog);
     auto *save = new QPushButton(tr("Save Position"), &dialog);
     buttonLayout->addStretch(1);
+    buttonLayout->addWidget(removeMarking);
     buttonLayout->addWidget(save);
     buttonLayout->addWidget(cancel);
     layout->addLayout(buttonLayout);
 
+    connect(removeMarking, &QPushButton::clicked, &dialog, [this, &updateMarks, &updateButtons] {
+        clearGrassMarks();
+        updateMarks();
+        updateButtons();
+    });
     connect(cancel, &QPushButton::clicked, &dialog, &QDialog::reject);
     connect(save, &QPushButton::clicked, &dialog, [this, &dialog, &selectedPosition] {
         if (selectedPosition)
@@ -1671,7 +1802,8 @@ std::vector<WildGeneratorState4> PokeRadar::getPokemonStates(PokeRadarControls &
                            ignoreFilters ? ivMin : controls.filter->getMinIVs(), ignoreFilters ? ivMax : controls.filter->getMaxIVs(),
                            ignoreFilters ? natures : controls.filter->getNatures(), ignoreFilters ? powers : controls.filter->getHiddenPowers(),
                            encounterSlots);
-    PokeRadarPokemonGenerator generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, 1,
+    u32 pokemonOffset = controls.chainCount->value() == 0 ? 1 : 0;
+    PokeRadarPokemonGenerator generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, pokemonOffset,
                                         getPokeRadarGeneratorLead(controls), getSelectedShiny(chainType), *areaIter, *currentProfile,
                                         filter);
 
@@ -1712,7 +1844,7 @@ std::vector<PokeRadarState> PokeRadar::getStates(PokeRadarControls &controls, co
 
     const EncounterArea4 &area = *areaIter;
     PokeRadarChainType chainType
-        = chainTypeOverride.value_or(controls.chainType != nullptr ? controls.chainType->getEnum<PokeRadarChainType>() : PokeRadarChainType::Regular);
+        = chainTypeOverride.value_or(controls.chainType != nullptr ? controls.chainType->getEnum<PokeRadarChainType>() : PokeRadarChainType::Weak);
     auto previous = controls.result != nullptr ? controls.result->getEnum<PokeRadarResult>() : PokeRadarResult::Defeat;
     u16 chainCount = controls.chainCount->value();
     u32 extraAdvances = chainCount == 0 ? 0 : 1;
@@ -1753,11 +1885,15 @@ std::vector<PokeRadarState> PokeRadar::getStates(PokeRadarControls &controls, co
         bool patchesReachable = battleAdvances > pokemon.getAdvances();
         if (patchesReachable)
         {
-            auto battlePatch = battlePatchStates.find(battleAdvances);
+            u32 battlePatchAdvances = getPostBattlePatchAdvances(battleAdvances, currentProfile->getVersion());
+            u32 battlePatchTypeAdvances = getPostBattlePatchTypeAdvances(currentProfile->getVersion());
+            auto battlePatch = battlePatchStates.find(battlePatchAdvances);
             if (battlePatch == battlePatchStates.end())
             {
-                battlePatch
-                    = battlePatchStates.emplace(battleAdvances, battleRadar.generatePrevious(controls.seed->getUInt(), battleAdvances)).first;
+                battlePatch = battlePatchStates
+                                  .emplace(battlePatchAdvances,
+                                           battleRadar.generatePrevious(controls.seed->getUInt(), battlePatchAdvances, battlePatchTypeAdvances))
+                                  .first;
             }
             combined.setBattlePatches(battlePatch->second.getPatches());
             combined.setDisplayedBattleAdvances(battleAdvances + 4 + battleRadar.getPostBattleAdvanceConsumption(combined.getBattlePatches()));
@@ -2010,12 +2146,12 @@ void PokeRadar::updateSearcherPatchTypes()
     searcher.patchTypes->clear();
     if (chained)
     {
-        searcher.patchTypes->addItem(tr("Regular Shiny"), static_cast<int>(PokeRadarChainType::RegularShiny));
+        searcher.patchTypes->addItem(tr("Weak Shiny"), static_cast<int>(PokeRadarChainType::WeakShiny));
         searcher.patchTypes->addItem(tr("Strong Shiny"), static_cast<int>(PokeRadarChainType::StrongShiny));
     }
     else
     {
-        searcher.patchTypes->addItem(tr("Regular"), static_cast<int>(PokeRadarChainType::Regular));
+        searcher.patchTypes->addItem(tr("Weak"), static_cast<int>(PokeRadarChainType::Weak));
         searcher.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
     }
 
@@ -2074,6 +2210,8 @@ void PokeRadar::search()
         if (activations.empty())
         {
             activations.emplace_back(PokeRadarResult::ManualActivation);
+            activations.emplace_back(PokeRadarResult::Capture);
+            activations.emplace_back(PokeRadarResult::Defeat);
         }
     }
     bool postBattleSearch = std::ranges::any_of(activations, [](PokeRadarResult activation) {
@@ -2166,6 +2304,43 @@ void PokeRadar::search()
     searcher.button->setEnabled(false);
     searcher.cancel->setEnabled(true);
     searcher.progressBar->setValue(0);
+    auto *accumulatedResults = new std::vector<std::pair<PokeRadarResult, std::vector<PokeRadarState>>>;
+    accumulatedResults->reserve(radarSearchers->size());
+    for (const auto &[activation, radarSearcher] : *radarSearchers)
+    {
+        accumulatedResults->emplace_back(activation, std::vector<PokeRadarState> {});
+    }
+
+    auto drainResults = [=] {
+        bool changed = false;
+        for (size_t i = 0; i < radarSearchers->size(); i++)
+        {
+            auto states = (*radarSearchers)[i].second->getResults();
+            if (states.empty())
+            {
+                continue;
+            }
+
+            auto &accumulated = (*accumulatedResults)[i].second;
+            accumulated.insert(accumulated.end(), states.begin(), states.end());
+            changed = true;
+        }
+
+        if (changed)
+        {
+            searcher.model->clearModel();
+            searcher.model->addItems(mergeSearcherActivationResults(*accumulatedResults));
+        }
+    };
+
+    auto getSearchProgress = [=] {
+        int progress = 0;
+        for (auto &[activation, radarSearcher] : *radarSearchers)
+        {
+            progress += radarSearcher->getProgress();
+        }
+        return progress / static_cast<int>(radarSearchers->size());
+    };
 
     auto *thread = QThread::create([=] {
         for (auto &[activation, radarSearcher] : *radarSearchers)
@@ -2189,29 +2364,28 @@ void PokeRadar::search()
 
     auto *timer = new QTimer();
     timer->callOnTimeout(this, [=] {
-        int progress = 0;
-        for (auto &[activation, radarSearcher] : *radarSearchers)
+        drainResults();
+        int progress = getSearchProgress();
+        if (progress == 100 && thread->isRunning())
         {
-            progress += radarSearcher->getProgress();
+            progress = 99;
         }
-        searcher.progressBar->setValue(progress / static_cast<int>(radarSearchers->size()));
+        searcher.progressBar->setValue(progress);
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, this, [=] {
-        int progress = 0;
-        std::vector<std::pair<PokeRadarResult, std::vector<PokeRadarState>>> results;
+        drainResults();
+        int progress = getSearchProgress();
         for (auto &[activation, radarSearcher] : *radarSearchers)
         {
-            results.emplace_back(activation, radarSearcher->getResults());
-            progress += radarSearcher->getProgress();
             delete radarSearcher;
         }
-        searcher.model->addItems(mergeSearcherActivationResults(results));
 
         searcher.button->setEnabled(true);
         searcher.cancel->setEnabled(false);
-        searcher.progressBar->setValue(progress / static_cast<int>(radarSearchers->size()));
+        searcher.progressBar->setValue(progress);
+        delete accumulatedResults;
         delete radarSearchers;
         delete cancelled;
     });
