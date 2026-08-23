@@ -23,7 +23,7 @@
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -358,7 +358,7 @@ void DreamRadar::search()
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
-    auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);
+    auto *searcher = new DreamRadarSearcher(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;

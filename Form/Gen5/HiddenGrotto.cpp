@@ -29,8 +29,8 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
+#include <Core/Gen5/Searchers/HiddenGrottoSearcher.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -351,7 +351,7 @@ void HiddenGrotto::grottoSearch()
                               ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, grottoPower,
                                         encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
-    auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);
+    auto *searcher = new HiddenGrottoSlotSearcher(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
@@ -602,18 +602,16 @@ void HiddenGrotto::pokemonSearch()
         if (shaCache && shaCache->isValid(*currentProfile))
         {
             auto shaMap = shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal, *currentProfile);
-            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
-                                                                               *currentProfile);
+            searcher = new HiddenGrottoIVSearcherCacheFast(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator, *currentProfile);
         }
         else
         {
-            searcher
-                = new IVSearcher5Fast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
+            searcher = new HiddenGrottoIVSearcherFast(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
     {
-        searcher = new IVSearcher5<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
+        searcher = new HiddenGrottoIVSearcher(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));

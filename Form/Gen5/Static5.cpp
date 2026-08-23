@@ -27,7 +27,7 @@
 #include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
-#include <Core/Gen5/Searchers/IVSearcher5.hpp>
+#include <Core/Gen5/Searchers/StaticSearcher5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
@@ -388,17 +388,16 @@ void Static5::search()
         if (shaCache && shaCache->isValid(*currentProfile))
         {
             auto shaMap = shaCache->getCache(initialAdvances, maxIVAdvances, start, end, ivMap, type, *currentProfile);
-            searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
-                                                                          *currentProfile);
+            searcher = new StaticSearcher5CacheFast(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator, *currentProfile);
         }
         else
         {
-            searcher = new IVSearcher5Fast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
+            searcher = new StaticSearcher5Fast(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
     {
-        searcher = new IVSearcher5<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
+        searcher = new StaticSearcher5(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));

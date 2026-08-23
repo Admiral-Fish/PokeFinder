@@ -24,7 +24,7 @@
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/Searchers/EventSearcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -305,7 +305,7 @@ void Event5::search()
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EventGenerator5 generator(initialAdvances, maxAdvances, 0, pgf, *currentProfile, filter);
-    auto *searcher = new Searcher5<EventGenerator5, EventState5>(generator, *currentProfile);
+    auto *searcher = new EventSearcher5(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;

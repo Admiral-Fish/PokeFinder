@@ -19,6 +19,7 @@
 
 #include "Searcher5.hpp"
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 
 template <class Generator, class State>
 Searcher5<Generator, State>::Searcher5(const Generator &generator, const Profile5 &profile) :
@@ -78,6 +79,12 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
 #include <Core/Parents/States/IDState.hpp>
 
 template class Searcher5<DreamRadarGenerator, DreamRadarState>;

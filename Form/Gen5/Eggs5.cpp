@@ -23,7 +23,7 @@
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/Searchers/EggSearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -210,7 +210,7 @@ void Eggs5::search()
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
-    auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
+    auto *searcher = new EggSearcher5(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;

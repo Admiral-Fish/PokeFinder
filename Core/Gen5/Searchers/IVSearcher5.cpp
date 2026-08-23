@@ -210,6 +210,9 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/WildState5.hpp>
 
 template class IVSearcher5<HiddenGrottoGenerator, State5>;
 template class IVSearcher5Fast<HiddenGrottoGenerator, State5>;
