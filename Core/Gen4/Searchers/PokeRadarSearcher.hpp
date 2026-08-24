@@ -63,10 +63,10 @@ private:
         std::vector<BattleStart> battleStarts;
     };
 
-    void addPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
-    void addManualPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
-    void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax);
-    const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain);
+    void addPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax, PokeRadarChainType searchChainType);
+    void addManualPatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax, PokeRadarChainType searchChainType);
+    void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax, PokeRadarChainType searchChainType);
+    const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain, PokeRadarChainType searchChainType);
     u32 calculatePokemonBattleAdvances(u32 seed, u32 advances, Lead effectiveLead, bool shiny) const;
     std::vector<WildSearcherState4> searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset = 0) const;
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
@@ -77,8 +77,8 @@ private:
     std::vector<WildSearcherState4> searchPokemonShinyIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
                                                           Lead effectiveLead, bool applyFilter) const;
     std::optional<WildSearcherState4> validateChainZeroPokemon(const WildSearcherState4 &pokemon, bool allSlots) const;
-    bool isShinyPatchType() const;
-    bool patchMatchesType(const PokeRadarState &state) const;
+    bool isShinyPatchType(PokeRadarChainType searchChainType) const;
+    bool patchMatchesType(const PokeRadarState &state, PokeRadarChainType searchChainType) const;
 
     u32 minAdvance;
     u32 maxAdvance;
