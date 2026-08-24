@@ -797,15 +797,11 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
         setupLead(controls.lead, true);
     }
     controls.minPatchDistance = nullptr;
-    controls.maxPatchDistance = nullptr;
     if (searcherTab)
     {
         controls.minPatchDistance = new QSpinBox(rngInfo);
         controls.minPatchDistance->setRange(0, 999999);
         controls.minPatchDistance->setValue(20);
-        controls.maxPatchDistance = new QSpinBox(rngInfo);
-        controls.maxPatchDistance->setRange(0, 999999);
-        controls.maxPatchDistance->setValue(100);
     }
     controls.chainCount = new QSpinBox(rngInfo);
     controls.chainCount->setRange(0, 999);
@@ -853,8 +849,6 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     {
         layout->addWidget(new QLabel(tr("Min Patch Distance"), rngInfo), 6, 0);
         layout->addWidget(controls.minPatchDistance, 6, 1);
-        layout->addWidget(new QLabel(tr("Max Patch Distance"), rngInfo), 7, 0);
-        layout->addWidget(controls.maxPatchDistance, 7, 1);
     }
 
     controls.button = new QPushButton(searcherTab ? tr("Search") : tr("Generate"), rngInfo);
@@ -864,8 +858,8 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
     {
         controls.cancel = new QPushButton(tr("Cancel"), rngInfo);
         controls.cancel->setEnabled(false);
-        layout->addWidget(controls.button, 8, 0);
-        layout->addWidget(controls.cancel, 8, 1);
+        layout->addWidget(controls.button, 7, 0);
+        layout->addWidget(controls.cancel, 7, 1);
     }
     else
     {
@@ -972,7 +966,7 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
 
     layout->addWidget(new QLabel(tr("Location"), settings), 0, 0);
     layout->addWidget(controls.location, 0, 1, 1, 3);
-    layout->addWidget(new QLabel(tr("Pokemon"), settings), 1, 0);
+    layout->addWidget(new QLabel(tr("Pokémon"), settings), 1, 0);
     layout->addWidget(controls.pokemon, 1, 1, 1, 3);
     layout->addWidget(new QLabel(tr("Time"), settings), 2, 0);
     layout->addWidget(controls.time, 2, 1, 1, 3);
@@ -2220,12 +2214,6 @@ void PokeRadar::search()
     searcher.model->setShowSearcherBattleAdvances(postBattleSearch);
 
     u32 minDistance = searcher.minPatchDistance->value();
-    u32 maxDistance = searcher.maxPatchDistance->value();
-    if (minDistance > maxDistance)
-    {
-        QMessageBox::warning(this, tr("Invalid Settings"), tr("Minimum patch distance must be less than or equal to maximum patch distance."));
-        return;
-    }
 
     u32 maxAdvances = searcher.maxAdvances->getUInt();
     if (!postBattleSearch && maxAdvances < minDistance)
@@ -2286,9 +2274,9 @@ void PokeRadar::search()
                     radarSearchers->emplace_back(
                         activation,
                         new PokeRadarSearcher(searcher.initialAdvances->getUInt(), searcher.maxAdvances->getUInt(), searcher.minDelay->getUInt(),
-                                              searcher.maxDelay->getUInt(), minDistance, maxDistance, searcher.chainCount->value(),
-                                              searcher.slot->getCurrentUChar(), lead, chainType, activation, getGrass(searcher), searchSlots,
-                                              *areaIter, *currentProfile, filter, specificSynchronize));
+                                              searcher.maxDelay->getUInt(), minDistance, searcher.chainCount->value(), searcher.slot->getCurrentUChar(),
+                                              lead, chainType, activation, getGrass(searcher), searchSlots, *areaIter, *currentProfile, filter,
+                                              specificSynchronize));
                 }
             }
         }

@@ -28,6 +28,8 @@
 
 class PokeRadarModel4 : public TableModel<PokeRadarState>, public IRNGProvider4
 {
+    Q_OBJECT
+
 public:
     PokeRadarModel4(QObject *parent, bool searcher = false);
 

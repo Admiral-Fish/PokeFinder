@@ -34,7 +34,7 @@ PokeRadarModel4::PokeRadarModel4(QObject *parent, bool searcher) :
 
 int PokeRadarModel4::columnCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : searcher ? 27 : 30;
+    return parent.isValid() ? 0 : searcher ? 26 : 30;
 }
 
 QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
@@ -48,7 +48,7 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
     int column = index.column();
     if (searcher)
     {
-        if (column < 10)
+        if (column < 9)
         {
             switch (column)
             {
@@ -63,7 +63,7 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
             case 3:
                 return state.getAdvances();
             case 4:
-                if (showSearcherBattleAdvances && state.hasBattleStartAdvances())
+                if (state.hasBattleStartAdvances())
                 {
                     QStringList advances;
                     for (u32 advance : state.getBattleStartAdvances())
@@ -74,19 +74,17 @@ QVariant PokeRadarModel4::data(const QModelIndex &index, int role) const
                 }
                 return state.getPatchAdvances();
             case 5:
-                return state.getDistance();
-            case 6:
                 return state.getChain();
-            case 7:
+            case 6:
                 return getSkip(state);
-            case 8:
+            case 7:
                 return getSearcherCoordinates(state);
-            case 9:
+            case 8:
                 return getResults(state);
             }
         }
 
-        return getPokemonData(state, column - 10);
+        return getPokemonData(state, column - 9);
     }
 
     column = mapGeneratorColumn(column);
@@ -163,19 +161,17 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
             case 3:
                 return tr("Target Advance");
             case 4:
-                return tr("Patch");
+                return tr("Target Patch");
             case 5:
-                return tr("Distance");
-            case 6:
                 return tr("Chain");
-            case 7:
+            case 6:
                 return tr("Skip");
-            case 8:
+            case 7:
                 return tr("Patch");
-            case 9:
+            case 8:
                 return tr("Activation");
             default:
-                return getPokemonHeader(section - 10);
+                return getPokemonHeader(section - 9);
             }
         }
 
@@ -203,7 +199,7 @@ QVariant PokeRadarModel4::headerData(int section, Qt::Orientation orientation, i
         case 9:
             return tr("Battle Weak");
         case 10:
-            return tr("Battle Str");
+            return tr("Battle Strong");
         case 11:
             return tr("Battle Cont");
         case 12:
@@ -459,7 +455,7 @@ void PokeRadarModel4::setShowStats(bool flag)
         return;
     }
 
-    int first = searcher ? 17 : 20;
+    int first = searcher ? 16 : 20;
     emit dataChanged(index(0, first), index(rowCount() - 1, first + 5), { Qt::DisplayRole });
 }
 

@@ -4897,6 +4897,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Profilmanager</translation>
     </message>
     <message>
+        <source>Poke Radar</source>
+        <translation>Pokeradar</translation>
+    </message>
+    <message>
         <source>Static</source>
         <translation>Stationär</translation>
     </message>
@@ -11076,6 +11080,597 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
         <source>Buttons</source>
         <translation>Knopfdrücke</translation>
+    </message>
+</context>
+<context>
+    <name>PokeRadar</name>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="408"/>
+        <source>Gen 4 Poke Radar</source>
+        <translation>Gen 4 Pokeradar</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="435"/>
+        <source>Advance Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="437"/>
+        <source>Jump to Battle Adv</source>
+        <translation>Zu Kampf Adv springen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="439"/>
+        <source>Mark Battle Patches</source>
+        <translation>Kampf Büschel markieren</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="441"/>
+        <source>Mark Manual Patches</source>
+        <translation>Manuelle Büschel markieren</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="448"/>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="463"/>
+        <source>Generate times for seed</source>
+        <translation>Generiere Zeiten für Seed</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="466"/>
+        <source>Mark Patches</source>
+        <translation>Büschel Markieren</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="477"/>
+        <source>Searcher</source>
+        <translation>Sucher</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="582"/>
+        <source>Mark %1 as new Position</source>
+        <translation>%1 als neue Position festlegen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="715"/>
+        <source>Filters</source>
+        <translation>Filter</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="729"/>
+        <source>None</source>
+        <translation>Nicht vorhanden</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="730"/>
+        <source>Weak</source>
+        <translation>Schwach</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="731"/>
+        <source>Strong</source>
+        <translation>Stark</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="732"/>
+        <source>Shiny</source>
+        <translation>Schillernd</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="733"/>
+        <source>Patch</source>
+        <translation>Büschel</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="746"/>
+        <source>RNG Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="762"/>
+        <source>Compound Eyes</source>
+        <translation>Facettenauge</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="763"/>
+        <source>Cute Charm</source>
+        <translation>Charmebolzen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="764"/>
+        <source>♀ Lead</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="765"/>
+        <source>♂ Lead</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="766"/>
+        <source>Level Modifier</source>
+        <translation>Level Modifizierer</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="767"/>
+        <source>Hustle</source>
+        <translation>Übereifer</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="768"/>
+        <source>Pressure</source>
+        <translation>Erzwinger</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="769"/>
+        <source>Vital Spirit</source>
+        <translation>Munterkeit</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="770"/>
+        <source>Slot Modifier</source>
+        <translation>Slot Modifizierer</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="770"/>
+        <source>Magnet Pull</source>
+        <translation>Magnetfalle</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="770"/>
+        <source>Static</source>
+        <translation>Statik</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="773"/>
+        <source>Synchronize</source>
+        <translation>Synchro</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="819"/>
+        <source>Weak Shiny</source>
+        <translation>Schwach Schillernd</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="820"/>
+        <source>Strong Shiny</source>
+        <translation>Stark Schillernd</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="827"/>
+        <source>Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="829"/>
+        <source>Min Delay</source>
+        <translation>Min. Delay</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="831"/>
+        <source>Max Delay</source>
+        <translation>Max. Delay</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="838"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="841"/>
+        <source>Min Advance</source>
+        <translation>Minimale Advances</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="841"/>
+        <source>Initial Advances</source>
+        <translation>Minimale Advances</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="843"/>
+        <source>Max Advance</source>
+        <translation>Maximale Advances</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="843"/>
+        <source>Max Advances</source>
+        <translation>Maximale Advances</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="845"/>
+        <source>Max Chain</source>
+        <translation>Max. Chain</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="845"/>
+        <source>Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="849"/>
+        <source>Chain Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="854"/>
+        <source>Min Patch Distance</source>
+        <translation>Min. Büschel Abstand</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="860"/>
+        <source>Search</source>
+        <translation>Suchen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="860"/>
+        <source>Generate</source>
+        <translation>Generieren</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="865"/>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="917"/>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="924"/>
+        <source>Day</source>
+        <translation>Tagsüber</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="925"/>
+        <source>Night</source>
+        <translation>Nachts</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="926"/>
+        <source>Morning</source>
+        <translation>Morgens</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="927"/>
+        <source>Replacement</source>
+        <translation>Ersatz</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="933"/>
+        <source>Dual Slot</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="935"/>
+        <source>Ruby</source>
+        <translation>Rubin</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="936"/>
+        <source>Sapphire</source>
+        <translation>Saphir</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="937"/>
+        <source>Emerald</source>
+        <translation>Smaragd</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="938"/>
+        <source>Fire Red</source>
+        <translation>Feuerrot</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="939"/>
+        <source>Leaf Green</source>
+        <translation>Blattgrün</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="940"/>
+        <source>Swarm</source>
+        <translation>Schwarm</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="946"/>
+        <source>Capture</source>
+        <translation>Fangen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="947"/>
+        <source>Defeat</source>
+        <translation>Besiegen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="956"/>
+        <source>Manual</source>
+        <translation>Manuell</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="973"/>
+        <source>Location</source>
+        <translation>Fundort</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="975"/>
+        <source>Pokémon</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="977"/>
+        <source>Time</source>
+        <translation>Zeit</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="985"/>
+        <source>Chain Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="994"/>
+        <source>Activation</source>
+        <translation>Aktivierung</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1015"/>
+        <source>Levels</source>
+        <translation>Level</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1018"/>
+        <source>Grace Steps</source>
+        <translation>Schonfrist Schritte</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1027"/>
+        <source>Grass Tiles</source>
+        <translation>Grasfeld</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1051"/>
+        <source>Reset</source>
+        <translation>Zurücksetzen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1056"/>
+        <source>Choose Position</source>
+        <translation>Position auswählen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1057"/>
+        <source>Remove marking</source>
+        <translation>Markierung entfernen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="1493"/>
+        <source>Save Position</source>
+        <translation>Position speichern</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="2226"/>
+        <source>Invalid Settings</source>
+        <translation>Ungültige Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="2234"/>
+        <source>The searched advances end before the minimum patch distance can be reached.</source>
+        <translation>Die durchsuchten Advances enden, bevor der Minimale Büschel Abstand erreicht wird.</translation>
+    </message>
+</context>
+<context>
+    <name>PokeRadarModel4</name>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="275"/>
+        <source>Square</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="275"/>
+        <source>Star</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="275"/>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="158"/>
+        <source>Seed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="160"/>
+        <source>Delay</source>
+        <translation type="unfinished">Delay</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="162"/>
+        <source>Hour</source>
+        <translation>Stunde</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="164"/>
+        <source>Target Advance</source>
+        <translation>Ziel Advance</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="166"/>
+        <source>Target Patch</source>
+        <translation>Ziel Büschel</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="170"/>
+        <source>Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="172"/>
+        <source>Skip</source>
+        <translation>Sprung</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="176"/>
+        <source>Activation</source>
+        <translation>Aktivierung</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="186"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="188"/>
+        <source>Patch Adv</source>
+        <translation>Büschel Adv</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="190"/>
+        <source>Battle Adv</source>
+        <translation>Kampf Adv</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="192"/>
+        <source>Chatot</source>
+        <translation>Plaudagei</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="196"/>
+        <source>Weak</source>
+        <translation>Schwach</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="198"/>
+        <source>Strong</source>
+        <translation>Stark</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="200"/>
+        <source>Continue</source>
+        <translation>Verlängerung</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="202"/>
+        <source>Shiny</source>
+        <translation>Schillernd</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="204"/>
+        <source>Battle Weak</source>
+        <translation>Kampf Schwach</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="206"/>
+        <source>Battle Strong</source>
+        <translation>Kampf Stark</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="208"/>
+        <source>Battle Cont</source>
+        <translation>Kampf Verl</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="210"/>
+        <source>Battle Shiny</source>
+        <translation>Kampf Schillernd</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="212"/>
+        <source>Item</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="214"/>
+        <source>Slot</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="216"/>
+        <source>Level</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="218"/>
+        <source>PID</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="222"/>
+        <source>Nature</source>
+        <translation>Wesen</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="224"/>
+        <source>Ability</source>
+        <translation>Fähigkeit</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="226"/>
+        <source>HP</source>
+        <translation>KP</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="228"/>
+        <source>Atk</source>
+        <translation>Angr</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="230"/>
+        <source>Def</source>
+        <translation>Vert</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="232"/>
+        <source>SpA</source>
+        <translation>SpAng</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="234"/>
+        <source>SpD</source>
+        <translation>SpVer</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="236"/>
+        <source>Spe</source>
+        <translation>Init</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="238"/>
+        <source>Hidden</source>
+        <translation>Kraftreserve</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="240"/>
+        <source>Power</source>
+        <translation>Stärke</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="242"/>
+        <source>Gender</source>
+        <translation>Geschlecht</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="244"/>
+        <source>Characteristic</source>
+        <translation>Persönlichkeit</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="413"/>
+        <source>Manual</source>
+        <translation>Manuell</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="416"/>
+        <source>Capture</source>
+        <translation>Fangen</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/PokeRadarModel.cpp" line="419"/>
+        <source>Defeat</source>
+        <translation>Besiegen</translation>
     </message>
 </context>
 </TS>

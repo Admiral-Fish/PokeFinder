@@ -58,7 +58,6 @@ struct PokeRadarControls
     TextBox *initialAdvances;
     TextBox *maxAdvances;
     QSpinBox *minPatchDistance;
-    QSpinBox *maxPatchDistance;
     ComboMenu *lead;
     QSpinBox *chainCount;
     ComboBox *chainType;
