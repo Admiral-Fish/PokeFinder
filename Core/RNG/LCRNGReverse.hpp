@@ -59,7 +59,7 @@ namespace LCRNGReverse
      *
      * @return Array of origin seeds (Safe upper bound of 12)
      */
-    RecoverySeeds<12> recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
+    RecoverySeeds<12> recoverChannelIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap

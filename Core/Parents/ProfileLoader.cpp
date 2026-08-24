@@ -176,6 +176,13 @@ namespace ProfileLoader3
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
+    void setProfiles(const std::vector<Profile3> &profiles)
+    {
+        json j = readJson();
+        j["gen3"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
+    }
+
     void removeProfile(const Profile3 &remove)
     {
         json j = readJson();
@@ -267,6 +274,13 @@ namespace ProfileLoader4
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
     }
 
+    void setProfiles(const std::vector<Profile4> &profiles)
+    {
+        json j = readJson();
+        j["gen4"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
+    }
+
     void addProfile(const Profile4 &profile)
     {
         json j = readJson();
@@ -340,6 +354,7 @@ namespace ProfileLoader5
             j["timer0Min"] = profile.getTimer0Min();
             j["timer0Max"] = profile.getTimer0Max();
             j["memoryLink"] = profile.getMemoryLink();
+            j["nsPokemonReleased"] = profile.getNsPokemonReleased();
             j["shinyCharm"] = profile.getShinyCharm();
             j["dsType"] = profile.getDSType();
             j["language"] = profile.getLanguage();
@@ -384,11 +399,12 @@ namespace ProfileLoader5
             u16 timer0Min = j.value("timer0Min", 0);
             u16 timer0Max = j.value("timer0Max", 0);
             bool memoryLink = j.value("memoryLink", false);
+            bool nsPokemonReleased = memoryLink && j.value("nsPokemonReleased", false);
             bool shinyCharm = j.value("shinyCharm", false);
             DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, ivCache, shaCache, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
-                            timer0Max, memoryLink, shinyCharm, dsType, language);
+                            timer0Max, memoryLink, nsPokemonReleased, shinyCharm, dsType, language);
         }
 
     }
@@ -407,6 +423,13 @@ namespace ProfileLoader5
         const auto &gen5 = j["gen5"];
         return gen5 | std::views::filter([version](const json &j) { return (j.value("version", Game::Black) & version) != Game::None; })
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
+    }
+
+    void setProfiles(const std::vector<Profile5> &profiles)
+    {
+        json j = readJson();
+        j["gen5"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
     }
 
     void removeProfile(const Profile5 &remove)
@@ -503,6 +526,13 @@ namespace ProfileLoader8
         const auto &gen8 = j["gen8"];
         return gen8 | std::views::filter([version](const json &j) { return (j.value("version", Game::BD) & version) != Game::None; })
             | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
+    }
+
+    void setProfiles(const std::vector<Profile8> &profiles)
+    {
+        json j = readJson();
+        j["gen8"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
     }
 
     void removeProfile(const Profile8 &remove)

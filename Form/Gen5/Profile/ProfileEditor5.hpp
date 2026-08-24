@@ -37,7 +37,7 @@ enum class Language : u8;
 /**
  * @brief Provides dialog to view/edit fields of a profile
  */
-class ProfileEditor5 : public QDialog
+class ProfileEditor5 final : public QDialog
 {
     Q_OBJECT
 public:
@@ -104,6 +104,13 @@ private slots:
      * @brief Validates that a profile name exists before allowing the dialog to be closed
      */
     void okay();
+
+    /**
+     * @brief Toggles whether N's Pokemon Released is enabled based on memory link
+     *
+     * @param checked Current check status of memory link
+     */
+    void memoryLinkToggled(bool checked);
 
     /**
      * @brief Prompts user to select IV cache

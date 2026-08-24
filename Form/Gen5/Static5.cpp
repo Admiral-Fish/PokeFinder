@@ -21,6 +21,7 @@
 #include "ui_Static5.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/IVCache.hpp>
@@ -71,9 +72,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                        | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
@@ -85,8 +85,8 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5), ivCach
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->setup({ toInt(PassPower::None), toInt(PassPower::Level3) });
 
     ui->comboBoxGeneratorShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
     ui->comboBoxSearcherShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random), toInt(Shiny::Always) });
@@ -208,7 +208,7 @@ void Static5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxGeneratorLuckyPower->getEnum<PassPower>();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
@@ -371,7 +371,7 @@ void Static5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
 
     const StaticTemplate5 *staticTemplate
         = Encounters5::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
@@ -406,18 +406,18 @@ void Static5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());

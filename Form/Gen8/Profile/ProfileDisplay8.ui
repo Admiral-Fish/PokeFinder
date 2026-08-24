@@ -13,7 +13,19 @@
   <property name="windowTitle">
    <string>Profile Display 8</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBoxProfile">
      <property name="title">
@@ -82,8 +94,7 @@
        </widget>
       </item>
       <item row="1" column="6">
-       <widget class="QLabel" name="labelNationalDexValue">
-       </widget>
+       <widget class="QLabel" name="labelNationalDexValue"/>
       </item>
       <item row="0" column="7" rowspan="2">
        <widget class="Line" name="line_1">

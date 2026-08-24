@@ -79,9 +79,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Event5::openAdvanceFinder);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                        | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -312,18 +311,18 @@ void Event5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());

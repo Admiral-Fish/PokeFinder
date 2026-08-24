@@ -13,12 +13,11 @@
   <property name="windowTitle">
    <string>Gen 5 Static</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
-    </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -120,7 +119,7 @@
            <widget class="ComboBox" name="comboBoxGeneratorLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
@@ -282,8 +281,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_1">
+          <item>
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
@@ -388,7 +387,7 @@
            <widget class="ComboBox" name="comboBoxSearcherLuckyPower">
             <item>
              <property name="text">
-              <string notr="true">0</string>
+              <string>None</string>
              </property>
             </item>
             <item>
@@ -604,8 +603,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
@@ -639,6 +638,11 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
@@ -651,25 +655,20 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>ProfileDisplay5</class>
    <extends>QWidget</extends>
    <header>Form/Gen5/Profile/ProfileDisplay5.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>DateEdit</class>
    <extends>QDateEdit</extends>
    <header>Form/Controls/DateEdit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

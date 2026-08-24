@@ -54,7 +54,7 @@ SpindaPainter::SpindaPainter(QWidget *parent) : QWidget(parent), ui(new Ui::Spin
     }
 
     connect(ui->textBoxPID, &TextBox::textEdited, this, &SpindaPainter::pidTextEdited);
-    connect(scene, &QGraphicsScene::changed, this, [=]() { updatePID(); });
+    connect(scene, &QGraphicsScene::changed, this, &SpindaPainter::updatePID);
 
     QSettings setting;
     if (setting.contains("spindaPainter/geometry"))

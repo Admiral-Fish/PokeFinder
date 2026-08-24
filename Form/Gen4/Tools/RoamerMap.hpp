@@ -30,7 +30,7 @@ namespace Ui
 /**
  * @brief Shows a map of roamer locations in HGSS
  */
-class RoamerMap : public QDialog
+class RoamerMap final : public QDialog
 {
     Q_OBJECT
 public:

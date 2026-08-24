@@ -15,8 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="3">
-    <widget class="ProfileDisplay8" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay8" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
@@ -281,8 +280,8 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0" rowspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
        <widget class="Filter" name="filter" native="true"/>
       </item>
      </layout>
@@ -300,14 +299,14 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>
@@ -316,15 +315,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>ProfileDisplay8</class>
    <extends>QWidget</extends>
    <header>Form/Gen8/Profile/ProfileDisplay8.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

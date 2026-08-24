@@ -47,9 +47,18 @@ public:
     bool compareState(const HiddenGrottoState &state) const;
 
 private:
+    bool invalid;
     std::array<bool, 11> encounterSlots;
     std::array<bool, 2> genders;
     std::array<bool, 4> groups;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 #endif // HIDDENGROTTOFILTER_HPP

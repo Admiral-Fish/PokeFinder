@@ -110,7 +110,7 @@ void ProfileDisplay5::profileIndexChanged(int index)
 void ProfileDisplay5::profileManager()
 {
     auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesChanged, this, [=](int num) {
+    connect(manager, &ProfileManager5::profilesChanged, this, [this](int num) {
         updateProfiles();
         emit profilesChanged(num);
     });

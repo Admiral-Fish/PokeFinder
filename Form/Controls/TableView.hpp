@@ -28,7 +28,7 @@
  * column. It also provides a context menu with default actions to output the data to txt/csv. This menu can be provided additional
  * developer defined actions.
  */
-class TableView : public QTableView
+class TableView final : public QTableView
 {
     Q_OBJECT
 public:

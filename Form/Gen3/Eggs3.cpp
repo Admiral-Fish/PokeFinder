@@ -71,10 +71,8 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->comboBoxRSFRLGMethod->setup(
         { toInt(Method::RSFRLGBred), toInt(Method::RSFRLGBredSplit), toInt(Method::RSFRLGBredAlternate), toInt(Method::RSFRLGBredMixed) });
 
-    ui->filterEmerald->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                       | Controls::Weight);
-    ui->filterRSFRLG->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                      | Controls::Weight);
+    ui->filterEmerald->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
+    ui->filterRSFRLG->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->eggSettingsEmerald->setup(Game::Emerald);
     ui->eggSettingsRSFRLG->setup(Game::RS | Game::FRLG);

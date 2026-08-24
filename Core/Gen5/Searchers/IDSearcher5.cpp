@@ -18,35 +18,74 @@
  */
 
 #include "IDSearcher5.hpp"
+#include <Core/RNG/SHA1.hpp>
 
 std::vector<SearcherState5<IDState>> IDSearcher5::search(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
                                                          u8 maxSecond)
 {
-    SHA1 sha(profile);
+#ifdef ENABLE_SIMD
 
-    for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
+    if (hasSHA())
     {
-        sha.setTimer0(timer0, profile.getVCount());
+        SHA1SIMD sha(profile);
         sha.setDate(date);
-        auto alpha = sha.precompute();
-        for (const auto &keypress : keypresses)
+
+        for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
-            sha.setButton(keypress.value);
-
-            for (u8 second = minSecond; second <= maxSecond; second++)
+            sha.setTimer0(timer0, profile.getVCount());
+            for (const auto &keypress : keypresses)
             {
-                sha.setTime(hour, minute, second, profile.getDSType());
-                u64 seed = sha.hashSeed(alpha);
+                sha.setButton(keypress.value);
 
-                auto states = generator.generate(seed);
-                if (!states.empty())
+                for (u8 second = minSecond; second <= maxSecond; second++)
                 {
-                    DateTime dt(date, Time(hour, minute, second));
+                    sha.setTime(hour, minute, second, profile.getDSType());
+                    u64 seed = sha.hashSeed();
 
-                    results.reserve(results.capacity() + states.size());
-                    for (const auto &state : states)
+                    auto states = generator.generate(seed);
+                    if (!states.empty())
                     {
-                        results.emplace_back(dt, seed, keypress.button, timer0, state);
+                        DateTime dt(date, Time(hour, minute, second));
+
+                        results.reserve(results.capacity() + states.size());
+                        for (const auto &state : states)
+                        {
+                            results.emplace_back(dt, seed, keypress.button, timer0, state);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+#endif
+    {
+        SHA1 sha(profile);
+        sha.setDate(date);
+
+        for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, profile.getVCount());
+            auto alpha = sha.precompute();
+            for (const auto &keypress : keypresses)
+            {
+                sha.setButton(keypress.value);
+
+                for (u8 second = minSecond; second <= maxSecond; second++)
+                {
+                    sha.setTime(hour, minute, second, profile.getDSType());
+                    u64 seed = sha.hashSeed(alpha);
+
+                    auto states = generator.generate(seed);
+                    if (!states.empty())
+                    {
+                        DateTime dt(date, Time(hour, minute, second));
+
+                        results.reserve(results.capacity() + states.size());
+                        for (const auto &state : states)
+                        {
+                            results.emplace_back(dt, seed, keypress.button, timer0, state);
+                        }
                     }
                 }
             }

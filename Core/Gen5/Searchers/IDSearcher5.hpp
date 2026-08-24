@@ -22,13 +22,11 @@
 
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Searchers/Searcher5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/IDState.hpp>
 
 /**
  * @brief TID/SID searcher for Gen5
  */
-class IDSearcher5 : public Searcher5<IDGenerator5, IDState>
+class IDSearcher5 final : public Searcher5<IDGenerator5, IDState>
 {
 public:
     /**

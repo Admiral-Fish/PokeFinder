@@ -99,7 +99,7 @@ namespace AdvanceSearcher
      * @param sequence Allowed values for each search position
      * @param getter Retrieves the value for a given row
      *
-     * @return Matching starting rows
+     * @return Matching ending rows
      */
     std::vector<size_t> findMatches(size_t rowCount, const Sequence &sequence, const ValueGetter &getter);
 }

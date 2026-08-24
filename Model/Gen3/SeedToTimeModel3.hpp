@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show Seed to Time information for Gen 4
  */
-class SeedToTimeModel3 : public TableModel<DateTime>
+class SeedToTimeModel3 final : public TableModel<DateTime>
 {
     Q_OBJECT
 public:

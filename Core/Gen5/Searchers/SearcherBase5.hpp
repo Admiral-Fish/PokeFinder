@@ -22,16 +22,17 @@
 
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Global.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/WildState5.hpp>
 #include <Core/Parents/Searchers/SearcherBase.hpp>
-#include <Core/RNG/SHA1.hpp>
-#include <Core/Util/DateTime.hpp>
-#include <thread>
+#include <Core/Parents/States/IDState.hpp>
 
 class Date;
-class Profile5;
-template <class StateType>
-class SearcherState5;
 
 /**
  * @brief Parent searcher class for all Gen 5 generators
@@ -49,23 +50,17 @@ public:
      * @param generator State generator
      * @param profile Profile information
      */
-    SearcherBase5(const Generator &generator, const Profile5 &profile) :
-        SearcherBase<SearcherState5<State>>(), generator(generator), profile(profile), keypresses(Keypresses::getKeypresses(profile))
-    {
-    }
+    SearcherBase5(const Generator &generator, const Profile5 &profile);
 
     /**
      * @brief Computes max progress
      *
      * @param start Start date
      * @param end End date
-     * 
+     *
      * @return Max progress
      */
-    u64 getMaxProgress(const Date &start, const Date &end) const
-    {
-        return keypresses.size() * (start.daysTo(end) + 1) * (profile.getTimer0Max() - profile.getTimer0Min() + 1);
-    }
+    u64 getMaxProgress(const Date &start, const Date &end) const;
 
     /**
      * @brief Starts the search
@@ -74,40 +69,7 @@ public:
      * @param start Start date
      * @param end End date
      */
-    void startSearch(int threads, const Date &start, const Date &end)
-    {
-        this->searching = true;
-
-        auto days = start.daysTo(end) + 1;
-        if (days < threads)
-        {
-            threads = days;
-        }
-
-        auto *threadContainer = new std::thread[threads];
-
-        auto daysSplit = days / threads;
-        Date day = start;
-        for (int i = 0; i < threads; i++, day += daysSplit)
-        {
-            if (i == threads - 1)
-            {
-                threadContainer[i] = std::thread([=] { search(day, end); });
-            }
-            else
-            {
-                Date mid = day + (daysSplit - 1);
-                threadContainer[i] = std::thread([=] { search(day, mid); });
-            }
-        }
-
-        for (int i = 0; i < threads; i++)
-        {
-            threadContainer[i].join();
-        }
-
-        delete[] threadContainer;
-    }
+    void startSearch(int threads, const Date &start, const Date &end);
 
 protected:
     Generator generator;

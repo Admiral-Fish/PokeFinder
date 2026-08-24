@@ -27,7 +27,7 @@
 /**
  * @brief Provides exclusion item selection via menu selection where sub menus can act as combo boxes
  */
-class ComboMenu : public QToolButton
+class ComboMenu final : public QToolButton
 {
     Q_OBJECT
 public:

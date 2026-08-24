@@ -42,8 +42,9 @@ static bool operator==(const WildGeneratorState4 &left, const json &right)
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>() && left.getBattleAdvances() == right["battleAdvances"].get<u32>()
-        && left.getCall() == right["call"].get<u8>() && left.getChatot() == right["chatot"].get<u8>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.isValid() == right["valid"].get<bool>()
+        && left.getBattleAdvances() == right["battleAdvances"].get<u32>() && left.getCall() == right["call"].get<u8>()
+        && left.getChatot() == right["chatot"].get<u8>();
 }
 
 void WildGenerator4Test::generateMethodJ_data()

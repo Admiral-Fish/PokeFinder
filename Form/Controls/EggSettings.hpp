@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Provides selection of settings for parents and other relevant daycare options
  */
-class EggSettings : public QWidget
+class EggSettings final : public QWidget
 {
     Q_OBJECT
 signals:

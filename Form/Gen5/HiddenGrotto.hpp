@@ -40,7 +40,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG hidden grotto in Gen 5
  */
-class HiddenGrotto : public QWidget
+class HiddenGrotto final : public QWidget
 {
     Q_OBJECT
 signals:

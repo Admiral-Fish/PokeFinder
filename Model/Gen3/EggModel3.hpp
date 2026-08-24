@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 3
  */
-class EggModel3 : public TableModel<EggState3>
+class EggModel3 final : public TableModel<EggState3>
 {
     Q_OBJECT
 public:

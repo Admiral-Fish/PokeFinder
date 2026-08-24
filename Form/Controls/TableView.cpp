@@ -33,8 +33,8 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     auto *outputTXT = addAction(tr("Output Results to TXT"));
     auto *outputCSV = addAction(tr("Output Results to CSV"));
 
-    connect(outputTXT, &QAction::triggered, this, [=] { outputModel(); });
-    connect(outputCSV, &QAction::triggered, this, [=] { outputModel(true); });
+    connect(outputTXT, &QAction::triggered, this, [this] { outputModel(); });
+    connect(outputCSV, &QAction::triggered, this, [this] { outputModel(true); });
 
     QHeaderView *horizontal = this->horizontalHeader();
     horizontal->setSectionResizeMode(QHeaderView::Interactive);
@@ -51,7 +51,7 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 void TableView::setModel(QAbstractItemModel *model)
 {
     QTableView::setModel(model);
-    connect(this->model(), &QAbstractItemModel::rowsInserted, this, [=] {
+    connect(this->model(), &QAbstractItemModel::rowsInserted, this, [this] {
         QSettings setting;
         this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
     });

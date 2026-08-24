@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Allows searching of coin flips to calibrate obtained seed
  */
-class SearchCoinFlips : public QDialog
+class SearchCoinFlips final : public QDialog
 {
     Q_OBJECT
 public:

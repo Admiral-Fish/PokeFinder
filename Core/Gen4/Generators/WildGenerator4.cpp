@@ -119,14 +119,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     {
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
+        bool valid = true;
 
         // Fishing nibble check
         if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
              || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort<false>(100, &battleAdvances) >= thresh)
         {
-            rng.next();
-            continue;
+            valid = false;
         }
 
         u8 encounterSlot;
@@ -230,7 +230,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info);
+                                  slot.getSpecie(), form, info, valid);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
@@ -272,14 +272,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     {
         u32 battleAdvances = battleAdvancesConst + initialAdvances + offset + cnt;
         PokeRNG go(rng, jump);
+        bool valid = true;
 
         // Rock smash/fishing nibble check
         if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
              || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort(100, &battleAdvances) >= rate)
         {
-            rng.next();
-            continue;
+            valid = false;
         }
 
         u8 encounterSlot;
@@ -460,7 +460,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info);
+                                  slot.getSpecie(), form, info, valid);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);

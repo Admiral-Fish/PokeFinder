@@ -127,7 +127,7 @@ namespace AdvanceSearcher
 
             if (match)
             {
-                matches.emplace_back(i);
+                matches.emplace_back(i + sequence.size() - 1);
             }
         }
 

@@ -30,7 +30,7 @@ namespace Ui
 /**
  * @brief Allows seeing the locations of dens on the map
  */
-class DenMap : public QWidget
+class DenMap final : public QWidget
 {
     Q_OBJECT
 public:

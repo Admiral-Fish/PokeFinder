@@ -21,6 +21,7 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/States/WildState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
@@ -90,10 +91,10 @@ static u16 getItem(BWRNG &rng, bool bw, Lead lead, Encounter encounter, const Pe
     return 0;
 }
 
-WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, u8 luckyPower,
+WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, PassPower luckyPower,
                                const EncounterArea5 &area, const Profile5 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, method, lead, area, profile, filter),
-    luckyPower((profile.getVersion() & Game::BW) != Game::None ? 0 : luckyPower)
+    luckyPower((profile.getVersion() & Game::BW) != Game::None ? PassPower::None : luckyPower)
 {
 }
 
@@ -147,16 +148,20 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             shinyRolls += 2;
         }
 
-        if (luckyPower == 3)
+        if (luckyPower == PassPower::Level3)
         {
             shinyRolls++;
         }
     }
 
+    bool nsPokemonReleasedOffset = profile.getMemoryLink() && profile.getNsPokemonReleased()
+        && (area.getEncounter() != Encounter::SuperRod && area.getEncounter() != Encounter::SuperRodRippling);
+
     std::vector<WildState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
+        bool valid = true;
 
         bool cuteCharm = false;
         bool magnetStatic = false;
@@ -194,10 +199,14 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             doubleBattle = true;
         }
 
+        if (nsPokemonReleasedOffset)
+        {
+            go.next();
+        }
+
         if (area.getEncounter() == Encounter::SuperRod && getPercentRand(go, bw) > rate)
         {
-            rng.next();
-            continue;
+            valid = false;
         }
 
         u8 encounterSlot;
@@ -250,8 +259,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         for (const auto &iv : ivs)
         {
             WildState5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info);
-            if (filter.compareState(static_cast<const WildState &>(state)))
+                             encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+            if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
             {
                 states.emplace_back(state);
             }

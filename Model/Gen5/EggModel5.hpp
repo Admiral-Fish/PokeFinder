@@ -28,7 +28,7 @@
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 5
  */
-class EggGeneratorModel5 : public TableModel<EggState5>, public IRNGProvider5
+class EggGeneratorModel5 final : public TableModel<EggState5>, public IRNGProvider5
 {
     Q_OBJECT
 public:
@@ -115,7 +115,7 @@ private:
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 5
  */
-class EggSearcherModel5 : public TableModel<SearcherState5<EggState5>>
+class EggSearcherModel5 final : public TableModel<SearcherState5<EggState5>>
 {
     Q_OBJECT
 public:

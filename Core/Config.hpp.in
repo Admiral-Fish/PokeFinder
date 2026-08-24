@@ -1,0 +1,6 @@
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
+
+#cmakedefine ENABLE_SIMD
+
+#endif // CONFIG_HPP

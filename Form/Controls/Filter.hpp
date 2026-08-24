@@ -36,7 +36,7 @@ namespace Ui
 /**
  * @brief Provides settings to filter results on
  */
-class Filter : public QWidget
+class Filter final : public QWidget
 {
     Q_OBJECT
 signals:
@@ -229,7 +229,7 @@ public:
 
     /**
      * @brief Determines if Filter is valid based on current selections. Additionally checks against input level range
-     * 
+     *
      * @param min Minimum level
      * @param max Maximum level
      *

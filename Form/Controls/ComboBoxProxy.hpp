@@ -30,7 +30,7 @@ class QStandardItemModel;
 /**
  * @brief Provides combo box that sorts the data via a proxy model
  */
-class ComboBoxProxy : public QComboBox
+class ComboBoxProxy final : public QComboBox
 {
     Q_OBJECT
 public:
@@ -105,7 +105,7 @@ private:
 /**
  * @brief Provides a proxy to sort strings placing "None" at the top
  */
-class ComboBoxProxyModel : public SortFilterProxyModel
+class ComboBoxProxyModel final : public SortFilterProxyModel
 {
     Q_OBJECT
 public:

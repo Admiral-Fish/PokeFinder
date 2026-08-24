@@ -57,7 +57,7 @@ namespace Ui
 /**
  * @brief Provides a central hub to access the various windows for RNG
  */
-class MainWindow : public QMainWindow
+class MainWindow final : public QMainWindow
 {
     Q_OBJECT
 signals:

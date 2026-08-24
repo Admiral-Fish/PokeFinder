@@ -70,7 +70,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -149,68 +149,68 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &Wild4::searcherLocationIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Wild4::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild4::searcherPokemonIndexChanged);
-    connect(ui->comboBoxGeneratorTime, &QComboBox::currentIndexChanged, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->comboBoxSearcherTime, &QComboBox::currentIndexChanged, this, [=] { searcherEncounterUpdate(); });
-    connect(ui->comboBoxGeneratorDualSlot, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxGeneratorTime, &QComboBox::currentIndexChanged, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->comboBoxSearcherTime, &QComboBox::currentIndexChanged, this, &Wild4::searcherEncounterUpdate);
+    connect(ui->comboBoxGeneratorDualSlot, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxGeneratorDualSlot->isChecked())
         {
             generatorEncounterUpdate();
         }
     });
-    connect(ui->comboBoxSearcherDualSlot, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxSearcherDualSlot, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxSearcherDualSlot->isChecked())
         {
             searcherEncounterUpdate();
         }
     });
-    connect(ui->comboBoxGeneratorRadio, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxGeneratorRadio, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxGeneratorRadio->isChecked())
         {
             generatorEncounterUpdate();
         }
     });
-    connect(ui->comboBoxSearcherRadio, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxSearcherRadio, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxSearcherRadio->isChecked())
         {
             searcherEncounterUpdate();
         }
     });
-    connect(ui->comboBoxGeneratorReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxGeneratorReplacement0, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxGeneratorReplacement->isChecked())
         {
             generatorEncounterUpdate();
         }
     });
-    connect(ui->comboBoxGeneratorReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxGeneratorReplacement1, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxGeneratorReplacement->isChecked())
         {
             generatorEncounterUpdate();
         }
     });
-    connect(ui->comboBoxSearcherReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxSearcherReplacement0, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxSearcherReplacement->isChecked())
         {
             searcherEncounterUpdate();
         }
     });
-    connect(ui->comboBoxSearcherReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxSearcherReplacement1, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxSearcherReplacement->isChecked())
         {
             searcherEncounterUpdate();
         }
     });
-    connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
+    connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, &Wild4::searcherEncounterUpdate);
     connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::checkStateChanged, this, &Wild4::generatorFeebasTileStateChanged);
     connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::checkStateChanged, this, &Wild4::searcherFeebasTileStateChanged);
-    connect(ui->spinBoxGeneratorPlainsBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->spinBoxGeneratorForestBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->spinBoxGeneratorPeakBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->spinBoxGeneratorWaterBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->spinBoxSearcherPlainsBlock, &QSpinBox::valueChanged, this, [=] { searcherEncounterUpdate(); });
-    connect(ui->spinBoxSearcherForestBlock, &QSpinBox::valueChanged, this, [=] { searcherEncounterUpdate(); });
-    connect(ui->spinBoxSearcherPeakBlock, &QSpinBox::valueChanged, this, [=] { searcherEncounterUpdate(); });
-    connect(ui->spinBoxSearcherWaterBlock, &QSpinBox::valueChanged, this, [=] { searcherEncounterUpdate(); });
+    connect(ui->spinBoxGeneratorPlainsBlock, &QSpinBox::valueChanged, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->spinBoxGeneratorForestBlock, &QSpinBox::valueChanged, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->spinBoxGeneratorPeakBlock, &QSpinBox::valueChanged, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->spinBoxGeneratorWaterBlock, &QSpinBox::valueChanged, this, &Wild4::generatorEncounterUpdate);
+    connect(ui->spinBoxSearcherPlainsBlock, &QSpinBox::valueChanged, this, &Wild4::searcherEncounterUpdate);
+    connect(ui->spinBoxSearcherForestBlock, &QSpinBox::valueChanged, this, &Wild4::searcherEncounterUpdate);
+    connect(ui->spinBoxSearcherPeakBlock, &QSpinBox::valueChanged, this, &Wild4::searcherEncounterUpdate);
+    connect(ui->spinBoxSearcherWaterBlock, &QSpinBox::valueChanged, this, &Wild4::searcherEncounterUpdate);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel4::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel4::setShowStats);
 
@@ -681,18 +681,18 @@ void Wild4::search()
     }
     searcher->setMaxProgress(maxProgress);
 
-    auto *thread = QThread::create([=] { searcher->startSearch(min, max, fixedSlot); });
+    auto *thread = QThread::create([searcher, min, max, fixedSlot] { searcher->startSearch(min, max, fixedSlot); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] {
+    timer->callOnTimeout(this, [this, searcher] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());

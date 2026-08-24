@@ -30,7 +30,6 @@
 
 using KeyPresses = std::array<bool, 9>;
 using SeedSSE = std::array<u64, 4>;
-using SeedAVX2 = std::array<u64, 8>;
 
 void SHA1Test::hash_data()
 {
@@ -70,8 +69,8 @@ void SHA1Test::hash()
     QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                     language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
     auto buttons = Keypresses::getKeypresses(profile);
 
@@ -127,8 +126,8 @@ void SHA1Test::hashTime()
     QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                     language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
     auto buttons = Keypresses::getKeypresses(profile);
 
@@ -183,8 +182,8 @@ void SHA1SSETest::hash()
     QFETCH(DSType, dsType);
     QFETCH(SeedSSE, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                     language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
     auto buttons = Keypresses::getKeypresses(profile);
 
@@ -240,8 +239,8 @@ void SHA1SSETest::hashTime()
     QFETCH(DSType, dsType);
     QFETCH(SeedSSE, seed);
 
-    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                     language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
     auto buttons = Keypresses::getKeypresses(profile);
 
@@ -258,7 +257,7 @@ void SHA1SSETest::hashTime()
     QCOMPARE(sha.hashSeed(alpha), seed);
 }
 
-void SHA1AVX2Test::hash_data()
+void SHA1SIMDTest::hash_data()
 {
     QTest::addColumn<KeyPresses>("keypresses");
     QTest::addColumn<bool>("skipLR");
@@ -270,19 +269,19 @@ void SHA1AVX2Test::hash_data()
     QTest::addColumn<u32>("timer0");
     QTest::addColumn<u8>("vCount");
     QTest::addColumn<DSType>("dsType");
-    QTest::addColumn<SeedAVX2>("seed");
+    QTest::addColumn<u64>("seed");
 
-    json data = readData("sha1avx2", "hash");
+    json data = readData("sha1", "hash");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << d["version"].get<Game>() << d["language"].get<Language>()
             << d["mac"].get<u64>() << d["vFrame"].get<u8>() << d["gxStat"].get<u8>() << d["timer0"].get<u32>() << d["vCount"].get<u8>()
-            << d["dsType"].get<DSType>() << d["seed"].get<SeedAVX2>();
+            << d["dsType"].get<DSType>() << d["seed"].get<u64>();
     }
 }
 
-void SHA1AVX2Test::hash()
+void SHA1SIMDTest::hash()
 {
     QFETCH(KeyPresses, keypresses);
     QFETCH(bool, skipLR);
@@ -294,33 +293,29 @@ void SHA1AVX2Test::hash()
     QFETCH(u32, timer0);
     QFETCH(u8, vCount);
     QFETCH(DSType, dsType);
-    QFETCH(SeedAVX2, seed);
+    QFETCH(u64, seed);
 
-#ifdef SIMD_X86
-    if (hasAVX2())
-    {
-        Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                         language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
-        auto buttons = Keypresses::getKeypresses(profile);
+    auto buttons = Keypresses::getKeypresses(profile);
 
-        DateTime dateTime;
-        const Date &date = dateTime.getDate();
-        const Time &time = dateTime.getTime();
+    DateTime dateTime;
+    const Date &date = dateTime.getDate();
+    const Time &time = dateTime.getTime();
 
-        SHA1AVX2 sha(profile);
-        sha.setButton(buttons.front().value);
-        sha.setDate(date);
-        sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
-        sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
+#ifdef ENABLE_SIMD
+    SHA1SIMD sha(profile);
+    sha.setButton(buttons.front().value);
+    sha.setDate(date);
+    sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
+    sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-        auto alpha = sha.precompute();
-        QCOMPARE(sha.hashSeed(alpha), seed);
-    }
+    QCOMPARE(sha.hashSeed(), seed);
 #endif
 }
 
-void SHA1AVX2Test::hashTime_data()
+void SHA1SIMDTest::hashTime_data()
 {
     QTest::addColumn<KeyPresses>("keypresses");
     QTest::addColumn<bool>("skipLR");
@@ -332,19 +327,19 @@ void SHA1AVX2Test::hashTime_data()
     QTest::addColumn<u32>("timer0");
     QTest::addColumn<u8>("vCount");
     QTest::addColumn<DSType>("dsType");
-    QTest::addColumn<SeedAVX2>("seed");
+    QTest::addColumn<u64>("seed");
 
-    json data = readData("sha1avx2", "hashTime");
+    json data = readData("sha1", "hashTime");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << d["version"].get<Game>() << d["language"].get<Language>()
             << d["mac"].get<u64>() << d["vFrame"].get<u8>() << d["gxStat"].get<u8>() << d["timer0"].get<u32>() << d["vCount"].get<u8>()
-            << d["dsType"].get<DSType>() << d["seed"].get<SeedAVX2>();
+            << d["dsType"].get<DSType>() << d["seed"].get<u64>();
     }
 }
 
-void SHA1AVX2Test::hashTime()
+void SHA1SIMDTest::hashTime()
 {
     QFETCH(KeyPresses, keypresses);
     QFETCH(bool, skipLR);
@@ -356,27 +351,23 @@ void SHA1AVX2Test::hashTime()
     QFETCH(u32, timer0);
     QFETCH(u8, vCount);
     QFETCH(DSType, dsType);
-    QFETCH(SeedAVX2, seed);
+    QFETCH(u64, seed);
 
-#ifdef SIMD_X86
-    if (hasAVX2())
-    {
-        Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, dsType,
-                         language);
+    Profile5 profile("-", version, 0, 0, "", "", mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false,
+                     dsType, language);
 
-        auto buttons = Keypresses::getKeypresses(profile);
+    auto buttons = Keypresses::getKeypresses(profile);
 
-        Date date;
-        Time time(12, 0, 0);
+    Date date;
+    Time time(12, 0, 0);
 
-        SHA1AVX2 sha(profile);
-        sha.setButton(buttons.front().value);
-        sha.setDate(date);
-        sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
-        sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
+#ifdef ENABLE_SIMD
+    SHA1SIMD sha(profile);
+    sha.setButton(buttons.front().value);
+    sha.setDate(date);
+    sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
+    sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-        auto alpha = sha.precompute();
-        QCOMPARE(sha.hashSeed(alpha), seed);
-    }
+    QCOMPARE(sha.hashSeed(), seed);
 #endif
 }

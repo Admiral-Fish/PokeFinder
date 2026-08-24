@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show TID/SID information for Gen 3
  */
-class IDModel3 : public TableModel<IDState>
+class IDModel3 final : public TableModel<IDState>
 {
     Q_OBJECT
 public:

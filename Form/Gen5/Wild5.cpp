@@ -23,6 +23,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
@@ -81,7 +82,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                            toInt(Encounter::SuperRodRippling) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::Height | Controls::Weight);
+    ui->filterSearcher->disableControls( Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -114,8 +115,10 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
-    ui->comboBoxGeneratorLuckyPower->setup({ 0, 1, 2, 3 });
-    ui->comboBoxSearcherLuckyPower->setup({ 0, 1, 2, 3 });
+    ui->comboBoxGeneratorLuckyPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
+    ui->comboBoxSearcherLuckyPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3) });
 
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Wild5::openAdvanceFinder);
@@ -229,7 +232,7 @@ void Wild5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxGeneratorLuckyPower->getEnum<PassPower>();
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower,
@@ -401,7 +404,7 @@ void Wild5::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
-    u8 luckyPower = ui->comboBoxSearcherLuckyPower->getCurrentUChar();
+    auto luckyPower = ui->comboBoxSearcherLuckyPower->getEnum<PassPower>();
 
     auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, 0, Method::Method5, lead, luckyPower,
@@ -432,18 +435,18 @@ void Wild5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());

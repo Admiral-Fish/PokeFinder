@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG underground encounters in Pokemon Brilliant Diamond and Shining Pearl
  */
-class Underground : public QWidget
+class Underground final : public QWidget
 {
     Q_OBJECT
 signals:

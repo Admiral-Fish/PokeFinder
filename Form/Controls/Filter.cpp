@@ -106,8 +106,10 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(copyAction, &QAction::triggered, this, &Filter::setIVsToClipBoard);
     connect(pasteAction, &QAction::triggered, this, &Filter::setIVsFromClipBoard);
 
-    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
-    connect(ui->checkBoxDisableFilters, &QCheckBox::stateChanged, this, [=](int state) { emit disableFiltersChanged(state == Qt::Checked); });
+    connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
+            [this](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
+    connect(ui->checkBoxDisableFilters, &QCheckBox::checkStateChanged, this,
+            [this](Qt::CheckState state) { emit disableFiltersChanged(state == Qt::Checked); });
     connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
@@ -120,8 +122,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(ui->spinBoxSpDMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxSpeMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
-            [=](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
 }
 

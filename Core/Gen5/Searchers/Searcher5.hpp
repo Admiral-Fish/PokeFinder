@@ -38,9 +38,7 @@ public:
      * @param generator State generator
      * @param profile Profile information
      */
-    Searcher5(const Generator &generator, const Profile5 &profile) : SearcherBase5<Generator, State>(generator, profile)
-    {
-    }
+    Searcher5(const Generator &generator, const Profile5 &profile);
 
 private:
     /**
@@ -49,101 +47,7 @@ private:
      * @param start Start date
      * @param end End date
      */
-    void search(const Date &start, const Date &end) override
-    {
-#ifdef SIMD_X86
-        if (hasAVX2())
-        {
-            SHA1AVX2 sha(this->profile);
-            for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
-            {
-                sha.setTimer0(timer0, this->profile.getVCount());
-                for (Date date = start; date <= end; ++date)
-                {
-                    sha.setDate(date);
-                    auto alpha = sha.precompute();
-                    for (const auto &keypress : this->keypresses)
-                    {
-                        sha.setButton(keypress.value);
-
-                        for (u32 time = 0; time < 86400; time += 8)
-                        {
-                            if (!this->searching)
-                            {
-                                return;
-                            }
-
-                            sha.setTime(time, this->profile.getDSType());
-                            auto seeds = sha.hashSeed(alpha);
-
-                            for (u32 i = 0; i < seeds.size(); i++)
-                            {
-                                auto states = this->generator.generate(seeds[i]);
-                                if (!states.empty())
-                                {
-                                    DateTime dt(date, time + i);
-
-                                    std::lock_guard<std::mutex> lock(this->mutex);
-                                    this->results.reserve(this->results.capacity() + states.size());
-                                    for (const auto &state : states)
-                                    {
-                                        this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                    }
-                                }
-                            }
-                        }
-                        this->progress++;
-                    }
-                }
-            }
-        }
-        else
-#endif
-        {
-            SHA1SSE sha(this->profile);
-            for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
-            {
-                sha.setTimer0(timer0, this->profile.getVCount());
-                for (Date date = start; date <= end; ++date)
-                {
-                    sha.setDate(date);
-                    auto alpha = sha.precompute();
-                    for (const auto &keypress : this->keypresses)
-                    {
-                        sha.setButton(keypress.value);
-
-                        for (u32 time = 0; time < 86400; time += 4)
-                        {
-                            if (!this->searching)
-                            {
-                                return;
-                            }
-
-                            sha.setTime(time, this->profile.getDSType());
-                            auto seeds = sha.hashSeed(alpha);
-
-                            for (u32 i = 0; i < seeds.size(); i++)
-                            {
-                                auto states = this->generator.generate(seeds[i]);
-                                if (!states.empty())
-                                {
-                                    DateTime dt(date, time + i);
-
-                                    std::lock_guard<std::mutex> lock(this->mutex);
-                                    this->results.reserve(this->results.capacity() + states.size());
-                                    for (const auto &state : states)
-                                    {
-                                        this->results.emplace_back(dt, seeds[i], keypress.button, timer0, state);
-                                    }
-                                }
-                            }
-                        }
-                        this->progress++;
-                    }
-                }
-            }
-        }
-    }
+    void search(const Date &start, const Date &end) override;
 };
 
 #endif // SEARCHER5_HPP

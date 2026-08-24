@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show TID/SID information for Gen 8
  */
-class IDModel8 : public TableModel<IDState8>
+class IDModel8 final : public TableModel<IDState8>
 {
     Q_OBJECT
 public:
