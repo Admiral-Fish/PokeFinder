@@ -27,7 +27,7 @@ class CheckListProxyModel;
 class QListView;
 class QStandardItemModel;
 
-class CheckList : public QComboBox
+class CheckList final : public QComboBox
 {
     Q_OBJECT
 public:
@@ -101,6 +101,7 @@ public:
     {
         auto checked = getChecked();
         std::array<bool, size> array;
+        array.fill(true);
         std::ranges::copy(checked, array.begin());
         return array;
     }

@@ -37,7 +37,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG static encounters in Gen 5 games
  */
-class Static5 : public QWidget
+class Static5 final : public QWidget
 {
     Q_OBJECT
 signals:

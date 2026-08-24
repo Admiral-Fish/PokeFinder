@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Calculates potentional IVs from the given PID for various methods
  */
-class PIDToIV : public QWidget
+class PIDToIV final : public QWidget
 {
     Q_OBJECT
 public:

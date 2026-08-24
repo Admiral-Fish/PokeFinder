@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Den Map</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QLabel" name="labelMap">
      <property name="minimumSize">
       <size>
@@ -27,7 +27,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QComboBox" name="comboBoxLocation">
      <item>
       <property name="text">
@@ -46,7 +46,7 @@
      </item>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item>
     <widget class="QComboBox" name="comboBoxDen"/>
    </item>
   </layout>

@@ -37,7 +37,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG dream radar encounters in Gen 5 games
  */
-class DreamRadar : public QWidget
+class DreamRadar final : public QWidget
 {
     Q_OBJECT
 signals:

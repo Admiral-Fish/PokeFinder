@@ -13,12 +13,11 @@
   <property name="windowTitle">
    <string>Wondercard IVs</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="ProfileDisplay4" name="profileDisplay" native="true">
-    </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="ProfileDisplay4" name="profileDisplay" native="true"/>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="TabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -158,8 +157,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_1">
+          <item>
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
@@ -330,8 +329,8 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
@@ -371,6 +370,11 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>ComboBoxProxy</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBoxProxy.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TabWidget</class>
    <extends>QTabWidget</extends>
    <header>Form/Controls/TabWidget.hpp</header>
@@ -381,11 +385,6 @@
    <extends>QWidget</extends>
    <header>Form/Gen4/Profile/ProfileDisplay4.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboBoxProxy</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBoxProxy.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

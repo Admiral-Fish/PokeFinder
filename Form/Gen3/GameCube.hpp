@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG static encounters in GameCube games
  */
-class GameCube : public QWidget
+class GameCube final : public QWidget
 {
     Q_OBJECT
 signals:

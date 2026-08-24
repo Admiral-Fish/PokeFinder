@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 3
  */
-class WildGeneratorModel3 : public TableModel<WildGeneratorState>
+class WildGeneratorModel3 final : public TableModel<WildGeneratorState>
 {
     Q_OBJECT
 public:

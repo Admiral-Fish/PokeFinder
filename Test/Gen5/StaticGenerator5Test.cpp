@@ -77,11 +77,11 @@ void StaticGenerator5Test::generateNonWild()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, false, DSType::DS, Language::English);
 
     const StaticTemplate5 *staticTemplate = Encounters5::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
-    StaticGenerator5 generator(0, 9, 0, Method::Method5, Lead::None, 0, *staticTemplate, profile, filter);
+    StaticGenerator5 generator(0, 9, 0, Method::Method5, Lead::None, PassPower::None, *staticTemplate, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());
@@ -98,6 +98,7 @@ void StaticGenerator5Test::generateWild_data()
     QTest::addColumn<u64>("seed");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<Game>("version");
+    QTest::addColumn<PassPower>("luckyPower");
     QTest::addColumn<int>("category");
     QTest::addColumn<int>("pokemon");
     QTest::addColumn<std::string>("results");
@@ -106,8 +107,8 @@ void StaticGenerator5Test::generateWild_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u64>() << d["lead"].get<Lead>() << d["version"].get<Game>() << d["category"].get<int>()
-            << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+            << d["seed"].get<u64>() << d["lead"].get<Lead>() << d["version"].get<Game>() << d["luckyPower"].get<PassPower>()
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -116,6 +117,7 @@ void StaticGenerator5Test::generateWild()
     QFETCH(u64, seed);
     QFETCH(Lead, lead);
     QFETCH(Game, version);
+    QFETCH(PassPower, luckyPower);
     QFETCH(int, category);
     QFETCH(int, pokemon);
     QFETCH(std::string, results);
@@ -135,11 +137,11 @@ void StaticGenerator5Test::generateWild()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, false, DSType::DS, Language::English);
 
     const StaticTemplate5 *staticTemplate = Encounters5::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
-    StaticGenerator5 generator(0, 9, 0, Method::Method5, lead, 0, *staticTemplate, profile, filter);
+    StaticGenerator5 generator(0, 9, 0, Method::Method5, lead, luckyPower, *staticTemplate, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
     QCOMPARE(states.size(), j.size());

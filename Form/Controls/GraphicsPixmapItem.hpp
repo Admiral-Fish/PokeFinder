@@ -26,7 +26,7 @@
 /**
  * @brief Utility class that bounds X and Y position of QGraphicsPixmapItem
  */
-class GraphicsPixmapItem : public QGraphicsPixmapItem
+class GraphicsPixmapItem final : public QGraphicsPixmapItem
 {
 public:
     /**

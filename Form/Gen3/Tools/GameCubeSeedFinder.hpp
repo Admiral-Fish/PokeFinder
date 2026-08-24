@@ -33,7 +33,7 @@ class QAbstractButton;
 /**
  * @brief Provides settings to determine current PRNG state in GameCube games
  */
-class GameCubeSeedFinder : public QWidget
+class GameCubeSeedFinder final : public QWidget
 {
     Q_OBJECT
 public:

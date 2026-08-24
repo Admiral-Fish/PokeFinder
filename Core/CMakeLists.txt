@@ -1,5 +1,10 @@
 project(PokeFinderCore)
 
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/Config.hpp.in
+    ${CMAKE_CURRENT_BINARY_DIR}/generated_public/Core/Config.hpp
+)
+
 # Modify raw encounter data into format PokeFinder uses
 file(GLOB_RECURSE ALL_ENCOUNTER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/*)
 list(FILTER ALL_ENCOUNTER_FILES EXCLUDE REGEX "(/\\.git($|/)|\\.pyc$|/__pycache__/)")
@@ -29,7 +34,7 @@ list(FILTER EMBED_DATA_FILES INCLUDE REGEX "\\.(bin|txt)$")
 set(EMBED_PYTHON_FILES ${ALL_EMBED_FILES})
 list(FILTER EMBED_PYTHON_FILES INCLUDE REGEX "\\.py$")
 
-set(EMBED_PATH ${CMAKE_CURRENT_BINARY_DIR}/generated/Core/Resources)
+set(EMBED_PATH ${CMAKE_CURRENT_BINARY_DIR}/generated_private/Core/Resources)
 set(EMBED_HEADERS 
     ${EMBED_PATH}/EncounterData3.hpp
     ${EMBED_PATH}/EncounterData4.hpp
@@ -57,6 +62,7 @@ add_library(PokeFinderCore STATIC
     Enum/Language.hpp
     Enum/Lead.hpp
     Enum/Method.hpp
+    Enum/PassPower.hpp
     Enum/ShadowType.hpp
     Enum/Shiny.hpp
     Gen3/EncounterArea3.cpp
@@ -177,12 +183,15 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/IDSearcher5.hpp
     Gen5/Searchers/IVCacheSearcher.cpp
     Gen5/Searchers/IVCacheSearcher.hpp
+    Gen5/Searchers/IVSearcher5.cpp
     Gen5/Searchers/IVSearcher5.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
     Gen5/Searchers/SHA1CacheSearcher.cpp
     Gen5/Searchers/SHA1CacheSearcher.hpp
+    Gen5/Searchers/SearcherBase5.cpp
     Gen5/Searchers/SearcherBase5.hpp
+    Gen5/Searchers/Searcher5.cpp
     Gen5/Searchers/Searcher5.hpp
     Gen5/SHA1Cache.cpp
     Gen5/SHA1Cache.hpp
@@ -264,6 +273,8 @@ add_library(PokeFinderCore STATIC
     Parents/States/State.hpp
     Parents/States/WildState.hpp
     Parents/StaticTemplate.hpp
+    RNG/Jump.cpp
+    RNG/Jump.hpp
     RNG/LCRNG.hpp
     RNG/LCRNGReverse.cpp
     RNG/LCRNGReverse.hpp
@@ -301,27 +312,23 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated)
+target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External ${CMAKE_CURRENT_BINARY_DIR}/generated_public PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated_private)
 target_link_libraries(PokeFinderCore libzstd_static PokeFinderIncludes)
 
 if (MSVC)
     add_compile_options(PokeFinderCore PRIVATE /Zc:inline)
 endif ()
 
-if (SIMD)
-    target_compile_definitions(PokeFinderCore PRIVATE SIMD)
-
+if (ENABLE_SIMD)
     if (APPLE)
         if ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES AND "arm64" IN_LIST CMAKE_OSX_ARCHITECTURES)
             # Universal binary: scope x86 SIMD flags to the x86_64 slice only.
             # arm64 always has NEON; -mfpu= is ARMv7-only and must not be passed.
             # Use SHELL: to prevent CMake from deduplicating the -Xarch_x86_64 pairs.
-            target_compile_options(PokeFinderCore PRIVATE
-                "SHELL:-Xarch_x86_64 -msse2" "SHELL:-Xarch_x86_64 -mssse3"
-                "SHELL:-Xarch_x86_64 -mavx" "SHELL:-Xarch_x86_64 -mavx2")
+            target_compile_options(PokeFinderCore PUBLIC "SHELL:-Xarch_x86_64 -msse4.2" "SHELL:-Xarch_x86_64 -mpclmul")
         elseif ("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES)
             # x86_64 only: Add
-            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+            target_compile_options(PokeFinderCore PUBLIC -msse4.2 -mpclmul)
         endif()
         # arm64-only: NEON is always enabled by default, no explicit flag needed.
     elseif (MINGW OR UNIX)
@@ -329,9 +336,13 @@ if (SIMD)
         get_target_arch(ARCH)
 
         if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-            target_compile_options(PokeFinderCore PRIVATE -msse2 -mssse3 -mavx -mavx2)
+            target_compile_options(PokeFinderCore PUBLIC -msse4.2 -mpclmul)
         elseif (ARCH STREQUAL "arm")
-            target_compile_options(PokeFinderCore PRIVATE -mfpu=neon)
+            target_compile_options(PokeFinderCore PRIVATE -mfpu=neon -mfpu=crypto-neon-fp-armv8)
+        elseif (ARCH STREQUAL "aarch64")
+            target_compile_options(PokeFinderCore PRIVATE -march=armv8-a+crypto)
         endif ()
+    elseif (MSVC)
+        target_compile_options(PokeFinderCore PUBLIC /arch:SSE4.2)
     endif ()
 endif()

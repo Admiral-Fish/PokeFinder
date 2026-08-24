@@ -44,7 +44,7 @@ private slots:
     void hashTime();
 };
 
-class SHA1AVX2Test : public QObject
+class SHA1SIMDTest : public QObject
 {
     Q_OBJECT
 private slots:

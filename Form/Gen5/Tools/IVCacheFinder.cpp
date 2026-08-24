@@ -63,15 +63,15 @@ void IVCacheFinder::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads); });
+    auto *thread = QThread::create([searcher, threads] { searcher->startSearch(threads); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] { ui->progressBar->setValue(searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, this, [this, searcher] { ui->progressBar->setValue(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         ui->progressBar->setValue(searcher->getProgress());

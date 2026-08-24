@@ -15,8 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox">

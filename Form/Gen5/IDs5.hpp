@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG TID/SID in Gen 5 games
  */
-class IDs5 : public QWidget
+class IDs5 final : public QWidget
 {
     Q_OBJECT
 signals:

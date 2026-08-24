@@ -41,7 +41,7 @@ enum class InputType : u8
  * @brief Provides a line edit purely for numbers and validates the contents based on regex for number base and minimum/maximum bounding
  * values.
  */
-class TextBox : public QLineEdit
+class TextBox final : public QLineEdit
 {
     Q_OBJECT
 public:

@@ -21,6 +21,7 @@
 #include "ui_HiddenGrotto.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/PassPower.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>
@@ -71,9 +72,10 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
     ui->textBoxGrottoSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGrottoSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGrottoGeneratorGrottoPower->setup({ 5, 15, 25, 35, 55 });
-
-    ui->comboBoxGrottoSearcherGrottoPower->setup({ 5, 15, 25, 35, 55 });
+    ui->comboBoxGrottoGeneratorGrottoPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3), toInt(PassPower::LevelS) });
+    ui->comboBoxGrottoSearcherGrottoPower->setup(
+        { toInt(PassPower::None), toInt(PassPower::Level1), toInt(PassPower::Level2), toInt(PassPower::Level3), toInt(PassPower::LevelS) });
 
     ui->comboBoxGrottoGeneratorLocation->enableAutoComplete();
     ui->comboBoxGrottoSearcherLocation->enableAutoComplete();
@@ -98,8 +100,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) :
 
     ui->filterPokemonGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
                                                 | Controls::Shiny | Controls::Weight);
-    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                               | Controls::Height | Controls::Shiny | Controls::Weight);
+    ui->filterPokemonSearcher->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
+                                               | Controls::Searcher | Controls::Shiny | Controls::Weight);
 
     ui->comboBoxPokemonGeneratorLocation->enableAutoComplete();
     ui->comboBoxPokemonSearcherLocation->enableAutoComplete();
@@ -242,12 +244,12 @@ void HiddenGrotto::grottoGenerate()
     u32 initialAdvances = ui->textBoxGrottoGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGrottoGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGrottoGeneratorOffset->getUInt();
-    u8 powerLevel = ui->comboBoxGrottoGeneratorGrottoPower->currentData().toUInt();
+    auto grottoPower = ui->comboBoxGrottoGeneratorGrottoPower->getEnum<PassPower>();
 
     HiddenGrottoFilter filter(ui->checkListGrottoGeneratorSlot->getCheckedArray<11>(),
                               ui->checkListGrottoGeneratorGender->getCheckedArray<2>(),
                               ui->checkListGrottoGeneratorGroup->getCheckedArray<4>());
-    HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, offset, powerLevel,
+    HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, offset, grottoPower,
                                         encounter[ui->comboBoxGrottoGeneratorLocation->currentIndex()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -342,12 +344,12 @@ void HiddenGrotto::grottoSearch()
 
     u32 initialAdvances = ui->textBoxGrottoSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGrottoSearcherMaxAdvances->getUInt();
-    u8 powerLevel = ui->comboBoxGrottoSearcherGrottoPower->getCurrentUInt();
+    auto grottoPower = ui->comboBoxGrottoSearcherGrottoPower->getEnum<PassPower>();
 
     HiddenGrottoFilter filter(ui->checkListGrottoSearcherSlot->getCheckedArray<11>(),
                               ui->checkListGrottoSearcherGender->getCheckedArray<2>(),
                               ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
-    HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, powerLevel,
+    HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, grottoPower,
                                         encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
     auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);
 
@@ -359,19 +361,19 @@ void HiddenGrotto::grottoSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         grottoSearcherModel->addItems(searcher->getResults());
         ui->progressBarGrotto->setValue(searcher->getProgress());
     });
 
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonGrottoSearch->setEnabled(true);
         ui->pushButtonGrottoCancel->setEnabled(false);
         grottoSearcherModel->addItems(searcher->getResults());
@@ -619,18 +621,18 @@ void HiddenGrotto::pokemonSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
+    connect(timer, &QTimer::timeout, this, [this, searcher] {
         pokemonSearcherModel->addItems(searcher->getResults());
         ui->progressBarPokemon->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonPokemonSearch->setEnabled(true);
         ui->pushButtonPokemonCancel->setEnabled(false);
         pokemonSearcherModel->addItems(searcher->getResults());

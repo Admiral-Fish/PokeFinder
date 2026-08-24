@@ -28,7 +28,7 @@
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 5
  */
-class StaticGeneratorModel5 : public TableModel<State5>, public IRNGProvider5
+class StaticGeneratorModel5 final : public TableModel<State5>, public IRNGProvider5
 {
     Q_OBJECT
 public:
@@ -107,7 +107,7 @@ private:
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 5
  */
-class StaticSearcherModel5 : public TableModel<SearcherState5<State5>>
+class StaticSearcherModel5 final : public TableModel<SearcherState5<State5>>
 {
     Q_OBJECT
 public:

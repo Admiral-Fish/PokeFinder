@@ -15,8 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="ProfileDisplay5" name="profileDisplay" native="true">
-    </widget>
+    <widget class="ProfileDisplay5" name="profileDisplay" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxSearchBy">

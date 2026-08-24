@@ -64,11 +64,11 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
     {
         if (i == threads - 1)
         {
-            threadContainer[i] = std::thread([=] { search(minVFrame, maxVFrame); });
+            threadContainer[i] = std::thread([this, minVFrame, maxVFrame] { search(minVFrame, maxVFrame); });
         }
         else
         {
-            threadContainer[i] = std::thread([=] { search(minVFrame, minVFrame + split - 1); });
+            threadContainer[i] = std::thread([this, minVFrame, split] { search(minVFrame, minVFrame + split - 1); });
         }
     }
 
@@ -85,38 +85,80 @@ void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
     u8 hour = time.hour();
     u8 minute = time.minute();
 
-    for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
+#ifdef ENABLE_SIMD
+    if (hasSHA())
     {
-        for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+        for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
         {
-            SHA1 sha(version, language, dsType, mac, vframe, gxStat);
-            sha.setDate(date);
-            sha.setButton(keypress.value);
-            for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
+            for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
             {
-                for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
+                SHA1SIMD sha(version, language, dsType, mac, vframe, gxStat);
+                sha.setDate(date);
+                sha.setButton(keypress.value);
+                for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
                 {
-                    sha.setTimer0(timer0, vcount);
-                    auto alpha = sha.precompute();
-                    for (u8 second = minSeconds; second <= maxSeconds; second++)
+                    for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
                     {
-                        if (!searching)
+                        sha.setTimer0(timer0, vcount);
+                        for (u8 second = minSeconds; second <= maxSeconds; second++)
                         {
-                            return;
-                        }
+                            if (!searching)
+                            {
+                                return;
+                            }
 
-                        sha.setTime(hour, minute, second, dsType);
+                            sha.setTime(hour, minute, second, dsType);
 
-                        u64 seed = sha.hashSeed(alpha);
-                        if (valid(seed))
-                        {
-                            std::lock_guard<std::mutex> lock(mutex);
-                            results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
-                                                 static_cast<u8>(gxStat), second);
+                            u64 seed = sha.hashSeed();
+                            if (valid(seed))
+                            {
+                                std::lock_guard<std::mutex> lock(mutex);
+                                results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                     static_cast<u8>(gxStat), second);
+                            }
                         }
                     }
+                    progress++;
                 }
-                progress++;
+            }
+        }
+    }
+    else
+#endif
+    {
+        for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
+        {
+            for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+            {
+                SHA1 sha(version, language, dsType, mac, vframe, gxStat);
+                sha.setDate(date);
+                sha.setButton(keypress.value);
+                for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
+                {
+                    for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
+                    {
+                        sha.setTimer0(timer0, vcount);
+                        auto alpha = sha.precompute();
+                        for (u8 second = minSeconds; second <= maxSeconds; second++)
+                        {
+                            if (!searching)
+                            {
+                                return;
+                            }
+
+                            sha.setTime(hour, minute, second, dsType);
+
+                            u64 seed = sha.hashSeed(alpha);
+                            if (valid(seed))
+                            {
+                                std::lock_guard<std::mutex> lock(mutex);
+                                results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                     static_cast<u8>(gxStat), second);
+                            }
+                        }
+                    }
+                    progress++;
+                }
             }
         }
     }

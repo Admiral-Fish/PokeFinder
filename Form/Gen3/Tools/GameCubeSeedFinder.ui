@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>GameCube Seed Finder</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QTabWidget" name="tabWidget">
      <widget class="QWidget" name="tabGales">
       <attribute name="title">
@@ -26,29 +26,29 @@
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_1">
+          <item>
            <widget class="QLabel" name="labelGalesRound">
             <property name="text">
              <string>Round #1</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <widget class="QLabel" name="labelGalesResults">
             <property name="text">
              <string>Possible Results:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonGalesSearch">
             <property name="text">
              <string>Search</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonGalesCancel">
             <property name="enabled">
              <bool>false</bool>
@@ -58,7 +58,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonGalesReset">
             <property name="text">
              <string>Reset</string>
@@ -152,29 +152,29 @@
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="QLabel" name="labelColoRound">
             <property name="text">
              <string>Round #1</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <widget class="QLabel" name="labelColoResults">
             <property name="text">
              <string>Possible Results:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonColoSearch">
             <property name="text">
              <string>Search</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonColoCancel">
             <property name="enabled">
              <bool>false</bool>
@@ -184,7 +184,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonColoReset">
             <property name="text">
              <string>Reset</string>
@@ -254,22 +254,22 @@
          <property name="title">
           <string>Search</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
            <widget class="QLabel" name="labelChannelResult">
             <property name="text">
              <string>Result:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonChannelSearch">
             <property name="text">
              <string>Search</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QPushButton" name="pushButtonChannelCancel">
             <property name="enabled">
              <bool>false</bool>
@@ -411,7 +411,7 @@
           <item row="6" column="0" colspan="2">
            <widget class="Line" name="line">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -437,8 +437,8 @@
          <property name="title">
           <string>Inputs</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_10">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
            <widget class="QListWidget" name="listWidgetInputs"/>
           </item>
          </layout>

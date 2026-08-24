@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show profile information for Gen 5
  */
-class ProfileModel5 : public TableModel<Profile5>
+class ProfileModel5 final : public TableModel<Profile5>
 {
     Q_OBJECT
 public:
@@ -57,6 +57,15 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
 
     /**
+     * @brief Returns item flags for drag and drop support
+     *
+     * @param index Row/column index
+     *
+     * @return Item flags
+     */
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+
+    /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
      *
      * @param section Column index
@@ -67,10 +76,25 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    /**
+     * @brief Returns supported drag actions
+     *
+     * @return Supported drag actions
+     */
+    Qt::DropActions supportedDragActions() const override;
+
+    /**
+     * @brief Returns supported drop actions
+     *
+     * @return Supported drop actions
+     */
+    Qt::DropActions supportedDropActions() const override;
+
 private:
     QStringList header = { tr("Profile Name"), tr("Version"),    tr("Language"), tr("TID"),         tr("SID"),
                            tr("MAC Address"),  tr("DS Type"),    tr("VCount"),   tr("Timer0"),      tr("GxStat"),
-                           tr("VFrame"),       tr("Keypresses"), tr("Skip L/R"), tr("Memory Link"), tr("Shiny Charm") };
+                           tr("VFrame"),       tr("Keypresses"), tr("Skip L/R"), tr("Memory Link"), tr("N's Pokémon released"),
+                           tr("Shiny Charm") };
 };
 
 #endif // PROFILE5MODEL_HPP

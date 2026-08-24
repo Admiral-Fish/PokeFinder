@@ -212,15 +212,15 @@ void GameCubeSeedFinder::channelSearch()
     QSettings setting;
     int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads); });
-    connect(ui->pushButtonChannelCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
+    auto *thread = QThread::create([searcher, threads] { searcher->startSearch(threads); });
+    connect(ui->pushButtonChannelCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] { updateChannelProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [this, searcher] { updateChannelProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonChannelSearch->setEnabled(true);
         ui->pushButtonChannelCancel->setEnabled(false);
         updateChannelProgress(searcher->getProgress());
@@ -325,21 +325,21 @@ void GameCubeSeedFinder::coloSearch()
         int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
 
         searcher->setMaxProgress(0x10000);
-        thread = QThread::create([=] { searcher->startSearch(threads); });
+        thread = QThread::create([searcher, threads] { searcher->startSearch(threads); });
     }
     else
     {
         searcher->setMaxProgress(coloSeeds.size());
-        thread = QThread::create([=] { searcher->startSearch(coloSeeds); });
+        thread = QThread::create([this, searcher] { searcher->startSearch(coloSeeds); });
     }
-    connect(ui->pushButtonColoCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
+    connect(ui->pushButtonColoCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] { updateColoProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [this, searcher] { updateColoProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonColoSearch->setEnabled(true);
         ui->pushButtonColoCancel->setEnabled(false);
         updateColoProgress(searcher->getProgress());
@@ -449,21 +449,21 @@ void GameCubeSeedFinder::galesSearch()
         int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
 
         searcher->setMaxProgress(0x10000);
-        thread = QThread::create([=] { searcher->startSearch(threads); });
+        thread = QThread::create([searcher, threads] { searcher->startSearch(threads); });
     }
     else
     {
         searcher->setMaxProgress(galeSeeds.size());
-        thread = QThread::create([=] { searcher->startSearch(galeSeeds); });
+        thread = QThread::create([this, searcher] { searcher->startSearch(galeSeeds); });
     }
-    connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
+    connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] { updateGalesProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [this, searcher] { updateGalesProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
+    connect(timer, &QTimer::destroyed, this, [this, searcher] {
         ui->pushButtonGalesSearch->setEnabled(true);
         ui->pushButtonGalesCancel->setEnabled(false);
         updateGalesProgress(searcher->getProgress());

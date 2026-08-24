@@ -27,7 +27,7 @@
 /**
  * @brief Provides a table model implementation to show underground encounter information for Gen 8
  */
-class UndergroundModel : public TableModel<UndergroundState>
+class UndergroundModel final : public TableModel<UndergroundState>
 {
     Q_OBJECT
 public:

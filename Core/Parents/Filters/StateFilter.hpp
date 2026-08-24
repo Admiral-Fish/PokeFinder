@@ -55,8 +55,8 @@ public:
      * @param natures Natures to filter by
      * @param powers Hidden powers to filter by
      */
-    StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax, bool skip,
-                const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
+    StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelMax, u8 heightMin, u8 heightMax, u8 weightMin, u8 weightMax,
+                bool skip, const std::array<u8, 6> &ivMin, const std::array<u8, 6> &ivMax, const std::array<bool, 25> &natures,
                 const std::array<bool, 16> &powers);
 
     /**
@@ -143,7 +143,7 @@ public:
 
     /**
      * @brief Determines if the \p state meets the filter criteria
-     * 
+     *
      * Includes filtering height/weight
      *
      * @param state State to compare
@@ -168,6 +168,14 @@ protected:
     u8 shiny;
     u8 weightMax;
     u8 weightMin;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 /**
@@ -235,16 +243,6 @@ public:
     /**
      * @brief Determines if the \p state meets the filter criteria
      *
-     * @param state State to compare
-     *
-     * @return true State passes the filter
-     * @return false State does not pass the filter
-     */
-    bool compareState(const WildState &state) const;
-
-    /**
-     * @brief Determines if the \p state meets the filter criteria
-     * 
      * Includes filtering height/weight
      *
      * @param state State to compare
@@ -255,7 +253,16 @@ public:
     bool compareState(const WildState8 &state) const;
 
 protected:
+    bool invalid;
     std::array<bool, 13> encounterSlots;
+
+    /**
+     * @brief Determines if we have active filters
+     *
+     * @return true Active filters
+     * @return false Inactive filters
+     */
+    bool hasActiveFilters() const;
 };
 
 #endif // STATEFILTER_HPP

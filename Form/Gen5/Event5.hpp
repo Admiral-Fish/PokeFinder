@@ -36,7 +36,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG event encounters in Gen 5 games
  */
-class Event5 : public QWidget
+class Event5 final : public QWidget
 {
     Q_OBJECT
 signals:

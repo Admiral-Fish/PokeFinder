@@ -38,7 +38,9 @@ enum class Controls : u16
     Level = 1 << 7,
     Natures = 1 << 8,
     Shiny = 1 << 9,
-    Weight = 1 << 10
+    Weight = 1 << 10,
+    Searcher = DisableFilter,
+    Wild = EncounterSlots | Level
 };
 
 /**

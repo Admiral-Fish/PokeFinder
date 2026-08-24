@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG egg encounters in Gen 8 games
  */
-class Eggs8 : public QWidget
+class Eggs8 final : public QWidget
 {
     Q_OBJECT
 signals:

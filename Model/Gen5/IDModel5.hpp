@@ -29,7 +29,7 @@ enum class Game : u32;
 /**
  * @brief Provides a table model implementation to show TID/SID information for Gen 5
  */
-class IDModel5 : public TableModel<SearcherState5<IDState>>
+class IDModel5 final : public TableModel<SearcherState5<IDState>>
 {
     Q_OBJECT
 public:

@@ -62,6 +62,13 @@ namespace ProfileLoader3
     std::vector<Profile3> getProfiles(Game version);
 
     /**
+     * @brief Replaces stored profiles
+     *
+     * @param profiles Ordered profiles to store
+     */
+    void setProfiles(const std::vector<Profile3> &profiles);
+
+    /**
      * @brief Deletes a profile from the stored json file
      *
      * @param remove Profile being removed
@@ -94,6 +101,13 @@ namespace ProfileLoader4
      * @return Vector of profiles
      */
     std::vector<Profile4> getProfiles(Game version);
+
+    /**
+     * @brief Replaces stored profiles
+     *
+     * @param profiles Ordered profiles to store
+     */
+    void setProfiles(const std::vector<Profile4> &profiles);
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -130,6 +144,13 @@ namespace ProfileLoader5
     std::vector<Profile5> getProfiles(Game version);
 
     /**
+     * @brief Replaces stored profiles
+     *
+     * @param profiles Ordered profiles to store
+     */
+    void setProfiles(const std::vector<Profile5> &profiles);
+
+    /**
      * @brief Deletes a profile from the stored json file
      *
      * @param remove Profile being removed
@@ -162,6 +183,13 @@ namespace ProfileLoader8
      * @return Vector of profiles
      */
     std::vector<Profile8> getProfiles(Game version);
+
+    /**
+     * @brief Replaces stored profiles
+     *
+     * @param profiles Ordered profiles to store
+     */
+    void setProfiles(const std::vector<Profile8> &profiles);
 
     /**
      * @brief Deletes a profile from the stored json file

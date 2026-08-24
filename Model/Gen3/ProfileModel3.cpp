@@ -59,6 +59,20 @@ QVariant ProfileModel3::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+Qt::ItemFlags ProfileModel3::flags(const QModelIndex &index) const
+{
+    Qt::ItemFlags flags = TableModel::flags(index);
+    if (index.isValid())
+    {
+        flags = (flags | Qt::ItemIsDragEnabled) & ~Qt::ItemIsDropEnabled;
+    }
+    else
+    {
+        flags |= Qt::ItemIsDropEnabled;
+    }
+    return flags;
+}
+
 QVariant ProfileModel3::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
@@ -66,4 +80,14 @@ QVariant ProfileModel3::headerData(int section, Qt::Orientation orientation, int
         return header[section];
     }
     return QVariant();
+}
+
+Qt::DropActions ProfileModel3::supportedDragActions() const
+{
+    return Qt::MoveAction;
+}
+
+Qt::DropActions ProfileModel3::supportedDropActions() const
+{
+    return Qt::MoveAction;
 }

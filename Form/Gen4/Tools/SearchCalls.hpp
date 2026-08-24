@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Allows searching of Elm/Irwin calls to calibrate obtained seed
  */
-class SearchCalls : public QDialog
+class SearchCalls final : public QDialog
 {
     Q_OBJECT
 public:

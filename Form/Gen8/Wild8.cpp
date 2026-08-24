@@ -83,21 +83,21 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Wild8::pokemonIndexChanged);
     connect(ui->checkBoxFeebasTile, &QCheckBox::checkStateChanged, this, &Wild8::feebasTileStateChanged);
-    connect(ui->comboBoxReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxReplacement0, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxReplacement->isChecked())
         {
             updateEncounters();
             locationIndexChanged(0);
         }
     });
-    connect(ui->comboBoxReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+    connect(ui->comboBoxReplacement1, &QComboBox::currentIndexChanged, this, [this] {
         if (ui->checkBoxReplacement->isChecked())
         {
             updateEncounters();
             locationIndexChanged(0);
         }
     });
-    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, this, [=] {
+    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, this, [this] {
         updateEncounters();
         locationIndexChanged(0);
     });

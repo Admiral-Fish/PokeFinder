@@ -37,7 +37,7 @@ namespace Ui
 /**
  * @brief Allows converted seeds to date/times and calibrating what date/time/delay was hit
  */
-class SeedToTime4 : public QWidget
+class SeedToTime4 final : public QWidget
 {
     Q_OBJECT
 public:

@@ -69,7 +69,7 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
                                                                                     { ui->pushButtonChatotAny, ChatotToken::Any } } };
     for (const auto &[button, token] : chatotButtons)
     {
-        connect(button, &QPushButton::clicked, this, [=] { appendToken(button, static_cast<u8>(token)); });
+        connect(button, &QPushButton::clicked, this, [this, button, token] { appendToken(button, static_cast<u8>(token)); });
     }
 
     using NeedleToken = AdvanceSearcher::NeedleToken;
@@ -84,13 +84,13 @@ AdvanceFinder::AdvanceFinder(QAbstractItemModel *sourceModel, QTableView *source
                                                                                    { ui->pushButtonNeedleAny, NeedleToken::Any } } };
     for (const auto &[button, token] : needleButtons)
     {
-        connect(button, &QPushButton::clicked, this, [=] { appendToken(button, static_cast<u8>(token)); });
+        connect(button, &QPushButton::clicked, this, [this, button, token] { appendToken(button, static_cast<u8>(token)); });
     }
 
     using CallToken = AdvanceSearcher::CallToken;
-    connect(ui->pushButtonCallE, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallE, static_cast<u8>(CallToken::E)); });
-    connect(ui->pushButtonCallK, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallK, static_cast<u8>(CallToken::K)); });
-    connect(ui->pushButtonCallP, &QPushButton::clicked, this, [=] { appendToken(ui->pushButtonCallP, static_cast<u8>(CallToken::P)); });
+    connect(ui->pushButtonCallE, &QPushButton::clicked, this, [this] { appendToken(ui->pushButtonCallE, static_cast<u8>(CallToken::E)); });
+    connect(ui->pushButtonCallK, &QPushButton::clicked, this, [this] { appendToken(ui->pushButtonCallK, static_cast<u8>(CallToken::K)); });
+    connect(ui->pushButtonCallP, &QPushButton::clicked, this, [this] { appendToken(ui->pushButtonCallP, static_cast<u8>(CallToken::P)); });
     connect(ui->radioButtonElm, &QRadioButton::clicked, this, &AdvanceFinder::elm);
     connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &AdvanceFinder::irwin);
     irwin();

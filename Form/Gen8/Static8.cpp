@@ -57,7 +57,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::Level);
+    ui->filter->disableControls(Controls::HiddenPowers | Controls::Wild);
 
     connect(ui->profileDisplay, &ProfileDisplay8::profileChanged, this, &Static8::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay8::profilesChanged, this, &Static8::profilesChanged);

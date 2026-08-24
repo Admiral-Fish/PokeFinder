@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Provides settings determine Spinda PID from the spots
  */
-class SpindaPainter : public QWidget
+class SpindaPainter final : public QWidget
 {
     Q_OBJECT
 
