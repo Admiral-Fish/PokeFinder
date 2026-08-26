@@ -28,7 +28,7 @@ class IDState4;
 /**
  * @brief TID/SID searcher for Gen4
  */
-class IDSearcher4 : public SearcherBase<IDState4>
+class IDSearcher4 final : public SearcherBase<IDState4>
 {
 public:
     /**
@@ -50,6 +50,15 @@ public:
 
 private:
     IDFilter filter;
+
+    /**
+     * @brief Searches for matching states for provided delay range
+     *
+     * @param year Search year
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     */
+    void search(u16 year, u32 minDelay, u32 maxDelay);
 };
 
 #endif // IDSEARCHER4_HPP

@@ -95,6 +95,11 @@ void StaticSearcher4Test::searchMethod1()
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::Method1, Lead::None, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -160,6 +165,11 @@ void StaticSearcher4Test::searchMethodJ()
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -226,6 +236,11 @@ void StaticSearcher4Test::searchMethodK()
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 

@@ -24,7 +24,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 IVCacheFinder::IVCacheFinder(QWidget *parent) : QWidget(parent), ui(new Ui::IVCacheFinder)
@@ -36,7 +35,7 @@ IVCacheFinder::IVCacheFinder(QWidget *parent) : QWidget(parent), ui(new Ui::IVCa
     ui->textEditInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textEditMaxAdvances->setValues(InputType::Advance32Bit);
 
-    connect(ui->pushButtonOutputFile, &QPushButton::clicked, this, &IVCacheFinder::updateOutputFile); 
+    connect(ui->pushButtonOutputFile, &QPushButton::clicked, this, &IVCacheFinder::updateOutputFile);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IVCacheFinder::search);
 }
 
@@ -63,26 +62,34 @@ void IVCacheFinder::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads] { searcher->startSearch(threads); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] { ui->progressBar->setValue(searcher->getProgress()); });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         ui->progressBar->setValue(searcher->getProgress());
-        if (!searcher->cancelled())
+
+        if (!searcher->isSearching())
         {
-            searcher->writeResults(ui->lineEditOutputFile->text().toStdString());            
+            timer->stop();
+
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            if (!searcher->isCancelled())
+            {
+                searcher->writeResults(ui->lineEditOutputFile->text().toStdString());
+            }
+
+            delete searcher;
+            timer->deleteLater();
         }
-        delete searcher;
     });
 
-    thread->start();
+    searcher->startSearch(threads);
     timer->start(1000);
 }
 

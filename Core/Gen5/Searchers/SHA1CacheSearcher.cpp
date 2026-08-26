@@ -26,7 +26,6 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
-#include <thread>
 
 template <typename Type>
 static void write(std::ofstream &file, Type val)
@@ -50,37 +49,24 @@ SHA1CacheSearcher::SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &pro
 
 void SHA1CacheSearcher::startSearch(int threads)
 {
-    this->searching = true;
-
     auto days = start.daysTo(end) + 1;
     if (days < threads)
     {
         threads = days;
     }
 
-    auto *threadContainer = new std::thread[threads];
+    activeThreads.store(threads);
 
     auto daysSplit = days / threads;
     Date day = start;
     for (int i = 0; i < threads; i++, day += daysSplit)
     {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, day] { search(day, end); });
-        }
-        else
-        {
-            Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
-        }
+        Date mid = (i == threads - 1) ? end : day + (daysSplit - 1);
+        this->threadContainer.emplace_back([this, day, mid] {
+            search(day, end);
+            this->activeThreads.fetch_sub(1);
+        });
     }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    delete[] threadContainer;
 }
 
 void SHA1CacheSearcher::writeResults(std::string_view file)
@@ -142,7 +128,7 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }

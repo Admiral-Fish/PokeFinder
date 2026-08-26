@@ -27,16 +27,24 @@ IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter)
 
 void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay)
 {
-    searching = true;
     maxDelay = infinite ? 0xe8ffff : maxDelay;
 
+    activeThreads.store(1);
+    threadContainer.emplace_back([this, year, minDelay, maxDelay] {
+        search(year, minDelay, maxDelay);
+        activeThreads.fetch_sub(1);
+    });
+}
+
+void IDSearcher4::search(u16 year, u32 minDelay, u32 maxDelay)
+{
     for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
     {
         for (u16 ab = 0; ab < 256; ab++)
         {
             for (u16 cd = 0; cd < 24; cd++)
             {
-                if (!searching)
+                if (cancelled.load(std::memory_order_relaxed))
                 {
                     return;
                 }
@@ -55,8 +63,7 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                     std::lock_guard<std::mutex> guard(mutex);
                     results.emplace_back(state);
                 }
-
-                progress++;
+                progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }

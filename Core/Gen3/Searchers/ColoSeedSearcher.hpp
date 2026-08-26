@@ -62,6 +62,13 @@ private:
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *
+     * @param seeds Candidiate PRNG states to search from
+     */
+    void search(const std::vector<u32> &seeds);
+
+    /**
+     * @brief Searches over a range of PRNG states for valid candidate seeds
+     *
      * @param start Lower PRNG state
      * @param end Upper PRNG state
      */

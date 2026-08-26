@@ -44,7 +44,7 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }

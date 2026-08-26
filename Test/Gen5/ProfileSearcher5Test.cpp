@@ -89,6 +89,10 @@ void ProfileSearcher5Test::ivs()
     ProfileIVSearcher5 searcher(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat,
                                 version, language, dsType, mac, buttons, minIVs, maxIVs);
     searcher.startSearch(1, minVFrame, maxVFrame);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 
     auto results = searcher.getResults();
     QCOMPARE(results.size(), 1);
@@ -160,6 +164,10 @@ void ProfileSearcher5Test::needle()
     ProfileNeedleSearcher5 searcher(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat,
                                     version, language, dsType, mac, buttons, needles, unovaLink, memoryLink);
     searcher.startSearch(1, minVFrame, maxVFrame);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 
     auto results = searcher.getResults();
     QCOMPARE(results.size(), 1);
@@ -224,6 +232,10 @@ void ProfileSearcher5Test::seed()
     ProfileSeedSearcher5 searcher(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat,
                                   version, language, dsType, mac, buttons, seed);
     searcher.startSearch(1, minVFrame, maxVFrame);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 
     auto results = searcher.getResults();
     QCOMPARE(results.size(), 1);

@@ -86,12 +86,12 @@ private:
     u8 minVCount;
 
     /**
-     * @brief Searches between \p minVFrame and \p maxVFrame for potentional matches
+     * @brief Searches between \p start and \p end for potentional matches
      *
-     * @param minVFrame Minimum VFrame
-     * @param maxVFrame Maximum VFrame
+     * @param start Minimum VFrame
+     * @param end Maximum VFrame
      */
-    void search(u8 minVFrame, u8 maxVFrame);
+    void search(u8 start, u8 end);
 
     // protected:
     /**

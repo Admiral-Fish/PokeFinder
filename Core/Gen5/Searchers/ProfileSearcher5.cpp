@@ -24,7 +24,6 @@
 #include <Core/RNG/MTFast.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <thread>
 
 ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType,
@@ -49,38 +48,27 @@ ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSec
 
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 {
-    searching = true;
-
     u8 diff = maxVFrame - minVFrame + 1;
     if (diff < threads)
     {
         threads = diff;
     }
 
-    auto *threadContainer = new std::thread[threads];
+    activeThreads.store(threads);
 
     auto split = (diff / threads);
-    for (int i = 0; i < threads; i++, minVFrame += split)
+    u8 start = minVFrame;
+    for (int i = 0; i < threads; i++, start += split)
     {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, minVFrame, maxVFrame] { search(minVFrame, maxVFrame); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([this, minVFrame, split] { search(minVFrame, minVFrame + split - 1); });
-        }
+        u32 mid = (i == threads - 1) ? maxVFrame : start + split - 1;
+        threadContainer.emplace_back([this, start, mid] {
+            search(start, mid);
+            activeThreads.fetch_sub(1);
+        });
     }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    delete[] threadContainer;
 }
 
-void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
+void ProfileSearcher5::search(u8 start, u8 end)
 {
     u8 hour = time.hour();
     u8 minute = time.minute();
@@ -88,7 +76,7 @@ void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
 #ifdef ENABLE_SIMD
     if (hasSHA())
     {
-        for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
+        for (u16 vframe = start; vframe <= end; vframe++)
         {
             for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
             {
@@ -102,7 +90,7 @@ void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
                         sha.setTimer0(timer0, vcount);
                         for (u8 second = minSeconds; second <= maxSeconds; second++)
                         {
-                            if (!searching)
+                            if (cancelled.load(std::memory_order_relaxed))
                             {
                                 return;
                             }
@@ -126,7 +114,7 @@ void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
     else
 #endif
     {
-        for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
+        for (u16 vframe = start; vframe <= end; vframe++)
         {
             for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
             {
@@ -141,7 +129,7 @@ void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
                         auto alpha = sha.precompute();
                         for (u8 second = minSeconds; second <= maxSeconds; second++)
                         {
-                            if (!searching)
+                            if (cancelled.load(std::memory_order_relaxed))
                             {
                                 return;
                             }

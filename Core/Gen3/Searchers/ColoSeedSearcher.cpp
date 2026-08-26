@@ -19,7 +19,6 @@
 
 #include "ColoSeedSearcher.hpp"
 #include <algorithm>
-#include <thread>
 
 constexpr u8 natures[8][6]
     = { { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 }, { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C }, { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 },
@@ -81,42 +80,43 @@ ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : criteria(crit
 
 void ColoSeedSearcher::startSearch(int threads)
 {
-    searching = true;
-
-    auto *threadContainer = new std::thread[threads];
+    activeThreads.store(threads);
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
     for (int i = 0; i < threads; i++, start += split)
     {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, start] { search(start, 0x10000); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([this, start, split] { search(start, start + split); });
-        }
+        u32 mid = (i == threads - 1) ? 0x10000 : start + split;
+        threadContainer.emplace_back([this, start, mid] {
+            search(start, mid);
+            if (activeThreads.fetch_sub(1) == 1)
+            {
+                std::ranges::sort(results);
+                results.erase(std::unique(results.begin(), results.end()), results.end());
+            }
+        });
     }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    delete[] threadContainer;
-
-    std::ranges::sort(results);
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
 {
-    searching = true;
+    activeThreads.store(1);
 
+    threadContainer.emplace_back([this, seeds] {
+        search(seeds);
+        if (activeThreads.fetch_sub(1) == 1)
+        {
+            std::ranges::sort(results);
+            results.erase(std::unique(results.begin(), results.end()), results.end());
+        }
+    });
+}
+
+void ColoSeedSearcher::search(const std::vector<u32> &seeds)
+{
     for (u32 seed : seeds)
     {
-        if (!searching)
+        if (cancelled.load(std::memory_order_relaxed))
         {
             return;
         }
@@ -124,24 +124,23 @@ void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
         XDRNG rng(seed);
         if (searchSeed(rng))
         {
+            // This technically isn't thread safe
+            // For now it is okay since this version of the search is single threaded and the UI only grabs results at the very end
             results.emplace_back(rng.getSeed());
         }
 
-        progress++;
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
-
-    std::ranges::sort(results);
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void ColoSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 low = start; low < end; low++, progress++)
+    for (u32 low = start; low < end; low++, progress.fetch_add(1, std::memory_order_relaxed))
     {
         for (u32 high = criteria.lead; high < 0x10000; high += 8)
         {
-            if (!searching)
+            if (cancelled.load(std::memory_order_relaxed))
             {
                 return;
             }

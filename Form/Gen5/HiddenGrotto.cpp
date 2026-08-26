@@ -44,7 +44,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("hiddenGrotto");
@@ -361,27 +360,31 @@ void HiddenGrotto::grottoSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        grottoSearcherModel->addItems(searcher->getResults());
-        ui->progressBarGrotto->setValue(searcher->getProgress());
-    });
-
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonGrottoSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonGrottoCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         grottoSearcherModel->addItems(searcher->getResults());
         ui->progressBarGrotto->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            grottoSearcherModel->addItems(searcher->getResults());
+            ui->progressBarGrotto->setValue(searcher->getProgress());
+
+            ui->pushButtonGrottoSearch->setEnabled(true);
+            ui->pushButtonGrottoCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 
@@ -619,26 +622,31 @@ void HiddenGrotto::pokemonSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        pokemonSearcherModel->addItems(searcher->getResults());
-        ui->progressBarPokemon->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonPokemonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonPokemonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         pokemonSearcherModel->addItems(searcher->getResults());
         ui->progressBarPokemon->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            pokemonSearcherModel->addItems(searcher->getResults());
+            ui->progressBarPokemon->setValue(searcher->getProgress());
+
+            ui->pushButtonPokemonSearch->setEnabled(true);
+            ui->pushButtonPokemonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 

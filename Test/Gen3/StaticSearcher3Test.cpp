@@ -79,6 +79,11 @@ void StaticSearcher3Test::search()
     StaticSearcher3 searcher(method, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 

@@ -44,7 +44,7 @@ void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -68,7 +68,7 @@ void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -98,7 +98,7 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -131,7 +131,7 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -165,7 +165,7 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                 key.button = toInt(keypress.button);
                 for (u32 time = 0; time < 86400; time++)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -201,7 +201,7 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }

@@ -19,7 +19,6 @@
 
 #include "SearcherBase5.hpp"
 #include <Core/Util/DateTime.hpp>
-#include <thread>
 
 template <class Generator, class State>
 SearcherBase5<Generator, State>::SearcherBase5(const Generator &generator, const Profile5 &profile) :
@@ -36,37 +35,24 @@ u64 SearcherBase5<Generator, State>::getMaxProgress(const Date &start, const Dat
 template <class Generator, class State>
 void SearcherBase5<Generator, State>::startSearch(int threads, const Date &start, const Date &end)
 {
-    this->searching = true;
-
     auto days = start.daysTo(end) + 1;
     if (days < threads)
     {
         threads = days;
     }
 
-    auto *threadContainer = new std::thread[threads];
+    this->activeThreads.store(threads);
 
     auto daysSplit = days / threads;
     Date day = start;
     for (int i = 0; i < threads; i++, day += daysSplit)
     {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, day, end] { search(day, end); });
-        }
-        else
-        {
-            Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
-        }
+        Date mid = (i == threads - 1) ? end : day + (daysSplit - 1);
+        this->threadContainer.emplace_back([this, day, mid] {
+            search(day, mid);
+            this->activeThreads.fetch_sub(1);
+        });
     }
-
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].join();
-    }
-
-    delete[] threadContainer;
 }
 
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>

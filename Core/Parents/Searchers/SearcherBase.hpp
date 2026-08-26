@@ -23,6 +23,7 @@
 #include <Core/Global.hpp>
 #include <atomic>
 #include <mutex>
+#include <thread>
 #include <vector>
 
 /**
@@ -41,21 +42,49 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    SearcherBase() : progress(0), searching(false)
+    SearcherBase() : progress(0), cancelled(false)
     {
     }
 
     /**
      * @brief Destroy the SearcherBase object
      */
-    virtual ~SearcherBase() = default;
+    virtual ~SearcherBase()
+    {
+        for (auto &thread : threadContainer)
+        {
+            thread.join();
+        }
+    };
 
     /**
      * @brief Cancels the running search
      */
     void cancelSearch()
     {
-        searching = false;
+        cancelled.store(true, std::memory_order_relaxed);
+    }
+
+    /**
+     * @brief Returns if the search was cancelled
+     *
+     * @return true Search was cancelled
+     * @return false Search was not cancelled
+     */
+    bool isCancelled() const
+    {
+        return cancelled.load(std::memory_order_relaxed);
+    }
+
+    /**
+     * @brief Returns if the search is active
+     *
+     * @return true Search is active
+     * @return false Search is not active
+     */
+    bool isSearching() const
+    {
+        return activeThreads.load() > 0;
     }
 
     /**
@@ -69,17 +98,6 @@ public:
     }
 
     /**
-     * @brief Returns if the search was cancelled
-     * 
-     * @return true Search was cancelled
-     * @return false Search was not cancelled
-     */
-    bool cancelled() const
-    {
-        return !searching;
-    }
-
-    /**
      * @brief Returns the states of the running search
      *
      * @return Vector of computed states
@@ -87,8 +105,7 @@ public:
     std::vector<Result> getResults()
     {
         std::lock_guard<std::mutex> guard(mutex);
-        auto data = std::move(results);
-        return data;
+        return std::move(results);
     }
 
     /**
@@ -104,9 +121,11 @@ public:
 protected:
     std::mutex mutex;
     std::vector<Result> results;
+    std::vector<std::thread> threadContainer;
     std::atomic<u64> progress;
     u64 maxProgress;
-    bool searching;
+    std::atomic<int> activeThreads;
+    std::atomic<bool> cancelled;
 };
 
 #endif // SEARCHERBASE_HPP
