@@ -124,13 +124,6 @@ private slots:
     void generatorPokemonIndexChanged(int index);
 
     /**
-     * @brief Toggles what controls are displayed based on relevance to Poke Radar
-     *
-     * @param state Checkbox state
-     */
-    void generatorPokeRadarStateChanged(Qt::CheckState state);
-
-    /**
      * @brief Opens the advance finder dialog
      */
     void openAdvanceFinder();
@@ -179,13 +172,6 @@ private slots:
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);
-
-    /**
-     * @brief Toggles what controls are displayed based on relevance to Poke Radar
-     *
-     * @param state Checkbox state
-     */
-    void searcherPokeRadarStateChanged(Qt::CheckState state);
 
     /**
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.

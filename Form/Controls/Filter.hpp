@@ -21,10 +21,12 @@
 #define FILTER_HPP
 
 #include <Core/Global.hpp>
+#include <QString>
 #include <QWidget>
 
 enum class Controls : u16;
 class QSpinBox;
+class QWidget;
 
 namespace Ui
 {
@@ -42,6 +44,11 @@ signals:
      * @brief Emits that show stats setting has been changed
      */
     void showStatsChanged(bool);
+
+    /**
+     * @brief Emits that disable filters setting has been changed
+     */
+    void disableFiltersChanged(bool);
 
     /**
      * @brief Emits that IV filter has been changed
@@ -81,6 +88,14 @@ public:
      * @param control Controls value
      */
     void disableControls(Controls control);
+
+    /**
+     * @brief Adds a custom filter control between shiny and disable filters
+     *
+     * @param text Label text for the control
+     * @param widget Filter control to add
+     */
+    void addCustomControlAfterShiny(const QString &text, QWidget *widget);
 
     /**
      * @brief Enables showing the hidden ability

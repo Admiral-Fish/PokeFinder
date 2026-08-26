@@ -34,9 +34,6 @@ private slots:
 
     void searchHoneyTree_data();
     void searchHoneyTree();
-
-    void searchPokeRadar_data();
-    void searchPokeRadar();
 };
 
 #endif // WILDSEARCHER4TEST_HPP

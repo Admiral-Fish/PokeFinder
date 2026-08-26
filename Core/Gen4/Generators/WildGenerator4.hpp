@@ -42,7 +42,7 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param feebasTile Whether Feebas tiles are active
-     * @param shiny Whether Poke Radar is forced shiny
+     * @param shiny Unused legacy flag
      * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param happiness Encounter rate modifier for fishing in HGSS
      * @param area Wild pokemon info
@@ -96,25 +96,6 @@ private:
      */
     std::vector<WildGeneratorState4> generateHoneyTree(u32 seed, u8 index) const;
 
-    /**
-     * @brief Generates states via Poke Radar
-     *
-     * @param seed Starting PRNG state
-     * @param index Pokeradar slot index
-     *
-     * @return Vector of computed states
-     */
-    std::vector<WildGeneratorState4> generatePokeRadar(u32 seed, u8 index) const;
-
-    /**
-     * @brief Generates states via Poke Radar chained shiny
-     *
-     * @param seed Starting PRNG state
-     * @param index Pokeradar slot index
-     *
-     * @return Vector of computed states
-     */
-    std::vector<WildGeneratorState4> generatePokeRadarShiny(u32 seed, u8 index) const;
 };
 
 #endif // WILDGENERATOR4_HPP

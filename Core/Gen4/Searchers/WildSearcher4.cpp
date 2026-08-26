@@ -54,7 +54,7 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
-                             const WildStateFilter &filter) :
+                             const WildStateFilter &filter, bool specificSynchronize) :
     WildSearcher(method, lead, area, profile, filter),
     unlockedUnown(profile.getUnlockedUnownForms()),
     undiscoveredUnown(profile.getUndiscoveredUnownForms(unlockedUnown)),
@@ -69,6 +69,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
     shiny(shiny),
+    specificSynchronize(specificSynchronize),
     unownRadio(unownRadio),
     modifiedSlots(area.getSlots(lead))
 {
@@ -139,17 +140,6 @@ std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 
     else if (method == Method::HoneyTree)
     {
         states = searchHoneyTree(hp, atk, def, spa, spd, spe, index);
-    }
-    else if (method == Method::PokeRadar)
-    {
-        if (shiny)
-        {
-            states = searchPokeRadarShiny(hp, atk, def, spa, spd, spe, index);
-        }
-        else
-        {
-            states = searchPokeRadar(hp, atk, def, spa, spd, spe, index);
-        }
     }
 
     return searchInitialSeeds(states);
@@ -291,6 +281,11 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
             pid |= rng.nextUShort();
 
             u8 nature = pid % 25;
+            if (specificSynchronize && nature != toInt(lead))
+            {
+                continue;
+            }
+
             if (!filter.compareNature(nature))
             {
                 continue;
@@ -980,210 +975,6 @@ std::vector<WildSearcherState4> WildSearcher4::searchHoneyTree(u8 hp, u8 atk, u8
                 nextRNG = rng.nextUShort();
                 nextRNG2 = rng.nextUShort();
             } while (huntNature != nature);
-        }
-    }
-
-    return states;
-}
-
-std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
-{
-    std::vector<WildSearcherState4> states;
-
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
-    const Slot &slot = area.getPokemon(index);
-    const PersonalInfo *info = slot.getInfo();
-
-    u8 buffer = 0;
-    bool cuteCharm = false;
-    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
-    {
-        cuteCharm = true;
-        if (lead == Lead::CuteCharmF)
-        {
-            buffer = 25 * ((info->getGender() / 25) + 1);
-        }
-    }
-
-    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
-    for (int i = 0; i < seeds.count; i++)
-    {
-        PokeRNGR rng(seeds[i]);
-        u16 item = getItem((PokeRNG(seeds[i]).advance(2) >> 16) % 100, lead, info);
-
-        if (cuteCharm)
-        {
-            u8 nature = rng.nextUShort<false>(25);
-            if (!filter.compareNature(nature))
-            {
-                continue;
-            }
-
-            if (rng.nextUShort<false>(3) != 0)
-            {
-                u32 pid = nature + buffer;
-                WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
-                                         Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
-                if (filter.compareState(static_cast<const WildSearcherState &>(state)))
-                {
-                    states.emplace_back(state);
-                }
-            }
-        }
-        else
-        {
-            u32 pid = rng.nextUShort() << 16;
-            pid |= rng.nextUShort();
-
-            u8 nature = pid % 25;
-            if (!filter.compareNature(nature))
-            {
-                continue;
-            }
-
-            u8 huntNature;
-            u16 nextRNG = rng.nextUShort();
-            u16 nextRNG2 = rng.nextUShort();
-
-            do
-            {
-                PokeRNGR test(rng);
-
-                bool valid = false;
-                u32 seed;
-                switch (lead)
-                {
-                case Lead::None:
-                case Lead::CompoundEyes:
-                    if ((nextRNG / 0xa3e) == nature)
-                    {
-                        seed = test.getSeed();
-                        valid = true;
-                    }
-                    break;
-                case Lead::Synchronize:
-                    if ((nextRNG / 0x8000) == 0)
-                    {
-                        seed = test.getSeed();
-                        valid = true;
-                    }
-                    else if ((nextRNG2 / 0x8000) == 1 && (nextRNG / 0xa3e) == nature)
-                    {
-                        seed = test.next();
-                        valid = true;
-                    }
-                    break;
-                default:
-                    break;
-                }
-
-                if (valid)
-                {
-                    WildSearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
-                                             Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
-                    {
-                        states.emplace_back(state);
-                    }
-                }
-
-                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
-                nextRNG = rng.nextUShort();
-                nextRNG2 = rng.nextUShort();
-            } while (huntNature != nature);
-        }
-    }
-
-    return states;
-}
-
-std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
-{
-    std::vector<WildSearcherState4> states;
-
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
-    const Slot &slot = area.getPokemon(index);
-    const PersonalInfo *info = slot.getInfo();
-
-    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
-
-    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
-        if (lead == Lead::CuteCharmF)
-        {
-            return (pid & 0xff) >= info->getGender();
-        }
-        return (pid & 0xff) < info->getGender();
-    };
-
-    auto seeds = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, Method::Method1);
-    for (int i = 0; i < seeds.count; i++)
-    {
-        PokeRNGR rng(seeds[i]);
-        u16 item = getItem((PokeRNG(seeds[i]).advance(2) >> 16) % 100, lead, info);
-
-        auto shinyPID = [this](PokeRNGR &rng) {
-            u16 low = 0;
-            for (int j = 15; j > 2; j--)
-            {
-                low |= rng.nextUShort(2) << j;
-            }
-            u16 high = rng.nextUShort(8);
-            low |= rng.nextUShort(8);
-            high |= (low ^ tsv) & 0xfff8;
-            return static_cast<u32>(high << 16) | low;
-        };
-
-        u32 pid = shinyPID(rng);
-        u8 nature = pid % 25;
-        if (!filter.compareNature(nature))
-        {
-            continue;
-        }
-
-        if (lead == Lead::Synchronize || cuteCharm)
-        {
-            u8 huntNature;
-            u8 gender = (pid & 0xff) < info->getGender();
-            do
-            {
-                PokeRNGR test(rng);
-
-                bool valid = false;
-                if (lead == Lead::Synchronize)
-                {
-                    valid = test.nextUShort<false>(2) == 0;
-                }
-                else
-                {
-                    valid = test.nextUShort<false>(3) != 0 && cuteCharmCheck(info, pid);
-                }
-
-                if (valid)
-                {
-                    WildSearcherState4 state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
-                                             Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
-                    {
-                        states.emplace_back(state);
-                    }
-                }
-
-                u32 huntPID = shinyPID(rng);
-                huntNature = huntPID % 25;
-                if (cuteCharm && gender == ((huntPID & 0xff) < info->getGender()))
-                {
-                    break;
-                }
-            } while (huntNature != nature);
-        }
-        else
-        {
-            WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
-                                     Utilities::getShiny<true>(pid, tsv), index, item, slot.getSpecie(), 0, info);
-            if (filter.compareState(static_cast<const WildSearcherState &>(state)))
-            {
-                states.emplace_back(state);
-            }
         }
     }
 

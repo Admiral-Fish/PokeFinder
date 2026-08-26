@@ -162,6 +162,12 @@ set(PROJECT_SOURCES
     Gen4/Event4.hpp
     Gen4/IDs4.cpp
     Gen4/IDs4.hpp
+    Gen4/PokeRadar.cpp
+    Gen4/PokeRadar.hpp
+    Gen4/PokeRadarGrass.cpp
+    Gen4/PokeRadarGrass.hpp
+    Gen4/PokeRadarTile.cpp
+    Gen4/PokeRadarTile.hpp
     Gen4/Profile/ProfileDisplay4.cpp
     Gen4/Profile/ProfileDisplay4.hpp
     Gen4/Profile/ProfileEditor4.cpp

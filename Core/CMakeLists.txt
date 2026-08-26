@@ -117,6 +117,8 @@ add_library(PokeFinderCore STATIC
     Gen4/Generators/EggGenerator4.hpp
     Gen4/Generators/IDGenerator4.cpp
     Gen4/Generators/IDGenerator4.hpp
+    Gen4/Generators/PokeRadarGenerator.cpp
+    Gen4/Generators/PokeRadarGenerator.hpp
     Gen4/Generators/StaticGenerator4.cpp
     Gen4/Generators/StaticGenerator4.hpp
     Gen4/Generators/WildGenerator4.cpp
@@ -133,12 +135,15 @@ add_library(PokeFinderCore STATIC
     Gen4/Searchers/EventSearcher4.hpp
     Gen4/Searchers/IDSearcher4.cpp
     Gen4/Searchers/IDSearcher4.hpp
+    Gen4/Searchers/PokeRadarSearcher.cpp
+    Gen4/Searchers/PokeRadarSearcher.hpp
     Gen4/Searchers/StaticSearcher4.cpp
     Gen4/Searchers/StaticSearcher4.hpp
     Gen4/Searchers/WildSearcher4.cpp
     Gen4/Searchers/WildSearcher4.hpp
     Gen4/States/EggState4.hpp
     Gen4/States/IDState4.hpp
+    Gen4/States/PokeRadarState.hpp
     Gen4/States/State4.hpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp

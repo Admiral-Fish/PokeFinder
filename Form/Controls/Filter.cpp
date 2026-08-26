@@ -23,6 +23,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <QClipboard>
+#include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMouseEvent>
@@ -107,6 +108,8 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 
     connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
             [this](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
+    connect(ui->checkBoxDisableFilters, &QCheckBox::checkStateChanged, this,
+            [this](Qt::CheckState state) { emit disableFiltersChanged(state == Qt::Checked); });
     connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
@@ -119,8 +122,6 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(ui->spinBoxSpDMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxSpeMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
-            [this](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
 }
 
@@ -177,6 +178,7 @@ void Filter::disableControls(Controls control)
 
     if ((control & Controls::DisableFilter) != Controls::None)
     {
+        ui->checkBoxDisableFilters->setChecked(false);
         ui->checkBoxDisableFilters->hide();
     }
 
@@ -260,6 +262,19 @@ void Filter::disableControls(Controls control)
         ui->spinBoxWeightMin->hide();
         ui->spinBoxWeightMax->hide();
     }
+}
+
+void Filter::addCustomControlAfterShiny(const QString &text, QWidget *widget)
+{
+    auto *label = new QLabel(text, this);
+    widget->setParent(this);
+
+    ui->gridLayout_1->addWidget(label, 8, 0);
+    ui->gridLayout_1->addWidget(widget, 8, 1, 1, 2);
+    ui->gridLayout_1->addWidget(ui->labelWeight, 9, 0);
+    ui->gridLayout_1->addWidget(ui->spinBoxWeightMin, 9, 1);
+    ui->gridLayout_1->addWidget(ui->spinBoxWeightMax, 9, 2);
+    ui->gridLayout_1->addWidget(ui->checkBoxDisableFilters, 10, 0, 1, 3);
 }
 
 void Filter::enableHiddenAbility()

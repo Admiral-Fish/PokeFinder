@@ -77,6 +77,13 @@ public:
     std::vector<bool> getChecked() const;
 
     /**
+     * @brief Determines which check boxes are explicitly checked, ignoring full/empty shortcut behavior
+     *
+     * @return Vector of true/false to signify which check boxes are checked
+     */
+    std::vector<bool> getExplicitChecked() const;
+
+    /**
      * @brief Converts selected items to bit mask for enum
      *
      * @tparam Enum Enum type
