@@ -105,9 +105,11 @@ public:
     /**
      * @brief Gets encounter slots to filter by
      *
+     * @param fillTrue Whether to fill the array with true or false
+     *
      * @return Array of encounter slots
      */
-    std::array<bool, 12> getEncounterSlots() const;
+    std::array<bool, 12> getEncounterSlots(bool fillTrue = true) const;
 
     /**
      * @brief Constructs filter from the UI settings
