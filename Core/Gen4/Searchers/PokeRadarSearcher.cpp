@@ -155,14 +155,15 @@ void PokeRadarSearcher::startSearch(const std::array<u8, 6> &min, const std::arr
 {
     searching = true;
 
+    const u8 encounterSlotCount = area.getCount();
     u64 slotCount = 0;
-    for (bool slot : encounterSlots)
+    for (u8 slot = 0; slot < encounterSlotCount; slot++)
     {
-        slotCount += slot;
+        slotCount += encounterSlots[slot];
     }
     if (slotCount == 0)
     {
-        slotCount = encounterSlots.size();
+        slotCount = encounterSlotCount;
     }
 
     setMaxProgress(((slotCount + (maxChain == 0 ? 0 : 1)) * 2 * 100) + 1);
@@ -198,7 +199,8 @@ void PokeRadarSearcher::searchPokemon(const std::array<u8, 6> &min, const std::a
     }
 
     u8 startSlot = chain ? chainSlot : 0;
-    u8 endSlot = chain ? chainSlot + 1 : static_cast<u8>((effectiveLead == Lead::CuteCharmF || effectiveLead == Lead::CuteCharmM) ? encounterSlots.size() : 1);
+    u8 endSlot = chain ? chainSlot + 1
+                       : static_cast<u8>((effectiveLead == Lead::CuteCharmF || effectiveLead == Lead::CuteCharmM) ? area.getCount() : 1);
     std::set<std::tuple<u32, u32, u8, u32>> chainZeroPokemonKeys;
     for (u8 slot = startSlot; slot < endSlot; slot++)
     {

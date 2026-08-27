@@ -134,10 +134,9 @@ static constexpr std::array<RadarGrassFieldData, 48> radarGrassFields = {{
         "##....##..############"
         "##....##..############" },
     // Lake Verity (Small field)
-    { 134, 1, Game::DPPt, 5, 7, 3, 3,
-        "...#."
-        "...##"
-        ".####"
+    { 134, 1, Game::DPPt, 5, 6, 2, 3,
+        "....#"
+        "..###"
         "..###"
         "#####"
         "####."
@@ -767,8 +766,8 @@ static constexpr std::array<RadarGrassFieldData, 48> radarGrassFields = {{
         ".......###.." },
     // Valley Windworks
     { 7, 1, Game::DPPt, 13, 9, 7, 4,
-        ".###########."
-        ".###########."
+        "..##########."
+        "..##########."
         "...##########"
         "...##########"
         "...##########"

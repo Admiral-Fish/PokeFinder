@@ -1549,15 +1549,21 @@ void PokeRadar::resetGrass(PokeRadarControls &controls)
 
         if (controls.fieldLocation == 134 && controls.fieldLocationOccurrence == 1)
         {
-            static constexpr std::array<std::pair<int, int>, 14> unreachable = { {
+            static constexpr std::array<std::pair<int, int>, 20> unreachable = { {
                 { 0, 0 },
                 { 0, 1 },
                 { 0, 2 },
                 { 0, 3 },
                 { 1, 0 },
                 { 1, 1 },
+                { 1, 2 },
                 { 2, 0 },
+                { 2, 1 },
+                { 3, 0 },
+                { 5, 8 },
+                { 6, 7 },
                 { 6, 8 },
+                { 7, 6 },
                 { 7, 7 },
                 { 7, 8 },
                 { 8, 5 },
@@ -2078,15 +2084,21 @@ void PokeRadar::updatePokemon(PokeRadarControls &controls, const std::vector<Enc
 
             if (area.getLocation() == 134 && locationOccurrence == 1)
             {
-                static constexpr std::array<std::pair<int, int>, 14> unreachable = { {
+                static constexpr std::array<std::pair<int, int>, 20> unreachable = { {
                     { 0, 0 },
                     { 0, 1 },
                     { 0, 2 },
                     { 0, 3 },
                     { 1, 0 },
                     { 1, 1 },
+                    { 1, 2 },
                     { 2, 0 },
+                    { 2, 1 },
+                    { 3, 0 },
+                    { 5, 8 },
+                    { 6, 7 },
                     { 6, 8 },
+                    { 7, 6 },
                     { 7, 7 },
                     { 7, 8 },
                     { 8, 5 },
