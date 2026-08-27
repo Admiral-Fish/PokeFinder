@@ -374,18 +374,19 @@ static std::vector<PokeRadarState> mergeSearcherActivationResults(
     {
         for (PokeRadarState state : states)
         {
+            PokeRadarResult displayedResult = state.getChain() == 0 ? PokeRadarResult::ManualActivation : result;
             std::string key = getSearcherResultKey(state);
             auto [iter, inserted] = indexByKey.emplace(key, merged.size());
             if (inserted)
             {
-                state.setResults({ result });
-                state.setResultPatches(result, state.getPatches());
+                state.setResults({ displayedResult });
+                state.setResultPatches(displayedResult, state.getPatches());
                 merged.emplace_back(state);
             }
             else
             {
-                merged[iter->second].addResult(result);
-                merged[iter->second].setResultPatches(result, state.getPatches());
+                merged[iter->second].addResult(displayedResult);
+                merged[iter->second].setResultPatches(displayedResult, state.getPatches());
             }
         }
     }
@@ -880,7 +881,6 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
                 if (searcherTab && control->slot != nullptr)
                 {
                     control->slot->setEnabled(value != 0);
-                    control->pokemon->setEnabled(value == 0);
                     if (control->result != nullptr)
                     {
                         control->result->setEnabled(value != 0);
@@ -981,7 +981,6 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     if (searcherTab)
     {
         controls.slot->setEnabled(controls.chainCount->value() != 0);
-        controls.pokemon->setEnabled(controls.chainCount->value() == 0);
     }
     else
     {
@@ -994,7 +993,7 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     line->setFrameShadow(QFrame::Sunken);
     if (searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Patch"), settings), 6, 0);
+        layout->addWidget(new QLabel(tr("Patch Type"), settings), 6, 0);
         layout->addWidget(controls.patchTypes, 6, 1);
         layout->addWidget(new QLabel(tr("Activation"), settings), 6, 2, Qt::AlignRight);
         layout->addWidget(controls.results, 6, 3);
@@ -1941,11 +1940,6 @@ void PokeRadar::updateEncounterSlots(PokeRadarControls &controls, const std::vec
         controls.slot->setCurrentIndex(std::max(0, controls.slot->findData(currentSlot)));
         controls.slot->setEnabled(&controls != &searcher || controls.chainCount->value() != 0);
     }
-    if (&controls == &searcher)
-    {
-        controls.pokemon->setEnabled(controls.chainCount->value() == 0);
-    }
-
     if (controls.pokemon->currentIndex() <= 0)
     {
         controls.filter->resetEncounterSlots();
@@ -1960,7 +1954,8 @@ void PokeRadar::updateEncounterSlots(PokeRadarControls &controls, const std::vec
         auto matchingSlots = area.getSlots(specie);
         controls.filter->toggleEncounterSlots(matchingSlots);
 
-        if (controls.slot != nullptr && controls.slot->currentIndex() >= 0 && !matchingSlots[controls.slot->getCurrentUChar()])
+        if (&controls != &searcher && controls.slot != nullptr && controls.slot->currentIndex() >= 0
+            && !matchingSlots[controls.slot->getCurrentUChar()])
         {
             auto matchingSlot = std::ranges::find(matchingSlots, true);
             if (matchingSlot != matchingSlots.end())
@@ -1972,7 +1967,14 @@ void PokeRadar::updateEncounterSlots(PokeRadarControls &controls, const std::vec
         auto range = area.getLevelRange(specie);
         controls.levelMin->setValue(range.first);
         controls.levelMax->setValue(range.second);
-        controls.filter->setLevelRange(range.first, range.second);
+        if (&controls == &searcher && controls.chainCount->value() != 0)
+        {
+            controls.filter->setLevelRange(1, 100);
+        }
+        else
+        {
+            controls.filter->setLevelRange(range.first, range.second);
+        }
     }
 }
 
@@ -2147,19 +2149,9 @@ void PokeRadar::updateSearcherPatchTypes()
 
     QSignalBlocker blocker(searcher.patchTypes);
     auto current = searcher.patchTypes->currentData();
-    bool chained = searcher.chainCount->value() != 0;
-
     searcher.patchTypes->clear();
-    if (chained)
-    {
-        searcher.patchTypes->addItem(tr("Weak Shiny"), static_cast<int>(PokeRadarChainType::WeakShiny));
-        searcher.patchTypes->addItem(tr("Strong Shiny"), static_cast<int>(PokeRadarChainType::StrongShiny));
-    }
-    else
-    {
-        searcher.patchTypes->addItem(tr("Weak"), static_cast<int>(PokeRadarChainType::Weak));
-        searcher.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
-    }
+    searcher.patchTypes->addItem(tr("Weak"), static_cast<int>(PokeRadarChainType::Weak));
+    searcher.patchTypes->addItem(tr("Strong"), static_cast<int>(PokeRadarChainType::Strong));
 
     int index = searcher.patchTypes->findData(current);
     searcher.patchTypes->setCurrentIndex(index >= 0 ? index : 0);
@@ -2253,11 +2245,6 @@ void PokeRadar::search()
                 encounterSlots.fill(true);
             }
             auto searchSlots = encounterSlots;
-            if (getSelectedShiny(chainType) && searcher.chainCount->value() != 0)
-            {
-                searchSlots.fill(false);
-                searchSlots[searcher.slot->getCurrentUChar()] = true;
-            }
 
             WildStateFilter filter(searcher.filter->getGender(), searcher.filter->getAbility(), searcher.filter->getShiny(),
                                    searcher.filter->getLevelMin(), searcher.filter->getLevelMax(), searcher.filter->getHeightMin(),

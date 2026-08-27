@@ -11178,6 +11178,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Gen4/PokeRadar.cpp" line="997"/>
+        <source>Patch Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Gen4/PokeRadar.cpp" line="746"/>
         <source>RNG Info</source>
         <translation type="unfinished"></translation>

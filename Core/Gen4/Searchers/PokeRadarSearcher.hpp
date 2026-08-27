@@ -70,6 +70,8 @@ private:
     u32 calculatePokemonBattleAdvances(u32 seed, u32 advances, Lead effectiveLead, bool shiny) const;
     std::vector<WildSearcherState4> searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset = 0) const;
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
+    void searchPokemonType(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain,
+                           PokeRadarChainType searchChainType);
     std::vector<WildSearcherState4> searchPokemonIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index, Lead effectiveLead,
                                                      bool shiny, bool applyFilter) const;
     std::vector<WildSearcherState4> searchPokemonNormalIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
@@ -97,7 +99,7 @@ private:
     WildStateFilter filter;
     std::atomic<u64> currentPhaseProgress;
     std::unordered_map<u64, std::vector<PostBattlePatch>> postBattlePatches;
-    std::set<std::tuple<u32, u32, u32, u16, u8, u32>> resultKeys;
+    std::set<std::tuple<u32, u32, u32, u16, u8, u32, PokeRadarChainType>> resultKeys;
 };
 
 #endif // POKERADARSEARCHER_HPP
