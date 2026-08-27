@@ -75,7 +75,7 @@ static u32 getPostBattlePatchTypeAdvances(Game version)
 
 static bool isPokeRadarChainLead(Lead lead)
 {
-    return lead <= Lead::SynchronizeEnd || lead == Lead::CuteCharmF || lead == Lead::CuteCharmM;
+    return lead == Lead::None || lead <= Lead::SynchronizeEnd || lead == Lead::CuteCharmF || lead == Lead::CuteCharmM;
 }
 
 static Lead getPokeRadarSearcherLead(Lead lead, bool chain)
@@ -129,7 +129,7 @@ PokeRadarSearcher::PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDela
                                      u16 maxChain, u8 chainSlot, Lead lead, PokeRadarChainType chainType, PokeRadarResult result,
                                      const std::array<bool, 81> &grass,
                                      const std::array<bool, 12> &encounterSlots, const EncounterArea4 &area, const Profile4 &profile,
-                                     const WildStateFilter &filter, bool specificSynchronize) :
+                                     const WildStateFilter &filter) :
     Searcher(Method::PokeRadar, profile),
     minAdvance(minAdvance),
     maxAdvance(maxAdvance),
@@ -139,7 +139,6 @@ PokeRadarSearcher::PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDela
     maxChain(maxChain),
     chainSlot(chainSlot),
     lead(lead),
-    specificSynchronize(specificSynchronize),
     chainType(chainType),
     result(result),
     grass(grass),
@@ -477,11 +476,6 @@ std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonShinyIVs(u8 hp, 
 
         u32 pid = shinyPID(rng);
         u8 nature = pid % 25;
-        if (specificSynchronize && effectiveLead <= Lead::SynchronizeEnd && nature != toInt(effectiveLead))
-        {
-            continue;
-        }
-
         if (!filter.compareNature(nature))
         {
             continue;
@@ -498,7 +492,8 @@ std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonShinyIVs(u8 hp, 
                 bool valid = false;
                 if (effectiveLead <= Lead::SynchronizeEnd)
                 {
-                    valid = test.nextUShort<false>(2) == 0;
+                    bool synchronize = test.nextUShort<false>(2) == 0;
+                    valid = !synchronize || nature == toInt(effectiveLead);
                 }
                 else
                 {

@@ -44,7 +44,7 @@ public:
     PokeRadarSearcher(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u32 minPatchDistance, u16 maxChain,
                       u8 chainSlot, Lead lead, PokeRadarChainType chainType, PokeRadarResult result,
                       const std::array<bool, 81> &grass, const std::array<bool, 12> &encounterSlots, const EncounterArea4 &area,
-                      const Profile4 &profile, const WildStateFilter &filter, bool specificSynchronize = false);
+                      const Profile4 &profile, const WildStateFilter &filter);
 
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
@@ -90,7 +90,6 @@ private:
     u16 maxChain;
     u8 chainSlot;
     Lead lead;
-    bool specificSynchronize;
     PokeRadarChainType chainType;
     PokeRadarResult result;
     std::array<bool, 81> grass;

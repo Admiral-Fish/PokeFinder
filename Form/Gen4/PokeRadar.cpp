@@ -2252,8 +2252,8 @@ void PokeRadar::search()
                                    searcher.filter->getDisableFilters(), searcher.filter->getMinIVs(), searcher.filter->getMaxIVs(),
                                    searcher.filter->getNatures(), searcher.filter->getHiddenPowers(), searchSlots);
 
-            std::vector<std::pair<Lead, bool>> leads = { { searcher.lead->getEnum<Lead>(), false } };
-            if (leads[0].first == Lead::Synchronize)
+            std::vector<Lead> leads = { searcher.lead->getEnum<Lead>() };
+            if (leads[0] == Lead::Synchronize)
             {
                 leads.clear();
                 auto natures = searcher.filter->getNatures();
@@ -2261,12 +2261,12 @@ void PokeRadar::search()
                 {
                     if (natures[nature])
                     {
-                        leads.emplace_back(static_cast<Lead>(nature), true);
+                        leads.emplace_back(static_cast<Lead>(nature));
                     }
                 }
             }
 
-            for (const auto &[lead, specificSynchronize] : leads)
+            for (Lead lead : leads)
             {
                 for (PokeRadarResult activation : activations)
                 {
@@ -2274,8 +2274,7 @@ void PokeRadar::search()
                         activation,
                         new PokeRadarSearcher(searcher.initialAdvances->getUInt(), searcher.maxAdvances->getUInt(), searcher.minDelay->getUInt(),
                                               searcher.maxDelay->getUInt(), minDistance, searcher.chainCount->value(), searcher.slot->getCurrentUChar(),
-                                              lead, chainType, activation, getGrass(searcher), searchSlots, *areaIter, *currentProfile, filter,
-                                              specificSynchronize));
+                                              lead, chainType, activation, getGrass(searcher), searchSlots, *areaIter, *currentProfile, filter));
                 }
             }
         }
