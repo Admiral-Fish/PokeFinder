@@ -921,6 +921,11 @@ void PokeRadarSearcher::addPostBattlePatchMatches(const WildSearcherState4 &poke
         bestDistance = candidates.front().distance;
         for (const auto &candidate : candidates)
         {
+            if (candidate.patch != bestPatch)
+            {
+                continue;
+            }
+
             if (std::ranges::find(bestBattleStartAdvances, candidate.battleStartAdvance) == bestBattleStartAdvances.end())
             {
                 bestBattleStartAdvances.emplace_back(candidate.battleStartAdvance);
