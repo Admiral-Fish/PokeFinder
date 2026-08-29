@@ -32,12 +32,18 @@ template <class Generator, class State>
 void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
@@ -57,7 +63,7 @@ void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
                         auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
                         if (!states.empty())
                         {
-                            DateTime dt(date, time + i);
+                            DateTime dt(day, time + i);
 
                             std::lock_guard<std::mutex> lock(this->mutex);
                             this->results.reserve(this->results.capacity() + states.size());
@@ -86,12 +92,18 @@ template <class Generator, class State>
 void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
@@ -119,7 +131,7 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
                             auto states = this->generator.generate(seeds[i], { { j, entry->second } });
                             if (!states.empty())
                             {
-                                DateTime dt(date, time + i);
+                                DateTime dt(day, time + i);
 
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->results.reserve(this->results.capacity() + states.size());
@@ -154,12 +166,18 @@ template <class Generator, class State>
 void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1Key key;
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        key.timer0 = timer0;
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            key.date = date.getJD() - Date().getJD();
+            break;
+        }
+
+        key.date = day.getJD() - Date().getJD();
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            key.timer0 = timer0;
             for (const auto &keypress : this->keypresses)
             {
                 key.button = toInt(keypress.button);
@@ -190,7 +208,7 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                         auto states = this->generator.generate(seed, { { j, ivEntry->second } });
                         if (!states.empty())
                         {
-                            DateTime dt(date, time);
+                            DateTime dt(day, time);
 
                             std::lock_guard<std::mutex> lock(this->mutex);
                             this->results.reserve(this->results.capacity() + states.size());

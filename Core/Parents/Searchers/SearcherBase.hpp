@@ -42,7 +42,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    SearcherBase() : progress(0), cancelled(false)
+    SearcherBase() : index(0), progress(0), cancelled(false)
     {
     }
 
@@ -122,6 +122,7 @@ protected:
     std::mutex mutex;
     std::vector<Result> results;
     std::vector<std::thread> threadContainer;
+    std::atomic<u64> index;
     std::atomic<u64> progress;
     u64 maxProgress;
     std::atomic<int> activeThreads;

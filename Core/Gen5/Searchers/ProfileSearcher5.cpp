@@ -55,14 +55,10 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
     }
 
     activeThreads.store(threads);
-
-    auto split = (diff / threads);
-    u8 start = minVFrame;
-    for (int i = 0; i < threads; i++, start += split)
+    for (int i = 0; i < threads; i++)
     {
-        u32 mid = (i == threads - 1) ? maxVFrame : start + split - 1;
-        threadContainer.emplace_back([this, start, mid] {
-            search(start, mid);
+        threadContainer.emplace_back([this, minVFrame, maxVFrame] {
+            search(minVFrame, maxVFrame);
             activeThreads.fetch_sub(1);
         });
     }
@@ -76,8 +72,14 @@ void ProfileSearcher5::search(u8 start, u8 end)
 #ifdef ENABLE_SIMD
     if (hasSHA())
     {
-        for (u16 vframe = start; vframe <= end; vframe++)
+        while (true)
         {
+            u16 vframe = start + index.fetch_add(1, std::memory_order_relaxed);
+            if (vframe > end)
+            {
+                break;
+            }
+
             for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
             {
                 SHA1SIMD sha(version, language, dsType, mac, vframe, gxStat);
@@ -106,7 +108,7 @@ void ProfileSearcher5::search(u8 start, u8 end)
                             }
                         }
                     }
-                    progress++;
+                    progress.fetch_add(1, std::memory_order_relaxed);
                 }
             }
         }
@@ -114,8 +116,14 @@ void ProfileSearcher5::search(u8 start, u8 end)
     else
 #endif
     {
-        for (u16 vframe = start; vframe <= end; vframe++)
+        while (true)
         {
+            u16 vframe = start + index.fetch_add(1, std::memory_order_relaxed);
+            if (vframe > end)
+            {
+                break;
+            }
+
             for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
             {
                 SHA1 sha(version, language, dsType, mac, vframe, gxStat);
@@ -145,7 +153,7 @@ void ProfileSearcher5::search(u8 start, u8 end)
                             }
                         }
                     }
-                    progress++;
+                    progress.fetch_add(1, std::memory_order_relaxed);
                 }
             }
         }

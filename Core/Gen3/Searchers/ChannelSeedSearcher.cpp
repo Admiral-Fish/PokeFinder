@@ -27,14 +27,10 @@ ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : crit
 void ChannelSeedSearcher::startSearch(int threads)
 {
     activeThreads.store(threads);
-
-    u32 split = 0xbffffffe / threads;
-    u32 start = 0x40000001;
-    for (int i = 0; i < threads; i++, start += split)
+    for (int i = 0; i < threads; i++)
     {
-        u32 mid = (i == threads - 1) ? 0xffffffff : start + split;
-        threadContainer.emplace_back([this, start, mid] {
-            search(start, mid);
+        threadContainer.emplace_back([this] {
+            search(0x40000001, 0xbffffffe);
             if (activeThreads.fetch_sub(1) == 1)
             {
                 std::ranges::sort(results);
@@ -47,8 +43,15 @@ void ChannelSeedSearcher::startSearch(int threads)
 void ChannelSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 seed = start; seed < end; seed++, progress.fetch_add(1, std::memory_order_relaxed))
+    while (true)
     {
+        u64 idx = index.fetch_add(1, std::memory_order_relaxed);
+        if (idx > static_cast<u64>(end))
+        {
+            break;
+        }
+
+        u32 seed = start + idx;
         if (cancelled.load(std::memory_order_relaxed))
         {
             return;

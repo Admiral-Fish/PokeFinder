@@ -42,14 +42,10 @@ void SearcherBase5<Generator, State>::startSearch(int threads, const Date &start
     }
 
     this->activeThreads.store(threads);
-
-    auto daysSplit = days / threads;
-    Date day = start;
-    for (int i = 0; i < threads; i++, day += daysSplit)
+    for (int i = 0; i < threads; i++)
     {
-        Date mid = (i == threads - 1) ? end : day + (daysSplit - 1);
-        this->threadContainer.emplace_back([this, day, mid] {
-            search(day, mid);
+        this->threadContainer.emplace_back([this, start, end] {
+            search(start, end);
             this->activeThreads.fetch_sub(1);
         });
     }

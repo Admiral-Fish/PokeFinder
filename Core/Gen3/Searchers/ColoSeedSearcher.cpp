@@ -81,14 +81,10 @@ ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : criteria(crit
 void ColoSeedSearcher::startSearch(int threads)
 {
     activeThreads.store(threads);
-
-    u32 split = 0x10000 / threads;
-    u32 start = 0;
-    for (int i = 0; i < threads; i++, start += split)
+    for (int i = 0; i < threads; i++)
     {
-        u32 mid = (i == threads - 1) ? 0x10000 : start + split;
-        threadContainer.emplace_back([this, start, mid] {
-            search(start, mid);
+        threadContainer.emplace_back([this] {
+            search(0x0, 0xffff);
             if (activeThreads.fetch_sub(1) == 1)
             {
                 std::ranges::sort(results);
@@ -101,8 +97,7 @@ void ColoSeedSearcher::startSearch(int threads)
 void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
 {
     activeThreads.store(1);
-
-    threadContainer.emplace_back([this, seeds] {
+    threadContainer.emplace_back([this, &seeds] {
         search(seeds);
         if (activeThreads.fetch_sub(1) == 1)
         {
@@ -136,8 +131,13 @@ void ColoSeedSearcher::search(const std::vector<u32> &seeds)
 void ColoSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 low = start; low < end; low++, progress.fetch_add(1, std::memory_order_relaxed))
+    while (true)
     {
+        u32 low = start + index.fetch_add(1, std::memory_order_relaxed);
+        if (low > end) {
+            break;
+        }
+
         for (u32 high = criteria.lead; high < 0x10000; high += 8)
         {
             if (cancelled.load(std::memory_order_relaxed))
@@ -151,6 +151,8 @@ void ColoSeedSearcher::search(u32 start, u32 end)
                 seeds.emplace_back(rng.getSeed());
             }
         }
+
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
 
     std::lock_guard<std::mutex> lock(mutex);

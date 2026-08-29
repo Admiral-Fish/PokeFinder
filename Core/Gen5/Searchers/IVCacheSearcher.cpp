@@ -45,15 +45,10 @@ IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) :
 void IVCacheSearcher::startSearch(int threads)
 {
     activeThreads.store(threads);
-
-    u32 split = 0x100000000 / threads;
-    u32 start = 0;
-
-    for (int i = 0; i < threads; i++, start += split)
+    for (int i = 0; i < threads; i++)
     {
-        u32 mid = (i == threads - 1) ? 0xffffffff : start + split;
-        threadContainer.emplace_back([this, start, mid] {
-            search(start, mid);
+        threadContainer.emplace_back([this] {
+            search(0x0, 0xffffffff);
             activeThreads.fetch_sub(1);
         });
     }
@@ -110,12 +105,19 @@ void IVCacheSearcher::writeResults(std::string_view file)
 
 void IVCacheSearcher::search(u32 start, u32 end)
 {
-    for (u32 seed = start;; seed++)
+    while (true)
     {
         if (cancelled.load(std::memory_order_relaxed))
         {
             return;
         }
+
+        u64 idx = index.fetch_add(1, std::memory_order_relaxed);
+        if (idx > static_cast<u64>(end)) {
+            break;
+        }
+
+        u32 seed = start + idx;
 
         RNGList<u8, MT, 32, gen> rngList(seed, initialAdvances);
         for (u32 i = 0; i <= maxAdvances + 4; i++, rngList.advanceState())
@@ -174,10 +176,6 @@ void IVCacheSearcher::search(u32 start, u32 end)
             }
         }
 
-        progress++;
-        if (seed == end)
-        {
-            break;
-        }
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
 }

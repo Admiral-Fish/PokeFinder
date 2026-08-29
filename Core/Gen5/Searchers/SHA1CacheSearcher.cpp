@@ -56,14 +56,10 @@ void SHA1CacheSearcher::startSearch(int threads)
     }
 
     activeThreads.store(threads);
-
-    auto daysSplit = days / threads;
-    Date day = start;
-    for (int i = 0; i < threads; i++, day += daysSplit)
+    for (int i = 0; i < threads; i++)
     {
-        Date mid = (i == threads - 1) ? end : day + (daysSplit - 1);
-        this->threadContainer.emplace_back([this, day, mid] {
-            search(day, end);
+        this->threadContainer.emplace_back([this] {
+            search(start, end);
             this->activeThreads.fetch_sub(1);
         });
     }
@@ -116,12 +112,18 @@ void SHA1CacheSearcher::writeResults(std::string_view file)
 void SHA1CacheSearcher::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
@@ -141,25 +143,25 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
                         if (std::ranges::binary_search(entralinkSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->results.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0, seeds[i]);
+                            this->results.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0, seeds[i]);
                         }
 
                         if (std::ranges::binary_search(normalSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->normalResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
+                            this->normalResults.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0,
                                                              seeds[i]);
                         }
 
                         if (std::ranges::binary_search(roamerSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->roamerResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
+                            this->roamerResults.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0,
                                                              seeds[i]);
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
