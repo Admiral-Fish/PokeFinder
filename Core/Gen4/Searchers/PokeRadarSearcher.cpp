@@ -827,7 +827,11 @@ void PokeRadarSearcher::addManualPatchMatches(const WildSearcherState4 &pokemon,
                 }
 
                 WildSearcherState4 displayedPokemon = pokemon;
-                if (chain != 0 && !isShinyPatchType(searchChainType) && displayedPokemon.getAdvances() != 0)
+                if (chain != 0 && isShinyPatchType(searchChainType))
+                {
+                    displayedPokemon.setAdvances(displayedPokemon.getAdvances() + 1);
+                }
+                else if (chain != 0 && displayedPokemon.getAdvances() != 0)
                 {
                     displayedPokemon.setAdvances(displayedPokemon.getAdvances() - 1);
                 }
@@ -942,7 +946,11 @@ void PokeRadarSearcher::addPostBattlePatchMatches(const WildSearcherState4 &poke
         }
 
         WildSearcherState4 displayedPokemon = pokemon;
-        if (chain != 0 && !isShinyPatchType(searchChainType) && displayedPokemon.getAdvances() != 0)
+        if (chain != 0 && isShinyPatchType(searchChainType))
+        {
+            displayedPokemon.setAdvances(displayedPokemon.getAdvances() + 1);
+        }
+        else if (chain != 0 && displayedPokemon.getAdvances() != 0)
         {
             displayedPokemon.setAdvances(displayedPokemon.getAdvances() - 1);
         }
