@@ -2219,8 +2219,9 @@ void PokeRadar::search()
 
     u32 minDistance = searcher.minPatchDistance->value();
 
+    u32 initialAdvances = searcher.initialAdvances->getUInt();
     u32 maxAdvances = searcher.maxAdvances->getUInt();
-    if (!postBattleSearch && maxAdvances < minDistance)
+    if (!postBattleSearch && static_cast<u64>(initialAdvances) + maxAdvances < minDistance)
     {
         QMessageBox::warning(this, tr("Invalid Settings"),
                              tr("The searched advances end before the minimum patch distance can be reached."));
