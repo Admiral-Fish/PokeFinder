@@ -915,9 +915,10 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     controls.location->enableAutoComplete();
     controls.pokemon = new ComboBox(settings);
     controls.time = new ComboBox(settings);
-    controls.time->addItem(tr("Day"), 0);
-    controls.time->addItem(tr("Night"), 1);
-    controls.time->addItem(tr("Morning"), 2);
+    controls.time->addItem(tr("Morning"), 0);
+    controls.time->addItem(tr("Day"), 1);
+    controls.time->addItem(tr("Night"), 2);
+    controls.time->setCurrentIndex(1);
     controls.replacement = new QCheckBox(tr("Replacement"), settings);
     controls.replacement0 = new ComboBox(settings);
     controls.replacement1 = new ComboBox(settings);
