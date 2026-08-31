@@ -29,10 +29,7 @@
 #include <Form/Util/IVCalculator.hpp>
 #include <Model/Gen5/AdjacentSeedsModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
-#include <QMessageBox>
 #include <QSettings>
-#include <QSpinBox>
-#include <QStringList>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
 
