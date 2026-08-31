@@ -11439,8 +11439,8 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     </message>
     <message>
         <location filename="../Gen4/PokeRadar.cpp" line="1018"/>
-        <source>Grace Steps</source>
-        <translation>Schonfrist Schritte</translation>
+        <source>Cooldown Steps</source>
+        <translation>Cooldown-Schritte</translation>
     </message>
     <message>
         <location filename="../Gen4/PokeRadar.cpp" line="1027"/>

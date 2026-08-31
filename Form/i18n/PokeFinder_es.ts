@@ -11443,7 +11443,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     </message>
     <message>
         <location filename="../Gen4/PokeRadar.cpp" line="1018"/>
-        <source>Grace Steps</source>
+        <source>Cooldown Steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
