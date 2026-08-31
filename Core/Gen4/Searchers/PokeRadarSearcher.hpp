@@ -68,7 +68,8 @@ private:
     void addPostBattlePatchMatches(const WildSearcherState4 &pokemon, u16 chainMin, u16 chainMax, PokeRadarChainType searchChainType);
     const std::vector<PostBattlePatch> &getPostBattlePatches(u32 seed, u16 chain, PokeRadarChainType searchChainType);
     u32 calculatePokemonBattleAdvances(u32 seed, u32 advances, Lead effectiveLead, bool shiny) const;
-    std::vector<WildSearcherState4> searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset = 0) const;
+    std::vector<WildSearcherState4> searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset = 0,
+                                                       u32 searchAdvanceOffset = 0) const;
     void searchPokemon(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain);
     void searchPokemonType(const std::array<u8, 6> &min, const std::array<u8, 6> &max, bool chain,
                            PokeRadarChainType searchChainType);

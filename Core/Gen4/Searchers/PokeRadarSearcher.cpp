@@ -292,11 +292,12 @@ void PokeRadarSearcher::searchPokemonType(const std::array<u8, 6> &min, const st
 
 }
 
-std::vector<WildSearcherState4> PokeRadarSearcher::searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset) const
+std::vector<WildSearcherState4> PokeRadarSearcher::searchInitialSeeds(const std::vector<WildSearcherState4> &states, u32 displayAdvanceOffset,
+                                                                      u32 searchAdvanceOffset) const
 {
     std::vector<WildSearcherState4> results;
-    u32 startAdvance = minAdvance + displayAdvanceOffset;
-    u32 endAdvance = maxAdvance + displayAdvanceOffset;
+    u32 startAdvance = minAdvance + displayAdvanceOffset + searchAdvanceOffset;
+    u32 endAdvance = maxAdvance + displayAdvanceOffset + searchAdvanceOffset;
 
     for (WildSearcherState4 state : states)
     {
@@ -325,7 +326,7 @@ std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonIVs(u8 hp, u8 at
 {
     return searchInitialSeeds(shiny ? searchPokemonShinyIVs(hp, atk, def, spa, spd, spe, index, effectiveLead, applyFilter)
                                     : searchPokemonNormalIVs(hp, atk, def, spa, spd, spe, index, effectiveLead, applyFilter),
-                              shiny && applyFilter ? 2 : 0);
+                              shiny && applyFilter ? 2 : 0, applyFilter ? 0 : 2);
 }
 
 std::vector<WildSearcherState4> PokeRadarSearcher::searchPokemonNormalIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index,
@@ -607,6 +608,11 @@ std::optional<WildSearcherState4> PokeRadarSearcher::validateChainZeroPokemon(co
     WildSearcherState4 state(pokemon.getSeed(), pid, ivs, pid & 1, Utilities::getGender(pid, info), slot.getMaxLevel(), nature,
                              Utilities::getShiny<true>(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
     state.setAdvances(advances == 0 ? 0 : advances - 1);
+
+    if (state.getAdvances() < minAdvance || state.getAdvances() > maxAdvance)
+    {
+        return std::nullopt;
+    }
 
     if (state.getPID() != pokemon.getPID() || state.getIVs() != pokemon.getIVs())
     {
