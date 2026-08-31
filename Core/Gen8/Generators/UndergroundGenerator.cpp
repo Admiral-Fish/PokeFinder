@@ -250,7 +250,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
     const auto &levelInfo = levelInfoList[levelFlag];
     u8 pidRolls = diglett ? 2 : 1;
 
-    auto createPokemon = [=, &rngList](u32 advances, u16 specie) {
+    auto createPokemon = [this, &rngList, base, &levelInfo, pidRolls](u32 advances, u16 specie) {
         u8 level;
         if (lead == Lead::Pressure)
         {

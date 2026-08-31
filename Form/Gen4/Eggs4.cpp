@@ -34,7 +34,6 @@
 #include <QAction>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("eggs4");
@@ -69,9 +68,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->textBoxSearcherMinDelay->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                        | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->eggSettingsGenerator->setup(Game::Gen4);
     ui->eggSettingsSearcher->setup(Game::Gen4);
@@ -245,26 +243,31 @@ void Eggs4::search()
     auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile);
     searcher->setMaxProgress(256 * 24 * (maxDelay - minDelay + 1));
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(generator);
     timer->start(1000);
 }
 

@@ -34,7 +34,7 @@ namespace Ui
 /**
  * @brief Provides widget to view fields of a profile
  */
-class ProfileDisplay4 : public QWidget
+class ProfileDisplay4 final : public QWidget
 {
     Q_OBJECT
 signals:

@@ -35,7 +35,6 @@
 #include <Model/Gen3/GameCubeModel.hpp>
 #include <Model/SortFilterProxyModel.hpp>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("gamecube");
@@ -59,9 +58,8 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorOffset->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Height | Controls::Level | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::EncounterSlots | Controls::Height | Controls::Level
-                                        | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight | Controls::Wild);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
@@ -233,38 +231,41 @@ void GameCube::search()
     }
     searcher->setMaxProgress(maxProgress);
 
-    QThread *thread;
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
+        ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
+    });
+
     if (shadowLock)
     {
         const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(ui->comboBoxSearcherPokemon->getCurrentInt());
-        thread = QThread::create([=] { searcher->startSearch(min, max, shadowTemplate); });
+        searcher->startSearch(min, max, shadowTemplate);
     }
     else
     {
         const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 8,
                                                                                 ui->comboBoxSearcherPokemon->getCurrentInt());
-        thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
+        searcher->startSearch(min, max, staticTemplate);
     }
-
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
-        ui->pushButtonSearch->setEnabled(true);
-        ui->pushButtonCancel->setEnabled(false);
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
-    });
-
-    thread->start();
     timer->start(1000);
 }
 

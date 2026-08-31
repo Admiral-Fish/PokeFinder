@@ -25,7 +25,7 @@
 /**
  * @brief Provides a proxy to filter data from a table model by indexes
  */
-class IndexFilterProxyModel : public QSortFilterProxyModel
+class IndexFilterProxyModel final : public QSortFilterProxyModel
 {
 public:
     /**
@@ -46,12 +46,15 @@ public:
      */
     void setFilteredIndexes(const QModelIndexList &indexes)
     {
+        beginFilterChange();
+
         allowedIndexes.clear();
         for (const QModelIndex &index : indexes)
         {
             allowedIndexes.insert(QPersistentModelIndex(index));
         }
-        invalidateFilter();
+
+        endFilterChange();
     }
 
     /**
@@ -61,18 +64,21 @@ public:
      */
     void setFilteredIndexes(const std::vector<size_t> &rows)
     {
+        beginFilterChange();
+
         allowedIndexes.clear();
         for (size_t row : rows)
         {
             allowedIndexes.insert(QPersistentModelIndex(sourceModel()->index(row, 0)));
         }
-        invalidateFilter();
+
+        endFilterChange();
     }
 
 protected:
     /**
      * @brief Checks if row should be displayed
-     * 
+     *
      * @param sourceRow Row to check
      * @param sourceParent Parent index of row
      */

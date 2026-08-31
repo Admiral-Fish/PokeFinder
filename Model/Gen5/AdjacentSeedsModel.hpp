@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show adjacent seed information for Gen 5
  */
-class AdjacentSeedsModel : public TableModel<AdjacentSeedsState>
+class AdjacentSeedsModel final : public TableModel<AdjacentSeedsState>
 {
     Q_OBJECT
 public:

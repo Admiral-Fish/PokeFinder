@@ -23,7 +23,7 @@
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -34,7 +34,6 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("dreamRadar");
@@ -114,10 +113,10 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
-                                         | Controls::Level | Controls::Shiny | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                        | Controls::Height | Controls::Level | Controls::Shiny | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Shiny | Controls::Weight
+                                         | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Searcher | Controls::Shiny
+                                        | Controls::Weight | Controls::Wild);
 
     ui->comboBoxGeneratorSpecie1->enableAutoComplete();
     ui->comboBoxGeneratorSpecie2->enableAutoComplete();
@@ -143,30 +142,30 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &DreamRadarSearcherModel5::setShowStats);
 
     connect(ui->comboBoxGeneratorSpecie1, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie1, ui->comboBoxGeneratorGender1); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie1, ui->comboBoxGeneratorGender1); });
     connect(ui->comboBoxGeneratorSpecie2, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie2, ui->comboBoxGeneratorGender2); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie2, ui->comboBoxGeneratorGender2); });
     connect(ui->comboBoxGeneratorSpecie3, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie3, ui->comboBoxGeneratorGender3); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie3, ui->comboBoxGeneratorGender3); });
     connect(ui->comboBoxGeneratorSpecie4, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie4, ui->comboBoxGeneratorGender4); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie4, ui->comboBoxGeneratorGender4); });
     connect(ui->comboBoxGeneratorSpecie5, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie5, ui->comboBoxGeneratorGender5); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie5, ui->comboBoxGeneratorGender5); });
     connect(ui->comboBoxGeneratorSpecie6, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxGeneratorSpecie6, ui->comboBoxGeneratorGender6); });
+            [this] { updateGenders(ui->comboBoxGeneratorSpecie6, ui->comboBoxGeneratorGender6); });
 
     connect(ui->comboBoxSearcherSpecie1, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie1, ui->comboBoxSearcherGender1); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie1, ui->comboBoxSearcherGender1); });
     connect(ui->comboBoxSearcherSpecie2, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie2, ui->comboBoxSearcherGender2); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie2, ui->comboBoxSearcherGender2); });
     connect(ui->comboBoxSearcherSpecie3, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie3, ui->comboBoxSearcherGender3); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie3, ui->comboBoxSearcherGender3); });
     connect(ui->comboBoxSearcherSpecie4, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie4, ui->comboBoxSearcherGender4); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie4, ui->comboBoxSearcherGender4); });
     connect(ui->comboBoxSearcherSpecie5, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie5, ui->comboBoxSearcherGender5); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie5, ui->comboBoxSearcherGender5); });
     connect(ui->comboBoxSearcherSpecie6, &ComboBox::currentIndexChanged, this,
-            [=]() { updateGenders(ui->comboBoxSearcherSpecie6, ui->comboBoxSearcherGender6); });
+            [this] { updateGenders(ui->comboBoxSearcherSpecie6, ui->comboBoxSearcherGender6); });
 
     int size;
     const DreamRadarTemplate *dreamRadarTemplates = Encounters5::getDreamRadarEncounters(&size);
@@ -358,32 +357,37 @@ void DreamRadar::search()
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
-    auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);
+    auto *searcher = new DreamRadarSearcher(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 

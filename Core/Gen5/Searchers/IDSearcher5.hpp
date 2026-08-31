@@ -28,7 +28,7 @@
 /**
  * @brief TID/SID searcher for Gen5
  */
-class IDSearcher5 : public Searcher5<IDGenerator5, IDState>
+class IDSearcher5 final : public Searcher5<IDGenerator5, IDState>
 {
 public:
     /**

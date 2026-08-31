@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show Poke Spot encounter information for Gen 3
  */
-class PokeSpotModel : public TableModel<PokeSpotState>
+class PokeSpotModel final : public TableModel<PokeSpotState>
 {
     Q_OBJECT
 public:

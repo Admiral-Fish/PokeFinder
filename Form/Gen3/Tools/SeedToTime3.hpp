@@ -33,7 +33,7 @@ namespace Ui
 /**
  * @brief Allows converted seeds to date/times
  */
-class SeedToTime3 : public QWidget
+class SeedToTime3 final : public QWidget
 {
     Q_OBJECT
 public:

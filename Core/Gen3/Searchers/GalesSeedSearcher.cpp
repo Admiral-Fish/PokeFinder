@@ -20,7 +20,6 @@
 #include "GalesSeedSearcher.hpp"
 #include <algorithm>
 #include <cstring>
-#include <thread>
 
 constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
 
@@ -113,42 +112,38 @@ GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : criteria(c
 
 void GalesSeedSearcher::startSearch(int threads)
 {
-    searching = true;
-
-    auto *threadContainer = new std::thread[threads];
-
-    u32 split = 0x10000 / threads;
-    u32 start = 0;
-    for (int i = 0; i < threads; i++, start += split)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([=] { search(start, 0x10000); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([=] { search(start, start + split); });
-        }
-    }
-
+    activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        threadContainer.emplace_back([this] {
+            search(0x0, 0xffff);
+            if (activeThreads.fetch_sub(1) == 1)
+            {
+                std::ranges::sort(results);
+                results.erase(std::unique(results.begin(), results.end()), results.end());
+            }
+        });
     }
-
-    delete[] threadContainer;
-
-    std::ranges::sort(results);
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
 {
-    searching = true;
+    activeThreads.store(1);
+    threadContainer.emplace_back([this, &seeds] {
+        search(seeds);
+        if (activeThreads.fetch_sub(1) == 1)
+        {
+            std::ranges::sort(results);
+            results.erase(std::unique(results.begin(), results.end()), results.end());
+        }
+    });
+}
 
+void GalesSeedSearcher::search(const std::vector<u32> &seeds)
+{
     for (u32 seed : seeds)
     {
-        if (!searching)
+        if (cancelled.load(std::memory_order_relaxed))
         {
             return;
         }
@@ -156,24 +151,29 @@ void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
         XDRNG rng(seed);
         if (searchSeed(rng))
         {
+            // This technically isn't thread safe
+            // For now it is okay since this version of the search is single threaded and the UI only grabs results at the very end
             results.emplace_back(rng.getSeed());
         }
 
-        progress++;
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
-
-    std::ranges::sort(results);
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void GalesSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 low = start; low < end; low++, progress++)
+    while (true)
     {
+        u32 low = start + index.fetch_add(1, std::memory_order_relaxed);
+        if (low > end)
+        {
+            break;
+        }
+
         for (u32 high = criteria.playerIndex; high < 0x10000; high += 5)
         {
-            if (!searching)
+            if (cancelled.load(std::memory_order_relaxed))
             {
                 return;
             }
@@ -184,6 +184,8 @@ void GalesSeedSearcher::search(u32 start, u32 end)
                 seeds.emplace_back(rng.getSeed());
             }
         }
+
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
 
     std::lock_guard<std::mutex> lock(mutex);

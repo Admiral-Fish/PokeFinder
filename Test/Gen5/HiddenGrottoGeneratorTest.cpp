@@ -32,8 +32,8 @@ static bool operator==(const HiddenGrottoState &left, const json &right)
 {
     return left.getAdvances() == right["advances"].get<u32>() && left.getData() == right["data"].get<u16>()
         && left.getItem() == right["item"].get<bool>() && left.getChatot() == right["chatot"].get<u8>()
-        && left.getGender() == right["gender"].get<u8>() && left.getGroup() == right["group"].get<u8>()
-        && left.getSlot() == right["slot"].get<u8>();
+        && left.isValid() == right["valid"].get<bool>() && left.getGender() == right["gender"].get<u8>()
+        && left.getGroup() == right["group"].get<u8>() && left.getSlot() == right["slot"].get<u8>();
 }
 
 static bool operator==(const State5 &left, const json &right)
@@ -93,7 +93,7 @@ void HiddenGrottoGeneratorTest::pokemon()
     powers.fill(true);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
     auto encounterArea = std::ranges::find_if(
@@ -146,7 +146,7 @@ void HiddenGrottoGeneratorTest::slot()
     groups.fill(true);
 
     Profile5 profile("-", Game::BW2, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, false, DSType::DS, Language::English);
 
     std::vector<HiddenGrottoArea> encounterAreas = Encounters5::getHiddenGrottoEncounters();
     auto encounterArea = std::ranges::find_if(

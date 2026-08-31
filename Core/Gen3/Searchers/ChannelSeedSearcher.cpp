@@ -19,7 +19,6 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <algorithm>
-#include <thread>
 
 ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria)
 {
@@ -27,41 +26,33 @@ ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : crit
 
 void ChannelSeedSearcher::startSearch(int threads)
 {
-    searching = true;
-
-    auto *threadContainer = new std::thread[threads];
-
-    u32 split = 0xbffffffe / threads;
-    u32 start = 0x40000001;
-    for (int i = 0; i < threads; i++, start += split)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([=] { search(start, 0xffffffff); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([=] { search(start, start + split); });
-        }
-    }
-
+    activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        threadContainer.emplace_back([this] {
+            search(0x40000001, 0xbffffffe);
+            if (activeThreads.fetch_sub(1) == 1)
+            {
+                std::ranges::sort(results);
+                results.erase(std::unique(results.begin(), results.end()), results.end());
+            }
+        });
     }
-
-    delete[] threadContainer;
-
-    std::ranges::sort(results);
-    results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
 void ChannelSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 seed = start; seed < end; seed++, progress++)
+    while (true)
     {
-        if (!searching)
+        u64 idx = index.fetch_add(1, std::memory_order_relaxed);
+        if (idx > static_cast<u64>(end))
+        {
+            break;
+        }
+
+        u32 seed = start + idx;
+        if (cancelled.load(std::memory_order_relaxed))
         {
             return;
         }

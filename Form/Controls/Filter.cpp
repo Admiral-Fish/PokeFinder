@@ -21,51 +21,7 @@
 #include "ui_Filter.h"
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
-#include <Form/Util/IVCalculator.hpp>
-#include <QClipboard>
-#include <QMenu>
 #include <QMessageBox>
-#include <QMouseEvent>
-#include <QRegularExpression>
-
-/**
- * @brief Updates min/max values based on control keys selected
- *
- * @param minBox Spinbox that has the minimum value
- * @param maxBox Spinbox that has the maximum value
- * @param type Control keys
- */
-static void changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-    minBox->setValue(min);
-    maxBox->setValue(max);
-}
 
 Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 {
@@ -81,46 +37,8 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
     ui->checkListNature->setToolTip(tr("Click holding ctrl to reset"));
 
-    QStringList tips = { tr("Click to clear"), tr("Click holding ctrl to set 31"), tr("Click holding alt to set 30-31"),
-                         tr("Click holding ctrl+alt to set 0") };
-
-    QString tip = tips.join('\n');
-    ui->labelHP->setToolTip(tip);
-    ui->labelAtk->setToolTip(tip);
-    ui->labelDef->setToolTip(tip);
-    ui->labelSpA->setToolTip(tip);
-    ui->labelSpD->setToolTip(tip);
-    ui->labelSpe->setToolTip(tip);
-
-    ui->labelHP->installEventFilter(this);
-    ui->labelAtk->installEventFilter(this);
-    ui->labelDef->installEventFilter(this);
-    ui->labelSpA->installEventFilter(this);
-    ui->labelSpD->installEventFilter(this);
-    ui->labelSpe->installEventFilter(this);
-
-    auto *copyAction = addAction(tr("Copy IVs to clipboard"));
-    auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
-
-    connect(copyAction, &QAction::triggered, this, &Filter::setIVsToClipBoard);
-    connect(pasteAction, &QAction::triggered, this, &Filter::setIVsFromClipBoard);
-
-    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
-    connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxAtkMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxDefMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxDefMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpAMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpAMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpDMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpDMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpeMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
-    connect(ui->checkBoxShowStats, &QCheckBox::checkStateChanged, this,
-            [=](Qt::CheckState state) { emit showStatsChanged(state == Qt::Checked); });
-    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
+    connect(ui->ivFilter, &IVFilter::ivsChanged, this, &Filter::ivsChanged);
+    connect(ui->ivFilter, &IVFilter::showStatsChanged, this, &Filter::showStatsChanged);
 }
 
 Filter::~Filter()
@@ -128,28 +46,9 @@ Filter::~Filter()
     delete ui;
 }
 
-void Filter::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu::exec(actions(), event->globalPos(), nullptr, this);
-}
-
 void Filter::copyFrom(const Filter *other)
 {
-    ui->spinBoxHPMin->setValue(other->ui->spinBoxHPMin->value());
-    ui->spinBoxAtkMin->setValue(other->ui->spinBoxAtkMin->value());
-    ui->spinBoxDefMin->setValue(other->ui->spinBoxDefMin->value());
-    ui->spinBoxSpAMin->setValue(other->ui->spinBoxSpAMin->value());
-    ui->spinBoxSpDMin->setValue(other->ui->spinBoxSpDMin->value());
-    ui->spinBoxSpeMin->setValue(other->ui->spinBoxSpeMin->value());
-
-    ui->spinBoxHPMax->setValue(other->ui->spinBoxHPMax->value());
-    ui->spinBoxAtkMax->setValue(other->ui->spinBoxAtkMax->value());
-    ui->spinBoxDefMax->setValue(other->ui->spinBoxDefMax->value());
-    ui->spinBoxSpAMax->setValue(other->ui->spinBoxSpAMax->value());
-    ui->spinBoxSpDMax->setValue(other->ui->spinBoxSpDMax->value());
-    ui->spinBoxSpeMax->setValue(other->ui->spinBoxSpeMax->value());
-
-    ui->checkBoxShowStats->setChecked(other->ui->checkBoxShowStats->isChecked());
+    ui->ivFilter->copyFrom(other->ui->ivFilter);
 
     ui->comboBoxAbility->setCurrentIndex(other->ui->comboBoxAbility->currentIndex());
     ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
@@ -206,32 +105,7 @@ void Filter::disableControls(Controls control)
 
     if ((control & Controls::IVs) != Controls::None)
     {
-        ui->labelHP->hide();
-        ui->spinBoxHPMin->hide();
-        ui->spinBoxHPMax->hide();
-
-        ui->labelAtk->hide();
-        ui->spinBoxAtkMin->hide();
-        ui->spinBoxAtkMax->hide();
-
-        ui->labelDef->hide();
-        ui->spinBoxDefMin->hide();
-        ui->spinBoxDefMax->hide();
-
-        ui->labelSpA->hide();
-        ui->spinBoxSpAMin->hide();
-        ui->spinBoxSpAMax->hide();
-
-        ui->labelSpD->hide();
-        ui->spinBoxSpDMin->hide();
-        ui->spinBoxSpDMax->hide();
-
-        ui->labelSpe->hide();
-        ui->spinBoxSpeMin->hide();
-        ui->spinBoxSpeMax->hide();
-
-        ui->checkBoxShowStats->hide();
-        ui->pushButtonIVCalculator->hide();
+        ui->ivFilter->disableControls();
     }
 
     if ((control & Controls::Level) != Controls::None)
@@ -315,18 +189,12 @@ u8 Filter::getLevelMin() const
 
 std::array<u8, 6> Filter::getMaxIVs() const
 {
-    std::array<u8, 6> high = { static_cast<u8>(ui->spinBoxHPMax->value()),  static_cast<u8>(ui->spinBoxAtkMax->value()),
-                               static_cast<u8>(ui->spinBoxDefMax->value()), static_cast<u8>(ui->spinBoxSpAMax->value()),
-                               static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value()) };
-    return high;
+    return ui->ivFilter->getMaxIVs();
 }
 
 std::array<u8, 6> Filter::getMinIVs() const
 {
-    std::array<u8, 6> low = { static_cast<u8>(ui->spinBoxHPMin->value()),  static_cast<u8>(ui->spinBoxAtkMin->value()),
-                              static_cast<u8>(ui->spinBoxDefMin->value()), static_cast<u8>(ui->spinBoxSpAMin->value()),
-                              static_cast<u8>(ui->spinBoxSpDMin->value()), static_cast<u8>(ui->spinBoxSpeMin->value()) };
-    return low;
+    return ui->ivFilter->getMinIVs();
 }
 
 std::array<bool, 25> Filter::getNatures() const
@@ -346,45 +214,8 @@ bool Filter::isValid() const
         return true;
     }
 
-    if (ui->spinBoxHPMin->value() > ui->spinBoxHPMax->value())
+    if (!ui->ivFilter->isValid())
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("HP minimum is greater than maximum"));
-        msg.exec();
-        return false;
-    }
-
-    if (ui->spinBoxAtkMin->value() > ui->spinBoxAtkMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Atk minimum is greater than maximum"));
-        msg.exec();
-        return false;
-    }
-
-    if (ui->spinBoxDefMin->value() > ui->spinBoxDefMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Def minimum is greater than maximum"));
-        msg.exec();
-        return false;
-    }
-
-    if (ui->spinBoxSpAMin->value() > ui->spinBoxSpAMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpA minimum is greater than maximum"));
-        msg.exec();
-        return false;
-    }
-
-    if (ui->spinBoxSpDMin->value() > ui->spinBoxSpDMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("SpD minimum is greater than maximum"));
-        msg.exec();
-        return false;
-    }
-
-    if (ui->spinBoxSpeMin->value() > ui->spinBoxSpeMax->value())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid filter settings"), tr("Spe minimum is greater than maximum"));
-        msg.exec();
         return false;
     }
 
@@ -468,123 +299,4 @@ u8 Filter::getWeightMax() const
 u8 Filter::getWeightMin() const
 {
     return static_cast<u8>(ui->spinBoxWeightMin->value());
-}
-
-bool Filter::eventFilter(QObject *object, QEvent *event)
-{
-    if (event->type() == QEvent::MouseButtonPress)
-    {
-        auto *mouse = reinterpret_cast<QMouseEvent *>(event);
-        if (mouse->button() == Qt::LeftButton)
-        {
-            if (object == ui->labelHP)
-            {
-                changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
-                return true;
-            }
-            else if (object == ui->labelAtk)
-            {
-                changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
-                return true;
-            }
-            else if (object == ui->labelDef)
-            {
-                changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
-                return true;
-            }
-            else if (object == ui->labelSpA)
-            {
-                changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
-                return true;
-            }
-            else if (object == ui->labelSpD)
-            {
-                changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
-                return true;
-            }
-            else if (object == ui->labelSpe)
-            {
-                changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-void Filter::openIVCalculator() const
-{
-    auto *calculator = new IVCalculator();
-    connect(calculator, &IVCalculator::ivsCalculated, this, &Filter::updateIVs);
-    calculator->show();
-}
-
-void Filter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
-{
-    QList<QSpinBox *> minIVs
-        = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
-    QList<QSpinBox *> maxIVs
-        = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
-    for (size_t i = 0; i < ivs.size(); i++)
-    {
-        const auto &iv = ivs[i];
-        u8 min = 0;
-        u8 max = 31;
-        // Vector is sorted, grab first/last as min/max
-        if (!iv.empty())
-        {
-            min = iv.front();
-            max = iv.back();
-        }
-        minIVs[i]->setValue(min);
-        maxIVs[i]->setValue(max);
-    }
-}
-
-void Filter::setIVsFromClipBoard()
-{
-    QRegularExpression re("(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})-(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/(\\d{1,2})/"
-                          "(\\d{1,2})/(\\d{1,2})");
-
-    QString text = QApplication::clipboard()->text();
-    QRegularExpressionMatch match = re.match(text);
-    if (!match.hasMatch())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
-        msg.exec();
-        return;
-    }
-
-    ui->spinBoxHPMin->setValue(match.captured(1).toInt());
-    ui->spinBoxAtkMin->setValue(match.captured(2).toInt());
-    ui->spinBoxDefMin->setValue(match.captured(3).toInt());
-    ui->spinBoxSpAMin->setValue(match.captured(4).toInt());
-    ui->spinBoxSpDMin->setValue(match.captured(5).toInt());
-    ui->spinBoxSpeMin->setValue(match.captured(6).toInt());
-
-    ui->spinBoxHPMax->setValue(match.captured(7).toInt());
-    ui->spinBoxAtkMax->setValue(match.captured(8).toInt());
-    ui->spinBoxDefMax->setValue(match.captured(9).toInt());
-    ui->spinBoxSpAMax->setValue(match.captured(10).toInt());
-    ui->spinBoxSpDMax->setValue(match.captured(11).toInt());
-    ui->spinBoxSpeMax->setValue(match.captured(12).toInt());
-}
-
-void Filter::setIVsToClipBoard()
-{
-    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
-                      .arg(ui->spinBoxHPMin->value())
-                      .arg(ui->spinBoxAtkMin->value())
-                      .arg(ui->spinBoxDefMin->value())
-                      .arg(ui->spinBoxSpAMin->value())
-                      .arg(ui->spinBoxSpDMin->value())
-                      .arg(ui->spinBoxSpeMin->value())
-                      .arg(ui->spinBoxHPMax->value())
-                      .arg(ui->spinBoxAtkMax->value())
-                      .arg(ui->spinBoxDefMax->value())
-                      .arg(ui->spinBoxSpAMax->value())
-                      .arg(ui->spinBoxSpDMax->value())
-                      .arg(ui->spinBoxSpeMax->value());
-
-    QApplication::clipboard()->setText(ivs);
 }

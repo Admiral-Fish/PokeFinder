@@ -33,8 +33,15 @@ EventSearcher4::EventSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32
 
 void EventSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u16 species, u8 nature, u8 level)
 {
-    searching = true;
+    activeThreads.store(1);
+    threadContainer.emplace_back([this, min, max, species, nature, level] {
+        search(min, max, species, nature, level);
+        activeThreads.fetch_sub(1);
+    });
+}
 
+void EventSearcher4::search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u16 species, u8 nature, u8 level)
+{
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
         for (u8 atk = min[1]; atk <= max[1]; atk++)
@@ -47,16 +54,18 @@ void EventSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<
                     {
                         for (u8 spe = min[5]; spe <= max[5]; spe++)
                         {
-                            if (!searching)
+                            if (cancelled.load(std::memory_order_relaxed))
                             {
                                 return;
                             }
 
                             auto states = search(hp, atk, def, spa, spd, spe, species, nature, level);
-
-                            std::lock_guard<std::mutex> guard(mutex);
-                            results.insert(results.end(), states.begin(), states.end());
-                            progress++;
+                            if (!states.empty())
+                            {
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.insert(results.end(), states.begin(), states.end());
+                            }
+                            progress.fetch_add(1, std::memory_order_relaxed);
                         }
                     }
                 }

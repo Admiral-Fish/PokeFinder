@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>IV Cache Finder</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Search</string>
@@ -86,7 +86,7 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QProgressBar" name="progressBar"/>
    </item>
   </layout>

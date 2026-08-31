@@ -21,6 +21,7 @@
 #define TABLEMODEL_HPP
 
 #include <QAbstractTableModel>
+#include <algorithm>
 
 /**
  * @brief Provides a templated implementation for children to add/edit/remove their data to a table model
@@ -113,6 +114,44 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
         return static_cast<int>(model.size());
+    }
+
+    /**
+     * @brief Moves rows in the model
+     *
+     * @param sourceParent Unused source parent index
+     * @param sourceRow First row to move
+     * @param count Number of consecutive rows to move
+     * @param destinationParent Unused destination parent index
+     * @param destinationChild Row to insert before
+     *
+     * @return true Rows moved
+     * @return false Invalid move
+     */
+    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent,
+                  int destinationChild) override
+    {
+        if (sourceParent.isValid() || destinationParent.isValid() || count != 1 || sourceRow < 0 || sourceRow >= rowCount()
+            || destinationChild < 0 || destinationChild > rowCount() || sourceRow == destinationChild || sourceRow == destinationChild - 1)
+        {
+            return false;
+        }
+
+        beginMoveRows(sourceParent, sourceRow, sourceRow + count - 1, destinationParent, destinationChild);
+
+        if (sourceRow < destinationChild)
+        {
+            // Moving down: rotate items leftward between source and target
+            std::rotate(model.begin() + sourceRow, model.begin() + sourceRow + 1, model.begin() + destinationChild);
+        }
+        else
+        {
+            // Moving up: rotate items rightward between target and source
+            std::rotate(model.begin() + destinationChild, model.begin() + sourceRow, model.begin() + sourceRow + 1);
+        }
+
+        endMoveRows();
+        return true;
     }
 
     /**

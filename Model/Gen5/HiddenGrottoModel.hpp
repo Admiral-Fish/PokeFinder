@@ -29,7 +29,7 @@
 /**
  * @brief Provides a table model implementation to show hidden grotto information for Gen 5
  */
-class HiddenGrottoSlotGeneratorModel5 : public TableModel<HiddenGrottoState>, public IRNGProvider5
+class HiddenGrottoSlotGeneratorModel5 final : public TableModel<HiddenGrottoState>, public IRNGProvider5
 {
     Q_OBJECT
 public:
@@ -97,7 +97,7 @@ private:
 /**
  * @brief Provides a table model implementation to show hidden grotto information for Gen 5
  */
-class HiddenGrottoSlotSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
+class HiddenGrottoSlotSearcherModel5 final : public TableModel<SearcherState5<HiddenGrottoState>>
 {
     Q_OBJECT
 public:

@@ -24,7 +24,6 @@
 #include <Core/RNG/MTFast.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <thread>
 
 ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, Game version, Language language, DSType dsType,
@@ -49,74 +48,113 @@ ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSec
 
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 {
-    searching = true;
-
     u8 diff = maxVFrame - minVFrame + 1;
     if (diff < threads)
     {
         threads = diff;
     }
 
-    auto *threadContainer = new std::thread[threads];
-
-    auto split = (diff / threads);
-    for (int i = 0; i < threads; i++, minVFrame += split)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([=] { search(minVFrame, maxVFrame); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([=] { search(minVFrame, minVFrame + split - 1); });
-        }
-    }
-
+    activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        threadContainer.emplace_back([this, minVFrame, maxVFrame] {
+            search(minVFrame, maxVFrame);
+            activeThreads.fetch_sub(1);
+        });
     }
-
-    delete[] threadContainer;
 }
 
-void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
+void ProfileSearcher5::search(u8 start, u8 end)
 {
     u8 hour = time.hour();
     u8 minute = time.minute();
 
-    for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
+#ifdef ENABLE_SIMD
+    if (hasSHA())
     {
-        for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+        while (true)
         {
-            SHA1 sha(version, language, dsType, mac, vframe, gxStat);
-            sha.setDate(date);
-            sha.setButton(keypress.value);
-            for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
+            u16 vframe = start + index.fetch_add(1, std::memory_order_relaxed);
+            if (vframe > end)
             {
-                for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
+                break;
+            }
+
+            for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+            {
+                SHA1SIMD sha(version, language, dsType, mac, vframe, gxStat);
+                sha.setDate(date);
+                sha.setButton(keypress.value);
+                for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
                 {
-                    sha.setTimer0(timer0, vcount);
-                    auto alpha = sha.precompute();
-                    for (u8 second = minSeconds; second <= maxSeconds; second++)
+                    for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
                     {
-                        if (!searching)
+                        sha.setTimer0(timer0, vcount);
+                        for (u8 second = minSeconds; second <= maxSeconds; second++)
                         {
-                            return;
-                        }
+                            if (cancelled.load(std::memory_order_relaxed))
+                            {
+                                return;
+                            }
 
-                        sha.setTime(hour, minute, second, dsType);
+                            sha.setTime(hour, minute, second, dsType);
 
-                        u64 seed = sha.hashSeed(alpha);
-                        if (valid(seed))
-                        {
-                            std::lock_guard<std::mutex> lock(mutex);
-                            results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
-                                                 static_cast<u8>(gxStat), second);
+                            u64 seed = sha.hashSeed();
+                            if (valid(seed))
+                            {
+                                std::lock_guard<std::mutex> lock(mutex);
+                                results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                     static_cast<u8>(gxStat), second);
+                            }
                         }
                     }
+                    progress.fetch_add(1, std::memory_order_relaxed);
                 }
-                progress++;
+            }
+        }
+    }
+    else
+#endif
+    {
+        while (true)
+        {
+            u16 vframe = start + index.fetch_add(1, std::memory_order_relaxed);
+            if (vframe > end)
+            {
+                break;
+            }
+
+            for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+            {
+                SHA1 sha(version, language, dsType, mac, vframe, gxStat);
+                sha.setDate(date);
+                sha.setButton(keypress.value);
+                for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
+                {
+                    for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
+                    {
+                        sha.setTimer0(timer0, vcount);
+                        auto alpha = sha.precompute();
+                        for (u8 second = minSeconds; second <= maxSeconds; second++)
+                        {
+                            if (cancelled.load(std::memory_order_relaxed))
+                            {
+                                return;
+                            }
+
+                            sha.setTime(hour, minute, second, dsType);
+
+                            u64 seed = sha.hashSeed(alpha);
+                            if (valid(seed))
+                            {
+                                std::lock_guard<std::mutex> lock(mutex);
+                                results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                     static_cast<u8>(gxStat), second);
+                            }
+                        }
+                    }
+                    progress.fetch_add(1, std::memory_order_relaxed);
+                }
             }
         }
     }

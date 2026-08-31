@@ -40,8 +40,6 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
 
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
-    searching = true;
-
     if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
     {
         if (staticTemplate->getInfo()->getFixedGender())
@@ -54,6 +52,15 @@ void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array
         }
     }
 
+    activeThreads.store(1);
+    threadContainer.emplace_back([this, min, max, staticTemplate] {
+        search(min, max, staticTemplate);
+        activeThreads.fetch_sub(1);
+    });
+}
+
+void StaticSearcher4::search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
+{
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
         for (u8 atk = min[1]; atk <= max[1]; atk++)
@@ -66,16 +73,18 @@ void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array
                     {
                         for (u8 spe = min[5]; spe <= max[5]; spe++)
                         {
-                            if (!searching)
+                            if (cancelled.load(std::memory_order_relaxed))
                             {
                                 return;
                             }
 
                             auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
-
-                            std::lock_guard<std::mutex> guard(mutex);
-                            results.insert(results.end(), states.begin(), states.end());
-                            progress++;
+                            if (!states.empty())
+                            {
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.insert(results.end(), states.begin(), states.end());
+                            }
+                            progress.fetch_add(1, std::memory_order_relaxed);
                         }
                     }
                 }

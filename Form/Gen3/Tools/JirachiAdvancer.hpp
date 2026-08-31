@@ -30,7 +30,7 @@ namespace Ui
 /**
  * @brief Calculates possible advancement path to get target Jirachi
  */
-class JirachiAdvancer : public QDialog
+class JirachiAdvancer final : public QDialog
 {
     Q_OBJECT
 public:

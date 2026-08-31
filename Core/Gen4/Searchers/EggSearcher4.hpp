@@ -29,7 +29,7 @@ class EggSearcherState4;
 /**
  * @brief Egg encounter searcher for Gen4
  */
-class EggSearcher4 : public Searcher<Profile4, EggSearcherState4>
+class EggSearcher4 final : public Searcher<Profile4, EggSearcherState4>
 {
 public:
     /**
@@ -51,6 +51,13 @@ public:
 private:
     u32 maxDelay;
     u32 minDelay;
+
+    /**
+     * @brief Searches for matching states for provided delay range
+     *
+     * @param generator Egg generator
+     */
+    void search(const EggGenerator4 &generator);
 };
 
 #endif // EGGSEARCHER4_HPP

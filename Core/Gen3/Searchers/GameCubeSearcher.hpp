@@ -30,7 +30,7 @@ class ShadowTemplate;
 /**
  * @brief Wild encounter searcher for GameCube
  */
-class GameCubeSearcher : public StaticSearcher<Profile3, StateFilter, SearcherState>
+class GameCubeSearcher final : public StaticSearcher<Profile3, StateFilter, SearcherState>
 {
 public:
     /**
@@ -63,6 +63,24 @@ public:
 
 private:
     bool unset;
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param shadowTemplate Pokemon template
+     */
+    void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const ShadowTemplate *shadowTemplate);
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param shadowTemplate Pokemon template
+     */
+    void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs

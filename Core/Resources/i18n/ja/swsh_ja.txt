@@ -1,44 +1,44 @@
-0,Axew's Eye
-1,Bridge Field
-2,Dappled Grove
-3,Dusty Bowl
-4,East Lake Axewell
-5,Giant's Cap
-6,Giant's Mirror
-7,Giant's Seat
-8,Hammerlocke Hills
-9,Lake of Outrage
-10,Motostoke Riverbank
-11,North Lake Miloch
-12,Rolling Fields
-13,South Lake Miloch
-14,Stony Wilderness
-15,Watchtower Ruins
-16,West Lake Axewell
-17,Fields of Honor
-18,Soothing Wetlands
-19,Forest of Focus
-20,Challenge Beach
-21,Brawlers' Cave
-22,Challenge Road
-23,Courageous Cavern
-24,Loop Lagoon
-25,Training Lowlands
-26,Potbottom Desert
-27,Workout Sea
-28,Stepping-Stone Sea
-29,Insular Sea
-30,Honeycalm Sea
-31,Honeycalm Island
-32,Slippery Slope
-33,Frostpoint Field
-34,Giant's Bed
-35,Old Cemetery
-36,Snowslide Slope
-37,Path to the Peak
-38,Crown Shrine
-39,Giant's Foot
-40,Frigid Sea
-41,Three-Point Pass
-42,Ballimere Lake
-43,Dyna Tree Hill
+0,キバこのひとみ
+1,ハシノマはらっぱ
+2,こもれびばやし
+3,さじんのくぼち
+4,キバこ・ひがし
+5,きょじんのぼうし
+6,きょじんのかがみいけ
+7,きょじんのこしかけ
+8,ナックルきゅうりょう
+9,げきりんのみずうみ
+10,エンジンリバーサイド
+11,ミロカロこ・きた
+12,うららかそうげん
+13,ミロカロこ・みなみ
+14,ストーンズげんや
+15,みはりとうあとち
+16,キバこ・にし
+17,いちれいのはら
+18,せいりょうしつげん
+19,しゅうちゅうのもり
+20,チャレンジビーチ
+21,ファイトケイブ
+22,チャレンジロード
+23,とうしんのどうくつ
+24,えんかんのいりえ
+25,たんれんへいげん
+26,なべぞこさばく
+27,ワークアウトのうみ
+28,ならぶじまのうみ
+29,はなれじまかいいき
+30,ハニカームのうみ
+31,ハニカームじま
+32,すべりだしせつげん
+33,ひょうてんせつげん
+34,きょじんのねどこ
+35,いにしえのぼち
+36,せっちゅうけいこく
+37,いただきへのゆきみち
+38,カンムリしんでん
+39,きょじんのくつぞこ
+40,いてつきのうみ
+41,みつまたがはら
+42,ボールレイクのこはん
+43,ダイぼくのおか

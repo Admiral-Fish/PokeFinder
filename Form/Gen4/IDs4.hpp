@@ -32,7 +32,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG TID/SID in Gen 4 games
  */
-class IDs4 : public QWidget
+class IDs4 final : public QWidget
 {
     Q_OBJECT
 public:

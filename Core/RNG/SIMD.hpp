@@ -20,36 +20,103 @@
 #ifndef SIMD_HPP
 #define SIMD_HPP
 
+#include <Core/Config.hpp>
 #include <Core/Global.hpp>
+#include <array>
 
-#if defined(SIMD) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
+#if defined(ENABLE_SIMD) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
 #define SIMD_X86
 #include <immintrin.h>
 #include <smmintrin.h>
+
 #ifdef _MSC_VER
 #include <intrin.h>
 #else
 #include <cpuid.h>
 #endif
 
-using vuint32x8 = __m256i;
 using vuint32x4 = __m128i;
-#elif defined(SIMD) && (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
+
+#elif defined(ENABLE_SIMD) && (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
 #define SIMD_ARM
 #include <arm_neon.h>
 
+#if defined(__APPLE__)
+#include <sys/sysctl.h>
+
+#elif defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <processthreadsapi.h>
+#include <windows.h>
+
+#elif defined(__linux__)
+#include <asm/hwcap.h>
+#include <sys/auxv.h>
+
+#endif
+
 using vuint32x4 = uint32x4_t;
+
 #else
-#include <array>
 #include <bit>
 
 using vuint32x4 = std::array<u32, 4>;
+
 #endif
+
+inline bool hasSHA()
+{
+#if defined(SIMD_X86)
+    int info[4];
+#ifdef _MSC_VER
+    __cpuidex(info, 7, 0); // EAX=7, ECX=0 for extended features
+#else
+    __cpuid_count(7, 0, info[0], info[1], info[2], info[3]);
+#endif
+    // Check bit 29 of EBX for native Intel/AMD SHA Extensions support
+    return (info[1] & (1 << 29)) != 0;
+
+#elif defined(SIMD_ARM)
+    static const bool has_sha1 = []() -> bool {
+        
+    #if defined(__APPLE__)
+        int supported = 0;
+        size_t len = sizeof(supported);
+        if (sysctlbyname("hw.optional.armv8_sha1", &supported, &len, nullptr, 0) == 0) {
+            return supported == 1;
+        }
+        return false;
+
+    #elif defined(_WIN32)
+        return IsProcessorFeaturePresent(PF_ARM_V8_CRYPTO_INSTRUCTIONS_AVAILABLE) != 0;
+
+    #elif defined(__linux__)
+        return (getauxval(AT_HWCAP) & HWCAP_SHA1) != 0;
+
+    #else
+        // Compile-time fallback for unknown or bare-metal ARM systems
+        #if defined(__ARM_FEATURE_CRYPTO) || defined(__ARM_FEATURE_SHA1)
+            return true;
+        #else
+            return false;
+        #endif
+    #endif
+    }();
+
+    return has_sha1;
+
+#else
+    return false;
+
+#endif
+}
 
 union alignas(16) vuint128 {
     vuint32x4 uint128;
-    u64 uint64[2];
-    u32 uint32[4];
+    std::array<u64, 2> uint64;
+    std::array<u32, 4> uint32;
 
     /**
      * @brief Construct a new vuint128 object
@@ -69,6 +136,23 @@ union alignas(16) vuint128 {
         uint128 = vdupq_n_u32(x);
 #else
         uint128 = { x, x, x, x };
+#endif
+    }
+
+    /**
+     * @brief Construct a new vuint128 object
+     *
+     * @param x0 Initalization number0
+     * @param x1 Initalization number1
+     */
+    vuint128(u64 x0, u64 x1)
+    {
+#if defined(SIMD_X86)
+        uint128 = _mm_set_epi64x(x1, x0);
+#elif defined(SIMD_ARM)
+        uint128 = vreinterpretq_u32_u64(vcombine_u64(vcreate_u64(x0), vcreate_u64(x1)));
+#else
+        uint64 = { x0, x1 };
 #endif
     }
 
@@ -578,6 +662,56 @@ inline void v32x4_store(u32 *address, vuint128 value)
 }
 
 /**
+ * @brief Computes the bitwise left shift of each 64bit number pair in the vector
+ *
+ * @tparam shift Amount to shift by
+ * @param x Input vector
+ *
+ * @return Computed bitwise left shift vector
+ */
+template <int shift>
+inline vuint128 v64x2_shl(vuint128 x)
+{
+    vuint128 ret;
+#if defined(SIMD_X86)
+    ret.uint128 = _mm_slli_epi64(x.uint128, shift);
+#elif defined(SIMD_ARM)
+    ret.uint128 = (uint32x4_t)vshlq_n_u64((uint64x2_t)x.uint128, shift);
+#else
+    for (int i = 0; i < 2; i++)
+    {
+        ret.uint64[i] = x.uint64[i] << shift;
+    }
+#endif
+    return ret;
+}
+
+/**
+ * @brief Computes the bitwise right shift of each 64bit number pair in the vector
+ *
+ * @tparam shift Amount to shift by
+ * @param x Input vector
+ *
+ * @return Computed bitwise right shift vector
+ */
+template <int shift>
+inline vuint128 v64x2_shr(vuint128 x)
+{
+    vuint128 ret;
+#if defined(SIMD_X86)
+    ret.uint128 = _mm_srli_epi64(x.uint128, shift);
+#elif defined(SIMD_ARM)
+    ret.uint128 = (uint32x4_t)vshrq_n_u64((uint64x2_t)x.uint128, shift);
+#else
+    for (int i = 0; i < 2; i++)
+    {
+        ret.uint64[i] = x.uint64[i] >> shift;
+    }
+#endif
+    return ret;
+}
+
+/**
  * @brief Computes the bitwise left shift of a 128bit number
  *
  * @tparam shift Amount to shift by
@@ -588,22 +722,31 @@ inline void v32x4_store(u32 *address, vuint128 value)
 template <int shift>
 inline vuint128 v128_shl(vuint128 x)
 {
+    static_assert(shift != 0 && shift < 16, "Invalid shift amount");
+
     vuint128 ret;
 #if defined(SIMD_X86)
     ret.uint128 = _mm_slli_si128(x.uint128, shift);
 #elif defined(SIMD_ARM)
     ret.uint128 = (uint32x4_t)vextq_u8(vdupq_n_u8(0), (uint8x16_t)x.uint128, 16 - shift);
 #else
-    u64 th = ((u64)x.uint32[3] << 32) | ((u64)x.uint32[2]);
-    u64 tl = ((u64)x.uint32[1] << 32) | ((u64)x.uint32[0]);
+    constexpr int bits = shift * 8;
 
-    u64 oh = (th << (shift * 8)) | (tl >> (64 - shift * 8));
-    u64 ol = tl << (shift * 8);
-
-    ret.uint32[1] = ol >> 32;
-    ret.uint32[0] = ol & 0xffffffff;
-    ret.uint32[3] = oh >> 32;
-    ret.uint32[2] = oh & 0xffffffff;
+    if constexpr (bits < 64)
+    {
+        ret.uint64[1] = (x.uint64[1] << bits) | (x.uint64[0] >> (64 - bits));
+        ret.uint64[0] = x.uint64[0] << bits;
+    }
+    else if constexpr (bits > 64)
+    {
+        ret.uint64[1] = x.uint64[0] << (bits - 64);
+        ret.uint64[1] = 0;
+    }
+    else
+    {
+        ret.uint64[1] = x.uint64[0];
+        ret.uint64[0] = 0;
+    }
 #endif
     return ret;
 }
@@ -619,237 +762,101 @@ inline vuint128 v128_shl(vuint128 x)
 template <int shift>
 inline vuint128 v128_shr(vuint128 x)
 {
+    static_assert(shift != 0 && shift < 16, "Invalid shift amount");
+
     vuint128 ret;
 #if defined(SIMD_X86)
     ret.uint128 = _mm_srli_si128(x.uint128, shift);
 #elif defined(SIMD_ARM)
     ret.uint128 = (uint32x4_t)vextq_u8((uint8x16_t)x.uint128, vdupq_n_u8(0), shift);
 #else
-    u64 th = ((u64)x.uint32[3] << 32) | ((u64)x.uint32[2]);
-    u64 tl = ((u64)x.uint32[1] << 32) | ((u64)x.uint32[0]);
+    constexpr int bits = shift * 8;
 
-    u64 oh = th >> (shift * 8);
-    u64 ol = (tl >> (shift * 8)) | (th << (64 - shift * 8));
-
-    ret.uint32[1] = ol >> 32;
-    ret.uint32[0] = ol & 0xffffffff;
-    ret.uint32[3] = oh >> 32;
-    ret.uint32[2] = oh & 0xffffffff;
+    if constexpr (bits < 64)
+    {
+        ret.uint64[0] = (x.uint64[0] >> bits) | (x.uint64[1] << (64 - bits));
+        ret.uint64[1] = x.uint64[1] >> bits;
+    }
+    else if constexpr (bits > 64)
+    {
+        ret.uint64[0] = x.uint64[1] >> (bits - 64);
+        ret.uint64[1] = 0;
+    }
+    else
+    {
+        ret.uint64[0] = x.uint64[1];
+        ret.uint64[1] = 0;
+    }
 #endif
     return ret;
 }
 
+/**
+ * @brief Computes carry-less multiplication of two 64bit numbers
+ *
+ * @tparam imm8 Determines which 64bit integers are chosen
+ * @param x First vector
+ * @param y Second vector
+ *
+ * @return Computed carry-less multiplication
+ */
+template <int imm8>
+inline vuint128 v128_clmul64(vuint128 x, vuint128 y)
+{
+    static_assert(imm8 == 0x00 || imm8 == 0x11 || imm8 == 0x01 || imm8 == 0x10, "Invalid imm8 mask for clmul64");
+
+    vuint128 ret;
 #if defined(SIMD_X86)
-inline bool hasAVX2()
-{
-    int info[4];
-#ifdef _MSC_VER
-    __cpuidex(info, 7, 0); // EAX=7, ECX=0 for extended features
+    ret.uint128 = _mm_clmulepi64_si128(x.uint128, y.uint128, imm8);
+#elif defined(SIMD_ARM)
+    uint64x2_t px = vreinterpretq_u64_u32(x.uint128);
+    uint64x2_t py = vreinterpretq_u64_u32(y.uint128);
+    poly64_t x_half, y_half;
+
+    if constexpr (imm8 == 0x00)
+    {
+        x_half = vgetq_lane_u64(px, 0);
+        y_half = vgetq_lane_u64(py, 0);
+    }
+    else if constexpr (imm8 == 0x11)
+    {
+        x_half = vgetq_lane_u64(px, 1);
+        y_half = vgetq_lane_u64(py, 1);
+    }
+    else if constexpr (imm8 == 0x01)
+    {
+        x_half = vgetq_lane_u64(px, 0);
+        y_half = vgetq_lane_u64(py, 1);
+    }
+    else // imm8 == 0x10
+    {
+        x_half = vgetq_lane_u64(px, 1);
+        y_half = vgetq_lane_u64(py, 0);
+    }
+
+    ret.uint128 = vreinterpretq_u32_p128(vmull_p64(x_half, y_half));
 #else
-    __cpuid_count(7, 0, info[0], info[1], info[2], info[3]);
+    u64 a = (imm8 & 0x10) ? x.uint64[1] : x.uint64[0];
+    u64 b = (imm8 & 0x01) ? y.uint64[1] : y.uint64[0];
+    u64 res_low = 0;
+    u64 res_high = 0;
+
+    for (int i = 0; i < 64; ++i)
+    {
+        if ((b >> i) & 1)
+        {
+            res_low ^= (a << i);
+            if (i > 0)
+            {
+                res_high ^= (a >> (64 - i));
+            }
+        }
+    }
+
+    ret.uint64[0] = res_low;
+    ret.uint64[1] = res_high;
 #endif
-    // Check bit 5 of EBX for AVX2 support
-    return (info[1] & (1 << 5)) != 0;
-}
-
-union alignas(32) vuint256 {
-    vuint32x8 uint256;
-    u64 uint64[4];
-    u32 uint32[8];
-
-    /**
-     * @brief Construct a new vuint256 object
-     */
-    vuint256() = default;
-
-    /**
-     * @brief Construct a new vuint256 object
-     *
-     * @param x Initalization number
-     */
-    vuint256(u32 x)
-    {
-        uint256 = _mm256_set1_epi32(x);
-    }
-
-    /**
-     * @brief Returns reference to u32 data element
-     *
-     * @param i Index
-     */
-    inline u32 &operator[](int i)
-    {
-        return uint32[i];
-    }
-
-    /**
-     * @brief Computes the bitwise NOT of each 32bit number pair in the vector
-     *
-     * @return Computed bitwise NOT vector
-     */
-    inline vuint256 operator~() const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_xor_si256(uint256, _mm256_set1_epi32(-1));
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise ADD of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise ADD vector
-     */
-    inline vuint256 operator+(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_add_epi32(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise left shift of each 32bit number pair in the vector
-     *
-     * @param shift Amount to shift by
-     *
-     * @return Computed bitwise left shift vector
-     */
-    inline vuint256 operator<<(int shift) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_slli_epi32(uint256, shift);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise right shift of each 32bit number pair in the vector
-     *
-     * @param shift Amount to shift by
-     *
-     * @return Computed bitwise right shift vector
-     */
-    inline vuint256 operator>>(int shift) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_srli_epi32(uint256, shift);
-        return ret;
-    }
-
-    /**
-     * @brief Compares each 32bit number pair in the vector for equality. Assigns 0xFFFFFFFF on equal and 0 when not
-     *
-     * @param y Second operand
-     *
-     * @return Computed equality vector
-     */
-    inline vuint256 operator==(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_cmpeq_epi32(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise AND of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise AND vector
-     */
-    inline vuint256 operator&(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_and_si256(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise XOR of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise XOR vector
-     */
-    inline vuint256 operator^(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_xor_si256(uint256, y.uint256);
-        return ret;
-    }
-
-    /**
-     * @brief Computes the bitwise OR of each 32bit number pair in the vector
-     *
-     * @param y Second operand
-     *
-     * @return Computed bitwise OR vector
-     */
-    inline vuint256 operator|(vuint256 y) const
-    {
-        vuint256 ret;
-        ret.uint256 = _mm256_or_si256(uint256, y.uint256);
-        return ret;
-    }
-};
-
-/**
- * @brief Computes the byteswap of each 32bit number pair in the vector
- *
- * @param x Input vector
- *
- * @return Computed byteswap vector
- */
-inline vuint256 v32x8_byteswap(vuint256 x)
-{
-    vuint256 ret;
-    ret.uint256 = _mm256_shuffle_epi8(x.uint256,
-                                      _mm256_setr_epi8(3, 2, 1, 0, 7, 6, 5, 4, 11, 10, 9, 8, 15, 14, 13, 12, 19, 18, 17, 16, 23, 22, 21, 20,
-                                                       27, 26, 25, 24, 31, 30, 29, 28));
     return ret;
 }
-
-/**
- * @brief Loads vector from memory
- *
- * @param address Memory address
- *
- * @return Loaded vector
- */
-inline vuint256 v32x8_load(const u32 *address)
-{
-    vuint256 ret;
-    ret.uint256 = _mm256_loadu_si256((const vuint32x8 *)address);
-    return ret;
-}
-
-/**
- * @brief Computes the bitwise rotate left of each 32bit number pair in the vector
- *
- * @tparam rotate Amount to rotateby
- * @param x Input vector
- *
- * @return Computed bitwise rotate left vector
- */
-template <int rotate>
-inline vuint256 v32x8_rotl(vuint256 x)
-{
-    return (x << rotate) | (x >> (32 - rotate));
-}
-
-/**
- * @brief Computes the bitwise rotate right of each 32bit number pair in the vector
- *
- * @tparam rotate Amount to rotateby
- * @param x Input vector
- *
- * @return Computed bitwise rotate right vector
- */
-template <int rotate>
-inline vuint256 v32x8_rotr(vuint256 x)
-{
-    return (x >> rotate) | (x << (32 - rotate));
-}
-#endif
 
 #endif // SIMD_HPP

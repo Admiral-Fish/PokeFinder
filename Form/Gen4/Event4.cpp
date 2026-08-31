@@ -35,7 +35,6 @@
 #include <Model/SortFilterProxyModel.hpp>
 #include <QAction>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("event4");
@@ -67,10 +66,10 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
     ui->comboBoxSearcherNature->addItems(Translator::getNatures());
 
-    ui->filterGenerator->disableControls(Controls::Ability | Controls::EncounterSlots | Controls::Gender | Controls::Height
-                                         | Controls::Level | Controls::Natures | Controls::Shiny | Controls::Weight);
-    ui->filterSearcher->disableControls(Controls::Ability | Controls::DisableFilter | Controls::EncounterSlots | Controls::Gender
-                                        | Controls::Height | Controls::Level | Controls::Natures | Controls::Shiny | Controls::Weight);
+    ui->filterGenerator->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Natures | Controls::Shiny
+                                         | Controls::Weight | Controls::Wild);
+    ui->filterSearcher->disableControls(Controls::Ability | Controls::Gender | Controls::Height | Controls::Searcher | Controls::Natures
+                                        | Controls::Shiny | Controls::Weight | Controls::Wild);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -206,29 +205,32 @@ void Event4::search()
     }
     searcher->setMaxProgress(maxProgress);
 
-    auto *thread = QThread::create([=] {
-        searcher->startSearch(min, max, ui->comboBoxGeneratorSpecies->currentIndex() + 1, ui->comboBoxSearcherNature->currentIndex(),
-                              ui->spinBoxSearcherLevel->value());
-    });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    timer->callOnTimeout(this, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [=] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(min, max, ui->comboBoxGeneratorSpecies->currentIndex() + 1, ui->comboBoxSearcherNature->currentIndex(),
+                          ui->spinBoxSearcherLevel->value());
     timer->start(1000);
 }
 

@@ -30,7 +30,7 @@ namespace Ui
 /**
  * @brief Provides settings to generate a IV seed cache
  */
-class IVCacheFinder: public QWidget
+class IVCacheFinder final : public QWidget
 {
     Q_OBJECT
 public:

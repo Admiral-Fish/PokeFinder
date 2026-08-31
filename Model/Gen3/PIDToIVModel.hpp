@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show PID to IV information
  */
-class PIDToIVModel : public TableModel<PIDToIVState>
+class PIDToIVModel final : public TableModel<PIDToIVState>
 {
     Q_OBJECT
 public:

@@ -35,7 +35,7 @@ namespace Ui
 /**
  * @brief Provides settings and filters to RNG egg encounters in Gen 4 games
  */
-class Eggs4 : public QWidget
+class Eggs4 final : public QWidget
 {
     Q_OBJECT
 signals:

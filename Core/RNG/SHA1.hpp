@@ -198,22 +198,22 @@ private:
     vuint128 data[80];
 };
 
-#ifdef SIMD_X86
+#ifdef ENABLE_SIMD
 /**
- * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds. Computes 8 seeds at a time
+ * @brief Simplified SHA1 hashing implementation optimized for creating Gen5 initial seeds
  */
-class SHA1AVX2
+class SHA1SIMD
 {
 public:
     /**
-     * @brief Construct a new SHA1AVX2 object
+     * @brief Construct a new SHA1 object
      *
      * @param profile Profile input parameters
      */
-    SHA1AVX2(const Profile5 &profile);
+    SHA1SIMD(const Profile5 &profile);
 
     /**
-     * @brief Construct a new SHA1AVX2 object
+     * @brief Construct a new SHA1 object
      *
      * @param version Game version parameter
      * @param language Language parameter
@@ -222,22 +222,14 @@ public:
      * @param vFrame VFrame parameter
      * @param gxStat GxStat parameter
      */
-    SHA1AVX2(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat);
+    SHA1SIMD(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat);
 
     /**
-     * @brief Hashes input parameters from the precomputed \p alpha
-     *
-     * @param alpha Precomputed first 8 rounds alpha
+     * @brief Hashes input parameters
      *
      * @return Hashed seed
      */
-    std::array<u64, 8> hashSeed(const std::array<vuint256, 5> &alpha);
-
-    /**
-     * @brief Precomputes the first 8 rounds of SHA1. Must first call \ref setTimer0() and \ref setDate().
-     * For hashes computed on the same date, the first 8 rounds will be the same.
-     */
-    std::array<vuint256, 5> precompute();
+    u64 hashSeed();
 
     /**
      * @brief Sets the SHA1 parameter based on \p button
@@ -280,7 +272,7 @@ public:
     void setTime(u32 time, DSType dsType);
 
 private:
-    vuint256 data[80];
+    alignas(16) u32 data[16];
 };
 #endif
 

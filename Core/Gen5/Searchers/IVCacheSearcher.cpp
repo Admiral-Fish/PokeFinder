@@ -22,7 +22,6 @@
 #include <Core/RNG/RNGList.hpp>
 #include <algorithm>
 #include <fstream>
-#include <thread>
 
 static u8 gen(MT &rng)
 {
@@ -35,7 +34,8 @@ static void write(std::ofstream &file, Type val)
     file.write(reinterpret_cast<char *>(&val), sizeof(val));
 }
 
-IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) : SearcherBase<std::vector<u32>>(), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
+IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) :
+    SearcherBase<std::vector<u32>>(), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
 {
     entralink.resize(maxAdvances + 5);
     results.resize(maxAdvances + 3);
@@ -44,31 +44,14 @@ IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) : Searche
 
 void IVCacheSearcher::startSearch(int threads)
 {
-    this->searching = true;
-
-    auto *threadContainer = new std::thread[threads];
-
-    u32 split = 0x100000000 / threads;
-    u32 start = 0;
-
-    for (int i = 0; i < threads; i++, start += split)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([=] { search(start, 0xffffffff); });
-        }
-        else
-        {
-            threadContainer[i] = std::thread([=] { search(start, start + split); });
-        }
-    }
-
+    activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        threadContainer.emplace_back([this] {
+            search(0x0, 0xffffffff);
+            activeThreads.fetch_sub(1);
+        });
     }
-
-    delete[] threadContainer;
 }
 
 void IVCacheSearcher::writeResults(std::string_view file)
@@ -122,19 +105,26 @@ void IVCacheSearcher::writeResults(std::string_view file)
 
 void IVCacheSearcher::search(u32 start, u32 end)
 {
-    for (u32 seed = start;; seed++)
+    while (true)
     {
-        if (!searching)
+        if (cancelled.load(std::memory_order_relaxed))
         {
             return;
         }
+
+        u64 idx = index.fetch_add(1, std::memory_order_relaxed);
+        if (idx > static_cast<u64>(end)) {
+            break;
+        }
+
+        u32 seed = start + idx;
 
         RNGList<u8, MT, 32, gen> rngList(seed, initialAdvances);
         for (u32 i = 0; i <= maxAdvances + 4; i++, rngList.advanceState())
         {
             // Entralink
             rngList.advance(22);
-            u8 hp =  rngList.next();
+            u8 hp = rngList.next();
             u8 atk = rngList.next();
             u8 def = rngList.next();
             u8 spa = rngList.next();
@@ -151,7 +141,7 @@ void IVCacheSearcher::search(u32 start, u32 end)
             {
                 rngList.resetState();
 
-                hp =  rngList.next();
+                hp = rngList.next();
                 atk = rngList.next();
                 def = rngList.next();
                 spa = rngList.next();
@@ -171,7 +161,7 @@ void IVCacheSearcher::search(u32 start, u32 end)
                 rngList.resetState();
                 rngList.advance(1);
 
-                hp =  rngList.next();
+                hp = rngList.next();
                 atk = rngList.next();
                 def = rngList.next();
                 spd = rngList.next();
@@ -186,10 +176,6 @@ void IVCacheSearcher::search(u32 start, u32 end)
             }
         }
 
-        progress++;
-        if (seed == end)
-        {
-            break;
-        }
+        progress.fetch_add(1, std::memory_order_relaxed);
     }
 }

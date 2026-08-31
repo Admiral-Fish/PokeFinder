@@ -30,7 +30,7 @@ class WildSearcherState4;
 /**
  * @brief Wild encounter searcher for Gen 4
  */
-class WildSearcher4 : public WildSearcher<EncounterArea4, Profile4, WildStateFilter, WildSearcherState4>
+class WildSearcher4 final : public WildSearcher<EncounterArea4, Profile4, WildStateFilter, WildSearcherState4>
 {
 public:
     /**
@@ -76,6 +76,15 @@ private:
     bool shiny;
     bool unownRadio;
     ModifiedSlots modifiedSlots;
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param index Pokeradar slot index
+     */
+    void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
     /**
      * @brief Searches for matching states from provided IVs

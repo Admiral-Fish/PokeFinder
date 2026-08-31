@@ -107,8 +107,8 @@
         <property name="title">
          <string>Filters</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
           <widget class="IDsFilter" name="idFilter" native="true"/>
          </item>
         </layout>
@@ -210,15 +210,15 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>DateTimeEdit</class>
+   <extends>QDateTimeEdit</extends>
+   <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>IDsFilter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/IDsFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>DateTimeEdit</class>
-   <extends>QDateTimeEdit</extends>
-   <header>Form/Controls/DateTimeEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

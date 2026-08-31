@@ -29,7 +29,15 @@ EggSearcher4::EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile) 
 
 void EggSearcher4::startSearch(const EggGenerator4 &generator)
 {
-    searching = true;
+    activeThreads.store(1);
+    threadContainer.emplace_back([this, generator] {
+        search(generator);
+        activeThreads.fetch_sub(1);
+    });
+}
+
+void EggSearcher4::search(const EggGenerator4 &generator)
+{
     u16 total = 0;
 
     for (u16 ab = 0; ab < 256; ab++)
@@ -38,7 +46,7 @@ void EggSearcher4::startSearch(const EggGenerator4 &generator)
         {
             for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
             {
-                if (!searching)
+                if (cancelled.load(std::memory_order_relaxed))
                 {
                     return;
                 }
@@ -63,7 +71,7 @@ void EggSearcher4::startSearch(const EggGenerator4 &generator)
                 }
 
                 total += states.size();
-                progress++;
+                progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
