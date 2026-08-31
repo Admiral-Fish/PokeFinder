@@ -32,21 +32,24 @@ namespace AdjacentSeedsCalculator
 {
     /**
      * @brief Computes "nearby" seeds for calibration purposes
-     * 
+     *
      * @param minIVAdvance Minimum IV advances
      * @param maxIVAdvance Maximum IV advances
      * @param seconds Second search range
      * @param roamer Whether encounter is roamer or not
      * @param buttons Current button presses
      * @param dateTime Starting date/time
+     * @param minIVs Minimum IVs
+     * @param maxIVs Maximum IVs
      * @param profile Profile information
      */
     std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
-                                             const DateTime &dateTime, const Profile5 &profile);
+                                             const DateTime &dateTime, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs,
+                                             const Profile5 &profile);
 
     /**
      * @brief Computes chatot/needle string for seed verification purposes
-     * 
+     *
      * @param seed PRNG state
      * @param advances PRNG advances
      * @param count Number of chatot/needle calls to output

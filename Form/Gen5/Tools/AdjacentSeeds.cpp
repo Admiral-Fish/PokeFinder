@@ -35,7 +35,6 @@
 #include <QStringList>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
-#include <algorithm>
 
 static const QString settingPrefix = QStringLiteral("adjacentSeeds");
 
@@ -78,11 +77,11 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
 
+    ui->ivFilter->setOrientation(Qt::Horizontal);
+
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &AdjacentSeeds::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &AdjacentSeeds::profilesChanged);
-    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &AdjacentSeeds::openIVCalculator);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &AdjacentSeeds::generate);
-    connect(ui->pushButtonResetIVs, &QPushButton::clicked, this, &AdjacentSeeds::resetIVs);
     connect(ui->comboBoxPreviewMode, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::updatePreview);
     connect(ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &AdjacentSeeds::updatePreview);
 
@@ -125,43 +124,25 @@ void AdjacentSeeds::updateProfiles()
 
 void AdjacentSeeds::generate()
 {
-    std::array<QSpinBox *, 6> minIVWidgets
-        = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
-    std::array<QSpinBox *, 6> maxIVWidgets
-        = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
-    QStringList stats = { tr("HP"), tr("Atk"), tr("Def"), tr("SpAtk"), tr("SpDef"), tr("Spe") };
-    for (size_t i = 0; i < minIVWidgets.size(); i++)
+    if (!ui->ivFilter->isValid())
     {
-        if (minIVWidgets[i]->value() > maxIVWidgets[i]->value())
-        {
-            QMessageBox msg(QMessageBox::Warning, tr("Invalid IV settings"), tr("%1 minimum is greater than maximum").arg(stats[i]));
-            msg.exec();
-            return;
-        }
+        return;
     }
 
     ui->tableView->horizontalHeader()->setSortIndicator(-1, Qt::AscendingOrder);
-    proxyModel->sort(-1);
     model->clearModel();
 
-    DateTime dateTime = ui->dateTimeEdit->getDateTime();
-    auto buttons = ui->checkListKeypresses->getEnum<Buttons>();
-    int seconds = ui->spinBoxSeconds->value();
     u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
     u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
+    int seconds = ui->spinBoxSeconds->value();
     bool roamer = ui->comboBoxMethod->currentIndex() == roamerIndex;
+    auto minIVs = ui->ivFilter->getMinIVs();
+    auto maxIVs = ui->ivFilter->getMaxIVs();
+    auto buttons = ui->checkListKeypresses->getEnum<Buttons>();
+    DateTime dateTime = ui->dateTimeEdit->getDateTime();
 
-    auto states = AdjacentSeedsCalculator::generate(initialIVAdvance, maxIVAdvance, seconds, roamer, buttons, dateTime, *currentProfile);
-    std::erase_if(states, [=](const AdjacentSeedsState &state) {
-        for (size_t i = 0; i < minIVWidgets.size(); i++)
-        {
-            if (state.getIV(static_cast<u8>(i)) < minIVWidgets[i]->value() || state.getIV(static_cast<u8>(i)) > maxIVWidgets[i]->value())
-            {
-                return true;
-            }
-        }
-        return false;
-    });
+    auto states = AdjacentSeedsCalculator::generate(initialIVAdvance, maxIVAdvance, seconds, roamer, buttons, dateTime, minIVs, maxIVs,
+                                                    *currentProfile);
     model->addItems(states);
 
     if (model->rowCount() > 0)
@@ -180,40 +161,6 @@ void AdjacentSeeds::generate()
     }
 
     updatePreview();
-}
-
-void AdjacentSeeds::openIVCalculator()
-{
-    auto *calculator = new IVCalculator();
-    connect(calculator, &IVCalculator::ivsCalculated, this, &AdjacentSeeds::updateIVs);
-    calculator->show();
-}
-
-void AdjacentSeeds::resetIVs()
-{
-    std::array<QSpinBox *, 6> minIVs
-        = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
-    std::array<QSpinBox *, 6> maxIVs
-        = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
-    for (size_t i = 0; i < minIVs.size(); i++)
-    {
-        minIVs[i]->setValue(0);
-        maxIVs[i]->setValue(31);
-    }
-}
-
-void AdjacentSeeds::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
-{
-    std::array<QSpinBox *, 6> minIVs
-        = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
-    std::array<QSpinBox *, 6> maxIVs
-        = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
-    for (size_t i = 0; i < ivs.size(); i++)
-    {
-        const auto &iv = ivs[i];
-        minIVs[i]->setValue(iv.empty() ? 0 : iv.front());
-        maxIVs[i]->setValue(iv.empty() ? 31 : iv.back());
-    }
 }
 
 void AdjacentSeeds::profileChanged(const Profile5 &profile)

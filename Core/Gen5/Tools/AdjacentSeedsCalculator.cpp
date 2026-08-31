@@ -26,6 +26,8 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
+#include <ranges>
 
 static u8 gen(MT &rng)
 {
@@ -35,7 +37,8 @@ static u8 gen(MT &rng)
 namespace AdjacentSeedsCalculator
 {
     std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
-                                             const DateTime &dateTime, const Profile5 &profile)
+                                             const DateTime &dateTime, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs,
+                                             const Profile5 &profile)
     {
         bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
@@ -84,9 +87,16 @@ namespace AdjacentSeedsCalculator
                         ivs[5] = rngList.next();
                     }
 
-                    states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
-                                        Utilities5::initialAdvances(seed, profile),
-                                        offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
+                    bool flag = std::ranges::all_of(std::views::zip(ivs, minIVs, maxIVs), [](const auto &tuple) {
+                        const auto &[iv, minIV, maxIV] = tuple;
+                        return iv >= minIV && iv <= maxIV;
+                    });
+                    if (flag)
+                    {
+                        states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
+                                            Utilities5::initialAdvances(seed, profile),
+                                            offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
+                    }
                 }
             }
         }
