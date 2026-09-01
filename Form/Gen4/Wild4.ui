@@ -489,21 +489,21 @@
           <item row="13" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorWaterBlock"/>
           </item>
-          <item row="13" column="0" colspan="4">
+          <item row="14" column="0" colspan="4">
            <widget class="Line" name="line">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="labelGeneratorLevel">
             <property name="text">
              <string>Levels</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="2">
+          <item row="15" column="2">
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMin">
             <property name="enabled">
              <bool>false</bool>
@@ -516,7 +516,7 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="3">
+          <item row="15" column="3">
            <widget class="QSpinBox" name="spinBoxGeneratorLevelMax">
             <property name="enabled">
              <bool>false</bool>
@@ -992,21 +992,21 @@
           <item row="13" column="3">
            <widget class="QSpinBox" name="spinBoxSearcherWaterBlock"/>
           </item>
-          <item row="13" column="0" colspan="4">
+          <item row="14" column="0" colspan="4">
            <widget class="Line" name="line_1">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="labelSearcherLevel">
             <property name="text">
              <string>Levels</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="2">
+          <item row="15" column="2">
            <widget class="QSpinBox" name="spinBoxSearcherLevelMin">
             <property name="enabled">
              <bool>false</bool>
@@ -1016,7 +1016,7 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="3">
+          <item row="15" column="3">
            <widget class="QSpinBox" name="spinBoxSearcherLevelMax">
             <property name="enabled">
              <bool>false</bool>
