@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>682</width>
-    <height>463</height>
+    <width>688</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,27 +23,6 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_1">
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxSeconds">
-        <property name="value">
-         <number>1</number>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelMethod">
-        <property name="text">
-         <string>Encounter</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QPushButton" name="pushButtonIVCalculator">
-        <property name="text">
-         <string>IV Calculator</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelDateTime">
         <property name="text">
@@ -58,13 +37,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="8">
-       <widget class="TextBox" name="textBoxMaxIVAdvance">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelSeconds">
         <property name="text">
@@ -72,45 +44,31 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4" colspan="3">
-       <widget class="CheckList" name="checkListKeypresses"/>
-      </item>
-      <item row="1" column="9">
-       <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="text">
-         <string>Generate</string>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxSeconds">
+        <property name="value">
+         <number>1</number>
         </property>
        </widget>
       </item>
-      <item row="1" column="7">
-       <widget class="QLabel" name="labelMaxIVAdvance">
-        <property name="text">
-         <string>Max IV Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
+      <item row="0" column="2">
        <widget class="QLabel" name="labelKeypresses">
         <property name="text">
          <string>Keypresses</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
-       <widget class="QLabel" name="labelMinIVAdvance">
+      <item row="0" column="3">
+       <widget class="CheckList" name="checkListKeypresses"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelMethod">
         <property name="text">
-         <string>Initial IV Advances</string>
+         <string>Encounter</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="8">
-       <widget class="TextBox" name="textBoxMinIVAdvance">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4" colspan="3">
+      <item row="1" column="3">
        <widget class="QComboBox" name="comboBoxMethod">
         <item>
          <property name="text">
@@ -124,11 +82,60 @@
         </item>
        </widget>
       </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="labelMinIVAdvance">
+        <property name="text">
+         <string>Initial IV Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="TextBox" name="textBoxMinIVAdvance">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="labelMaxIVAdvance">
+        <property name="text">
+         <string>Max IV Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="TextBox" name="textBoxMaxIVAdvance">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6" rowspan="2">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="7">
+       <widget class="Line" name="lineIVSeparator">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="7">
+       <widget class="IVFilter" name="ivFilter" native="true"/>
+      </item>
      </layout>
     </widget>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="TableView" name="tableView"/>
+    <widget class="TableView" name="tableView">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item row="3" column="0">
     <widget class="QComboBox" name="comboBoxPreviewMode">
@@ -155,6 +162,17 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>IVFilter</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/IVFilter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
@@ -170,17 +188,24 @@
    <header>Form/Controls/DateTimeEdit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/CheckList.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ProfileDisplay5</class>
    <extends>QWidget</extends>
    <header>Form/Gen5/Profile/ProfileDisplay5.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>spinBoxSeconds</tabstop>
+  <tabstop>checkListKeypresses</tabstop>
+  <tabstop>comboBoxMethod</tabstop>
+  <tabstop>textBoxMinIVAdvance</tabstop>
+  <tabstop>textBoxMaxIVAdvance</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>comboBoxPreviewMode</tabstop>
+  <tabstop>lineEditPreview</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

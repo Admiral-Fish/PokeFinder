@@ -28,6 +28,7 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Model/Gen5/AdjacentSeedsModel.hpp>
+#include <Model/SortFilterProxyModel.hpp>
 #include <QSettings>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
@@ -60,7 +61,8 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
     ui->profileDisplay->setup(settingPrefix, Game::Gen5);
 
     model = new AdjacentSeedsModel(ui->tableView);
-    ui->tableView->setModel(model);
+    proxyModel = new SortFilterProxyModel(ui->tableView, model);
+    ui->tableView->setModel(proxyModel);
     ui->tableView->setItemDelegate(new TargetRowDelegate(ui->tableView));
 
     ui->checkListKeypresses->setFull(false);
@@ -72,9 +74,10 @@ AdjacentSeeds::AdjacentSeeds(QWidget *parent) : QWidget(parent), ui(new Ui::Adja
     ui->textBoxMinIVAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxMaxIVAdvance->setValues(InputType::Advance32Bit);
 
+    ui->ivFilter->setOrientation(Qt::Horizontal);
+
     connect(ui->profileDisplay, &ProfileDisplay5::profileChanged, this, &AdjacentSeeds::profileChanged);
     connect(ui->profileDisplay, &ProfileDisplay5::profilesChanged, this, &AdjacentSeeds::profilesChanged);
-    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &AdjacentSeeds::openIVCalculator);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &AdjacentSeeds::generate);
     connect(ui->comboBoxPreviewMode, &QComboBox::currentIndexChanged, this, &AdjacentSeeds::updatePreview);
     connect(ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &AdjacentSeeds::updatePreview);
@@ -118,16 +121,25 @@ void AdjacentSeeds::updateProfiles()
 
 void AdjacentSeeds::generate()
 {
+    if (!ui->ivFilter->isValid())
+    {
+        return;
+    }
+
+    ui->tableView->horizontalHeader()->setSortIndicator(-1, Qt::AscendingOrder);
     model->clearModel();
 
-    DateTime dateTime = ui->dateTimeEdit->getDateTime();
-    auto buttons = ui->checkListKeypresses->getEnum<Buttons>();
-    int seconds = ui->spinBoxSeconds->value();
     u32 initialIVAdvance = ui->textBoxMinIVAdvance->getUInt();
     u32 maxIVAdvance = initialIVAdvance + ui->textBoxMaxIVAdvance->getUInt();
+    int seconds = ui->spinBoxSeconds->value();
     bool roamer = ui->comboBoxMethod->currentIndex() == roamerIndex;
+    auto minIVs = ui->ivFilter->getMinIVs();
+    auto maxIVs = ui->ivFilter->getMaxIVs();
+    auto buttons = ui->checkListKeypresses->getEnum<Buttons>();
+    DateTime dateTime = ui->dateTimeEdit->getDateTime();
 
-    auto states = AdjacentSeedsCalculator::generate(initialIVAdvance, maxIVAdvance, seconds, roamer, buttons, dateTime, *currentProfile);
+    auto states = AdjacentSeedsCalculator::generate(initialIVAdvance, maxIVAdvance, seconds, roamer, buttons, dateTime, minIVs, maxIVs,
+                                                    *currentProfile);
     model->addItems(states);
 
     if (model->rowCount() > 0)
@@ -142,16 +154,10 @@ void AdjacentSeeds::generate()
                 break;
             }
         }
-        ui->tableView->selectRow(targetRow);
+        ui->tableView->selectRow(proxyModel->mapFromSource(model->index(targetRow, 0)).row());
     }
 
     updatePreview();
-}
-
-void AdjacentSeeds::openIVCalculator()
-{
-    auto *calculator = new IVCalculator();
-    calculator->show();
 }
 
 void AdjacentSeeds::profileChanged(const Profile5 &profile)
@@ -177,6 +183,7 @@ void AdjacentSeeds::updatePreview()
         return;
     }
 
+    index = proxyModel->mapToSource(index);
     const auto &state = model->getItem(index.row());
     std::string preview = AdjacentSeedsCalculator::previewPRNG(state.getSeed(), state.getPIDAdvance(), previewCount,
                                                                ui->comboBoxPreviewMode->currentIndex() == chatotIndex);

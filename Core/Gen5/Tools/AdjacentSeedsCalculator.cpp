@@ -26,6 +26,8 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <algorithm>
+#include <ranges>
 
 static u8 gen(MT &rng)
 {
@@ -35,8 +37,12 @@ static u8 gen(MT &rng)
 namespace AdjacentSeedsCalculator
 {
     std::vector<AdjacentSeedsState> generate(u32 minIVAdvance, u32 maxIVAdvance, int seconds, bool roamer, Buttons buttons,
-                                             const DateTime &dateTime, const Profile5 &profile)
+                                             const DateTime &dateTime, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs,
+                                             const Profile5 &profile)
     {
+        u32 timer0Min = profile.getTimer0Min() == 0 ? 0 : profile.getTimer0Min() - 1;
+        u32 timer0Max = profile.getTimer0Max() + 1;
+
         bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
         SHA1 sha(profile);
@@ -57,7 +63,7 @@ namespace AdjacentSeedsCalculator
             sha.setDate(date);
             sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
 
-            for (u32 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
+            for (u32 timer0 = timer0Min; timer0 <= timer0Max; timer0++)
             {
                 sha.setTimer0(timer0, profile.getVCount());
                 auto alpha = sha.precompute();
@@ -84,9 +90,16 @@ namespace AdjacentSeedsCalculator
                         ivs[5] = rngList.next();
                     }
 
-                    states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
-                                        Utilities5::initialAdvances(seed, profile),
-                                        offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
+                    bool flag = std::ranges::all_of(std::views::zip(ivs, minIVs, maxIVs), [](const auto &tuple) {
+                        const auto &[iv, minIV, maxIV] = tuple;
+                        return iv >= minIV && iv <= maxIV;
+                    });
+                    if (flag)
+                    {
+                        states.emplace_back(seed, offset, buttons, static_cast<u16>(timer0), ivAdvance, ivs,
+                                            Utilities5::initialAdvances(seed, profile),
+                                            offset == dateTime && timer0 == profile.getTimer0Min() && ivAdvance == minIVAdvance);
+                    }
                 }
             }
         }
