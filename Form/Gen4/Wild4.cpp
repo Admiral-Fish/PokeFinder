@@ -855,6 +855,7 @@ void Wild4::generatorLocationIndexChanged(int index)
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
 
         updateGeneratorMovementOptions();
+        ui->comboBoxGeneratorMovement->setCurrentIndex(0);
 
         ui->filterGenerator->setEncounterSlots(area.getCount());
 
