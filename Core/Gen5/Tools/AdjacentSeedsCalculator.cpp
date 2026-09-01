@@ -40,6 +40,9 @@ namespace AdjacentSeedsCalculator
                                              const DateTime &dateTime, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs,
                                              const Profile5 &profile)
     {
+        u32 timer0Min = profile.getTimer0Min() == 0 ? 0 : profile.getTimer0Min() - 1;
+        u32 timer0Max = profile.getTimer0Max() + 1;
+
         bool bw = (profile.getVersion() & Game::BW) != Game::None;
 
         SHA1 sha(profile);
@@ -60,7 +63,7 @@ namespace AdjacentSeedsCalculator
             sha.setDate(date);
             sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
 
-            for (u32 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
+            for (u32 timer0 = timer0Min; timer0 <= timer0Max; timer0++)
             {
                 sha.setTimer0(timer0, profile.getVCount());
                 auto alpha = sha.precompute();
