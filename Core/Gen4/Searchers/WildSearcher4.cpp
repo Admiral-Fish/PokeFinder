@@ -85,7 +85,7 @@ enum HGSSStepModifier : u8
 
 static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute);
 static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio);
-static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute);
+static u8 getStepMovements(u8 graceRatio, u16 encounterRate, Lead lead, bool whiteFlute);
 
 static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement)
 {
@@ -105,6 +105,13 @@ static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lea
     }
 
     return movementRatio < movementRate && encounterRatio < encounterRate;
+}
+
+static u8 getGraceRatio(u32 seed, u32 targetAdvance)
+{
+    PokeRNG rng(seed, targetAdvance);
+    // The grace bypass roll is the RNG call immediately before the two normal DPPt encounter rolls.
+    return static_cast<u8>((rng.getSeed() >> 16) / 0x290);
 }
 
 static bool getHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Encounter encounter, Lead lead, bool whiteFlute, u8 movement,
@@ -244,7 +251,7 @@ static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterR
         bool fastMovement = candidate.movement == 2 || candidate.movement == 3;
         if (getStepEncounter(seed, targetAdvance, encounterRate, lead, whiteFlute, fastMovement))
         {
-            *movements = getStepMovements(encounterRate, lead, whiteFlute);
+            *movements = getStepMovements(getGraceRatio(seed, targetAdvance), encounterRate, lead, whiteFlute);
             *movement = candidate.movement;
             *modifier = candidate.modifier;
             return true;
@@ -417,8 +424,13 @@ static bool getBestHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterR
     return true;
 }
 
-static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute)
+static u8 getStepMovements(u8 graceRatio, u16 encounterRate, Lead lead, bool whiteFlute)
 {
+    if (graceRatio < 5)
+    {
+        return 0;
+    }
+
     if (isStepModifier(lead))
     {
         encounterRate *= 2;

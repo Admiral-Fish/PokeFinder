@@ -98,8 +98,13 @@ static bool getStepEncounter(u8 movementRatio, u8 encounterRatio, u16 encounterR
     return movementRatio < movementRate && encounterRatio < encounterRate;
 }
 
-static u8 getStepMovements(u16 encounterRate, Lead lead, bool whiteFlute)
+static u8 getStepMovements(u8 graceRatio, u16 encounterRate, Lead lead, bool whiteFlute)
 {
+    if (graceRatio < 5)
+    {
+        return 0;
+    }
+
     if (isStepModifier(lead))
     {
         encounterRate *= 2;
@@ -260,8 +265,6 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     PokeRNG rng(seed, initialAdvances);
 
     u32 battleAdvancesConst = getBattleAdvances(area, profile.getVersion());
-    u8 movements = searchStepEncounter ? getStepMovements(area.getRate(), lead, whiteFlute) : 0;
-
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 targetAdvance = initialAdvances + offset + cnt;
@@ -269,13 +272,17 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         u32 battleAdvances = battleAdvancesConst + payloadAdvance;
         PokeRNG go(seed, payloadAdvance);
         bool stepEncounter = false;
+        u8 movements = 0;
         if (searchStepEncounter)
         {
             PokeRNG movementRNG(seed, targetAdvance);
             PokeRNG encounterRNG(seed, targetAdvance + 1);
+            // During the DPPt grace period, a 5% roll immediately before the normal encounter rolls can bypass the setup movements.
+            u8 graceRatio = static_cast<u8>((movementRNG.getSeed() >> 16) / 0x290);
             u8 movementRatio = movementRNG.nextUShort() / 0x290;
             u8 encounterRatio = encounterRNG.nextUShort() / 0x290;
             stepEncounter = getStepEncounter(movementRatio, encounterRatio, area.getRate(), lead, whiteFlute, fastMovement);
+            movements = getStepMovements(graceRatio, area.getRate(), lead, whiteFlute);
         }
 
         // Fishing nibble check
