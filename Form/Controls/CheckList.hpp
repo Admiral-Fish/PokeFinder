@@ -94,14 +94,16 @@ public:
      *
      * @tparam size Size of the array
      *
+     * @param fillTrue Whether to fill the array with true or false
+     *
      * @return Array of true/false to signify which check boxes are checked
      */
     template <size_t size>
-    std::array<bool, size> getCheckedArray() const
+    std::array<bool, size> getCheckedArray(bool fillTrue = true) const
     {
         auto checked = getChecked();
         std::array<bool, size> array;
-        array.fill(true);
+        array.fill(fillTrue);
         std::ranges::copy(checked, array.begin());
         return array;
     }

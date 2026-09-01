@@ -150,11 +150,11 @@ bool Filter::getDisableFilters() const
     return ui->checkBoxDisableFilters->isChecked();
 }
 
-std::array<bool, 12> Filter::getEncounterSlots() const
+std::array<bool, 12> Filter::getEncounterSlots(bool fillTrue) const
 {
     // Encounter slot can vary depending on the encounter type, with the highest number being 12 currently
     // Opt to using array of 12 instead of vector for smaller memory usage and avoiding the heap
-    return ui->checkListEncounterSlot->getCheckedArray<12>();
+    return ui->checkListEncounterSlot->getCheckedArray<12>(fillTrue);
 }
 
 u8 Filter::getGender() const
