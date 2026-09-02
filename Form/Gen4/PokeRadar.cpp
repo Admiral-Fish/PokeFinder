@@ -2073,7 +2073,7 @@ void PokeRadar::updateMinimumGraceSteps(PokeRadarControls &controls, const std::
         rate /= 2;
     }
     const u8 graceSteps = 8 - std::min<u8>(rate / 10, 8);
-    controls.minimumGraceSteps->setValue(graceSteps == 0 ? 0 : graceSteps - 1);
+    controls.minimumGraceSteps->setValue(graceSteps);
 }
 
 void PokeRadar::updatePokemon(PokeRadarControls &controls, const std::vector<EncounterArea4> &encounters, bool updateGrassField)
