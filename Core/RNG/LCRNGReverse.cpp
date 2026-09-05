@@ -35,15 +35,15 @@
  */
 static RecoverySeeds<6> recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
-    constexpr u32 LAG0 = 0x6134;
+    constexpr u32 LAG0 = 0x67D3;
     constexpr u32 LAG1 = 0xC907;
-    constexpr u32 LOWER = 0x64833CB0;
-    constexpr u32 UPPER = 0x6483CBBC;
+    constexpr u32 LOWER = 0x3443;
+    constexpr u32 UPPER = 0xC34E;
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
-    u64 tmp = ((PokeRNG::getMult() * first - second) >> 16) * LAG1;
+    u32 tmp = ((second - PokeRNG::getMult() * first) >> 16) * LAG1;
     u32 lo = ((tmp + LOWER) >> 15) * LAG0;
     u32 mi = lo + LAG0;
     u32 up = ((tmp + UPPER) >> 15) * LAG0;
@@ -108,8 +108,8 @@ static RecoverySeeds<6> recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u
 {
     constexpr u32 LAG0 = 0x6C31;
     constexpr u32 LAG1 = 0x2E90;
-    constexpr u32 LOWER = 0x4B8CE21D;
-    constexpr u32 UPPER = 0x4B8D08D7;
+    constexpr u32 LOWER = 0x1574621D;
+    constexpr u32 UPPER = 0x157488D6;
     constexpr u32 MULT = PokeRNGR::getMult() * PokeRNGR::getMult();
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
@@ -264,14 +264,14 @@ namespace LCRNGReverse
     RecoverySeeds<3> recoverPokeRNGPID(u32 pid)
     {
         constexpr u32 LAG0 = 0x7ED7;
-        constexpr u32 LAG1 = 0x71A4;
-        constexpr u32 LOWER = 0x79C8BF4A;
-        constexpr u32 UPPER = 0x79C8A5F4;
+        constexpr u32 LAG1 = 0xD33;
+        constexpr u32 LOWER = 0x50F5A0B;
+        constexpr u32 UPPER = 0x50F40B4;
 
         u32 first = pid << 16;
         u32 second = pid & 0xffff0000;
 
-        u32 tmp = ((first - second * PokeRNGR::getMult()) >> 16) * LAG0;
+        u32 tmp = ((second * PokeRNGR::getMult() - first) >> 16) * LAG0;
         u32 lo = (tmp + LOWER) >> 16;
         u32 up = (tmp + UPPER) >> 16;
 

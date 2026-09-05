@@ -26,7 +26,6 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <fstream>
-#include <thread>
 
 template <typename Type>
 static void write(std::ofstream &file, Type val)
@@ -50,37 +49,20 @@ SHA1CacheSearcher::SHA1CacheSearcher(const IVCache &ivCache, const Profile5 &pro
 
 void SHA1CacheSearcher::startSearch(int threads)
 {
-    this->searching = true;
-
     auto days = start.daysTo(end) + 1;
     if (days < threads)
     {
         threads = days;
     }
 
-    auto *threadContainer = new std::thread[threads];
-
-    auto daysSplit = days / threads;
-    Date day = start;
-    for (int i = 0; i < threads; i++, day += daysSplit)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, day] { search(day, end); });
-        }
-        else
-        {
-            Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
-        }
-    }
-
+    activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        this->threadContainer.emplace_back([this] {
+            search(start, end);
+            this->activeThreads.fetch_sub(1);
+        });
     }
-
-    delete[] threadContainer;
 }
 
 void SHA1CacheSearcher::writeResults(std::string_view file)
@@ -130,19 +112,25 @@ void SHA1CacheSearcher::writeResults(std::string_view file)
 void SHA1CacheSearcher::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -155,25 +143,25 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
                         if (std::ranges::binary_search(entralinkSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->results.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0, seeds[i]);
+                            this->results.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0, seeds[i]);
                         }
 
                         if (std::ranges::binary_search(normalSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->normalResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
+                            this->normalResults.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0,
                                                              seeds[i]);
                         }
 
                         if (std::ranges::binary_search(roamerSeeds, seeds[i] >> 32))
                         {
                             std::lock_guard<std::mutex> lock(this->mutex);
-                            this->roamerResults.emplace_back(toInt(keypress.button), time + i, date.getJD() - Date().getJD(), timer0,
+                            this->roamerResults.emplace_back(toInt(keypress.button), time + i, day.getJD() - Date().getJD(), timer0,
                                                              seeds[i]);
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }

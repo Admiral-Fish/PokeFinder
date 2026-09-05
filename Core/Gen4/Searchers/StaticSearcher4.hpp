@@ -30,7 +30,7 @@ class StaticTemplate4;
 /**
  * @brief Static encounter searcher for Gen4
  */
-class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter, SearcherState4>
+class StaticSearcher4 final : public StaticSearcher<Profile4, StateFilter, SearcherState4>
 {
 public:
     /**
@@ -63,6 +63,19 @@ private:
     u32 maxDelay;
     u32 minDelay;
     u8 buffer;
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     */
+   void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs

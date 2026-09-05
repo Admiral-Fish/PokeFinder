@@ -19,6 +19,7 @@
 
 #include "Searcher5.hpp"
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 
 template <class Generator, class State>
 Searcher5<Generator, State>::Searcher5(const Generator &generator, const Profile5 &profile) :
@@ -30,12 +31,18 @@ template <class Generator, class State>
 void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
@@ -43,7 +50,7 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -56,7 +63,7 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
                         auto states = this->generator.generate(seeds[i]);
                         if (!states.empty())
                         {
-                            DateTime dt(date, time + i);
+                            DateTime dt(day, time + i);
 
                             std::lock_guard<std::mutex> lock(this->mutex);
                             this->results.reserve(this->results.capacity() + states.size());
@@ -67,7 +74,7 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -78,6 +85,12 @@ void Searcher5<Generator, State>::search(const Date &start, const Date &end)
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
 #include <Core/Parents/States/IDState.hpp>
 
 template class Searcher5<DreamRadarGenerator, DreamRadarState>;

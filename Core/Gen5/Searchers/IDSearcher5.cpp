@@ -24,7 +24,6 @@ std::vector<SearcherState5<IDState>> IDSearcher5::search(const IDGenerator5 &gen
                                                          u8 maxSecond)
 {
 #ifdef ENABLE_SIMD
-
     if (hasSHA())
     {
         SHA1SIMD sha(profile);

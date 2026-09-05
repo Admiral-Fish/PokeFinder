@@ -67,13 +67,6 @@ private:
     void updateChannel(const std::vector<u32> &seeds);
 
     /**
-     * @brief Updates the progres bar of the Channel search
-     *
-     * @param progress Current progress
-     */
-    void updateChannelProgress(int progress);
-
-    /**
      * @brief Updates potentional candidate seeds
      *
      * @param seeds Candidate PRNG states
@@ -81,25 +74,11 @@ private:
     void updateColo(const std::vector<u32> &seeds);
 
     /**
-     * @brief Updates the progres bar of the Colo search
-     *
-     * @param progress Current progress
-     */
-    void updateColoProgress(int progress);
-
-    /**
      * @brief Updates potentional candidate seeds
      *
      * @param seeds Candidate PRNG states
      */
     void updateGales(const std::vector<u32> &seeds);
-
-    /**
-     * @brief Updates the progres bar of the Gales search
-     *
-     * @param progress Current progress
-     */
-    void updateGalesProgress(int progress);
 
 private slots:
     /**

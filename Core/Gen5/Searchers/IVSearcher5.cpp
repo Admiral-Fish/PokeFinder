@@ -32,19 +32,25 @@ template <class Generator, class State>
 void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -57,7 +63,7 @@ void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
                         auto states = this->generator.generate(seeds[i], initialAdvances, maxAdvances);
                         if (!states.empty())
                         {
-                            DateTime dt(date, time + i);
+                            DateTime dt(day, time + i);
 
                             std::lock_guard<std::mutex> lock(this->mutex);
                             this->results.reserve(this->results.capacity() + states.size());
@@ -68,7 +74,7 @@ void IVSearcher5<Generator, State>::search(const Date &start, const Date &end)
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -86,19 +92,25 @@ template <class Generator, class State>
 void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1SSE sha(this->profile);
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        sha.setTimer0(timer0, this->profile.getVCount());
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            sha.setDate(date);
+            break;
+        }
+
+        sha.setDate(day);
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            sha.setTimer0(timer0, this->profile.getVCount());
             auto alpha = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
                 sha.setButton(keypress.value);
                 for (u32 time = 0; time < 86400; time += 4)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -119,7 +131,7 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
                             auto states = this->generator.generate(seeds[i], { { j, entry->second } });
                             if (!states.empty())
                             {
-                                DateTime dt(date, time + i);
+                                DateTime dt(day, time + i);
 
                                 std::lock_guard<std::mutex> lock(this->mutex);
                                 this->results.reserve(this->results.capacity() + states.size());
@@ -131,7 +143,7 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -154,18 +166,24 @@ template <class Generator, class State>
 void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Date &end)
 {
     SHA1Key key;
-    for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+    while (true)
     {
-        key.timer0 = timer0;
-        for (Date date = start; date <= end; ++date)
+        Date day = start + this->index.fetch_add(1, std::memory_order_relaxed);
+        if (day > end)
         {
-            key.date = date.getJD() - Date().getJD();
+            break;
+        }
+
+        key.date = day.getJD() - Date().getJD();
+        for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
+        {
+            key.timer0 = timer0;
             for (const auto &keypress : this->keypresses)
             {
                 key.button = toInt(keypress.button);
                 for (u32 time = 0; time < 86400; time++)
                 {
-                    if (!this->searching)
+                    if (this->cancelled.load(std::memory_order_relaxed))
                     {
                         return;
                     }
@@ -190,7 +208,7 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                         auto states = this->generator.generate(seed, { { j, ivEntry->second } });
                         if (!states.empty())
                         {
-                            DateTime dt(date, time);
+                            DateTime dt(day, time);
 
                             std::lock_guard<std::mutex> lock(this->mutex);
                             this->results.reserve(this->results.capacity() + states.size());
@@ -201,7 +219,7 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                         }
                     }
                 }
-                this->progress++;
+                this->progress.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
@@ -210,6 +228,9 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/WildState5.hpp>
 
 template class IVSearcher5<HiddenGrottoGenerator, State5>;
 template class IVSearcher5Fast<HiddenGrottoGenerator, State5>;

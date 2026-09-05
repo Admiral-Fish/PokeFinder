@@ -27,7 +27,7 @@
 #include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
-#include <Core/Gen5/Searchers/IVSearcher5.hpp>
+#include <Core/Gen5/Searchers/StaticSearcher5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
@@ -42,7 +42,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("static5");
@@ -388,17 +387,16 @@ void Static5::search()
         if (shaCache && shaCache->isValid(*currentProfile))
         {
             auto shaMap = shaCache->getCache(initialAdvances, maxIVAdvances, start, end, ivMap, type, *currentProfile);
-            searcher = new IVSearcher5CacheFast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
-                                                                          *currentProfile);
+            searcher = new StaticSearcher5CacheFast(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator, *currentProfile);
         }
         else
         {
-            searcher = new IVSearcher5Fast<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
+            searcher = new StaticSearcher5Fast(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
     {
-        searcher = new IVSearcher5<StaticGenerator5, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
+        searcher = new StaticSearcher5(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
@@ -406,26 +404,31 @@ void Static5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 

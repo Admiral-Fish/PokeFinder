@@ -30,7 +30,7 @@
 #include <Core/Gen5/IVCache.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
-#include <Core/Gen5/Searchers/IVSearcher5.hpp>
+#include <Core/Gen5/Searchers/WildSearcher5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -44,7 +44,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("static5");
@@ -82,7 +81,7 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
                                            toInt(Encounter::SuperRodRippling) });
 
     ui->filterGenerator->disableControls(Controls::Height | Controls::Weight);
-    ui->filterSearcher->disableControls( Controls::Height | Controls::Searcher | Controls::Weight);
+    ui->filterSearcher->disableControls(Controls::Height | Controls::Searcher | Controls::Weight);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
@@ -427,17 +426,16 @@ void Wild5::search()
         if (shaCache && shaCache->isValid(*currentProfile))
         {
             auto shaMap = shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal, *currentProfile);
-            searcher = new IVSearcher5CacheFast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
-                                                                            *currentProfile);
+            searcher = new WildSearcher5CacheFast(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator, *currentProfile);
         }
         else
         {
-            searcher = new IVSearcher5Fast<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
+            searcher = new WildSearcher5Fast(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
     {
-        searcher = new IVSearcher5<WildGenerator5, WildState5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
+        searcher = new WildSearcher5(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
@@ -445,26 +443,31 @@ void Wild5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 

@@ -82,6 +82,11 @@ void GameCubeSearcherTest::searchChannel()
     GameCubeSearcher searcher(Method::Channel, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -134,6 +139,11 @@ void GameCubeSearcherTest::searchColoShadow()
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -146,7 +156,7 @@ void GameCubeSearcherTest::searchColoShadow()
         QCOMPARE(generatorStates.size(), 1);
         if (shadowTemplate->getType() == ShadowType::EReader)
         {
-            QVERIFY(operator==<false>(state, generatorStates[0]));
+            QVERIFY(operator== <false>(state, generatorStates[0]));
         }
         else
         {
@@ -192,6 +202,11 @@ void GameCubeSearcherTest::searchGalesShadow()
     GameCubeSearcher searcher(Method::None, unset, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -243,6 +258,11 @@ void GameCubeSearcherTest::searchNonLock()
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 

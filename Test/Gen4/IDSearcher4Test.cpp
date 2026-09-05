@@ -59,6 +59,11 @@ void IDSearcher4Test::search()
     IDSearcher4 searcher(filter);
 
     searcher.startSearch(false, year, minDelay, maxDelay);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), j.size());
 

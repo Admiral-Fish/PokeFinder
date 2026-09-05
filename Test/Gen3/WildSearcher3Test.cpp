@@ -107,6 +107,11 @@ void WildSearcher3Test::search()
     WildSearcher3 searcher(method, lead, settings.feebasTile, bike, item, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 

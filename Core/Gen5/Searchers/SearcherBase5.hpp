@@ -22,15 +22,8 @@
 
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/DreamRadarState.hpp>
-#include <Core/Gen5/States/EggState5.hpp>
-#include <Core/Gen5/States/EventState5.hpp>
-#include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Gen5/States/State5.hpp>
-#include <Core/Gen5/States/WildState5.hpp>
 #include <Core/Parents/Searchers/SearcherBase.hpp>
-#include <Core/Parents/States/IDState.hpp>
 
 class Date;
 

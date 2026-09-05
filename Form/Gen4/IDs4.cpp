@@ -25,7 +25,6 @@
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/IDModel4.hpp>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
@@ -107,27 +106,31 @@ void IDs4::search()
 
     searcher->setMaxProgress(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1)));
 
-    auto *thread
-        = QThread::create([searcher, infinite, year, minDelay, maxDelay] { searcher->startSearch(infinite, year, minDelay, maxDelay); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    timer->callOnTimeout(this, [this, searcher] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            searcherModel->addItems(searcher->getResults());
+            ui->progressBar->setValue(searcher->getProgress());
+
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(infinite, year, minDelay, maxDelay);
     timer->start(1000);
 }
 

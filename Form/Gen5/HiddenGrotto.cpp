@@ -29,8 +29,8 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/SHA1Cache.hpp>
+#include <Core/Gen5/Searchers/HiddenGrottoSearcher.hpp>
 #include <Core/Gen5/Searchers/IVSearcher5.hpp>
-#include <Core/Gen5/Searchers/Searcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -44,7 +44,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
-#include <QThread>
 #include <QTimer>
 
 static const QString settingPrefix = QStringLiteral("hiddenGrotto");
@@ -351,7 +350,7 @@ void HiddenGrotto::grottoSearch()
                               ui->checkListGrottoSearcherGroup->getCheckedArray<4>());
     HiddenGrottoSlotGenerator generator(initialAdvances, maxAdvances, 0, grottoPower,
                                         encounter[ui->comboBoxGrottoSearcherLocation->currentIndex()], *currentProfile, filter);
-    auto *searcher = new Searcher5<HiddenGrottoSlotGenerator, HiddenGrottoState>(generator, *currentProfile);
+    auto *searcher = new HiddenGrottoSlotSearcher(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
@@ -361,27 +360,31 @@ void HiddenGrotto::grottoSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        grottoSearcherModel->addItems(searcher->getResults());
-        ui->progressBarGrotto->setValue(searcher->getProgress());
-    });
-
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonGrottoSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonGrottoCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonGrottoCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         grottoSearcherModel->addItems(searcher->getResults());
         ui->progressBarGrotto->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            grottoSearcherModel->addItems(searcher->getResults());
+            ui->progressBarGrotto->setValue(searcher->getProgress());
+
+            ui->pushButtonGrottoSearch->setEnabled(true);
+            ui->pushButtonGrottoCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 
@@ -602,18 +605,16 @@ void HiddenGrotto::pokemonSearch()
         if (shaCache && shaCache->isValid(*currentProfile))
         {
             auto shaMap = shaCache->getCache(initialIVAdvances, maxIVAdvances, start, end, ivMap, CacheType::Normal, *currentProfile);
-            searcher = new IVSearcher5CacheFast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator,
-                                                                               *currentProfile);
+            searcher = new HiddenGrottoIVSearcherCacheFast(initialIVAdvances, maxIVAdvances, shaMap, ivMap, generator, *currentProfile);
         }
         else
         {
-            searcher
-                = new IVSearcher5Fast<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
+            searcher = new HiddenGrottoIVSearcherFast(initialIVAdvances, maxIVAdvances, ivMap, generator, *currentProfile);
         }
     }
     else
     {
-        searcher = new IVSearcher5<HiddenGrottoGenerator, State5>(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
+        searcher = new HiddenGrottoIVSearcher(initialIVAdvances, maxIVAdvances, generator, *currentProfile);
     }
 
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
@@ -621,26 +622,31 @@ void HiddenGrotto::pokemonSearch()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([searcher, threads, start, end] { searcher->startSearch(threads, start, end); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
-
-    auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, searcher] {
-        pokemonSearcherModel->addItems(searcher->getResults());
-        ui->progressBarPokemon->setValue(searcher->getProgress());
-    });
-    connect(thread, &QThread::finished, timer, &QTimer::stop);
-    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, this, [this, searcher] {
-        ui->pushButtonPokemonSearch->setEnabled(true);
+    auto *timer = new QTimer(this);
+    connect(ui->pushButtonPokemonCancel, &QPushButton::clicked, timer, [this, searcher] {
+        searcher->cancelSearch();
         ui->pushButtonPokemonCancel->setEnabled(false);
+    });
+    connect(timer, &QTimer::timeout, this, [this, searcher, timer] {
         pokemonSearcherModel->addItems(searcher->getResults());
         ui->progressBarPokemon->setValue(searcher->getProgress());
-        delete searcher;
+
+        if (!searcher->isSearching())
+        {
+            timer->stop();
+
+            pokemonSearcherModel->addItems(searcher->getResults());
+            ui->progressBarPokemon->setValue(searcher->getProgress());
+
+            ui->pushButtonPokemonSearch->setEnabled(true);
+            ui->pushButtonPokemonCancel->setEnabled(false);
+
+            delete searcher;
+            timer->deleteLater();
+        }
     });
 
-    thread->start();
+    searcher->startSearch(threads, start, end);
     timer->start(1000);
 }
 

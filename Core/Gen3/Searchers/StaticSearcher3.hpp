@@ -29,7 +29,7 @@ class StaticTemplate3;
 /**
  * @brief Static encounter searcher for Gen3
  */
-class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter, SearcherState>
+class StaticSearcher3 final : public StaticSearcher<Profile3, StateFilter, SearcherState>
 {
 public:
     /**
@@ -52,6 +52,15 @@ public:
 
 private:
     bool ivAdvance;
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param staticTemplate Pokemon template
+     */
+    void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs

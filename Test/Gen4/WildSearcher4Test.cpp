@@ -114,6 +114,11 @@ void WildSearcher4Test::searchMethodJ()
                            *encounterArea, profile, filter);
 
     searcher.startSearch(min, max, 0);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -194,6 +199,12 @@ void WildSearcher4Test::searchMethodK()
                            profile, filter);
 
     searcher.startSearch(min, max, 0);
+
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -270,6 +281,11 @@ void WildSearcher4Test::searchHoneyTree()
                            *encounterArea, profile, filter);
 
     searcher.startSearch(min, max, index);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
@@ -351,6 +367,11 @@ void WildSearcher4Test::searchPokeRadar()
                            profile, filter);
 
     searcher.startSearch(min, max, index);
+    while (searcher.isSearching())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 

@@ -28,7 +28,7 @@
 /**
  * @brief Event encounter searcher for Gen4
  */
-class EventSearcher4 : public Searcher<Profile4, SearcherState4>
+class EventSearcher4 final : public Searcher<Profile4, SearcherState4>
 {
 public:
     /**
@@ -60,6 +60,17 @@ private:
     u32 maxDelay;
     u32 minDelay;
     StateFilter filter;
+
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param species Pokemon specie
+     * @param nature Pokemon nature
+     * @param level Pokemon level
+     */
+    void search(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u16 species, u8 nature, u8 level);
 
     /**
      * @brief Searches for matching states from provided IVs

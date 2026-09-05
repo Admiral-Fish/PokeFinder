@@ -26,6 +26,7 @@
 class AdjacentSeedsModel;
 class DateTime;
 class Profile5;
+class SortFilterProxyModel;
 enum class Buttons : u16;
 
 namespace Ui
@@ -88,17 +89,13 @@ private:
 
     AdjacentSeedsModel *model;
     const Profile5 *currentProfile;
+    SortFilterProxyModel *proxyModel;
 
 private slots:
     /**
      * @brief Generates adjacent seeds from a date/time and keypresses
      */
     void generate();
-
-    /**
-     * @brief Opens IV Calculator for IV search method
-     */
-    void openIVCalculator();
 
     /**
      * @brief Updates showing profile related information

@@ -19,7 +19,6 @@
 
 #include "SearcherBase5.hpp"
 #include <Core/Util/DateTime.hpp>
-#include <thread>
 
 template <class Generator, class State>
 SearcherBase5<Generator, State>::SearcherBase5(const Generator &generator, const Profile5 &profile) :
@@ -36,37 +35,20 @@ u64 SearcherBase5<Generator, State>::getMaxProgress(const Date &start, const Dat
 template <class Generator, class State>
 void SearcherBase5<Generator, State>::startSearch(int threads, const Date &start, const Date &end)
 {
-    this->searching = true;
-
     auto days = start.daysTo(end) + 1;
     if (days < threads)
     {
         threads = days;
     }
 
-    auto *threadContainer = new std::thread[threads];
-
-    auto daysSplit = days / threads;
-    Date day = start;
-    for (int i = 0; i < threads; i++, day += daysSplit)
-    {
-        if (i == threads - 1)
-        {
-            threadContainer[i] = std::thread([this, day, end] { search(day, end); });
-        }
-        else
-        {
-            Date mid = day + (daysSplit - 1);
-            threadContainer[i] = std::thread([this, day, mid] { search(day, mid); });
-        }
-    }
-
+    this->activeThreads.store(threads);
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].join();
+        this->threadContainer.emplace_back([this, start, end] {
+            search(start, end);
+            this->activeThreads.fetch_sub(1);
+        });
     }
-
-    delete[] threadContainer;
 }
 
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
@@ -76,6 +58,13 @@ void SearcherBase5<Generator, State>::startSearch(int threads, const Date &start
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Generators/WildGenerator5.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/WildState5.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
 template class SearcherBase5<DreamRadarGenerator, DreamRadarState>;
 template class SearcherBase5<EggGenerator5, EggState5>;
