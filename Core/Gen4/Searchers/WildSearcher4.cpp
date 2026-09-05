@@ -59,7 +59,7 @@ static bool isStepModifier(Lead lead)
     return lead == Lead::ArenaTrap;
 }
 
-enum HGSSSearcherStepOption : u8
+enum HGSSSearcherStepOption : u16
 {
     StepWhiteFlute = 1 << 0,
     StepPokemonMarch = 1 << 1,
@@ -68,7 +68,9 @@ enum HGSSSearcherStepOption : u8
     StepRunning = 1 << 4,
     StepWalkingLongGrass = 1 << 5,
     StepRunningLongGrass = 1 << 6,
-    StepPokemonLullaby = 1 << 7
+    StepPokemonLullaby = 1 << 7,
+    StepDateModifier5 = 1 << 8,
+    StepDateModifier10 = 1 << 9
 };
 
 enum HGSSStepModifier : u8
@@ -80,20 +82,25 @@ enum HGSSStepModifier : u8
     PokemonLullabyStepModifier,
     WhiteFlutePokemonLullabyStepModifier,
     PokemonMarchLullabyStepModifier,
-    WhiteFlutePokemonMarchLullabyStepModifier
+    WhiteFlutePokemonMarchLullabyStepModifier,
+    DateModifier5StepModifier,
+    WhiteFluteDateModifier5StepModifier,
+    DateModifier10StepModifier,
+    WhiteFluteDateModifier10StepModifier
 };
 
 static u16 modifyHGSSStepEncounterRate(u16 encounterRate, Lead lead, bool whiteFlute);
 static u16 getHGSSMovementRate(Encounter encounter, u8 movement, u8 radio);
 static u8 getStepMovements(u8 graceRatio, u16 encounterRate, Lead lead, bool whiteFlute);
 
-static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement)
+static bool getStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, Lead lead, bool whiteFlute, bool fastMovement,
+                             u8 dateModifier)
 {
     PokeRNG movementRNG(seed, targetAdvance);
     PokeRNG encounterRNG(seed, targetAdvance + 1);
     u8 movementRatio = movementRNG.nextUShort() / 0x290;
     u8 encounterRatio = encounterRNG.nextUShort() / 0x290;
-    u16 movementRate = fastMovement ? 70 : 40;
+    u16 movementRate = (fastMovement ? 70 : 40) + dateModifier;
 
     if (isStepModifier(lead))
     {
@@ -188,7 +195,7 @@ static bool isBikeRestrictedLocation(Game version, Encounter encounter, u8 locat
 }
 
 static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, const EncounterArea4 &area, const Profile4 &profile,
-                                     Lead lead, u8 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
+                                     Lead lead, u16 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
 {
     struct Candidate
     {
@@ -205,18 +212,34 @@ static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterR
     bool longGrass = hasLongGrass(profile.getVersion(), encounter, location);
 
     auto addMovement = [&](u8 currentMovement, u8 rank) {
-        std::array<u8, 2> modifiers = { static_cast<u8>(NoStepModifier), static_cast<u8>(WhiteFluteStepModifier) };
-        for (u8 currentModifier : modifiers)
+        std::vector<u8> dateModifiers = { 0 };
+        if ((stepOptions & StepDateModifier5) != 0)
         {
-            bool usesWhiteFlute = currentModifier == WhiteFluteStepModifier;
-            if (usesWhiteFlute && (stepOptions & StepWhiteFlute) == 0)
-            {
-                continue;
-            }
+            dateModifiers.emplace_back(5);
+        }
+        if ((stepOptions & StepDateModifier10) != 0)
+        {
+            dateModifiers.emplace_back(10);
+        }
 
-            u8 count = 1 + usesWhiteFlute;
-            std::array<u8, 3> score = { count, rank, static_cast<u8>(usesWhiteFlute ? 3 : 0xff) };
-            candidates.emplace_back(currentMovement, currentModifier, score);
+        for (u8 dateModifier : dateModifiers)
+        {
+            for (bool usesWhiteFlute : { false, true })
+            {
+                if (usesWhiteFlute && (stepOptions & StepWhiteFlute) == 0)
+                {
+                    continue;
+                }
+
+                u8 currentModifier = dateModifier == 5
+                    ? (usesWhiteFlute ? WhiteFluteDateModifier5StepModifier : DateModifier5StepModifier)
+                    : dateModifier == 10
+                    ? (usesWhiteFlute ? WhiteFluteDateModifier10StepModifier : DateModifier10StepModifier)
+                    : (usesWhiteFlute ? WhiteFluteStepModifier : NoStepModifier);
+                u8 count = 1 + usesWhiteFlute + (dateModifier != 0);
+                std::array<u8, 3> score = { count, rank, currentModifier };
+                candidates.emplace_back(currentMovement, currentModifier, score);
+            }
         }
     };
 
@@ -247,9 +270,13 @@ static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterR
 
     for (const auto &candidate : candidates)
     {
-        bool whiteFlute = candidate.modifier == WhiteFluteStepModifier;
+        bool whiteFlute = candidate.modifier == WhiteFluteStepModifier || candidate.modifier == WhiteFluteDateModifier5StepModifier
+            || candidate.modifier == WhiteFluteDateModifier10StepModifier;
+        u8 dateModifier = candidate.modifier == DateModifier5StepModifier || candidate.modifier == WhiteFluteDateModifier5StepModifier ? 5
+            : candidate.modifier == DateModifier10StepModifier || candidate.modifier == WhiteFluteDateModifier10StepModifier ? 10
+                                                                                                                             : 0;
         bool fastMovement = candidate.movement == 2 || candidate.movement == 3;
-        if (getStepEncounter(seed, targetAdvance, encounterRate, lead, whiteFlute, fastMovement))
+        if (getStepEncounter(seed, targetAdvance, encounterRate, lead, whiteFlute, fastMovement, dateModifier))
         {
             *movements = getStepMovements(getGraceRatio(seed, targetAdvance), encounterRate, lead, whiteFlute);
             *movement = candidate.movement;
@@ -262,7 +289,7 @@ static bool getBestDPPtStepEncounter(u32 seed, u32 targetAdvance, u16 encounterR
 }
 
 static bool getBestHGSSStepEncounter(u32 seed, u32 targetAdvance, u16 encounterRate, const EncounterArea4 &area, const Profile4 &profile,
-                                     Lead lead, u8 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
+                                     Lead lead, u16 stepOptions, u8 *movements, u8 *movement, u8 *modifier)
 {
     struct Candidate
     {
@@ -510,7 +537,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
 }
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
-                             bool shiny, bool unownRadio, u8 happiness, bool searchStepEncounter, u8 stepOptions, const EncounterArea4 &area,
+                             bool shiny, bool unownRadio, u8 happiness, bool searchStepEncounter, u16 stepOptions, const EncounterArea4 &area,
                              const Profile4 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),

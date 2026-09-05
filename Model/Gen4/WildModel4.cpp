@@ -234,6 +234,14 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
                 return tr("Pokemon March") + QString(" / ") + tr("Lullaby");
             case 7:
                 return tr("White Flute") + QString(" & ") + tr("Pokemon March") + QString(" / ") + tr("Lullaby");
+            case 8:
+                return tr("Date Modifier 5%");
+            case 9:
+                return tr("White Flute") + QString(" & ") + tr("Date Modifier 5%");
+            case 10:
+                return tr("Date Modifier 10%");
+            case 11:
+                return tr("White Flute") + QString(" & ") + tr("Date Modifier 10%");
             case 0:
             default:
                 return QString("-");
