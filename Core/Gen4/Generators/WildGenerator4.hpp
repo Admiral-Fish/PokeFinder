@@ -45,13 +45,14 @@ public:
      * @param shiny Whether Poke Radar is forced shiny
      * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param happiness Encounter rate modifier for fishing in HGSS
+     * @param dateModifier Date-based DPPt movement rate modifier
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
-                   u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement, u8 movement, u8 radio, const EncounterArea4 &area,
-                   const Profile4 &profile, const WildStateFilter &filter);
+                   u8 happiness, bool searchStepEncounter, bool whiteFlute, bool fastMovement, s8 dateModifier, u8 movement, u8 radio,
+                   const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, Lead lead, bool feebasTile, bool shiny, bool unownRadio,
                    u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
@@ -73,6 +74,7 @@ private:
     bool searchStepEncounter;
     bool whiteFlute;
     bool fastMovement;
+    s8 dateModifier;
     u8 movement;
     u8 radio;
     u8 happiness;

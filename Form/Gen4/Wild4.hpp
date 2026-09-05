@@ -107,7 +107,7 @@ private:
      *
      * @return Enabled step option bitmask
      */
-    u8 getSearcherStepOptions() const;
+    u16 getSearcherStepOptions() const;
 
 private slots:
     /**
