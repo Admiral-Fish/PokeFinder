@@ -93,7 +93,7 @@ void WildGenerator3Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile3 profile("-", version, 12345, 54321, false);

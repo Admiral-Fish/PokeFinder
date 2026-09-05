@@ -90,7 +90,7 @@ void WildGenerator4Test::generateMethodJ()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile4 profile("", version, 12345, 54321, false);
@@ -156,7 +156,7 @@ void WildGenerator4Test::generateMethodK()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     std::array<bool, 26> unownDiscovered;
@@ -228,7 +228,7 @@ void WildGenerator4Test::generateHoneyTree()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile4 profile("", version, 12345, 54321, false);
@@ -296,7 +296,7 @@ void WildGenerator4Test::generatePokeRadar()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::array<bool, 12> encounterSlots;
+    std::array<bool, 13> encounterSlots;
     encounterSlots.fill(true);
 
     Profile4 profile("", version, 12345, 54321, false);
