@@ -9620,7 +9620,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Swarm</source>
-        <translation>Comparse Massiccie</translation>
+        <translation>Comparse Massicce</translation>
     </message>
     <message>
         <source>Poke Radar</source>
@@ -10051,7 +10051,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Swarm</source>
-        <translation type="unfinished">Comparse Massiccie</translation>
+        <translation>Comparse Massicce</translation>
     </message>
 </context>
 <context>
@@ -10264,7 +10264,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Swarm</source>
-        <translation>Comparse Massiccie</translation>
+        <translation>Comparse Massicce</translation>
     </message>
     <message>
         <source>Radar</source>
