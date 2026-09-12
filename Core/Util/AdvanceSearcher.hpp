@@ -29,7 +29,7 @@ namespace AdvanceSearcher
 {
     using Range = std::pair<u8, u8>;
     using Sequence = std::vector<Range>;
-    using ValueGetter = std::function<u8(size_t)>;
+    using ValueGetter = std::function<u8(int)>;
 
     enum class ChatotToken : u8
     {
@@ -101,7 +101,7 @@ namespace AdvanceSearcher
      *
      * @return Matching ending rows
      */
-    std::vector<size_t> findMatches(size_t rowCount, const Sequence &sequence, const ValueGetter &getter);
+    std::vector<int> findMatches(int rowCount, const Sequence &sequence, const ValueGetter &getter);
 }
 
 #endif // ADVANCESEARCHER_HPP

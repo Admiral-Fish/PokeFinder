@@ -120,9 +120,9 @@ void IVSearcher5Fast<Generator, State>::search(const Date &start, const Date &en
 
                     for (u32 i = 0; i < seeds.size(); i++)
                     {
-                        for (u64 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
+                        for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
                         {
-                            const auto entry = ivCache.find((j << 32) | (seeds[i] >> 32));
+                            const auto entry = ivCache.find((static_cast<u64>(j) << 32) | (seeds[i] >> 32));
                             if (entry == ivCache.end())
                             {
                                 continue;
@@ -197,9 +197,9 @@ void IVSearcher5CacheFast<Generator, State>::search(const Date &start, const Dat
                     }
 
                     u64 seed = sha1Entry->second;
-                    for (u64 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
+                    for (u32 j = initialAdvances; j <= (initialAdvances + maxAdvances); j++)
                     {
-                        const auto ivEntry = ivCache.find((j << 32) | (seed >> 32));
+                        const auto ivEntry = ivCache.find((static_cast<u64>(j) << 32) | (seed >> 32));
                         if (ivEntry == ivCache.end())
                         {
                             continue;

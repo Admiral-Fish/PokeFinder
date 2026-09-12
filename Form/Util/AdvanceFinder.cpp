@@ -201,9 +201,9 @@ void AdvanceFinder::search()
         return;
     }
 
-    std::vector<size_t> matches = AdvanceSearcher::findMatches(model->sourceModel()->rowCount(), sequence, getter);
+    std::vector<int> matches = AdvanceSearcher::findMatches(model->sourceModel()->rowCount(), sequence, getter);
 
-    model->setFilteredIndexes(matches.size() <= 5 ? matches : std::vector<size_t>());
+    model->setFilteredIndexes(matches.size() <= 5 ? matches : std::vector<int>());
     ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(matches.size()));
 }
 

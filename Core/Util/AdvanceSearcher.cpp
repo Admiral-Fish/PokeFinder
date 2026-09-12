@@ -108,18 +108,18 @@ namespace AdvanceSearcher
         return sequence;
     }
 
-    std::vector<size_t> findMatches(size_t rowCount, const Sequence &sequence, const ValueGetter &getter)
+    std::vector<int> findMatches(int rowCount, const Sequence &sequence, const ValueGetter &getter)
     {
-        std::vector<size_t> matches;
+        std::vector<int> matches;
         if (sequence.empty())
         {
             return matches;
         }
 
-        for (size_t i = 0; i + sequence.size() <= rowCount; i++)
+        for (int i = 0; i + sequence.size() <= rowCount; i++)
         {
             bool match = true;
-            for (size_t j = 0; j < sequence.size() && match; j++)
+            for (int j = 0; j < sequence.size() && match; j++)
             {
                 u8 value = getter(i + j);
                 match = value >= sequence[j].first && value < sequence[j].second;

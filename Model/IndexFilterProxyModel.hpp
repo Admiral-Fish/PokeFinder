@@ -62,12 +62,12 @@ public:
      *
      * @param rows Rows to be displayed
      */
-    void setFilteredIndexes(const std::vector<size_t> &rows)
+    void setFilteredIndexes(const std::vector<int> &rows)
     {
         beginFilterChange();
 
         allowedIndexes.clear();
-        for (size_t row : rows)
+        for (int row : rows)
         {
             allowedIndexes.insert(QPersistentModelIndex(sourceModel()->index(row, 0)));
         }
