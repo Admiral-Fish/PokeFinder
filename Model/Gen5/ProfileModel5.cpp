@@ -26,7 +26,7 @@ ProfileModel5::ProfileModel5(QObject *parent) : TableModel(parent)
 
 int ProfileModel5::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 17;
 }
 
 QVariant ProfileModel5::data(const QModelIndex &index, int role) const
@@ -67,6 +67,8 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 14:
             return profile.getNsPokemonReleased() ? tr("Yes") : tr("No");
         case 15:
+            return profile.getOvalCharm() ? tr("Yes") : tr("No");
+        case 16:
             return profile.getShinyCharm() ? tr("Yes") : tr("No");
         }
     }

@@ -168,6 +168,11 @@ void Eggs5::openAdvanceFinder()
 void Eggs5::profileChanged(const Profile5 &profile)
 {
     currentProfile = &profile;
+
+    bool bw2 = (profile.getVersion() & Game::BW2) != Game::None;
+    ui->tableViewGenerator->setColumnHidden(3, !bw2);
+    ui->eggSettingsGenerator->setOriginalTrainerVisible(bw2);
+    ui->eggSettingsSearcher->setOriginalTrainerVisible(bw2);
 }
 
 void Eggs5::search()
