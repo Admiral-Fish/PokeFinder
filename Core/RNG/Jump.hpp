@@ -22,6 +22,7 @@
 
 #include <Core/Global.hpp>
 #include <Core/RNG/SIMD.hpp>
+#include <gf2/BitPolynomial.h>
 
 /**
  * @brief Computes jump polynomials for various RNG classes
@@ -29,7 +30,8 @@
 namespace Jump
 {
     /**
-     * @brief Computes jump polynomial for 128/127bit period RNGs using GF(2) with Barrett Reduction
+     * @brief Computes jump polynomial using GF(2)
+     * Highly specialized for 127/128bit period RNGs
      * This should only be called with \p advances greater than 0
      *
      * @tparam period RNG period size in bits
@@ -41,6 +43,18 @@ namespace Jump
      */
     template <int period>
     vuint128 computeJumpPolynomial(const vuint128 &characteristic, const vuint128 &inverse, u32 advances);
+
+    /**
+     * @brief Computes jump polynomial using GF(2)
+     * This should only be called with \p advances greater than 0
+     *
+     * @param characteristic Polynomial that describes linear transformation
+     * @param count Size of polynomial in bytes
+     * @param advances Number of advances to jump
+     *
+     * @return Computed jump polynomial
+     */
+    gf2::BitPolynomial<u64> computeJumpPolynomial(const u8 *characteristic, int count, u32 advances);
 }
 
 #endif // JUMP_HPP

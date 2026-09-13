@@ -327,7 +327,8 @@ add_library(PokeFinderCore STATIC
 )
 
 target_include_directories(PokeFinderCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External ${CMAKE_CURRENT_BINARY_DIR}/generated_public PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated_private)
-target_link_libraries(PokeFinderCore nlohmann_json::nlohmann_json libzstd_static PokeFinderIncludes)
+target_link_libraries(PokeFinderCore PUBLIC nlohmann_json::nlohmann_json PokeFinderIncludes)
+target_link_libraries(PokeFinderCore PRIVATE gf2::gf2 libzstd_static)
 
 if (MSVC)
     add_compile_options(PokeFinderCore PRIVATE /Zc:inline)

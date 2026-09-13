@@ -18,16 +18,15 @@
  */
 
 #include "Jump.hpp"
-#include <bit>
 
 static const vuint128 MASK(0xffffffffffffffff, 0x7fffffffffffffff);
 
 /**
  * @brief Generates mask that determines if we need to reduce the polynomial by the characteristic
  * This takes the carry bit at 127 and fills all bits with that value to use as a mask
- * 
+ *
  * @param x Input polynomial
- * 
+ *
  * @return Computed reduction mask
  */
 static vuint128 generateReductionMask(const vuint128 &x)
@@ -42,7 +41,7 @@ static vuint128 generateReductionMask(const vuint128 &x)
 #else
     u64 bit = x.uint64[1] >> 63;
     u64 mask = (static_cast<s64>(bit << 63) >> 63);
-    top.uint64 = {mask, mask};
+    top.uint64 = { mask, mask };
 #endif
     return top;
 }
@@ -210,4 +209,13 @@ namespace Jump
 
     template vuint128 computeJumpPolynomial<127>(const vuint128 &, const vuint128 &, u32);
     template vuint128 computeJumpPolynomial<128>(const vuint128 &, const vuint128 &, u32);
+
+    gf2::BitPolynomial<u64> computeJumpPolynomial(const u8 *characteristic, int count, u32 advances)
+    {
+        auto vector = gf2::BitVector<u64>::from(characteristic, characteristic + count);
+        gf2::BitPolynomial<u64> poly(vector);
+        gf2::BitPolynomial<u64> jump = poly.reduce_x_to_the(advances);
+
+        return jump;
+    }
 }

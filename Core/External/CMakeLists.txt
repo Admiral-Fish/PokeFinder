@@ -1,5 +1,10 @@
 include(FetchContent)
 
+# gf2
+include(FetchContent)
+FetchContent_Declare(gf2 URL https://github.com/nessan/gf2/releases/download/current/gf2.zip)
+FetchContent_MakeAvailable(gf2)
+
 # json
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
 FetchContent_MakeAvailable(json)

@@ -18,10 +18,11 @@
  */
 
 #include "MT.hpp"
+#include <Core/RNG/Jump.hpp>
 #include <cstring>
 
-constexpr u8 jumpTable[9][2493] = {
-#include "MTJump.txt"
+constexpr u8 poly[] = {
+#include "MTPoly.txt"
 };
 
 MT::MT() : index(0)
@@ -107,50 +108,37 @@ void MT::addState(const MT *other)
 
 void MT::jump(u32 advances)
 {
-    // Since this is only called by the constructor we need to reset index to 0 so we can shuffle 1 at a time
-    index = 0;
-
-    u32 high = advances >> 23;
-    u32 low = advances & 0x7fffff;
-
-    // Advance by amount unsupported by the jump tables
-    // First shuffle by an amount of times divisible by 624 to utilize SIMD logic
-    if (low)
+    if (advances < 32768)
     {
-        u32 num = low % 624;
-        advance(low - num);
-
-        // Advance 1 by 1 for remaining amount. This will be less than 624
-        for (int i = 0; i < num; i++)
-        {
-            nextState();
-        }
+        advance(advances);
     }
-
-    for (int i = 0; high; i++, high >>= 1)
+    else
     {
-        if (high & 1)
-        {
-            MT temp;
+        // Since this is only called by the constructor we need to reset index to 0 so we can shuffle 1 at a time
+        index = 0;
 
-            for (int j = 2492; j >= 0; j--)
+        auto jump = Jump::computeJumpPolynomial(poly, sizeof(poly), advances);
+
+        int byteCount = (jump.degree() + 8) / sizeof(u64);
+        const u8 *bytes = reinterpret_cast<const u8 *>(jump.coefficients().store());
+
+        MT temp;
+        for (int i = 0; i < byteCount; i++)
+        {
+            u8 val = bytes[i];
+            for (int bit = 0; bit < 8; bit++)
             {
-                u8 val = jumpTable[i][j];
-                for (int bit = 0; bit < 8; bit++)
+                if (val & (1 << bit))
                 {
-                    if (val & (1 << bit))
-                    {
-                        temp.addState(this);
-                    }
-                    nextState();
+                    temp.addState(this);
                 }
+                nextState();
             }
-
-            *this = temp;
         }
-    }
 
-    shuffle();
+        *this = temp;
+        shuffle();
+    }
 }
 
 void MT::nextState()
