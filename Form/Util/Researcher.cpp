@@ -105,11 +105,7 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
-    if constexpr (std::is_same_v<RNGType, SFMT>)
-    {
-        rng.advance(initial);
-    }
-    else if constexpr (!std::is_same_v<RNGType, MT>)
+    if constexpr (!std::is_same_v<RNGType, MT> && !std::is_same_v<RNGType, SFMT>)
     {
         rng.jump(initial);
     }
@@ -277,7 +273,7 @@ void Researcher::generate()
             {
                 seed >>= 32;
             }
-            rngStates = getStates<SFMT>(SFMT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<SFMT>(SFMT(seed, initialAdvances), initialAdvances, maxAdvances);
             break;
         case 3:
             rngStates = getStates<Xoroshiro>(Xoroshiro(seed), initialAdvances, maxAdvances);
