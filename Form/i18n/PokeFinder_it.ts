@@ -4964,7 +4964,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Phenomenon</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenomeno</translation>
     </message>
 </context>
 <context>
@@ -5029,15 +5029,15 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <name>Phenomenon</name>
     <message>
         <source>Phenomenon</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenomeno</translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation type="unfinished">Generatore</translation>
+        <translation>Generatore</translation>
     </message>
     <message>
         <source>RNG Info</source>
-        <translation type="unfinished">Info RNG</translation>
+        <translation>Info RNG</translation>
     </message>
     <message>
         <source>Seed</source>
@@ -5045,11 +5045,11 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Initial Advances</source>
-        <translation type="unfinished">Avanzamenti Iniziali</translation>
+        <translation>Avanzamenti Iniziali</translation>
     </message>
     <message>
         <source>Max Advances</source>
-        <translation type="unfinished">Avanzamenti Massimi</translation>
+        <translation>Avanzamenti Massimi</translation>
     </message>
     <message>
         <source>Offset</source>
@@ -5057,53 +5057,53 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Generate</source>
-        <translation type="unfinished">Genera</translation>
+        <translation>Genera</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Impostazioni</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished">Zona</translation>
+        <translation>Zona</translation>
     </message>
     <message>
         <source>Filters</source>
-        <translation type="unfinished">Filtri</translation>
+        <translation>Filtri</translation>
     </message>
     <message>
         <source>Items</source>
-        <translation type="unfinished">Strumenti</translation>
+        <translation>Strumenti</translation>
     </message>
     <message>
         <source>Searcher</source>
-        <translation type="unfinished">Ricercatore</translation>
+        <translation>Ricercatore</translation>
     </message>
     <message>
         <source>Start Date</source>
-        <translation type="unfinished">Data Iniziale</translation>
+        <translation>Data Iniziale</translation>
     </message>
     <message>
         <source>End Date</source>
-        <translation type="unfinished">Data Finale</translation>
+        <translation>Data Finale</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Cerca</translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/Phenomenon.cpp" line="156"/>
         <source>Invalid date range</source>
-        <translation type="unfinished">Intervallo di date non valido</translation>
+        <translation>Intervallo di date non valido</translation>
     </message>
     <message>
         <location filename="../Gen5/Tools/Phenomenon.cpp" line="156"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished">La data iniziale è successiva alla data finale</translation>
+        <translation>La data iniziale è successiva alla data finale</translation>
     </message>
 </context>
 <context>
@@ -5111,7 +5111,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
         <source>Advances</source>
-        <translation type="unfinished">Avanzamenti</translation>
+        <translation>Avanzamenti</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
@@ -5121,12 +5121,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
         <source>Needle</source>
-        <translation type="unfinished">Lancetta</translation>
+        <translation>Lancetta</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
         <source>Item</source>
-        <translation type="unfinished">Strumento</translation>
+        <translation>Strumento</translation>
     </message>
 </context>
 <context>
@@ -5139,17 +5139,17 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
         <source>Advances</source>
-        <translation type="unfinished">Avanzamenti</translation>
+        <translation>Avanzamenti</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
         <source>Item</source>
-        <translation type="unfinished">Strumento</translation>
+        <translation>Strumento</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
         <source>Date/Time</source>
-        <translation type="unfinished">Data/Ora</translation>
+        <translation>Data/Ora</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
@@ -5159,7 +5159,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="121"/>
         <source>Buttons</source>
-        <translation type="unfinished">Tasti</translation>
+        <translation>Tasti</translation>
     </message>
 </context>
 <context>
