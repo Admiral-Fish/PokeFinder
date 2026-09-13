@@ -34,7 +34,7 @@ void DateTimeTest::addSecs_data()
     QTest::addColumn<int>("seconds");
     QTest::addColumn<DateTime>("result");
 
-    nlohmann::json data = readData("datetime", "datetime", "addSecs");
+    json data = readData("datetime", "datetime", "addSecs");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -58,7 +58,7 @@ void DateTest::getParts_data()
     QTest::addColumn<int>("jd");
     QTest::addColumn<DateParts>("results");
 
-    nlohmann::json data = readData("datetime", "date", "getParts");
+    json data = readData("datetime", "date", "getParts");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["jd"].get<int>() << d["results"].get<DateParts>();
@@ -79,7 +79,7 @@ void DateTest::dayOfWeek_data()
     QTest::addColumn<Date>("day");
     QTest::addColumn<int>("result");
 
-    nlohmann::json data = readData("datetime", "date", "dayOfWeek");
+    json data = readData("datetime", "date", "dayOfWeek");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -101,7 +101,7 @@ void TimeTest::addSeconds_data()
     QTest::addColumn<int>("expectedDays");
     QTest::addColumn<Time>("result");
 
-    nlohmann::json data = readData("datetime", "time", "addSeconds");
+    json data = readData("datetime", "time", "addSeconds");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seconds"].get<int>() << d["expectedDays"].get<int>()
