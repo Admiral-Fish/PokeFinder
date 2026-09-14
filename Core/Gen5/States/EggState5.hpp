@@ -43,10 +43,11 @@ public:
      * @param info Pokemon information
      */
     EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
-              const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+              const std::array<u8, 6> &inheritance, const PersonalInfo *info, bool egg = false) :
         EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info),
         chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        egg(egg)
     {
     }
 
@@ -85,6 +86,11 @@ public:
         return needle;
     }
 
+    bool getEgg() const
+    {
+        return egg;
+    }
+
     /**
      * @brief Updates egg with things that are calculated later in BW2
      *
@@ -94,7 +100,7 @@ public:
      * @param gender Pokemon gender
      * @param shiny Pokemon shininess
      */
-    void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny)
+    void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny, bool egg)
     {
         chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
         needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
@@ -102,11 +108,13 @@ public:
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
+        this->egg = egg;
     }
 
 private:
     u8 chatot;
     u8 needle;
+    bool egg = false;
 };
 
 #endif // EGGSTATE5_HPP

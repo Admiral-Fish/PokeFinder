@@ -42,14 +42,16 @@ public:
      */
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
             const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, u16 specie,
-            bool masuda) :
+            bool masuda, const std::array<u16, 2> &parentSpecies = { 0, 0 }, bool differentTrainer = false) :
         specie(specie),
+        parentSpecies(parentSpecies),
         parentIVs(parentIVs),
         parentAbility(parentAbility),
         parentGender(parentGender),
         parentItem(parentItem),
         parentNature(parentNature),
-        masuda(masuda)
+        masuda(masuda),
+        differentTrainer(differentTrainer)
     {
     }
 
@@ -156,6 +158,16 @@ public:
         return parentNature[parent];
     }
 
+    u16 getParentSpecie(u8 parent) const
+    {
+        return parentSpecies[parent];
+    }
+
+    bool getDifferentTrainer() const
+    {
+        return differentTrainer;
+    }
+
     /**
      * @brief Determines how many power items the parents are holding
      *
@@ -168,12 +180,14 @@ public:
 
 private:
     u16 specie;
+    std::array<u16, 2> parentSpecies;
     std::array<std::array<u8, 6>, 2> parentIVs;
     std::array<u8, 2> parentAbility;
     std::array<u8, 2> parentGender; // 0 - Male, 1 - Female, 2 - Genderless, 3 - Ditto
     std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;
+    bool differentTrainer;
 };
 
 #endif // DAYCARE_HPP

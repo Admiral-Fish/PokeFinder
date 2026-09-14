@@ -80,7 +80,7 @@ bool Profile5::operator==(const Profile5 &other) const
     return Profile::operator==(other) && ivCache == other.ivCache && shaCache == other.shaCache && mac == other.mac
         && keypresses == other.keypresses && vcount == other.vcount && gxstat == other.gxstat && vframe == other.vframe
         && skipLR == other.skipLR && timer0Min == other.timer0Min && timer0Max == other.timer0Max && memoryLink == other.memoryLink
-        && nsPokemonReleased == other.nsPokemonReleased && shinyCharm == other.shinyCharm && dsType == other.dsType
+        && nsPokemonReleased == other.nsPokemonReleased && ovalCharm == other.ovalCharm && shinyCharm == other.shinyCharm && dsType == other.dsType
         && language == other.language;
 }
 

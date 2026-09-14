@@ -61,6 +61,7 @@ private:
     u8 parentAbility;
     u8 poweritem;
     u8 rolls;
+    u8 eggChance;
 
     std::vector<EggState5> generateBW(u64 seed) const;
     std::vector<EggState5> generateBW2(u64 seed) const;

@@ -51,13 +51,14 @@ public:
      * @param timer0Max Maximum Timer0 value
      * @param memoryLink Whether memory link is activated
      * @param nsPokemonReleased Whether N's Pokemon have been released
+     * @param ovalCharm Whether oval charm is obtained
      * @param shinyCharm Whether shiny charm is obtained
      * @param dsType DS type for the profile
      * @param language Language type of the profile
      */
     Profile5(const std::string &name, Game version, u16 tid, u16 sid, const std::string &ivCache, const std::string &shaCache, u64 mac,
              const std::array<bool, 9> &keypresses, u8 vcount, u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max,
-             bool memoryLink, bool nsPokemonReleased, bool shinyCharm, DSType dsType, Language language) :
+             bool memoryLink, bool nsPokemonReleased, bool shinyCharm, DSType dsType, Language language, bool ovalCharm = false) :
         Profile(name, version, tid, sid),
         ivCache(ivCache),
         shaCache(shaCache),
@@ -66,6 +67,7 @@ public:
         timer0Min(timer0Min),
         memoryLink(memoryLink),
         nsPokemonReleased(nsPokemonReleased),
+        ovalCharm(ovalCharm),
         shinyCharm(shinyCharm),
         skipLR(skipLR),
         dsType(dsType),
@@ -201,6 +203,11 @@ public:
         return shinyCharm;
     }
 
+    bool getOvalCharm() const
+    {
+        return ovalCharm;
+    }
+
     /**
      * @brief Returns if the LR buttons should be skipped
      *
@@ -280,6 +287,7 @@ private:
     u16 timer0Min;
     bool memoryLink;
     bool nsPokemonReleased;
+    bool ovalCharm;
     bool shinyCharm;
     bool skipLR;
     DSType dsType;
