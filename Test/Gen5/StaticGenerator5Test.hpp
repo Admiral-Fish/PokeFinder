@@ -31,6 +31,8 @@ private slots:
 
     void generateWild_data();
     void generateWild();
+
+    void luckyPowerAdvances();
 };
 
 #endif // STATICGENERATOR5TEST_HPP

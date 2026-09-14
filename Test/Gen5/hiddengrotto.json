@@ -1641,46 +1641,6 @@
             "grottoPower": "LevelS",
             "results": [
                 {
-                    "advances": 46,
-                    "chatot": 0,
-                    "data": 507,
-                    "gender": 0,
-                    "group": 2,
-                    "item": false,
-                    "slot": 1,
-                    "valid": true
-                },
-                {
-                    "advances": 47,
-                    "chatot": 0,
-                    "data": 507,
-                    "gender": 0,
-                    "group": 1,
-                    "item": false,
-                    "slot": 1,
-                    "valid": false
-                },
-                {
-                    "advances": 48,
-                    "chatot": 0,
-                    "data": 183,
-                    "gender": 0,
-                    "group": 0,
-                    "item": false,
-                    "slot": 2,
-                    "valid": true
-                },
-                {
-                    "advances": 49,
-                    "chatot": 0,
-                    "data": 183,
-                    "gender": 0,
-                    "group": 1,
-                    "item": false,
-                    "slot": 2,
-                    "valid": true
-                },
-                {
                     "advances": 50,
                     "chatot": 0,
                     "data": 183,

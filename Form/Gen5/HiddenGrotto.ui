@@ -107,17 +107,17 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">1</string>
+                  <string notr="true">↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">2</string>
+                  <string notr="true">↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">3</string>
+                  <string notr="true">↑↑↑</string>
                  </property>
                 </item>
                 <item>
@@ -381,17 +381,17 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">1</string>
+                  <string notr="true">↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">2</string>
+                  <string notr="true">↑↑</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string notr="true">3</string>
+                  <string notr="true">↑↑↑</string>
                  </property>
                 </item>
                 <item>

@@ -28,6 +28,9 @@ class WildGenerator5Test : public QObject
 private slots:
     void generate_data();
     void generate();
+
+    void luckyPowerAdvances_data();
+    void luckyPowerAdvances();
 };
 
 #endif // WILDGENERATOR5TEST_HPP
