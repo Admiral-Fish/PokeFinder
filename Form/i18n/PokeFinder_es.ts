@@ -352,7 +352,7 @@
     <message>
         <location filename="../Controls/CheckList.cpp" line="324"/>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
 </context>
 <context>
@@ -360,7 +360,7 @@
     <message>
         <location filename="../Controls/ComboBoxProxy.hpp" line="133"/>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
 </context>
 <context>
@@ -3464,7 +3464,7 @@
         <location filename="../Gen5/HiddenGrotto.cpp" line="108"/>
         <location filename="../Gen5/HiddenGrotto.cpp" line="111"/>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="109"/>
@@ -8008,7 +8008,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen5/Static5.cpp" line="77"/>
         <location filename="../Gen5/Static5.cpp" line="82"/>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.cpp" line="78"/>
@@ -10072,7 +10072,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../Gen5/Wild5.cpp" line="86"/>
         <location filename="../Gen5/Wild5.cpp" line="100"/>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="87"/>

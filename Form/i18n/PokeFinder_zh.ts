@@ -352,7 +352,7 @@
     <message>
         <location filename="../Controls/CheckList.cpp" line="324"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
 </context>
 <context>

@@ -4321,7 +4321,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="238"/>
         <source>None</source>
-        <translation>Nessuna</translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <source>Find IVs</source>
@@ -9299,7 +9299,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../Gen3/Wild3.cpp" line="79"/>
         <location filename="../Gen3/Wild3.cpp" line="90"/>
         <source>None</source>
-        <translation>Nessuna</translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="81"/>
@@ -9704,7 +9704,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
         <location filename="../Gen4/Wild4.cpp" line="74"/>
         <location filename="../Gen4/Wild4.cpp" line="92"/>
         <source>None</source>
-        <translation>Nessuna</translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <source>Search</source>
