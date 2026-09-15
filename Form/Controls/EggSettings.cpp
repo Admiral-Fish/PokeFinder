@@ -74,6 +74,11 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
+    ui->comboBoxCompatibility->addItem(tr("The two don't really seem to like each other much."), 20);
+    ui->comboBoxCompatibility->addItem(tr("The two seem to get along."), 50);
+    ui->comboBoxCompatibility->addItem(tr("The two seem to get along very well!"), 70);
+    setCompatibilityVisible(false);
+
     auto *copyAction = addAction(tr("Copy IVs to clipboard"));
     auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
 
@@ -160,6 +165,7 @@ void EggSettings::copyFrom(const EggSettings *other)
     ui->comboBoxParentBNature->setCurrentIndex(other->ui->comboBoxParentBNature->currentIndex());
 
     ui->comboBoxEggSpecie->setCurrentIndex(other->ui->comboBoxEggSpecie->currentIndex());
+    ui->comboBoxCompatibility->setCurrentIndex(other->ui->comboBoxCompatibility->currentIndex());
 
     ui->checkBoxMasuda->setCheckState(other->ui->checkBoxMasuda->checkState());
     ui->checkBoxShowInheritance->setCheckState(other->ui->checkBoxShowInheritance->checkState());
@@ -190,6 +196,17 @@ Daycare EggSettings::getDaycare() const
     bool masuda = ui->checkBoxMasuda->isChecked();
 
     return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, specie, masuda);
+}
+
+u8 EggSettings::getCompatibility() const
+{
+    return ui->comboBoxCompatibility->getCurrentUChar();
+}
+
+void EggSettings::setCompatibilityVisible(bool visible)
+{
+    ui->labelCompatibility->setVisible(visible);
+    ui->comboBoxCompatibility->setVisible(visible);
 }
 
 bool EggSettings::reorderParents()
@@ -279,6 +296,9 @@ void EggSettings::setup(Game game)
     }
     else if ((game & Game::Gen5) != Game::None)
     {
+        setCompatibilityVisible(true);
+        const QMargins margins = ui->gridLayout->contentsMargins();
+        ui->gridLayout->setContentsMargins(margins.left(), margins.top(), margins.right(), 0);
         ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
         ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
         ui->comboBoxParentAItem->addItem(tr("Power Belt"), 4);

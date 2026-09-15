@@ -30,10 +30,11 @@
 #include <algorithm>
 
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
-                             const StateFilter &filter) :
+                             const StateFilter &filter, u8 compatibility) :
     EggGenerator(initialAdvances, maxAdvances, offset, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
+    eggChance(profile.getOvalCharm() ? (compatibility == 20 ? 40 : compatibility == 50 ? 80 : 88) : compatibility),
     parentAbility(daycare.getParentAbility(1)),
     poweritem(daycare.getPowerItemCount()),
     rolls(((profile.getVersion() & Game::BW2) != Game::None && profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
@@ -174,8 +175,10 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        EggState5 state(rng.nextUInt(), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
-                        Utilities::getShiny<true>(pid, tsv), inheritance, info);
+        u32 prng = rng.nextUInt();
+        bool egg = ((static_cast<u64>(prng) * 1600) >> 32) < eggChance;
+        EggState5 state(prng, advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
+                        Utilities::getShiny<true>(pid, tsv), inheritance, info, egg);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -218,8 +221,10 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 pid = Utilities5::createPID(tsv, ability, 255, Shiny::Random, false, info->getGender(), go);
             }
 
-            state.update(rng.nextUInt(), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
-                         Utilities::getShiny<true>(pid, tsv));
+            u32 prng = rng.nextUInt();
+            bool egg = ((static_cast<u64>(prng) * 1600) >> 32) < eggChance;
+            state.update(prng, advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
+                         Utilities::getShiny<true>(pid, tsv), egg);
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

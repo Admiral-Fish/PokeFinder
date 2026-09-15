@@ -153,7 +153,8 @@ void Eggs5::generate()
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter);
+    EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter,
+                            ui->eggSettingsGenerator->getCompatibility());
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -208,7 +209,8 @@ void Eggs5::search()
     Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
-    EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
+    EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter,
+                            ui->eggSettingsSearcher->getCompatibility());
     auto *searcher = new EggSearcher5(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 

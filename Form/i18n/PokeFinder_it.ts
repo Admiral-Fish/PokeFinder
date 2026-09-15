@@ -829,6 +829,14 @@
 <context>
     <name>EggGeneratorModel5</name>
     <message>
+        <source>Egg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
         <source>Square</source>
         <translation>Quadrato</translation>
@@ -1343,6 +1351,22 @@
 </context>
 <context>
     <name>EggSettings</name>
+    <message>
+        <source>Compatibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two don't really seem to like each other much.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along very well!</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Parent A</source>
         <translation>Genitore A</translation>
@@ -5861,6 +5885,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 <context>
     <name>ProfileEditor5</name>
     <message>
+        <source>Oval Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Profile Editor Gen 5</source>
         <translation>Editor Profilo Gen 5</translation>
     </message>
@@ -6408,6 +6436,10 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
 </context>
 <context>
     <name>ProfileModel5</name>
+    <message>
+        <source>Oval Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>

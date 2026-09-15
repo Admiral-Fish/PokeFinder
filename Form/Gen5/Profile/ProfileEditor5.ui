@@ -278,13 +278,20 @@
     </widget>
    </item>
    <item row="0" column="7">
+    <widget class="QCheckBox" name="checkBoxOvalCharm">
+     <property name="text">
+      <string>Oval Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
     <widget class="QCheckBox" name="checkBoxShinyCharm">
      <property name="text">
       <string>Shiny Charm</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="7">
+   <item row="2" column="6">
     <widget class="QCheckBox" name="checkBoxSkipLR">
      <property name="text">
       <string>Skip L/R</string>
@@ -403,6 +410,7 @@
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxMemoryLink</tabstop>
   <tabstop>checkBoxNsPokemonReleased</tabstop>
+  <tabstop>checkBoxOvalCharm</tabstop>
   <tabstop>checkBoxShinyCharm</tabstop>
   <tabstop>checkBoxSkipLR</tabstop>
   <tabstop>lineEditIVCache</tabstop>

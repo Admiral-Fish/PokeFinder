@@ -89,6 +89,16 @@ public:
     Daycare getDaycare() const;
 
     /**
+     * @brief Gets the selected daycare compatibility value
+     */
+    u8 getCompatibility() const;
+
+    /**
+     * @brief Shows or hides the compatibility selector
+     */
+    void setCompatibilityVisible(bool visible);
+
+    /**
      * @brief Changes order of the parents to match what the game does
      *
      * @return true Parents were reordered

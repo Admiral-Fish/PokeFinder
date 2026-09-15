@@ -42,9 +42,10 @@ public:
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
+     * @param compatibility Daycare compatibility value
      */
     EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
-                  const StateFilter &filter);
+                  const StateFilter &filter, u8 compatibility = 20);
 
     /**
      * @brief Generates states
@@ -58,6 +59,7 @@ public:
 private:
     bool ditto;
     u8 everstone;
+    u8 eggChance;
     u8 parentAbility;
     u8 poweritem;
     u8 rolls;
