@@ -3,7 +3,7 @@ project(PokeFinderTest)
 find_package(Qt6 COMPONENTS Test REQUIRED)
 
 file(GLOB_RECURSE ENUM_HEADERS
-    {CMAKE_SOURCE_DIR}/Core/Enum/*.hpp
+    ${CMAKE_SOURCE_DIR}/Core/Enum/*.hpp
 )
 
 set(ENUM_HPP ${CMAKE_CURRENT_BINARY_DIR}/generated/Test/Enum.hpp)

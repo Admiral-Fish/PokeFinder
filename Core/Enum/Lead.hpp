@@ -54,6 +54,9 @@ enum class Lead : u8
     ArenaTrap,
     Illuminate = ArenaTrap,
     NoGuard = ArenaTrap,
+    QuickFeet = ArenaTrap,
+    Stench = ArenaTrap,
+    WhiteSmoke = ArenaTrap,
 };
 
 /**

@@ -1827,7 +1827,7 @@ std::vector<WildGeneratorState4> PokeRadar::getPokemonStates(PokeRadarControls &
                            ignoreFilters ? ivMin : controls.filter->getMinIVs(), ignoreFilters ? ivMax : controls.filter->getMaxIVs(),
                            ignoreFilters ? natures : controls.filter->getNatures(), ignoreFilters ? powers : controls.filter->getHiddenPowers(),
                            encounterSlots);
-    u32 pokemonOffset = 1;
+    u32 pokemonOffset = getSelectedShiny(chainType) ? 0 : 1;
     PokeRadarPokemonGenerator generator(controls.initialAdvances->getUInt(), controls.maxAdvances->getUInt() + extraAdvances, pokemonOffset,
                                         getPokeRadarGeneratorLead(controls), getSelectedShiny(chainType), *areaIter, *currentProfile,
                                         filter);
