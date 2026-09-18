@@ -176,7 +176,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         EggState5 state(rng.nextUInt(), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
                         Utilities::getShiny<true>(pid, tsv), inheritance, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

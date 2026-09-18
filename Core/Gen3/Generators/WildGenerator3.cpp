@@ -197,7 +197,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
         WildGeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
                                  Utilities::getShiny<true>(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }

@@ -97,7 +97,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
                               staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -168,7 +168,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
                               staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -239,7 +239,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
                               staticTemplate.getLevel(), pid % 25, Utilities::getShiny<true>(pid, tsv), info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

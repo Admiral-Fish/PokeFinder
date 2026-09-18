@@ -28,7 +28,7 @@ HiddenGrottoFilter::HiddenGrottoFilter(const std::array<bool, 11> &encounterSlot
     invalid = hasActiveFilters();
 }
 
-bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state) const
+bool HiddenGrottoFilter::compare(const HiddenGrottoState &state) const
 {
     if (!encounterSlots[state.getSlot()])
     {

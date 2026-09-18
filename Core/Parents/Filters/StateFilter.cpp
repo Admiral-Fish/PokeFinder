@@ -43,51 +43,7 @@ StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u8 levelM
 {
 }
 
-bool StateFilter::compareAbility(u8 ability) const
-{
-    return skip || this->ability == 255 || this->ability == ability;
-}
-
-bool StateFilter::compareGender(u8 gender) const
-{
-    return skip || this->gender == 255 || this->gender == gender;
-}
-
-bool StateFilter::compareHiddenPower(u8 hiddenPower) const
-{
-    return skip || powers[hiddenPower];
-}
-
-bool StateFilter::compareIV(const std::array<u8, 6> &ivs) const
-{
-    if (skip)
-    {
-        return true;
-    }
-
-    for (int i = 0; i < 6; i++)
-    {
-        u8 iv = ivs[i];
-        if (iv < ivMin[i] || iv > ivMax[i])
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-bool StateFilter::compareNature(u8 nature) const
-{
-    return skip || natures[nature];
-}
-
-bool StateFilter::compareShiny(u8 shiny) const
-{
-    return skip || this->shiny == 255 || (this->shiny & shiny);
-}
-
-bool StateFilter::compareState(const SearcherState &state) const
+bool StateFilter::compare(const SearcherState &state) const
 {
     if (ability != 255 && ability != state.getAbility())
     {
@@ -112,7 +68,7 @@ bool StateFilter::compareState(const SearcherState &state) const
     return true;
 }
 
-bool StateFilter::compareState(const State &state) const
+bool StateFilter::compare(const State &state) const
 {
     if (skip)
     {
@@ -161,9 +117,9 @@ bool StateFilter::compareState(const State &state) const
     return true;
 }
 
-bool StateFilter::compareState(const State8 &state) const
+bool StateFilter::compare(const State8 &state) const
 {
-    if (!compareState(static_cast<const State &>(state)))
+    if (!compare(static_cast<const State &>(state)))
     {
         return false;
     }
@@ -179,6 +135,90 @@ bool StateFilter::compareState(const State8 &state) const
     }
 
     return true;
+}
+
+bool StateFilter::compare(u8 ability, u8 gender, u8 nature, u8 shiny) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    return (this->ability == 255 || this->ability == ability) && (this->gender == 255 || this->gender == gender) && (natures[nature])
+        && (this->shiny == 255 || (this->shiny & shiny));
+}
+
+bool StateFilter::compare(u8 level, u8 nature) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    return (levelMin <= level && level <= levelMax) && (natures[nature]);
+}
+
+bool StateFilter::compareAbility(u8 ability) const
+{
+    return skip || this->ability == 255 || this->ability == ability;
+}
+
+bool StateFilter::compareGender(u8 gender) const
+{
+    return skip || this->gender == 255 || this->gender == gender;
+}
+
+bool StateFilter::compareHiddenPower(u8 hiddenPower) const
+{
+    return skip || powers[hiddenPower];
+}
+
+bool StateFilter::compareHiddenPower(const std::array<u8, 6> &ivs) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
+
+    u8 hiddenPower = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        hiddenPower |= (ivs[order[i]] & 1) << i;
+    }
+    hiddenPower = hiddenPower * 15 / 63;
+
+    return powers[hiddenPower];
+}
+
+bool StateFilter::compareIV(const std::array<u8, 6> &ivs) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = ivs[i];
+        if (iv < ivMin[i] || iv > ivMax[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool StateFilter::compareNature(u8 nature) const
+{
+    return skip || natures[nature];
+}
+
+bool StateFilter::compareShiny(u8 shiny) const
+{
+    return skip || this->shiny == 255 || (this->shiny & shiny);
 }
 
 bool StateFilter::hasActiveFilters() const
@@ -218,12 +258,7 @@ WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, u8 levelMin, u
     invalid = hasActiveFilters();
 }
 
-bool WildStateFilter::compareEncounterSlot(u8 encounterSlot) const
-{
-    return skip || encounterSlots[encounterSlot];
-}
-
-bool WildStateFilter::compareState(const WildGeneratorState &state) const
+bool WildStateFilter::compare(const WildGeneratorState &state) const
 {
     if (skip)
     {
@@ -277,7 +312,7 @@ bool WildStateFilter::compareState(const WildGeneratorState &state) const
     return true;
 }
 
-bool WildStateFilter::compareState(const WildSearcherState &state) const
+bool WildStateFilter::compare(const WildSearcherState &state) const
 {
     if (ability != 255 && ability != state.getAbility())
     {
@@ -307,9 +342,9 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
     return true;
 }
 
-bool WildStateFilter::compareState(const WildState8 &state) const
+bool WildStateFilter::compare(const WildState8 &state) const
 {
-    if (!compareState(static_cast<const WildGeneratorState &>(state)))
+    if (!compare(static_cast<const WildGeneratorState &>(state)))
     {
         return false;
     }
@@ -325,6 +360,23 @@ bool WildStateFilter::compareState(const WildState8 &state) const
     }
 
     return true;
+}
+
+bool WildStateFilter::compare(u8 ability, u8 encounterSlot, u8 gender, u8 level, u8 nature, u8 shiny) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    return (this->ability == 255 || this->ability == ability) && (encounterSlots[encounterSlot])
+        && (this->gender == 255 || this->gender == gender) && (levelMin <= level && level <= levelMax) && (natures[nature])
+        && (this->shiny == 255 || (this->shiny & shiny));
+}
+
+bool WildStateFilter::compareEncounterSlot(u8 encounterSlot) const
+{
+    return skip || encounterSlots[encounterSlot];
 }
 
 bool WildStateFilter::hasActiveFilters() const

@@ -190,7 +190,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 
             EggState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv),
                             inheritance, seed, info);
-            if (filter.compareState(static_cast<const State &>(state)))
+            if (filter.compare(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
             }

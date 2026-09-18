@@ -49,7 +49,7 @@ std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1) const
         u32 displayTID = sidtid % 1000000;
 
         IDState8 state(initialAdvances + cnt, tid, sid, displayTID);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }

@@ -371,7 +371,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             u16 pokemon = area.getPokemon(rngList, slots[i]);
             UndergroundState state = createPokemon(cnt, pokemon);
-            if (filter.compareState(state))
+            if (filter.compare(state))
             {
                 states.emplace_back(state);
             }
@@ -380,7 +380,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         if (specialPokemon != 0)
         {
             UndergroundState state = createPokemon(cnt, specialPokemon);
-            if (filter.compareState(state))
+            if (filter.compare(state))
             {
                 states.emplace_back(state);
             }

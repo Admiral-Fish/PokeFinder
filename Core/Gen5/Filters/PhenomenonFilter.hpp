@@ -43,7 +43,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const PhenomenonState &state) const;
+    bool compare(const PhenomenonState &state) const;
 
 private:
     std::vector<u16> items;

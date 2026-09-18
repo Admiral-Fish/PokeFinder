@@ -54,7 +54,7 @@ std::vector<PhenomenonState> PhenomenonGenerator::generate(u64 seed) const
 
         u32 prng = rng.nextUInt();
         PhenomenonState state(prng, advances + initialAdvances + cnt, item, valid);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }

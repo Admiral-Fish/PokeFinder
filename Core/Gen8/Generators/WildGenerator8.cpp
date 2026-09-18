@@ -205,7 +205,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
 
         WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
                          form, height, weight, info);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }
@@ -303,7 +303,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
 
         WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, index, info->getItem(0),
                          slot.getSpecie(), 0, height, weight, info);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }

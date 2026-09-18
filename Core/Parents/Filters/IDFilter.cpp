@@ -33,7 +33,7 @@ IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &si
 {
 }
 
-bool IDFilter::compareState(const IDState &state) const
+bool IDFilter::compare(const IDState &state) const
 {
     if (!tidFilter.empty() && std::ranges::find(tidFilter, state.getTID()) == tidFilter.end())
     {
@@ -71,9 +71,9 @@ bool IDFilter::compareState(const IDState &state) const
     return true;
 }
 
-bool IDFilter::compareState(const IDState8 &state) const
+bool IDFilter::compare(const IDState8 &state) const
 {
-    if (!compareState(static_cast<const IDState &>(state)))
+    if (!compare(static_cast<const IDState &>(state)))
     {
         return false;
     }

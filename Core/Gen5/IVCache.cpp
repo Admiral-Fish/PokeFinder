@@ -34,20 +34,6 @@ struct SeedCache
 };
 static_assert(sizeof(SeedCache) == 48);
 
-static bool compareIVs(const std::array<u8, 6> &ivs, const StateFilter &filter)
-{
-    constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
-
-    u8 hiddenPower = 0;
-    for (int i = 0; i < 6; i++)
-    {
-        hiddenPower |= (ivs[order[i]] & 1) << i;
-    }
-    hiddenPower = hiddenPower * 15 / 63;
-
-    return filter.compareIV(ivs) && filter.compareHiddenPower(hiddenPower);
-}
-
 static std::array<u8, 6> computeIVs(u32 seed, u32 advance, CacheType type)
 {
     std::array<u8, 6> ivs;
@@ -200,7 +186,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAd
         for (u32 seed : entralinkSeeds[i])
         {
             auto ivs = computeIVs(seed, i, CacheType::Entralink);
-            if (compareIVs(ivs, filter))
+            if (filter.compareIV(ivs) && filter.compareHiddenPower(ivs))
             {
                 cache.emplace((i << 32) | seed, ivs);
             }
@@ -224,7 +210,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvan
         for (u32 seed : normalSeeds[i + (bw ? 0 : 2)])
         {
             auto ivs = computeIVs(seed, i + (bw ? 0 : 2), CacheType::Normal);
-            if (compareIVs(ivs, filter))
+            if (filter.compareIV(ivs) && filter.compareHiddenPower(ivs))
             {
                 cache.emplace((i << 32) | seed, ivs);
             }
@@ -246,7 +232,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getRoamerCache(u32 initialAdvan
         for (u32 seed : roamerSeeds[i])
         {
             auto ivs = computeIVs(seed, i, CacheType::Roamer);
-            if (compareIVs(ivs, filter))
+            if (filter.compareIV(ivs) && filter.compareHiddenPower(ivs))
             {
                 cache.emplace((i << 32) | seed, ivs);
             }
