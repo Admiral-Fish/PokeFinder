@@ -182,7 +182,26 @@ static bool isPokeRadarChainLead(Lead lead)
 
 static bool isPokeRadarEncounterModifier(Lead lead)
 {
-    return lead == Lead::QuickFeet;
+    constexpr u8 arenaTrap = 252;
+    constexpr u8 illuminate = 251;
+    constexpr u8 noGuard = 250;
+    u8 value = toInt(lead);
+    return lead == Lead::QuickFeet || value == arenaTrap || value == illuminate || value == noGuard;
+}
+
+static s8 getPokeRadarEncounterRateModifier(const PokeRadarControls &controls)
+{
+    if (controls.lead == nullptr)
+    {
+        return 0;
+    }
+
+    constexpr u8 arenaTrap = 252;
+    constexpr u8 illuminate = 251;
+    constexpr u8 noGuard = 250;
+    Lead lead = controls.lead->getEnum<Lead>();
+    u8 value = toInt(lead);
+    return value == arenaTrap || value == illuminate || value == noGuard ? 1 : lead == Lead::QuickFeet ? -1 : 0;
 }
 
 static Lead getPokeRadarGeneratorLead(const PokeRadarControls &controls)
@@ -773,7 +792,10 @@ QGroupBox *PokeRadar::createRNGInfo(PokeRadarControls &controls, bool searcherTa
         if (generatorTab)
         {
             lead->addMenu(tr("Encounter Modifier"),
-                          { { tr("Quick Feet"), toInt(Lead::QuickFeet) },
+                          { { tr("Arena Trap"), 252 },
+                            { tr("Illuminate"), 251 },
+                            { tr("No Guard"), 250 },
+                            { tr("Quick Feet"), toInt(Lead::QuickFeet) },
                             { tr("Stench"), toInt(Lead::Stench) },
                             { tr("White Smoke"), toInt(Lead::WhiteSmoke) } });
         }
@@ -948,10 +970,22 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     controls.dualSlotGame->addItem(tr("Fire Red"), static_cast<int>(Game::FireRed));
     controls.dualSlotGame->addItem(tr("Leaf Green"), static_cast<int>(Game::LeafGreen));
     controls.swarm = new QCheckBox(tr("Swarm"), settings);
-    controls.blackFlute = searcherTab ? nullptr : new QCheckBox(tr("Black Flute"), settings);
-    if (controls.blackFlute != nullptr)
+    controls.stepModifier = searcherTab ? nullptr : new ComboBox(settings);
+    controls.dateModifier = searcherTab ? nullptr : new ComboBox(settings);
+    if (controls.stepModifier != nullptr)
     {
-        connect(controls.blackFlute, &QCheckBox::stateChanged, this,
+        controls.stepModifier->addItem(tr("None"), static_cast<int>(PokeRadarStepModifier::None));
+        controls.stepModifier->addItem(tr("Black Flute"), static_cast<int>(PokeRadarStepModifier::BlackFlute));
+        controls.stepModifier->addItem(tr("White Flute"), static_cast<int>(PokeRadarStepModifier::WhiteFlute));
+        for (int modifier : { -10, -5, 0, 5, 10 })
+        {
+            QString text = modifier == 0 ? tr("None")
+                : modifier > 0             ? QStringLiteral("+%1%").arg(modifier)
+                                           : QStringLiteral("%1%").arg(modifier);
+            controls.dateModifier->addItem(text, modifier);
+        }
+        controls.dateModifier->setCurrentIndex(controls.dateModifier->findData(0));
+        connect(controls.stepModifier, &QComboBox::currentIndexChanged, this,
                 [this] { updateMinimumGraceSteps(generator, generatorEncounters); });
     }
     controls.slot = new ComboBox(settings);
@@ -995,23 +1029,27 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     layout->addWidget(controls.dualSlot, 3, 0);
     layout->addWidget(controls.dualSlotGame, 3, 1);
     layout->addWidget(controls.swarm, 3, 2);
-    if (controls.blackFlute != nullptr)
+    if (controls.stepModifier != nullptr)
     {
-        layout->addWidget(controls.blackFlute, 3, 3);
+        layout->addWidget(new QLabel(tr("Step Modifier"), settings), 4, 0);
+        layout->addWidget(controls.stepModifier, 4, 1);
+        layout->addWidget(new QLabel(tr("Date Modifier"), settings), 4, 2, Qt::AlignRight);
+        layout->addWidget(controls.dateModifier, 4, 3);
     }
-    layout->addWidget(controls.replacement, 4, 0);
-    layout->addWidget(controls.replacement0, 4, 1);
-    layout->addWidget(controls.replacement1, 4, 2);
-    layout->addWidget(new QLabel(tr("Chain Slot"), settings), 5, 0);
-    layout->addWidget(controls.slot, 5, 1, 1, 3);
+    int settingsOffset = searcherTab ? 0 : 1;
+    layout->addWidget(controls.replacement, 4 + settingsOffset, 0);
+    layout->addWidget(controls.replacement0, 4 + settingsOffset, 1);
+    layout->addWidget(controls.replacement1, 4 + settingsOffset, 2);
+    layout->addWidget(new QLabel(tr("Chain Slot"), settings), 5 + settingsOffset, 0);
+    layout->addWidget(controls.slot, 5 + settingsOffset, 1, 1, 3);
     if (searcherTab)
     {
         controls.slot->setEnabled(controls.chainCount->value() != 0);
     }
     else
     {
-        layout->addWidget(new QLabel(tr("Activation"), settings), 6, 0);
-        layout->addWidget(controls.result, 6, 1, 1, 3);
+        layout->addWidget(new QLabel(tr("Activation"), settings), 6 + settingsOffset, 0);
+        layout->addWidget(controls.result, 6 + settingsOffset, 1, 1, 3);
     }
 
     auto *line = new QFrame(settings);
@@ -1019,18 +1057,18 @@ QGroupBox *PokeRadar::createSettings(PokeRadarControls &controls, bool searcherT
     line->setFrameShadow(QFrame::Sunken);
     if (searcherTab)
     {
-        layout->addWidget(new QLabel(tr("Patch Type"), settings), 6, 0);
-        layout->addWidget(controls.patchTypes, 6, 1);
-        layout->addWidget(new QLabel(tr("Activation"), settings), 6, 2, Qt::AlignRight);
-        layout->addWidget(controls.results, 6, 3);
-        layout->addWidget(line, 7, 0, 1, 4);
+        layout->addWidget(new QLabel(tr("Patch Type"), settings), 6 + settingsOffset, 0);
+        layout->addWidget(controls.patchTypes, 6 + settingsOffset, 1);
+        layout->addWidget(new QLabel(tr("Activation"), settings), 6 + settingsOffset, 2, Qt::AlignRight);
+        layout->addWidget(controls.results, 6 + settingsOffset, 3);
+        layout->addWidget(line, 7 + settingsOffset, 0, 1, 4);
     }
     else
     {
-        layout->addWidget(line, 7, 0, 1, 4);
+        layout->addWidget(line, 7 + settingsOffset, 0, 1, 4);
     }
 
-    int levelRow = 8;
+    int levelRow = 8 + settingsOffset;
     layout->addWidget(new QLabel(tr("Levels"), settings), levelRow, 0);
     layout->addWidget(controls.levelMin, levelRow, 1);
     layout->addWidget(controls.levelMax, levelRow, 2);
@@ -1903,8 +1941,16 @@ std::vector<PokeRadarState> PokeRadar::getStates(PokeRadarControls &controls, co
         patchState = &*patch;
 
         PokeRadarState combined = chainCount != 0 ? PokeRadarState(*patchState, pokemon, chainCount) : PokeRadarState(*patchState, pokemon);
-        auto [noGraceSkip, graceSkip] = PokeRadarGenerator::getSkips(controls.seed->getUInt(), combined.getAdvances());
+        PokeRadarStepModifier stepModifier = controls.stepModifier != nullptr
+            ? controls.stepModifier->getEnum<PokeRadarStepModifier>()
+            : PokeRadarStepModifier::None;
+        s8 dateModifier = controls.dateModifier != nullptr ? static_cast<s8>(controls.dateModifier->getCurrentInt()) : 0;
+        auto [noGraceSkip, graceSkip]
+            = PokeRadarGenerator::getSkips(controls.seed->getUInt(), combined.getAdvances(), dateModifier);
         combined.setSkip(noGraceSkip, graceSkip);
+        combined.setStepEncounter(PokeRadarGenerator::getStepEncounter(controls.seed->getUInt(), combined.getAdvances(), area.getRate(),
+                                                                       getPokeRadarEncounterRateModifier(controls), stepModifier,
+                                                                       dateModifier));
 
         u32 battleAdvances = pokemon.getBattleAdvances();
         bool patchesReachable = battleAdvances > pokemon.getAdvances();
@@ -2064,13 +2110,23 @@ void PokeRadar::updateMinimumGraceSteps(PokeRadarControls &controls, const std::
     }
 
     u8 rate = encounters[controls.location->currentIndex()].getRate();
-    if (&controls == &generator && controls.lead != nullptr && isPokeRadarEncounterModifier(controls.lead->getEnum<Lead>()))
+    s8 encounterRateModifier = &controls == &generator ? getPokeRadarEncounterRateModifier(controls) : 0;
+    if (encounterRateModifier > 0)
+    {
+        rate *= 2;
+    }
+    else if (encounterRateModifier < 0)
     {
         rate /= 2;
     }
-    if (controls.blackFlute != nullptr && controls.blackFlute->isChecked())
+    if (controls.stepModifier != nullptr && controls.stepModifier->getEnum<PokeRadarStepModifier>() == PokeRadarStepModifier::BlackFlute)
     {
         rate /= 2;
+    }
+    else if (controls.stepModifier != nullptr
+             && controls.stepModifier->getEnum<PokeRadarStepModifier>() == PokeRadarStepModifier::WhiteFlute)
+    {
+        rate = (rate * 3) / 2;
     }
     const u8 graceSteps = 8 - std::min<u8>(rate / 10, 8);
     controls.minimumGraceSteps->setValue(graceSteps);

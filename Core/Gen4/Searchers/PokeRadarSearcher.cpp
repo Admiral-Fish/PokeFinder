@@ -846,6 +846,7 @@ void PokeRadarSearcher::addManualPatchMatches(const WildSearcherState4 &pokemon,
                 result.setDisplayPatchType(searchChainType == PokeRadarChainType::Strong || searchChainType == PokeRadarChainType::StrongShiny,
                                            isShinyPatchType(searchChainType));
                 result.setSkip(noGraceSkip, graceSkip);
+                result.setStepEncounter(PokeRadarGenerator::getStepEncounter(pokemon.getSeed(), pokemon.getAdvances(), area.getRate(), 0));
                 if (targetPatchAdvances.size() > 1)
                 {
                     std::ranges::sort(targetPatchAdvances);
@@ -965,6 +966,7 @@ void PokeRadarSearcher::addPostBattlePatchMatches(const WildSearcherState4 &poke
         state.setDisplayPatchType(searchChainType == PokeRadarChainType::Strong || searchChainType == PokeRadarChainType::StrongShiny,
                                   isShinyPatchType(searchChainType));
         state.setSkip(noGraceSkip, graceSkip);
+        state.setStepEncounter(PokeRadarGenerator::getStepEncounter(pokemon.getSeed(), pokemon.getAdvances(), area.getRate(), 0));
         state.setDistance(bestDistance);
         state.setBattleStartAdvances(bestBattleStartAdvances);
         results.emplace_back(state);

@@ -60,6 +60,7 @@ public:
         chatot(((prng % 8192) * 100) >> 13),
         noGraceSkip(0),
         graceSkip(0),
+        stepEncounter(false),
         displayBattleAdvances(false),
         battleAdvances(0),
         displayedPatchAdvances(0),
@@ -82,6 +83,7 @@ public:
         chatot(state.chatot),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        stepEncounter(state.stepEncounter),
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
@@ -107,6 +109,7 @@ public:
         chatot(pokemon.getChatot()),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        stepEncounter(state.stepEncounter),
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
@@ -132,6 +135,7 @@ public:
         chatot(((prng % 8192) * 100) >> 13),
         noGraceSkip(state.noGraceSkip),
         graceSkip(state.graceSkip),
+        stepEncounter(state.stepEncounter),
         displayBattleAdvances(state.displayBattleAdvances),
         battleAdvances(state.battleAdvances),
         displayedPatchAdvances(state.displayedPatchAdvances),
@@ -262,6 +266,16 @@ public:
         graceSkip = grace;
     }
 
+    bool hasStepEncounter() const
+    {
+        return stepEncounter;
+    }
+
+    void setStepEncounter(bool flag)
+    {
+        stepEncounter = flag;
+    }
+
     u32 getDisplayedBattleAdvances() const
     {
         return displayBattleAdvances ? battleAdvances : pokemon.value().getBattleAdvances();
@@ -349,6 +363,7 @@ private:
     u8 chatot;
     u8 noGraceSkip;
     u8 graceSkip;
+    bool stepEncounter;
     bool displayBattleAdvances;
     u32 battleAdvances;
     u32 displayedPatchAdvances;

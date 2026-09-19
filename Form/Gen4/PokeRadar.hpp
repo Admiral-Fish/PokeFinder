@@ -70,7 +70,8 @@ struct PokeRadarControls
     ComboBox *replacement0;
     ComboBox *replacement1;
     QCheckBox *swarm;
-    QCheckBox *blackFlute;
+    ComboBox *stepModifier;
+    ComboBox *dateModifier;
     QCheckBox *dualSlot;
     ComboBox *dualSlotGame;
     ComboBox *slot;

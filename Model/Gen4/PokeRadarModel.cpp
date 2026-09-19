@@ -352,12 +352,13 @@ int PokeRadarModel4::mapGeneratorColumn(int column) const
 QString PokeRadarModel4::getSkip(const PokeRadarState &state) const
 {
     auto format = [](u8 skip) { return skip == 0 ? QStringLiteral("-") : QString("+%1").arg(skip); };
+    QString suffix = state.hasStepEncounter() ? QStringLiteral(" !") : QString();
     if (state.getNoGraceSkip() == state.getGraceSkip())
     {
-        return format(state.getNoGraceSkip());
+        return format(state.getNoGraceSkip()) + suffix;
     }
 
-    return QStringLiteral("%1 / %2").arg(format(state.getGraceSkip()), format(state.getNoGraceSkip()));
+    return QStringLiteral("%1 / %2%3").arg(format(state.getGraceSkip()), format(state.getNoGraceSkip()), suffix);
 }
 
 QString PokeRadarModel4::getCoordinates(const PokeRadarState &state, int type) const
