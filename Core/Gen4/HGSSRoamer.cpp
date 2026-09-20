@@ -20,45 +20,36 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
+constexpr u16 JOHTO_MAX = 16;
+constexpr u16 KANTO_MAX = 25;
+
 /**
  * @brief Calculates roamer location for Entei/Raikou
  *
- * @param prng PRNG state
+ * @param rng RNG state
  *
  * @return Roamer location
  */
-static u8 getRouteJ(u16 prng)
+static u8 getRouteJ(PokeRNG &rng)
 {
-    u8 val = prng & 15;
-    return val < 11 ? val + 29 : val + 31;
+    constexpr u8 JOHTO_MAPS[] = { 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 43, 44, 45, 46 };
+    return JOHTO_MAPS[rng.nextUShort(sizeof(JOHTO_MAPS))];
 }
 
 /**
  * @brief Calculates roamer location for Latios/Latias
  *
- * @param prng PRNG state
+ * @param rng RNG state
  *
  * @return Roamer location
  */
-static u8 getRouteK(u16 prng)
+static u8 getRouteK(PokeRNG &rng)
 {
-    u8 val = prng % 25;
-    if (val > 21)
-    {
-        switch (val)
-        {
-        case 22:
-            return 24;
-        case 23:
-            return 26;
-        case 24:
-            return 28;
-        }
-    }
-    return val + 1;
+    constexpr u8 KANTO_MAPS[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 26, 28 };
+    return KANTO_MAPS[rng.nextUShort(sizeof(KANTO_MAPS))];
 }
 
-HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
+HGSSRoamer::HGSSRoamer(u32 seed, u8 playerRoute, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
     enteiRoute(0), latiRoute(0), raikouRoute(0), skips(0)
 {
     PokeRNG rng(seed);
@@ -68,8 +59,8 @@ HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::
         do
         {
             skips++;
-            raikouRoute = getRouteJ(rng.nextUShort());
-        } while (routes[0] == raikouRoute);
+            raikouRoute = getRouteJ(rng);
+        } while (routes[0] == raikouRoute || playerRoute == raikouRoute);
     }
 
     if (roamers[1])
@@ -77,8 +68,8 @@ HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::
         do
         {
             skips++;
-            enteiRoute = getRouteJ(rng.nextUShort());
-        } while (routes[1] == enteiRoute);
+            enteiRoute = getRouteJ(rng);
+        } while (routes[1] == enteiRoute || playerRoute == enteiRoute);
     }
 
     if (roamers[2])
@@ -86,8 +77,8 @@ HGSSRoamer::HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::
         do
         {
             skips++;
-            latiRoute = getRouteK(rng.nextUShort());
-        } while (routes[2] == latiRoute);
+            latiRoute = getRouteK(rng);
+        } while (routes[2] == latiRoute || playerRoute == latiRoute);
     }
 }
 

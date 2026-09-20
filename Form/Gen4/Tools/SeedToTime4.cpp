@@ -52,6 +52,7 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     ui->textBoxHGSSSecond->setValues(0, 59, 2, 10);
     ui->textBoxHGSSDelayCalibration->setValues(InputType::Advance32Bit);
     ui->textBoxHGSSSecondCalibration->setValues(0, 500, 3, 10);
+    ui->textBoxHGSSPlayerLocation->setValues(0, 46, 2, 10);
     ui->textBoxHGSSRaikou->setValues(0, 46, 2, 10);
     ui->textBoxHGSSEntei->setValues(0, 46, 2, 10);
     ui->textBoxHGSSLati->setValues(0, 28, 2, 10);
@@ -202,13 +203,14 @@ void SeedToTime4::hgssCalibrate()
         return;
     }
 
+    u8 playerLocation = ui->textBoxHGSSPlayerLocation->getUChar();
     std::array<bool, 3> roamers
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     std::array<u8, 3> routes = { ui->textBoxHGSSRaikou->getUChar(), ui->textBoxHGSSEntei->getUChar(), ui->textBoxHGSSLati->getUChar() };
     const SeedTime4 &target = hgssModel->getItem(index.row());
 
     hgssCalibrateModel->clearModel();
-    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, roamers, routes, target);
+    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, playerLocation, roamers, routes, target);
     hgssCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -228,11 +230,12 @@ void SeedToTime4::hgssGenerate()
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
     u8 forcedSecond = ui->textBoxHGSSSecond->getUChar();
 
+    u8 playerLocation = ui->textBoxHGSSPlayerLocation->getUChar();
     std::array<bool, 3> roamers
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     std::array<u8, 3> routes = { ui->textBoxHGSSRaikou->getUChar(), ui->textBoxHGSSEntei->getUChar(), ui->textBoxHGSSLati->getUChar() };
 
-    HGSSRoamer roamer(seed, roamers, routes);
+    HGSSRoamer roamer(seed, playerLocation, roamers, routes);
 
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: %1").arg(QString::fromStdString(Utilities4::getCalls(seed, roamer.getSkips()))));
     std::string str = roamer.getRouteString();

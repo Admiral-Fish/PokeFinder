@@ -53,13 +53,14 @@ namespace SeedToTimeCalculator4
      *
      * @param delayCalibration -/+ delay range
      * @param secondCalibration -/+ second range
+     * @param playerRoute Player location
      * @param roamers Which roamers are active
      * @param routes Which route active roamers are on
      * @param target Date/time target
      *
      * @return Vector of calibration date/times
      */
-    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const std::array<bool, 3> &roamers,
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, u8 playerRoute, const std::array<bool, 3> &roamers,
                                               std::array<u8, 3> &routes, const SeedTime4 &target);
 };
 
