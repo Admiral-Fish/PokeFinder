@@ -19,6 +19,7 @@
 
 #include "MT.hpp"
 #include <Core/RNG/Jump.hpp>
+#include <cassert>
 #include <cstring>
 
 constexpr u8 POLY[] = {
@@ -203,4 +204,100 @@ void MT::shuffle()
         vuint128 m2 = v32x4_load(ptr + 393);
         state[155] = mm_recursion(m0, last, m2);
     }
+}
+
+MTFast::MTFast(u32 seed, u32 advances, u16 size, bool fast) : index(advances), size(size)
+{
+    assert(size < 227);
+
+    u32 *ptr = &state[0].uint32[0];
+    for (u32 i = 1; i < size + 2; i++)
+    {
+        ptr[i - 1] = seed;
+        seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
+    }
+
+    for (u32 i = size + 2; i < 397; i++)
+    {
+        seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
+    }
+
+    vuint128 upperMask(0x80000000);
+    vuint128 lowerMask(0x7fffffff);
+    vuint128 matrix(0x9908b0df);
+    vuint128 one(1);
+    vuint128 mask1(0x9d2c5680);
+    vuint128 mask2(0xefc60000);
+
+    u32 split = size >= 4 ? size - (size % 4) : 0;
+    for (u32 i = 0; i < split; i += 4)
+    {
+        vuint128 m0 = state[i / 4];
+        vuint128 m1 = v32x4_load(ptr + i + 1);
+
+        u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (i + 397);
+        u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (i + 398);
+        u32 x2 = 0x6c078965 * (x1 ^ (x1 >> 30)) + (i + 399);
+        seed = 0x6c078965 * (x2 ^ (x2 >> 30)) + (i + 400);
+
+        vuint128 m2(x0, x1, x2, seed);
+
+        vuint128 y = (m0 & upperMask) | (m1 & lowerMask);
+        vuint128 y1 = y >> 1;
+        vuint128 mag01 = ((y & one) == one) & matrix;
+
+        // Temper results while shuffling
+        y = y1 ^ mag01 ^ m2;
+        y = y ^ (y >> 11);
+        y = y ^ ((y << 7) & mask1);
+        y = y ^ ((y << 15) & mask2);
+        if (fast)
+        {
+            y = y >> 27;
+        }
+        else
+        {
+            y = y ^ (y >> 18);
+        }
+
+        state[i / 4] = y;
+    }
+
+    for (u32 i = split; i < size; i++)
+    {
+        u32 m0 = ptr[i];
+        u32 m1 = ptr[i + 1];
+        seed = 0x6c078965 * (seed ^ (seed >> 30)) + (i + 397);
+
+        u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
+
+        u32 y1 = y >> 1;
+        if (y & 1)
+        {
+            y1 ^= 0x9908b0df;
+        }
+
+        // Temper results while shuffling
+        y = y1 ^ seed;
+        y ^= (y >> 11);
+        y ^= (y << 7) & 0x9d2c5680;
+        y ^= (y << 15) & 0xefc60000;
+        if (fast)
+        {
+            y >>= 27;
+        }
+        else
+        {
+            y ^= (y >> 18);
+        }
+
+        ptr[i] = y;
+    }
+}
+
+u32 MTFast::next()
+{
+    assert(index < size);
+    u32 *ptr = &state[0].uint32[0];
+    return ptr[index++];
 }

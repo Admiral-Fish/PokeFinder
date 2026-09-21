@@ -27,6 +27,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <variant>
 
 constexpr u8 levelTable[9] = { 5, 10, 10, 20, 20, 30, 30, 40, 40 };
 
@@ -75,15 +76,27 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         rng.next();
     }
 
-    RNGList<u8, MT, 8, gen> rngList(seed >> 32, (initialAdvances * 2) + ivAdvances + 9);
+    using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
+    RNGVariant rngList = [&]() {
+        u32 initial = (initialAdvances * 2) + ivAdvances + 9;
+        u32 size = initial + ((maxAdvances + 1) * 2) + 8;
+        if (size < 227)
+        {
+            return RNGVariant(std::in_place_type<RNGList<u8, MTFast, 8>>, seed >> 32, initial, size, true);
+        }
+        else
+        {
+            return RNGVariant(std::in_place_type<RNGList<u8, MT, 8, gen>>, seed >> 32, initial);
+        }
+    }();
 
     std::vector<DreamRadarState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, std::visit([&](auto &rng) { rng.advanceStates(2); }, rngList), rng.next())
     {
         BWRNG go(rng, jump);
 
         std::array<u8, 6> ivs;
-        std::ranges::generate(ivs, [&rngList] { return rngList.next(); });
+        std::visit([&](auto &rng) { std::ranges::generate(ivs, [&rng] { return rng.next(); }); }, rngList);
 
         go.next();
 

@@ -294,7 +294,6 @@ add_library(PokeFinderCore STATIC
     RNG/LCRNG64.hpp
     RNG/MT.cpp
     RNG/MT.hpp
-    RNG/MTFast.hpp
     RNG/RNGList.hpp
     RNG/SFMT.cpp
     RNG/SFMT.hpp

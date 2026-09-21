@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTFast.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 
@@ -174,7 +174,7 @@ ProfileIVSearcher5::ProfileIVSearcher5(const Date &date, const Time &time, int m
 
 bool ProfileIVSearcher5::valid(u64 seed)
 {
-    MTFast<8, true> rng(seed >> 32, offset);
+    MTFast rng(seed >> 32, offset, 8, true);
 
     for (u8 i = 0; i < 6; i++)
     {

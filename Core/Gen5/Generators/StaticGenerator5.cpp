@@ -25,6 +25,7 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <variant>
 
 static u8 gen(MT &rng)
 {
@@ -61,37 +62,52 @@ StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 off
 std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
 {
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
+    u32 initial = initialAdvances + (bw ? 0 : 2) + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0);
 
-    std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
-
-    RNGList<u8, MT, 8, gen> rngList(seed >> 32,
-                                    initialAdvances + (bw ? 0 : 2) + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0));
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
-    {
-        std::array<u8, 6> iv;
-
-        iv[0] = rngList.next();
-        iv[1] = rngList.next();
-        iv[2] = rngList.next();
-
-        if (staticTemplate.getRoamer())
+    using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
+    RNGVariant rngList = [&]() {
+        u32 size = initial + (maxAdvances + 1) + 8;
+        if (size < 227)
         {
-            iv[4] = rngList.next();
-            iv[5] = rngList.next();
-            iv[3] = rngList.next();
+            return RNGVariant(std::in_place_type<RNGList<u8, MTFast, 8>>, seed >> 32, initial, size, true);
         }
         else
         {
-            iv[3] = rngList.next();
-            iv[4] = rngList.next();
-            iv[5] = rngList.next();
+            return RNGVariant(std::in_place_type<RNGList<u8, MT, 8, gen>>, seed >> 32, initial);
         }
+    }();
 
-        if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
-        {
-            ivs.emplace_back(initialAdvances + cnt, iv);
-        }
-    }
+    std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
+    std::visit(
+        [&](auto &rng) {
+            for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.advanceState())
+            {
+                std::array<u8, 6> iv;
+
+                iv[0] = rng.next();
+                iv[1] = rng.next();
+                iv[2] = rng.next();
+
+                if (staticTemplate.getRoamer())
+                {
+                    iv[4] = rng.next();
+                    iv[5] = rng.next();
+                    iv[3] = rng.next();
+                }
+                else
+                {
+                    iv[3] = rng.next();
+                    iv[4] = rng.next();
+                    iv[5] = rng.next();
+                }
+
+                if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
+                {
+                    ivs.emplace_back(initialAdvances + cnt, iv);
+                }
+            }
+        },
+        rngList);
 
     if (ivs.empty())
     {
