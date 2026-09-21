@@ -99,4 +99,40 @@ private:
     void shuffle();
 };
 
+/**
+ * @brief Provides random numbers via the Mersenne Twister algorithm.
+ * The assumptions of MTFast allow some simplifications to be made from normal MT
+ * 1. Computing less of the internal MT array
+ * 2. Storing less of the internal MT array
+ * 3. Skipping the shuffle check when generating numbers for use
+ * 4. If the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
+ * 5. Temper the results in the initial shuffle to take advantage of SIMD
+ *
+ */
+class MTFast
+{
+public:
+    /**
+     * @brief Construct a new MTFast object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     * @param size Number of values to have generated
+     * @param fast Whether to skip last bit shift operations
+     */
+    MTFast(u32 seed, u32 advances, u16 size, bool fast = false);
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     *
+     * @return PRNG value
+     */
+    u32 next();
+
+private:
+    vuint128 state[57]; // Fits 227
+    u16 index;
+    u16 size;
+};
+
 #endif // MT_HPP

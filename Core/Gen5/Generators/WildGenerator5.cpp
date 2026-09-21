@@ -30,6 +30,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <variant>
 
 static u8 gen(MT &rng)
 {
@@ -113,19 +114,35 @@ WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset,
 std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
 {
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
+    u32 initial = initialAdvances + (bw ? 0 : 2);
+
+    using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
+    RNGVariant rngList = [&]() {
+        u32 size = initial + (maxAdvances + 1) + 8;
+        if (size < 227)
+        {
+            return RNGVariant(std::in_place_type<RNGList<u8, MTFast, 8>>, seed >> 32, initial, size, true);
+        }
+        else
+        {
+            return RNGVariant(std::in_place_type<RNGList<u8, MT, 8, gen>>, seed >> 32, initial);
+        }
+    }();
 
     std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
-
-    RNGList<u8, MT, 8, gen> rngList(seed >> 32, initialAdvances + (bw ? 0 : 2));
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
-    {
-        std::array<u8, 6> iv;
-        std::ranges::generate(iv, [&rngList] { return rngList.next(); });
-        if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
-        {
-            ivs.emplace_back(initialAdvances + cnt, iv);
-        }
-    }
+    std::visit(
+        [&](auto &rng) {
+            for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.advanceState())
+            {
+                std::array<u8, 6> iv;
+                std::ranges::generate(iv, [&rng] { return rng.next(); });
+                if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
+                {
+                    ivs.emplace_back(initialAdvances + cnt, iv);
+                }
+            }
+        },
+        rngList);
 
     if (ivs.empty())
     {

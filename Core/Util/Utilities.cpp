@@ -145,10 +145,10 @@ namespace Utilities4
     {
         std::string coins;
 
-        MT mt(seed);
+        MTFast rng(seed, 0, 20);
         for (u8 i = 0; i < 20; i++)
         {
-            coins += (mt.next() & 1) == 0 ? "T" : "H";
+            coins += (rng.next() & 1) == 0 ? "T" : "H";
             if (i != 19)
             {
                 coins += ", ";

@@ -19,7 +19,7 @@
 
 #include "IDGenerator4.hpp"
 #include <Core/Gen4/States/IDState4.hpp>
-#include <Core/RNG/MTFast.hpp>
+#include <Core/RNG/MT.hpp>
 
 IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute, const IDFilter &filter) :
     IDGenerator(0, 0, filter), maxDelay(maxDelay), minDelay(minDelay), year(year), day(day), hour(hour), minute(minute), month(month)
@@ -36,7 +36,7 @@ std::vector<IDState4> IDGenerator4::generate() const
         {
             u32 seed = static_cast<u32>(((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
 
-            MTFast<2> mt(seed, 1);
+            MTFast mt(seed, 1, 2);
 
             u32 sidtid = mt.next();
 

@@ -19,7 +19,7 @@
 
 #include "IDSearcher4.hpp"
 #include <Core/Gen4/States/IDState4.hpp>
-#include <Core/RNG/MTFast.hpp>
+#include <Core/RNG/MT.hpp>
 
 IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter)
 {
@@ -50,7 +50,7 @@ void IDSearcher4::search(u16 year, u32 minDelay, u32 maxDelay)
                 }
 
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
-                MTFast<2> mt(seed, 1);
+                MTFast mt(seed, 1, 2);
 
                 u32 sidtid = mt.next();
 

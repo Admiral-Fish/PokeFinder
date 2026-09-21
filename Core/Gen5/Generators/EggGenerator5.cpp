@@ -25,7 +25,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTFast.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
@@ -71,7 +71,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         female = PersonalLoader::getPersonal(profile.getVersion(), 314);
     }
 
-    MTFast<13, true> mt(seed >> 32, 7);
+    MTFast mt(seed >> 32, 7, 13, true);
     std::array<u8, 6> mtIVs;
     std::ranges::generate(mtIVs, [&mt] { return mt.next(); });
 
@@ -190,7 +190,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 {
     std::vector<EggState5> states;
 
-    MTFast<4> mt(seed >> 32, 2);
+    MTFast mt(seed >> 32, 2, 4);
 
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
     eggSeed |= mt.next();
