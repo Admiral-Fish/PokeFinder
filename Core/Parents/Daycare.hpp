@@ -39,7 +39,7 @@ public:
      * @param parentNature Parent natures
      * @param specie Egg specie
      * @param masuda Parents form international combination
-     * @param compatability Parent compatability
+     * @param compatibility Parent compatibility
      */
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
             const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, u16 specie,

@@ -43,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset,  const Daycare &daycare, const Profile5 &profile,
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
                   const StateFilter &filter);
 
     /**

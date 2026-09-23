@@ -9,7 +9,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "EBred",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 1,
             "parentIVs": [
                 [
@@ -1957,7 +1957,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "EBredSplit",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 29,
             "parentIVs": [
                 [
@@ -4285,7 +4285,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "EBredAlternate",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 314,
             "parentIVs": [
                 [
@@ -6613,7 +6613,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "RSFRLGBredSplit",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 1,
             "parentIVs": [
                 [
@@ -8941,7 +8941,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "RSFRLGBred",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 29,
             "parentIVs": [
                 [
@@ -11269,7 +11269,7 @@
             "minRedraw": 0,
             "maxRedraw": 0,
             "method": "RSFRLGBredAlternate",
-            "compatability": 70,
+            "compatibility": 70,
             "pokemon": 314,
             "parentIVs": [
                 [

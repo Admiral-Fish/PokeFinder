@@ -362,12 +362,12 @@
   <tabstop>spinBoxParentBSpD</tabstop>
   <tabstop>spinBoxParentBSpe</tabstop>
   <tabstop>comboBoxParentAAbility</tabstop>
-  <tabstop>comboBoxParentBAbility</tabstop>
   <tabstop>comboBoxParentAGender</tabstop>
-  <tabstop>comboBoxParentBGender</tabstop>
   <tabstop>comboBoxParentAItem</tabstop>
-  <tabstop>comboBoxParentBItem</tabstop>
   <tabstop>comboBoxParentANature</tabstop>
+  <tabstop>comboBoxParentBAbility</tabstop>
+  <tabstop>comboBoxParentBGender</tabstop>
+  <tabstop>comboBoxParentBItem</tabstop>
   <tabstop>comboBoxParentBNature</tabstop>
   <tabstop>comboBoxEggSpecie</tabstop>
   <tabstop>checkBoxMasuda</tabstop>

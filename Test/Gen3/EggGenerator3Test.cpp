@@ -50,7 +50,7 @@ void EggGenerator3Test::generate_data()
     QTest::addColumn<u8>("minRedraw");
     QTest::addColumn<u8>("maxRedraw");
     QTest::addColumn<Method>("method");
-    QTest::addColumn<u8>("compatability");
+    QTest::addColumn<u8>("compatibility");
     QTest::addColumn<Game>("version");
     QTest::addColumn<u16>("pokemon");
     QTest::addColumn<IVs>("parentIVs");
@@ -65,7 +65,7 @@ void EggGenerator3Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << d["calibration"].get<u8>() << d["minRedraw"].get<u8>()
-            << d["maxRedraw"].get<u8>() << d["method"].get<Method>() << d["compatability"].get<u8>() << d["version"].get<Game>()
+            << d["maxRedraw"].get<u8>() << d["method"].get<Method>() << d["compatibility"].get<u8>() << d["version"].get<Game>()
             << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>() << d["parentAbility"].get<Attribute>()
             << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>() << d["parentNature"].get<Attribute>()
             << d["results"].get<json>().dump();
@@ -80,7 +80,7 @@ void EggGenerator3Test::generate()
     QFETCH(u8, minRedraw);
     QFETCH(u8, maxRedraw);
     QFETCH(Method, method);
-    QFETCH(u8, compatability);
+    QFETCH(u8, compatibility);
     QFETCH(Game, version);
     QFETCH(u16, pokemon);
     QFETCH(IVs, parentIVs);
@@ -106,9 +106,9 @@ void EggGenerator3Test::generate()
 
     Profile3 profile("-", version, 12345, 54321, false);
 
-    Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, false);
+    Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, false, compatibility);
     StateFilter filter(255, 255, 255, 1, 100, 0, 255, 0, 255, false, min, max, natures, powers);
-    EggGenerator3 generator(0, 9, 0, 0, 9, 0, calibration, minRedraw, maxRedraw, method, compatability, daycare, profile, filter);
+    EggGenerator3 generator(0, 9, 0, 0, 9, 0, calibration, minRedraw, maxRedraw, method, daycare, profile, filter);
 
     auto states = generator.generate(seed, seedPickup);
     QCOMPARE(states.size(), j.size());

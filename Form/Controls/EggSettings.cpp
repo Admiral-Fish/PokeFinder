@@ -97,7 +97,7 @@ void EggSettings::contextMenuEvent(QContextMenuEvent *event)
 
 bool EggSettings::isValid(bool hiddenAbility) const
 {
-    // Gender compatability
+    // Gender compatibility
     u8 parent1 = ui->comboBoxParentAGender->currentIndex();
     u8 parent2 = ui->comboBoxParentBGender->currentIndex();
     if (!((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0) || // Male/Female
@@ -110,7 +110,7 @@ bool EggSettings::isValid(bool hiddenAbility) const
         return false;
     }
 
-    // Hidden ability compatability
+    // Hidden ability compatibility
     if (hiddenAbility)
     {
         u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
