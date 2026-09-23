@@ -195,7 +195,7 @@ void Eggs4::generate()
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup,
-                            ui->eggSettingsGenerator->getDaycare(), *currentProfile, filter);
+                            ui->eggSettingsGenerator->getDaycare(false), *currentProfile, filter);
 
     auto states = generator.generate(seedHeld, seedPickup);
     generatorModel->addItems(states);
@@ -238,7 +238,7 @@ void Eggs4::search()
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator4 generator(initialAdvancesHeld, maxAdvancesHeld, 0, initialAdvancesPickup, maxAdvancesPickup, 0,
-                            ui->eggSettingsSearcher->getDaycare(), *currentProfile, filter);
+                            ui->eggSettingsSearcher->getDaycare(false), *currentProfile, filter);
 
     auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile);
     searcher->setMaxProgress(256 * 24 * (maxDelay - minDelay + 1));

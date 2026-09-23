@@ -39,12 +39,11 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
-     * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatibility, const Daycare &daycare, const Profile5 &profile,
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset,  const Daycare &daycare, const Profile5 &profile,
                   const StateFilter &filter);
 
     /**
@@ -59,7 +58,6 @@ public:
 private:
     bool ditto;
     u8 everstone;
-    u8 eggChance;
     u8 parentAbility;
     u8 poweritem;
     u8 rolls;

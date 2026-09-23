@@ -48,8 +48,6 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxOffset->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxCompatibility->setup({ 20, 50, 70 });
-
     ui->filter->disableControls(Controls::Height | Controls::Weight | Controls::Wild);
 
     ui->eggSettings->setup(Game::BDSP);
@@ -120,15 +118,10 @@ void Eggs8::generate()
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 offset = ui->textBoxOffset->getUInt();
-    u8 compatability = ui->comboBoxCompatibility->getCurrentUChar();
-    if (currentProfile->getOvalCharm())
-    {
-        compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
-    }
-    Daycare daycare = ui->eggSettings->getDaycare();
+    Daycare daycare = ui->eggSettings->getDaycare(currentProfile->getOvalCharm());
 
     auto filter = ui->filter->getFilter<StateFilter>();
-    EggGenerator8 generator(initialAdvances, maxAdvances, offset, compatability, daycare, *currentProfile, filter);
+    EggGenerator8 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

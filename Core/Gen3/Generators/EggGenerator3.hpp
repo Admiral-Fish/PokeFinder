@@ -45,14 +45,13 @@ public:
      * @param minRedraw Minimum number of redraws
      * @param maxRedraw Maximum number of redraws
      * @param method Encounter method
-     * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
     EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 offsetPickup,
-                  u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability, const Daycare &daycare,
-                  const Profile3 &profile, const StateFilter &filter);
+                  u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, const Daycare &daycare, const Profile3 &profile,
+                  const StateFilter &filter);
 
     /**
      * @brief Generates states

@@ -146,33 +146,7 @@
             </item>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelEmeraldCompatibility">
-            <property name="text">
-             <string>Compatibility</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" colspan="2">
-           <widget class="ComboBox" name="comboBoxEmeraldCompatibility">
-            <item>
-             <property name="text">
-              <string>The two don't seem to like each other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along very well</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="7" column="0" colspan="3">
+          <item row="6" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonEmeraldGenerate">
             <property name="text">
              <string>Generate</string>
@@ -329,33 +303,7 @@
             </item>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelRSFRLGCompatibility">
-            <property name="text">
-             <string>Compatibility</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="ComboBox" name="comboBoxRSFRLGCompatibility">
-            <item>
-             <property name="text">
-              <string>The two don't seem to like each other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along very well</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
+          <item row="5" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonRSFRLGGenerate">
             <property name="text">
              <string>Generate</string>
@@ -445,7 +393,6 @@
   <tabstop>textBoxEmeraldMinRedraws</tabstop>
   <tabstop>textBoxEmeraldMaxRedraws</tabstop>
   <tabstop>comboBoxEmeraldMethod</tabstop>
-  <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>pushButtonEmeraldGenerate</tabstop>
   <tabstop>tableViewEmerald</tabstop>
   <tabstop>textBoxRSFRLGSeedHeld</tabstop>
@@ -457,7 +404,6 @@
   <tabstop>textBoxRSFRLGOffsetHeld</tabstop>
   <tabstop>textBoxRSFRLGOffsetPickup</tabstop>
   <tabstop>comboBoxRSFRLGMethod</tabstop>
-  <tabstop>comboBoxRSFRLGCompatibility</tabstop>
   <tabstop>pushButtonRSFRLGGenerate</tabstop>
   <tabstop>tableViewRSFRLG</tabstop>
  </tabstops>

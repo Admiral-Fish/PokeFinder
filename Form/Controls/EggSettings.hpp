@@ -82,16 +82,13 @@ public:
     void copyFrom(const EggSettings *other);
 
     /**
-     * @brief Gets the selected daycare compatibility value
-     */
-    u8 getCompatibility() const;
-
-    /**
      * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
+     *
+     * @param ovalCharm Whether Oval Charm has been obtained
      *
      * @return Parent information
      */
-    Daycare getDaycare() const;
+    Daycare getDaycare(bool ovalCharm) const;
 
     /**
      * @brief Changes order of the parents to match what the game does

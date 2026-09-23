@@ -829,25 +829,28 @@
 <context>
     <name>EggGeneratorModel5</name>
     <message>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Egg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">タマゴ</translation>
     </message>
     <message>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">はい</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -877,7 +880,7 @@
         <translation>色違い</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
@@ -907,7 +910,7 @@
         <translation>特攻</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
@@ -1239,17 +1242,17 @@
 <context>
     <name>EggSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>Square</source>
         <translation>ひし形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>Star</source>
         <translation>星形</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -1353,10 +1356,10 @@
     <name>EggSettings</name>
     <message>
         <source>Compatibility</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">相性</translation>
     </message>
     <message>
-        <source>The two don't really seem to like each other much.</source>
+        <source>The two don&apos;t really seem to like each other much.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1420,64 +1423,64 @@
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="77"/>
+        <location filename="../Controls/EggSettings.cpp" line="79"/>
         <source>Copy IVs to clipboard</source>
         <translation>個体値をクリップボードにコピー</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="78"/>
+        <location filename="../Controls/EggSettings.cpp" line="80"/>
         <source>Paste IVs from clipboard</source>
         <translation>クリップボードから個体値を貼り付け</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="282"/>
-        <location filename="../Controls/EggSettings.cpp" line="289"/>
+        <location filename="../Controls/EggSettings.cpp" line="296"/>
+        <location filename="../Controls/EggSettings.cpp" line="303"/>
         <source>Power Weight</source>
         <translation>パワーウエイト</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="283"/>
-        <location filename="../Controls/EggSettings.cpp" line="290"/>
+        <location filename="../Controls/EggSettings.cpp" line="297"/>
+        <location filename="../Controls/EggSettings.cpp" line="304"/>
         <source>Power Bracer</source>
         <translation>パワーリスト</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="284"/>
-        <location filename="../Controls/EggSettings.cpp" line="291"/>
+        <location filename="../Controls/EggSettings.cpp" line="298"/>
+        <location filename="../Controls/EggSettings.cpp" line="305"/>
         <source>Power Belt</source>
         <translation>パワーベルト</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="285"/>
-        <location filename="../Controls/EggSettings.cpp" line="292"/>
+        <location filename="../Controls/EggSettings.cpp" line="299"/>
+        <location filename="../Controls/EggSettings.cpp" line="306"/>
         <source>Power Lens</source>
         <translation>パワーレンズ</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="286"/>
-        <location filename="../Controls/EggSettings.cpp" line="293"/>
+        <location filename="../Controls/EggSettings.cpp" line="300"/>
+        <location filename="../Controls/EggSettings.cpp" line="307"/>
         <source>Power Band</source>
         <translation>パワーバンド</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="287"/>
-        <location filename="../Controls/EggSettings.cpp" line="294"/>
+        <location filename="../Controls/EggSettings.cpp" line="301"/>
+        <location filename="../Controls/EggSettings.cpp" line="308"/>
         <source>Power Anklet</source>
         <translation>パワーアンクル</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="303"/>
-        <location filename="../Controls/EggSettings.cpp" line="304"/>
+        <location filename="../Controls/EggSettings.cpp" line="317"/>
+        <location filename="../Controls/EggSettings.cpp" line="318"/>
         <source>Destiny Knot</source>
         <translation>あかいいと</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="332"/>
+        <location filename="../Controls/EggSettings.cpp" line="346"/>
         <source>Invalid Format</source>
         <translation>形式が不正です</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="332"/>
+        <location filename="../Controls/EggSettings.cpp" line="346"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation>クリップボードの内容が想定した形式と一致しません。</translation>
     </message>
@@ -1502,18 +1505,18 @@
         <translation>タマゴの種族</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="106"/>
-        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <location filename="../Controls/EggSettings.cpp" line="108"/>
+        <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Incompatible Parents</source>
         <translation>親の組み合わせが不正です</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="106"/>
+        <location filename="../Controls/EggSettings.cpp" line="108"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>選択した親の性別では繁殖できません</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
         <translation>この親の組み合わせでは夢特性は遺伝しません!</translation>
     </message>
@@ -1527,10 +1530,6 @@
     <message>
         <source>Emerald</source>
         <translation>エメラルド</translation>
-    </message>
-    <message>
-        <source>Compatibility</source>
-        <translation>相性</translation>
     </message>
     <message>
         <source>Redraws</source>
@@ -1551,18 +1550,6 @@
     <message>
         <source>Filters</source>
         <translation>絞り込み</translation>
-    </message>
-    <message>
-        <source>The two don&apos;t seem to like each other</source>
-        <translation>それほど よくない</translation>
-    </message>
-    <message>
-        <source>The two seem to get along</source>
-        <translation>まずまず</translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well</source>
-        <translation>とっても よい</translation>
     </message>
     <message>
         <source>Method</source>
@@ -1821,22 +1808,6 @@
         <translation>最大消費数</translation>
     </message>
     <message>
-        <source>Compatibility</source>
-        <translation>相性</translation>
-    </message>
-    <message>
-        <source>The two don&apos;t seem to like each other</source>
-        <translation>それほど よくない</translation>
-    </message>
-    <message>
-        <source>The two seem to get along</source>
-        <translation>まずまず</translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well</source>
-        <translation>とっても よい</translation>
-    </message>
-    <message>
         <source>Seed 0</source>
         <translation>Seed 0</translation>
     </message>
@@ -1853,22 +1824,22 @@
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="100"/>
+        <location filename="../Gen8/Eggs8.cpp" line="98"/>
         <source>Parents Reordered</source>
         <translation>親の順序を入れ替え済み</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="100"/>
+        <location filename="../Gen8/Eggs8.cpp" line="98"/>
         <source>Parent were swapped to match the game</source>
         <translation>ゲームに合わせて親を入れ替えました</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="108"/>
+        <location filename="../Gen8/Eggs8.cpp" line="106"/>
         <source>Missing seeds</source>
         <translation>seedが未入力</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="108"/>
+        <location filename="../Gen8/Eggs8.cpp" line="106"/>
         <source>Please insert missing seed information</source>
         <translation>seed情報が不足しています</translation>
     </message>
@@ -5886,7 +5857,7 @@ Profile is missing or has an incompatible SHA cache.</source>
     <name>ProfileEditor5</name>
     <message>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">まるいおまもり</translation>
     </message>
     <message>
         <source>Profile Editor Gen 5</source>
@@ -6029,42 +6000,42 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>ひかるおまもり</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="156"/>
         <source>Enter a profile name</source>
         <translation>プロファイル名を入力してください</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="156"/>
         <source>Missing name</source>
         <translation>名前が未入力です</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="167"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="175"/>
         <source>Open IV Cache</source>
         <translation>IVキャッシュを開く</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
         <source>Invalid IV Cache</source>
         <translation>IVキャッシュが不正です</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation>指定されたファイルは有効なIVキャッシュではありません</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="192"/>
         <source>Open SHA1 Cache</source>
         <translation>SHA1キャッシュを開く</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="192"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="200"/>
         <source>Invalid SHA Cache</source>
         <translation>SHAキャッシュが不正です</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="193"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="201"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation>指定されたファイルは有効なSHAキャッシュでないか、このプロファイルから作成されたものではありません</translation>
     </message>
@@ -6437,14 +6408,16 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>ProfileModel5</name>
     <message>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="97"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">まるいおまもり</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="72"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
@@ -6453,6 +6426,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="72"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
@@ -6994,24 +6968,24 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>前の16bit(下位)</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="344"/>
+        <location filename="../Util/Researcher.cpp" line="340"/>
         <source>Missing setting</source>
         <translation>設定が不足しています</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="345"/>
+        <location filename="../Util/Researcher.cpp" line="341"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation>カスタム%1 で16進数を使うには「16進」にチェックを入れてください</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="409"/>
-        <location filename="../Util/Researcher.cpp" line="433"/>
+        <location filename="../Util/Researcher.cpp" line="405"/>
+        <location filename="../Util/Researcher.cpp" line="429"/>
         <source>No result</source>
         <translation>該当なし</translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="409"/>
-        <location filename="../Util/Researcher.cpp" line="433"/>
+        <location filename="../Util/Researcher.cpp" line="405"/>
+        <location filename="../Util/Researcher.cpp" line="429"/>
         <source>Unable to find a result</source>
         <translation>該当する結果が見つかりません</translation>
     </message>
@@ -7385,36 +7359,40 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>徘徊:</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="159"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="201"/>
         <source>Invalid selection</source>
         <translation>選択が不正です</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="159"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="201"/>
         <source>Select a valid row</source>
         <translation>有効な行を選択してください</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="187"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="188"/>
         <source>Coin Flips: %1</source>
         <translation>コイントス: %1</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="237"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="240"/>
         <source>Elm Calls: %1</source>
         <translation>ウツギの電話: %1</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="242"/>
         <source>Roamers: %1</source>
         <translation>徘徊: %1</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="242"/>
         <source>No roamers</source>
         <translation>徘徊なし</translation>
+    </message>
+    <message>
+        <source>Player Location</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

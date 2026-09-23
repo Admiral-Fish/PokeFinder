@@ -116,9 +116,9 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
 }
 
 EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
-                             u32 offsetPickup, u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability,
-                             const Daycare &daycare, const Profile3 &profile, const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, offset, method, compatability, daycare, profile, filter),
+                             u32 offsetPickup, u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, const Daycare &daycare,
+                             const Profile3 &profile, const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, method, daycare, profile, filter),
     initialAdvancesPickup(initialAdvancesPickup),
     maxAdvancesPickup(maxAdvancesPickup),
     offsetPickup(offsetPickup),
@@ -238,7 +238,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, val++)
     {
-        if (((rng.nextUShort() * 100) / 0xffff) >= compatability)
+        if (((rng.nextUShort() * 100) / 0xffff) >= daycare.getCompatibility())
         {
             continue;
         }
@@ -384,7 +384,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGHeld(u32 seed) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng);
-        if (((go.nextUShort() * 100) / 0xffff) < compatability)
+        if (((go.nextUShort() * 100) / 0xffff) < daycare.getCompatibility())
         {
             u16 pid = go.nextUShort(0xfffe) + 1;
             const PersonalInfo *info = base;
