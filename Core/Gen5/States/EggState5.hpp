@@ -39,14 +39,15 @@ public:
      * @param gender Pokemon gender
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
+     * @param egg Whether this advance will generate an egg
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
-              const std::array<u8, 6> &inheritance, const PersonalInfo *info, bool egg = false) :
+    EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny, bool egg,
+              const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
         EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         egg(egg),
+        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
         needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
     {
     }
@@ -105,18 +106,18 @@ public:
      */
     void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny, bool egg)
     {
-        chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
-        needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
         this->advances = advances;
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
         this->egg = egg;
+        chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
+        needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
     }
 
 private:
-    u8 chatot;
     bool egg;
+    u8 chatot;
     u8 needle;
 };
 

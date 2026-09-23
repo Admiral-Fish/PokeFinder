@@ -106,9 +106,6 @@
           <string>Settings</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_1">
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
            <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
           </item>
@@ -239,9 +236,6 @@
           <string>Settings</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
            <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
           </item>

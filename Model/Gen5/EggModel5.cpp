@@ -45,7 +45,7 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
         case 2:
             return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
-            return state.getEgg() ? tr("Yes") : "-";
+            return state.getEgg() ? tr("Yes") : tr("No");
         case 4:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 5:

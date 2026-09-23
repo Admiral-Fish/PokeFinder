@@ -74,10 +74,7 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
-    ui->comboBoxCompatibility->addItem(tr("The two don't really seem to like each other much."), 20);
-    ui->comboBoxCompatibility->addItem(tr("The two seem to get along."), 50);
-    ui->comboBoxCompatibility->addItem(tr("The two seem to get along very well!"), 70);
-    setCompatibilityVisible(false);
+    ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
     auto *copyAction = addAction(tr("Copy IVs to clipboard"));
     auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
@@ -120,7 +117,7 @@ bool EggSettings::isValid(bool hiddenAbility) const
         u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
 
         bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
-        if ((game & Game::Gen8) != Game::None) 
+        if ((game & Game::Gen8) != Game::None)
         {
             hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
         }
@@ -171,6 +168,11 @@ void EggSettings::copyFrom(const EggSettings *other)
     ui->checkBoxShowInheritance->setCheckState(other->ui->checkBoxShowInheritance->checkState());
 }
 
+u8 EggSettings::getCompatibility() const
+{
+    return ui->comboBoxCompatibility->getCurrentUChar();
+}
+
 Daycare EggSettings::getDaycare() const
 {
     std::array<std::array<u8, 6>, 2> parentIVs
@@ -196,17 +198,6 @@ Daycare EggSettings::getDaycare() const
     bool masuda = ui->checkBoxMasuda->isChecked();
 
     return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, specie, masuda);
-}
-
-u8 EggSettings::getCompatibility() const
-{
-    return ui->comboBoxCompatibility->getCurrentUChar();
-}
-
-void EggSettings::setCompatibilityVisible(bool visible)
-{
-    ui->labelCompatibility->setVisible(visible);
-    ui->comboBoxCompatibility->setVisible(visible);
 }
 
 bool EggSettings::reorderParents()
@@ -292,13 +283,13 @@ void EggSettings::setup(Game game)
         ui->comboBoxParentANature->hide();
         ui->comboBoxParentBNature->hide();
 
+        ui->labelCompatibility->hide();
+        ui->comboBoxCompatibility->hide();
+
         max = 493;
     }
     else if ((game & Game::Gen5) != Game::None)
     {
-        setCompatibilityVisible(true);
-        const QMargins margins = ui->gridLayout->contentsMargins();
-        ui->gridLayout->setContentsMargins(margins.left(), margins.top(), margins.right(), 0);
         ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
         ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
         ui->comboBoxParentAItem->addItem(tr("Power Belt"), 4);
@@ -325,6 +316,9 @@ void EggSettings::setup(Game game)
 
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
+
+        ui->labelCompatibility->hide();
+        ui->comboBoxCompatibility->hide();
 
         max = 493;
     }

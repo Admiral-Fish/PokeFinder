@@ -150,11 +150,11 @@ void Eggs5::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 offset = ui->textBoxGeneratorOffset->getUInt();
+    u8 compatibility = ui->eggSettingsGenerator->getCompatibility();
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
-    EggGenerator5 generator(initialAdvances, maxAdvances, offset, daycare, *currentProfile, filter,
-                            ui->eggSettingsGenerator->getCompatibility());
+    EggGenerator5 generator(initialAdvances, maxAdvances, offset, compatibility, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -206,11 +206,11 @@ void Eggs5::search()
 
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
+    u8 compatibility = ui->eggSettingsGenerator->getCompatibility();
     Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
-    EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter,
-                            ui->eggSettingsSearcher->getCompatibility());
+    EggGenerator5 generator(initialAdvances, maxAdvances, 0, compatibility, daycare, *currentProfile, filter);
     auto *searcher = new EggSearcher5(generator, *currentProfile);
     searcher->setMaxProgress(searcher->getMaxProgress(start, end));
 

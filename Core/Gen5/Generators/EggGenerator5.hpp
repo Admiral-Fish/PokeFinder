@@ -39,13 +39,13 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
+     * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
-     * @param compatibility Daycare compatibility value
      */
-    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
-                  const StateFilter &filter, u8 compatibility = 20);
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatibility, const Daycare &daycare, const Profile5 &profile,
+                  const StateFilter &filter);
 
     /**
      * @brief Generates states

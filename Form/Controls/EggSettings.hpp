@@ -82,21 +82,16 @@ public:
     void copyFrom(const EggSettings *other);
 
     /**
-     * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
-     *
-     * @return Parent information
-     */
-    Daycare getDaycare() const;
-
-    /**
      * @brief Gets the selected daycare compatibility value
      */
     u8 getCompatibility() const;
 
     /**
-     * @brief Shows or hides the compatibility selector
+     * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
+     *
+     * @return Parent information
      */
-    void setCompatibilityVisible(bool visible);
+    Daycare getDaycare() const;
 
     /**
      * @brief Changes order of the parents to match what the game does
