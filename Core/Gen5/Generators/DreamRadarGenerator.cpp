@@ -100,7 +100,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         u8 nature = go.nextUInt(25);
 
         DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, gender, level, nature, 0, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

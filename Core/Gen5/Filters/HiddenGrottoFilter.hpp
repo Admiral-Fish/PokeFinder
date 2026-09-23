@@ -44,7 +44,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const HiddenGrottoState &state) const;
+    bool compare(const HiddenGrottoState &state) const;
 
 private:
     bool invalid;

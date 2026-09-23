@@ -25,6 +25,32 @@
             "result": 4155070475069981568
         }
     ],
+    "jump": [
+        {
+            "name": "Jump 1",
+            "seed": 0,
+            "advances": 1073741824,
+            "result": 8730438169602281440
+        },
+        {
+            "name": "Jump 2",
+            "seed": 0,
+            "advances": 2147483648,
+            "result": 18192269305565354377
+        },
+        {
+            "name": "Jump 3",
+            "seed": 0,
+            "advances": 3221225472,
+            "result": 6761054571016012482
+        },
+        {
+            "name": "Jump 4",
+            "seed": 0,
+            "advances": 4294967295,
+            "result": 12330576727555185867
+        }
+    ],
     "next": [
         {
             "name": "Next 1",

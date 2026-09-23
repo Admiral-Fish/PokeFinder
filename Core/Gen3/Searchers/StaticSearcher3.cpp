@@ -110,7 +110,7 @@ std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa
 
         SearcherState state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
                             Utilities::getShiny<true>(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compare(state))
         {
             states.emplace_back(state);
         }

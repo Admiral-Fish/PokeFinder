@@ -61,7 +61,7 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate.getLevel(), pid % 25,
                              Utilities::getShiny<true>(pid, tsv), info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

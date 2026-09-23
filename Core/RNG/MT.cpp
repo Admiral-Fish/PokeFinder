@@ -21,7 +21,7 @@
 #include <Core/RNG/Jump.hpp>
 #include <cstring>
 
-constexpr u8 poly[] = {
+constexpr u8 POLY[] = {
 #include "MTPoly.txt"
 };
 
@@ -117,7 +117,7 @@ void MT::jump(u32 advances)
         // Since this is only called by the constructor we need to reset index to 0 so we can shuffle 1 at a time
         index = 0;
 
-        auto jump = Jump::computeJumpPolynomial(poly, sizeof(poly), advances);
+        auto jump = Jump::computeJumpPolynomial(POLY, sizeof(POLY), advances);
 
         int byteCount = (jump.degree() + 8) / sizeof(u64);
         const u8 *bytes = reinterpret_cast<const u8 *>(jump.coefficients().store());

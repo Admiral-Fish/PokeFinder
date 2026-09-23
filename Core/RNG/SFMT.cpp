@@ -18,6 +18,30 @@
  */
 
 #include "SFMT.hpp"
+#include <Core/RNG/Jump.hpp>
+#include <cstring>
+
+constexpr u8 POLY[] = {
+#include "SFMTPoly.txt"
+};
+
+static void mm_recursion(vuint128 &a, const vuint128 &b, const vuint128 &c, const vuint128 &d)
+{
+    vuint128 mask(0xdfffffef, 0xddfecb7f, 0xbffaffff, 0xbffffff6);
+
+    vuint128 x = v128_shl<1>(a);
+    vuint128 y = v128_shr<1>(c);
+
+    vuint128 b1 = (b >> 11) & mask;
+    vuint128 d1 = d << 18;
+
+    a = a ^ x ^ b1 ^ y ^ d1;
+}
+
+SFMT::SFMT() : index(0)
+{
+    std::memset(state, 0, sizeof(state));
+}
 
 SFMT::SFMT(u32 seed) : index(624)
 {
@@ -41,9 +65,14 @@ SFMT::SFMT(u32 seed) : index(624)
     ptr[0] ^= ~inner & 1;
 }
 
+SFMT::SFMT(u32 seed, u32 advances) : SFMT(seed)
+{
+    jump(advances);
+}
+
 void SFMT::advance(u32 advances)
 {
-    u64 advance = (advances * 2) + index;
+    u64 advance = (static_cast<u64>(advances) * 2) + index;
     while (advance >= 624)
     {
         shuffle();
@@ -78,21 +107,85 @@ u32 SFMT::nextUInt()
     return ptr[index++];
 }
 
+void SFMT::addState(const SFMT *other)
+{
+    u16 idx = other->index / 4;
+    int split = 156 - idx;
+
+    int i = 0;
+    for (; i < split; i++)
+    {
+        state[i] = state[i] ^ other->state[idx + i];
+    }
+
+    for (; i < 156; i++)
+    {
+        state[i] = state[i] ^ other->state[idx + i - 156];
+    }
+}
+
+void SFMT::jump(u32 advances)
+{
+    // Advances refers to advancing 64bit states
+    // Normal advancing is done by 32bit states so it needs to be doubled
+    // Jumping is done by 128bit states so it needs to be halfed
+    if (advances < (2 * 32768))
+    {
+        advance(advances);
+    }
+    else
+    {
+        // Since this is only called by the constructor we need to reset index to 0 so we can shuffle 1 at a time
+        index = 0;
+
+        auto jump = Jump::computeJumpPolynomial(POLY, sizeof(POLY), advances >> 1);
+
+        int byteCount = (jump.degree() + 8) / sizeof(u64);
+        const u8 *bytes = reinterpret_cast<const u8 *>(jump.coefficients().store());
+
+        SFMT temp;
+        for (int i = 0; i < byteCount; i++)
+        {
+            u8 val = bytes[i];
+            for (int bit = 0; bit < 8; bit++)
+            {
+                if (val & (1 << bit))
+                {
+                    temp.addState(this);
+                }
+                nextState();
+            }
+        }
+
+        *this = temp;
+        shuffle();
+
+        // Handle the case where advances is odd and we can't jump by a final partial 64bit advance
+        if ((advances & 1) == 1)
+        {
+            next();
+        }
+    }
+}
+
+void SFMT::nextState()
+{
+    u16 idx = index / 4;
+    vuint128 a = state[idx];
+    vuint128 b = state[(idx + 122) % 156];
+    vuint128 c = state[(idx + 154) % 156];
+    vuint128 d = state[(idx + 155) % 156];
+
+    mm_recursion(a, b, c, d);
+    state[idx] = a;
+
+    index = (index + 4) % 624;
+}
+
 void SFMT::shuffle()
 {
     vuint128 c = state[154];
     vuint128 d = state[155];
-    vuint128 mask(0xdfffffef, 0xddfecb7f, 0xbffaffff, 0xbffffff6);
-
-    auto mm_recursion = [&mask](vuint128 &a, const vuint128 &b, const vuint128 &c, const vuint128 &d) {
-        vuint128 x = v128_shl<1>(a);
-        vuint128 y = v128_shr<1>(c);
-
-        vuint128 b1 = (b >> 11) & mask;
-        vuint128 d1 = d << 18;
-
-        a = a ^ x ^ b1 ^ y ^ d1;
-    };
 
     for (int i = 0; i < 34; i++)
     {

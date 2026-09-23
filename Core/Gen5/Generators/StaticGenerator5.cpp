@@ -87,7 +87,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
             iv[5] = rngList.next();
         }
 
-        if (filter.compareIV(iv))
+        if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
         {
             ivs.emplace_back(initialAdvances + cnt, iv);
         }
@@ -149,14 +149,15 @@ std::vector<State5> StaticGenerator5::generateNonWild(u64 seed, const std::vecto
         u8 shiny = Utilities::getShiny<true>(pid, tsv);
         u8 nature = go.nextUInt(25);
 
-        u32 prng = rng.nextUInt();
-        for (const auto &iv : ivs)
+        // IVs have already been pre-filtered by this point
+        // Only filter by the other data once before creating results
+        if (filter.compare(ability, gender, nature, shiny))
         {
-            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
-            if (filter.compareState(static_cast<const State &>(state)))
+            u32 prng = rng.nextUInt();
+            for (const auto &iv : ivs)
             {
-                states.emplace_back(state);
+                states.emplace_back(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+                                    staticTemplate.getLevel(), nature, shiny, info);
             }
         }
     }
@@ -242,14 +243,15 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
             nature = toInt(lead);
         }
 
-        u32 prng = rng.nextUInt();
-        for (const auto &iv : ivs)
+        // IVs have already been pre-filtered by this point
+        // Only filter by the other data once before creating results
+        if (filter.compare(ability, gender, nature, shiny))
         {
-            State5 state(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, staticTemplate.getLevel(),
-                         nature, shiny, info);
-            if (filter.compareState(static_cast<const State &>(state)))
+            u32 prng = rng.nextUInt();
+            for (const auto &iv : ivs)
             {
-                states.emplace_back(state);
+                states.emplace_back(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender,
+                                    staticTemplate.getLevel(), nature, shiny, info);
             }
         }
     }

@@ -61,6 +61,69 @@ public:
                 const std::array<bool, 16> &powers);
 
     /**
+     * @brief Determines if the \p state meets the filter criteria.
+     *
+     * Filters a subset of information for Gen 3/4 searcher.
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compare(const SearcherState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compare(const State &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * Includes filtering height/weight
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compare(const State8 &state) const;
+    
+    /**
+     * @brief Determines if the \p ability, \p gender, \p nature, and \p shiny meet the filter criteria
+     * 
+     * This is intended for usage in Gen 5 Static
+     *
+     * @param ability Ability to compare
+     * @param gender Gender to compare
+     * @param nature Nature to compare
+     * @param shiny Shiny to compare
+     *
+     * @return true Criteria passes the filter
+     * @return false Criteria does not pass the filter
+     */
+    bool compare(u8 ability, u8 gender, u8 nature, u8 shiny) const;
+
+        /**
+     * @brief Determines if the \p level, and \p nature meet the filter criteria
+     * 
+     * This is intended for usage in Gen 5 Hidden Grotto
+     *
+     * @param ability Ability to compare
+     * @param level Level to compare
+     * @param nature Nature to compare
+     *
+     * @return true Criteria passes the filter
+     * @return false Criteria does not pass the filter
+     */
+    bool compare(u8 level, u8 nature) const;
+
+    /**
      * @brief Determines if the \p ability meets the filter criteria
      *
      * @param ability Ability to compare
@@ -86,9 +149,19 @@ public:
      * @param hiddenPower Hidden power to compare
      *
      * @return true Hidden power passes the filter
-     * @return false Gender does not pass the filter
+     * @return false Hidden power does not pass the filter
      */
     bool compareHiddenPower(u8 hiddenPower) const;
+
+    /**
+     * @brief Determines if the \p ivs meets the filter criteria
+     *
+     * @param ivs IVs to compare
+     *
+     * @return true IVs pass the hidden power filter
+     * @return false IVs do not pass the filter
+     */
+    bool compareHiddenPower(const std::array<u8, 6> &ivs) const;
 
     /**
      * @brief Determines if the \p ivs meet the filter criteria
@@ -119,40 +192,6 @@ public:
      * @return false Shiny does not pass the filter
      */
     bool compareShiny(u8 shiny) const;
-
-    /**
-     * @brief Determines if the \p state meets the filter criteria.
-     *
-     * Filters a subset of information for Gen 3/4 searcher.
-     *
-     * @param state State to compare
-     *
-     * @return true State passes the filter
-     * @return false State does not pass the filter
-     */
-    bool compareState(const SearcherState &state) const;
-
-    /**
-     * @brief Determines if the \p state meets the filter criteria
-     *
-     * @param state State to compare
-     *
-     * @return true State passes the filter
-     * @return false State does not pass the filter
-     */
-    bool compareState(const State &state) const;
-
-    /**
-     * @brief Determines if the \p state meets the filter criteria
-     *
-     * Includes filtering height/weight
-     *
-     * @param state State to compare
-     *
-     * @return true State passes the filter
-     * @return false State does not pass the filter
-     */
-    bool compareState(const State8 &state) const;
 
 protected:
     bool skip;
@@ -208,16 +247,6 @@ public:
                     const std::array<bool, 16> &powers, const StackVector<bool, 13> &encounterSlots);
 
     /**
-     * @brief Determines if the \p encounterSlot meets the filter criteria
-     *
-     * @param encounterSlot Encounter slot to compare
-     *
-     * @return true Encounter slot passes the filter
-     * @return false Encounter slot does not pass the filter
-     */
-    bool compareEncounterSlot(u8 encounterSlot) const;
-
-    /**
      * @brief Determines if the \p state meets the filter criteria
      *
      * Filters a subset of information for Gen 3/4 generator.
@@ -227,7 +256,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildGeneratorState &state) const;
+    bool compare(const WildGeneratorState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria.
@@ -239,7 +268,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildSearcherState &state) const;
+    bool compare(const WildSearcherState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -251,7 +280,34 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildState8 &state) const;
+    bool compare(const WildState8 &state) const;
+
+    /**
+     * @brief Determines if the \p ability, \p encounterSlot, \p gender, \p level, \p nature, and \p shiny meet the filter criteria
+     * 
+     * This is intended for usage in Gen 5 Wild
+     *
+     * @param ability Ability to compare
+     * @param encounterSlot Encounter slot to compare
+     * @param gender Gender to compare
+     * @param level Level to compare
+     * @param nature Nature to compare
+     * @param shiny Shiny to compare
+     *
+     * @return true Criteria passes the filter
+     * @return false Criteria does not pass the filter
+     */
+    bool compare(u8 ability, u8 encounterSlot, u8 gender, u8 level, u8 nature, u8 shiny) const;
+
+    /**
+     * @brief Determines if the \p encounterSlot meets the filter criteria
+     *
+     * @param encounterSlot Encounter slot to compare
+     *
+     * @return true Encounter slot passes the filter
+     * @return false Encounter slot does not pass the filter
+     */
+    bool compareEncounterSlot(u8 encounterSlot) const;
 
 protected:
     bool invalid;

@@ -77,7 +77,7 @@ static vuint128 gf2Shr127(const vuint128 &high, const vuint128 &low)
  */
 static void gf2Clmul128(const vuint128 &a, const vuint128 &b, vuint128 &prod_high, vuint128 &prod_low)
 {
-    // Compute the baseline low and high terms (2 multiplications)
+    // Compute the baseline low and high terms
     vuint128 p00 = v128_clmul64<0x00>(a, b); // low(a) * low(b)
     vuint128 p11 = v128_clmul64<0x11>(a, b); // high(a) * high(b)
 
@@ -86,8 +86,8 @@ static void gf2Clmul128(const vuint128 &a, const vuint128 &b, vuint128 &prod_hig
     vuint128 b_high = v128_shr<8>(b);
 
     // XOR the low and high halves together
-    vuint128 a_xor = a ^ a_high; // low(a) ^ high(a)
-    vuint128 b_xor = b ^ b_high; // low(b) ^ high(b)
+    vuint128 a_xor = a ^ a_high;
+    vuint128 b_xor = b ^ b_high;
 
     // Compute the third multiplication
     vuint128 p_mid = v128_clmul64<0x00>(a_xor, b_xor);

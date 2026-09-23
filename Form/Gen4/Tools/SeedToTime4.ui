@@ -193,6 +193,30 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="6" colspan="2">
+           <widget class="QLabel" name="labelHGSSPlayerLocation">
+            <property name="text">
+             <string>Player Location</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8" colspan="2">
+           <widget class="TextBox" name="textBoxHGSSPlayerLocation">
+            <property name="maxLength">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="TextBox" name="textBoxHGSSRaikou">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maxLength">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelHGSSSeed">
             <property name="text">
@@ -401,6 +425,39 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>textBoxDPPtSeed</tabstop>
+  <tabstop>textBoxDPPtYear</tabstop>
+  <tabstop>checkBoxDPPtSecond</tabstop>
+  <tabstop>textBoxDPPtSecond</tabstop>
+  <tabstop>pushButtonDPPtGenerate</tabstop>
+  <tabstop>tableViewDPPtSearch</tabstop>
+  <tabstop>textBoxDPPtDelayCalibration</tabstop>
+  <tabstop>textBoxDPPtSecondCalibration</tabstop>
+  <tabstop>pushButtonDPPtSearchFlips</tabstop>
+  <tabstop>pushButtonDPPtCalibrate</tabstop>
+  <tabstop>tableViewDPPtCalibrate</tabstop>
+  <tabstop>textBoxHGSSSeed</tabstop>
+  <tabstop>textBoxHGSSYear</tabstop>
+  <tabstop>checkBoxHGSSSecond</tabstop>
+  <tabstop>textBoxHGSSSecond</tabstop>
+  <tabstop>pushButtonHGSSMap</tabstop>
+  <tabstop>textBoxHGSSPlayerLocation</tabstop>
+  <tabstop>checkBoxHGSSRaikou</tabstop>
+  <tabstop>textBoxHGSSRaikou</tabstop>
+  <tabstop>checkBoxHGSSEntei</tabstop>
+  <tabstop>textBoxHGSSEntei</tabstop>
+  <tabstop>checkBoxHGSSLati</tabstop>
+  <tabstop>textBoxHGSSLati</tabstop>
+  <tabstop>pushButtonHGSSGenerate</tabstop>
+  <tabstop>tableViewHGSSSearch</tabstop>
+  <tabstop>textBoxHGSSDelayCalibration</tabstop>
+  <tabstop>textBoxHGSSSecondCalibration</tabstop>
+  <tabstop>pushButtonHGSSSearchCalls</tabstop>
+  <tabstop>pushButtonHGSSCalibrate</tabstop>
+  <tabstop>tableViewHGSSCalibrate</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

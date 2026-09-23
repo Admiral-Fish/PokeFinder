@@ -34,10 +34,11 @@ public:
      * @brief Construct a new HGSSRoamer object
      *
      * @param seed PRNG state
+     * @param playerRoute Player location
      * @param roamers Array of active roamers
      * @param routes Array of roamer locations
      */
-    HGSSRoamer(u32 seed, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes);
+    HGSSRoamer(u32 seed, u8 playerRoute, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes);
 
     /**
      * @brief Construct a new HGSSRoamer object

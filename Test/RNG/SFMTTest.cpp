@@ -46,6 +46,29 @@ void SFMTTest::advance()
     QCOMPARE(rng.next(), result);
 }
 
+void SFMTTest::jump_data()
+{
+    QTest::addColumn<u32>("seed");
+    QTest::addColumn<u32>("advances");
+    QTest::addColumn<u64>("result");
+
+    json data = readData("sfmt", "jump");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u64>();
+    }
+}
+
+void SFMTTest::jump()
+{
+    QFETCH(u32, seed);
+    QFETCH(u32, advances);
+    QFETCH(u64, result);
+
+    SFMT rng(seed, advances);
+    QCOMPARE(rng.next(), result);
+}
+
 void SFMTTest::next_data()
 {
     QTest::addColumn<u32>("seed");
@@ -72,7 +95,7 @@ void SFMTTest::nextUInt_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u32>("result");
 
-    json data = readData("sfmt", "next");
+    json data = readData("sfmt", "nextUInt");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["result"].get<u32>();

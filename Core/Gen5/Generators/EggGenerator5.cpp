@@ -182,7 +182,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         bool egg = ((static_cast<u64>(prng) * 1600) >> 32) < eggChance;
         EggState5 state(prng, advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
                         Utilities::getShiny<true>(pid, tsv), egg, inheritance, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+        if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

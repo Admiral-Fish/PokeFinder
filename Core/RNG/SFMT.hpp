@@ -36,6 +36,14 @@ public:
      */
     SFMT(u32 seed);
 
+        /**
+     * @brief Construct a new SFMT object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
+    SFMT(u32 seed, u32 advances);
+
     /**
      * @brief Advances the RNG by \p advances amount
      *
@@ -60,6 +68,30 @@ public:
 private:
     vuint128 state[156];
     u16 index;
+
+    /**
+     * @brief Construct a new MT object
+     */
+    SFMT();
+
+    /**
+     * @brief XOR combines two rng states with proper wrap around
+     */
+    void addState(const SFMT *other);
+
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * Uses a precomputed jump table to complete in O()
+     * With how the table is primarily shuffled all in one go this should only be called by a constructor
+     *
+     * @param advances Number of advances
+     */
+    void jump(u32 advances);
+
+    /**
+     * @brief Generates the next MT state after 1 state has been consumed
+     */
+    void nextState();
 
     /**
      * @brief Generates the next SFMT state after all 624 states have been consumed
