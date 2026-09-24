@@ -1359,18 +1359,6 @@
         <translation type="unfinished">好感度</translation>
     </message>
     <message>
-        <source>The two don&apos;t really seem to like each other much.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The two seem to get along.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Parent A</source>
         <translation>父母A</translation>
     </message>
@@ -1518,6 +1506,18 @@
     <message>
         <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two don&apos;t really seem to like each other much</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along very well</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

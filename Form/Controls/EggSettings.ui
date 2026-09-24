@@ -319,17 +319,17 @@
     <widget class="ComboBox" name="comboBoxCompatibility">
      <item>
       <property name="text">
-       <string>The two don't really seem to like each other much.</string>
+       <string>The two don't really seem to like each other much</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>The two seem to get along.</string>
+       <string>The two seem to get along</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>The two seem to get along very well!</string>
+       <string>The two seem to get along very well</string>
       </property>
      </item>
     </widget>

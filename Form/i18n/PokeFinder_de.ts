@@ -1359,18 +1359,6 @@
         <translation>Kompatibilität</translation>
     </message>
     <message>
-        <source>The two don&apos;t really seem to like each other much.</source>
-        <translation>Die beiden mögen sich aber nicht sehr.</translation>
-    </message>
-    <message>
-        <source>The two seem to get along.</source>
-        <translation>Die beiden scheinen sich zu vertragen.</translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well!</source>
-        <translation>Die beiden scheinen sich sehr zu mögen.</translation>
-    </message>
-    <message>
         <source>Parent A</source>
         <translation>Elternteil A</translation>
     </message>
@@ -1519,6 +1507,18 @@
         <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
         <translation>Eltern nicht kompatibel für Versteckte Fähigkeit!</translation>
+    </message>
+    <message>
+        <source>The two don&apos;t really seem to like each other much</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along very well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -195,8 +195,8 @@ Daycare EggSettings::getDaycare(bool ovalCharm) const
     u8 compatibility = ui->comboBoxCompatibility->getCurrentUChar();
     if (ovalCharm)
     {
-        constexpr u8 OVAL[] = { 20, 30, 18 };
-        compatibility += OVAL[ui->comboBoxCompatibility->currentIndex()];
+        constexpr u8 OVAL[] = { 40, 80, 88 };
+        compatibility = OVAL[ui->comboBoxCompatibility->currentIndex()];
     }
 
     return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, specie, masuda, compatibility);
