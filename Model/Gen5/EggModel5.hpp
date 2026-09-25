@@ -60,7 +60,7 @@ public:
 
     /**
      * @brief Returns chatot pitch for given \p row
-     * 
+     *
      * @return Row chatot pitch
      */
     u8 getChatot(int row) const override
@@ -70,7 +70,7 @@ public:
 
     /**
      * @brief Returns needle value for given \p row
-     * 
+     *
      * @return Row needle value
      */
     u8 getNeedle(int row) const override
@@ -105,9 +105,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("PID"),    tr("Shiny"),         tr("Nature"),
-                           tr("Ability"),  tr("HP"),     tr("Atk"),    tr("Def"),    tr("SpA"),           tr("SpD"),
-                           tr("Spe"),      tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"),  tr("Needle"), tr("Egg"),   tr("PID"),    tr("Shiny"),
+                           tr("Nature"),   tr("Ability"), tr("HP"),     tr("Atk"),   tr("Def"),    tr("SpA"),
+                           tr("SpD"),      tr("Spe"),     tr("Hidden"), tr("Power"), tr("Gender"), tr("Characteristic") };
     bool showInheritance;
     bool showStats;
 };

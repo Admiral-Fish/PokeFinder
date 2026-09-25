@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>752</width>
+    <width>799</width>
     <height>162</height>
    </rect>
   </property>
@@ -277,17 +277,24 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="7">
-    <widget class="QCheckBox" name="checkBoxShinyCharm">
+   <item row="2" column="6">
+    <widget class="QCheckBox" name="checkBoxSkipLR">
      <property name="text">
-      <string>Shiny Charm</string>
+      <string>Skip L/R</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="QCheckBox" name="checkBoxOvalCharm">
+     <property name="text">
+      <string>Oval Charm</string>
      </property>
     </widget>
    </item>
    <item row="1" column="7">
-    <widget class="QCheckBox" name="checkBoxSkipLR">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
      <property name="text">
-      <string>Skip L/R</string>
+      <string>Shiny Charm</string>
      </property>
     </widget>
    </item>
@@ -403,8 +410,9 @@
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxMemoryLink</tabstop>
   <tabstop>checkBoxNsPokemonReleased</tabstop>
-  <tabstop>checkBoxShinyCharm</tabstop>
   <tabstop>checkBoxSkipLR</tabstop>
+  <tabstop>checkBoxOvalCharm</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
   <tabstop>lineEditIVCache</tabstop>
   <tabstop>pushButtonSelectIVCache</tabstop>
   <tabstop>pushButtonClearIVCache</tabstop>

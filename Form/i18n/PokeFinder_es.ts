@@ -829,17 +829,28 @@
 <context>
     <name>EggGeneratorModel5</name>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
+        <source>Egg</source>
+        <translation type="unfinished">Huevo</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
+        <source>Yes</source>
+        <translation type="unfinished">Sí</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="52"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
         <source>No</source>
         <translation type="unfinished">No</translation>
     </message>
@@ -869,7 +880,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
@@ -899,7 +910,7 @@
         <translation type="unfinished">At.Esp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.hpp" line="109"/>
+        <location filename="../../Model/Gen5/EggModel5.hpp" line="110"/>
         <source>SpD</source>
         <translation type="unfinished">Def.Esp</translation>
     </message>
@@ -1231,17 +1242,17 @@
 <context>
     <name>EggSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/EggModel5.cpp" line="143"/>
+        <location filename="../../Model/Gen5/EggModel5.cpp" line="145"/>
         <source>No</source>
         <translation type="unfinished">No</translation>
     </message>
@@ -1344,6 +1355,10 @@
 <context>
     <name>EggSettings</name>
     <message>
+        <source>Compatibility</source>
+        <translation type="unfinished">Compatibilidad</translation>
+    </message>
+    <message>
         <source>Parent A</source>
         <translation>Padre A</translation>
     </message>
@@ -1396,64 +1411,64 @@
         <translation>Naturaleza</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="77"/>
+        <location filename="../Controls/EggSettings.cpp" line="79"/>
         <source>Copy IVs to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="78"/>
+        <location filename="../Controls/EggSettings.cpp" line="80"/>
         <source>Paste IVs from clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="282"/>
-        <location filename="../Controls/EggSettings.cpp" line="289"/>
+        <location filename="../Controls/EggSettings.cpp" line="296"/>
+        <location filename="../Controls/EggSettings.cpp" line="303"/>
         <source>Power Weight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="283"/>
-        <location filename="../Controls/EggSettings.cpp" line="290"/>
+        <location filename="../Controls/EggSettings.cpp" line="297"/>
+        <location filename="../Controls/EggSettings.cpp" line="304"/>
         <source>Power Bracer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="284"/>
-        <location filename="../Controls/EggSettings.cpp" line="291"/>
+        <location filename="../Controls/EggSettings.cpp" line="298"/>
+        <location filename="../Controls/EggSettings.cpp" line="305"/>
         <source>Power Belt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="285"/>
-        <location filename="../Controls/EggSettings.cpp" line="292"/>
+        <location filename="../Controls/EggSettings.cpp" line="299"/>
+        <location filename="../Controls/EggSettings.cpp" line="306"/>
         <source>Power Lens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="286"/>
-        <location filename="../Controls/EggSettings.cpp" line="293"/>
+        <location filename="../Controls/EggSettings.cpp" line="300"/>
+        <location filename="../Controls/EggSettings.cpp" line="307"/>
         <source>Power Band</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="287"/>
-        <location filename="../Controls/EggSettings.cpp" line="294"/>
+        <location filename="../Controls/EggSettings.cpp" line="301"/>
+        <location filename="../Controls/EggSettings.cpp" line="308"/>
         <source>Power Anklet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="303"/>
-        <location filename="../Controls/EggSettings.cpp" line="304"/>
+        <location filename="../Controls/EggSettings.cpp" line="317"/>
+        <location filename="../Controls/EggSettings.cpp" line="318"/>
         <source>Destiny Knot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="332"/>
+        <location filename="../Controls/EggSettings.cpp" line="346"/>
         <source>Invalid Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="332"/>
+        <location filename="../Controls/EggSettings.cpp" line="346"/>
         <source>The clipboard text did not match the expected format.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1478,19 +1493,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="106"/>
-        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <location filename="../Controls/EggSettings.cpp" line="108"/>
+        <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="106"/>
+        <location filename="../Controls/EggSettings.cpp" line="108"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="125"/>
+        <location filename="../Controls/EggSettings.cpp" line="127"/>
         <source>Parents incompatible for breeding Hidden Ability!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two don&apos;t really seem to like each other much</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two seem to get along very well</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1503,10 +1530,6 @@
     <message>
         <source>Emerald</source>
         <translation>Esmeralda</translation>
-    </message>
-    <message>
-        <source>Compatibility</source>
-        <translation>Compatibilidad</translation>
     </message>
     <message>
         <source>Redraws</source>
@@ -1527,19 +1550,6 @@
     <message>
         <source>Filters</source>
         <translation>Filtros</translation>
-    </message>
-    <message>
-        <source>The two don&apos;t seem to like each other</source>
-        <translatorcomment>/no parece que se compenetren mucho</translatorcomment>
-        <translation>No se quieren con locura</translation>
-    </message>
-    <message>
-        <source>The two seem to get along</source>
-        <translation>Se llevan bastante bien</translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well</source>
-        <translation>Se llevan estupendamente</translation>
     </message>
     <message>
         <source>Method</source>
@@ -1798,22 +1808,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Compatibility</source>
-        <translation>Compatibilidad</translation>
-    </message>
-    <message>
-        <source>The two don&apos;t seem to like each other</source>
-        <translation>No se quieren con locura</translation>
-    </message>
-    <message>
-        <source>The two seem to get along</source>
-        <translation>Se llevan bastante bien</translation>
-    </message>
-    <message>
-        <source>The two seem to get along very well</source>
-        <translation>Se llevan estupendamente</translation>
-    </message>
-    <message>
         <source>Seed 0</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1830,22 +1824,22 @@
         <translation>Configuraciones</translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="100"/>
+        <location filename="../Gen8/Eggs8.cpp" line="98"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="100"/>
+        <location filename="../Gen8/Eggs8.cpp" line="98"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="108"/>
+        <location filename="../Gen8/Eggs8.cpp" line="106"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="108"/>
+        <location filename="../Gen8/Eggs8.cpp" line="106"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5861,6 +5855,10 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>ProfileEditor5</name>
     <message>
+        <source>Oval Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Profile Editor Gen 5</source>
         <translation>Generación 5 editor de perfil</translation>
     </message>
@@ -6001,42 +5999,42 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="156"/>
         <source>Enter a profile name</source>
         <translation>Introduzca un nombre de perfil</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="148"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="156"/>
         <source>Missing name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="167"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="175"/>
         <source>Open IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
         <source>Invalid IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="176"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
         <source>Provided file is not a valid IV Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="184"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="192"/>
         <source>Open SHA1 Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="192"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="200"/>
         <source>Invalid SHA Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="193"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="201"/>
         <source>Provided file is not a valid SHA Cache or was not created from the profile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6409,10 +6407,16 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>ProfileModel5</name>
     <message>
+        <location filename="../../Model/Gen5/ProfileModel5.hpp" line="97"/>
+        <source>Oval Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="72"/>
         <source>Yes</source>
         <translation type="unfinished">Sí</translation>
     </message>
@@ -6421,6 +6425,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="66"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="68"/>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="70"/>
+        <location filename="../../Model/Gen5/ProfileModel5.cpp" line="72"/>
         <source>No</source>
         <translation type="unfinished">No</translation>
     </message>
@@ -6968,24 +6973,24 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="344"/>
+        <location filename="../Util/Researcher.cpp" line="340"/>
         <source>Missing setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="345"/>
+        <location filename="../Util/Researcher.cpp" line="341"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="409"/>
-        <location filename="../Util/Researcher.cpp" line="433"/>
+        <location filename="../Util/Researcher.cpp" line="405"/>
+        <location filename="../Util/Researcher.cpp" line="429"/>
         <source>No result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="409"/>
-        <location filename="../Util/Researcher.cpp" line="433"/>
+        <location filename="../Util/Researcher.cpp" line="405"/>
+        <location filename="../Util/Researcher.cpp" line="429"/>
         <source>Unable to find a result</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7359,36 +7364,40 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>Errantes:</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="159"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="201"/>
         <source>Invalid selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="158"/>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="200"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="159"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="201"/>
         <source>Select a valid row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="187"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="188"/>
         <source>Coin Flips: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="237"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="240"/>
         <source>Elm Calls: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="242"/>
         <source>Roamers: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="239"/>
+        <location filename="../Gen4/Tools/SeedToTime4.cpp" line="242"/>
         <source>No roamers</source>
         <translation>No errantes</translation>
+    </message>
+    <message>
+        <source>Player Location</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -40,22 +40,18 @@ public:
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
      * @param method Encounter method
-     * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, u8 compatability, const Daycare &daycare,
-                 const Profile &profile, const Filter &filter) :
-        Generator<Profile, Filter>(initialAdvances, maxAdvances, offset, method, profile, filter),
-        daycare(daycare),
-        compatability(compatability)
+    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, Method method, const Daycare &daycare, const Profile &profile,
+                 const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, offset, method, profile, filter), daycare(daycare)
     {
     }
 
 protected:
     Daycare daycare;
-    u8 compatability;
 };
 
 #endif // EGGGENERATOR_HPP

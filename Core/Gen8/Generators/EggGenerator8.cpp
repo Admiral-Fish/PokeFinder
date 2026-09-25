@@ -32,10 +32,9 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u8 compatability, const Daycare &daycare,
-                             const Profile8 &profile, const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, compatability, daycare, profile, filter),
-    shinyCharm(profile.getShinyCharm())
+EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile8 &profile,
+                             const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, offset, Method::None, daycare, profile, filter), shinyCharm(profile.getShinyCharm())
 {
 }
 
@@ -77,7 +76,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
     std::vector<EggState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        if (rngList.next(100) < compatability)
+        if (rngList.next(100) < daycare.getCompatibility())
         {
             // Sign extend seed to signed 64bit
             constexpr u32 SIGN_EXTEND_MASK = 0x80000000;

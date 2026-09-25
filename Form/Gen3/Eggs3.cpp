@@ -55,7 +55,6 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->textBoxEmeraldMinRedraws->setValues(0, 255, 3, 10);
     ui->textBoxEmeraldMaxRedraws->setValues(0, 255, 3, 10);
     ui->textBoxEmeraldCalibration->setValues(0, 255, 3, 10);
-    ui->comboBoxEmeraldCompatibility->setup({ 20, 50, 70 });
 
     ui->textBoxRSFRLGSeedHeld->setValues(InputType::Seed16Bit);
     ui->textBoxRSFRLGSeedPickup->setValues(InputType::Seed16Bit);
@@ -65,7 +64,6 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->textBoxRSFRLGMaxAdvancesPickup->setValues(InputType::Advance32Bit);
     ui->textBoxRSFRLGOffsetHeld->setValues(InputType::Advance32Bit);
     ui->textBoxRSFRLGOffsetPickup->setValues(InputType::Advance32Bit);
-    ui->comboBoxRSFRLGCompatibility->setup({ 20, 50, 70 });
 
     ui->comboBoxEmeraldMethod->setup({ toInt(Method::EBred), toInt(Method::EBredSplit), toInt(Method::EBredAlternate) });
     ui->comboBoxRSFRLGMethod->setup(
@@ -135,14 +133,12 @@ void Eggs3::emeraldGenerate()
     u8 calibration = ui->textBoxEmeraldCalibration->getUChar();
     u8 minRedraw = ui->textBoxEmeraldMinRedraws->getUChar();
     u8 maxRedraw = ui->textBoxEmeraldMaxRedraws->getUChar();
-    u8 compatability = ui->comboBoxEmeraldCompatibility->getCurrentUChar();
     auto method = ui->comboBoxEmeraldMethod->getEnum<Method>();
 
     auto filter = ui->filterEmerald->getFilter<StateFilter>();
 
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup,
-                            calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(), *currentProfile,
-                            filter);
+                            calibration, minRedraw, maxRedraw, method, ui->eggSettingsEmerald->getDaycare(false), *currentProfile, filter);
 
     auto states = generator.generate();
     emerald->addItems(states);
@@ -168,12 +164,11 @@ void Eggs3::rsfrlgGenerate()
     u32 initialAdvancesPickup = ui->textBoxRSFRLGInitialAdvancesPickup->getUInt();
     u32 maxAdvancesPickup = ui->textBoxRSFRLGMaxAdvancesPickup->getUInt();
     u32 offsetPickup = ui->textBoxRSFRLGOffsetPickup->getUInt();
-    u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentUChar();
     auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
 
     auto filter = ui->filterRSFRLG->getFilter<StateFilter>();
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, offsetHeld, initialAdvancesPickup, maxAdvancesPickup, offsetPickup, 0, 0,
-                            0, method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
+                            0, method, ui->eggSettingsRSFRLG->getDaycare(false), *currentProfile, filter);
 
     auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
     rsfrlg->addItems(states);

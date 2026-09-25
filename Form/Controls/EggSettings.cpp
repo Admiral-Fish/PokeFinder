@@ -74,6 +74,8 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
+    ui->comboBoxCompatibility->setup({ 20, 50, 70 });
+
     auto *copyAction = addAction(tr("Copy IVs to clipboard"));
     auto *pasteAction = addAction(tr("Paste IVs from clipboard"));
 
@@ -95,7 +97,7 @@ void EggSettings::contextMenuEvent(QContextMenuEvent *event)
 
 bool EggSettings::isValid(bool hiddenAbility) const
 {
-    // Gender compatability
+    // Gender compatibility
     u8 parent1 = ui->comboBoxParentAGender->currentIndex();
     u8 parent2 = ui->comboBoxParentBGender->currentIndex();
     if (!((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0) || // Male/Female
@@ -108,14 +110,14 @@ bool EggSettings::isValid(bool hiddenAbility) const
         return false;
     }
 
-    // Hidden ability compatability
+    // Hidden ability compatibility
     if (hiddenAbility)
     {
         u8 ability1 = ui->comboBoxParentAAbility->currentIndex();
         u8 ability2 = ui->comboBoxParentBAbility->currentIndex();
 
         bool hiddenAbilityCompatible = (parent1 == 0 && parent2 == 1 && ability2 == 2) || (parent1 == 1 && ability1 == 2 && parent2 == 0);
-        if ((game & Game::Gen8) != Game::None) 
+        if ((game & Game::Gen8) != Game::None)
         {
             hiddenAbilityCompatible |= (parent1 == 3 && ability2 == 2) || (ability1 == 2 && parent2 == 3);
         }
@@ -160,12 +162,13 @@ void EggSettings::copyFrom(const EggSettings *other)
     ui->comboBoxParentBNature->setCurrentIndex(other->ui->comboBoxParentBNature->currentIndex());
 
     ui->comboBoxEggSpecie->setCurrentIndex(other->ui->comboBoxEggSpecie->currentIndex());
+    ui->comboBoxCompatibility->setCurrentIndex(other->ui->comboBoxCompatibility->currentIndex());
 
     ui->checkBoxMasuda->setCheckState(other->ui->checkBoxMasuda->checkState());
     ui->checkBoxShowInheritance->setCheckState(other->ui->checkBoxShowInheritance->checkState());
 }
 
-Daycare EggSettings::getDaycare() const
+Daycare EggSettings::getDaycare(bool ovalCharm) const
 {
     std::array<std::array<u8, 6>, 2> parentIVs
         = { { { static_cast<u8>(ui->spinBoxParentAHP->value()), static_cast<u8>(ui->spinBoxParentAAtk->value()),
@@ -189,7 +192,14 @@ Daycare EggSettings::getDaycare() const
     u16 specie = ui->comboBoxEggSpecie->getCurrentUShort();
     bool masuda = ui->checkBoxMasuda->isChecked();
 
-    return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, specie, masuda);
+    u8 compatibility = ui->comboBoxCompatibility->getCurrentUChar();
+    if (ovalCharm)
+    {
+        constexpr u8 OVAL[] = { 40, 80, 88 };
+        compatibility = OVAL[ui->comboBoxCompatibility->currentIndex()];
+    }
+
+    return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, specie, masuda, compatibility);
 }
 
 bool EggSettings::reorderParents()
@@ -211,7 +221,8 @@ bool EggSettings::reorderParents()
 
     if (flag)
     {
-        Daycare daycare = getDaycare();
+        // It doesn't matter what value we pass to oval charm here
+        Daycare daycare = getDaycare(false);
 
         ui->spinBoxParentAHP->setValue(daycare.getParentIV(1, 0));
         ui->spinBoxParentAAtk->setValue(daycare.getParentIV(1, 1));
@@ -274,6 +285,9 @@ void EggSettings::setup(Game game)
         ui->comboBoxParentBItem->hide();
         ui->comboBoxParentANature->hide();
         ui->comboBoxParentBNature->hide();
+
+        ui->labelCompatibility->hide();
+        ui->comboBoxCompatibility->hide();
 
         max = 493;
     }

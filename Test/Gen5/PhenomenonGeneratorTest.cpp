@@ -59,7 +59,7 @@ void PhenomenonGeneratorTest::generate()
     json j = json::parse(results);
 
     Profile5 profile("-", version, 12345, 54321, "", "", 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0,
-                     false, 0, 0, false, false, false, DSType::DS, Language::English);
+                     false, 0, 0, false, false, false, false, DSType::DS, Language::English);
 
     auto areas = Encounters5::getPhenomenonEncounters(&profile);
     auto area = std::ranges::find_if(areas, [location](const auto &area) { return area.getLocation() == location; });

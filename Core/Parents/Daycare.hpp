@@ -39,18 +39,30 @@ public:
      * @param parentNature Parent natures
      * @param specie Egg specie
      * @param masuda Parents form international combination
+     * @param compatibility Parent compatibility
      */
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
             const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, u16 specie,
-            bool masuda) :
+            bool masuda, u8 compatibility) :
         specie(specie),
         parentIVs(parentIVs),
         parentAbility(parentAbility),
         parentGender(parentGender),
         parentItem(parentItem),
         parentNature(parentNature),
-        masuda(masuda)
+        masuda(masuda),
+        compatibility(compatibility)
     {
+    }
+
+    /**
+     * @brief Determines the compatibility of the parents
+     *
+     * @return Parent compatibility
+     */
+    u8 getCompatibility() const
+    {
+        return compatibility;
     }
 
     /**
@@ -174,6 +186,7 @@ private:
     std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;
+    u8 compatibility;
 };
 
 #endif // DAYCARE_HPP

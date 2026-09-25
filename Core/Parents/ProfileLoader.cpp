@@ -355,6 +355,7 @@ namespace ProfileLoader5
             j["timer0Max"] = profile.getTimer0Max();
             j["memoryLink"] = profile.getMemoryLink();
             j["nsPokemonReleased"] = profile.getNsPokemonReleased();
+            j["ovalCharm"] = profile.getOvalCharm();
             j["shinyCharm"] = profile.getShinyCharm();
             j["dsType"] = profile.getDSType();
             j["language"] = profile.getLanguage();
@@ -400,11 +401,12 @@ namespace ProfileLoader5
             u16 timer0Max = j.value("timer0Max", 0);
             bool memoryLink = j.value("memoryLink", false);
             bool nsPokemonReleased = memoryLink && j.value("nsPokemonReleased", false);
-            bool shinyCharm = j.value("shinyCharm", false);
+            bool ovalCharm = (version & Game::BW2) != Game::None && j.value("ovalCharm", false);
+            bool shinyCharm = ovalCharm ? j.value("shinyCharm", false) : false;
             DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, ivCache, shaCache, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
-                            timer0Max, memoryLink, nsPokemonReleased, shinyCharm, dsType, language);
+                            timer0Max, memoryLink, nsPokemonReleased, ovalCharm, shinyCharm, dsType, language);
         }
 
     }
