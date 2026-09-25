@@ -70,7 +70,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Item") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Phenomenon"), tr("Item") };
 };
 
 /**

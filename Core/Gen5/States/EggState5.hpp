@@ -39,16 +39,16 @@ public:
      * @param gender Pokemon gender
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
-     * @param egg Whether this advance will generate an egg
+     * @param eggRate Rate to determine if advance will generate egg
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny, bool egg,
+    EggState5(u32 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny, u8 eggRate,
               const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
         EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info),
-        egg(egg),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        egg(((static_cast<u64>(prng) * 1600) >> 32) < eggRate),
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
+        needle((static_cast<u64>(prng) * 8) >> 32)
     {
     }
 
@@ -103,16 +103,17 @@ public:
      * @param pid Pokemon PID
      * @param gender Pokemon gender
      * @param shiny Pokemon shininess
+     * @param eggRate Rate to determine if advance will generate egg
      */
-    void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny, bool egg)
+    void update(u32 prng, u32 advances, u32 pid, u8 gender, u8 shiny, u8 eggRate)
     {
         this->advances = advances;
         this->pid = pid;
         this->gender = gender;
         this->shiny = shiny;
-        this->egg = egg;
-        chatot = static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82);
-        needle = static_cast<u8>((static_cast<u64>(prng) * 8) >> 32);
+        egg = ((static_cast<u64>(prng) * 1600) >> 32) < eggRate;
+        chatot = ((static_cast<u64>(prng) * 0x1fff) >> 32) / 82;
+        needle = (static_cast<u64>(prng) * 8) >> 32;
     }
 
 private:

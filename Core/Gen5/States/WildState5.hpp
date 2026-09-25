@@ -41,15 +41,17 @@ public:
      * @param level Pokemon level
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
+     * @param phenomenonRate Rate to determine if advance will generate Phenomenon tile
      * @param info Pokemon information
      * @param valid Whether state is valid to encounter or not
      */
     WildState5(u32 prng, u32 advances, u32 ivAdvances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-               u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info, bool valid = true) :
+               u8 encounterSlot, u16 item, u16 specie, u8 form, u8 phenomenonRate, const PersonalInfo *info, bool valid = true) :
         WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info, valid),
         ivAdvances(ivAdvances),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        phenomenon(((static_cast<u64>(prng) * 1000) >> 32) < phenomenonRate),
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
+        needle((static_cast<u64>(prng) * 8) >> 32)
     {
     }
 
@@ -83,8 +85,20 @@ public:
         return needle;
     }
 
+    /**
+     * @brief Returns whether this state generates a phenomenon tile
+     *
+     * @return true State generates a phenomenon tile
+     * @return false State does not generate a phenomenon tile
+     */
+    bool getPhenomenon() const
+    {
+        return phenomenon;
+    }
+
 private:
     u32 ivAdvances;
+    bool phenomenon;
     u8 chatot;
     u8 needle;
 };

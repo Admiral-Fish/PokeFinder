@@ -60,7 +60,7 @@ public:
 
     /**
      * @brief Returns chatot pitch for given \p row
-     * 
+     *
      * @return Row chatot pitch
      */
     u8 getChatot(int row) const override
@@ -70,7 +70,7 @@ public:
 
     /**
      * @brief Returns needle value for given \p row
-     * 
+     *
      * @return Row needle value
      */
     u8 getNeedle(int row) const override
@@ -89,6 +89,13 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    /**
+     * @brief Sets flag that controls whether the model display phenomenon
+     *
+     * @param flag Whether to show phenomenon or not
+     */
+    void setPhenomenon(bool flag);
+
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
@@ -98,10 +105,20 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"),  tr("Item"),  tr("Slot"),   tr("Level"),         tr("PID"),
-                           tr("Shiny"),    tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),    tr("Def"),           tr("SpA"),
-                           tr("SpD"),      tr("Spe"),    tr("Hidden"),  tr("Power"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Needle"), tr("Phenomenon"), tr("Item"),  tr("Slot"),   tr("Level"),
+                           tr("PID"),      tr("Shiny"),  tr("Nature"), tr("Ability"),    tr("HP"),    tr("Atk"),    tr("Def"),
+                           tr("SpA"),      tr("SpD"),    tr("Spe"),    tr("Hidden"),     tr("Power"), tr("Gender"), tr("Characteristic") };
+    bool phenomenon;
     bool showStats;
+
+    /**
+     * @brief Gets modified column index based on model method
+     *
+     * @param column Original column
+     *
+     * @return Modified column
+     */
+    int getColumn(int column) const;
 };
 
 /**

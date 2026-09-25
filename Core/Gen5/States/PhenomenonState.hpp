@@ -34,12 +34,13 @@ public:
      * @param prng PRNG call to determine Chatot pitch
      * @param advances Advances of the state
      */
-    PhenomenonState(u32 prng, u32 advances, u16 item, bool valid) :
+    PhenomenonState(u32 prng, u32 advances, u16 item, bool phenomenon, bool valid) :
         advances(advances),
         item(item),
+        phenomenon(phenomenon),
         valid(valid),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
+        needle((static_cast<u64>(prng) * 8) >> 32)
     {
     }
 
@@ -84,6 +85,17 @@ public:
     }
 
     /**
+     * @brief Returns whether this state generates a phenomenon tile
+     *
+     * @return true State generates a phenomenon tile
+     * @return false State does not generate a phenomenon tile
+     */
+    bool getPhenomenon() const
+    {
+        return phenomenon;
+    }
+
+    /**
      * @brief Determines if the state can be hit
      *
      * @return true State can be hit
@@ -97,6 +109,7 @@ public:
 private:
     u32 advances;
     u16 item;
+    bool phenomenon;
     bool valid;
     u8 chatot;
     u8 needle;

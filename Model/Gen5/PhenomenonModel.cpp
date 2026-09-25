@@ -29,7 +29,7 @@ PhenomenonGeneratorModel5::PhenomenonGeneratorModel5(QObject *parent) : TableMod
 
 int PhenomenonGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 4;
+    return 5;
 }
 
 QVariant PhenomenonGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -54,7 +54,7 @@ QVariant PhenomenonGeneratorModel5::data(const QModelIndex &index, int role) con
     else if (role == Qt::DisplayRole)
     {
         int column = index.column();
-        if (!state.isValid() && column > 2)
+        if (!state.isValid() && column > 3)
         {
             return "-";
         }
@@ -68,6 +68,8 @@ QVariant PhenomenonGeneratorModel5::data(const QModelIndex &index, int role) con
         case 2:
             return QString::fromStdString(Translator::getNeedle(state.getNeedle()));
         case 3:
+            return state.getPhenomenon() ? tr("Yes") : tr("No");
+        case 4:
             return QString::fromStdString(Translator::getItem(state.getItem()));
         }
     }

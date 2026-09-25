@@ -44,10 +44,10 @@ public:
         data(specie),
         item(false),
         valid(valid),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
         gender(gender),
         group(group),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        needle((static_cast<u64>(prng) * 8) >> 32),
         slot(slot)
     {
     }
@@ -67,10 +67,10 @@ public:
         data(item),
         item(true),
         valid(valid),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
         gender(0),
         group(group),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32)),
+        needle((static_cast<u64>(prng) * 8) >> 32),
         slot(slot)
     {
     }

@@ -29,8 +29,8 @@
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
-EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare,
-                             const Profile5 &profile, const StateFilter &filter) :
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, const Daycare &daycare, const Profile5 &profile,
+                             const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, offset, Method::None, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
@@ -175,9 +175,8 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
         u32 prng = rng.nextUInt();
-        bool egg = ((static_cast<u64>(prng) * 1600) >> 32) < daycare.getCompatibility();
         EggState5 state(prng, advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
-                        Utilities::getShiny<true>(pid, tsv), egg, inheritance, info);
+                        Utilities::getShiny<true>(pid, tsv), daycare.getCompatibility(), inheritance, info);
         if (filter.compare(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -221,9 +220,8 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
             }
 
             u32 prng = rng.nextUInt();
-            bool egg = ((static_cast<u64>(prng) * 1600) >> 32) < daycare.getCompatibility();
             state.update(prng, advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv),
-                         egg);
+                         daycare.getCompatibility());
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

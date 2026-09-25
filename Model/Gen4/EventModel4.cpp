@@ -74,7 +74,6 @@ QVariant EventGeneratorModel4::headerData(int section, Qt::Orientation orientati
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-
         return header[section];
     }
     return QVariant();

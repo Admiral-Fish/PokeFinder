@@ -42,18 +42,20 @@ std::vector<PhenomenonState> PhenomenonGenerator::generate(u64 seed) const
     auto jump = rng.getJump(offset);
 
     bool bw = (profile.getVersion() & Game::BW) != Game::None;
-    u16 rate = area.getPhenomenonRate();
+    u8 rate = area.getPhenomenonRate();
+    u16 ratio = area.getPhenomenonRatio();
 
     std::vector<PhenomenonState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng, jump);
 
-        bool valid = go.nextUInt(1000) >= rate;
+        bool valid = go.nextUInt(1000) >= ratio;
         u16 item = area.getItem(go, bw);
 
         u32 prng = rng.nextUInt();
-        PhenomenonState state(prng, advances + initialAdvances + cnt, item, valid);
+        bool phenomenon = ((static_cast<u64>(prng) * 1000) >> 32) < rate;
+        PhenomenonState state(prng, advances + initialAdvances + cnt, item, phenomenon, valid);
         if (filter.compare(state))
         {
             states.emplace_back(state);

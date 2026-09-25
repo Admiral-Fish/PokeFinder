@@ -152,7 +152,8 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         rate *= 2;
     }
 
-    u16 phenomenonRate = area.getPhenomenonRate();
+    u8 phenomenonRate = area.getPhenomenonRate();
+    u16 phenomenonRatio = area.getPhenomenonRatio();
 
     u8 shinyRolls = 1;
     if ((profile.getVersion() & Game::BW2) != Game::None)
@@ -185,7 +186,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
 
         if (phenomenon)
         {
-            valid = go.nextUInt(1000) < phenomenonRate;
+            valid = go.nextUInt(1000) < phenomenonRatio;
         }
 
         if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
@@ -290,7 +291,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
             for (const auto &iv : ivs)
             {
                 states.emplace_back(prng, advances + initialAdvances + cnt, iv.first, pid, iv.second, ability, gender, level, nature, shiny,
-                                    encounterSlot, item, slot.getSpecie(), slot.getForm(), info, valid);
+                                    encounterSlot, item, slot.getSpecie(), slot.getForm(), phenomenonRate, info, valid);
             }
         }
     }

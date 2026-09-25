@@ -89,7 +89,18 @@ std::vector<std::string> EncounterArea5::getItemNames(bool bw) const
     return Translator::getItems(getUniqueItems(bw));
 }
 
-u16 EncounterArea5::getPhenomenonRate() const
+u8 EncounterArea5::getPhenomenonRate() const
+{
+    switch (phenomenon)
+    {
+    case PhenomenonType::Bridge:
+        return 150;
+    default:
+        return 100;
+    }
+}
+
+u16 EncounterArea5::getPhenomenonRatio() const
 {
     switch (phenomenon)
     {

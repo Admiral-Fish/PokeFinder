@@ -47,8 +47,8 @@ public:
            const PersonalInfo *info) :
         GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info),
         ivAdvances(ivAdvances),
-        chatot(static_cast<u8>(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82)),
-        needle(static_cast<u8>((static_cast<u64>(prng) * 8) >> 32))
+        chatot(((static_cast<u64>(prng) * 0x1fff) >> 32) / 82),
+        needle((static_cast<u64>(prng) * 8) >> 32)
     {
     }
 

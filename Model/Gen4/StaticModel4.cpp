@@ -88,7 +88,6 @@ QVariant StaticGeneratorModel4::headerData(int section, Qt::Orientation orientat
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-
         return header[section];
     }
     return QVariant();

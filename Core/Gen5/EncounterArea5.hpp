@@ -122,7 +122,14 @@ public:
      *
      * @return Phenomenon rate
      */
-    u16 getPhenomenonRate() const;
+    u8 getPhenomenonRate() const;
+
+    /**
+     * @brief Return the encounter ratio of the phenomenon
+     *
+     * @return Phenomenon ratio
+     */
+    u16 getPhenomenonRatio() const;
 
     /**
      * @brief Return the type of the phenomenon
