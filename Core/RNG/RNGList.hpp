@@ -37,6 +37,7 @@ template <typename Integer, class RNG, u16 size, Integer (*generate)(RNG &) = nu
 class RNGList
 {
     static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
+
 public:
     /**
      * @brief Construct a new RNGList object
@@ -101,18 +102,14 @@ public:
     {
         if constexpr (generate != nullptr)
         {
-            list[head++] = generate(rng);
+            list[head] = generate(rng);
         }
         else
         {
-            list[head++] = rng.next();
+            list[head] = rng.next();
         }
 
-        if constexpr (size != 256)
-        {
-            head %= size;
-        }
-
+        head = (head + 1) & MASK;
         pointer = head;
     }
 
@@ -123,11 +120,7 @@ public:
      */
     void advance(u32 advances)
     {
-        pointer += advances;
-        if constexpr (size != 256)
-        {
-            pointer %= size;
-        }
+        pointer = (pointer + advances) & MASK;
     }
 
     /**
@@ -137,12 +130,8 @@ public:
      */
     Integer next()
     {
-        Integer result = list[pointer++];
-
-        if constexpr (size != 256)
-        {
-            pointer %= size;
-        }
+        Integer result = list[pointer];
+        pointer = (pointer + 1) & MASK;
 
         // Debug assert to help discover if the array is too small
         // Only check on bigger sizes. Smaller sizes are prone to false positives if we use size number of prng calls
@@ -156,7 +145,7 @@ public:
 
     /**
      * @brief Gets the next PRNG state
-     * 
+     *
      * @param max Max bounding value
      *
      * @return PRNG state
@@ -189,6 +178,7 @@ public:
     }
 
 private:
+    static constexpr u16 MASK = size - 1;
     using SizeType = std::conditional_t<size <= 256, u8, u16>;
 
     RNG rng;
