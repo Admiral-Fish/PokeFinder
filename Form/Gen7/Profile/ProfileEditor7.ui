@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileEditor7</class>
+ <widget class="QDialog" name="ProfileEditor7">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>636</width>
+    <height>98</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor Gen 7</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="ComboBox" name="comboBoxVersion">
+     <item>
+      <property name="text">
+       <string>Sun</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Moon</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ultra Sun</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ultra Moon</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxSID"/>
+   </item>
+   <item row="3" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
+     <property name="text">
+      <string>Shiny Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="labelEggSeed0">
+     <property name="text">
+      <string>Egg Seed 0</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="TextBox" name="textBoxEggSeed0"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelEggSeed1">
+     <property name="text">
+      <string>Egg Seed 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="TextBox" name="textBoxEggSeed1"/>
+   </item>
+   <item row="0" column="6">
+    <widget class="QLabel" name="labelEggSeed2">
+     <property name="text">
+      <string>Egg Seed 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="TextBox" name="textBoxEggSeed2"/>
+   </item>
+   <item row="1" column="6">
+    <widget class="QLabel" name="labelEggSeed3">
+     <property name="text">
+      <string>Egg Seed 3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
+    <widget class="TextBox" name="textBoxEggSeed3"/>
+   </item>
+   <item row="0" column="8">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="8">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
+  <tabstop>textBoxEggSeed0</tabstop>
+  <tabstop>textBoxEggSeed1</tabstop>
+  <tabstop>textBoxEggSeed2</tabstop>
+  <tabstop>textBoxEggSeed3</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -15,43 +15,46 @@
     <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
         <string>Gen 3</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
          <widget class="QPushButton" name="pushButtonEgg3">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonGameCube">
           <property name="text">
            <string>GameCube</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonIDs3">
           <property name="text">
            <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonStatic3">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonWild3">
           <property name="text">
            <string>Wild</string>
@@ -64,36 +67,36 @@
        <attribute name="title">
         <string>Gen 4</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
          <widget class="QPushButton" name="pushButtonEgg4">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonEvent4">
           <property name="text">
            <string>Event</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonIDs4">
           <property name="text">
            <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonStatic4">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonWild4">
           <property name="text">
            <string>Wild</string>
@@ -106,50 +109,50 @@
        <attribute name="title">
         <string>Gen 5</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
          <widget class="QPushButton" name="pushButtonDreamRadar">
           <property name="text">
            <string>Dream Radar</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonEgg5">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonEvent5">
           <property name="text">
            <string>Event</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonHiddenGrotto">
           <property name="text">
            <string>Hidden Grotto</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonIDs5">
           <property name="text">
            <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonStatic5">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonWild5">
           <property name="text">
            <string>Wild</string>
@@ -158,54 +161,59 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tabGen7">
+       <attribute name="title">
+        <string>Gen 7</string>
+       </attribute>
+      </widget>
       <widget class="QWidget" name="tabGen8">
        <attribute name="title">
         <string>Gen 8</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
          <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonEvent8">
           <property name="text">
            <string>Event</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
            <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
            <string>Raid</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonStatic8">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonUnderground">
           <property name="text">
            <string>Underground</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonWild8">
           <property name="text">
            <string>Wild</string>
@@ -270,6 +278,12 @@
     <addaction name="actionProfileManager5"/>
     <addaction name="actionSHA1Cache"/>
    </widget>
+   <widget class="QMenu" name="menuGen7Tools">
+    <property name="title">
+     <string>Gen 7 Tools</string>
+    </property>
+    <addaction name="actionProfileManager7"/>
+   </widget>
    <widget class="QMenu" name="menuGen8Tools">
     <property name="title">
      <string>Gen 8 Tools</string>
@@ -280,6 +294,7 @@
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
    <addaction name="menuGen5Tools"/>
+   <addaction name="menuGen7Tools"/>
    <addaction name="menuGen8Tools"/>
    <addaction name="menuTools"/>
   </widget>
@@ -339,6 +354,11 @@
    </property>
   </action>
   <action name="actionProfileManager5">
+   <property name="text">
+    <string>Profile Manager</string>
+   </property>
+  </action>
+  <action name="actionProfileManager7">
    <property name="text">
     <string>Profile Manager</string>
    </property>

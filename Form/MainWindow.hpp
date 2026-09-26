@@ -78,6 +78,11 @@ signals:
     /**
      * @brief Emits that the profiles have been changed
      */
+    void profilesChanged7();
+
+    /**
+     * @brief Emits that the profiles have been changed
+     */
     void profilesChanged8();
 
 public:
@@ -311,6 +316,12 @@ private slots:
      * @brief Opens the Gen 5 SHA1 Cache Finder window
      */
     void openSHA1CacheFinder() const;
+
+    // Gen 7
+    /**
+     * @brief Opens the Gen 7 Profile Manager window
+     */
+    void openProfileManager7() const;
 
     // Gen 8
     /**
