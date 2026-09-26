@@ -53,6 +53,7 @@
 #include <Form/Gen5/Tools/Phenomenon.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
+#include <Form/Gen7/Profile/ProfileManager7.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
@@ -120,6 +121,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionSHA1Cache, &QAction::triggered, this, &MainWindow::openSHA1CacheFinder);
+
+    connect(ui->actionProfileManager7, &QAction::triggered, this, &MainWindow::openProfileManager7);
 
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
@@ -593,7 +596,7 @@ void MainWindow::openIVCacheFinder() const
 
 void MainWindow::openPhenomenon()
 {
-    auto phenomenon = new Phenomenon();    
+    auto phenomenon = new Phenomenon();
     if (!phenomenon->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
@@ -643,6 +646,13 @@ void MainWindow::openSHA1CacheFinder() const
         window->show();
         window->raise();
     }
+}
+
+void MainWindow::openProfileManager7() const
+{
+    auto *manager = new ProfileManager7();
+    connect(manager, &ProfileManager7::profilesChanged, this, &MainWindow::updateProfiles);
+    manager->show();
 }
 
 void MainWindow::openDenMap()

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileEditor3</class>
- <widget class="QDialog" name="ProfileEditor3">
+ <class>ProfileEditor7</class>
+ <widget class="QDialog" name="ProfileEditor7">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>388</width>
-    <height>100</height>
+    <width>636</width>
+    <height>98</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Profile Editor Gen 3</string>
+   <string>Profile Editor Gen 7</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -35,37 +35,22 @@
     <widget class="ComboBox" name="comboBoxVersion">
      <item>
       <property name="text">
-       <string>Ruby</string>
+       <string>Sun</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Sapphire</string>
+       <string>Moon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Fire Red</string>
+       <string>Ultra Sun</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Leaf Green</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Emerald</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>XD</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Colosseum</string>
+       <string>Ultra Moon</string>
       </property>
      </item>
     </widget>
@@ -90,21 +75,61 @@
    <item row="1" column="3">
     <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="2" column="2" colspan="2">
-    <widget class="QCheckBox" name="checkBoxDeadBattery">
+   <item row="3" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
      <property name="text">
-      <string>Dead Battery</string>
+      <string>Shiny Charm</string>
      </property>
     </widget>
    </item>
    <item row="0" column="4">
+    <widget class="QLabel" name="labelEggSeed0">
+     <property name="text">
+      <string>Egg Seed 0</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="TextBox" name="textBoxEggSeed0"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelEggSeed1">
+     <property name="text">
+      <string>Egg Seed 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="TextBox" name="textBoxEggSeed1"/>
+   </item>
+   <item row="0" column="6">
+    <widget class="QLabel" name="labelEggSeed2">
+     <property name="text">
+      <string>Egg Seed 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="TextBox" name="textBoxEggSeed2"/>
+   </item>
+   <item row="1" column="6">
+    <widget class="QLabel" name="labelEggSeed3">
+     <property name="text">
+      <string>Egg Seed 3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
+    <widget class="TextBox" name="textBoxEggSeed3"/>
+   </item>
+   <item row="0" column="8">
     <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
       <string>Okay</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
+   <item row="1" column="8">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
       <string>Cancel</string>
@@ -125,6 +150,19 @@
    <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
+  <tabstop>textBoxEggSeed0</tabstop>
+  <tabstop>textBoxEggSeed1</tabstop>
+  <tabstop>textBoxEggSeed2</tabstop>
+  <tabstop>textBoxEggSeed3</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

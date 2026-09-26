@@ -17,31 +17,31 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEDISPLAY8_HPP
-#define PROFILEDISPLAY8_HPP
+#ifndef PROFILEDISPLAY7_HPP
+#define PROFILEDISPLAY7_HPP
 
 #include <Core/Global.hpp>
 #include <QWidget>
 
-class Profile8;
+class Profile7;
 enum class Game : u32;
 
 namespace Ui
 {
-    class ProfileDisplay8;
+    class ProfileDisplay7;
 }
 
 /**
  * @brief Provides widget to view fields of a profile
  */
-class ProfileDisplay8 final : public QWidget
+class ProfileDisplay7 final : public QWidget
 {
     Q_OBJECT
 signals:
     /**
      * @brief Emits that the selected profile has been changed
      */
-    void profileChanged(const Profile8 &);
+    void profileChanged(const Profile7 &);
 
     /**
      * @brief Emits that the profiles have been changed
@@ -50,16 +50,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new ProfileDisplay8 object
+     * @brief Construct a new ProfileDisplay7 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    ProfileDisplay8(QWidget *parent = nullptr);
+    ProfileDisplay7(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the ProfileDisplay8 object
      */
-    ~ProfileDisplay8() override;
+    ~ProfileDisplay7() override;
 
     /**
      * @brief Sets the QSetting group prefix and version filter
@@ -75,10 +75,10 @@ public:
     void updateProfiles();
 
 private:
-    Ui::ProfileDisplay8 *ui;
+    Ui::ProfileDisplay7 *ui;
 
     QString prefix;
-    std::vector<Profile8> profiles;
+    std::vector<Profile7> profiles;
     Game filter;
 
 private slots:
@@ -95,4 +95,4 @@ private slots:
     void profileManager();
 };
 
-#endif // PROFILEDISPLAY8_HPP
+#endif // PROFILEDISPLAY7_HPP
