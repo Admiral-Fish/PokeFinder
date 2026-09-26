@@ -39,6 +39,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 7,
                     "pid": 865167891,
                     "shiny": 0,
                     "stats": [
@@ -69,6 +70,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 3,
                     "pid": 644479330,
                     "shiny": 0,
                     "stats": [
@@ -99,6 +101,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 4,
                     "pid": 3313075213,
                     "shiny": 0,
                     "stats": [
@@ -129,6 +132,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 4,
                     "pid": 417447769,
                     "shiny": 0,
                     "stats": [
@@ -159,6 +163,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 7,
                     "pid": 3001616718,
                     "shiny": 0,
                     "stats": [
@@ -189,6 +194,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 3,
                     "pid": 2653287285,
                     "shiny": 0,
                     "stats": [
@@ -219,6 +225,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 2,
                     "pid": 3963725892,
                     "shiny": 0,
                     "stats": [
@@ -249,6 +256,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 3,
                     "pid": 2315327260,
                     "shiny": 0,
                     "stats": [
@@ -279,6 +287,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 4,
                     "pid": 937245776,
                     "shiny": 0,
                     "stats": [
@@ -309,6 +318,7 @@
                     ],
                     "level": 1,
                     "nature": 0,
+                    "needle": 3,
                     "pid": 2697546841,
                     "shiny": 0,
                     "stats": [
@@ -361,6 +371,7 @@
                     ],
                     "level": 50,
                     "nature": 18,
+                    "needle": 3,
                     "pid": 3027809660,
                     "shiny": 0,
                     "stats": [
@@ -391,6 +402,7 @@
                     ],
                     "level": 50,
                     "nature": 7,
+                    "needle": 4,
                     "pid": 3824719012,
                     "shiny": 0,
                     "stats": [
@@ -421,6 +433,7 @@
                     ],
                     "level": 50,
                     "nature": 9,
+                    "needle": 3,
                     "pid": 3137091428,
                     "shiny": 0,
                     "stats": [
@@ -451,6 +464,7 @@
                     ],
                     "level": 50,
                     "nature": 20,
+                    "needle": 0,
                     "pid": 1259397331,
                     "shiny": 0,
                     "stats": [
@@ -481,6 +495,7 @@
                     ],
                     "level": 50,
                     "nature": 7,
+                    "needle": 3,
                     "pid": 1651300811,
                     "shiny": 0,
                     "stats": [
@@ -511,6 +526,7 @@
                     ],
                     "level": 50,
                     "nature": 9,
+                    "needle": 0,
                     "pid": 3567315391,
                     "shiny": 0,
                     "stats": [
@@ -541,6 +557,7 @@
                     ],
                     "level": 50,
                     "nature": 21,
+                    "needle": 7,
                     "pid": 1203798972,
                     "shiny": 0,
                     "stats": [
@@ -571,6 +588,7 @@
                     ],
                     "level": 50,
                     "nature": 13,
+                    "needle": 4,
                     "pid": 1629779644,
                     "shiny": 0,
                     "stats": [
@@ -601,6 +619,7 @@
                     ],
                     "level": 50,
                     "nature": 23,
+                    "needle": 0,
                     "pid": 3774401416,
                     "shiny": 0,
                     "stats": [
@@ -631,6 +650,7 @@
                     ],
                     "level": 50,
                     "nature": 2,
+                    "needle": 1,
                     "pid": 2255491384,
                     "shiny": 0,
                     "stats": [
@@ -683,6 +703,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 7,
                     "pid": 417382330,
                     "shiny": 0,
                     "stats": [
@@ -713,6 +734,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 3,
                     "pid": 3001551272,
                     "shiny": 0,
                     "stats": [
@@ -743,6 +765,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 4,
                     "pid": 2653221868,
                     "shiny": 0,
                     "stats": [
@@ -773,6 +796,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 4,
                     "pid": 3963660439,
                     "shiny": 0,
                     "stats": [
@@ -803,6 +827,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 7,
                     "pid": 2315261775,
                     "shiny": 0,
                     "stats": [
@@ -833,6 +858,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 3,
                     "pid": 937180331,
                     "shiny": 0,
                     "stats": [
@@ -863,6 +889,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 2,
                     "pid": 2697481404,
                     "shiny": 0,
                     "stats": [
@@ -893,6 +920,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 3,
                     "pid": 3027809765,
                     "shiny": 0,
                     "stats": [
@@ -923,6 +951,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 4,
                     "pid": 3824719041,
                     "shiny": 0,
                     "stats": [
@@ -953,6 +982,7 @@
                     ],
                     "level": 50,
                     "nature": 24,
+                    "needle": 3,
                     "pid": 3137091424,
                     "shiny": 0,
                     "stats": [

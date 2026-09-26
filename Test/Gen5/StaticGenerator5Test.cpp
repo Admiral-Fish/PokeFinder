@@ -35,7 +35,8 @@ static bool operator==(const State5 &left, const json &right)
         && left.getGender() == right["gender"].get<u8>() && left.getHiddenPower() == right["hiddenPower"].get<u8>()
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.getChatot() == right["chatot"].get<u8>()
+        && left.getNeedle() == right["needle"].get<u8>();
 }
 
 void StaticGenerator5Test::generateNonWild_data()

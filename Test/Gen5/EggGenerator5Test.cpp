@@ -37,7 +37,7 @@ static bool operator==(const EggState5 &left, const json &right)
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getInheritance() == right["inheritance"].get<std::array<u8, 6>>() && left.getAdvances() == right["advances"].get<u32>()
-        && left.getChatot() == right["chatot"].get<u8>();
+        && left.getChatot() == right["chatot"].get<u8>() && left.getNeedle() == right["needle"].get<u8>();
 }
 
 void EggGenerator5Test::generate_data()

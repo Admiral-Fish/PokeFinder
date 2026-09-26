@@ -10,60 +10,80 @@
                     "advances": 39,
                     "chatot": 95,
                     "item": 568,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 40,
                     "chatot": 41,
                     "item": 568,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 41,
                     "chatot": 59,
                     "item": 570,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 42,
                     "chatot": 51,
                     "item": 571,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 43,
                     "chatot": 94,
                     "item": 566,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 44,
                     "chatot": 38,
                     "item": 567,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 45,
                     "chatot": 27,
                     "item": 568,
+                    "needle": 2,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 46,
                     "chatot": 40,
                     "item": 567,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 47,
                     "chatot": 55,
                     "item": 565,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 48,
                     "chatot": 39,
                     "item": 567,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 }
             ]
@@ -78,60 +98,80 @@
                     "advances": 39,
                     "chatot": 95,
                     "item": 558,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 40,
                     "chatot": 41,
                     "item": 556,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 41,
                     "chatot": 59,
                     "item": 564,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 42,
                     "chatot": 51,
                     "item": 554,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 43,
                     "chatot": 94,
                     "item": 552,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 44,
                     "chatot": 38,
                     "item": 554,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": false
                 },
                 {
                     "advances": 45,
                     "chatot": 27,
                     "item": 557,
+                    "needle": 2,
+                    "phenomenon": false,
                     "valid": false
                 },
                 {
                     "advances": 46,
                     "chatot": 40,
                     "item": 554,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 47,
                     "chatot": 55,
                     "item": 548,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 48,
                     "chatot": 39,
                     "item": 84,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": false
                 }
             ]
@@ -146,60 +186,80 @@
                     "advances": 46,
                     "chatot": 40,
                     "item": 567,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 47,
                     "chatot": 55,
                     "item": 565,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 48,
                     "chatot": 39,
                     "item": 567,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 49,
                     "chatot": 2,
                     "item": 565,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 50,
                     "chatot": 43,
                     "item": 570,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 51,
                     "chatot": 6,
                     "item": 571,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 52,
                     "chatot": 99,
                     "item": 565,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 53,
                     "chatot": 59,
                     "item": 566,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 54,
                     "chatot": 5,
                     "item": 565,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 55,
                     "chatot": 17,
                     "item": 568,
+                    "needle": 1,
+                    "phenomenon": false,
                     "valid": false
                 }
             ]
@@ -214,60 +274,80 @@
                     "advances": 46,
                     "chatot": 40,
                     "item": 554,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 47,
                     "chatot": 55,
                     "item": 548,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 48,
                     "chatot": 39,
                     "item": 84,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": false
                 },
                 {
                     "advances": 49,
                     "chatot": 2,
                     "item": 549,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 50,
                     "chatot": 43,
                     "item": 110,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 51,
                     "chatot": 6,
                     "item": 229,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 52,
                     "chatot": 99,
                     "item": 548,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 53,
                     "chatot": 59,
                     "item": 81,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 54,
                     "chatot": 5,
                     "item": 548,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 55,
                     "chatot": 17,
                     "item": 107,
+                    "needle": 1,
+                    "phenomenon": false,
                     "valid": false
                 }
             ]
@@ -282,60 +362,80 @@
                     "advances": 46,
                     "chatot": 40,
                     "item": 74,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 47,
                     "chatot": 55,
                     "item": 73,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 48,
                     "chatot": 39,
                     "item": 72,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": false
                 },
                 {
                     "advances": 49,
                     "chatot": 2,
                     "item": 73,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 50,
                     "chatot": 43,
                     "item": 72,
+                    "needle": 3,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 51,
                     "chatot": 6,
                     "item": 75,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 52,
                     "chatot": 99,
                     "item": 74,
+                    "needle": 7,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 53,
                     "chatot": 59,
                     "item": 72,
+                    "needle": 4,
+                    "phenomenon": false,
                     "valid": true
                 },
                 {
                     "advances": 54,
                     "chatot": 5,
                     "item": 72,
+                    "needle": 0,
+                    "phenomenon": true,
                     "valid": false
                 },
                 {
                     "advances": 55,
                     "chatot": 17,
                     "item": 72,
+                    "needle": 1,
+                    "phenomenon": false,
                     "valid": false
                 }
             ]

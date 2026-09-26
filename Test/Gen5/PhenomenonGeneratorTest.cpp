@@ -31,7 +31,8 @@
 static bool operator==(const PhenomenonState &left, const json &right)
 {
     return left.getAdvances() == right["advances"].get<u32>() && left.getItem() == right["item"].get<u16>()
-        && left.getChatot() == right["chatot"].get<u8>() && left.isValid() == right["valid"].get<bool>();
+        && left.getPhenomenon() == right["phenomenon"].get<bool>() && left.isValid() == right["valid"].get<bool>()
+        && left.getChatot() == right["chatot"].get<u8>() && left.getNeedle() == right["needle"].get<u8>();
 }
 
 void PhenomenonGeneratorTest::generate_data()
