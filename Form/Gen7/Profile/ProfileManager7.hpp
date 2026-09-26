@@ -17,32 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEDISPLAY8_HPP
-#define PROFILEDISPLAY8_HPP
+#ifndef PROFILEMANAGER7_HPP
+#define PROFILEMANAGER7_HPP
 
-#include <Core/Global.hpp>
 #include <QWidget>
 
-class Profile8;
-enum class Game : u32;
+class ProfileModel7;
 
 namespace Ui
 {
-    class ProfileDisplay8;
+    class ProfileManager7;
 }
 
 /**
- * @brief Provides widget to view fields of a profile
+ * @brief Provides interface to view/edit/delete existing profiles and create new ones
  */
-class ProfileDisplay8 final : public QWidget
+class ProfileManager7 final : public QWidget
 {
     Q_OBJECT
 signals:
-    /**
-     * @brief Emits that the selected profile has been changed
-     */
-    void profileChanged(const Profile8 &);
-
     /**
      * @brief Emits that the profiles have been changed
      */
@@ -50,49 +43,42 @@ signals:
 
 public:
     /**
-     * @brief Construct a new ProfileDisplay8 object
+     * @brief Construct a new ProfileManager7 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    ProfileDisplay8(QWidget *parent = nullptr);
+    ProfileManager7(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the ProfileDisplay8 object
+     * @brief Destroy the ProfileManager8 object
      */
-    ~ProfileDisplay8() override;
-
-    /**
-     * @brief Sets the QSetting group prefix and version filter
-     *
-     * @param prefix Setting prefix
-     * @param filter Game version filter
-     */
-    void setup(const QString &prefix, Game filter);
-
-    /**
-     * @brief Reloads profiles
-     */
-    void updateProfiles();
+    ~ProfileManager7() override;
 
 private:
-    Ui::ProfileDisplay8 *ui;
+    Ui::ProfileManager7 *ui;
 
-    QString prefix;
-    std::vector<Profile8> profiles;
-    Game filter;
+    ProfileModel7 *model;
 
 private slots:
     /**
-     * @brief Updates displayed information for a profile
-     *
-     * @param index Profile index
+     * @brief Opens dialog to create a new profile
      */
-    void profileIndexChanged(int index);
+    void create();
 
     /**
-     * @brief Opens the profile manager
+     * @brief Duplicates existing profile
      */
-    void profileManager();
+    void duplicate();
+
+    /**
+     * @brief Opens dialog to edit an existing profile
+     */
+    void edit();
+
+    /**
+     * @brief Opens dialog to confirm deletion of existing profile
+     */
+    void remove();
 };
 
-#endif // PROFILEDISPLAY8_HPP
+#endif // PROFILEMANAGER7_HPP

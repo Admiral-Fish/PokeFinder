@@ -24,6 +24,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen7/Profile7.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <filesystem>
 #include <fstream>
@@ -459,6 +460,107 @@ namespace ProfileLoader5
             for (auto &i : gen5)
             {
                 Profile5 profile = getProfile(i);
+                if (profile == original)
+                {
+                    i = getJson(update);
+                    writeJson(j);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+namespace ProfileLoader7
+{
+    namespace
+    {
+        /**
+         * @brief Converts profile to JSON
+         *
+         * @param profile Profile to convert
+         *
+         * @return Profile JSON representation
+         */
+        json getJson(const Profile7 &profile)
+        {
+            json j;
+            j["name"] = profile.getName();
+            j["version"] = profile.getVersion();
+            j["tid"] = profile.getTID();
+            j["sid"] = profile.getSID();
+            j["eggSeed"] = profile.getEggSeed();
+            j["shinyCharm"] = profile.getShinyCharm();
+            return j;
+        }
+
+        /**
+         * @brief Converts JSON data to profile
+         *
+         * @param j JSON to convert
+         *
+         * @return Converted profile
+         */
+        Profile7 getProfile(const json &j)
+        {
+            std::string name = j.value("name", "-");
+            Game version = j.value("version", Game::Sun);
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
+            std::array<u32, 4> eggSeed = j.value("eggSeed", std::array<u32, 4> { 'T', 'I', 'N', 'Y' });
+            bool shinyCharm = j.value("shinyCharm", false);
+            return Profile7(name, version, tid, sid, eggSeed, shinyCharm);
+        }
+    }
+
+    void addProfile(const Profile7 &profile)
+    {
+        json j = readJson();
+        auto &gen7 = j["gen7"];
+        gen7.emplace_back(getJson(profile));
+        writeJson(j);
+    }
+
+    std::vector<Profile7> getProfiles(Game version)
+    {
+        json j = readJson();
+        const auto &gen7 = j["gen7"];
+        return gen7 | std::views::filter([version](const json &j) { return (j.value("version", Game::Sun) & version) != Game::None; })
+            | std::views::transform([](const json &j) { return getProfile(j); }) | std::ranges::to<std::vector>();
+    }
+
+    void setProfiles(const std::vector<Profile7> &profiles)
+    {
+        json j = readJson();
+        j["gen7"] = profiles | std::views::transform([](const auto &profile) { return getJson(profile); }) | std::ranges::to<json>();
+        writeJson(j);
+    }
+
+    void removeProfile(const Profile7 &remove)
+    {
+        json j = readJson();
+        auto &gen7 = j["gen7"];
+        for (size_t i = 0; i < gen7.size(); i++)
+        {
+            Profile7 profile = getProfile(gen7[i]);
+            if (profile == remove)
+            {
+                gen7.erase(i);
+                writeJson(j);
+                break;
+            }
+        }
+    }
+
+    void updateProfile(const Profile7 &update, const Profile7 &original)
+    {
+        if (update != original)
+        {
+            json j = readJson();
+            auto &gen7 = j["gen7"];
+            for (auto &i : gen7)
+            {
+                Profile7 profile = getProfile(i);
                 if (profile == original)
                 {
                     i = getJson(update);

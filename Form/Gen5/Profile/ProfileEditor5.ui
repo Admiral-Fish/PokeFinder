@@ -355,9 +355,9 @@
     </widget>
    </item>
    <item row="0" column="8">
-    <widget class="QPushButton" name="pushButtonAccept">
+    <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
-      <string>Accept</string>
+      <string>Okay</string>
      </property>
     </widget>
    </item>
@@ -419,7 +419,7 @@
   <tabstop>lineEditSHACache</tabstop>
   <tabstop>pushButtonSelectSHACache</tabstop>
   <tabstop>pushButtonClearSHACache</tabstop>
-  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>pushButtonFindParameters</tabstop>
  </tabstops>
