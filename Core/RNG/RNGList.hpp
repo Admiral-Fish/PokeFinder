@@ -24,6 +24,7 @@
 #include <Core/Global.hpp>
 #include <cassert>
 #include <type_traits>
+#include <utility>
 
 /**
  * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
@@ -41,23 +42,12 @@ class RNGList
 public:
     /**
      * @brief Construct a new RNGList object
-     *
-     * @param seed Starting PRNG state
-     * @param advances Initial advances
+     * 
+     * @tparam Args Variadic template types
+     * @param args Parameters to pass to RNG constructor
      */
-    RNGList(u32 seed, u32 advances) : rng(seed, advances), head(0), pointer(0)
-    {
-        init();
-    }
-
-    /**
-     * @brief Construct a new RNGList object
-     *
-     * @param seed0 Starting PRNG state0
-     * @param seed1 Starting PRNG state1
-     * @param advances Initial advances
-     */
-    RNGList(u64 seed0, u64 seed1, u32 advances) : rng(seed0, seed1, advances), head(0), pointer(0)
+    template <typename... Args>
+    RNGList(Args&&... args) : rng(std::forward<Args>(args)...), head(0), pointer(0)
     {
         init();
     }

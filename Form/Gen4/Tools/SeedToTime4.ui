@@ -207,16 +207,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="7">
-           <widget class="TextBox" name="textBoxHGSSRaikou">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="maxLength">
-             <number>2</number>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelHGSSSeed">
             <property name="text">
