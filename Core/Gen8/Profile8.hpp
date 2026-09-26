@@ -37,10 +37,11 @@ public:
      * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param shinyCharm Whether shiny charm is obtained
+     * @param dex Whether national pokedex is obtained
      * @param ovalCharm Whether oval charm is obtained
+     * @param shinyCharm Whether shiny charm is obtained
      */
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm) :
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool ovalCharm, bool shinyCharm) :
         Profile(name, version, tid, sid), dex(dex), ovalCharm(ovalCharm), shinyCharm(shinyCharm)
     {
     }

@@ -21,7 +21,7 @@
 
 bool Profile8::operator==(const Profile8 &other) const
 {
-    return Profile::operator==(other) && dex == other.dex && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm;
+    return Profile::operator==(other) && dex == other.dex && ovalCharm == other.ovalCharm && shinyCharm == other.shinyCharm;
 }
 
 bool Profile8::operator!=(const Profile8 &other) const
