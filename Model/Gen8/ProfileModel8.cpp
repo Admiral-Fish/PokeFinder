@@ -26,7 +26,7 @@ ProfileModel8::ProfileModel8(QObject *parent) : TableModel(parent)
 
 int ProfileModel8::columnCount(const QModelIndex &parent) const
 {
-    return 6;
+    return 7;
 }
 
 QVariant ProfileModel8::data(const QModelIndex &index, int role) const
@@ -45,9 +45,11 @@ QVariant ProfileModel8::data(const QModelIndex &index, int role) const
         case 3:
             return profile.getSID();
         case 4:
-            return profile.getShinyCharm() ? tr("Yes") : tr("No");
+            return profile.getNationalDex() ? tr("Yes") : tr("No");
         case 5:
             return profile.getOvalCharm() ? tr("Yes") : tr("No");
+        case 6:
+            return profile.getShinyCharm() ? tr("Yes") : tr("No");
         }
     }
     return QVariant();

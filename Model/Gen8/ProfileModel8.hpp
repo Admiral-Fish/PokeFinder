@@ -91,7 +91,8 @@ public:
     Qt::DropActions supportedDropActions() const override;
 
 private:
-    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Shiny Charm"), tr("Oval Charm") };
+    QStringList header
+        = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("National Dex"), tr("Oval Charm"), tr("Shiny Charm") };
 };
 
 #endif // PROFILE8MODEL_HPP
