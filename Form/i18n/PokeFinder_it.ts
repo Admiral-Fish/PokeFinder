@@ -836,7 +836,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="54"/>
@@ -1356,7 +1356,7 @@
     <name>EggSettings</name>
     <message>
         <source>Compatibility</source>
-        <translation type="unfinished">Compatibilità</translation>
+        <translation>Compatibilità</translation>
     </message>
     <message>
         <source>Parent A</source>
@@ -5857,7 +5857,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <name>ProfileEditor5</name>
     <message>
         <source>Oval Charm</source>
-        <translation type="unfinished">Ovamuleto</translation>
+        <translation>Ovamuleto</translation>
     </message>
     <message>
         <source>Profile Editor Gen 5</source>
@@ -6410,7 +6410,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.hpp" line="97"/>
         <source>Oval Charm</source>
-        <translation type="unfinished">Ovamuleto</translation>
+        <translation>Ovamuleto</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/ProfileModel5.cpp" line="64"/>
@@ -7392,7 +7392,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     </message>
     <message>
         <source>Player Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Zona del Giocatore</translation>
     </message>
 </context>
 <context>
