@@ -53,6 +53,10 @@ namespace PersonalLoader
         {
             return PERSONAL_B2W2.data();
         }
+        else if ((version & Game::Gen7) != Game::None)
+        {
+            return PERSONAL_UU.data();
+        }
         else if ((version & Game::SwSh) != Game::None)
         {
             return PERSONAL_SWSH.data();
