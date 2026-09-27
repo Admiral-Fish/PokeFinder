@@ -831,7 +831,7 @@
     <message>
         <location filename="../../Model/Gen5/EggModel5.hpp" line="108"/>
         <source>Egg</source>
-        <translation type="unfinished"></translation>
+        <translation>Uovo</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/EggModel5.cpp" line="48"/>
