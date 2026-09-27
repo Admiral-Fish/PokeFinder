@@ -24,9 +24,6 @@ def embed_strings(parent_dir: str, output_dir: str):
                 string_data = bytes(json.dumps(j, separators=(',', ':')), encoding="utf-8")
             else:
                 for line in data.split("\n"):
-                    if "forms" in file:
-                        entries = line.split(",")
-                        line = f"{(int(entries[1]) << 11) | int(entries[0])},{entries[2]}"
                     string_data += bytes(line, encoding="utf-8")
                     string_data += b"\x00"
 
