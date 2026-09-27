@@ -1510,15 +1510,15 @@
     </message>
     <message>
         <source>The two don&apos;t really seem to like each other much</source>
-        <translation type="unfinished"></translation>
+        <translation>Pare che i due non si piacciano proprio</translation>
     </message>
     <message>
         <source>The two seem to get along</source>
-        <translation type="unfinished"></translation>
+        <translation>I due vanno d&apos;accordo</translation>
     </message>
     <message>
         <source>The two seem to get along very well</source>
-        <translation type="unfinished"></translation>
+        <translation>I due vanno d&apos;amore e d&apos;accordo</translation>
     </message>
 </context>
 <context>
