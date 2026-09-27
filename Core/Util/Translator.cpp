@@ -104,31 +104,6 @@ static void readFile(const char *data, Translation translation, std::vector<std:
 }
 
 /**
- * @brief Reads characteristic strings in the languaged specified by Translator::init()
- *
- * @param data Text to read from
- * @param strings Vector to write strings out to
- */
-static void readFile(const char *data, std::array<std::vector<std::string>, 5> &strings)
-{
-    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(Translation::Characteristic);
-    u32 start = INDICES[index];
-    u32 end = INDICES[index + 1];
-
-    json j = json::parse(data + start, data + end);
-    for (const auto &element : j)
-    {
-        for (const auto &[key, value] : element.items())
-        {
-            for (int generation : value)
-            {
-                strings[generation - 4].push_back(key);
-            }
-        }
-    }
-}
-
-/**
  * @brief Reads string mapping from the \p translation in the languaged specified by Translator::init()
  *
  * @param data Text to read from
@@ -156,6 +131,57 @@ static std::map<u16, std::string> readFile(const char *data, Translation transla
     }
 
     return strings;
+}
+
+/**
+ * @brief Reads characteristic strings in the languaged specified by Translator::init()
+ *
+ * @param data Text to read from
+ * @param strings Vector to write strings out to
+ */
+static void readCharacteristics(const char *data, std::array<std::vector<std::string>, 5> &strings)
+{
+    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(Translation::Characteristic);
+    u32 start = INDICES[index];
+    u32 end = INDICES[index + 1];
+
+    json j = json::parse(data + start, data + end);
+    for (const auto &element : j)
+    {
+        for (const auto &[key, value] : element.items())
+        {
+            for (int generation : value)
+            {
+                strings[generation - 4].push_back(key);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Reads form strings in the languaged specified by Translator::init()
+ *
+ * @param data Text to read from
+ * @param strings Map to write strings out to
+ */
+void readForms(const char *data, std::map<u16, std::string> &strings)
+{
+    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(Translation::Form);
+    u32 start = INDICES[index];
+    u32 end = INDICES[index + 1];
+
+    json j = json::parse(data + start, data + end);
+    auto forms = j["forms"];
+    auto pokemon = j["pokemon"];
+
+    for (const auto &[specie, entries] : pokemon.items())
+    {
+        for (const auto &[form, index] : entries.items())
+        {
+            u16 key = std::stoul(specie) | (std::stoul(form) << 11);
+            strings[key] = forms[std::to_string(index.get<int>())];
+        }
+    }
 }
 
 namespace Translator
@@ -438,8 +464,8 @@ namespace Translator
         auto *data = Utilities::decompress<char>(I18N.data(), I18N.size(), size);
 
         readFile(data, Translation::Ability, abilities);
-        readFile(data, characteristics);
-        forms = readFile(data, Translation::Form);
+        readCharacteristics(data, characteristics);
+        readForms(data, forms);
         readFile(data, Translation::Game, games);
         readFile(data, Translation::Power, hiddenPowers);
         items = readFile(data, Translation::Item);

@@ -65,6 +65,11 @@
         </item>
         <item>
          <property name="text">
+          <string>Sun/Moon/Ultra Sun/Ultra Moon</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Sword/Shield</string>
          </property>
         </item>
@@ -79,7 +84,7 @@
        <widget class="ComboBox" name="comboBoxPokemon"/>
       </item>
       <item row="1" column="2">
-       <widget class="QComboBox" name="comboBoxAltForm"/>
+       <widget class="ComboBox" name="comboBoxAltForm"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelCharacteristic">

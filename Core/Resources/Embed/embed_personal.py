@@ -17,7 +17,7 @@ def get_type(type: int, gen: int):
 def embed_personal(parent_dir: str, output_dir: str):
     arrays = []
     read = struct.Struct("<H")
-    for index in (3, 4, 5, 8):
+    for index in (3, 4, 5, 7, 8):
         for file in glob.glob(f"{parent_dir}/Personal/Gen{index}/*.bin"):
             with open(file, "rb") as f:
                 data = f.read()
@@ -31,6 +31,8 @@ def embed_personal(parent_dir: str, output_dir: str):
                         offset = 0x3c
                     else:
                         offset = 0x4c
+                elif index == 7:
+                    offset = 0x54
                 elif index == 8:
                     if "swsh" in file:
                         offset = 0xb0
@@ -102,6 +104,18 @@ def embed_personal(parent_dir: str, output_dir: str):
                     ability1 = data[i+0x18]
                     ability2 = data[i+0x19] or ability1
                     abilityH = data[i+0x1a] or ability1
+                    form_count = data[i+0x20]
+                    form_stat_index, = read.unpack(data[i+0x1c:i+0x1e])
+                    hatch_species = 0
+                    present = 1
+                elif index == 7:
+                    item1, = read.unpack(data[i+0xc:i+0xe])
+                    item2, = read.unpack(data[i+0xe:i+0x10])
+                    item3, = read.unpack(data[i+0x10:i+0x12])
+                    gender = data[i+0x12]
+                    ability1 = data[i+0x18]
+                    ability2 = data[i+0x19]
+                    abilityH = data[i+0x1a]
                     form_count = data[i+0x20]
                     form_stat_index, = read.unpack(data[i+0x1c:i+0x1e])
                     hatch_species = 0

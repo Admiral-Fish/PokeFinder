@@ -38,8 +38,8 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
 
     ui->comboBoxPokemon->enableAutoComplete();
 
-    ui->comboBoxGame->setup(
-        { toInt(Game::Gen3), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });
+    ui->comboBoxGame->setup({ toInt(Game::Gen3), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW2), toInt(Game::Gen7),
+                              toInt(Game::SwSh), toInt(Game::BDSP) });
 
     ui->labelNextLevel->setToolTip(tr("Next level may not be completely accurate without specifying a nature"));
 
@@ -196,7 +196,7 @@ void IVCalculator::findIVs()
     u8 characteristic = (version & Game::Gen3) != Game::None ? 255 : static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
 
     u16 specie = ui->comboBoxPokemon->getCurrentUShort();
-    u8 altform = ui->comboBoxAltForm->currentIndex();
+    u8 altform = ui->comboBoxAltForm->getCurrentUChar();
     const PersonalInfo *info = PersonalLoader::getPersonal(version, specie, altform);
 
     auto ivs = IVChecker::calculateIVRange(info->getStats(), stats, levels, nature, characteristic, hiddenPower);
@@ -256,6 +256,10 @@ void IVCalculator::gameIndexChanged(int index)
         {
             max = 649;
         }
+        else if ((version & Game::Gen7) != Game::None)
+        {
+            max = 809;
+        }
         else if ((version & Game::SwSh) != Game::None)
         {
             max = 898;
@@ -293,20 +297,31 @@ void IVCalculator::pokemonIndexChanged(int index)
         const PersonalInfo *info = PersonalLoader::getPersonal(version, specie);
         u8 formCount = info->getFormCount();
 
-        ui->labelAltForm->setVisible(formCount > 1);
-        ui->comboBoxAltForm->setVisible(formCount > 1);
+        auto stats = info->getStats();
+        std::vector<u8> forms = { 0 };
+        for (u8 i = info->getFormCount() - 1; i >= 1; i--)
+        {
+            auto *form = PersonalLoader::getPersonal(version, specie, i);
+            if (form->getStats() != stats)
+            {
+                forms.emplace_back(i);
+            }
+        }
+
+        ui->labelAltForm->setVisible(forms.size() > 1);
+        ui->comboBoxAltForm->setVisible(forms.size() > 1);
 
         ui->comboBoxAltForm->clear();
-        for (u8 i = 0; i < formCount; i++)
+        for (u8 i : forms)
         {
-            auto const &form = Translator::getForm(specie, i);
+            const auto &form = Translator::getForm(specie, i);
             if (form.empty())
             {
-                ui->comboBoxAltForm->addItem(QString::number(i));
+                ui->comboBoxAltForm->addItem(QString::number(i), i);
             }
             else
             {
-                ui->comboBoxAltForm->addItem(QString::fromStdString(form));
+                ui->comboBoxAltForm->addItem(QString::fromStdString(form), i);
             }
         }
     }
