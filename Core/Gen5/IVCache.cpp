@@ -24,6 +24,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <fstream>
 #include <numeric>
+#include <variant>
 
 struct SeedCache
 {
@@ -47,24 +48,42 @@ static std::array<u8, 6> computeIVs(u32 seed, u32 advance, CacheType type)
         advance += 1;
     }
 
-    MT mt(seed, advance);
+    using MTVariant = std::variant<MTFast, MT>;
+    MTVariant mtVariant = [&]() {
+        u32 size = advance + 6;
+        if (size < 227)
+        {
+            return MTVariant(std::in_place_type<MTFast>, seed, advance, size, true);
+        }
+        else
+        {
+            return MTVariant(std::in_place_type<MT>, seed, advance);
+        }
+    }();
 
-    ivs[0] = mt.next() >> 27;
-    ivs[1] = mt.next() >> 27;
-    ivs[2] = mt.next() >> 27;
+    std::visit(
+        [&]<typename T>(T &mt) {
+            constexpr bool fast = std::is_same_v<T, MTFast>;
+            constexpr int shift = fast ? 0 : 27;
 
-    if (type == CacheType::Roamer)
-    {
-        ivs[4] = mt.next() >> 27;
-        ivs[5] = mt.next() >> 27;
-        ivs[3] = mt.next() >> 27;
-    }
-    else
-    {
-        ivs[3] = mt.next() >> 27;
-        ivs[4] = mt.next() >> 27;
-        ivs[5] = mt.next() >> 27;
-    }
+            ivs[0] = mt.next() >> shift;
+            ivs[1] = mt.next() >> shift;
+            ivs[2] = mt.next() >> shift;
+
+            if (type == CacheType::Roamer)
+            {
+                ivs[4] = mt.next() >> shift;
+                ivs[5] = mt.next() >> shift;
+                ivs[3] = mt.next() >> shift;
+            }
+            else
+            {
+                ivs[3] = mt.next() >> shift;
+                ivs[4] = mt.next() >> shift;
+                ivs[5] = mt.next() >> shift;
+            }
+        },
+        mtVariant);
 
     return ivs;
 }

@@ -22,6 +22,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <algorithm>
 #include <fstream>
+#include <variant>
 
 static u8 gen(MT &rng)
 {
@@ -113,68 +114,85 @@ void IVCacheSearcher::search(u32 start, u32 end)
         }
 
         u64 idx = index.fetch_add(1, std::memory_order_relaxed);
-        if (idx > static_cast<u64>(end)) {
+        if (idx > static_cast<u64>(end))
+        {
             break;
         }
 
         u32 seed = start + idx;
 
-        RNGList<u8, MT, 32, gen> rngList(seed, initialAdvances);
-        for (u32 i = 0; i <= maxAdvances + 4; i++, rngList.advanceState())
-        {
-            // Entralink
-            rngList.advance(22);
-            u8 hp = rngList.next();
-            u8 atk = rngList.next();
-            u8 def = rngList.next();
-            u8 spa = rngList.next();
-            u8 spd = rngList.next();
-            u8 spe = rngList.next();
-            if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
+        using RNGVariant = std::variant<RNGList<u8, MTFast, 32>, RNGList<u8, MT, 32, gen>>;
+        RNGVariant rngList = [&]() {
+            u32 size = (maxAdvances + 5) + 32;
+            if (size < 227)
             {
-                std::lock_guard<std::mutex> lock(mutex);
-                entralink[i].emplace_back(seed);
+                return RNGVariant(std::in_place_type<RNGList<u8, MTFast, 32>>, seed, 0, size, true);
             }
-
-            // Normal
-            if (i <= maxAdvances + 2)
+            else
             {
-                rngList.resetState();
+                return RNGVariant(std::in_place_type<RNGList<u8, MT, 32, gen>>, seed);
+            }
+        }();
 
-                hp = rngList.next();
-                atk = rngList.next();
-                def = rngList.next();
-                spa = rngList.next();
-                spd = rngList.next();
-                spe = rngList.next();
-
-                if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
+        std::visit(
+            [&](auto &rng) {
+                for (u32 i = 0; i <= maxAdvances + 4; i++, rng.advanceState())
                 {
-                    std::lock_guard<std::mutex> lock(mutex);
-                    results[i].emplace_back(seed);
+                    // Entralink
+                    rng.advance(22);
+                    u8 hp = rng.next();
+                    u8 atk = rng.next();
+                    u8 def = rng.next();
+                    u8 spa = rng.next();
+                    u8 spd = rng.next();
+                    u8 spe = rng.next();
+                    if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
+                    {
+                        std::lock_guard<std::mutex> lock(mutex);
+                        entralink[i].emplace_back(seed);
+                    }
+
+                    // Normal
+                    if (i <= maxAdvances + 2)
+                    {
+                        rng.resetState();
+
+                        hp = rng.next();
+                        atk = rng.next();
+                        def = rng.next();
+                        spa = rng.next();
+                        spd = rng.next();
+                        spe = rng.next();
+
+                        if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
+                        {
+                            std::lock_guard<std::mutex> lock(mutex);
+                            results[i].emplace_back(seed);
+                        }
+                    }
+
+                    // Roamer
+                    if (i <= maxAdvances)
+                    {
+                        rng.resetState();
+                        rng.advance(1);
+
+                        hp = rng.next();
+                        atk = rng.next();
+                        def = rng.next();
+                        spd = rng.next();
+                        spe = rng.next();
+                        spa = rng.next();
+
+                        if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && spe >= 30)
+                        {
+                            std::lock_guard<std::mutex> lock(mutex);
+                            roamer[i].emplace_back(seed);
+                        }
+                    }
                 }
-            }
-
-            // Roamer
-            if (i <= maxAdvances)
-            {
-                rngList.resetState();
-                rngList.advance(1);
-
-                hp = rngList.next();
-                atk = rngList.next();
-                def = rngList.next();
-                spd = rngList.next();
-                spe = rngList.next();
-                spa = rngList.next();
-
-                if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && spe >= 30)
-                {
-                    std::lock_guard<std::mutex> lock(mutex);
-                    roamer[i].emplace_back(seed);
-                }
-            }
-        }
+            },
+            rngList);
 
         progress.fetch_add(1, std::memory_order_relaxed);
     }
