@@ -1134,17 +1134,17 @@
 <context>
     <name>EggSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="169"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="169"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EggModel4.cpp" line="170"/>
+        <location filename="../../Model/Gen4/EggModel4.cpp" line="169"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -5122,6 +5122,21 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Item</source>
         <translation type="unfinished">道具</translation>
     </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.cpp" line="71"/>
+        <source>Yes</source>
+        <translation type="unfinished">是</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/PhenomenonModel.cpp" line="71"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
 </context>
 <context>
     <name>PhenomenonSearcherModel5</name>
@@ -6515,44 +6530,51 @@ Profile is missing or has an incompatible SHA cache.</source>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="50"/>
+        <location filename="../../Model/Gen8/ProfileModel8.cpp" line="52"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="48"/>
         <location filename="../../Model/Gen8/ProfileModel8.cpp" line="50"/>
+        <location filename="../../Model/Gen8/ProfileModel8.cpp" line="52"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>Profile Name</source>
         <translation>存档名</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>TID</source>
         <translation>TID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>SID</source>
         <translation>SID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>Shiny Charm</source>
         <translation>闪耀护符</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="94"/>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>Oval Charm</source>
         <translation>圆形护符</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
+        <source>National Dex</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8725,17 +8747,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>StaticSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/StaticModel4.cpp" line="151"/>
+        <location filename="../../Model/Gen4/StaticModel4.cpp" line="150"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -9304,67 +9326,67 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>筛选项</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="79"/>
-        <location filename="../Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Gen3/Wild3.cpp" line="78"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="81"/>
-        <location filename="../Gen3/Wild3.cpp" line="92"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>♂ Lead</source>
         <translation>♂ 队首</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="81"/>
-        <location filename="../Gen3/Wild3.cpp" line="92"/>
+        <location filename="../Gen3/Wild3.cpp" line="80"/>
+        <location filename="../Gen3/Wild3.cpp" line="91"/>
         <source>♀ Lead</source>
         <translation>♀ 队首</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
-        <location filename="../Gen3/Wild3.cpp" line="97"/>
+        <location filename="../Gen3/Wild3.cpp" line="85"/>
+        <location filename="../Gen3/Wild3.cpp" line="96"/>
         <source>Slot Modifier</source>
         <translation>遭遇种类修正</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
-        <location filename="../Gen3/Wild3.cpp" line="98"/>
+        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="97"/>
         <source>Magnet Pull</source>
         <translation>磁力</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="87"/>
-        <location filename="../Gen3/Wild3.cpp" line="98"/>
+        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="97"/>
         <source>Static</source>
         <translation>静电</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="82"/>
-        <location filename="../Gen3/Wild3.cpp" line="93"/>
+        <location filename="../Gen3/Wild3.cpp" line="81"/>
+        <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Level Modifier</source>
         <translation>遭遇等级机率修正</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="83"/>
-        <location filename="../Gen3/Wild3.cpp" line="94"/>
+        <location filename="../Gen3/Wild3.cpp" line="82"/>
+        <location filename="../Gen3/Wild3.cpp" line="93"/>
         <source>Hustle</source>
         <translation>活力</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="84"/>
-        <location filename="../Gen3/Wild3.cpp" line="95"/>
+        <location filename="../Gen3/Wild3.cpp" line="83"/>
+        <location filename="../Gen3/Wild3.cpp" line="94"/>
         <source>Pressure</source>
         <translation>压迫感</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="85"/>
-        <location filename="../Gen3/Wild3.cpp" line="96"/>
+        <location filename="../Gen3/Wild3.cpp" line="84"/>
+        <location filename="../Gen3/Wild3.cpp" line="95"/>
         <source>Vital Spirit</source>
         <translation>干劲</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="104"/>
+        <location filename="../Gen3/Wild3.cpp" line="103"/>
         <source>Generate times for seed</source>
         <translation>为Seed生成时间</translation>
     </message>
@@ -9413,8 +9435,8 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>厉害钓竿</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="88"/>
-        <location filename="../Gen3/Wild3.cpp" line="99"/>
+        <location filename="../Gen3/Wild3.cpp" line="87"/>
+        <location filename="../Gen3/Wild3.cpp" line="98"/>
         <source>Synchronize</source>
         <translation>同步</translation>
     </message>
@@ -9431,8 +9453,8 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation>检索器</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="80"/>
-        <location filename="../Gen3/Wild3.cpp" line="91"/>
+        <location filename="../Gen3/Wild3.cpp" line="79"/>
+        <location filename="../Gen3/Wild3.cpp" line="90"/>
         <source>Cute Charm</source>
         <translation>迷人身躯</translation>
     </message>
@@ -9481,19 +9503,7 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished">道具</translation>
     </message>
     <message>
-        <source>Black Flute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cleanse Tag</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>White Flute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Bike</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10155,43 +10165,43 @@ Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="396"/>
+        <location filename="../Gen5/Wild5.cpp" line="397"/>
         <source>Invalid date range</source>
         <translation>请输入正确的日期范围</translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="396"/>
+        <location filename="../Gen5/Wild5.cpp" line="397"/>
         <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="513"/>
+        <location filename="../Gen5/Wild5.cpp" line="514"/>
         <source>Settings are configured for fast IV/SHA searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="518"/>
+        <location filename="../Gen5/Wild5.cpp" line="519"/>
         <source>Settings are configured for fast IV searching.
 Profile is missing or has an incompatible SHA cache.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="525"/>
+        <location filename="../Gen5/Wild5.cpp" line="526"/>
         <source>Profile does not have a IV cache file configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="530"/>
+        <location filename="../Gen5/Wild5.cpp" line="531"/>
         <source>Settings are not configured for fast searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="531"/>
+        <location filename="../Gen5/Wild5.cpp" line="532"/>
         <source>Keep initial/max advances below %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Wild5.cpp" line="532"/>
+        <location filename="../Gen5/Wild5.cpp" line="533"/>
         <source>Ensure IV filters are set to common spreads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10661,117 +10671,128 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildGeneratorModel5</name>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="79"/>
+        <source>Yes</source>
+        <translation type="unfinished">是</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="93"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="93"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="83"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="79"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="93"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Chatot</source>
         <translation>音高</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Needle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Item</source>
         <translation>道具</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Slot</source>
         <translation type="unfinished">Slot</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Level</source>
         <translation>等级</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="101"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
+        <source>Phenomenon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="102"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="103"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
@@ -10995,17 +11016,17 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="191"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="191"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/WildModel4.cpp" line="192"/>
+        <location filename="../../Model/Gen4/WildModel4.cpp" line="191"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -11118,132 +11139,132 @@ Profile is missing or has an incompatible SHA cache.</source>
 <context>
     <name>WildSearcherModel5</name>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="200"/>
         <source>Square</source>
         <translation>方块</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="200"/>
         <source>Star</source>
         <translation>星星</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.cpp" line="171"/>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="200"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
         <source>Advances</source>
         <translation>帧数</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
         <source>IV Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
         <source>Item</source>
         <translation>道具</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="160"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
         <source>Slot</source>
         <translation type="unfinished">Slot</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="178"/>
         <source>Level</source>
         <translation>等级</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="178"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="178"/>
         <source>Shiny</source>
         <translation>异色</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="178"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="161"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="178"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="179"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="179"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="179"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="179"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="162"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="179"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="180"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="180"/>
         <source>Hidden</source>
         <translation>觉醒属性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="180"/>
         <source>Power</source>
         <translation>觉醒威力</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="180"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="163"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="180"/>
         <source>Characteristic</source>
         <translation>个性</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="181"/>
         <source>Date/Time</source>
         <translation>日期/时间</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="181"/>
         <source>Timer0</source>
         <translation>Timer0</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="164"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="181"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
