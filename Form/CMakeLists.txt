@@ -82,6 +82,7 @@ set(PROJECT_UI
     Gen5/Tools/Phenomenon.ui
     Gen5/Tools/SHA1CacheFinder.ui
     Gen5/Wild5.ui
+    Gen7/Eggs7.ui
     Gen7/Profile/ProfileDisplay7.ui
     Gen7/Profile/ProfileEditor7.ui
     Gen7/Profile/ProfileManager7.ui
@@ -219,6 +220,8 @@ set(PROJECT_SOURCES
     Gen5/Tools/SHA1CacheFinder.hpp
     Gen5/Wild5.cpp
     Gen5/Wild5.hpp
+    Gen7/Eggs7.cpp
+    Gen7/Eggs7.hpp
     Gen7/Profile/ProfileDisplay7.cpp
     Gen7/Profile/ProfileDisplay7.hpp
     Gen7/Profile/ProfileEditor7.cpp

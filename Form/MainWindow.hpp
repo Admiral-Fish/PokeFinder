@@ -39,6 +39,7 @@ class HiddenGrotto;
 class IDs5;
 class Static5;
 class Wild5;
+class Eggs7;
 class Eggs8;
 class Event8;
 class IDs8;
@@ -124,6 +125,9 @@ private:
     IDs5 *ids5 = nullptr;
     Static5 *static5 = nullptr;
     Wild5 *wild5 = nullptr;
+
+    // Gen 7
+    Eggs7 *egg7 = nullptr;
 
     // Gen 8
     Eggs8 *egg8 = nullptr;
@@ -318,6 +322,11 @@ private slots:
     void openSHA1CacheFinder() const;
 
     // Gen 7
+    /**
+     * @brief Opens the Gen 7 Egg window
+     */
+    void openEgg7();
+
     /**
      * @brief Opens the Gen 7 Profile Manager window
      */

@@ -312,6 +312,32 @@ void EggSettings::setup(Game game)
 
         max = 649;
     }
+    else if ((game & Game::Gen7) != Game::None)
+    {
+        ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentAItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentAItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentAItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentAItem->addItem(tr("Power Anklet"), 7);
+        ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
+
+        ui->comboBoxParentBItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentBItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentBItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentBItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentBItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentBItem->addItem(tr("Power Anklet"), 7);
+        ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);
+
+        ui->comboBoxParentAAbility->addItem("H");
+        ui->comboBoxParentBAbility->addItem("H");
+
+        ui->labelCompatibility->hide();
+        ui->comboBoxCompatibility->hide();
+
+        max = 809;
+    }
     else if ((game & Game::BDSP) != Game::None)
     {
         ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
