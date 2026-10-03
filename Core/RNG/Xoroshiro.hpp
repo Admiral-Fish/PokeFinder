@@ -40,10 +40,27 @@ public:
     /**
      * @brief Construct a new Xoroshiro object
      *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
+    Xoroshiro(u64 seed, u32 advances);
+
+    /**
+     * @brief Construct a new Xoroshiro object
+     *
      * @param seed0 Starting PRNG state0
      * @param seed1 Starting PRNG state1
      */
     Xoroshiro(u64 seed0, u64 seed1);
+
+    /**
+     * @brief Construct a new Xoroshiro object
+     *
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     * @param advances Number of initial advances
+     */
+    Xoroshiro(u64 seed0, u64 seed1, u32 advances);
 
     /**
      * @brief Advances the RNG by \p advances amount
@@ -110,6 +127,15 @@ public:
      * @param seed Starting PRNG state
      */
     XoroshiroBDSP(u64 seed);
+
+    /**
+     * @brief Construct a new XoroshiroBDSP object
+     * Uses splitmix to initalize the PRNG state
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
+    XoroshiroBDSP(u64 seed, u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state bounded by the \p max value

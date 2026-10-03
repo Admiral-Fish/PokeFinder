@@ -220,6 +220,8 @@ add_library(PokeFinderCore STATIC
     Gen5/StaticTemplate5.hpp
     Gen5/Tools/AdjacentSeedsCalculator.cpp
     Gen5/Tools/AdjacentSeedsCalculator.hpp
+    Gen7/Generators/EggGenerator7.cpp
+    Gen7/Generators/EggGenerator7.hpp
     Gen7/Profile7.cpp
     Gen7/Profile7.hpp
     Gen8/Den.hpp

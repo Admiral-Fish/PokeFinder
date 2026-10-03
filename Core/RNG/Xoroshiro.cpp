@@ -30,8 +30,13 @@ static inline u64 splitmix(u64 seed)
     return seed ^ (seed >> 31);
 }
 
-Xoroshiro::Xoroshiro(u64 seed) : Xoroshiro(seed, 0x82A2B175229D6A5B)
+Xoroshiro::Xoroshiro(u64 seed) : Xoroshiro(seed, 0x82A2B175229D6A5BULL)
 {
+}
+
+Xoroshiro::Xoroshiro(u64 seed, u32 advances) : Xoroshiro(seed)
+{
+    jump(advances);
 }
 
 Xoroshiro::Xoroshiro(u64 seed0, u64 seed1)
@@ -39,6 +44,11 @@ Xoroshiro::Xoroshiro(u64 seed0, u64 seed1)
     u64 *ptr = &state.uint64[0];
     ptr[0] = seed0;
     ptr[1] = seed1;
+}
+
+Xoroshiro::Xoroshiro(u64 seed0, u64 seed1, u32 advances) : Xoroshiro(seed0, seed1)
+{
+    jump(advances);
 }
 
 void Xoroshiro::advance(u32 advances)
@@ -90,8 +100,13 @@ u64 Xoroshiro::next()
     return result;
 }
 
-XoroshiroBDSP::XoroshiroBDSP(u64 seed) : Xoroshiro(splitmix(seed + 0x9E3779B97F4A7C15), splitmix(seed + 0x3C6EF372FE94F82A))
+XoroshiroBDSP::XoroshiroBDSP(u64 seed) : Xoroshiro(splitmix(seed + 0x9E3779B97F4A7C15ULL), splitmix(seed + 0x3C6EF372FE94F82AULL))
 {
     // Non-zero state check, doesn't seem possible with 32bit input seed
     // state[0] = (state[0] | state[1]) == 0 ? 1 : state[0];
+}
+
+XoroshiroBDSP::XoroshiroBDSP(u64 seed, u32 advances) : XoroshiroBDSP(seed)
+{
+    jump(advances);
 }

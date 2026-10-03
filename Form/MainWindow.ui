@@ -18,9 +18,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
      <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
         <string>Gen 3</string>
@@ -165,6 +162,15 @@
        <attribute name="title">
         <string>Gen 7</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QPushButton" name="pushButtonEgg7">
+          <property name="text">
+           <string>Egg</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tabGen8">
        <attribute name="title">
