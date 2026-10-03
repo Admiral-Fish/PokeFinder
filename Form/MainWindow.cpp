@@ -53,6 +53,7 @@
 #include <Form/Gen5/Tools/Phenomenon.hpp>
 #include <Form/Gen5/Tools/SHA1CacheFinder.hpp>
 #include <Form/Gen5/Wild5.hpp>
+#include <Form/Gen7/Eggs7.hpp>
 #include <Form/Gen7/Profile/ProfileManager7.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
@@ -122,6 +123,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionSHA1Cache, &QAction::triggered, this, &MainWindow::openSHA1CacheFinder);
 
+    connect(ui->pushButtonEgg7, &QPushButton::clicked, this, &MainWindow::openEgg7);
     connect(ui->actionProfileManager7, &QAction::triggered, this, &MainWindow::openProfileManager7);
 
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
@@ -646,6 +648,18 @@ void MainWindow::openSHA1CacheFinder() const
         window->show();
         window->raise();
     }
+}
+
+void MainWindow::openEgg7()
+{
+    if (!egg7)
+    {
+        egg7 = new Eggs7();
+        connect(egg7, &Eggs7::profilesChanged, this, &MainWindow::updateProfiles);
+        connect(this, &MainWindow::profilesChanged7, egg7, &Eggs7::updateProfiles);
+    }
+    egg7->show();
+    egg7->raise();
 }
 
 void MainWindow::openProfileManager7() const
