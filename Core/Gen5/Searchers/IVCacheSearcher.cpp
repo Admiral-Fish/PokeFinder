@@ -39,7 +39,7 @@ IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) :
     SearcherBase<std::vector<u32>>(), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
 {
     entralink.resize(maxAdvances + 5);
-    results.resize(maxAdvances + 3);
+    results.resize(maxAdvances + 4);
     roamer.resize(maxAdvances + 1);
 }
 
@@ -153,7 +153,7 @@ void IVCacheSearcher::search(u32 start, u32 end)
                     }
 
                     // Normal
-                    if (i <= maxAdvances + 2)
+                    if (i <= maxAdvances + 3)
                     {
                         rng.resetState();
 

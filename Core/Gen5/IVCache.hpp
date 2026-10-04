@@ -26,6 +26,7 @@
 #include <vector>
 
 class StateFilter;
+class StaticTemplate5;
 enum class Game : u32;
 
 enum class CacheType : u8
@@ -56,12 +57,13 @@ public:
      * @param maxAdvance Maximum IV advances
      * @param version Game version
      * @param type What cache type to get
+     * @param staticTemplate Pokemon template
      * @param filter IV filter
      *
      * @return IV caches
      */
     fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvances, u32 maxAdvances, Game version, CacheType type,
-                                                     const StateFilter &filter) const;
+                                                     const StaticTemplate5 *staticTemplate, const StateFilter &filter) const;
 
     /**
      * @brief Returns the initial advance supported by the cache
@@ -128,7 +130,7 @@ private:
      * @return IV caches
      */
     fph::MetaFphMap<u64, std::array<u8, 6>> getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version,
-                                                           const StateFilter &filter) const;
+                                                           const StaticTemplate5 *staticTemplate, const StateFilter &filter) const;
 
     /**
      * @brief Returns the IV caches for roamers

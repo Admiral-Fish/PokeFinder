@@ -19,6 +19,7 @@
 
 #include "IVCache.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen5/StaticTemplate5.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -29,11 +30,11 @@
 struct SeedCache
 {
     std::array<u16, 10> entralinkCount;
-    std::array<u16, 8> normalCount;
+    std::array<u16, 9> normalCount;
     std::array<u16, 6> roamerCount;
     u32 seeds[];
 };
-static_assert(sizeof(SeedCache) == 48);
+static_assert(sizeof(SeedCache) == 52);
 
 static std::array<u8, 6> computeIVs(u32 seed, u32 advance, CacheType type)
 {
@@ -108,7 +109,7 @@ IVCache::IVCache(std::string_view file, bool read) : valid(false)
         if (read)
         {
             std::vector<u32> entralinkCount(maxAdvances + 5);
-            std::vector<u32> normalCount(maxAdvances + 3);
+            std::vector<u32> normalCount(maxAdvances + 4);
             std::vector<u32> roamerCount(maxAdvances + 1);
 
             stream.read(reinterpret_cast<char *>(entralinkCount.data()), entralinkCount.size() * sizeof(u32));
@@ -142,7 +143,7 @@ IVCache::IVCache(std::string_view file, bool read) : valid(false)
 }
 
 fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getCache(u32 initialAdvances, u32 maxAdvances, Game version, CacheType type,
-                                                          const StateFilter &filter) const
+                                                          const StaticTemplate5 *staticTemplate, const StateFilter &filter) const
 {
     if (type == CacheType::Entralink)
     {
@@ -150,7 +151,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getCache(u32 initialAdvances, u
     }
     else if (type == CacheType::Normal)
     {
-        return getNormalCache(initialAdvances, maxAdvances, version, filter);
+        return getNormalCache(initialAdvances, maxAdvances, version, staticTemplate, filter);
     }
     else
     {
@@ -219,16 +220,16 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAd
 }
 
 fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version,
-                                                                const StateFilter &filter) const
+                                                                const StaticTemplate5 *staticTemplate, const StateFilter &filter) const
 {
     fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
-    bool bw = (version & Game::BW) != Game::None;
-    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && (i + (bw ? 0 : 2)) < normalSeeds.size(); i++)
+    int offset = ((version & Game::BW) != Game::None ? 0 : 2) + ((staticTemplate && staticTemplate->getEgg()) ? 1 : 0);
+    for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && (i + offset) < normalSeeds.size(); i++)
     {
-        for (u32 seed : normalSeeds[i + (bw ? 0 : 2)])
+        for (u32 seed : normalSeeds[i + offset])
         {
-            auto ivs = computeIVs(seed, i + (bw ? 0 : 2), CacheType::Normal);
+            auto ivs = computeIVs(seed, i + offset, CacheType::Normal);
             if (filter.compareIV(ivs) && filter.compareHiddenPower(ivs))
             {
                 cache.emplace((i << 32) | seed, ivs);
