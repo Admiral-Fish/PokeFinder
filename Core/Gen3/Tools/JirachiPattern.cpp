@@ -20,6 +20,26 @@
 #include "JirachiPattern.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <algorithm>
+#include <array>
+#include <queue>
+#include <unordered_map>
+
+struct Node
+{
+    u32 depth;
+    u32 depthEstimated;
+    u32 seed;
+    u32 totalAdvances;
+
+    bool operator>(const Node &other) const
+    {
+        if (depthEstimated != other.depthEstimated)
+        {
+            return depthEstimated > other.depthEstimated;
+        }
+        return depth > other.depth;
+    }
+};
 
 /**
  * @brief Does the advance from playing the cutscene
@@ -83,86 +103,95 @@ static void advanceTitleScreen(XDRNG &rng, u32 &count)
 }
 
 /**
- * @brief Advance the internal search actions for use in brute force searching
+ * @brief Does actions for accepting a Jirachi
  *
- * @param actions Search actions
+ * @param seed PRNG state
+ *
+ * @return Resulting PRNG state and advance count
  */
-static void incrementSearchActions(std::vector<u8> &actions)
+static std::pair<u32, u32> doAccept(u32 seed)
 {
-    size_t size = actions.size();
+    u32 count = 0;
+    XDRNG rng(seed);
 
-    bool increment = true;
-    for (size_t i = 0; i < size; i++)
-    {
-        u8 compare = i == 0 ? 2 : 3;
-        if (actions[i] >= compare)
-        {
-            increment = false;
+    advanceJirachi(rng, count);
 
-            actions[i] = 0;
-            if (i != size - 1)
-            {
-                actions[i + 1]++;
-            }
-        }
-        else if (increment)
-        {
-            actions[i]++;
-            break;
-        }
-    }
+    return { rng.getSeed(), count };
 }
 
 /**
- * @brief Determines if target seed passes the menu advance pattern
- * Working backwards from a seed check if the menu sequence will end on said seed
- * Menu will advance the prng until it collects a 1, 2, and 3
+ * @brief Does actions for watching special cutscene
  *
- * @param seed Target seed
+ * @param seed PRNG state
  *
- * @return true Target seed does pass menu pattern
- * @return false Target seed does not pass menu pattern
+ * @return Resulting PRNG state and advance count
  */
-static bool validateMenu(u32 seed)
+static std::pair<u32, u32> doCutscene(u32 seed)
 {
-    // Impossible to stop on a 0
-    u8 target = seed >> 30;
-    if (target == 0)
-    {
-        return false;
-    }
+    u32 count = 0;
+    XDRNG rng(seed);
 
-    u8 mask = 1 << target;
-    XDRNGR rng(seed);
-    do
-    {
-        u8 num = rng.nextUShort() >> 14;
+    advanceCutscene(rng, count);
+    advanceTitleScreen(rng, count);
+    advanceMenu(rng, count);
 
-        // Menu keeps rolling for 1, 2, and 3 until we get one of each
-        // If we hit our target before this happens then this seed doesn't pass the pattern
-        if (num == target)
-        {
-            return false;
-        }
+    return { rng.getSeed(), count };
+}
 
-        mask |= 1 << num;
-    } while (mask < 14);
+/**
+ * @brief Does actions for reload menu
+ *
+ * @param seed PRNG state
+ *
+ * @return Resulting PRNG state and advance count
+ */
+static std::pair<u32, u32> doMenu(u32 seed)
+{
+    u32 count = 0;
+    XDRNG rng(seed);
 
-    return true;
+    advanceMenu(rng, count);
+
+    return { rng.getSeed(), count };
+}
+
+/**
+ * @brief Does actions for rejecting a Jirachi
+ *
+ * @param seed PRNG state
+ *
+ * @return Resulting PRNG state and advance count
+ */
+static std::pair<u32, u32> doReject(u32 seed)
+{
+    u32 count = 0;
+    XDRNG rng(seed);
+
+    advanceJirachi(rng, count);
+    advanceTitleScreen(rng, count);
+    advanceMenu(rng, count);
+
+    return { rng.getSeed(), count };
+}
+
+/**
+ * @brief Computes heuristic for A* search. It is based on worst case advances from an action
+ *
+ * @return Estimated remaining actions that can be taken
+ */
+static u32 heuristic(u32 remainingFrames)
+{
+    return remainingFrames / 79;
 }
 
 namespace JirachiPattern
 {
-    std::vector<u8> calculateActions(u32 seed, u32 targetAdvance, u32 bruteForce)
+    std::vector<u8> calculateActions(u32 seed, u32 targetSeed, u32 maxActions)
     {
-        // Not possible
-        if (targetAdvance < 6)
-        {
-            return {};
-        }
-
         // Special handling for advance range 6-8 where we only need to accept
-        if (targetAdvance >= 6 && targetAdvance <= 8)
+        // If not possible or under 6 then can't hit target
+        u32 targetAdvance = XDRNG::distance(seed, targetSeed);
+        if (targetAdvance <= 8)
         {
             XDRNG rng(seed);
             u32 count = 0;
@@ -170,104 +199,86 @@ namespace JirachiPattern
 
             if (count == targetAdvance)
             {
-                return { 255 };
+                return { 3 };
             }
-        }
-
-        XDRNG menu(seed);
-        u32 menuAdvance = 0;
-        u32 menuCount = 0;
-
-        // Use menu advance to get to the brute force range
-        while (targetAdvance > bruteForce + menuAdvance)
-        {
-            menuCount++;
-            advanceMenu(menu, menuAdvance);
-        }
-
-        // Search the brute force range
-        for (size_t i = 1;; i++)
-        {
-            // This variable handles checking if all of the possibilities of the current search size exceed the target seed
-            // This is preferred to guessing what value of 'i' that is
-            bool done = true;
-
-            std::vector<u8> searchActions(i, 0);
-            while (true)
+            else
             {
-                u32 searchAdvance = menuAdvance;
-                XDRNG rng(menu);
-
-                bool flag = true;
-                for (u8 action : searchActions)
-                {
-                    // Reload menu
-                    if (action == 0)
-                    {
-                        advanceMenu(rng, searchAdvance);
-                    }
-                    // Reject jirachi
-                    else if (action == 1)
-                    {
-                        advanceJirachi(rng, searchAdvance);
-                        advanceTitleScreen(rng, searchAdvance);
-                        advanceMenu(rng, searchAdvance);
-                    }
-                    // Special cutscene
-                    else
-                    {
-                        advanceCutscene(rng, searchAdvance);
-                        advanceTitleScreen(rng, searchAdvance);
-                        advanceMenu(rng, searchAdvance);
-                    }
-
-                    // Make sure we didn't go past the target
-                    // Add a buffer of 6 since that is the minimum accepting Jirachi can advance
-                    if (searchAdvance + 6 > targetAdvance)
-                    {
-                        flag = false;
-                        break;
-                    }
-                }
-
-                // Check if accepting the Jirachi will land on the target
-                if (flag)
-                {
-                    done = false;
-
-                    // If we land on target seed then return the actions to get to it
-                    advanceJirachi(rng, searchAdvance);
-                    if (searchAdvance == targetAdvance)
-                    {
-                        // Vector is constructed in the way that the initial menu advances are already set
-                        std::vector<u8> actions(menuCount + searchActions.size() + 1, 0);
-
-                        // Copy over the search actions
-                        std::ranges::copy(searchActions, actions.begin() + menuCount);
-
-                        actions[actions.size() - 1] = 3;
-
-                        return actions;
-                    }
-                }
-
-                // Exit loop once all possibilities have been attempted
-                if (std::ranges::count(searchActions, 2) == i)
-                {
-                    break;
-                }
-
-                incrementSearchActions(searchActions);
+                return { };
             }
+        }
 
-            if (done)
+        std::priority_queue<Node, std::vector<Node>, std::greater<Node>> queue;
+        std::unordered_map<u32, std::pair<u32, u8>> parentMap;
+        std::unordered_map<u32, int> bestCost;
+
+        queue.push({ 0, heuristic(targetAdvance), seed, 0 });
+        bestCost[seed] = 0;
+
+        bool success = false;
+        while (!queue.empty() && !success)
+        {
+            Node curr = queue.top();
+            queue.pop();
+
+            if (curr.depth > maxActions)
             {
                 break;
             }
+
+            if (curr.depth > bestCost[curr.seed])
+            {
+                continue;
+            }
+
+            int remainingAdvances = targetAdvance - curr.totalAdvances;
+            if (remainingAdvances < 6)
+            {
+                continue;
+            }
+
+            std::array<std::pair<u32, u32>, 3> transitions = { doMenu(curr.seed), doReject(curr.seed), doCutscene(curr.seed) };
+            for (u8 i = 0; i < transitions.size(); i++)
+            {
+                u32 nextSeed = transitions[i].first;
+                u32 nextAdvance = transitions[i].second;
+
+                u32 newAdvances = curr.totalAdvances + nextAdvance;
+                u32 newDepth = curr.depth + 1;
+
+                if (newAdvances <= targetAdvance && (bestCost.find(nextSeed) == bestCost.end() || newDepth < bestCost[nextSeed]))
+                {
+                    bestCost[nextSeed] = newDepth;
+                    parentMap[nextSeed] = { curr.seed, i };
+
+                    // Check for exit condition
+                    auto accept = doAccept(nextSeed);
+                    if (accept.first == targetSeed)
+                    {
+                        parentMap[targetSeed] = { nextSeed, 3 };
+                        success = true;
+                        break;
+                    }
+
+                    u32 newDepthEstimated = newDepth + heuristic(targetAdvance - newAdvances);
+                    queue.push({ newDepth, newDepthEstimated, nextSeed, newAdvances });
+                }
+            }
         }
 
-        // If we get to this point then it is extremely unlikely to get to the the target seed from the current seed
-        return {};
+        std::vector<u8> actions;
+        if (success)
+        {
+            u32 curr = targetSeed;
+            while (curr != seed)
+            {
+                auto edge = parentMap[curr];
+                actions.emplace_back(edge.second);
+                curr = edge.first;
+            }
+            std::reverse(actions.begin(), actions.end());
+        }
+
+        return actions;
     }
 
     u32 computeJirachiSeed(u32 seed)

@@ -29,12 +29,12 @@ namespace JirachiPattern
      * @brief Calculates series of actions to take to hit the target seed
      *
      * @param seed Starting seed
-     * @param advance Target advance
-     * @param bruteForce What frame range to brute force actions over
+     * @param advance Target seed
+     * @param maxActions Maximum number of actions
      *
      * @return List of actions to take to get the target Jirachi
      */
-    std::vector<u8> calculateActions(u32 seed, u32 targetAdvance, u32 bruteForce);
+    std::vector<u8> calculateActions(u32 seed, u32 targetSeed, u32 maxActions);
 
     /**
      * @brief Runs the menu and Jirachi pattern to get the PRNG state that would generate the Jirachi

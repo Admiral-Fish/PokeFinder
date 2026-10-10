@@ -33,7 +33,7 @@ JirachiAdvancer::JirachiAdvancer(QWidget *parent) : QDialog(parent), ui(new Ui::
     ui->textBoxStartingSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxBruteForceRange->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxActions->setValues(InputType::Advance32Bit);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &JirachiAdvancer::generate);
 
@@ -57,7 +57,7 @@ void JirachiAdvancer::generate()
     u32 startingSeed = ui->textBoxStartingSeed->getUInt();
     u32 targetSeed = JirachiPattern::computeJirachiSeed(ui->textBoxTargetSeed->getUInt());
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 bruteForceRange = ui->textBoxBruteForceRange->getUInt();
+    u32 maxActions = ui->textBoxMaxAdvances->getUInt();
 
     u32 advances = XDRNG::distance(startingSeed, targetSeed);
     if (advances > maxAdvances)
@@ -67,7 +67,7 @@ void JirachiAdvancer::generate()
         return;
     }
 
-    auto actions = JirachiPattern::calculateActions(startingSeed, advances, bruteForceRange);
+    auto actions = JirachiPattern::calculateActions(startingSeed, targetSeed, maxActions);
     if (actions.empty())
     {
         QMessageBox msg(QMessageBox::Warning, tr("Invalid target"), tr("Target seed is unobtainable"));

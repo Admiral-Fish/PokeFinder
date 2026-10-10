@@ -4,11 +4,11 @@
             "name": "Jirachi Actions",
             "seed": 4116922500,
             "target": 3637864987,
-            "bruteForce": 53,
+            "maxActions": 10,
             "results": [
                 1,
-                0,
                 1,
+                2,
                 2,
                 3
             ]

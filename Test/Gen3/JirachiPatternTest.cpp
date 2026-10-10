@@ -27,14 +27,14 @@ void JirachiPatternTest::calculateActions_data()
 {
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u32>("target");
-    QTest::addColumn<u32>("bruteForce");
+    QTest::addColumn<u32>("maxActions");
     QTest::addColumn<std::vector<u8>>("results");
 
     json data = readData("jirachipattern", "calculateActions");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << d["target"].get<u32>() << d["bruteForce"].get<u32>() << d["results"].get<std::vector<u8>>();
+            << d["seed"].get<u32>() << d["target"].get<u32>() << d["maxActions"].get<u32>() << d["results"].get<std::vector<u8>>();
     }
 }
 
@@ -42,11 +42,10 @@ void JirachiPatternTest::calculateActions()
 {
     QFETCH(u32, seed);
     QFETCH(u32, target);
-    QFETCH(u32, bruteForce);
+    QFETCH(u32, maxActions);
     QFETCH(std::vector<u8>, results);
 
-    u32 targetAdvance = XDRNG::distance(seed, target);
-    QCOMPARE(JirachiPattern::calculateActions(seed, targetAdvance, bruteForce), results);
+    QCOMPARE(JirachiPattern::calculateActions(seed, target, maxActions), results);
 }
 
 void JirachiPatternTest::computeJirachiSeed_data()
