@@ -37,7 +37,18 @@ struct Node
         {
             return depthEstimated > other.depthEstimated;
         }
-        return depth > other.depth;
+
+        if (depth != other.depth)
+        {
+            return depth > other.depth;
+        }
+
+        if (totalAdvances != other.totalAdvances)
+        {
+            return totalAdvances > other.totalAdvances;
+        }
+
+        return seed > other.seed;
     }
 };
 
@@ -88,7 +99,7 @@ static void advanceMenu(XDRNG &rng, u32 &count)
     {
         u8 num = rng.nextUShort(&count) >> 14;
         mask |= 1 << num;
-    } while (mask < 14);
+    } while ((mask & 14) != 14);
 }
 
 /**
@@ -271,7 +282,7 @@ namespace JirachiPattern
             u32 curr = targetSeed;
             while (curr != seed)
             {
-                auto edge = parentMap[curr];
+                auto &edge = parentMap[curr];
                 actions.emplace_back(edge.second);
                 curr = edge.first;
             }
