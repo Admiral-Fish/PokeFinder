@@ -5126,12 +5126,12 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.hpp" line="73"/>
         <source>Phenomenon</source>
-        <translation type="unfinished">Fenomeno</translation>
+        <translation>Fenomeno</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.cpp" line="71"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/PhenomenonModel.cpp" line="71"/>
@@ -6575,7 +6575,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen8/ProfileModel8.hpp" line="95"/>
         <source>National Dex</source>
-        <translation type="unfinished">Dex Nazionale</translation>
+        <translation>Dex Nazionale</translation>
     </message>
 </context>
 <context>
@@ -10676,7 +10676,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="79"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.cpp" line="93"/>
@@ -10727,7 +10727,7 @@ Il profilo è mancante o ha una cache SHA incompatibile.</translation>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="108"/>
         <source>Phenomenon</source>
-        <translation type="unfinished">Fenomeno</translation>
+        <translation>Fenomeno</translation>
     </message>
     <message>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="109"/>
