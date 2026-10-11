@@ -209,7 +209,7 @@ namespace JirachiPattern
 
         std::priority_queue<Node, std::vector<Node>, std::greater<Node>> queue;
         std::unordered_map<u32, std::pair<u32, u8>> parentMap;
-        std::unordered_map<u32, int> bestCost;
+        std::unordered_map<u32, u32> bestCost;
 
         queue.push({ 0, heuristic(targetAdvance), seed, 0 });
         bestCost[seed] = 0;
@@ -230,7 +230,7 @@ namespace JirachiPattern
                 continue;
             }
 
-            int remainingAdvances = targetAdvance - curr.totalAdvances;
+            u32 remainingAdvances = targetAdvance - curr.totalAdvances;
             if (remainingAdvances < 6)
             {
                 continue;
