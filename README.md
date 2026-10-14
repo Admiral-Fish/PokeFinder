@@ -51,14 +51,14 @@ Windows
 - Windows 10
 - Windows 11
 
-MacOS
-- MacOS Sonoma
-- MacOS Sequoia
-- MacOS Tahoe
+macOS
+- macOS Sequoia
+- macOS Tahoe
+- macOS Golden Gate
 
 Linux
-- Ubuntu 22.04
 - Ubuntu 24.04
+- Ubuntu 26.04
 
 Qt
 - 6.10 or newer
