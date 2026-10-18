@@ -235,11 +235,19 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvan
         }
     }
 
+    // Marvelous Bridge Magikarp forces speed to 31
+    bool magikarp = staticTemplate && staticTemplate->getSpecie() == 129;
+
     for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && (i + offset) < normalSeeds.size(); i++)
     {
         for (u32 seed : normalSeeds[i + offset])
         {
             auto ivs = computeIVs(seed, i + offset, CacheType::Normal);
+            if (magikarp)
+            {
+                ivs[5] = 31;
+            }
+
             if (filter.compareIV(ivs) && filter.compareHiddenPower(ivs))
             {
                 cache.emplace((i << 32) | seed, ivs);

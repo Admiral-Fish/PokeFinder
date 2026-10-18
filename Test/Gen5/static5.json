@@ -958,6 +958,325 @@
             ]
         },
         {
+            "name": "Magikarp",
+            "seed": 0,
+            "version": "Black",
+            "category": 2,
+            "pokemon": 9,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 39,
+                    "characteristic": 16,
+                    "chatot": 95,
+                    "gender": 0,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 10,
+                    "needle": 7,
+                    "pid": 4087061897,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        5,
+                        11,
+                        7,
+                        7,
+                        15
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 40,
+                    "characteristic": 16,
+                    "chatot": 41,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 14,
+                    "needle": 3,
+                    "pid": 1775559801,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        7,
+                        6,
+                        15
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 41,
+                    "characteristic": 16,
+                    "chatot": 59,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 12,
+                    "needle": 4,
+                    "pid": 2555876669,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        7,
+                        7,
+                        14
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 42,
+                    "characteristic": 16,
+                    "chatot": 51,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 23,
+                    "needle": 4,
+                    "pid": 2207967037,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        6,
+                        7,
+                        14
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 43,
+                    "characteristic": 16,
+                    "chatot": 94,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 9,
+                    "needle": 7,
+                    "pid": 4061401700,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        12,
+                        7,
+                        6,
+                        14
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 44,
+                    "characteristic": 16,
+                    "chatot": 38,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 6,
+                    "needle": 3,
+                    "pid": 1655374114,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        7,
+                        7,
+                        14
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 45,
+                    "characteristic": 16,
+                    "chatot": 27,
+                    "gender": 0,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 10,
+                    "needle": 2,
+                    "pid": 1199726212,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        5,
+                        11,
+                        7,
+                        7,
+                        15
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 46,
+                    "characteristic": 16,
+                    "chatot": 40,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 13,
+                    "needle": 3,
+                    "pid": 1721880608,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        6,
+                        7,
+                        15
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 33,
+                    "advances": 47,
+                    "characteristic": 16,
+                    "chatot": 55,
+                    "gender": 1,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 9,
+                    "needle": 4,
+                    "pid": 2386258945,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        12,
+                        7,
+                        6,
+                        14
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 33,
+                    "advances": 48,
+                    "characteristic": 16,
+                    "chatot": 39,
+                    "gender": 0,
+                    "hiddenPower": 13,
+                    "hiddenPowerStrength": 69,
+                    "ivs": [
+                        17,
+                        18,
+                        22,
+                        27,
+                        19,
+                        31
+                    ],
+                    "level": 5,
+                    "nature": 0,
+                    "needle": 3,
+                    "pid": 1689394930,
+                    "shiny": 0,
+                    "stats": [
+                        17,
+                        6,
+                        11,
+                        7,
+                        7,
+                        14
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Larvesta",
             "seed": 0,
             "version": "Black",

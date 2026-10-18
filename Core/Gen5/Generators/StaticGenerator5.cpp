@@ -84,6 +84,9 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
         }
     }();
 
+    // Marvelous Bridge Magikarp forces speed to 31
+    bool magikarp = staticTemplate.getSpecie() == 129;
+
     std::vector<std::pair<u32, std::array<u8, 6>>> ivs;
     std::visit(
         [&](auto &rng) {
@@ -105,7 +108,7 @@ std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u3
                 {
                     iv[3] = rng.next();
                     iv[4] = rng.next();
-                    iv[5] = rng.next();
+                    iv[5] = magikarp ? 31 : rng.next();
                 }
 
                 if (filter.compareIV(iv) && filter.compareHiddenPower(iv))
