@@ -44,6 +44,7 @@ namespace AdjacentSeedsCalculator
         u32 timer0Max = profile.getTimer0Max() + 1;
 
         bool bw = (profile.getVersion() & Game::BW) != Game::None;
+        u32 initial = minIVAdvance + (bw ? 0 : 2) + (roamer ? 1 : 0);
 
         SHA1 sha(profile);
         sha.setButton(Keypresses::getValue(buttons));
@@ -69,7 +70,7 @@ namespace AdjacentSeedsCalculator
                 auto alpha = sha.precompute();
                 u64 seed = sha.hashSeed(alpha);
 
-                RNGList<u8, MT, 8, gen> rngList(seed >> 32, minIVAdvance + (bw ? 0 : 2) + (roamer ? 1 : 0));
+                RNGList<u8, MT, 8, gen> rngList(seed >> 32, initial);
                 for (u32 ivAdvance = minIVAdvance; ivAdvance <= maxIVAdvance; ivAdvance++, rngList.advanceState())
                 {
                     std::array<u8, 6> ivs;

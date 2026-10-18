@@ -180,7 +180,7 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
     u16 phenomenonRatio = area.getPhenomenonRatio();
 
     u8 shinyRolls = 1;
-    if ((profile.getVersion() & Game::BW2) != Game::None)
+    if (!bw)
     {
         if (profile.getShinyCharm())
         {
