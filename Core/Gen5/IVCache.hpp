@@ -56,13 +56,14 @@ public:
      * @param initialAdvance Initial IV advances
      * @param maxAdvance Maximum IV advances
      * @param version Game version
+     * @param passPower Whether or not a pass power is active
      * @param type What cache type to get
      * @param staticTemplate Pokemon template
      * @param filter IV filter
      *
      * @return IV caches
      */
-    fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvances, u32 maxAdvances, Game version, CacheType type,
+    fph::MetaFphMap<u64, std::array<u8, 6>> getCache(u32 initialAdvances, u32 maxAdvances, Game version, bool passPower, CacheType type,
                                                      const StaticTemplate5 *staticTemplate, const StateFilter &filter) const;
 
     /**
@@ -125,11 +126,13 @@ private:
      * @param initialAdvance Initial IV advances
      * @param maxAdvance Maximum IV advances
      * @param version Game version
+     * @param passPower Whether or not a pass power is active
+     * @param staticTemplate Pokemon template
      * @param filter IV filter
      *
      * @return IV caches
      */
-    fph::MetaFphMap<u64, std::array<u8, 6>> getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version,
+    fph::MetaFphMap<u64, std::array<u8, 6>> getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version, bool passPower,
                                                            const StaticTemplate5 *staticTemplate, const StateFilter &filter) const;
 
     /**

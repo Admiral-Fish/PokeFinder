@@ -5367,16 +5367,16 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 10,
@@ -5386,12 +5386,12 @@
                     "shiny": 0,
                     "specie": 597,
                     "stats": [
-                        66,
+                        65,
                         35,
-                        59,
+                        58,
                         25,
-                        56,
-                        18
+                        54,
+                        16
                     ],
                     "valid": true
                 },
@@ -5399,21 +5399,21 @@
                     "ability": 1,
                     "abilityIndex": 42,
                     "advances": 47,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 55,
                     "encounterSlot": 3,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 1,
@@ -5423,12 +5423,12 @@
                     "shiny": 0,
                     "specie": 299,
                     "stats": [
-                        59,
-                        39,
-                        74,
-                        36,
                         58,
-                        28
+                        39,
+                        73,
+                        36,
+                        57,
+                        26
                     ],
                     "valid": true
                 },
@@ -5441,16 +5441,16 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 24,
@@ -5460,12 +5460,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         35,
                         34,
                         40,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 },
@@ -5478,16 +5478,16 @@
                     "encounterSlot": 4,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 14,
@@ -5497,12 +5497,12 @@
                     "shiny": 0,
                     "specie": 597,
                     "stats": [
-                        64,
+                        63,
                         38,
-                        57,
+                        56,
                         24,
-                        48,
-                        18
+                        47,
+                        16
                     ],
                     "valid": true
                 },
@@ -5510,21 +5510,21 @@
                     "ability": 1,
                     "abilityIndex": 127,
                     "advances": 50,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 43,
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 1,
@@ -5534,12 +5534,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         38,
                         30,
                         40,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 },
@@ -5552,16 +5552,16 @@
                     "encounterSlot": 11,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 4,
@@ -5571,12 +5571,12 @@
                     "shiny": 0,
                     "specie": 602,
                     "stats": [
-                        63,
+                        62,
                         47,
                         32,
                         37,
-                        28,
-                        46
+                        27,
+                        43
                     ],
                     "valid": true
                 },
@@ -5584,21 +5584,21 @@
                     "ability": 0,
                     "abilityIndex": 160,
                     "advances": 52,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 99,
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 0,
@@ -5608,12 +5608,12 @@
                     "shiny": 0,
                     "specie": 597,
                     "stats": [
-                        66,
+                        65,
                         39,
-                        59,
+                        58,
                         25,
-                        56,
-                        17
+                        54,
+                        15
                     ],
                     "valid": true
                 },
@@ -5621,21 +5621,21 @@
                     "ability": 1,
                     "abilityIndex": 127,
                     "advances": 53,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 59,
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 15,
@@ -5645,12 +5645,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         31,
                         34,
                         44,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 },
@@ -5658,21 +5658,21 @@
                     "ability": 1,
                     "abilityIndex": 58,
                     "advances": 54,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 5,
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 2,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 10,
@@ -5682,12 +5682,12 @@
                     "shiny": 0,
                     "specie": 599,
                     "stats": [
-                        62,
+                        61,
                         36,
-                        46,
+                        45,
                         35,
-                        40,
-                        29
+                        39,
+                        27
                     ],
                     "valid": true
                 },
@@ -5700,16 +5700,16 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 8,
@@ -5719,12 +5719,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         35,
                         37,
                         36,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 }
@@ -5749,16 +5749,16 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 229,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 10,
@@ -5768,12 +5768,12 @@
                     "shiny": 0,
                     "specie": 525,
                     "stats": [
-                        75,
+                        74,
                         57,
-                        62,
+                        61,
                         36,
-                        29,
-                        23
+                        28,
+                        20
                     ],
                     "valid": true
                 },
@@ -5781,21 +5781,21 @@
                     "ability": 1,
                     "abilityIndex": 160,
                     "advances": 47,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 55,
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 1,
@@ -5805,12 +5805,12 @@
                     "shiny": 0,
                     "specie": 597,
                     "stats": [
-                        66,
+                        65,
                         42,
-                        53,
+                        52,
                         25,
-                        56,
-                        17
+                        54,
+                        15
                     ],
                     "valid": true
                 },
@@ -5823,16 +5823,16 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 24,
@@ -5842,12 +5842,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         35,
                         34,
                         40,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 },
@@ -5860,16 +5860,16 @@
                     "encounterSlot": 6,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 14,
@@ -5881,10 +5881,10 @@
                     "stats": [
                         69,
                         37,
-                        37,
+                        36,
                         43,
-                        32,
-                        51
+                        31,
+                        49
                     ],
                     "valid": true
                 },
@@ -5892,21 +5892,21 @@
                     "ability": 1,
                     "abilityIndex": 58,
                     "advances": 50,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 43,
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 2,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 1,
@@ -5916,12 +5916,12 @@
                     "shiny": 0,
                     "specie": 599,
                     "stats": [
-                        62,
+                        61,
                         44,
-                        41,
-                        35,
                         40,
-                        27
+                        35,
+                        39,
+                        25
                     ],
                     "valid": true
                 },
@@ -5934,16 +5934,16 @@
                     "encounterSlot": 11,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 4,
@@ -5953,12 +5953,12 @@
                     "shiny": 0,
                     "specie": 602,
                     "stats": [
-                        63,
+                        62,
                         47,
                         32,
                         37,
-                        28,
-                        46
+                        27,
+                        43
                     ],
                     "valid": true
                 },
@@ -5966,21 +5966,21 @@
                     "ability": 0,
                     "abilityIndex": 5,
                     "advances": 52,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 99,
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 0,
@@ -5990,12 +5990,12 @@
                     "shiny": 0,
                     "specie": 525,
                     "stats": [
-                        75,
+                        74,
                         64,
-                        62,
+                        61,
                         36,
-                        29,
-                        21
+                        28,
+                        19
                     ],
                     "valid": true
                 },
@@ -6003,21 +6003,21 @@
                     "ability": 1,
                     "abilityIndex": 58,
                     "advances": 53,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 59,
                     "encounterSlot": 1,
                     "form": 0,
                     "gender": 2,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 15,
@@ -6027,12 +6027,12 @@
                     "shiny": 0,
                     "specie": 599,
                     "stats": [
-                        62,
+                        61,
                         36,
-                        46,
+                        45,
                         38,
-                        40,
-                        27
+                        39,
+                        25
                     ],
                     "valid": true
                 },
@@ -6040,21 +6040,21 @@
                     "ability": 1,
                     "abilityIndex": 42,
                     "advances": 54,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 5,
                     "encounterSlot": 3,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 10,
@@ -6064,12 +6064,12 @@
                     "shiny": 0,
                     "specie": 299,
                     "stats": [
-                        59,
-                        32,
-                        83,
-                        36,
                         58,
-                        30
+                        32,
+                        82,
+                        36,
+                        57,
+                        28
                     ],
                     "valid": true
                 },
@@ -6082,16 +6082,16 @@
                     "encounterSlot": 0,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 8,
@@ -6101,12 +6101,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        65,
+                        64,
                         35,
                         37,
                         36,
-                        34,
-                        44
+                        33,
+                        42
                     ],
                     "valid": true
                 }
@@ -6126,21 +6126,21 @@
                     "ability": 1,
                     "abilityIndex": 58,
                     "advances": 46,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 40,
                     "encounterSlot": 9,
                     "form": 0,
                     "gender": 2,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 1,
@@ -6150,12 +6150,12 @@
                     "shiny": 0,
                     "specie": 599,
                     "stats": [
-                        66,
+                        65,
                         47,
-                        44,
-                        37,
                         43,
-                        29
+                        37,
+                        42,
+                        27
                     ],
                     "valid": true
                 },
@@ -6168,16 +6168,16 @@
                     "encounterSlot": 7,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 25,
                     "nature": 24,
@@ -6187,12 +6187,12 @@
                     "shiny": 0,
                     "specie": 525,
                     "stats": [
-                        75,
+                        74,
                         64,
-                        62,
+                        61,
                         36,
-                        29,
-                        21
+                        28,
+                        19
                     ],
                     "valid": true
                 },
@@ -6205,16 +6205,16 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 14,
@@ -6224,12 +6224,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        67,
+                        66,
                         36,
                         35,
                         41,
-                        31,
-                        49
+                        30,
+                        47
                     ],
                     "valid": true
                 },
@@ -6237,21 +6237,21 @@
                     "ability": 1,
                     "abilityIndex": 127,
                     "advances": 49,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 2,
                     "encounterSlot": 8,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 1,
@@ -6261,12 +6261,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        72,
+                        71,
                         41,
-                        34,
+                        33,
                         44,
-                        37,
-                        48
+                        36,
+                        46
                     ],
                     "valid": true
                 },
@@ -6279,16 +6279,16 @@
                     "encounterSlot": 3,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 4,
@@ -6298,12 +6298,12 @@
                     "shiny": 0,
                     "specie": 299,
                     "stats": [
-                        59,
+                        58,
                         39,
-                        83,
+                        82,
                         36,
-                        52,
-                        28
+                        51,
+                        26
                     ],
                     "valid": true
                 },
@@ -6311,21 +6311,21 @@
                     "ability": 0,
                     "abilityIndex": 26,
                     "advances": 51,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 6,
                     "encounterSlot": 11,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 0,
@@ -6335,12 +6335,12 @@
                     "shiny": 0,
                     "specie": 602,
                     "stats": [
-                        63,
+                        62,
                         43,
                         32,
                         37,
-                        32,
-                        46
+                        31,
+                        43
                     ],
                     "valid": true
                 },
@@ -6348,21 +6348,21 @@
                     "ability": 1,
                     "abilityIndex": 58,
                     "advances": 52,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 99,
                     "encounterSlot": 9,
                     "form": 0,
                     "gender": 2,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 28,
                     "nature": 15,
@@ -6372,12 +6372,12 @@
                     "shiny": 0,
                     "specie": 599,
                     "stats": [
-                        66,
+                        65,
                         38,
-                        49,
+                        48,
                         40,
-                        43,
-                        29
+                        42,
+                        27
                     ],
                     "valid": true
                 },
@@ -6385,21 +6385,21 @@
                     "ability": 1,
                     "abilityIndex": 127,
                     "advances": 53,
-                    "characteristic": 17,
+                    "characteristic": 22,
                     "chatot": 59,
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 1,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 10,
@@ -6409,12 +6409,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        67,
+                        66,
                         32,
                         35,
                         41,
-                        35,
-                        49
+                        34,
+                        47
                     ],
                     "valid": true
                 },
@@ -6427,16 +6427,16 @@
                     "encounterSlot": 5,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 27,
                     "nature": 8,
@@ -6446,12 +6446,12 @@
                     "shiny": 0,
                     "specie": 597,
                     "stats": [
-                        66,
+                        65,
                         39,
-                        64,
+                        63,
                         22,
-                        56,
-                        17
+                        54,
+                        15
                     ],
                     "valid": true
                 },
@@ -6464,16 +6464,16 @@
                     "encounterSlot": 2,
                     "form": 0,
                     "gender": 0,
-                    "hiddenPower": 14,
-                    "hiddenPowerStrength": 49,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 47,
                     "item": 0,
                     "ivs": [
-                        22,
-                        27,
                         19,
                         27,
                         17,
-                        27
+                        27,
+                        13,
+                        19
                     ],
                     "level": 26,
                     "nature": 7,
@@ -6483,12 +6483,12 @@
                     "shiny": 0,
                     "specie": 595,
                     "stats": [
-                        67,
+                        66,
                         36,
                         38,
                         41,
-                        35,
-                        40
+                        34,
+                        38
                     ],
                     "valid": true
                 }

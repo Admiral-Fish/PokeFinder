@@ -39,7 +39,7 @@ IVCacheSearcher::IVCacheSearcher(u32 initialAdvances, u32 maxAdvances) :
     SearcherBase<std::vector<u32>>(), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
 {
     entralink.resize(maxAdvances + 5);
-    results.resize(maxAdvances + 4);
+    results.resize(maxAdvances + 5);
     roamer.resize(maxAdvances + 1);
 }
 
@@ -153,22 +153,18 @@ void IVCacheSearcher::search(u32 start, u32 end)
                     }
 
                     // Normal
-                    if (i <= maxAdvances + 3)
+                    rng.resetState();
+                    hp = rng.next();
+                    atk = rng.next();
+                    def = rng.next();
+                    spa = rng.next();
+                    spd = rng.next();
+                    spe = rng.next();
+
+                    if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
                     {
-                        rng.resetState();
-
-                        hp = rng.next();
-                        atk = rng.next();
-                        def = rng.next();
-                        spa = rng.next();
-                        spd = rng.next();
-                        spe = rng.next();
-
-                        if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
-                        {
-                            std::lock_guard<std::mutex> lock(mutex);
-                            results[i].emplace_back(seed);
-                        }
+                        std::lock_guard<std::mutex> lock(mutex);
+                        results[i].emplace_back(seed);
                     }
 
                     // Roamer
@@ -176,7 +172,6 @@ void IVCacheSearcher::search(u32 start, u32 end)
                     {
                         rng.resetState();
                         rng.advance(1);
-
                         hp = rng.next();
                         atk = rng.next();
                         def = rng.next();

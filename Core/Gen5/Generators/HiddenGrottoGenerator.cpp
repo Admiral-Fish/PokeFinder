@@ -137,8 +137,11 @@ HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvance
 
 std::vector<State5> HiddenGrottoGenerator::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
 {
-    bool bw = (profile.getVersion() & Game::BW) != Game::None;
-    u32 initial = initialAdvances + (bw ? 0 : 2);
+    u32 initial = initialAdvances;
+    if ((profile.getVersion() & Game::BW2) != Game::None)
+    {
+        initial += 2;
+    }
 
     using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
     RNGVariant rngList = [&]() {

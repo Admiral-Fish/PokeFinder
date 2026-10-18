@@ -61,8 +61,15 @@ StaticGenerator5::StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u32 off
 
 std::vector<State5> StaticGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
 {
-    bool bw = (profile.getVersion() & Game::BW) != Game::None;
-    u32 initial = initialAdvances + (bw ? 0 : 2) + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0);
+    u32 initial = initialAdvances + ((staticTemplate.getEgg() || staticTemplate.getRoamer()) ? 1 : 0);
+    if ((profile.getVersion() & Game::BW2) != Game::None)
+    {
+        initial += 2;
+        if (staticTemplate.getWild() && luckyPower != PassPower::None)
+        {
+            initial += 2;
+        }
+    }
 
     using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
     RNGVariant rngList = [&]() {

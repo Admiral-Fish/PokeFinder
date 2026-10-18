@@ -113,8 +113,15 @@ WildGenerator5::WildGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset,
 
 std::vector<WildState5> WildGenerator5::generate(u64 seed, u32 initialAdvances, u32 maxAdvances) const
 {
-    bool bw = (profile.getVersion() & Game::BW) != Game::None;
-    u32 initial = initialAdvances + (bw ? 0 : 2);
+    u32 initial = initialAdvances;
+    if ((profile.getVersion() & Game::BW2) != Game::None)
+    {
+        initial += 2;
+        if (luckyPower != PassPower::None)
+        {
+            initial += 2;
+        }
+    }
 
     using RNGVariant = std::variant<RNGList<u8, MTFast, 8>, RNGList<u8, MT, 8, gen>>;
     RNGVariant rngList = [&]() {

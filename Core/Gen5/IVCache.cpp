@@ -30,7 +30,7 @@
 struct SeedCache
 {
     std::array<u16, 10> entralinkCount;
-    std::array<u16, 9> normalCount;
+    std::array<u16, 10> normalCount;
     std::array<u16, 6> roamerCount;
     u32 seeds[];
 };
@@ -109,7 +109,7 @@ IVCache::IVCache(std::string_view file, bool read) : valid(false)
         if (read)
         {
             std::vector<u32> entralinkCount(maxAdvances + 5);
-            std::vector<u32> normalCount(maxAdvances + 4);
+            std::vector<u32> normalCount(maxAdvances + 5);
             std::vector<u32> roamerCount(maxAdvances + 1);
 
             stream.read(reinterpret_cast<char *>(entralinkCount.data()), entralinkCount.size() * sizeof(u32));
@@ -142,8 +142,9 @@ IVCache::IVCache(std::string_view file, bool read) : valid(false)
     }
 }
 
-fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getCache(u32 initialAdvances, u32 maxAdvances, Game version, CacheType type,
-                                                          const StaticTemplate5 *staticTemplate, const StateFilter &filter) const
+fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getCache(u32 initialAdvances, u32 maxAdvances, Game version, bool passPower,
+                                                          CacheType type, const StaticTemplate5 *staticTemplate,
+                                                          const StateFilter &filter) const
 {
     if (type == CacheType::Entralink)
     {
@@ -151,7 +152,7 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getCache(u32 initialAdvances, u
     }
     else if (type == CacheType::Normal)
     {
-        return getNormalCache(initialAdvances, maxAdvances, version, staticTemplate, filter);
+        return getNormalCache(initialAdvances, maxAdvances, version, passPower, staticTemplate, filter);
     }
     else
     {
@@ -219,12 +220,21 @@ fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getEntralinkCache(u32 initialAd
     return cache;
 }
 
-fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version,
+fph::MetaFphMap<u64, std::array<u8, 6>> IVCache::getNormalCache(u32 initialAdvances, u32 maxAdvances, Game version, bool passPower,
                                                                 const StaticTemplate5 *staticTemplate, const StateFilter &filter) const
 {
     fph::MetaFphMap<u64, std::array<u8, 6>> cache;
 
-    int offset = ((version & Game::BW) != Game::None ? 0 : 2) + ((staticTemplate && staticTemplate->getEgg()) ? 1 : 0);
+    int offset = (staticTemplate && staticTemplate->getEgg()) ? 1 : 0;
+    if ((version & Game::BW2) != Game::None)
+    {
+        offset += 2;
+        if (passPower && (staticTemplate == nullptr || staticTemplate->getWild()))
+        {
+            offset += 2;
+        }
+    }
+
     for (u64 i = initialAdvances; i <= (initialAdvances + maxAdvances) && (i + offset) < normalSeeds.size(); i++)
     {
         for (u32 seed : normalSeeds[i + offset])
