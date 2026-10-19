@@ -42,8 +42,18 @@ TinyMT::TinyMT(u32 seed) : state(seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff)
     advance(8);
 }
 
+TinyMT::TinyMT(u32 seed, u32 advances) : TinyMT(seed)
+{
+    jump(advances);
+}
+
 TinyMT::TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3) : state { seed0, seed1, seed2, seed3 }
 {
+}
+
+TinyMT::TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3, u32 advances) : TinyMT(seed0, seed1, seed2, seed3)
+{
+    jump(advances);
 }
 
 void TinyMT::advance(u32 advances)

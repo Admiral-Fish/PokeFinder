@@ -80,7 +80,7 @@
    <item row="1" column="3">
     <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="2" colspan="2">
     <widget class="QCheckBox" name="checkBoxNationalDex">
      <property name="text">
       <string>National Dex</string>

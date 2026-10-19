@@ -94,22 +94,20 @@ static u64 getCustom(Custom custom, const ResearcherState &state, const std::vec
  * @brief Computes the PRNG states for \p rng
  *
  * @tparam RNGType Type of RNG
+ * @tparam Args Variadic template types
  * @param rng RNG object to generate numbers
- * @param initial Initial advances
  * @param max Maximum advances
+ * @param args Parameters to pass to RNG constructor
  *
  * @return Vector of PRNG states
  */
-template <class RNGType>
-static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
+template <class RNGType, typename... Args>
+static std::vector<u64> getStates(u32 max, Args&&... args)
 {
     std::vector<u64> states;
+    states.reserve(max);
 
-    if constexpr (!std::is_same_v<RNGType, MT> && !std::is_same_v<RNGType, SFMT>)
-    {
-        rng.jump(initial);
-    }
-
+    RNGType rng(std::forward<Args>(args)...);
     for (u32 i = 0; i < max; i++)
     {
         states.emplace_back(rng.next());
@@ -235,25 +233,25 @@ void Researcher::generate()
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
-            rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<PokeRNG>(maxAdvances, seed, initialAdvances);
             break;
         case 1:
-            rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<PokeRNGR>(maxAdvances, seed, initialAdvances);
             break;
         case 2:
-            rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<XDRNG>(maxAdvances, seed, initialAdvances);
             break;
         case 3:
-            rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<XDRNGR>(maxAdvances, seed, initialAdvances);
             break;
         case 4:
-            rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<ARNG>(maxAdvances, seed, initialAdvances);
             break;
         case 5:
-            rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<ARNGR>(maxAdvances, seed, initialAdvances);
             break;
         case 6:
-            rngStates = getStates<MT>(MT(seed, initialAdvances), initialAdvances, maxAdvances);
+            rngStates = getStates<MT>(maxAdvances, seed, initialAdvances);
             break;
         }
     }
@@ -263,37 +261,39 @@ void Researcher::generate()
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
-            rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<BWRNG>(maxAdvances, seed, initialAdvances);
             break;
         case 1:
-            rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<BWRNGR>(maxAdvances, seed, initialAdvances);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            rngStates = getStates<SFMT>(SFMT(seed, initialAdvances), initialAdvances, maxAdvances);
+            rngStates = getStates<SFMT>(maxAdvances, seed, initialAdvances);
             break;
         case 3:
-            rngStates = getStates<Xoroshiro>(Xoroshiro(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<Xoroshiro>(maxAdvances, seed, initialAdvances);
             break;
         case 4:
-            rngStates = getStates<XoroshiroBDSP>(XoroshiroBDSP(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<XoroshiroBDSP>(maxAdvances, seed, initialAdvances);
             break;
         }
     }
     else if (ui->rngSelection->currentIndex() == 2)
     {
-        rngStates = getStates<TinyMT>(TinyMT(ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(),
-                                             ui->textBoxTinyMTSeed2->getUInt(), ui->textBoxTinyMTSeed3->getUInt()),
-                                      initialAdvances, maxAdvances);
+        u32 seed0 = ui->textBoxTinyMTSeed0->getUInt();
+        u32 seed1 = ui->textBoxTinyMTSeed1->getUInt();
+        u32 seed2 = ui->textBoxTinyMTSeed2->getUInt();
+        u32 seed3 = ui->textBoxTinyMTSeed3->getUInt();
+        rngStates = getStates<TinyMT>(maxAdvances, seed0, seed1, seed2, seed3, initialAdvances);
     }
     else
     {
         u64 seed0 = ui->textBoxXorshiftSeed0->getULong();
         u64 seed1 = ui->textBoxXorshiftSeed1->getULong();
-        rngStates = getStates<Xorshift>(Xorshift(seed0, seed1), initialAdvances, maxAdvances);
+        rngStates = getStates<Xorshift>(maxAdvances, seed0, seed1, initialAdvances);
     }
 
     QHash<QString, u64 (*)(u64, u64)> calc;

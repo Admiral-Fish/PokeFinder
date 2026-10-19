@@ -90,7 +90,7 @@
    <item row="1" column="3">
     <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="2" colspan="2">
     <widget class="QCheckBox" name="checkBoxDeadBattery">
      <property name="text">
       <string>Dead Battery</string>
@@ -125,4 +125,6 @@
    <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <resources/>
+ <connections/>
 </ui>

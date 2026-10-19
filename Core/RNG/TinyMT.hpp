@@ -39,12 +39,31 @@ public:
     /**
      * @brief Construct a new TinyMT object
      *
+     * @param seed Starting PRNG value
+     * @param advances Number of initial advances
+     */
+    TinyMT(u32 seed, u32 advances);
+
+    /**
+     * @brief Construct a new TinyMT object
+     *
      * @param seed0 Starting PRNG value 0
      * @param seed1 Starting PRNG value 1
      * @param seed2 Starting PRNG value 2
      * @param seed3 Starting PRNG value 3
      */
     TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3);
+
+    /**
+     * @brief Construct a new TinyMT object
+     *
+     * @param seed0 Starting PRNG value 0
+     * @param seed1 Starting PRNG value 1
+     * @param seed2 Starting PRNG value 2
+     * @param seed3 Starting PRNG value 3
+     * @param advances Number of initial advances
+     */
+    TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3, u32 advances);
 
     /**
      * @brief Advances the RNG by \p advances amount

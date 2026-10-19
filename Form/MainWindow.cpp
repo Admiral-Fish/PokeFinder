@@ -593,7 +593,7 @@ void MainWindow::openIVCacheFinder() const
 
 void MainWindow::openPhenomenon()
 {
-    auto phenomenon = new Phenomenon();    
+    auto phenomenon = new Phenomenon();
     if (!phenomenon->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),

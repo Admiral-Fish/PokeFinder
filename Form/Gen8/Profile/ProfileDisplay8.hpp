@@ -95,4 +95,4 @@ private slots:
     void profileManager();
 };
 
-#endif // PROFILEDISPLAY5_HPP
+#endif // PROFILEDISPLAY8_HPP
