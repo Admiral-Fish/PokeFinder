@@ -84,8 +84,8 @@ void SHA1Test::hash()
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    auto alpha = sha.precompute();
-    QCOMPARE(sha.hashSeed(alpha), seed);
+    auto beta = sha.precompute();
+    QCOMPARE(sha.hashSeed(beta), seed);
 }
 
 void SHA1Test::hashTime_data()
@@ -140,8 +140,8 @@ void SHA1Test::hashTime()
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    auto alpha = sha.precompute();
-    QCOMPARE(sha.hashSeed(alpha), seed);
+    auto beta = sha.precompute();
+    QCOMPARE(sha.hashSeed(beta), seed);
 }
 
 void SHA1SSETest::hash_data()
@@ -197,8 +197,8 @@ void SHA1SSETest::hash()
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    auto alpha = sha.precompute();
-    QCOMPARE(sha.hashSeed(alpha), seed);
+    auto beta = sha.precompute();
+    QCOMPARE(sha.hashSeed(beta), seed);
 }
 
 void SHA1SSETest::hashTime_data()
@@ -253,8 +253,8 @@ void SHA1SSETest::hashTime()
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    auto alpha = sha.precompute();
-    QCOMPARE(sha.hashSeed(alpha), seed);
+    auto beta = sha.precompute();
+    QCOMPARE(sha.hashSeed(beta), seed);
 }
 
 void SHA1SIMDTest::hash_data()

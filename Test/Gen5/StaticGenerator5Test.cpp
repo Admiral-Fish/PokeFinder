@@ -85,39 +85,13 @@ void StaticGenerator5Test::generateNonWild()
     StaticGenerator5 generator(0, 9, 0, Method::Method5, Lead::None, PassPower::None, *staticTemplate, profile, filter);
 
     auto states = generator.generate(seed, 0, 0);
-    // QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), j.size());
 
-    // for (size_t i = 0; i < states.size(); i++)
-    // {
-    //     const auto &state = states[i];
-    //     QVERIFY(state == j[i]);
-    // }
-
-    json jj;
-    for (auto &state : states)
+    for (size_t i = 0; i < states.size(); i++)
     {
-        json entry;
-
-        entry["ability"] = state.getAbility();
-        entry["abilityIndex"] = state.getAbilityIndex();
-        entry["advances"] = state.getAdvances();
-        entry["characteristic"] = state.getCharacteristic();
-        entry["chatot"] = state.getChatot();
-        entry["gender"] = state.getGender();
-        entry["hiddenPower"] = state.getHiddenPower();
-        entry["hiddenPowerStrength"] = state.getHiddenPowerStrength();
-        entry["ivs"] = state.getIVs();
-        entry["level"] = state.getLevel();
-        entry["nature"] = state.getNature();
-        entry["needle"] = state.getNeedle();
-        entry["pid"] = state.getPID();
-        entry["shiny"] = state.getShiny();
-        entry["stats"] = state.getStats();
-
-        jj.emplace_back(entry);
+        const auto &state = states[i];
+        QVERIFY(state == j[i]);
     }
-
-    qDebug() << jj.dump();
 }
 
 void StaticGenerator5Test::generateWild_data()

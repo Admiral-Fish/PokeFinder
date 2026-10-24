@@ -65,7 +65,7 @@ std::vector<SearcherState5<IDState>> IDSearcher5::search(const IDGenerator5 &gen
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
-            auto alpha = sha.precompute();
+            auto beta = sha.precompute();
             for (const auto &keypress : keypresses)
             {
                 sha.setButton(keypress.value);
@@ -73,7 +73,7 @@ std::vector<SearcherState5<IDState>> IDSearcher5::search(const IDGenerator5 &gen
                 for (u8 second = minSecond; second <= maxSecond; second++)
                 {
                     sha.setTime(hour, minute, second, profile.getDSType());
-                    u64 seed = sha.hashSeed(alpha);
+                    u64 seed = sha.hashSeed(beta);
 
                     auto states = generator.generate(seed);
                     if (!states.empty())

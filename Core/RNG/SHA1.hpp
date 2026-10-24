@@ -56,16 +56,16 @@ public:
     SHA1(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat);
 
     /**
-     * @brief Hashes input parameters from the precomputed \p alpha
+     * @brief Hashes input parameters from the precomputed \p beta
      *
-     * @param alpha Precomputed first 8 rounds alpha
+     * @param beta Precomputed first 8 rounds beta
      *
      * @return Hashed seed
      */
-    u64 hashSeed(const std::array<u32, 5> &alpha);
+    u64 hashSeed(const std::array<u32, 5> &beta);
 
     /**
-     * @brief Precomputes the first 8 rounds of SHA1. Must first call \ref setTimer0() and \ref setDate().
+     * @brief Precomputes rounds 5-8 of SHA1. Must first call \ref setTimer0() and \ref setDate().
      * For hashes computed on the same date, the first 8 rounds will be the same.
      */
     std::array<u32, 5> precompute();
@@ -111,7 +111,8 @@ public:
     void setTime(u32 time, DSType dsType);
 
 private:
-    u32 data[80];
+    alignas(16) u32 data[80];
+    u32 alpha[5];
 };
 
 /**
@@ -140,16 +141,16 @@ public:
     SHA1SSE(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 gxStat);
 
     /**
-     * @brief Hashes input parameters from the precomputed \p alpha
+     * @brief Hashes input parameters from the precomputed \p beta
      *
-     * @param alpha Precomputed first 8 rounds alpha
+     * @param alpha Precomputed first 8 rounds beta
      *
      * @return Hashed seed
      */
-    std::array<u64, 4> hashSeed(const std::array<vuint128, 5> &alpha);
+    std::array<u64, 4> hashSeed(const std::array<vuint128, 5> &beta);
 
     /**
-     * @brief Precomputes the first 8 rounds of SHA1. Must first call \ref setTimer0() and \ref setDate().
+     * @brief Precomputes rounds 5-8 of SHA1. Must first call \ref setTimer0() and \ref setDate().
      * For hashes computed on the same date, the first 8 rounds will be the same.
      */
     std::array<vuint128, 5> precompute();
@@ -196,6 +197,7 @@ public:
 
 private:
     vuint128 data[80];
+    vuint128 alpha[5];
 };
 
 #ifdef ENABLE_SIMD
@@ -206,14 +208,14 @@ class SHA1SIMD
 {
 public:
     /**
-     * @brief Construct a new SHA1 object
+     * @brief Construct a new SHA1SIMD object
      *
      * @param profile Profile input parameters
      */
     SHA1SIMD(const Profile5 &profile);
 
     /**
-     * @brief Construct a new SHA1 object
+     * @brief Construct a new SHA1SIMD object
      *
      * @param version Game version parameter
      * @param language Language parameter

@@ -124,7 +124,7 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
         for (u16 timer0 = this->profile.getTimer0Min(); timer0 <= this->profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, this->profile.getVCount());
-            auto alpha = sha.precompute();
+            auto beta = sha.precompute();
             for (const auto &keypress : this->keypresses)
             {
                 sha.setButton(keypress.value);
@@ -136,7 +136,7 @@ void SHA1CacheSearcher::search(const Date &start, const Date &end)
                     }
 
                     sha.setTime(time, this->profile.getDSType());
-                    auto seeds = sha.hashSeed(alpha);
+                    auto seeds = sha.hashSeed(beta);
 
                     for (u32 i = 0; i < seeds.size(); i++)
                     {

@@ -67,8 +67,8 @@ namespace AdjacentSeedsCalculator
             for (u32 timer0 = timer0Min; timer0 <= timer0Max; timer0++)
             {
                 sha.setTimer0(timer0, profile.getVCount());
-                auto alpha = sha.precompute();
-                u64 seed = sha.hashSeed(alpha);
+                auto beta = sha.precompute();
+                u64 seed = sha.hashSeed(beta);
 
                 RNGList<u8, MT, 8, gen> rngList(seed >> 32, initial);
                 for (u32 ivAdvance = minIVAdvance; ivAdvance <= maxIVAdvance; ivAdvance++, rngList.advanceState())

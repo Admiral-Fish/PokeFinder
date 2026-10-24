@@ -192,15 +192,35 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, u8 vFrame, u8 
 
     // Precompute data[18]
     calcW(data, 18);
+
+    // Precompute first 5 rounds of SHA1
+    u32 a = 0x67452301;
+    u32 b = 0xefcdab89;
+    u32 c = 0x98badcfe;
+    u32 d = 0x10325476;
+    u32 e = 0xc3d2e1f0;
+    u32 t;
+
+    section1Calc(a, b, c, d, e, t, data[0]);
+    section1Calc(t, a, b, c, d, e, data[1]);
+    section1Calc(e, t, a, b, c, d, data[2]);
+    section1Calc(d, e, t, a, b, c, data[3]);
+    section1Calc(c, d, e, t, a, b, data[4]);
+
+    alpha[0] = b;
+    alpha[1] = c;
+    alpha[2] = d;
+    alpha[3] = e;
+    alpha[4] = t;
 }
 
-u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
+u64 SHA1::hashSeed(const std::array<u32, 5> &beta)
 {
-    u32 a = alpha[0];
-    u32 b = alpha[1];
-    u32 c = alpha[2];
-    u32 d = alpha[3];
-    u32 e = alpha[4];
+    u32 a = beta[0];
+    u32 b = beta[1];
+    u32 c = beta[2];
+    u32 d = beta[3];
+    u32 e = beta[4];
     u32 t;
 
     // Section 1: 0-19
@@ -304,22 +324,17 @@ u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
 
 std::array<u32, 5> SHA1::precompute()
 {
-    u32 a = 0x67452301;
-    u32 b = 0xefcdab89;
-    u32 c = 0x98badcfe;
-    u32 d = 0x10325476;
-    u32 e = 0xc3d2e1f0;
+    u32 a = alpha[0];
+    u32 b = alpha[1];
+    u32 c = alpha[2];
+    u32 d = alpha[3];
+    u32 e = alpha[4];
     u32 t;
 
-    section1Calc(a, b, c, d, e, t, data[0]);
-    section1Calc(t, a, b, c, d, e, data[1]);
-    section1Calc(e, t, a, b, c, d, data[2]);
-    section1Calc(d, e, t, a, b, c, data[3]);
-    section1Calc(c, d, e, t, a, b, data[4]);
-    section1Calc(b, c, d, e, t, a, data[5]);
-    section1Calc(a, b, c, d, e, t, data[6]);
-    section1Calc(t, a, b, c, d, e, data[7]);
-    section1Calc(e, t, a, b, c, d, data[8]);
+    section1Calc(a, b, c, d, e, t, data[5]);
+    section1Calc(t, a, b, c, d, e, data[6]);
+    section1Calc(e, t, a, b, c, d, data[7]);
+    section1Calc(d, e, t, a, b, c, data[8]);
 
     // Select values will be the same for same date
     data[16] = std::rotl(0x80000000 ^ data[8] ^ data[2] ^ data[0], 1); // data[13] is constant 0x80000000
@@ -330,7 +345,7 @@ std::array<u32, 5> SHA1::precompute()
     data[27] = std::rotl(data[24] ^ data[19] ^ 0x80000000 ^ 0, 1); // data[13] is constant 0x80000000 and data[11] is constant 0
     data[30] = std::rotl(data[27] ^ data[22] ^ data[16] ^ 0, 1); // data[14] is constant 0
 
-    return { d, e, t, a, b };
+    return { c, d, e, t, a };
 }
 
 void SHA1::setButton(u32 button)
@@ -388,15 +403,35 @@ SHA1SSE::SHA1SSE(Game version, Language language, DSType type, u64 mac, u8 vFram
 
     // Precompute data[18]
     calcWSSE(data, 18);
+
+    // Precompute first 5 rounds of SHA1
+    vuint128 a = 0x67452301;
+    vuint128 b = 0xefcdab89;
+    vuint128 c = 0x98badcfe;
+    vuint128 d = 0x10325476;
+    vuint128 e = 0xc3d2e1f0;
+    vuint128 t;
+
+    section1CalcSSE(a, b, c, d, e, t, data[0]);
+    section1CalcSSE(t, a, b, c, d, e, data[1]);
+    section1CalcSSE(e, t, a, b, c, d, data[2]);
+    section1CalcSSE(d, e, t, a, b, c, data[3]);
+    section1CalcSSE(c, d, e, t, a, b, data[4]);
+
+    alpha[0] = b;
+    alpha[1] = c;
+    alpha[2] = d;
+    alpha[3] = e;
+    alpha[4] = t;
 }
 
-std::array<u64, 4> SHA1SSE::hashSeed(const std::array<vuint128, 5> &alpha)
+std::array<u64, 4> SHA1SSE::hashSeed(const std::array<vuint128, 5> &beta)
 {
-    vuint128 a = alpha[0];
-    vuint128 b = alpha[1];
-    vuint128 c = alpha[2];
-    vuint128 d = alpha[3];
-    vuint128 e = alpha[4];
+    vuint128 a = beta[0];
+    vuint128 b = beta[1];
+    vuint128 c = beta[2];
+    vuint128 d = beta[3];
+    vuint128 e = beta[4];
     vuint128 t;
 
     // Section 1: 0-19
@@ -494,22 +529,17 @@ std::array<u64, 4> SHA1SSE::hashSeed(const std::array<vuint128, 5> &alpha)
 
 std::array<vuint128, 5> SHA1SSE::precompute()
 {
-    vuint128 a(0x67452301);
-    vuint128 b(0xefcdab89);
-    vuint128 c(0x98badcfe);
-    vuint128 d(0x10325476);
-    vuint128 e(0xc3d2e1f0);
+    vuint128 a = alpha[0];
+    vuint128 b = alpha[1];
+    vuint128 c = alpha[2];
+    vuint128 d = alpha[3];
+    vuint128 e = alpha[4];
     vuint128 t;
 
-    section1CalcSSE(a, b, c, d, e, t, data[0]);
-    section1CalcSSE(t, a, b, c, d, e, data[1]);
-    section1CalcSSE(e, t, a, b, c, d, data[2]);
-    section1CalcSSE(d, e, t, a, b, c, data[3]);
-    section1CalcSSE(c, d, e, t, a, b, data[4]);
-    section1CalcSSE(b, c, d, e, t, a, data[5]);
-    section1CalcSSE(a, b, c, d, e, t, data[6]);
-    section1CalcSSE(t, a, b, c, d, e, data[7]);
-    section1CalcSSE(e, t, a, b, c, d, data[8]);
+    section1CalcSSE(a, b, c, d, e, t, data[5]);
+    section1CalcSSE(t, a, b, c, d, e, data[6]);
+    section1CalcSSE(e, t, a, b, c, d, data[7]);
+    section1CalcSSE(d, e, t, a, b, c, data[8]);
 
     // Select values will be the same for same date
     calcWSSE(data, 16);
@@ -520,7 +550,7 @@ std::array<vuint128, 5> SHA1SSE::precompute()
     calcWSSE(data, 27);
     calcWSSE(data, 30);
 
-    return { d, e, t, a, b };
+    return { c, d, e, t, a };
 }
 
 void SHA1SSE::setButton(u32 button)
