@@ -9135,7 +9135,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Underground.cpp" line="58"/>
         <source>Item Modifier</source>
-        <translation>Item Modifizierer</translation>
+        <translation>Item Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="59"/>
@@ -9150,7 +9150,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Underground.cpp" line="60"/>
         <source>Level Modifier</source>
-        <translation>Level Modifizierer</translation>
+        <translation>Level Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="61"/>
@@ -9349,7 +9349,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen3/Wild3.cpp" line="85"/>
         <location filename="../Gen3/Wild3.cpp" line="96"/>
         <source>Slot Modifier</source>
-        <translation>Slot Modifizierer</translation>
+        <translation>Slot Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="86"/>
@@ -9367,7 +9367,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen3/Wild3.cpp" line="81"/>
         <location filename="../Gen3/Wild3.cpp" line="92"/>
         <source>Level Modifier</source>
-        <translation>Level Modifizierer</translation>
+        <translation>Level Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
@@ -9660,7 +9660,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <location filename="../Gen4/Wild4.cpp" line="106"/>
         <source>Slot Modifier</source>
-        <translation>Slot Modifizierer</translation>
+        <translation>Slot Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="89"/>
@@ -9678,7 +9678,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen4/Wild4.cpp" line="84"/>
         <location filename="../Gen4/Wild4.cpp" line="102"/>
         <source>Level Modifier</source>
-        <translation>Level Modifizierer</translation>
+        <translation>Level Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="85"/>
@@ -9910,8 +9910,56 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Honigbaum</translation>
     </message>
     <message>
-        <source>Levels</source>
-        <translation>Level</translation>
+        <source>Step Encounter</source>
+        <translation>Schritt-Begegnung</translation>
+    </message>
+    <message>
+        <source>White Flute</source>
+        <translation>Weiße Flöte</translation>
+    </message>
+    <message>
+        <source>Movement</source>
+        <translation>Bewegungsart</translation>
+    </message>
+    <message>
+        <source>Pokemon March</source>
+        <translation>Pokémon-Marsch</translation>
+    </message>
+    <message>
+        <source>Pokemon Lullaby</source>
+        <translation>Pokémon-Schlaflied</translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation>Gehen</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Laufen</translation>
+    </message>
+    <message>
+        <source>Biking</source>
+        <translation>Fahrrad fahren</translation>
+    </message>
+    <message>
+        <source>Walking in Long Grass</source>
+        <translation>In sehr hohem Grass gehen</translation>
+    </message>
+    <message>
+        <source>Running in Long Grass</source>
+        <translation>In sehr hohem Grass laufen</translation>
+    </message>
+    <message>
+        <source>Walking / Running</source>
+        <translation>Gehen / Laufen</translation>
+    </message>
+    <message>
+        <source>Walking / Running in Long Grass</source>
+        <translation>In sehr hohem Grass gehen / laufen</translation>
+    </message>
+    <message>
+        <source>Step Modifier</source>
+        <translation>Schritt Modifikator</translation>
     </message>
 </context>
 <context>
@@ -9982,6 +10030,38 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <source>Lucky Power</source>
         <translation>Beschwörungskraft</translation>
+    </message>
+    <message>
+        <source>Pass Power</source>
+        <translation>Transferkraft</translation>
+    </message>
+    <message>
+        <source>Lucky Power 1</source>
+        <translation>Beschwörungskraft 1</translation>
+    </message>
+    <message>
+        <source>Lucky Power 2</source>
+        <translation>Beschwörungskraft 2</translation>
+    </message>
+    <message>
+        <source>Lucky Power 3/S</source>
+        <translation>Beschwörungskraft 3/S</translation>
+    </message>
+    <message>
+        <source>Encounter Power 1</source>
+        <translation>Begegnungskraft 1</translation>
+    </message>
+    <message>
+        <source>Encounter Power 2</source>
+        <translation>Begegnungskraft 2</translation>
+    </message>
+    <message>
+        <source>Encounter Power 3</source>
+        <translation>Begegnungskraft 3</translation>
+    </message>
+    <message>
+        <source>Step Encounter</source>
+        <translation>Schritt-Begegnung</translation>
     </message>
     <message>
         <source>Generate</source>
@@ -10117,7 +10197,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Wild5.cpp" line="92"/>
         <location filename="../Gen5/Wild5.cpp" line="106"/>
         <source>Level Modifier</source>
-        <translation>Level Modifizierer</translation>
+        <translation>Level Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="93"/>
@@ -10141,7 +10221,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../Gen5/Wild5.cpp" line="96"/>
         <location filename="../Gen5/Wild5.cpp" line="110"/>
         <source>Slot Modifier</source>
-        <translation></translation>
+        <translation>Slot Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen5/Wild5.cpp" line="97"/>
@@ -10291,7 +10371,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="65"/>
         <source>Slot Modifier</source>
-        <translation>Modifizierer</translation>
+        <translation>Slot Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="66"/>
@@ -10321,7 +10401,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="59"/>
         <source>Item Modifier</source>
-        <translation>Item Modifizierer</translation>
+        <translation>Item Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="60"/>
@@ -10336,7 +10416,7 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="61"/>
         <source>Level Modifier</source>
-        <translation>Level Modifizierer</translation>
+        <translation>Level Modifikator</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="62"/>
@@ -10670,6 +10750,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
+    <message>
+        <source>Steps</source>
+        <translation>Schritte</translation>
+    </message>
 </context>
 <context>
     <name>WildGeneratorModel5</name>
@@ -10798,6 +10882,10 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="110"/>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
+    </message>
+    <message>
+        <source>Steps</source>
+        <translation>Schritte</translation>
     </message>
 </context>
 <context>
@@ -11138,6 +11226,66 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <source>Characteristic</source>
         <translation>Persönlichkeit</translation>
     </message>
+    <message>
+        <source>Steps</source>
+        <translation>Schritte</translation>
+    </message>
+    <message>
+        <source>Movement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Step Modifier</source>
+        <translation>Schritt Modifikator</translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation>Gehen</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Laufen</translation>
+    </message>
+    <message>
+        <source>Biking</source>
+        <translation>Fahrrad fahren</translation>
+    </message>
+    <message>
+        <source>Walking in Long Grass</source>
+        <translation>In sehr hohem Grass gehen</translation>
+    </message>
+    <message>
+        <source>Running in Long Grass</source>
+        <translation>In sehr hohem Grass laufen</translation>
+    </message>
+    <message>
+        <source>Surfing</source>
+        <translation>Surfen</translation>
+    </message>
+    <message>
+        <source>Walking / Running</source>
+        <translation>Gehen / Laufen</translation>
+    </message>
+    <message>
+        <source>Walking / Running in Long Grass</source>
+        <translation>In sehr hohem Grass gehen / laufen</translation>
+    </message>
+    <message>
+        <source>White Flute</source>
+        <translation>Weiße Flöte</translation>
+    </message>
+    <message>
+        <source>Pokemon March</source>
+        <translation>Pokémon-Marsch</translation>
+    </message>
+    <message>
+        <source>Pokemon Lullaby</source>
+        <translation>Pokémon-Schlaflied</translation>
+    </message>
+    <message>
+        <source>Lullaby</source>
+        <translation>Schlaflied</translation>
+    </message>
 </context>
 <context>
     <name>WildSearcherModel5</name>
@@ -11167,7 +11315,12 @@ Profil hat kein oder ein inkompatibles SHA Cache.</translation>
         <translation>Ziel Advance</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/WildModel5.hpp" line="177"/>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
+        <source>Steps</source>
+        <translation>Schritte</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="139"/>
         <source>IV Advances</source>
         <translation></translation>
     </message>
