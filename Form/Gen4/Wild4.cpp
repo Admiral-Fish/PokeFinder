@@ -861,7 +861,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
         std::ranges::transform(encounterGenerator, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxGeneratorLocation->clear();
-        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        ui->comboBoxGeneratorLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs, !bug);
+        ui->comboBoxGeneratorLocation->setCurrentIndexByData(currentLocation);
         updateGeneratorMovementOptions();
     }
 }
@@ -1252,7 +1253,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
         std::ranges::transform(encounterSearcher, std::back_inserter(locs), [](const EncounterArea4 &area) { return area.getLocation(); });
 
         ui->comboBoxSearcherLocation->clear();
-        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), !bug);
+        ui->comboBoxSearcherLocation->addItems(Translator::getLocations(locs, currentProfile->getVersion()), locs, !bug);
+        ui->comboBoxSearcherLocation->setCurrentIndexByData(currentLocation);
         updateSearcherStepOptions();
     }
 }

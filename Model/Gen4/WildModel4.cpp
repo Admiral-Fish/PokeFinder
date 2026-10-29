@@ -48,7 +48,8 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
 QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    if (showStepEncounter && !state.getStepEncounter())
+    bool invalid = !state.isValid() || (showStepEncounter && !state.getStepEncounter());
+    if (invalid)
     {
         if (role == Qt::FontRole)
         {
@@ -65,7 +66,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         int column = getColumn(index.column());
-        if (showStepEncounter && !state.getStepEncounter() && column > 4)
+        if (invalid && column > 4)
         {
             return "-";
         }
@@ -187,7 +188,7 @@ WildSearcherModel4::WildSearcherModel4(QObject *parent) :
 
 int WildSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return showStepEncounter ? showStepMovement ? 22 : 21 : 19;
+    return showStepEncounter ? showStepMovement ? 24 : 23 : 21;
 }
 
 QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
@@ -196,11 +197,11 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
     {
         const auto &state = model[index.row()];
         int column = index.column();
-        if (!showStepEncounter && column >= 2)
+        if (!showStepEncounter && column >= 4)
         {
             column += 3;
         }
-        else if (showStepEncounter && !showStepMovement && column >= 3)
+        else if (showStepEncounter && !showStepMovement && column >= 5)
         {
             column++;
         }
@@ -211,8 +212,12 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 1:
             return state.getSeed() & 0xffff;
         case 2:
-            return static_cast<int>(state.getMovements());
+            return (state.getSeed() >> 16) & 0xff;
         case 3:
+            return state.getAdvances();
+        case 4:
+            return static_cast<int>(state.getMovements());
+        case 5:
             switch (state.getMovement())
             {
             case 1:
@@ -229,7 +234,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             default:
                 return method == Method::MethodK ? tr("Walking") : tr("Walking / Running");
             }
-        case 4:
+        case 6:
             switch (state.getStepModifier())
             {
             case 1:
@@ -258,39 +263,39 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             default:
                 return QString("-");
             }
-        case 5:
+        case 7:
             return QString::fromStdString(Translator::getItem(state.getItem()));
-        case 6:
+        case 8:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
                 .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
-        case 7:
-            return state.getLevel();
-        case 8:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 9:
+            return state.getLevel();
+        case 10:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 11:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 10:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
-        case 11:
-            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 12:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 13:
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 14:
         case 15:
         case 16:
         case 17:
-            return showStats ? state.getStat(column - 12) : state.getIV(column - 12);
         case 18:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 19:
-            return state.getHiddenPowerStrength();
+            return showStats ? state.getStat(column - 14) : state.getIV(column - 14);
         case 20:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 21:
+            return state.getHiddenPowerStrength();
+        case 22:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 23:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
@@ -301,11 +306,11 @@ QVariant WildSearcherModel4::headerData(int section, Qt::Orientation orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (!showStepEncounter && section >= 2)
+        if (!showStepEncounter && section >= 4)
         {
             section += 3;
         }
-        else if (showStepEncounter && !showStepMovement && section >= 3)
+        else if (showStepEncounter && !showStepMovement && section >= 5)
         {
             section++;
         }
@@ -324,7 +329,7 @@ void WildSearcherModel4::setMethod(Method method)
 void WildSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
-    int hp = showStepEncounter ? showStepMovement ? 12 : 11 : 9;
+    int hp = showStepEncounter ? showStepMovement ? 14 : 13 : 11;
     emit dataChanged(index(0, hp), index(rowCount() - 1, hp + 5), { Qt::DisplayRole });
 }
 

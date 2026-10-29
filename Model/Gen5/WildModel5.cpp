@@ -35,7 +35,7 @@ int WildGeneratorModel5::columnCount(const QModelIndex &parent) const
 QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     const auto &state = model[index.row()];
-    if (showMovingTrigger && !state.isValid())
+    if (!state.isValid())
     {
         if (role == Qt::FontRole)
         {
@@ -61,7 +61,7 @@ QVariant WildGeneratorModel5::data(const QModelIndex &index, int role) const
             column++;
         }
 
-        if (showMovingTrigger && !state.isValid() && column > 4)
+        if (!state.isValid() && column > 4)
         {
             return "-";
         }
@@ -185,7 +185,7 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
-        if (!showMovingTrigger && column >= 2)
+        if (!showMovingTrigger && column >= 3)
         {
             column++;
         }
@@ -197,13 +197,13 @@ QVariant WildSearcherModel5::data(const QModelIndex &index, int role) const
         case 1:
             return state.getAdvances();
         case 2:
+            return state.getIVAdvances();
+        case 3:
             if (state.getMovingSteps() == 255)
             {
                 return "-";
             }
             return state.getMovingSteps();
-        case 3:
-            return state.getIVAdvances();
         case 4:
             return QString::fromStdString(Translator::getItem(state.getItem()));
         case 5:
@@ -263,7 +263,7 @@ QVariant WildSearcherModel5::headerData(int section, Qt::Orientation orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (!showMovingTrigger && section >= 2)
+        if (!showMovingTrigger && section >= 3)
         {
             section++;
         }
