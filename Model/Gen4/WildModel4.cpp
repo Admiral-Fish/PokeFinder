@@ -24,7 +24,8 @@
 #include <QColor>
 #include <QFont>
 
-WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), showStepEncounter(false), method(method)
+WildGeneratorModel4::WildGeneratorModel4(QObject *parent) :
+    TableModel(parent), showStats(false), showStepEncounter(false), method(Method::MethodJ)
 {
 }
 
@@ -114,7 +115,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 20:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 21:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();
@@ -131,6 +132,13 @@ QVariant WildGeneratorModel4::headerData(int section, Qt::Orientation orientatio
 }
 
 void WildGeneratorModel4::setGame(Game version)
+{
+    beginResetModel();
+    method = (version & Game::HGSS) != Game::None ? Method::MethodK : Method::MethodJ;
+    endResetModel();
+}
+
+void WildGeneratorModel4::setMethod(Method method)
 {
     beginResetModel();
     this->method = method;
@@ -153,7 +161,7 @@ void WildGeneratorModel4::setShowStats(bool flag)
 
 int WildGeneratorModel4::getColumn(int column) const
 {
-    if (dppt)
+    switch (method)
     {
     case Method::MethodJ:
     case Method::HoneyTree:
@@ -283,7 +291,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 20:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 21:
-            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic(), CharacteristicGeneration::Gen4));
         }
     }
     return QVariant();

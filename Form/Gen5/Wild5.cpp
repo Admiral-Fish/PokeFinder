@@ -48,12 +48,20 @@
 #include <QTimer>
 #include <algorithm>
 
-template <size_t size>
-static bool hasUnchecked(const std::array<bool, size> &values, size_t count = size)
+static const QString settingPrefix = QStringLiteral("static5");
+
+template <typename Container>
+static bool hasUnchecked(const Container &values, size_t count)
 {
     count = std::min(count, values.size());
     auto end = values.begin() + count;
     return std::ranges::find(values.begin(), end, false) != end;
+}
+
+template <typename Container>
+static bool hasUnchecked(const Container &values)
+{
+    return hasUnchecked(values, values.size());
 }
 
 static bool hasActiveGeneratorFilter(const Filter *filter, u8 encounterSlots)
@@ -133,36 +141,36 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
     ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"),
                                         { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
-    ui->comboMenuGeneratorLead->addMenu(
-        tr("Encounter Modifier"), { { tr("Sticky Hold"), toInt(Lead::StickyHold) }, { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
+    ui->comboMenuGeneratorLead->addMenu(tr("Encounter Modifier"),
+                                        { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                          { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                          { tr("No Guard"), toInt(Lead::NoGuard) },
+                                          { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                          { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"),
                                         { { tr("Hustle"), toInt(Lead::Hustle) },
                                           { tr("Pressure"), toInt(Lead::Pressure) },
                                           { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"),
                                         { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-    ui->comboMenuGeneratorLead->addMenu(tr("Step Modifier"),
-                                        { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
-                                          { tr("Illuminate"), toInt(Lead::Illuminate) },
-                                          { tr("No Guard"), toInt(Lead::NoGuard) } });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"),
                                        { { tr("♂ Lead"), toInt(Lead::CuteCharmM) }, { tr("♀ Lead"), toInt(Lead::CuteCharmF) } });
-    ui->comboMenuSearcherLead->addMenu(
-        tr("Encounter Modifier"), { { tr("Sticky Hold"), toInt(Lead::StickyHold) }, { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
+    ui->comboMenuSearcherLead->addMenu(tr("Encounter Modifier"),
+                                       { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
+                                         { tr("Illuminate"), toInt(Lead::Illuminate) },
+                                         { tr("No Guard"), toInt(Lead::NoGuard) },
+                                         { tr("Sticky Hold"), toInt(Lead::StickyHold) },
+                                         { tr("Suction Cups"), toInt(Lead::SuctionCups) } });
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"),
                                        { { tr("Hustle"), toInt(Lead::Hustle) },
                                          { tr("Pressure"), toInt(Lead::Pressure) },
                                          { tr("Vital Spirit"), toInt(Lead::VitalSpirit) } });
     ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"),
                                        { { tr("Magnet Pull"), toInt(Lead::MagnetPull) }, { tr("Static"), toInt(Lead::Static) } });
-    ui->comboMenuSearcherLead->addMenu(tr("Step Modifier"),
-                                       { { tr("Arena Trap"), toInt(Lead::ArenaTrap) },
-                                         { tr("Illuminate"), toInt(Lead::Illuminate) },
-                                         { tr("No Guard"), toInt(Lead::NoGuard) } });
     ui->comboMenuSearcherLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxGeneratorLocation->enableAutoComplete();
@@ -205,7 +213,6 @@ Wild5::Wild5(QWidget *parent) : QWidget(parent), ui(new Ui::Wild5), ivCache(null
         }
     });
     connect(ui->checkBoxSearcherMovingTrigger, &QCheckBox::toggled, searcherModel, &WildSearcherModel5::setShowMovingTrigger);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->filterSearcher, &Filter::ivsChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherInitialIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
     connect(ui->textBoxSearcherMaxIVAdvances, &TextBox::textChanged, this, &Wild5::searcherFastSearchChanged);
@@ -298,12 +305,14 @@ void Wild5::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     u8 luckyPower = ui->comboBoxGeneratorLuckyPower->getCurrentUChar();
     bool searchMovingTrigger = ui->checkBoxGeneratorMovingTrigger->isChecked() && (currentProfile->getVersion() & Game::Gen5) != Game::None;
+    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
 
     auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator5 generator(initialAdvances, maxAdvances, offset, Method::None, lead, luckyPower, searchMovingTrigger, false,
-                             encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()], *currentProfile, filter);
+                             area, *currentProfile, filter);
 
     auto states = generator.generate(seed, ivAdvances, 0);
+    generatorModel->setPhenomenon(area.getPhenomenonType() != PhenomenonType::None);
     if (searchMovingTrigger
         && hasActiveGeneratorFilter(ui->filterGenerator, encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getCount()))
     {
@@ -317,6 +326,9 @@ void Wild5::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxGeneratorLocation->getCurrentUShort();
+        bool grass = encounter == Encounter::Grass;
+        bool fish = encounter == Encounter::SuperRod;
         bool movingTrigger = supportsMovingTrigger(encounter, currentProfile);
         ui->checkBoxGeneratorMovingTrigger->setEnabled(movingTrigger);
         if (!movingTrigger)
@@ -496,7 +508,8 @@ void Wild5::search()
     SearcherBase5<WildGenerator5, WildState5> *searcher;
     if (fastSearchEnabled())
     {
-        auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(), luckyPower != PassPower::None,
+        auto ivMap = ivCache->getCache(initialIVAdvances, maxIVAdvances, currentProfile->getVersion(),
+                                       PassPower5::getLuckyPower(luckyPower) != PassPower5::None,
                                        CacheType::Normal, nullptr, filter);
         if (shaCache && shaCache->isValid(*currentProfile))
         {
@@ -551,6 +564,8 @@ void Wild5::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
+        u16 currentLocation = ui->comboBoxSearcherLocation->getCurrentUShort();
+        bool grass = encounter == Encounter::Grass;
         bool movingTrigger = supportsMovingTrigger(encounter, currentProfile);
         ui->checkBoxSearcherMovingTrigger->setEnabled(movingTrigger);
         if (!movingTrigger)
@@ -683,6 +698,7 @@ void Wild5::transferSettings(int index)
         ui->comboBoxSearcherLocation->setCurrentIndex(ui->comboBoxGeneratorLocation->currentIndex());
         ui->comboBoxSearcherPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
         ui->comboBoxSearcherSeason->setCurrentIndex(ui->comboBoxGeneratorSeason->currentIndex());
+        ui->checkBoxSearcherSwarm->setChecked(ui->checkBoxGeneratorSwarm->isChecked());
         ui->checkBoxSearcherMovingTrigger->setChecked(ui->checkBoxGeneratorMovingTrigger->isChecked());
     }
     else
@@ -691,6 +707,7 @@ void Wild5::transferSettings(int index)
         ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
         ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
         ui->comboBoxGeneratorSeason->setCurrentIndex(ui->comboBoxSearcherSeason->currentIndex());
+        ui->checkBoxGeneratorSwarm->setChecked(ui->checkBoxSearcherSwarm->isChecked());
         ui->checkBoxGeneratorMovingTrigger->setChecked(ui->checkBoxSearcherMovingTrigger->isChecked());
     }
 }

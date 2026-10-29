@@ -78,6 +78,19 @@ public:
     std::vector<bool> getChecked() const;
 
     /**
+     * @brief Converts selected items to bit mask for enum
+     *
+     * @tparam Enum Enum type
+     *
+     * @return Enum with bits set for each item selected
+     */
+    template <typename Enum>
+    Enum getEnum() const
+    {
+        return static_cast<Enum>(getBits());
+    }
+
+    /**
      * @brief Determines which check boxes are explicitly checked
      *
      * @return Vector of true/false to signify which check boxes are checked

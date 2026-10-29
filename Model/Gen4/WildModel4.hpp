@@ -20,6 +20,7 @@
 #ifndef WILD4MODEL_HPP
 #define WILD4MODEL_HPP
 
+#include <Core/Enum/Method.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
 #include <Model/Gen4/IRNGProvider4.hpp>
 #include <Model/TableModel.hpp>
@@ -96,6 +97,8 @@ public:
      * @param version Game version
      */
     void setGame(Game verson);
+
+    void setMethod(Method method);
 
     /**
      * @brief Sets flag that controls whether the model displays step encounter information

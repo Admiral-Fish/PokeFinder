@@ -275,6 +275,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         PokeRNG go(seed, payloadAdvance);
         bool stepEncounter = false;
         u8 movements = 0;
+        bool valid = true;
         if (searchStepEncounter)
         {
             PokeRNG movementRNG(seed, targetAdvance);
@@ -396,8 +397,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info, stepEncounter, movements);
-        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+                                  slot.getSpecie(), form, info, stepEncounter, movements, 0, 0, valid);
+        if (filter.compare(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -441,6 +442,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         u8 movements = 0;
         u8 movementRatio = 0;
         u8 encounterRatio = 0;
+        bool valid = true;
 
         if (searchStepEncounter)
         {
@@ -636,8 +638,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
         WildGeneratorState4 state(rng.nextUShort(), battleAdvances, initialAdvances + cnt, pid, ivs, pid & 1,
                                   Utilities::getGender(pid, info), level, nature, Utilities::getShiny<true>(pid, tsv), encounterSlot, item,
-                                  slot.getSpecie(), form, info, stepEncounter, stepEncounter ? movements : 0, movementRatio, encounterRatio);
-        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
+                                  slot.getSpecie(), form, info, stepEncounter, stepEncounter ? movements : 0, movementRatio, encounterRatio, valid);
+        if (filter.compare(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
