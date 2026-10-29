@@ -34,6 +34,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Gen4/Tools/ShinyPatch.hpp>
 #include <Form/Util/AdvanceFinder.hpp>
 #include <Model/Gen4/WildModel4.hpp>
 #include <Model/SortFilterProxyModel.hpp>
@@ -135,6 +136,23 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *shinyPatch = ui->tableViewSearcher->addAction(tr("Find Shiny Patches (DPPt)"));
+    connect(shinyPatch, &QAction::triggered, this, [this] {
+        if ((currentProfile->getVersion() & Game::DPPt) == Game::None)
+        {
+            QMessageBox::information(this, tr("Shiny Patch"), tr("Shiny patches are only available in Diamond, Pearl and Platinum."));
+            return;
+        }
+        auto index = proxyModel->mapToSource(ui->tableViewSearcher->currentIndex());
+        if (index.isValid())
+        {
+            const auto &state = searcherModel->getItem(index.row());
+            auto *window = new ShinyPatch();
+            window->setSeed(state.getSeed(), state.getAdvances());
+            window->show();
+        }
+    });
 
     auto *advanceFinder = ui->tableViewGenerator->addAction(tr("Advance Finder"));
     connect(advanceFinder, &QAction::triggered, this, &Wild4::openAdvanceFinder);

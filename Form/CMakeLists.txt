@@ -66,6 +66,7 @@ set(PROJECT_UI
     Gen4/Tools/SearchCalls.ui
     Gen4/Tools/SearchCoinFlips.ui
     Gen4/Tools/SeedToTime4.ui
+    Gen4/Tools/ShinyPatch.ui
     Gen4/Wild4.ui
     Gen5/DreamRadar.ui
     Gen5/HiddenGrotto.ui
@@ -184,6 +185,8 @@ set(PROJECT_SOURCES
     Gen4/Tools/SearchCoinFlips.hpp
     Gen4/Tools/SeedToTime4.cpp
     Gen4/Tools/SeedToTime4.hpp
+    Gen4/Tools/ShinyPatch.cpp
+    Gen4/Tools/ShinyPatch.hpp
     Gen4/Wild4.cpp
     Gen4/Wild4.hpp
     Gen5/DreamRadar.cpp
