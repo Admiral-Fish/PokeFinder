@@ -942,7 +942,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, co
     {
         encounters = getHGSSBug(profile, info);
     }
-    else if (encounter == Encounter::Headbutt || encounter == Encounter::HeadbuttAlt || encounter == Encounter::HeadbuttSpecial)
+    else if (isAnyOf(encounter, Encounter::Headbutt, Encounter::HeadbuttAlt, Encounter::HeadbuttSpecial))
     {
         encounters = getHGSSHeadbutt(version, encounter, info);
     }

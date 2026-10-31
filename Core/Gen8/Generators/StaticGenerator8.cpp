@@ -145,7 +145,7 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             gender = 0;
             break;
         default:
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && rngList.next(3) > 0)
+            if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && rngList.next(3) > 0)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
             }

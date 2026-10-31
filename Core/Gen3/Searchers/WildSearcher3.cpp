@@ -88,8 +88,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 void WildSearcher3::search(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     bool feebas = area.feebasLocation(profile.getVersion())
-        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
-            || area.getEncounter() == Encounter::SuperRod);
+        && isAnyOf(area.getEncounter(), Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod);
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 

@@ -40,7 +40,7 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
 
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
-    if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+    if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM))
     {
         if (staticTemplate->getInfo()->getFixedGender())
         {
@@ -211,7 +211,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
     for (u32 origin : seeds)
     {
         PokeRNGR rng(origin);
-        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM))
         {
             u8 nature = rng.nextUShort<false>(25);
             if (rng.nextUShort<false>(3) != 0)
@@ -307,7 +307,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
     for (u32 origin : seeds)
     {
         PokeRNGR rng(origin);
-        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM))
         {
             u8 nature = rng.nextUShort(25);
             if (rng.nextUShort(3) != 0)

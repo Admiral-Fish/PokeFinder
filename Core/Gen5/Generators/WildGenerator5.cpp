@@ -215,14 +215,14 @@ std::vector<WildState5> WildGenerator5::generate(u64 seed, const std::vector<std
         if (lead != Lead::CompoundEyes && lead != Lead::SuctionCups)
         {
             // Failed cute charm continues to check for other leads
-            if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
+            if (isAnyOf(lead, Lead::CuteCharmM, Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
             {
                 cuteCharm = true;
             }
             else
             {
                 bool flag = getPercentRand(go, bw) >= 50;
-                if (lead == Lead::MagnetPull || lead == Lead::Static)
+                if (isAnyOf(lead, Lead::MagnetPull, Lead::Static))
                 {
                     magnetStatic = flag;
                 }

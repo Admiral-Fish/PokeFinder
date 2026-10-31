@@ -34,7 +34,7 @@ static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
     u32 advances = 0;
 
     // Fishing uses an advance to determine the visual frames range in which you have to press A
-    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+    if (isAnyOf(area.getEncounter(), Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod))
     {
         advances += 1;
     }
@@ -131,8 +131,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         bool valid = true;
 
         // Fishing nibble check
-        if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
-             || area.getEncounter() == Encounter::SuperRod)
+        if (isAnyOf(area.getEncounter(), Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod)
             && go.nextUShort<false>(100, &battleAdvances) >= thresh)
         {
             valid = false;
@@ -142,12 +141,11 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         if (feebas && go.nextUShort<false>(2, &battleAdvances))
         {
             encounterSlot = 5;
-            go.advance((lead == Lead::MagnetPull || lead == Lead::Static) ? 2 : 1, &battleAdvances);
+            go.advance(isAnyOf(lead, Lead::MagnetPull, Lead::Static) ? 2 : 1, &battleAdvances);
         }
         else
         {
-            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0
-                && !modifiedSlots.empty())
+            if (isAnyOf(lead, Lead::MagnetPull, Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0 && !modifiedSlots.empty())
             {
                 encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count, &battleAdvances)];
             }
@@ -177,7 +175,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharmFlag = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
         {
             cuteCharmFlag = go.nextUShort<false>(3, &battleAdvances) != 0;
         }
@@ -254,7 +252,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     std::vector<WildGeneratorState4> states;
 
     u16 rate = area.getRate();
-    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+    if (isAnyOf(area.getEncounter(), Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod))
     {
         rate += happiness;
         if (lead == Lead::SuctionCups)
@@ -284,15 +282,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         bool valid = true;
 
         // Rock smash/fishing nibble check
-        if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
-             || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
+        if (isAnyOf(area.getEncounter(), Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod)
             && go.nextUShort(100, &battleAdvances) >= rate)
         {
             valid = false;
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
+        if (isAnyOf(lead, Lead::MagnetPull, Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count, &battleAdvances)];
         }
@@ -328,7 +325,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharmFlag = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
         {
             cuteCharmFlag = go.nextUShort(3, &battleAdvances) != 0;
         }
@@ -488,7 +485,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateHoneyTree(u32 seed, u8 
 
     bool cuteCharm = false;
     u8 buffer = 0;
-    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+    if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
     {
         cuteCharm = true;
         if (lead == Lead::CuteCharmF)
@@ -580,7 +577,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
 
     u8 buffer = 0;
     bool cuteCharm = false;
-    if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+    if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
     {
         cuteCharm = true;
         if (lead == Lead::CuteCharmF)
@@ -667,8 +664,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
     const Slot &slot = area.getPokemon(index);
     const PersonalInfo *info = slot.getInfo();
 
-    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
-
+    bool cuteCharm = isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender();
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
         if (lead == Lead::CuteCharmF)
         {

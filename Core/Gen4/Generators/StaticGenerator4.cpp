@@ -112,7 +112,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
     const PersonalInfo *info = staticTemplate.getInfo();
 
     u8 buffer = 0;
-    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
+    bool cuteCharm = isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender();
     if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);
@@ -183,7 +183,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
     const PersonalInfo *info = staticTemplate.getInfo();
 
     u8 buffer = 0;
-    bool cuteCharm = (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender();
+    bool cuteCharm = isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender();
     if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);

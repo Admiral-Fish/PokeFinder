@@ -63,6 +63,19 @@ constexpr u8 toInt(Encounter encounter)
 }
 
 /**
+ * @brief Checks if \p encounter is any of \p args
+ *
+ * @tparam Args Variadic template types
+ * @param encounter Input encounter
+ * @param args Argument list to compare encounter too
+ */
+template <typename... Args>
+constexpr bool isAnyOf(Encounter encounter, Args... args)
+{
+    return ((encounter == args) || ...);
+}
+
+/**
  * @brief Computes subtraction of two \ref Encounter
  *
  * @param left First encounter

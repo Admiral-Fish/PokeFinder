@@ -68,4 +68,17 @@ constexpr u8 toInt(Lead lead)
     return static_cast<u8>(lead);
 }
 
+/**
+ * @brief Checks if \p lead is any of \p args
+ *
+ * @tparam Args Variadic template types
+ * @param lead Input lead
+ * @param args Argument list to compare lead too
+ */
+template <typename... Args>
+constexpr bool isAnyOf(Lead lead, Args... args)
+{
+    return ((lead == args) || ...);
+}
+
 #endif // LEAD_HPP

@@ -223,7 +223,7 @@ std::vector<State5> StaticGenerator5::generateWild(u64 seed, const std::vector<s
         bool sync = false;
 
         // Failed cute charm continues to check for other leads
-        if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
+        if (isAnyOf(lead, Lead::CuteCharmM, Lead::CuteCharmF) && getPercentRand(go, bw) < 67)
         {
             cuteCharm = true;
         }

@@ -300,7 +300,7 @@ void Wild8::locationIndexChanged(int index)
             ui->comboBoxReplacement1->blockSignals(false);
         }
 
-        if (feebas && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+        if (feebas && isAnyOf(encounter, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod))
         {
             ui->checkBoxFeebasTile->show();
         }

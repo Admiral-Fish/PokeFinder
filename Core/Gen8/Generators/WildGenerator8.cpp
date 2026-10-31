@@ -122,7 +122,7 @@ std::vector<WildState8> WildGenerator8::generateWild(u64 seed0, u64 seed1) const
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharm = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
         {
             cuteCharm = rngList.next(3) != 0;
         }
@@ -228,7 +228,7 @@ std::vector<WildState8> WildGenerator8::generateHoneyTree(u64 seed0, u64 seed1, 
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharm = false;
-        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && !info->getFixedGender())
+        if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && !info->getFixedGender())
         {
             cuteCharm = rngList.next(3) != 0;
         }

@@ -86,7 +86,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
         else
         {
-            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
+            if (isAnyOf(lead, Lead::MagnetPull, Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
             {
                 encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count)];
             }
@@ -107,7 +107,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
         bool cuteCharm = false;
-        if ((lead == Lead::CuteCharmM || lead == Lead::CuteCharmF) && !info->getFixedGender())
+        if (isAnyOf(lead, Lead::CuteCharmM, Lead::CuteCharmF) && !info->getFixedGender())
         {
             cuteCharm = go.nextUShort(3) != 0;
         }

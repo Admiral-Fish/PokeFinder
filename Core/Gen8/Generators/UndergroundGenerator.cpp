@@ -309,7 +309,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             gender = 0;
             break;
         default:
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && rngList.next(100) < 67)
+            if (isAnyOf(lead, Lead::CuteCharmF, Lead::CuteCharmM) && rngList.next(100) < 67)
             {
                 gender = lead == Lead::CuteCharmF ? 0 : 1;
             }
