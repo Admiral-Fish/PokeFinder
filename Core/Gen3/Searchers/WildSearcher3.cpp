@@ -163,6 +163,9 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
         u16 nextRNG = rng.nextUShort();
         u16 nextRNG2 = rng.nextUShort();
 
+        // Use this flag to identify when a non cute charm proc advance fails since we encountered an earlier valid nature
+        bool cuteCharmTarget = false;
+
         do
         {
             bool cuteCharmFlag = false;
@@ -220,7 +223,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             case Lead::CuteCharmM:
                 if ((nextRNG % 25) == nature)
                 {
-                    cuteCharmFlag = (nextRNG2 % 3) > 0;
+                    cuteCharmFlag = (nextRNG2 % 3) != 0;
                     if (safari)
                     {
                         test[0].next();
@@ -234,27 +237,27 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                             if (test[0].nextUShort(100) < 50)
                             {
                                 encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
-                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]) && (cuteCharmFlag || !cuteCharmTarget);
                             }
 
                             u8 rand = test[1].nextUShort(100);
                             if (test[1].nextUShort(100) >= 50)
                             {
                                 encounterSlot[1] = EncounterSlot::hSlot(rand, area.getEncounter());
-                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]) && (cuteCharmFlag || !cuteCharmTarget);
                             }
                         }
                         else
                         {
                             test[0].advance(1);
                             encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
-                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]) && (cuteCharmFlag || !cuteCharmTarget);
                         }
                     }
                     else
                     {
                         encounterSlot[0] = EncounterSlot::hSlot(test[0].nextUShort(100), area.getEncounter());
-                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]) && (cuteCharmFlag || !cuteCharmTarget);
                     }
                 }
                 break;
@@ -433,10 +436,27 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             }
             else
             {
-                u8 huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
-                if (huntNature == nature)
+                u32 pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
+                if ((pid % 25) == nature)
                 {
-                    break;
+                    // Normally we just break the loop when we hit another matching nature
+                    // When we have a cute charm lead we also need to make sure the gender is valid
+                    PokeRNGR test(rng, 1);
+                    if (isAnyOf(lead, Lead::CuteCharmM, Lead::CuteCharmF) && test.nextUShort(3) != 0)
+                    {
+                        test.advance(1);
+                        const Slot &slot = area.getPokemon(EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter()));
+                        const PersonalInfo *info = slot.getInfo();
+                        if (cuteCharmGender(info, pid, lead))
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    cuteCharmTarget = true;
                 }
             }
 

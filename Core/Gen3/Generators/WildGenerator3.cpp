@@ -56,7 +56,8 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         rate += rate / 2;
     }
 
-    bool feebas = area.feebasLocation(profile.getVersion()) && feebasTile;
+    bool feebas = area.feebasLocation(profile.getVersion())
+        && isAnyOf(area.getEncounter(), Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod);
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 
@@ -80,7 +81,8 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
 
         u8 encounterSlot;
-        if (feebas && go.nextUShort(100) < 50)
+        // Feebas check happens regardless of being on a tile. Just need to be fishing on Route 119
+        if (feebas && go.nextUShort(100) < 50 && feebasTile)
         {
             encounterSlot = feebasSlot[toInt(area.getEncounter() - Encounter::OldRod)];
         }
