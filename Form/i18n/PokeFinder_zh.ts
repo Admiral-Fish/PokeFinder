@@ -4960,6 +4960,10 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Phenomenon</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Shiny Patch (DPPt)</source>
+        <translation>闪草（钻石/珍珠/白金）</translation>
+    </message>
 </context>
 <context>
     <name>PIDToIV</name>
@@ -9911,6 +9915,18 @@ Profile is missing or has an incompatible SHA cache.</source>
         <source>Levels</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Find Shiny Patches (DPPt)</source>
+        <translation>搜索闪草（钻石/珍珠/白金）</translation>
+    </message>
+    <message>
+        <source>Shiny Patch</source>
+        <translation>闪草</translation>
+    </message>
+    <message>
+        <source>Shiny patches are only available in Diamond, Pearl and Platinum.</source>
+        <translation>闪草仅适用于钻石、珍珠和白金。</translation>
+    </message>
 </context>
 <context>
     <name>Wild5</name>
@@ -11267,6 +11283,192 @@ Profile is missing or has an incompatible SHA cache.</source>
         <location filename="../../Model/Gen5/WildModel5.hpp" line="181"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ShinyPatch</name>
+    <message>
+        <source>Shiny Patch - Diamond / Pearl / Platinum</source>
+        <translation>闪草 - 钻石 / 珍珠 / 白金</translation>
+    </message>
+    <message>
+        <source>Find the advances at which using the Poke Radar produces shiny grass. Advances are counted from the initial seed, immediately BEFORE the four patch positions are drawn. This does not predict the Pokemon's IVs or PID.</source>
+        <translation>计算使用宝可追踪后出现闪草的推进数。推进数从初始种子起算，指抽取四圈草丛位置之前的状态。此工具不预测宝可梦的个体值或 PID。</translation>
+    </message>
+    <message>
+        <source>Radar settings</source>
+        <translation>宝可追踪设置</translation>
+    </message>
+    <message>
+        <source>Initial Seed</source>
+        <translation>初始种子</translation>
+    </message>
+    <message>
+        <source>Start Advances</source>
+        <translation>起始推进数</translation>
+    </message>
+    <message>
+        <source>End Advances (inclusive)</source>
+        <translation>结束推进数（包含）</translation>
+    </message>
+    <message>
+        <source>Chain Length</source>
+        <translation>连锁数</translation>
+    </message>
+    <message>
+        <source>0 cannot produce shiny patches. Shiny odds stop improving at 40.</source>
+        <translation>0 连锁不会生成闪草。闪草概率在 40 连锁达到上限。</translation>
+    </message>
+    <message>
+        <source>Patch Generation</source>
+        <translation>草丛生成方式</translation>
+    </message>
+    <message>
+        <source>The capture bonus applies only to patches automatically generated immediately after catching a Pokemon. Manually resetting the radar always uses normal rates.</source>
+        <translation>捕获加成只适用于捕获宝可梦后立即自动生成的草丛。手动重新使用宝可追踪始终采用普通概率。</translation>
+    </message>
+    <message>
+        <source>Manual reset / after knockout</source>
+        <translation>手动重置 / 击倒后</translation>
+    </message>
+    <message>
+        <source>Immediately after capture (+10%)</source>
+        <translation>捕获后立即生成（+10%）</translation>
+    </message>
+    <message>
+        <source>Show shiny patches only</source>
+        <translation>只显示闪草</translation>
+    </message>
+    <message>
+        <source>Set the 9 x 9 grid to match the terrain around the player (P). Green / pressed tiles are eligible grass at the same elevation and in the same map. All tiles start selected; deselect paths, walls, ledges and map boundaries. Results depend on this grid being correct. X increases right; Y increases down.</source>
+        <translation>按玩家（P）周围地形设置 9×9 网格。绿色/按下的格子表示同一地图、同一高度的有效草地。默认全选，请取消道路、墙壁、高低差及跨地图的格子。结果依赖网格设置准确。X 向右为正，Y 向下为正。</translation>
+    </message>
+    <message>
+        <source>Eligible grass around player</source>
+        <translation>玩家周围的有效草地</translation>
+    </message>
+    <message>
+        <source>All Grass</source>
+        <translation>全选草地</translation>
+    </message>
+    <message>
+        <source>Clear Grass</source>
+        <translation>清空草地</translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Ready. Configure the grass grid before generating.</source>
+        <translation>就绪。请先设置草地网格，再生成结果。</translation>
+    </message>
+    <message>
+        <source>X: %1, Y: %2</source>
+        <translation>X：%1，Y：%2</translation>
+    </message>
+    <message>
+        <source>P</source>
+        <translation>P</translation>
+    </message>
+    <message>
+        <source>Cancelled after %1 advances; %2 rows.</source>
+        <translation>已取消：检查了 %1 个推进数，显示 %2 行。</translation>
+    </message>
+    <message>
+        <source>Invalid input</source>
+        <translation>输入无效</translation>
+    </message>
+    <message>
+        <source>Enter a seed and an advance range.</source>
+        <translation>请输入种子和推进数范围。</translation>
+    </message>
+    <message>
+        <source>Invalid range</source>
+        <translation>范围无效</translation>
+    </message>
+    <message>
+        <source>Start advances must not exceed end advances.</source>
+        <translation>起始推进数不能大于结束推进数。</translation>
+    </message>
+    <message>
+        <source>Invalid terrain</source>
+        <translation>地形无效</translation>
+    </message>
+    <message>
+        <source>Select at least one eligible grass tile.</source>
+        <translation>请至少选择一个有效草地格子。</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation>正在搜索……</translation>
+    </message>
+    <message>
+        <source>Stopped at %1 rows. Narrow the advance range to see more results.</source>
+        <translation>达到 %1 行上限，已停止。请缩小推进数范围以查看其他结果。</translation>
+    </message>
+    <message>
+        <source>Completed %1 advances; %2 rows.</source>
+        <translation>完成：检查了 %1 个推进数，显示 %2 行。</translation>
+    </message>
+</context>
+<context>
+    <name>ShinyPatchModel</name>
+    <message>
+        <source>Advances</source>
+        <translation>推进数</translation>
+    </message>
+    <message>
+        <source>Seed</source>
+        <translation>种子</translation>
+    </message>
+    <message>
+        <source>Ring</source>
+        <translation>圈数</translation>
+    </message>
+    <message>
+        <source>X (right)</source>
+        <translation>X（右）</translation>
+    </message>
+    <message>
+        <source>Y (down)</source>
+        <translation>Y（下）</translation>
+    </message>
+    <message>
+        <source>Chain roll</source>
+        <translation>连锁判定值</translation>
+    </message>
+    <message>
+        <source>Shiny roll</source>
+        <translation>闪光随机值</translation>
+    </message>
+    <message>
+        <source>Shiny check advance</source>
+        <translation>闪光判定推进数</translation>
+    </message>
+    <message>
+        <source>Result</source>
+        <translation>结果</translation>
+    </message>
+    <message>
+        <source>Invalid tile</source>
+        <translation>无效草地</translation>
+    </message>
+    <message>
+        <source>Shiny</source>
+        <translation>闪草</translation>
+    </message>
+    <message>
+        <source>Continues</source>
+        <translation>连锁保持</translation>
+    </message>
+    <message>
+        <source>Chain breaks</source>
+        <translation>连锁中断</translation>
     </message>
 </context>
 </TS>

@@ -39,6 +39,7 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/ChainedSID.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
+#include <Form/Gen4/Tools/ShinyPatch.hpp>
 #include <Form/Gen4/Wild4.hpp>
 #include <Form/Gen5/DreamRadar.hpp>
 #include <Form/Gen5/Eggs5.hpp>
@@ -106,6 +107,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     connect(ui->actionSeedToTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
+    connect(ui->actionShinyPatch, &QAction::triggered, this, [] { (new ShinyPatch())->show(); });
 
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);

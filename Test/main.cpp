@@ -36,6 +36,7 @@
 #include <Test/Gen4/IDGenerator4Test.hpp>
 #include <Test/Gen4/IDSearcher4Test.hpp>
 #include <Test/Gen4/SeedToTimeCalculator4Test.hpp>
+#include <Test/Gen4/ShinyPatchCalculatorTest.hpp>
 #include <Test/Gen4/StaticGenerator4Test.hpp>
 #include <Test/Gen4/StaticSearcher4Test.hpp>
 #include <Test/Gen4/WildGenerator4Test.hpp>
@@ -109,6 +110,7 @@ int main()
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
     status += runTest<SeedToTimeCalculator4Test>(fails);
+    status += runTest<ShinyPatchCalculatorTest>(fails);
     status += runTest<StaticGenerator4Test>(fails);
     status += runTest<StaticSearcher4Test>(fails);
     status += runTest<WildGenerator4Test>(fails);

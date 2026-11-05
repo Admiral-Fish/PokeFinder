@@ -146,6 +146,8 @@ add_library(PokeFinderCore STATIC
     Gen4/Tools/ChainedSIDCalc.hpp
     Gen4/Tools/SeedToTimeCalculator4.cpp
     Gen4/Tools/SeedToTimeCalculator4.hpp
+    Gen4/Tools/ShinyPatchCalculator.cpp
+    Gen4/Tools/ShinyPatchCalculator.hpp
     Gen5/DreamRadarTemplate.hpp
     Gen5/EncounterArea5.cpp
     Gen5/EncounterArea5.hpp
