@@ -258,6 +258,7 @@
     <addaction name="actionProfileManager4"/>
     <addaction name="actionSeedToTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
+    <addaction name="actionShinyPatch"/>
    </widget>
    <widget class="QMenu" name="menuGen5Tools">
     <property name="title">
@@ -296,6 +297,11 @@
   <action name="actionSeedToTime4">
    <property name="text">
     <string>Seed to Time</string>
+   </property>
+  </action>
+  <action name="actionShinyPatch">
+   <property name="text">
+    <string>Shiny Patch (DPPt)</string>
    </property>
   </action>
   <action name="actionSIDfromChainedShiny">

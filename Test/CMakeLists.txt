@@ -55,6 +55,8 @@ qt_add_executable(PokeFinderTest
     Gen4/IDSearcher4Test.hpp
     Gen4/SeedToTimeCalculator4Test.cpp
     Gen4/SeedToTimeCalculator4Test.hpp
+    Gen4/ShinyPatchCalculatorTest.cpp
+    Gen4/ShinyPatchCalculatorTest.hpp
     Gen4/StaticGenerator4Test.cpp
     Gen4/StaticGenerator4Test.hpp
     Gen4/StaticSearcher4Test.cpp
@@ -128,3 +130,12 @@ add_test(NAME Test COMMAND PokeFinderTest)
 
 target_include_directories(PokeFinderTest PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/generated)
 target_link_libraries(PokeFinderTest PRIVATE PokeFinderCore PokeFinderIncludes Qt6::Core Qt6::Test)
+
+qt_add_executable(PokeFinderShinyPatchFormTest Gen4/ShinyPatchFormTest.cpp)
+target_link_libraries(PokeFinderShinyPatchFormTest PRIVATE PokeFinderForm PokeFinderModel PokeFinderCore PokeFinderIncludes Qt6::Widgets Qt6::Test)
+add_test(NAME ShinyPatchForm COMMAND PokeFinderShinyPatchFormTest)
+set_tests_properties(ShinyPatchForm PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+if (TARGET Qt6::QOffscreenIntegrationPlugin)
+    set_property(TEST ShinyPatchForm APPEND PROPERTY ENVIRONMENT
+        "QT_QPA_PLATFORM_PLUGIN_PATH=$<TARGET_FILE_DIR:Qt6::QOffscreenIntegrationPlugin>")
+endif ()

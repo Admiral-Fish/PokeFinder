@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShinyPatch</class>
+ <widget class="QWidget" name="ShinyPatch">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1000</width><height>720</height></rect></property>
+  <property name="windowTitle"><string>Shiny Patch - Diamond / Pearl / Platinum</string></property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item><widget class="QLabel" name="labelHelp">
+    <property name="text"><string>Find the advances at which using the Poke Radar produces shiny grass. Advances are counted from the initial seed, immediately BEFORE the four patch positions are drawn. This does not predict the Pokemon's IVs or PID.</string></property>
+    <property name="wordWrap"><bool>true</bool></property>
+   </widget></item>
+   <item><layout class="QHBoxLayout" name="horizontalLayout">
+    <item><widget class="QGroupBox" name="groupBoxSettings">
+     <property name="title"><string>Radar settings</string></property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0"><widget class="QLabel" name="labelSeed"><property name="text"><string>Initial Seed</string></property></widget></item>
+      <item row="0" column="1"><widget class="TextBox" name="textBoxSeed"><property name="text"><string>00000000</string></property></widget></item>
+      <item row="1" column="0"><widget class="QLabel" name="labelStart"><property name="text"><string>Start Advances</string></property></widget></item>
+      <item row="1" column="1"><widget class="TextBox" name="textBoxStart"><property name="text"><string>0</string></property></widget></item>
+      <item row="2" column="0"><widget class="QLabel" name="labelEnd"><property name="text"><string>End Advances (inclusive)</string></property></widget></item>
+      <item row="2" column="1"><widget class="TextBox" name="textBoxEnd"><property name="text"><string>10000</string></property></widget></item>
+      <item row="3" column="0"><widget class="QLabel" name="labelChain"><property name="text"><string>Chain Length</string></property></widget></item>
+      <item row="3" column="1"><widget class="QSpinBox" name="spinBoxChain">
+       <property name="toolTip"><string>0 cannot produce shiny patches. Shiny odds stop improving at 40.</string></property>
+       <property name="maximum"><number>999</number></property><property name="value"><number>1</number></property>
+      </widget></item>
+      <item row="4" column="0"><widget class="QLabel" name="labelActivation"><property name="text"><string>Patch Generation</string></property></widget></item>
+      <item row="4" column="1"><widget class="QComboBox" name="comboBoxActivation">
+       <property name="toolTip"><string>The capture bonus applies only to patches automatically generated immediately after catching a Pokemon. Manually resetting the radar always uses normal rates.</string></property>
+       <item><property name="text"><string>Manual reset / after knockout</string></property></item>
+       <item><property name="text"><string>Immediately after capture (+10%)</string></property></item>
+      </widget></item>
+      <item row="5" column="1"><widget class="QCheckBox" name="checkBoxShinyOnly">
+       <property name="text"><string>Show shiny patches only</string></property><property name="checked"><bool>true</bool></property>
+      </widget></item>
+      <item row="6" column="0" colspan="2"><widget class="QLabel" name="labelTerrainHelp">
+       <property name="text"><string>Set the 9 x 9 grid to match the terrain around the player (P). Green / pressed tiles are eligible grass at the same elevation and in the same map. All tiles start selected; deselect paths, walls, ledges and map boundaries. Results depend on this grid being correct. X increases right; Y increases down.</string></property>
+       <property name="wordWrap"><bool>true</bool></property>
+      </widget></item>
+     </layout>
+    </widget></item>
+    <item><widget class="QGroupBox" name="groupBoxTerrain">
+     <property name="title"><string>Eligible grass around player</string></property>
+     <layout class="QVBoxLayout" name="verticalLayoutTerrain">
+      <item><layout class="QGridLayout" name="gridLayoutTerrain"><property name="spacing"><number>2</number></property></layout></item>
+      <item><layout class="QHBoxLayout" name="horizontalLayoutTerrainButtons">
+       <item><widget class="QPushButton" name="pushButtonAllGrass"><property name="text"><string>All Grass</string></property></widget></item>
+       <item><widget class="QPushButton" name="pushButtonNoGrass"><property name="text"><string>Clear Grass</string></property></widget></item>
+      </layout></item>
+     </layout>
+    </widget></item>
+   </layout></item>
+   <item><layout class="QHBoxLayout" name="horizontalLayoutButtons">
+    <item><widget class="QPushButton" name="pushButtonGenerate"><property name="text"><string>Generate</string></property></widget></item>
+    <item><widget class="QPushButton" name="pushButtonCancel"><property name="enabled"><bool>false</bool></property><property name="text"><string>Cancel</string></property></widget></item>
+    <item><widget class="QProgressBar" name="progressBar"><property name="value"><number>0</number></property></widget></item>
+   </layout></item>
+   <item><widget class="QLabel" name="labelStatus"><property name="text"><string>Ready. Configure the grass grid before generating.</string></property></widget></item>
+   <item><widget class="TableView" name="tableView"><property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property></widget></item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget><class>TextBox</class><extends>QLineEdit</extends><header>Form/Controls/TextBox.hpp</header></customwidget>
+  <customwidget><class>TableView</class><extends>QTableView</extends><header>Form/Controls/TableView.hpp</header></customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
