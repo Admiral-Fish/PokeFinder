@@ -211,13 +211,13 @@ MTFast::MTFast(u32 seed, u32 advances, u16 size, bool fast) : index(advances), s
     assert(size < 227);
 
     u32 *ptr = &state[0].uint32[0];
-    for (u32 i = 1; i < size + 1; i++)
+    for (u32 i = 1; i < size + 2; i++)
     {
         ptr[i - 1] = seed;
         seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
     }
 
-    for (u32 i = size + 1; i < 397; i++)
+    for (u32 i = size + 2; i < 397; i++)
     {
         seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
     }
