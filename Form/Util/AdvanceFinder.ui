@@ -16,6 +16,12 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
       <number>1</number>
      </property>
@@ -153,10 +159,44 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
+       <item row="2" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonHighMidHighMid">
+         <property name="text">
+          <string>High / Mid-High / Mid</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="2">
+        <widget class="QPushButton" name="pushButtonMidMidLowLow">
+         <property name="text">
+          <string>Mid / Mid-Low / Low</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4" rowspan="3">
         <widget class="QPushButton" name="pushButtonChatotAny">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>Any</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonHigherThanLast">
+         <property name="text">
+          <string>Higher than last</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QPushButton" name="pushButtonLowerThanLast">
+         <property name="text">
+          <string>Lower than last</string>
          </property>
         </widget>
        </item>
@@ -238,9 +278,6 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLineEdit" name="lineEditSequence">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
      <item>
@@ -313,6 +350,11 @@
   <tabstop>pushButtonMidHighMid</tabstop>
   <tabstop>pushButtonMidMidLow</tabstop>
   <tabstop>pushButtonMidLowLow</tabstop>
+  <tabstop>pushButtonHighMidHighMid</tabstop>
+  <tabstop>pushButtonMidMidLowLow</tabstop>
+  <tabstop>pushButtonChatotAny</tabstop>
+  <tabstop>pushButtonHigherThanLast</tabstop>
+  <tabstop>pushButtonLowerThanLast</tabstop>
   <tabstop>pushButtonNeedle7</tabstop>
   <tabstop>pushButtonNeedle0</tabstop>
   <tabstop>pushButtonNeedle1</tabstop>
