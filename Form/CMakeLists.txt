@@ -180,6 +180,8 @@ set(PROJECT_SOURCES
     Gen4/Tools/RoamerMap.hpp
     Gen4/Tools/SearchCalls.cpp
     Gen4/Tools/SearchCalls.hpp
+    Gen4/Tools/SearchChatot.cpp
+    Gen4/Tools/SearchChatot.hpp
     Gen4/Tools/SearchCoinFlips.cpp
     Gen4/Tools/SearchCoinFlips.hpp
     Gen4/Tools/SeedToTime4.cpp

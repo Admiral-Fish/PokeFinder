@@ -80,7 +80,10 @@ QVariant SeedToTimeCalibrateModel4::data(const QModelIndex &index, int role) con
             return state.getDelay();
         case 3:
         case 4:
-            return QString::fromStdString(state.getSequence());
+        {
+            const u8 skips = state.getRoamer() ? state.getRoamer()->getSkips() : 0;
+            return QString::fromStdString(showChatot ? Utilities4::getChatots(state.getSeed(), 0, 20, skips) : state.getSequence());
+        }
         case 5:
         {
             std::string str = state.getRoamer()->getRouteString();
@@ -95,9 +98,26 @@ QVariant SeedToTimeCalibrateModel4::headerData(int section, Qt::Orientation orie
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        if (section == 3 && showChatot)
+        {
+            return tr("Chatot");
+        }
         return header[getColumn(section)];
     }
     return QVariant();
+}
+
+void SeedToTimeCalibrateModel4::setShowChatot(bool show)
+{
+    if (showChatot != show)
+    {
+        showChatot = show;
+        emit headerDataChanged(Qt::Horizontal, 3, 3);
+        if (rowCount() != 0)
+        {
+            emit dataChanged(index(0, 3), index(rowCount() - 1, 3));
+        }
+    }
 }
 
 int SeedToTimeCalibrateModel4::getColumn(int column) const

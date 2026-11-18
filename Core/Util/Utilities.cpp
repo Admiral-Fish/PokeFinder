@@ -189,6 +189,35 @@ namespace Utilities4
         return calls;
     }
 
+    std::string getChatots(u32 seed, u32 initialAdvance, u32 count, u8 skips)
+    {
+        std::string chatots;
+        PokeRNG rng(seed, initialAdvance);
+        if (skips > 0)
+        {
+            chatots += "(";
+        }
+
+        for (u32 i = 0; i < count + skips; i++)
+        {
+            u8 pitch = static_cast<u8>(((rng.nextUShort() % 8192) * 100) >> 13);
+            std::string value = getChatot(pitch);
+            chatots += value.substr(0, value.find(' '));
+            if (i != count + skips - 1)
+            {
+                if (skips != 0 && skips == i + 1)
+                {
+                    chatots += " skipped)  ";
+                }
+                else
+                {
+                    chatots += ", ";
+                }
+            }
+        }
+        return chatots;
+    }
+
     std::string getChatot(u8 prng)
     {
         return getPitch(prng);

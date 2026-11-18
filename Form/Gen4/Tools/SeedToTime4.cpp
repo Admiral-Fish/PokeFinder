@@ -69,6 +69,8 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     connect(ui->pushButtonHGSSCalibrate, &QPushButton::clicked, this, &SeedToTime4::hgssCalibrate);
     connect(ui->pushButtonDPPtSearchFlips, &QPushButton::clicked, this, &SeedToTime4::searchFlips);
     connect(ui->pushButtonHGSSSearchCalls, &QPushButton::clicked, this, &SeedToTime4::searchCalls);
+    connect(ui->radioButtonDPPtShowChatot, &QRadioButton::toggled, dpptCalibrateModel, &SeedToTimeCalibrateModel4::setShowChatot);
+    connect(ui->radioButtonHGSSShowChatot, &QRadioButton::toggled, hgssCalibrateModel, &SeedToTimeCalibrateModel4::setShowChatot);
     connect(ui->checkBoxHGSSEntei, &QCheckBox::clicked, ui->textBoxHGSSEntei, &QLineEdit::setEnabled);
     connect(ui->checkBoxHGSSLati, &QCheckBox::clicked, ui->textBoxHGSSLati, &QLineEdit::setEnabled);
     connect(ui->checkBoxHGSSRaikou, &QCheckBox::clicked, ui->textBoxHGSSRaikou, &QLineEdit::setEnabled);
@@ -164,7 +166,8 @@ void SeedToTime4::dpptCalibrate()
     const SeedTime4 &target = dpptModel->getItem(index.row());
 
     dpptCalibrateModel->clearModel();
-    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, target);
+    auto results = SeedToTimeCalculator4::calibrate(
+        delayCalibration, secondCalibration, ui->checkBoxDPPtDelayParity->isChecked(), target);
     dpptCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -210,7 +213,8 @@ void SeedToTime4::hgssCalibrate()
     const SeedTime4 &target = hgssModel->getItem(index.row());
 
     hgssCalibrateModel->clearModel();
-    auto results = SeedToTimeCalculator4::calibrate(delayCalibration, secondCalibration, playerLocation, roamers, routes, target);
+    auto results = SeedToTimeCalculator4::calibrate(
+        delayCalibration, secondCalibration, ui->checkBoxHGSSDelayParity->isChecked(), playerLocation, roamers, routes, target);
     hgssCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -258,7 +262,8 @@ void SeedToTime4::searchCalls()
         return;
     }
 
-    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel));
+    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel, this));
+    search->setWindowModality(Qt::WindowModal);
     if (search->exec() == QDialog::Accepted)
     {
         ui->tableViewHGSSCalibrate->clearSelection();
@@ -271,6 +276,10 @@ void SeedToTime4::searchCalls()
         }
 
         ui->tableViewHGSSCalibrate->selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        if (!indexes.empty())
+        {
+            ui->tableViewHGSSCalibrate->scrollTo(indexes.front(), QAbstractItemView::PositionAtCenter);
+        }
         ui->tableViewHGSSCalibrate->setFocus();
     }
 }
@@ -282,7 +291,8 @@ void SeedToTime4::searchFlips()
         return;
     }
 
-    std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel));
+    std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel, this));
+    search->setWindowModality(Qt::WindowModal);
     if (search->exec() == QDialog::Accepted)
     {
         ui->tableViewDPPtCalibrate->clearSelection();
@@ -295,6 +305,10 @@ void SeedToTime4::searchFlips()
         }
 
         ui->tableViewDPPtCalibrate->selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        if (!indexes.empty())
+        {
+            ui->tableViewDPPtCalibrate->scrollTo(indexes.front(), QAbstractItemView::PositionAtCenter);
+        }
         ui->tableViewDPPtCalibrate->setFocus();
     }
 }

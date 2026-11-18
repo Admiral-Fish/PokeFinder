@@ -18,17 +18,45 @@
  */
 
 #include "SearchCalls.hpp"
+#include "SearchChatot.hpp"
 #include "ui_SearchCalls.h"
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Model/Gen4/SeedToTimeModel4.hpp>
 #include <Model/IndexFilterProxyModel.hpp>
+#include <QGridLayout>
 #include <QSettings>
+#include <QTabWidget>
 
 SearchCalls::SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCalls), model(model)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    tabWidget = new QTabWidget(this);
+    auto *callsPage = new QWidget(tabWidget);
+    auto *callsLayout = new QGridLayout(callsPage);
+    callsLayout->addWidget(ui->pushButtonK, 0, 0, 1, 2);
+    callsLayout->addWidget(ui->pushButtonE, 0, 2, 1, 2);
+    callsLayout->addWidget(ui->pushButtonP, 0, 4, 1, 2);
+    callsLayout->addWidget(ui->lineEditCalls, 1, 0, 1, 4);
+    callsLayout->addWidget(ui->pushButtonRemove, 1, 4);
+    callsLayout->addWidget(ui->pushButtonClear, 1, 5);
+    callsLayout->addWidget(ui->radioButtonElm, 2, 0);
+    callsLayout->addWidget(ui->radioButtonIrwin, 2, 1);
+    callsLayout->addWidget(ui->labelKResponse, 3, 0, 1, 6);
+    callsLayout->addWidget(ui->labelEResponse, 4, 0, 1, 6);
+    callsLayout->addWidget(ui->labelPResponse, 5, 0, 1, 6);
+    tabWidget->addTab(callsPage, tr("Calls"));
+
+    chatotSearch = new SearchChatot(model, [this](const QModelIndexList &results, int count) { setResults(results, count); }, tabWidget);
+    tabWidget->addTab(chatotSearch, tr("Chatot"));
+
+    ui->gridLayout->addWidget(tabWidget, 0, 0, 1, 6);
+    ui->gridLayout->addWidget(ui->labelPossibleResults, 1, 0, 1, 2);
+    ui->gridLayout->addWidget(ui->tableViewPreview, 2, 0, 1, 6);
+    ui->gridLayout->addWidget(ui->pushButtonOkay, 3, 4);
+    ui->gridLayout->addWidget(ui->pushButtonCancel, 3, 5);
 
     previewModel = new IndexFilterProxyModel(ui->tableViewPreview, model);
     ui->tableViewPreview->setModel(previewModel);
@@ -45,6 +73,16 @@ SearchCalls::SearchCalls(SeedToTimeCalibrateModel4 *model, QWidget *parent) : QD
     connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCalls::clear);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCalls::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCalls::reject);
+    connect(tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
+        if (index == 0)
+        {
+            callsTextChanged(ui->lineEditCalls->text());
+        }
+        else
+        {
+            chatotSearch->search();
+        }
+    });
 
     QSettings setting;
     if (setting.contains("searchCalls/geometry"))
@@ -63,12 +101,19 @@ SearchCalls::~SearchCalls()
 
 QModelIndexList SearchCalls::getIndexes() const
 {
+    const QModelIndex current = ui->tableViewPreview->currentIndex();
+    if (current.isValid() && ui->tableViewPreview->selectionModel()->isSelected(current))
+    {
+        const QModelIndex source = previewModel->mapToSource(current);
+        return { model->index(source.row(), 0) };
+    }
+
     return indexes;
 }
 
 void SearchCalls::updatePreview()
 {
-    if (!indexes.empty() && indexes.size() <= 3)
+    if (!indexes.empty() && indexes.size() <= 5)
     {
         previewModel->setFilteredIndexes(indexes);
     }
@@ -76,6 +121,15 @@ void SearchCalls::updatePreview()
     {
         previewModel->setFilteredIndexes(QModelIndexList());
     }
+}
+
+void SearchCalls::setResults(const QModelIndexList &results, int count)
+{
+    indexes = results;
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(count));
+    updatePreview();
+    ui->tableViewPreview->clearSelection();
+    ui->tableViewPreview->setCurrentIndex(QModelIndex());
 }
 
 void SearchCalls::callsTextChanged(const QString &text)
@@ -120,7 +174,14 @@ void SearchCalls::callsTextChanged(const QString &text)
 
 void SearchCalls::clear()
 {
-    ui->lineEditCalls->clear();
+    if (tabWidget->currentIndex() == 0)
+    {
+        ui->lineEditCalls->clear();
+    }
+    else
+    {
+        chatotSearch->clear();
+    }
 }
 
 void SearchCalls::e()
@@ -165,6 +226,11 @@ void SearchCalls::p()
 
 void SearchCalls::remove()
 {
+    if (tabWidget->currentIndex() != 0)
+    {
+        chatotSearch->remove();
+        return;
+    }
     QString string = ui->lineEditCalls->text();
     int index = string.lastIndexOf(',');
     ui->lineEditCalls->setText(index == -1 ? QString() : string.left(index));

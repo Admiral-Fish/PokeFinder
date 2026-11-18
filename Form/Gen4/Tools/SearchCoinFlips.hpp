@@ -23,6 +23,8 @@
 #include <QDialog>
 
 class IndexFilterProxyModel;
+class QTabWidget;
+class SearchChatot;
 class SeedToTimeCalibrateModel4;
 typedef QList<QModelIndex> QModelIndexList;
 
@@ -64,6 +66,10 @@ private:
     IndexFilterProxyModel *previewModel;
     SeedToTimeCalibrateModel4 *model;
     QModelIndexList indexes;
+    QTabWidget *tabWidget;
+    SearchChatot *chatotSearch;
+
+    void setResults(const QModelIndexList &results, int count);
 
     /**
      * @brief Updates preview table with possible matching results

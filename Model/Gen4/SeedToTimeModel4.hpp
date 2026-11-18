@@ -116,9 +116,15 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    /**
+     * @brief Sets whether the sequence column displays Chatot pitches
+     */
+    void setShowChatot(bool show);
+
 private:
-    QStringList header = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips"), tr("Calls"), tr("Roamers") };
+    QStringList header = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin Flips"), tr("Calls"), tr("Roamers") };
     bool dppt;
+    bool showChatot = false;
 
     /**
      * @brief Gets modified column index based on model method

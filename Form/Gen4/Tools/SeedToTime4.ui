@@ -98,6 +98,13 @@
           <string>Calibration</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxDPPtDelayParity">
+            <property name="text">
+             <string>Match Delay Parity</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelDPPtDelayCalibration">
             <property name="text">
@@ -116,6 +123,29 @@
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QRadioButton" name="radioButtonDPPtShowFlips">
+            <property name="text">
+             <string>Show Flips</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupDPPtDisplay</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QRadioButton" name="radioButtonDPPtShowChatot">
+            <property name="text">
+             <string>Show Chatot</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupDPPtDisplay</string>
+            </attribute>
            </widget>
           </item>
           <item row="1" column="0">
@@ -193,14 +223,14 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="6" colspan="2">
+          <item row="2" column="7" colspan="2">
            <widget class="QLabel" name="labelHGSSPlayerLocation">
             <property name="text">
-             <string>Player Location</string>
+             <string>Player Route</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="8" colspan="2">
+          <item row="2" column="9">
            <widget class="TextBox" name="textBoxHGSSPlayerLocation">
             <property name="maxLength">
              <number>2</number>
@@ -329,6 +359,13 @@
           <string>Calibration</string>
          </property>
          <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxHGSSDelayParity">
+            <property name="text">
+             <string>Match Delay Parity</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelHGSSDelayCalibration">
             <property name="text">
@@ -347,6 +384,29 @@
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QRadioButton" name="radioButtonHGSSShowCalls">
+            <property name="text">
+             <string>Show Calls</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupHGSSDisplay</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QRadioButton" name="radioButtonHGSSShowChatot">
+            <property name="text">
+             <string>Show Chatot</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupHGSSDisplay</string>
+            </attribute>
            </widget>
           </item>
           <item row="1" column="0">
@@ -450,4 +510,8 @@
  </tabstops>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupDPPtDisplay"/>
+  <buttongroup name="buttonGroupHGSSDisplay"/>
+ </buttongroups>
 </ui>
