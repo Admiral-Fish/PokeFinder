@@ -42,7 +42,11 @@ namespace AdvanceSearcher
         HighMidHigh,
         MidHighMid,
         MidMidLow,
-        MidLowLow
+        MidLowLow,
+        HighMidHighMid,
+        MidMidLowLow,
+        HigherThanLast,
+        LowerThanLast
     };
 
     enum class NeedleToken : u8
@@ -82,6 +86,19 @@ namespace AdvanceSearcher
      * @return Sequence of valid values for each token
      */
     Sequence getChatotSequence(const std::vector<u8> &tokens);
+
+    /**
+     * @brief Searches a row sequence for matching Chatot pitch tokens
+     *
+     * @param rowCount Number of rows to search
+     *
+     * @param tokens Chatot pitch tokens to match
+     * @param getter Retrieves the pitch for a given row
+     *
+     * @return Matching
+     * ending rows
+     */
+    std::vector<int> findChatotMatches(int rowCount, const std::vector<u8> &tokens, const ValueGetter &getter);
 
     /**
      * @brief Converts save needle tokens into allowed needle values
