@@ -19,6 +19,42 @@
 
 #include "AdvanceSearcher.hpp"
 
+static AdvanceSearcher::Range getChatotRange(AdvanceSearcher::ChatotToken token)
+{
+    using ChatotToken = AdvanceSearcher::ChatotToken;
+    switch (token)
+    {
+    case ChatotToken::Any:
+        return { 0, 100 };
+    case ChatotToken::High:
+        return { 80, 100 };
+    case ChatotToken::MidHigh:
+        return { 60, 80 };
+    case ChatotToken::Mid:
+        return { 40, 60 };
+    case ChatotToken::MidLow:
+        return { 20, 40 };
+    case ChatotToken::Low:
+        return { 0, 20 };
+    case ChatotToken::HighMidHigh:
+        return { 60, 100 };
+    case ChatotToken::MidHighMid:
+        return { 40, 80 };
+    case ChatotToken::MidMidLow:
+        return { 20, 60 };
+    case ChatotToken::MidLowLow:
+        return { 0, 40 };
+    case ChatotToken::HighMidHighMid:
+        return { 40, 100 };
+    case ChatotToken::MidMidLowLow:
+        return { 0, 60 };
+    case ChatotToken::HigherThanLast:
+    case ChatotToken::LowerThanLast:
+        return { 0, 0 };
+    }
+    return { 0, 0 };
+}
+
 namespace AdvanceSearcher
 {
     Sequence getCallSequence(const std::vector<u8> &tokens)
@@ -50,42 +86,56 @@ namespace AdvanceSearcher
 
         for (u8 token : tokens)
         {
-            switch (static_cast<ChatotToken>(token))
+            const ChatotToken chatotToken = static_cast<ChatotToken>(token);
+            if (chatotToken != ChatotToken::HigherThanLast && chatotToken != ChatotToken::LowerThanLast)
             {
-            case ChatotToken::Any:
-                sequence.emplace_back(0, 100);
-                break;
-            case ChatotToken::High:
-                sequence.emplace_back(80, 100);
-                break;
-            case ChatotToken::MidHigh:
-                sequence.emplace_back(60, 80);
-                break;
-            case ChatotToken::Mid:
-                sequence.emplace_back(40, 60);
-                break;
-            case ChatotToken::MidLow:
-                sequence.emplace_back(20, 40);
-                break;
-            case ChatotToken::Low:
-                sequence.emplace_back(0, 20);
-                break;
-            case ChatotToken::HighMidHigh:
-                sequence.emplace_back(60, 100);
-                break;
-            case ChatotToken::MidHighMid:
-                sequence.emplace_back(40, 80);
-                break;
-            case ChatotToken::MidMidLow:
-                sequence.emplace_back(20, 60);
-                break;
-            case ChatotToken::MidLowLow:
-                sequence.emplace_back(0, 40);
-                break;
+                sequence.emplace_back(getChatotRange(chatotToken));
             }
         }
 
         return sequence;
+    }
+
+    std::vector<int> findChatotMatches(int rowCount, const std::vector<u8> &tokens, const ValueGetter &getter)
+    {
+        std::vector<int> matches;
+        if (tokens.empty())
+        {
+            return matches;
+        }
+
+        const bool needsPrevious = static_cast<ChatotToken>(tokens.front()) == ChatotToken::HigherThanLast
+            || static_cast<ChatotToken>(tokens.front()) == ChatotToken::LowerThanLast;
+        for (int i = needsPrevious ? 1 : 0; i + tokens.size() <= rowCount; i++)
+        {
+            bool match = true;
+            for (int j = 0; j < tokens.size() && match; j++)
+            {
+                const u8 value = getter(i + j);
+                switch (static_cast<ChatotToken>(tokens[j]))
+                {
+                case ChatotToken::HigherThanLast:
+                    match = value > getter(i + j - 1);
+                    break;
+                case ChatotToken::LowerThanLast:
+                    match = value < getter(i + j - 1);
+                    break;
+                default:
+                {
+                    const Range range = getChatotRange(static_cast<ChatotToken>(tokens[j]));
+                    match = value >= range.first && value < range.second;
+                    break;
+                }
+                }
+            }
+
+            if (match)
+            {
+                matches.emplace_back(i + tokens.size() - 1);
+            }
+        }
+
+        return matches;
     }
 
     Sequence getNeedleSequence(const std::vector<u8> &tokens)

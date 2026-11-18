@@ -182,6 +182,18 @@ namespace Utilities4
     std::string getCalls(u32 seed, u8 skips);
 
     /**
+     * @brief Returns a Chatot pitch sequence for the \p seed
+     *
+     * @param seed PRNG state
+     * @param initialAdvance Initial advance
+     * @param count Number of pitches
+     * @param skips Number of initial pitches skipped
+     *
+     * @return Chatot pitch sequence
+     */
+    std::string getChatots(u32 seed, u32 initialAdvance, u32 count, u8 skips = 0);
+
+    /**
      * @brief Returns the chatot pitch
      *
      * @param prng PRNG state

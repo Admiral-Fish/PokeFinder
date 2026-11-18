@@ -18,18 +18,40 @@
  */
 
 #include "SearchCoinFlips.hpp"
+#include "SearchChatot.hpp"
 #include "ui_SearchCoinFlips.h"
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Model/Gen4/SeedToTimeModel4.hpp>
 #include <Model/IndexFilterProxyModel.hpp>
+#include <QGridLayout>
 #include <QSettings>
+#include <QTabWidget>
 
 SearchCoinFlips::SearchCoinFlips(SeedToTimeCalibrateModel4 *model, QWidget *parent) :
     QDialog(parent), ui(new Ui::SearchCoinFlips), model(model)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    tabWidget = new QTabWidget(this);
+    auto *flipsPage = new QWidget(tabWidget);
+    auto *flipsLayout = new QGridLayout(flipsPage);
+    flipsLayout->addWidget(ui->pushButtonHeads, 0, 0, 1, 2);
+    flipsLayout->addWidget(ui->pushButtonTails, 0, 2, 1, 2);
+    flipsLayout->addWidget(ui->lineEditFlips, 1, 0, 1, 2);
+    flipsLayout->addWidget(ui->pushButtonRemove, 1, 2);
+    flipsLayout->addWidget(ui->pushButtonClear, 1, 3);
+    tabWidget->addTab(flipsPage, tr("Coin Flips"));
+
+    chatotSearch = new SearchChatot(model, [this](const QModelIndexList &results, int count) { setResults(results, count); }, tabWidget);
+    tabWidget->addTab(chatotSearch, tr("Chatot"));
+
+    ui->gridLayout->addWidget(tabWidget, 0, 0, 1, 4);
+    ui->gridLayout->addWidget(ui->labelPossibleResults, 1, 0, 1, 2);
+    ui->gridLayout->addWidget(ui->tableViewPreview, 2, 0, 1, 4);
+    ui->gridLayout->addWidget(ui->pushButtonOkay, 3, 2);
+    ui->gridLayout->addWidget(ui->pushButtonCancel, 3, 3);
 
     previewModel = new IndexFilterProxyModel(ui->tableViewPreview, model);
     ui->tableViewPreview->setModel(previewModel);
@@ -43,6 +65,16 @@ SearchCoinFlips::SearchCoinFlips(SeedToTimeCalibrateModel4 *model, QWidget *pare
     connect(ui->pushButtonClear, &QPushButton::clicked, this, &SearchCoinFlips::clear);
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCoinFlips::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCoinFlips::reject);
+    connect(tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
+        if (index == 0)
+        {
+            flipsTextChanged(ui->lineEditFlips->text());
+        }
+        else
+        {
+            chatotSearch->search();
+        }
+    });
 
     QSettings setting;
     if (setting.contains("searchCoinFlips/geometry"))
@@ -61,12 +93,19 @@ SearchCoinFlips::~SearchCoinFlips()
 
 QModelIndexList SearchCoinFlips::getIndexes() const
 {
+    const QModelIndex current = ui->tableViewPreview->currentIndex();
+    if (current.isValid() && ui->tableViewPreview->selectionModel()->isSelected(current))
+    {
+        const QModelIndex source = previewModel->mapToSource(current);
+        return { model->index(source.row(), 0) };
+    }
+
     return indexes;
 }
 
 void SearchCoinFlips::updatePreview()
 {
-    if (!indexes.empty() && indexes.size() <= 3)
+    if (!indexes.empty() && indexes.size() <= 5)
     {
         previewModel->setFilteredIndexes(indexes);
     }
@@ -76,9 +115,25 @@ void SearchCoinFlips::updatePreview()
     }
 }
 
+void SearchCoinFlips::setResults(const QModelIndexList &results, int count)
+{
+    indexes = results;
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(count));
+    updatePreview();
+    ui->tableViewPreview->clearSelection();
+    ui->tableViewPreview->setCurrentIndex(QModelIndex());
+}
+
 void SearchCoinFlips::clear()
 {
-    ui->lineEditFlips->clear();
+    if (tabWidget->currentIndex() == 0)
+    {
+        ui->lineEditFlips->clear();
+    }
+    else
+    {
+        chatotSearch->clear();
+    }
 }
 
 void SearchCoinFlips::flipsTextChanged(const QString &text)
@@ -123,6 +178,11 @@ void SearchCoinFlips::heads()
 
 void SearchCoinFlips::remove()
 {
+    if (tabWidget->currentIndex() != 0)
+    {
+        chatotSearch->remove();
+        return;
+    }
     QString string = ui->lineEditFlips->text();
     int index = string.lastIndexOf(',');
     ui->lineEditFlips->setText(index == -1 ? QString() : string.left(index));

@@ -55,7 +55,8 @@ namespace SeedToTimeCalculator4
         return results;
     }
 
-    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const SeedTime4 &target)
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, bool matchDelayParity,
+                                              const SeedTime4 &target)
     {
         DateTime time = target.getDateTime();
         u32 delay = target.getDelay();
@@ -72,6 +73,7 @@ namespace SeedToTimeCalculator4
 
             for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
+                if (matchDelayParity && (delayOffset & 1) != 0) continue;
                 results.emplace_back(offset, delay + delayOffset);
             }
         }
@@ -79,8 +81,9 @@ namespace SeedToTimeCalculator4
         return results;
     }
 
-    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, u8 playerRoute,
-                                              const std::array<bool, 3> &roamers, std::array<u8, 3> &routes, const SeedTime4 &target)
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, bool matchDelayParity, u8 playerRoute,
+                                              const std::array<bool, 3> &roamers, std::array<u8, 3> &routes,
+                                              const SeedTime4 &target)
     {
         DateTime time = target.getDateTime();
         u32 delay = target.getDelay();
@@ -97,6 +100,7 @@ namespace SeedToTimeCalculator4
 
             for (int delayOffset = -delayCalibration; delayOffset <= delayCalibration; delayOffset++)
             {
+                if (matchDelayParity && (delayOffset & 1) != 0) continue;
                 results.emplace_back(offset, delay + delayOffset, playerRoute, roamers, routes);
             }
         }

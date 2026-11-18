@@ -46,7 +46,8 @@ namespace SeedToTimeCalculator4
      *
      * @return Vector of calibration date/times
      */
-    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, const SeedTime4 &target);
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, bool matchDelayParity,
+                                              const SeedTime4 &target);
 
     /**
      * @brief Generates calibration results within -/+ \p delayCalibration and -/+ \p secondCalibration from the selected \p target.
@@ -60,8 +61,9 @@ namespace SeedToTimeCalculator4
      *
      * @return Vector of calibration date/times
      */
-    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, u8 playerRoute, const std::array<bool, 3> &roamers,
-                                              std::array<u8, 3> &routes, const SeedTime4 &target);
+    std::vector<SeedTimeCalibrate4> calibrate(int delayCalibration, int secondCalibration, bool matchDelayParity, u8 playerRoute,
+                                              const std::array<bool, 3> &roamers, std::array<u8, 3> &routes,
+                                              const SeedTime4 &target);
 };
 
 #endif // SEEDTOTIMECALCULATOR4_HPP
